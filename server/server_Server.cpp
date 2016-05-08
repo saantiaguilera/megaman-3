@@ -7,7 +7,10 @@
 
 #include "server_Server.h"
 
+#include <iostream>
 #include <iterator>
+
+#include "server_AcceptorWorker.h"
 
 #define STOP_LISTENING "q"
 
@@ -26,6 +29,26 @@ Server::Server(const std::string& port) {
 }
 
 void Server::run() {
+	callAcceptorWorker();
+}
+
+void Server::callAcceptorWorker() {
+	bool keepOnListening = true;
+	std::string userInput;
+
+	// Initiate AcceptorWorker and get him to work
+	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
+	acceptorWorker.start();
+
+	while (keepOnListening && std::getline(std::cin, userInput)) {
+		if (userInput == STOP_LISTENING) {
+			keepOnListening = false;
+			acceptorWorker.terminate();
+		}
+	}
+
+	// We are done listening so join the worker
+	acceptorWorker.join();
 }
 
 

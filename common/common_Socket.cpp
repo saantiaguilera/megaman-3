@@ -52,9 +52,14 @@ Socket::Socket(char* ip, const char* port) {
 }
 
 Socket::~Socket() {
+	terminate();
+}
+
+int Socket::terminate() {
 	shutdown(this->fd, SHUT_RDWR);
 	if (fd != -1)
 		close(this->fd);
+	return EXIT_SUCCESS;
 }
 
 int Socket::bind() {
@@ -181,26 +186,4 @@ int Socket::send(char* buffer, int size) {
 	} else {
 		return -EXIT_FAILURE;
 	}
-}
-
-// Needed some workaround here, after debate/investigation with partners we
-// reached select. Halts the socket for tv while fetching connections
-int Socket::select() {
-	int socketsReady;
-
-	fd_set fdsetSocket;
-	FD_ZERO(&fdsetSocket);
-	FD_SET(this->fd, &fdsetSocket);
-
-	struct timeval tv;
-	tv.tv_sec = 0;
-	tv.tv_usec = 10000 * 50; //10msec * 50 = 500ms
-	// Wait half second to please SERCOM =)
-
-	if ((socketsReady = ::select(FD_SETSIZE, &fdsetSocket, NULL, NULL, &tv))
-			< 0)
-		syslog(LOG_ERR,
-				"There was an error in select: %s", strerror(errno));
-
-	return socketsReady;
 }

@@ -39,8 +39,8 @@ public:
 	int receive(char* buffer, int size);
 	// Sends size bytes over the net
 	int send(char* buffer, int size);
-	// Fetches available connections
-	int select();
+	// Closes socket
+	int terminate();
 };
 
 #endif /* SRC_SOCKETS_COMMON_SOCKET_H_ */
