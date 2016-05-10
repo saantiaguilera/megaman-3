@@ -19,6 +19,11 @@ public:
 	}
 	// Destroyer
 	virtual ~EnergyCapsule();
+private:
+	// Copy constructor
+	EnergyCapsule(const EnergyCapsule&);
+	// Assignment operator
+	EnergyCapsule& operator=(const EnergyCapsule&);
 };
 
 #endif /* SERVER_MODEL_SERVER_ENERGYCAPSULE_H_ */
