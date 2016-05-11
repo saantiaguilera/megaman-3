@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_LIFE_H_
-#define SERVER_MODEL_SERVER_LIFE_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_LIFE_H_
+#define SERVER_MODEL_POWERUPS_SERVER_LIFE_H_
 
 #include "server_Powerup.h"
 
@@ -26,4 +26,4 @@ private:
 	Life& operator=(const Life&);
 };
 
-#endif /* SERVER_MODEL_SERVER_LIFE_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_LIFE_H_ */

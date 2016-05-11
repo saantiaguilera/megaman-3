@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_AMMOPACK_H_
-#define SERVER_MODEL_SERVER_AMMOPACK_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_AMMOPACK_H_
+#define SERVER_MODEL_POWERUPS_SERVER_AMMOPACK_H_
 
 #include "server_Powerup.h"
 
@@ -24,4 +24,4 @@ private:
 	AmmoPack& operator=(const AmmoPack&);
 };
 
-#endif /* SERVER_MODEL_SERVER_AMMOPACK_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_AMMOPACK_H_ */

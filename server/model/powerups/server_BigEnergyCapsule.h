@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_BIGENERGYCAPSULE_H_
-#define SERVER_MODEL_SERVER_BIGENERGYCAPSULE_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_BIGENERGYCAPSULE_H_
+#define SERVER_MODEL_POWERUPS_SERVER_BIGENERGYCAPSULE_H_
 
 #include "server_EnergyCapsule.h"
 
@@ -27,4 +27,4 @@ private:
 	BigEnergyCapsule& operator=(const BigEnergyCapsule&);
 };
 
-#endif /* SERVER_MODEL_SERVER_BIGENERGYCAPSULE_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_BIGENERGYCAPSULE_H_ */

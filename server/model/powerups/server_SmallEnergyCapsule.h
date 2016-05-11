@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_SMALLENERGYCAPSULE_H_
-#define SERVER_MODEL_SERVER_SMALLENERGYCAPSULE_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_SMALLENERGYCAPSULE_H_
+#define SERVER_MODEL_POWERUPS_SERVER_SMALLENERGYCAPSULE_H_
 
 #include "server_EnergyCapsule.h"
 
@@ -29,4 +29,4 @@ private:
 	SmallEnergyCapsule& operator=(const SmallEnergyCapsule&);
 };
 
-#endif /* SERVER_MODEL_SERVER_SMALLENERGYCAPSULE_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_SMALLENERGYCAPSULE_H_ */

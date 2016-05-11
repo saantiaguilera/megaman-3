@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_POWERUP_H_
-#define SERVER_MODEL_SERVER_POWERUP_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
+#define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
 class Powerup {
 protected:
@@ -30,4 +30,4 @@ private:
 	Powerup& operator=(const Powerup&);
 };
 
-#endif /* SERVER_MODEL_SERVER_POWERUP_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_ */

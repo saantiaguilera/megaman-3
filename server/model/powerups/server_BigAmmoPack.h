@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_BIGAMMOPACK_H_
-#define SERVER_MODEL_SERVER_BIGAMMOPACK_H_
+#ifndef SERVER_MODEL_POWERUPS_SERVER_BIGAMMOPACK_H_
+#define SERVER_MODEL_POWERUPS_SERVER_BIGAMMOPACK_H_
 
 #include "server_AmmoPack.h"
 
@@ -17,9 +17,9 @@ class BigAmmoPack: public AmmoPack {
 public:
 	// Constructor
 	BigAmmoPack() :
-		AmmoPack(BIG_AMMO_PACK_DROP_RATE,
-				BIG_AMMO_PACK_EFFECT_AMMOUNT) {
-}
+			AmmoPack(BIG_AMMO_PACK_DROP_RATE,
+			BIG_AMMO_PACK_EFFECT_AMMOUNT) {
+	}
 	// Destroyer
 	virtual ~BigAmmoPack();
 private:
@@ -29,4 +29,4 @@ private:
 	BigAmmoPack& operator=(const BigAmmoPack&);
 };
 
-#endif /* SERVER_MODEL_SERVER_BIGAMMOPACK_H_ */
+#endif /* SERVER_MODEL_POWERUPS_SERVER_BIGAMMOPACK_H_ */
