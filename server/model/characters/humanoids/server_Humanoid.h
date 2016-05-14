@@ -8,7 +8,7 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_HUMANOID_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_HUMANOID_H_
 
-#include "server_Character.h"
+#include "../server_Character.h"
 
 class Humanoid: public Character {
 public:
