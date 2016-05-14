@@ -9,6 +9,7 @@
 #include "server_Server.h"
 #include "model/characters/humanoids/server_Bombman.h"
 #include "model/characters/humanoids/server_Sparkman.h"
+#include "model/characters/mobs/server_Met.h"
 
 int main(int argc, char *argv[]) {
 	if (argc < 2)
@@ -23,6 +24,10 @@ int main(int argc, char *argv[]) {
     aSparkman.attack(&aBombman);
     std::cout << "Sparkman's health: " << aSparkman.getHp() << std::endl;
     std::cout << "Bombman's health: " << aBombman.getHp() << std::endl;
+    Met met;
+    aBombman.attack(&met);
+    std::cout << "Met's health: " << met.getHp() << std::endl;
+
 
 
 
