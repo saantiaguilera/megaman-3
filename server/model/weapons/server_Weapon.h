@@ -7,6 +7,7 @@
 
 #ifndef SERVER_MODEL_WEAPONS_SERVER_WEAPON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_WEAPON_H_
+class Character;
 
 class Weapon {
 protected:
@@ -21,7 +22,9 @@ public:
 	// Destroyer
 	virtual ~Weapon();
 	// Fire weapon inflicting damage and reducing ammo
-	void fire();
+	void fire(Character* character);
+	unsigned int getDamage() const;
+
 private:
 	// Copy constructor
 	Weapon(const Weapon&);

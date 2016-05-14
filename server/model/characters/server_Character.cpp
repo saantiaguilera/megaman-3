@@ -13,3 +13,6 @@ Character::~Character() {
 	delete currentWeapon;
 }
 
+void Character::receiveShotFromWeapon(Weapon* weapon) {
+	hp -= weapon->getDamage();
+}
