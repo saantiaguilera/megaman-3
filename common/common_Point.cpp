@@ -19,6 +19,11 @@ unsigned int Point::getY() const {
 	return y;
 }
 
+Point::Point() {
+	y = 0;
+	x = 0;
+}
+
 void Point::setY(unsigned int y) {
 	this->y = y;
 }

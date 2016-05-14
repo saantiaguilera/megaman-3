@@ -8,13 +8,19 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include "../weapons/server_Weapon.h"
 #include <cstddef>
+
+#include "../../../common/common_Point.h"
+
+class Weapon;
 
 class Character {
 protected:
+	// my current position
+	Point myPoint;
 	// hp are the hitpoints for current life
 	unsigned int hp;
+	// My weapon
 	Weapon* currentWeapon;
 public:
 	// Constructor
@@ -22,11 +28,13 @@ public:
 	// Destroyer
 	virtual ~Character();
 	// Moves the character
-	virtual void move() = 0;
+	void move(unsigned int x, unsigned int y);
 	// Attacks
-	virtual void attack() = 0;
+	void attack(Character* otherCharacter);
 	// receive shot from weapon parameter
 	void receiveShotFromWeapon(Weapon* weapon);
+	unsigned int getHp() const;
+
 private:
 	// Copy constructor
 	Character(const Character&);

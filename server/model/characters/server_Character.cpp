@@ -13,6 +13,19 @@ Character::~Character() {
 	delete currentWeapon;
 }
 
+void Character::move(unsigned int x, unsigned int y) {
+	myPoint.setX(x);
+	myPoint.setY(y);
+}
+
+void Character::attack(Character* otherCharacter) {
+	currentWeapon->fire(otherCharacter);
+}
+
+unsigned int Character::getHp() const {
+	return hp;
+}
+
 void Character::receiveShotFromWeapon(Weapon* weapon) {
 	hp -= weapon->getDamage();
 }

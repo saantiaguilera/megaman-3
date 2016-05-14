@@ -13,7 +13,7 @@ private:
 	// Actual positions
 	unsigned int x, y;
 public:
-	// Cosntructor
+	// Constructor
 	Point();
 	// Destroyer
 	virtual ~Point();
@@ -25,6 +25,11 @@ public:
 	unsigned int getY() const;
 	// set y position
 	void setY(unsigned int y);
+private:
+	// Copy constructor
+	Point(const Point&);
+	// Assignment operator
+	Point& operator=(const Point&);
 };
 
 #endif /* COMMON_COMMON_POINT_H_ */
