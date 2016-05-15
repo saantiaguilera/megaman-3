@@ -10,6 +10,8 @@
 
 #include "../../../common/common_Point.h"
 
+class Character;
+
 class Obstacle {
 protected:
 	// my current position
@@ -21,6 +23,8 @@ public:
 	Obstacle(bool passable);
 	// Destroyer
 	virtual ~Obstacle();
+	// Applies its effect on character
+	virtual void haveEffectOn(Character* character) = 0;
 	bool isPassable() const;
 private:
 	// Copy constructor

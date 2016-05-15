@@ -13,3 +13,6 @@ BossChamberGate::BossChamberGate() : Obstacle(BOSS_CHAMBER_GATE_IS_PASSABLE) {}
 BossChamberGate::~BossChamberGate() {
 }
 
+void BossChamberGate::haveEffectOn(Character* character) {
+	// Teleport to new map
+}

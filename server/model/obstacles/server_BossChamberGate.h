@@ -18,6 +18,8 @@ public:
 	BossChamberGate();
 	// Destroyer
 	virtual ~BossChamberGate();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	BossChamberGate(const BossChamberGate&);

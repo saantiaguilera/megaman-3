@@ -18,6 +18,8 @@ public:
 	Stairway();
 	// Constructor
 	virtual ~Stairway();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Stairway(const Stairway&);

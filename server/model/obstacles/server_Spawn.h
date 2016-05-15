@@ -18,6 +18,8 @@ public:
 	Spawn();
 	// Destroyer
 	virtual ~Spawn();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Spawn(const Spawn&);

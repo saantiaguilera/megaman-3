@@ -18,6 +18,8 @@ public:
 	Block();
 	// Destroyer
 	virtual ~Block();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Block(const Block&);

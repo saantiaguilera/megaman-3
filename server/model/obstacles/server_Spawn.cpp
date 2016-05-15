@@ -13,3 +13,5 @@ Spawn::Spawn() : Obstacle(SPAWN_IS_PASSABLE) {}
 Spawn::~Spawn() {
 }
 
+void Spawn::haveEffectOn(Character* character) {
+}

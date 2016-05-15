@@ -18,6 +18,8 @@ public:
 	Needle();
 	// Destroyer
 	virtual ~Needle();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Needle(const Needle&);

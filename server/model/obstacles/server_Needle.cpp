@@ -7,9 +7,14 @@
 
 #include "server_Needle.h"
 
+#include "../characters/server_Character.h"
+
 Needle::Needle() : Obstacle(NEEDLE_IS_PASSABLE) {}
 
 
 Needle::~Needle() {
 }
 
+void Needle::haveEffectOn(Character* character) {
+	character->decreaseHp(character->getHp());
+}
