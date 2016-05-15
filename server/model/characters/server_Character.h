@@ -12,6 +12,8 @@
 
 #include "../../../common/common_Point.h"
 
+class Projectile;
+
 class Weapon;
 
 class Character {
@@ -30,11 +32,13 @@ public:
 	// Moves the character
 	void move(unsigned int x, unsigned int y);
 	// Attacks
-	void attack(Character* otherCharacter);
+	void attack();
 	// receive shot from weapon parameter
-	virtual void receiveShotFromWeapon(Weapon* weapon);
+	virtual void receiveShotFromProjectile(Projectile* projectile);
 	// Return hp of the character
 	unsigned int getHp() const;
+	// Decreases hp of the character
+	void decreaseHp(unsigned int damage);
 
 private:
 	// Copy constructor

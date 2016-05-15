@@ -10,8 +10,6 @@
 
 #include "server_Mob.h"
 
-#include "../../weapons/server_Bomb.h"
-
 #define MET_INITIAL_HP 10
 
 class Met: public Mob {
@@ -20,8 +18,8 @@ public:
 	Met() : Mob(MET_INITIAL_HP) {}
 	// Destroyer
 	virtual ~Met();
-	// receive shot from weapon parameter
-	void receiveShotFromWeapon(Bomb* bomb);
+	// Receive shot from weapon
+	void receiveShotFromProjectile(Projectile* projectile);
 private:
 	// Copy constructor
 	Met(const Met&);

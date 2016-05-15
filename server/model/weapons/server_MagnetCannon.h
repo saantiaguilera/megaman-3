@@ -10,13 +10,14 @@
 
 #include "server_Weapon.h"
 
-#define MAGNET_CANNON_DAMAGE 4
 #define MAGNET_CANNON_MAX_AMMO 10
 
 class MagnetCannon: public Weapon {
 public:
-	MagnetCannon() : Weapon(MAGNET_CANNON_DAMAGE, MAGNET_CANNON_MAX_AMMO) {}
+	MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
 	virtual ~MagnetCannon();
+	// fire weapon
+	void fire();
 private:
 	// Copy constructor
 	MagnetCannon(const MagnetCannon&);

@@ -10,3 +10,6 @@
 MobCannon::~MobCannon() {
 }
 
+void MobCannon::fire() {
+	--ammo;
+}

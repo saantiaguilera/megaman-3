@@ -11,19 +11,15 @@ class Character;
 
 class Weapon {
 protected:
-	// Damage inflicted by the weapon
 	// Ammo of the weapon
-	unsigned int damage, ammo;
+	unsigned int ammo;
 public:
 	// Constructor
-	Weapon(unsigned int damage, unsigned int ammo) :
-			damage(damage), ammo(ammo) {
-	}
+	Weapon(unsigned int ammo) : ammo(ammo) {}
 	// Destroyer
 	virtual ~Weapon();
-	// Fire weapon inflicting damage and reducing ammo
-	void fire(Character* character);
-	unsigned int getDamage() const;
+	// Fire weapon reducing ammo
+	virtual void fire() = 0;
 
 private:
 	// Copy constructor

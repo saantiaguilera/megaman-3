@@ -10,3 +10,6 @@
 PlasmaCannon::~PlasmaCannon() {
 }
 
+void PlasmaCannon::fire() {
+	--ammo;
+}

@@ -10,3 +10,6 @@
 Flamethrower::~Flamethrower() {
 }
 
+void Flamethrower::fire() {
+	--ammo;
+}

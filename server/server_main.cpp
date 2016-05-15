@@ -8,8 +8,9 @@
 #include <glog/logging.h>
 
 #include "server_Server.h"
-#include "model/characters/humanoids/server_Bombman.h"
-#include "model/characters/humanoids/server_Sparkman.h"
+#include "model/projectiles/server_Bomb.h"
+#include "model/projectiles/server_Fire.h"
+#include "model/projectiles/server_Spark.h"
 #include "model/characters/mobs/server_Met.h"
 
 #define LOG_DEST "/var/tmp/fiuba-taller-I-megaman"
@@ -27,17 +28,19 @@ int main(int argc, char *argv[]) {
 
     LOG(INFO) << "Starting server...";
 
-    Bombman aBombman;
-    Sparkman aSparkman;
-    aBombman.attack(&aSparkman);
-    aSparkman.attack(&aBombman);
-    std::cout << "Sparkman's health: " << aSparkman.getHp() << std::endl;
-    std::cout << "Bombman's health: " << aBombman.getHp() << std::endl;
+    Bomb aBomb;
+    Fire aFire;
+    Spark aSpark;
     Met met;
-    aBombman.attack(&met);
+    met.setVulnerable(false);
+    met.receiveShotFromProjectile(&aFire);
     std::cout << "Met's health: " << met.getHp() << std::endl;
-
-
+    met.receiveShotFromProjectile(&aBomb);
+    std::cout << "Met's health: " << met.getHp() << std::endl;
+    met.receiveShotFromProjectile(&aFire);
+    std::cout << "Met's health: " << met.getHp() << std::endl;
+    met.receiveShotFromProjectile(&aSpark);
+    std::cout << "Met's health: " << met.getHp() << std::endl;
 
 
 //    Server server = Server(port);

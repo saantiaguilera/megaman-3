@@ -17,9 +17,11 @@
 class MobCannon: public Weapon {
 public:
 	// Constructor
-	MobCannon() : Weapon(MOB_CANNON_DAMAGE, MOB_CANNON_MAX_AMMO) {}
+	MobCannon() : Weapon(MOB_CANNON_MAX_AMMO) {}
 	// Destroyer
 	virtual ~MobCannon();
+	// fire weapon
+	void fire();
 private:
 	// Copy constructor
 	MobCannon(const MobCannon&);

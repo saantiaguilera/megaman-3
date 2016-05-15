@@ -7,6 +7,7 @@
 
 #include "server_Character.h"
 
+#include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
 Character::~Character() {
@@ -18,14 +19,22 @@ void Character::move(unsigned int x, unsigned int y) {
 	myPoint.setY(y);
 }
 
-void Character::attack(Character* otherCharacter) {
-	currentWeapon->fire(otherCharacter);
+void Character::attack() {
+	currentWeapon->fire();
 }
 
 unsigned int Character::getHp() const {
 	return hp;
 }
 
-void Character::receiveShotFromWeapon(Weapon* weapon) {
-	hp -= weapon->getDamage();
+void Character::receiveShotFromProjectile(Projectile* projectile) {
+	hp -= projectile->getDamage();
+}
+
+void Character::decreaseHp(unsigned int damage) {
+	if (((int)hp - (int)damage) < 0){
+		hp = 0;
+	} else {
+		hp -= damage;
+	}
 }

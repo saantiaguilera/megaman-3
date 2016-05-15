@@ -10,15 +10,16 @@
 
 #include "server_Weapon.h"
 
-#define FLAMETHROWER_DAMAGE 6
 #define FLAMETHROWER_MAX_AMMO 20
 
 class Flamethrower: public Weapon {
 public:
 	// Constructor
-	Flamethrower() : Weapon(FLAMETHROWER_DAMAGE, FLAMETHROWER_MAX_AMMO) {}
+	Flamethrower() : Weapon(FLAMETHROWER_MAX_AMMO) {}
 	// Destroyer
 	virtual ~Flamethrower();
+	// Fire weapon
+	void fire();
 private:
 	// Copy constructor
 	Flamethrower(const Flamethrower&);

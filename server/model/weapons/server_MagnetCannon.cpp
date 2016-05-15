@@ -10,3 +10,6 @@
 MagnetCannon::~MagnetCannon() {
 }
 
+void MagnetCannon::fire() {
+	--ammo;
+}

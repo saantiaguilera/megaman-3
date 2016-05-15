@@ -11,3 +11,6 @@
 RingTosser::~RingTosser() {
 }
 
+void RingTosser::fire() {
+	--ammo;
+}

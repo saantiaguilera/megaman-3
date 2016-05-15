@@ -10,3 +10,6 @@
 SparksCannon::~SparksCannon() {
 }
 
+void SparksCannon::fire() {
+	--ammo;
+}
