@@ -12,6 +12,10 @@
 #include "model/projectiles/server_Fire.h"
 #include "model/projectiles/server_Spark.h"
 #include "model/characters/mobs/server_Met.h"
+#include "model/characters/humanoids/server_Bombman.h"
+#include "model/characters/humanoids/server_Sparkman.h"
+#include "model/obstacles/server_Needle.h"
+#include "model/obstacles/server_Precipice.h"
 
 #define LOG_DEST "/var/tmp/fiuba-taller-I-megaman"
 
@@ -41,6 +45,17 @@ int main(int argc, char *argv[]) {
     std::cout << "Met's health: " << met.getHp() << std::endl;
     met.receiveShotFromProjectile(&aSpark);
     std::cout << "Met's health: " << met.getHp() << std::endl;
+
+    Bombman aBombman;
+    Sparkman aSparkman;
+    Needle aNeedle;
+    Precipice aPrecipice;
+    std::cout << "Bombman's health: " << aBombman.getHp() << std::endl;
+    aNeedle.haveEffectOn(&aBombman);
+    std::cout << "Bombman's health: " << aBombman.getHp() << std::endl;
+    std::cout << "Sparkman's health: " << aSparkman.getHp() << std::endl;
+    aPrecipice.haveEffectOn(&aSparkman);
+    std::cout << "Sparkman's health: " << aSparkman.getHp() << std::endl;
 
 
 //    Server server = Server(port);
