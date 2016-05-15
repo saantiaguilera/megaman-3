@@ -15,7 +15,7 @@
 class Block: public Obstacle {
 public:
 	// Constructor
-	Block() : Obstacle(BLOCK_IS_PASSABLE) {}
+	Block();
 	// Destroyer
 	virtual ~Block();
 private:

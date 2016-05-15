@@ -7,6 +7,9 @@
 
 #include "server_Precipice.h"
 
+Precipice::Precipice() : Obstacle(PRECIPICE_IS_PASSABLE) {}
+
+
 Precipice::~Precipice() {
 }
 

@@ -13,7 +13,7 @@
 class Humanoid: public Character {
 public:
 	// Constructor
-	Humanoid(unsigned int hp) : Character(hp) {}
+	Humanoid(unsigned int hp);
 	// Destroyer
 	virtual ~Humanoid();
 private:

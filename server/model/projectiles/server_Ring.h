@@ -15,7 +15,7 @@
 class Ring: public Projectile {
 public:
 	// Constructor
-	Ring() : Projectile(RING_DAMAGE, Projectile::RING) {}
+	Ring();
 	// Destroyer
 	virtual ~Ring();
 private:

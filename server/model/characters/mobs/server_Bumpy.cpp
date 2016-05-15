@@ -7,6 +7,8 @@
 
 #include "server_Bumpy.h"
 
+Bumpy::Bumpy() : Mob(BUMPY_INITIAL_HP) {}
+
 Bumpy::~Bumpy() {
 }
 

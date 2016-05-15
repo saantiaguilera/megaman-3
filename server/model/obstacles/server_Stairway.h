@@ -15,7 +15,7 @@
 class Stairway: public Obstacle {
 public:
 	// Constructor
-	Stairway() : Obstacle(STAIRWAY_IS_PASSABLE) {}
+	Stairway();
 	// Constructor
 	virtual ~Stairway();
 private:

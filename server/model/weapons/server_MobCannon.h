@@ -17,7 +17,7 @@
 class MobCannon: public Weapon {
 public:
 	// Constructor
-	MobCannon() : Weapon(MOB_CANNON_MAX_AMMO) {}
+	MobCannon();
 	// Destroyer
 	virtual ~MobCannon();
 	// fire weapon

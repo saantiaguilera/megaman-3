@@ -7,6 +7,9 @@
 
 #include "server_Block.h"
 
+Block::Block() : Obstacle(BLOCK_IS_PASSABLE) {}
+
+
 Block::~Block() {
 }
 

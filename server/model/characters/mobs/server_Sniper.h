@@ -15,7 +15,7 @@
 class Sniper: public Mob {
 public:
 	// Constructor
-	Sniper() : Mob(SNIPER_INITAL_HP) {}
+	Sniper();
 	// Destroyer
 	virtual ~Sniper();
 private:

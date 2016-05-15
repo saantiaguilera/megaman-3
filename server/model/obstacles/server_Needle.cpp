@@ -7,6 +7,9 @@
 
 #include "server_Needle.h"
 
+Needle::Needle() : Obstacle(NEEDLE_IS_PASSABLE) {}
+
+
 Needle::~Needle() {
 }
 

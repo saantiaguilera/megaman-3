@@ -15,7 +15,7 @@
 class Flamethrower: public Weapon {
 public:
 	// Constructor
-	Flamethrower() : Weapon(FLAMETHROWER_MAX_AMMO) {}
+	Flamethrower();
 	// Destroyer
 	virtual ~Flamethrower();
 	// Fire weapon

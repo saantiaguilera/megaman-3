@@ -7,6 +7,9 @@
 
 #include "server_Magnet.h"
 
+Magnet::Magnet() : Projectile(MAGNET_DAMAGE, Projectile::MAGNET) {}
+
+
 Magnet::~Magnet() {
 }
 

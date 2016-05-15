@@ -15,7 +15,7 @@
 class Precipice: public Obstacle {
 public:
 	// Constructor
-	Precipice() : Obstacle(PRECIPICE_IS_PASSABLE) {}
+	Precipice();
 	// Destroyer
 	virtual ~Precipice();
 	// Act on character

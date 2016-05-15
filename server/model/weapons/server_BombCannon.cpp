@@ -7,6 +7,9 @@
 
 #include "server_BombCannon.h"
 
+BombCannon::BombCannon() : Weapon(BOMB_MAX_AMMO) {}
+
+
 BombCannon::~BombCannon() {
 }
 

@@ -15,7 +15,7 @@
 class Needle: public Obstacle {
 public:
 	// Constructor
-	Needle() : Obstacle(NEEDLE_IS_PASSABLE) {}
+	Needle();
 	// Destroyer
 	virtual ~Needle();
 private:

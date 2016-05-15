@@ -15,7 +15,7 @@
 class Plasma: public Projectile {
 public:
 	// Constructor
-	Plasma() : Projectile(PLASMA_DAMAGE, Projectile::PLASMA) {}
+	Plasma();
 	// Destroyer
 	virtual ~Plasma();
 private:

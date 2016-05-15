@@ -7,7 +7,8 @@
 
 #include "server_Life.h"
 
+Life::Life() : Powerup(LIFE_DROP_RATE, LIFE_EFFECT_AMOUNT) {}
+
 Life::~Life() {
-	// TODO Auto-generated destructor stub
 }
 

@@ -15,7 +15,7 @@
 class Spawn: public Obstacle {
 public:
 	// Constructor
-	Spawn() : Obstacle(SPAWN_IS_PASSABLE) {}
+	Spawn();
 	// Destroyer
 	virtual ~Spawn();
 private:

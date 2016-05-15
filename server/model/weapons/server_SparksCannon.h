@@ -15,7 +15,7 @@
 class SparksCannon: public Weapon {
 public:
 	// Constructor
-	SparksCannon() : Weapon(SPARKS_CANNON_MAX_AMMO) {}
+	SparksCannon();
 	// Destroyer
 	virtual ~SparksCannon();
 	// fire weapon

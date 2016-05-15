@@ -14,7 +14,7 @@
 
 class Bomb: public Projectile {
 public:
-	Bomb() : Projectile(BOMB_DAMAGE, Projectile::BOMB) {}
+	Bomb();
 	virtual ~Bomb();
 private:
 	// Copy constructor

@@ -15,7 +15,7 @@
 class Met: public Mob {
 public:
 	// Constructor
-	Met() : Mob(MET_INITIAL_HP) {}
+	Met();
 	// Destroyer
 	virtual ~Met();
 	// Receive shot from weapon

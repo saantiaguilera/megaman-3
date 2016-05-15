@@ -10,6 +10,9 @@
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
+Character::Character(unsigned int hp) : hp(hp), currentWeapon(NULL) {}
+
+
 Character::~Character() {
 	delete currentWeapon;
 }

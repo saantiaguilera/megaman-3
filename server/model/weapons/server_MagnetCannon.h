@@ -14,7 +14,7 @@
 
 class MagnetCannon: public Weapon {
 public:
-	MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
+	MagnetCannon();
 	virtual ~MagnetCannon();
 	// fire weapon
 	void fire();

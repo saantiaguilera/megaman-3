@@ -7,6 +7,9 @@
 
 #include "server_Spark.h"
 
+Spark::Spark() : Projectile(SPARKS_DAMAGE, Projectile::SPARK) {}
+
+
 Spark::~Spark() {
 }
 

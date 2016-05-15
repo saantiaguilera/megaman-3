@@ -18,9 +18,7 @@ protected:
 	virtual void haveEffectOn() = 0;
 public:
 	// Constructor
-	Powerup(float dropRate, unsigned int effectAmount) :
-			dropRate(dropRate), effectAmount(effectAmount) {
-	}
+	Powerup(float dropRate, unsigned int effectAmount);
 	// Destroyer
 	virtual ~Powerup();
 private:

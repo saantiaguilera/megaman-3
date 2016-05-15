@@ -15,7 +15,7 @@
 
 class Fire: public Projectile {
 public:
-	Fire() : Projectile(FIRE_DAMAGE, Projectile::FIRE) {}
+	Fire();
 	virtual ~Fire();
 private:
 	// Copy constructor

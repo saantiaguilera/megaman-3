@@ -15,7 +15,7 @@
 class Magnet: public Projectile {
 public:
 	// Constructor
-	Magnet() : Projectile(MAGNET_DAMAGE, Projectile::MAGNET) {}
+	Magnet();
 	// Destroyer
 	virtual ~Magnet();
 private:

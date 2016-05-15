@@ -9,5 +9,7 @@
 
 #include "../characters/server_Character.h"
 
+Weapon::Weapon(unsigned int ammo) : ammo(ammo) {}
+
 Weapon::~Weapon() {
 }

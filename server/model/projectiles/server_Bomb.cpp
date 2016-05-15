@@ -7,6 +7,8 @@
 
 #include "server_Bomb.h"
 
+Bomb::Bomb() : Projectile(BOMB_DAMAGE, Projectile::BOMB) {}
+
 Bomb::~Bomb() {
 }
 

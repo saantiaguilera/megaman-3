@@ -7,6 +7,10 @@
 
 #include "server_Fireman.h"
 
+Fireman::Fireman() : Humanoid(FIREMAN_INITIAL_HP) {
+	currentWeapon = new Flamethrower();
+}
+
 Fireman::~Fireman() {
 }
 

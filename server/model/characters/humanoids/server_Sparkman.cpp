@@ -7,6 +7,10 @@
 
 #include "server_Sparkman.h"
 
+Sparkman::Sparkman() : Humanoid(SPARKMAN_INITIAL_HP) {
+	currentWeapon = new SparksCannon();
+}
+
 Sparkman::~Sparkman() {
 }
 

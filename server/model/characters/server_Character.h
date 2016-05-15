@@ -26,7 +26,7 @@ protected:
 	Weapon* currentWeapon;
 public:
 	// Constructor
-	Character(unsigned int hp) : hp(hp), currentWeapon(NULL) {}
+	Character(unsigned int hp);
 	// Destroyer
 	virtual ~Character();
 	// Moves the character

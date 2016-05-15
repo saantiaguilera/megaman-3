@@ -15,7 +15,7 @@
 class BossChamberGate: public Obstacle {
 public:
 	// Constructor
-	BossChamberGate() : Obstacle(BOSS_CHAMBER_GATE_IS_PASSABLE) {}
+	BossChamberGate();
 	// Destroyer
 	virtual ~BossChamberGate();
 private:

@@ -15,7 +15,7 @@
 class Bumpy: public Mob {
 public:
 	// Constructor
-	Bumpy() : Mob(BUMPY_INITIAL_HP) {}
+	Bumpy();
 	// Destroyer
 	virtual ~Bumpy();
 private:

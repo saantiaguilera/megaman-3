@@ -7,6 +7,9 @@
 
 #include "server_Sniper.h"
 
+Sniper::Sniper() : Mob(SNIPER_INITAL_HP) {}
+
+
 Sniper::~Sniper() {
 }
 

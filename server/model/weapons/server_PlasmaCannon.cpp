@@ -7,6 +7,9 @@
 
 #include "server_PlasmaCannon.h"
 
+PlasmaCannon::PlasmaCannon() : Weapon(PLASMA_CANNON_MAX_AMMO) {}
+
+
 PlasmaCannon::~PlasmaCannon() {
 }
 

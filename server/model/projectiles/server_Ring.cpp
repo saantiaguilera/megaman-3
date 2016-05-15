@@ -7,6 +7,9 @@
 
 #include "server_Ring.h"
 
+Ring::Ring() : Projectile(RING_DAMAGE, Projectile::RING) {}
+
+
 Ring::~Ring() {
 }
 

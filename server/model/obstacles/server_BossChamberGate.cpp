@@ -7,6 +7,9 @@
 
 #include "server_BossChamberGate.h"
 
+BossChamberGate::BossChamberGate() : Obstacle(BOSS_CHAMBER_GATE_IS_PASSABLE) {}
+
+
 BossChamberGate::~BossChamberGate() {
 }
 

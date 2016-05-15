@@ -15,10 +15,7 @@
 
 class BigEnergyCapsule: public EnergyCapsule {
 public:
-	BigEnergyCapsule() :
-	EnergyCapsule(BIG_ENERGY_CAPSULE_DROP_RATE,
-			BIG_ENERGY_CAPSULE_EFFECT_AMMOUNT) {
-};
+	BigEnergyCapsule();
 	virtual ~BigEnergyCapsule();
 private:
 	// Copy constructor

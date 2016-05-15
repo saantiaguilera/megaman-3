@@ -15,7 +15,7 @@ protected:
 	unsigned int ammo;
 public:
 	// Constructor
-	Weapon(unsigned int ammo) : ammo(ammo) {}
+	Weapon(unsigned int ammo);
 	// Destroyer
 	virtual ~Weapon();
 	// Fire weapon reducing ammo

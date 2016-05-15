@@ -15,7 +15,7 @@
 class Spark: public Projectile {
 public:
 	// Constructor
-	Spark() : Projectile(SPARKS_DAMAGE, Projectile::SPARK) {}
+	Spark();
 	// Destroyer
 	virtual ~Spark();
 private:

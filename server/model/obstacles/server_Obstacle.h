@@ -13,7 +13,7 @@ protected:
 	bool passable;
 public:
 	// Constructor
-	Obstacle(bool passable) : passable(passable) {}
+	Obstacle(bool passable);
 	// Destroyer
 	virtual ~Obstacle();
 	bool isPassable() const;

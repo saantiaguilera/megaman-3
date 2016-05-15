@@ -15,7 +15,7 @@
 class RingTosser: public Weapon {
 public:
 	// Constructor
-	RingTosser() : Weapon(RING_TOSSER_MAX_AMMO) {}
+	RingTosser();
 	// Destroyer
 	virtual ~RingTosser();
 	// fire weapon

@@ -9,6 +9,8 @@
 
 #include "../../projectiles/server_Projectile.h"
 
+Met::Met() : Mob(MET_INITIAL_HP) {}
+
 Met::~Met() {
 }
 

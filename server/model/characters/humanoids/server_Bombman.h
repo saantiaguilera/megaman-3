@@ -16,9 +16,7 @@
 class Bombman: public Humanoid {
 public:
 	// Constructor
-	Bombman() : Humanoid(BOMBMAN_INITIAL_HP) {
-		currentWeapon = new BombCannon();
-	}
+	Bombman();
 	// Destroyer
 	virtual ~Bombman();
 private:
