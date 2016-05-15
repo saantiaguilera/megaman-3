@@ -8,18 +8,14 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include <cstddef>
-
-#include "../../../common/common_Point.h"
+#include "../IMovable.h"
 
 class Projectile;
 
 class Weapon;
 
-class Character {
+class Character : IMovable {
 protected:
-	// my current position
-	Point myPoint;
 	// hp are the hitpoints for current life
 	unsigned int hp;
 	// My weapon
@@ -29,8 +25,6 @@ public:
 	Character(unsigned int hp);
 	// Destroyer
 	virtual ~Character();
-	// Moves the character
-	void move(unsigned int x, unsigned int y);
 	// Attacks
 	void attack();
 	// receive shot from weapon parameter

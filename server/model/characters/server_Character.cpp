@@ -7,6 +7,8 @@
 
 #include "server_Character.h"
 
+#include <cstddef>
+
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
@@ -15,11 +17,6 @@ Character::Character(unsigned int hp) : hp(hp), currentWeapon(NULL) {}
 
 Character::~Character() {
 	delete currentWeapon;
-}
-
-void Character::move(unsigned int x, unsigned int y) {
-	myPoint.setX(x);
-	myPoint.setY(y);
 }
 
 void Character::attack() {

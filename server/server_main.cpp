@@ -57,6 +57,9 @@ int main(int argc, char *argv[]) {
     aPrecipice.haveEffectOn(&aSparkman);
     std::cout << "Sparkman's health: " << aSparkman.getHp() << std::endl;
 
+    aSparkman.getMyPoint().setX(1);
+    aSparkman.getMyPoint().setY(2);
+
 
 //    Server server = Server(port);
 //    server.run();
