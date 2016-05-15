@@ -32,7 +32,8 @@ public:
 	// Attacks
 	void attack(Character* otherCharacter);
 	// receive shot from weapon parameter
-	void receiveShotFromWeapon(Weapon* weapon);
+	virtual void receiveShotFromWeapon(Weapon* weapon);
+	// Return hp of the character
 	unsigned int getHp() const;
 
 private:
