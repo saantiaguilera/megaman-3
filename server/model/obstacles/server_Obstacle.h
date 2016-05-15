@@ -8,8 +8,13 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 
+#include "../../../common/common_Point.h"
+
 class Obstacle {
 protected:
+	// my current position
+	Point myPoint;
+	// is passable?
 	bool passable;
 public:
 	// Constructor

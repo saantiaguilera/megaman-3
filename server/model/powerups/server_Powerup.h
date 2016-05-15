@@ -8,8 +8,12 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
+#include "../../../common/common_Point.h"
+
 class Powerup {
 protected:
+	// my current position
+	Point myPoint;
 	// Powerups drop rate
 	float dropRate;
 	// Amount of its effect to be applied

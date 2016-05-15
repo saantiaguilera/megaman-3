@@ -38,7 +38,7 @@ public:
 	// Return hp of the character
 	unsigned int getHp() const;
 	// Decreases hp of the character
-	void decreaseHp(unsigned int damage);
+	void decreaseHp(float damage);
 
 private:
 	// Copy constructor

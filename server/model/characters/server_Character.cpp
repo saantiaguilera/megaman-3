@@ -34,7 +34,7 @@ void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
 }
 
-void Character::decreaseHp(unsigned int damage) {
+void Character::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
 	} else {

@@ -10,7 +10,7 @@
 
 #include "server_Mob.h"
 
-#define BUMPY_INITIAL_HP 5
+#define BUMPY_INITIAL_HP 1
 
 class Bumpy: public Mob {
 public:

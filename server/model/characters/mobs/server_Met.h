@@ -10,7 +10,7 @@
 
 #include "server_Mob.h"
 
-#define MET_INITIAL_HP 10
+#define MET_INITIAL_HP 1
 
 class Met: public Mob {
 public:

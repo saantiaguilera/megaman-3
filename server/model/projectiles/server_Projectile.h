@@ -8,8 +8,12 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 
+#include "../../../common/common_Point.h"
+
 class Projectile {
 public:
+	// my current position
+	Point myPoint;
 	// Type of the projectile
 	enum projectile_types_t { BOMB, FIRE, SPARK, MAGNET, PLASMA, RING } PROJECTILE_TYPE;
 protected:
