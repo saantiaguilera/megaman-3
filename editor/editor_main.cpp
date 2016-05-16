@@ -4,7 +4,7 @@
  *  Created on: May 14, 2016
  *      Author: santi
  */
-
+/*
 #include <gtkmm.h>
 
 int main(int argc, char *argv[]) {
@@ -15,3 +15,4 @@ int main(int argc, char *argv[]) {
 
   return app->run(window);
 }
+*/

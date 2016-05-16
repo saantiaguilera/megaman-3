@@ -7,52 +7,45 @@
 
 #include <iostream>
 #include "../Constants.h"
-#include <gtkmm.h>
+#include <gtk-3.0/gtk/gtk.h>
 
-#define LAYOUT_PATH "../res/layout/home_screen.glade"
+#define LAYOUT_PATH "res/layout/home_screen.glade"
 
-/*
-static void on_button_clicked() {
-	if (pDialog)
-		pDialog->hide(); //hide() will cause main::run() to end.
-}
-*/
+#include <gtk/gtk.h>
 
 int main(int argc, char **argv) {
-	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv,
-			PACKAGE_NAME);
+	GtkBuilder *builder;
+	GtkWidget *window;
+	GError *error = NULL;
 
-	Gtk::Window* rootView = NULL;
+	/* Init GTK+ */
+	gtk_init(&argc, &argv);
 
-	Glib::RefPtr<Gtk::Builder> viewBuilder = Gtk::Builder::create();
+	/* Create new GtkBuilder object */
+	builder = gtk_builder_new();
 
-	try {
-		viewBuilder->add_from_file(LAYOUT_PATH);
-	} catch (const Glib::FileError& ex) {
-		std::cout << "FileError: " << ex.what() << std::endl;
-		return 1;
-	} catch (const Glib::MarkupError& ex) {
-		std::cout << "MarkupError: " << ex.what() << std::endl;
-		return 1;
-	} catch (const Gtk::BuilderError& ex) {
-		std::cout << "BuilderError: " << ex.what() << std::endl;
-		return 1;
+	/* Load UI from file. If error occurs, report it and quit application.
+	 * Replace "tut.glade" with your saved project. */
+	if (!gtk_builder_add_from_file(builder, LAYOUT_PATH, &error)) {
+		g_warning("%s", error->message);
+		g_free(error);
+		return (1);
 	}
 
-	viewBuilder->get_widget("view_main_screen_root", rootView);
+	/* Get main window pointer from UI */
+	window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
 
-	if (rootView) {/*
-		//Get the GtkBuilder-instantiated Button, and connect a signal handler:
-		Gtk::Button* pButton = NULL;
-		refBuilder->get_widget("quit_button", pButton);
-		if (pButton) {
-			pButton->signal_clicked().connect(sigc::ptr_fun(on_button_clicked));
-		}
-*/
-		app->run(*rootView);
-	}
+	/* Connect signals */
+	gtk_builder_connect_signals(builder, NULL);
 
-	delete rootView;
+	/* Destroy builder, since we don't need it anymore */
+	g_object_unref(G_OBJECT(builder));
 
-	return 0;
+	/* Show window. All other widgets are automatically shown by GtkBuilder */
+	gtk_widget_show(window);
+
+	/* Start main loop */
+	gtk_main();
+
+	return (0);
 }
