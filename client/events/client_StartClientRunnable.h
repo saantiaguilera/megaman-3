@@ -14,7 +14,6 @@
 
 #define LAYOUT_PATH "res/layout/home_screen.glade"
 #define VIEW_ROOT "client_home_screen_root_view"
-#define VIEW_EDIT_TEXT "client_home_screen_edit_text"
 
 class StartClientRunnable : public Runnable {
 public:
@@ -38,13 +37,19 @@ public:
 
 		window = GTK_WIDGET(gtk_builder_get_object(builder, VIEW_ROOT));
 
-		gtk_builder_connect_signals(builder, NULL);
+		gtk_builder_connect_signals(builder, window);
 
+		//Siempre que tengas una ref de algun obj tenes que llamar esto para no crashear el counter.
 		g_object_unref(G_OBJECT(builder));
 
 		gtk_widget_show(window);
 
 		gtk_main();
+	}
+private:
+	static void onEnterPressed(GtkEntry *entry,
+            gpointer  user_data) {
+		std::cout << "Enter was pressed" << std::endl;
 	}
 };
 
