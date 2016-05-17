@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
+<interface>
+  <requires lib="gtk+" version="3.10"/>
+  <object class="GtkWindow" id="mainWindow">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkLayout" id="layout1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButton" id="btnOk">
+            <property name="label" translatable="yes">button</property>
+            <property name="width_request">100</property>
+            <property name="height_request">33</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_right">31</property>
+          </object>
+          <packing>
+            <property name="x">13</property>
+            <property name="y">123</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnCancel">
+            <property name="label" translatable="yes">button</property>
+            <property name="width_request">100</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="x">126</property>
+            <property name="y">124</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblNotice">
+            <property name="width_request">166</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Aca dice algo ...</property>
+          </object>
+          <packing>
+            <property name="x">37</property>
+            <property name="y">30</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
