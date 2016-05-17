@@ -24,7 +24,6 @@ int main(int argc, char *argv[]) {
 
 	MainWindow *mainWindow = 0;
 
-	std::cout<<"paso 1"<<std::endl;
 	builder->get_widget_derived("mainWindow", mainWindow);
 
 	Gtk::Main::run(*mainWindow);

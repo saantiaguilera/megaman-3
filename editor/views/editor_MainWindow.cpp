@@ -9,14 +9,11 @@
 
 #include "gtkmm.h"
 
-using namespace Gtk;
-
 MainWindow::MainWindow() {
 }
 
 MainWindow::~MainWindow() {
 }
-
 
 MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject), builder(refGlade){
@@ -26,7 +23,7 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     builder->get_widget("lblNotice",lblNotice);
 
     btnOk->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_ok_button_clicked));
-    btnCancel->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_cancel_button_clicked));
+    btnCancel->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_cancel_button_clicked));
 }
 
 
