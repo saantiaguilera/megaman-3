@@ -10,8 +10,8 @@
 
 class Runnable {
 public:
-	Runnable();
-	virtual ~Runnable() = 0;
+	Runnable() {};
+	virtual ~Runnable() {};
 
 	virtual void operator() () = 0;
 private:

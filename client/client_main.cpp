@@ -5,14 +5,14 @@
  *      Author: santiago
  */
 
-#include <iostream>
-#include "../Constants.h"
 #include "client_Client.h"
-#include <gtk-3.0/gtk/gtk.h>
+#include "events/client_StartClientRunnable.h"
 
-#define LAYOUT_PATH "res/layout/home_screen.glade"
 
 int main(int argc, char **argv) {
+	//TODO. RUN THIS IN ANOTHER THREAD (ONLY THIS NOT THE CLIENT STUFF)
+	Looper::getMainLooper().put(new StartClientRunnable());
+
 	Client client;
 	client.start();
 }
