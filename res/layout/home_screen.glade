@@ -7,64 +7,21 @@
     <property name="width_request">640</property>
     <property name="height_request">480</property>
     <property name="can_focus">False</property>
-    <property name="opacity">0.96999999999999997</property>
-    <property name="border_width">6</property>
     <property name="title" translatable="yes">Megaslug</property>
-    <property name="default_width">640</property>
-    <property name="default_height">480</property>
-    <property name="hide_titlebar_when_maximized">True</property>
+    <property name="window_position">center</property>
     <property name="icon">../drawable/ic_launcher.png</property>
-    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
-      <object class="GtkOverlay" id="client_home_screen_frame_layout">
+      <object class="GtkOverlay" id="overlay1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkImage" id="client_home_screen_background">
+          <object class="GtkImage" id="image1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="pixbuf">../drawable/home_screen.png</property>
           </object>
           <packing>
             <property name="index">-1</property>
-          </packing>
-        </child>
-        <child type="overlay">
-          <object class="GtkEntry" id="client_home_screen_ip_edittext">
-            <property name="width_request">320</property>
-            <property name="height_request">30</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="halign">center</property>
-            <property name="valign">end</property>
-            <property name="margin_bottom">50</property>
-            <property name="max_length">15</property>
-            <property name="xalign">0.5</property>
-            <property name="placeholder_text" translatable="yes">Input IP</property>
-          </object>
-        </child>
-        <child type="overlay">
-          <object class="GtkLabel" id="client_home_screen_ip_textview">
-            <property name="height_request">30</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">end</property>
-            <property name="margin_bottom">90</property>
-            <property name="label">ENTER IP TO JOIN A GAME</property>
-            <property name="justify">center</property>
-            <property name="ellipsize">middle</property>
-            <attributes>
-              <attribute name="font-desc" value="Tlwg Mono Bold 28"/>
-              <attribute name="style" value="normal"/>
-              <attribute name="weight" value="semibold"/>
-              <attribute name="foreground" value="#a4a400000000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="index">1</property>
           </packing>
         </child>
       </object>
