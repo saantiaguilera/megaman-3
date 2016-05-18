@@ -3,7 +3,7 @@
 > JSON Parser: https://github.com/miloyip/rapidjson
 
 ```C++
-//Compile with (Santi)
+//Santi A
 g++ `find . -name '*.cpp'` -o clientProgram -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0`
 ```
 
