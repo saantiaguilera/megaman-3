@@ -9,12 +9,12 @@
 #define CLIENT_CLIENT_LOOPER_H_
 
 #include "client_Runnable.h"
+#include "client_GarbageCollector.h"
 #include "../../common/common_Mutex.h"
+#include "../../common/common_Lock.h"
 #include <queue>
 #include <vector>
 #include <cstdlib>
-
-#define MAX_GC_POOL_SIZE 5000 //Considering 1 Runnable costs us 10kb, this is 50mb
 
 /**
  * Pasar a cpp
@@ -24,8 +24,12 @@
 class Looper {
 private:
 	Mutex mutex;
+
 	std::queue<Runnable*> messagePool;
+
+	bool gcRunning;
 	std::vector<Runnable*> gcPool;
+	GarbageCollector *gc;
 
 public:
     static Looper& getMainLooper() {
@@ -36,43 +40,44 @@ public:
 	Runnable * get() {
 		Runnable *value;
 
-		mutex.enableLock();
-		value = messagePool.empty() ? NULL : messagePool.front();
-		mutex.disableLock();
+		{
+			Lock lock(mutex);
+			value = messagePool.empty() ? NULL : messagePool.front();
+		}
 
 		return value;
 	}
 
 	void pop() {
-		mutex.enableLock();
-		if (!messagePool.empty()) {
-			gcPool.push_back(messagePool.front());
-			messagePool.pop();
-		}
-		mutex.disableLock();
+			Lock lock(mutex);
+
+			if (!messagePool.empty()) {
+				if (gcRunning)
+					gcPool.push_back(messagePool.front());
+				messagePool.pop();
+			}
 	}
 
 	void put(Runnable *runnable) {
-		mutex.enableLock();
-		messagePool.push(runnable);
-		mutex.disableLock();
-
-		//TODO IN ANOTHER THREAD DO THIZZ
-		if (gcPool.size() > MAX_GC_POOL_SIZE)
-			gc();
+			Lock lock(mutex);
+			messagePool.push(runnable);
 	}
 private:
 	Looper(Looper const&);
 	void operator=(Looper const&);
 
-	explicit Looper() { /* Dunno ? */ };
+	explicit Looper() : gcRunning(true) {
+			gc = new GarbageCollector(&gcRunning, &gcPool);
+			gc->start();
+	};
 
-	void gc() {
-		while (gcPool.size() > MAX_GC_POOL_SIZE) {
-			delete (*gcPool.begin());
-			gcPool.erase(gcPool.begin());
-		}
+	~Looper() {
+			gcRunning = false;
+			gc->join();
+
+			delete gc;
 	}
+
 };
 
 
