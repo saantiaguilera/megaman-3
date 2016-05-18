@@ -1,4 +1,4 @@
-#Santi exe
+# Santi exe
 program
 
 ### C++ ###
@@ -45,6 +45,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*~
+*#
 
 # Eclipse Core
 .project
