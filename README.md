@@ -2,19 +2,17 @@
 
 > JSON Parser: https://github.com/miloyip/rapidjson
 
------------------------------------------
-Dirs:
------------------------------------------
-
-
 ```C++
-//Compile with
+//Compile with (Santi)
 g++ `find . -name '*.cpp'` -o clientProgram -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0`
 ```
 
-
+-----------------------------
+Tree
+-----------------------------
 
 server - Server side things
+
 client - Client side things
 
 editor - Map Editor side things
