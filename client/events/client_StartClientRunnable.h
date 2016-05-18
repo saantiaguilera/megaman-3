@@ -9,29 +9,54 @@
 #define CLIENT_EVENTS_CLIENT_STARTCLIENTRUNNABLE_H_
 
 #include <iostream>
-#include "../../Constants.h"
 #include <gtkmm.h>
 
-#define LAYOUT_PATH "res/layout/home_screen.glade"
-#define VIEW_ROOT "client_home_screen_root_view"
+#define LAYOUT_PATH "res/layout/client_testing.glade"
 
 class StartClientRunnable : public Runnable {
+private:
+    Gtk::Dialog* pDialog = nullptr;
+
+    void onExit() {
+      if(pDialog)
+        pDialog->hide();
+    }
  public:
 	StartClientRunnable() { /* DO SMTH */ }
 	virtual ~StartClientRunnable() { /* DO SMTH */ }
 
 	virtual void operator() () {
-		auto app = Gtk::Application::create("org.gtkmm.examples.base");
+    auto app = Gtk::Application::create("org.gtkmm.example");
 
-		Gtk::Window window;
-		window.set_default_size(200, 200);
+    //Load the GtkBuilder file and instantiate its widgets:
+    auto refBuilder = Gtk::Builder::create();
+    try {
+      refBuilder->add_from_file(LAYOUT_PATH);
+    } catch(const Glib::FileError& ex) {
+      std::cout << "FileError: " << ex.what() << std::endl;
+      return;
+    } catch(const Glib::MarkupError& ex) {
+      std::cout << "MarkupError: " << ex.what() << std::endl;
+      return;
+    } catch(const Gtk::BuilderError& ex) {
+      std::cout << "BuilderError: " << ex.what() << std::endl;
+      return;
+    }
 
-		app->run(window);
-	}
-private:
-	static void onEnterPressed(GtkEntry *entry,
-            gpointer  user_data) {
-		std::cout << "Enter was pressed" << std::endl;
+    //Get the GtkBuilder-instantiated Dialog:
+    refBuilder->get_widget("DialogBasic", pDialog);
+    if(pDialog) {
+      //Get the GtkBuilder-instantiated Button, and connect a signal handler:
+      Gtk::Button* pButton = nullptr;
+      refBuilder->get_widget("quit_button", pButton);
+      if(pButton) {
+        pButton->signal_clicked().connect(sigc::mem_fun(*this, &StartClientRunnable::onExit));
+      }
+
+      app->run(*pDialog);
+    }
+
+    delete pDialog;
 	}
 };
 
