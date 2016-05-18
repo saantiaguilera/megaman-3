@@ -10,41 +10,23 @@
 
 #include <iostream>
 #include "../../Constants.h"
-#include <gtk-3.0/gtk/gtk.h>
+#include <gtkmm.h>
 
 #define LAYOUT_PATH "res/layout/home_screen.glade"
 #define VIEW_ROOT "client_home_screen_root_view"
 
 class StartClientRunnable : public Runnable {
-public:
+ public:
 	StartClientRunnable() { /* DO SMTH */ }
 	virtual ~StartClientRunnable() { /* DO SMTH */ }
 
 	virtual void operator() () {
-		GtkBuilder *builder;
-		GtkWidget *window;
-		GError *error = NULL;
+		auto app = Gtk::Application::create("org.gtkmm.examples.base");
 
-		gtk_init(0, 0);
+		Gtk::Window window;
+		window.set_default_size(200, 200);
 
-		builder = gtk_builder_new();
-
-		if (!gtk_builder_add_from_file(builder, LAYOUT_PATH, &error)) {
-			g_warning("%s", error->message);
-			g_free(error);
-			return;
-		}
-
-		window = GTK_WIDGET(gtk_builder_get_object(builder, VIEW_ROOT));
-
-		gtk_builder_connect_signals(builder, window);
-
-		//Siempre que tengas una ref de algun obj tenes que llamar esto para no crashear el counter.
-		g_object_unref(G_OBJECT(builder));
-
-		gtk_widget_show(window);
-
-		gtk_main();
+		app->run(window);
 	}
 private:
 	static void onEnterPressed(GtkEntry *entry,
