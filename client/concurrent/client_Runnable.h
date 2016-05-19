@@ -19,6 +19,4 @@ private:
 	Runnable& operator=(const Runnable&);
 };
 
-
-
 #endif /* CLIENT_CLIENT_RUNNABLE_H_ */

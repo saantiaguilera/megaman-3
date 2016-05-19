@@ -13,7 +13,9 @@
 #include <iostream>
 #include <gtkmm.h>
 
-#define LAYOUT_PATH "res/layout/home_screen.glade"
+#define PATH_LAYOUT "res/layout/home_screen.glade"
+#define PATH_ROOT_VIEW "client_home_screen_root_view"
+#define PATH_EDIT_TEXT_VIEW "client_home_screen_edit_text"
 
 class StartClientRunnable : public Runnable {
 private:
@@ -23,6 +25,7 @@ private:
     void onEnterPressed() {
       std::cout << editText->get_text() << std::endl;
     }
+    
  public:
 	StartClientRunnable() { /* DO SMTH */ }
 	virtual ~StartClientRunnable() { /* DO SMTH */ }
@@ -33,7 +36,7 @@ private:
     //Load the GtkBuilder file and instantiate its widgets:
     auto refBuilder = Gtk::Builder::create();
     try {
-      refBuilder->add_from_file(LAYOUT_PATH);
+      refBuilder->add_from_file(PATH_LAYOUT);
     } catch(const Glib::FileError& ex) {
       std::cout << "FileError: " << ex.what() << std::endl;
       return;
@@ -46,10 +49,10 @@ private:
     }
 
     //Get the GtkBuilder-instantiated Dialog:
-    refBuilder->get_widget("client_home_screen_root_view", mainWindow);
+    refBuilder->get_widget(PATH_ROOT_VIEW, mainWindow);
     if(mainWindow) {
       //Get the GtkBuilder-instantiated Button, and connect a signal handler:
-      refBuilder->get_widget("client_home_screen_edit_text", editText);
+      refBuilder->get_widget(PATH_EDIT_TEXT_VIEW, editText);
       if(editText) {
         editText->signal_activate().connect(sigc::mem_fun(*this, &StartClientRunnable::onEnterPressed));
       }

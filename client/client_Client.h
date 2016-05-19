@@ -9,6 +9,7 @@
 #define CLIENT_CLIENT_CLIENT_H_
 
 #include "concurrent/client_Looper.h"
+#include <iostream>
 
 /**
  * Pasar a cpp
@@ -22,7 +23,9 @@ public:
 
 	void start() {
 		while (!quit) {
+			std::cout << "LOOPIN' LOOPIN' LOOPIN'" << std::endl;
 			while (Looper::getMainLooper().get() != NULL) {
+				std::cout << "GOT SOMETHIN' IN YA LOOPAH" << std::endl;
 				//Do something with the event
 				Runnable *runnable = Looper::getMainLooper().get();
 
