@@ -1,5 +1,7 @@
 # Santi exe
 program
+clientProgram
+.clang_complete
 
 ### C++ ###
 # Compiled Object files

@@ -8,25 +8,27 @@
 #ifndef CLIENT_EVENTS_CLIENT_STARTCLIENTRUNNABLE_H_
 #define CLIENT_EVENTS_CLIENT_STARTCLIENTRUNNABLE_H_
 
+#include "../../Constants.h"
+#include "../concurrent/client_Runnable.h"
 #include <iostream>
 #include <gtkmm.h>
 
-#define LAYOUT_PATH "res/layout/client_testing.glade"
+#define LAYOUT_PATH "res/layout/home_screen.glade"
 
 class StartClientRunnable : public Runnable {
 private:
-    Gtk::Dialog* pDialog = nullptr;
+    Gtk::Window* mainWindow = nullptr;
+    Gtk::Entry* editText = nullptr;
 
-    void onExit() {
-      if(pDialog)
-        pDialog->hide();
+    void onEnterPressed() {
+      std::cout << editText->get_text() << std::endl;
     }
  public:
 	StartClientRunnable() { /* DO SMTH */ }
 	virtual ~StartClientRunnable() { /* DO SMTH */ }
 
 	virtual void operator() () {
-    auto app = Gtk::Application::create("org.gtkmm.example");
+    auto app = Gtk::Application::create(PACKAGE_NAME);
 
     //Load the GtkBuilder file and instantiate its widgets:
     auto refBuilder = Gtk::Builder::create();
@@ -44,22 +46,19 @@ private:
     }
 
     //Get the GtkBuilder-instantiated Dialog:
-    refBuilder->get_widget("DialogBasic", pDialog);
-    if(pDialog) {
+    refBuilder->get_widget("client_home_screen_root_view", mainWindow);
+    if(mainWindow) {
       //Get the GtkBuilder-instantiated Button, and connect a signal handler:
-      Gtk::Button* pButton = nullptr;
-      refBuilder->get_widget("quit_button", pButton);
-      if(pButton) {
-        pButton->signal_clicked().connect(sigc::mem_fun(*this, &StartClientRunnable::onExit));
+      refBuilder->get_widget("client_home_screen_edit_text", editText);
+      if(editText) {
+        editText->signal_activate().connect(sigc::mem_fun(*this, &StartClientRunnable::onEnterPressed));
       }
 
-      app->run(*pDialog);
+      app->run(*mainWindow);
     }
 
-    delete pDialog;
+    delete mainWindow;
 	}
 };
-
-
 
 #endif /* CLIENT_EVENTS_CLIENT_STARTCLIENTRUNNABLE_H_ */
