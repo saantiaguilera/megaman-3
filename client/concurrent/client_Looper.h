@@ -1,10 +1,3 @@
-/*
- * client_MainLooper.h
- *
- *  Created on: May 16, 2016
- *      Author: santi
- */
-
 #ifndef CLIENT_CLIENT_LOOPER_H_
 #define CLIENT_CLIENT_LOOPER_H_
 
@@ -79,7 +72,5 @@ private:
 	}
 
 };
-
-
 
 #endif /* CLIENT_CLIENT_LOOPER_H_ */

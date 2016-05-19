@@ -1,10 +1,3 @@
-/*
- * client_Runnable.h
- *
- *  Created on: May 16, 2016
- *      Author: santi
- */
-
 #ifndef CLIENT_CLIENT_RUNNABLE_H_
 #define CLIENT_CLIENT_RUNNABLE_H_
 
