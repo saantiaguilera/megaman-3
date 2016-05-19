@@ -7,6 +7,12 @@
 
 #include "server_MagnetCannon.h"
 
+MagnetCannon::MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
+
+
 MagnetCannon::~MagnetCannon() {
 }
 
+void MagnetCannon::fire() {
+	--ammo;
+}

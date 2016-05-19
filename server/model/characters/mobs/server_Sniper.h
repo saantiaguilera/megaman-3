@@ -10,14 +10,17 @@
 
 #include "server_Mob.h"
 
-#define SNIPER_INITAL_HP 5
+#define SNIPER_INITAL_HP 1
 
 class Sniper: public Mob {
 public:
 	// Constructor
-	Sniper() : Mob(SNIPER_INITAL_HP) {}
+	Sniper();
 	// Destroyer
 	virtual ~Sniper();
+	// Receive shot from projectile, killed when vulnerable or half hp when
+	// ring or fire
+	void receiveShotFromProjectile(Projectile* projectile);
 private:
 	// Copy constructor
 	Sniper(const Sniper&);

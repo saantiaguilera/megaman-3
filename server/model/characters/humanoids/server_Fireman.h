@@ -16,9 +16,7 @@
 class Fireman: public Humanoid {
 public:
 	// Constructor
-	Fireman() : Humanoid(FIREMAN_INITIAL_HP) {
-		currentWeapon = new Flamethrower();
-	}
+	Fireman();
 	// Destroyer
 	virtual ~Fireman();
 private:

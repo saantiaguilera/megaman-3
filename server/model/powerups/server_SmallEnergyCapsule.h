@@ -16,10 +16,7 @@
 class SmallEnergyCapsule: public EnergyCapsule {
 public:
 	// Constructor
-	SmallEnergyCapsule() :
-			EnergyCapsule(SMALL_ENERGY_CAPSULE_DROP_RATE,
-					SMALL_ENERGY_CAPSULE_EFFECT_AMMOUNT) {
-	}
+	SmallEnergyCapsule();
 	// Destroyer
 	virtual ~SmallEnergyCapsule();
 private:

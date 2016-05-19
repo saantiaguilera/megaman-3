@@ -9,16 +9,7 @@
 
 #include "../characters/server_Character.h"
 
+Weapon::Weapon(unsigned int ammo) : ammo(ammo) {}
+
 Weapon::~Weapon() {
-}
-
-void Weapon::fire(Character* character) {
-	if (ammo > 0){
-		character->receiveShotFromWeapon(this);
-		--ammo;
-	}
-}
-
-unsigned int Weapon::getDamage() const {
-	return damage;
 }

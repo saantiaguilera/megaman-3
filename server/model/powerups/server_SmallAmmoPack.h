@@ -16,10 +16,7 @@
 class SmallAmmoPack: public AmmoPack {
 public:
 	// Constructor
-	SmallAmmoPack() :
-		AmmoPack(SMALL_AMMO_PACK_DROP_RATE,
-				SMALL_AMMO_PACK_EFFECT_AMMOUNT) {
-}
+	SmallAmmoPack();
 	// Destroyer
 	virtual ~SmallAmmoPack();
 private:

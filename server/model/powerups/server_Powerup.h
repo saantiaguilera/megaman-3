@@ -8,8 +8,12 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
+#include "../../../common/common_Point.h"
+
 class Powerup {
 protected:
+	// my current position
+	Point myPoint;
 	// Powerups drop rate
 	float dropRate;
 	// Amount of its effect to be applied
@@ -18,9 +22,7 @@ protected:
 	virtual void haveEffectOn() = 0;
 public:
 	// Constructor
-	Powerup(float dropRate, unsigned int effectAmount) :
-			dropRate(dropRate), effectAmount(effectAmount) {
-	}
+	Powerup(float dropRate, unsigned int effectAmount);
 	// Destroyer
 	virtual ~Powerup();
 private:

@@ -1,6 +1,8 @@
 # Megaman X3 in C++
 
 > JSON Parser: https://github.com/miloyip/rapidjson
+> Logging: https://github.com/google/glog
+
 
 ```C++
 //Santi A
@@ -22,3 +24,4 @@ doc - Useful documentation
 common - Common stuff
 
 res - Resources (drawables/layouts)
+=======

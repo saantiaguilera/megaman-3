@@ -7,6 +7,9 @@
 
 #include "server_Obstacle.h"
 
+Obstacle::Obstacle(bool passable) : passable(passable) {}
+
+
 bool Obstacle::isPassable() const {
 	return passable;
 }

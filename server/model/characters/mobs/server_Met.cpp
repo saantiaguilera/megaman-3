@@ -7,10 +7,19 @@
 
 #include "server_Met.h"
 
+#include "../../projectiles/server_Projectile.h"
+
+Met::Met() : Mob(MET_INITIAL_HP) {}
+
 Met::~Met() {
 }
 
-void Met::receiveShotFromWeapon(Bomb* bomb) {
-	// It's supper efective
-	hp -= bomb->getDamage() * 2;
+void Met::receiveShotFromProjectile(Projectile* projectile) {
+	int projectileType = projectile->getProjectileType();
+	if (vulnerable){
+		decreaseHp(projectile->getDamage());
+	} else {
+		if (projectileType == Projectile::BOMB || projectileType == Projectile::SPARK)
+			decreaseHp(projectile->getDamage());
+	}
 }

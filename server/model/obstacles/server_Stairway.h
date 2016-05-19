@@ -15,9 +15,11 @@
 class Stairway: public Obstacle {
 public:
 	// Constructor
-	Stairway() : Obstacle(STAIRWAY_IS_PASSABLE) {}
+	Stairway();
 	// Constructor
 	virtual ~Stairway();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Stairway(const Stairway&);

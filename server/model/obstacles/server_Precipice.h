@@ -15,12 +15,11 @@
 class Precipice: public Obstacle {
 public:
 	// Constructor
-	Precipice() : Obstacle(PRECIPICE_IS_PASSABLE) {}
+	Precipice();
 	// Destroyer
 	virtual ~Precipice();
-	// Act on character
-	// TODO
-//	void haveEffectOn(Character* character);
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Precipice(const Precipice&);

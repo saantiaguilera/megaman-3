@@ -8,14 +8,23 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 
+#include "../../../common/common_Point.h"
+
+class Character;
+
 class Obstacle {
 protected:
+	// my current position
+	Point myPoint;
+	// is passable?
 	bool passable;
 public:
 	// Constructor
-	Obstacle(bool passable) : passable(passable) {}
+	Obstacle(bool passable);
 	// Destroyer
 	virtual ~Obstacle();
+	// Applies its effect on character
+	virtual void haveEffectOn(Character* character) = 0;
 	bool isPassable() const;
 private:
 	// Copy constructor

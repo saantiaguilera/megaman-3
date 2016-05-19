@@ -16,7 +16,7 @@ protected:
 	bool vulnerable;
 public:
 	// Constructor
-	Mob(unsigned int hp) : Character(hp), vulnerable(true) {}
+	Mob(unsigned int hp);
 	// Destroyer
 	virtual ~Mob();
 	// Is currently vulnerable?

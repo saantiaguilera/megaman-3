@@ -17,9 +17,11 @@
 class PlasmaCannon: public Weapon {
 public:
 	// Constructor
-	PlasmaCannon() : Weapon(PLASMA_CANNON_DAMAGE, PLASMA_CANNON_MAX_AMMO) {}
+	PlasmaCannon();
 	// Destroyer
 	virtual ~PlasmaCannon();
+	// fire weapon
+	void fire();
 private:
 	// Copy constructor
 	PlasmaCannon(const PlasmaCannon&);

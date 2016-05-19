@@ -7,6 +7,9 @@
 
 #include "server_Mob.h"
 
+Mob::Mob(unsigned int hp) : Character(hp), vulnerable(true) {}
+
+
 bool Mob::isVulnerable() const {
 	return vulnerable;
 }

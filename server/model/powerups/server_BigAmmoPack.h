@@ -16,10 +16,7 @@
 class BigAmmoPack: public AmmoPack {
 public:
 	// Constructor
-	BigAmmoPack() :
-			AmmoPack(BIG_AMMO_PACK_DROP_RATE,
-			BIG_AMMO_PACK_EFFECT_AMMOUNT) {
-	}
+	BigAmmoPack();
 	// Destroyer
 	virtual ~BigAmmoPack();
 private:

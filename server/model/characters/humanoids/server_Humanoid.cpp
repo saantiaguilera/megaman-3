@@ -7,6 +7,9 @@
 
 #include "server_Humanoid.h"
 
+Humanoid::Humanoid(unsigned int hp) : Character(hp) {}
+
+
 Humanoid::~Humanoid() {
 }
 

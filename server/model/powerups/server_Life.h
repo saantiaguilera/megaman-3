@@ -16,7 +16,7 @@
 class Life: public Powerup {
 public:
 	// Constructor
-	Life() : Powerup(LIFE_DROP_RATE, LIFE_EFFECT_AMOUNT) {}
+	Life();
 	// Destroyer
 	virtual ~Life();
 private:
