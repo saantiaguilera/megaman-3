@@ -13,7 +13,7 @@
   * whole .h file for making include's problems dissappear
   */
 
-/* ---------------------- INTERFACES ---------------------- */
+/* ---------------------- OTHERS ---------------------- */
 
 /**
  * Simple interface, nothing weird to comment about it
@@ -23,15 +23,19 @@ public:
   virtual void onEnterPressed(Gtk::Entry *editText) = 0;
 };
 
+enum MainScreenResult { RESULT_ERROR, RESULT_INDETERMINATE, RESULT_OK };
+
 /* ---------------------- VIEW ---------------------- */
 
 #define PATH_EDIT_TEXT_VIEW "client_home_screen_edit_text"
 #define PATH_PROGRESS_BAR_VIEW "client_home_screen_progress_bar"
+#define PATH_RESULT_TEXT_VIEW "client_home_screen_result_text_view"
 
 class MainScreenView : public Gtk::Window {
 private:
     Gtk::Entry *editText = nullptr;
     Gtk::Spinner *progressBar = nullptr;
+    Gtk::Label *resultText = nullptr;
     OnEnterPressedInterface *callback = NULL;
 
     /**
@@ -43,11 +47,18 @@ private:
         callback->onEnterPressed(editText);
     }
 
+    void setProgressBarIndeterminate(bool active) {
+      if (active)
+        progressBar->start();
+      else progressBar->stop();
+    }
+
 public:
   MainScreenView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
           Gtk::Window(cobject) {
     refBuilder->get_widget(PATH_EDIT_TEXT_VIEW, editText);
     refBuilder->get_widget(PATH_PROGRESS_BAR_VIEW, progressBar);
+    refBuilder->get_widget(PATH_RESULT_TEXT_VIEW, resultText);
 
     if(editText)
       editText->signal_activate().connect(sigc::bind<Gtk::Entry*>(sigc::mem_fun(*this, &MainScreenView::onEnterPressed), editText));
@@ -62,10 +73,22 @@ public:
     callback = listener;
   }
 
-  void setProgressBarIndeterminate(bool active) {
-    if (active)
-      progressBar->start();
-    else progressBar->stop();
+  void setResult(MainScreenResult result) {
+    switch (result) {
+      case RESULT_OK:
+        setProgressBarIndeterminate(false);
+        resultText->set_text("CONNECTED");
+        break;
+
+      case RESULT_INDETERMINATE:
+        setProgressBarIndeterminate(true);
+        resultText->set_text("");
+        break;
+
+      case RESULT_ERROR:
+        setProgressBarIndeterminate(false);
+        resultText->set_text("AN ERROR HAS OCCURED. PLS TRY AGAIN");
+    }
   }
 };
 
@@ -83,7 +106,7 @@ private:
   * Since this is something internal of this controller, I think its ok
   */
   virtual void onEnterPressed(Gtk::Entry *editText) {
-    view->setProgressBarIndeterminate(true);
+    view->setResult(RESULT_INDETERMINATE);
   }
 
 public:
