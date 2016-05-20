@@ -26,10 +26,12 @@ public:
 /* ---------------------- VIEW ---------------------- */
 
 #define PATH_EDIT_TEXT_VIEW "client_home_screen_edit_text"
+#define PATH_PROGRESS_BAR_VIEW "client_home_screen_progress_bar"
 
 class MainScreenView : public Gtk::Window {
 private:
     Gtk::Entry *editText = nullptr;
+    Gtk::Spinner *progressBar = nullptr;
     OnEnterPressedInterface *callback = NULL;
 
     /**
@@ -45,6 +47,7 @@ public:
   MainScreenView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
           Gtk::Window(cobject) {
     refBuilder->get_widget(PATH_EDIT_TEXT_VIEW, editText);
+    refBuilder->get_widget(PATH_PROGRESS_BAR_VIEW, progressBar);
 
     if(editText)
       editText->signal_activate().connect(sigc::bind<Gtk::Entry*>(sigc::mem_fun(*this, &MainScreenView::onEnterPressed), editText));
@@ -57,6 +60,12 @@ public:
    */
   void setOnEnterPressedListener(OnEnterPressedInterface *listener) {
     callback = listener;
+  }
+
+  void setProgressBarIndeterminate(bool active) {
+    if (active)
+      progressBar->start();
+    else progressBar->stop();
   }
 };
 
@@ -74,7 +83,7 @@ private:
   * Since this is something internal of this controller, I think its ok
   */
   virtual void onEnterPressed(Gtk::Entry *editText) {
-    std::cout << "IP is " << editText->get_text() << std::endl;
+    view->setProgressBarIndeterminate(true);
   }
 
 public:
