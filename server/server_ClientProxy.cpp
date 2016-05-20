@@ -10,8 +10,9 @@
 #include <syslog.h>
 #include <cstring>
 #include <errno.h>
+#include <iostream>
 
-#define MAX_BUFFER_SIZE 64
+#define MAX_BUFFER_SIZE 10
 #define STOP_RECEIVING_CONDITION "End\n"
 
 ClientProxy::ClientProxy() {
@@ -44,9 +45,10 @@ void ClientProxy::receive(std::string& incomingData) {
 			syslog(LOG_ERR, "There was an error receiving from socket");
 		} else {
 			incomingData += buffer;
+			std::cout << incomingData << std::endl;
 			// If we find an "End\n" client was done sending
-			if (incomingData.find(STOP_RECEIVING_CONDITION)
-					!= std::string::npos)
+//			if (incomingData.find(STOP_RECEIVING_CONDITION)
+//					!= std::string::npos)
 				keepReceiving = false;
 		}
 	}

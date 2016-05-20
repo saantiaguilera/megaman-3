@@ -7,11 +7,12 @@
 
 #include "server_AcceptorWorker.h"
 
+#include <iostream>
 #include <iterator>
 #include <string>
 
-#include "../client/client_Client.h"
 #include "../common/common_Socket.h"
+#include "server_ReceiverWorker.h"
 
 #define MAX_QUEUE_SIZE 128
 
@@ -38,19 +39,18 @@ void AcceptorWorker::run() {
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
 			std::cout << "client connected" << std::endl;
-			std::string inboundData;
-			client->receive(inboundData);
-			for (std::vector<ClientProxy*>::iterator it = clients.begin();
-					it != clients.end(); ++it) {
-				(*it)->send(inboundData);
-			}
+
 //			// Spawn a receiver worker
 //			// It will call our client proxy's receive method
-//			ReceiverWorker* receiverWorker = new ReceiverWorker(client,
-//					mappedData);
-//			launchedThreads.push_back(receiverWorker);
-//			receiverWorker->start();
+			ReceiverWorker* receiverWorker = new ReceiverWorker(client);
+			launchedThreads.push_back(receiverWorker);
+			receiverWorker->start();
 		}
+	}
+	std::string inboundData = "Connected, bye!";
+	for (std::vector<ClientProxy*>::iterator it = clients.begin();
+			it != clients.end(); ++it) {
+		(*it)->send(inboundData);
 	}
 }
 
