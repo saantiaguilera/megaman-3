@@ -9,7 +9,7 @@
 
 #include <syslog.h>
 #include <cstring>
-#include <string>
+#include <errno.h>
 
 #define MAX_BUFFER_SIZE 64
 #define STOP_RECEIVING_CONDITION "End\n"
@@ -53,4 +53,11 @@ void ClientProxy::receive(std::string& incomingData) {
 	incomingData.erase(
 			incomingData.length() - sizeof(STOP_RECEIVING_CONDITION) + 1,
 			incomingData.length());
+}
+
+void ClientProxy::send(const std::string& data) {
+	if (this->socket.send((char*) data.c_str(), data.length()) == -1) {
+		syslog(LOG_ERR, "There was an error while sending data %s",
+				strerror(errno));
+	}
 }
