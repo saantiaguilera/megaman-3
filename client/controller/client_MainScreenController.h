@@ -3,9 +3,20 @@
 
 #include <iostream>
 #include <gtkmm.h>
+
 #include "concurrent/client_ConnectionThread.h"
 #include "../concurrent/client_Looper.h"
+
+#include "client_Handler.h"
+
+class Context;
+
+#include "client_Controller.h"
+#include "client_Context.h"
+
 #include "../../Constants.h"
+
+#include "../client_Client.h"
 
 /**
   * Im gonna copy as much as I can the Android MVC + everything I can
@@ -101,14 +112,9 @@ public:
 #define PATH_LAYOUT "res/layout/home_screen.glade"
 #define PATH_ROOT_VIEW "client_home_screen_root_view"
 
-class MainScreenController : private OnEnterPressedInterface, private ReceiverContract {
+class MainScreenController : public Controller, private OnEnterPressedInterface {
 private:
   MainScreenView *view;
-
-  ReceiverContract *connectionListener = NULL;
-  ConnectionThread *connectionThread = NULL;
-
-  Glib::Dispatcher dispatcher;
 
   /**
   * Has private inheritance. Why should any class know i can handle this
@@ -117,18 +123,11 @@ private:
   virtual void onEnterPressed(Gtk::Entry *editText) {
     view->setResult(RESULT_INDETERMINATE);
 
-    if (!connectionThread) {
-      connectionThread = new ConnectionThread(connectionListener);
-      connectionThread->start();
-    }
+    //TODO Looper::getMainLooper().put(new CreateConnectionEvent(editText->get_text()));
+    getContext()->onMessageReceived();
   }
 
-  virtual void onDataReceived() {
-    //We tell the dispatcher that he should check a msg in the main ui thread
-    dispatcher.emit();
-  }
-
-  void onHandleData() {
+  virtual bool onMessageReceived() {
     Event *event = Looper::getMainLooper().get();
 
     if (event) {
@@ -145,27 +144,33 @@ private:
         case EVENT_CONNECTION_SHUTDOWN:
           std::cout << "Disconnected" << std::endl;
           break;
-      }
 
-      Looper::getMainLooper().pop();
+        default:
+          return false;
+      } else return false;
+
+      return true;
     }
   }
 
 public:
-  /**
-   * I should create a generic Controller class that already has this method
-   */
-  Gtk::Window * getView() { return view; };
+  virtual Gtk::Window * getView() { return view; };
 
-  virtual ~MainScreenController() {
-    if (connectionThread)
-      connectionThread->join();
+  virtual void setVisibility(bool visible) {
+    if (!view)
+      return;
+
+    if (visible)
+      view->show();
+    else view->hide();
   }
+
+  virtual ~MainScreenController() { }
 
   /**
    * Create builder, parse xml, delegate inflate responsibility, set callbacks
    */
-  MainScreenController() : view(nullptr), connectionListener(this), dispatcher() {
+  MainScreenController(Context context) : Controller(context), view(nullptr) {
     auto refBuilder = Gtk::Builder::create();
 
     try {
@@ -182,8 +187,6 @@ public:
     }
 
     refBuilder->get_widget_derived(PATH_ROOT_VIEW, view);
-
-    dispatcher.connect(sigc::mem_fun(*this, &MainScreenController::onHandleData));
 
     view->setOnEnterPressedListener(this);
   }
