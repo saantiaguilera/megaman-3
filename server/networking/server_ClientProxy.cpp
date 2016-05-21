@@ -7,9 +7,11 @@
 
 #include "server_ClientProxy.h"
 
-#include <syslog.h>
-#include <cstring>
 #include <errno.h>
+#include <netinet/in.h>
+#include <syslog.h>
+#include <cstdint>
+#include <cstring>
 #include <iostream>
 
 #define MAX_BUFFER_SIZE 10
@@ -34,27 +36,30 @@ void ClientProxy::acceptNewConnection(const Socket& dispatcherSocket) {
 }
 
 void ClientProxy::receive(std::string& incomingData) {
-	bool keepReceiving = true;
+	// Receive message code
+	uint32_t messageCode;
+	socket.receive((char*) &messageCode, sizeof(uint32_t));
+	// TODO: Log receive error
+	messageCode = ntohl(messageCode);
+	std::cout << messageCode << std::endl;
+
+	// Receive message length
+	uint32_t messageLength;
+	socket.receive((char*) &messageLength, sizeof(uint32_t));
+	// TODO: Log receive error
+	messageLength = ntohl(messageLength);
+	std::cout << messageLength << std::endl;
+
 	// Done workaround of size + 1 to avoid valgrind error
-	char buffer[MAX_BUFFER_SIZE + 1];
-	buffer[MAX_BUFFER_SIZE] = 0;
-	while (keepReceiving) {
-		memset(&buffer[0], 0, sizeof(buffer));
-		if (socket.receive(&buffer[0], MAX_BUFFER_SIZE) == -1) {
-			keepReceiving = false;
-			syslog(LOG_ERR, "There was an error receiving from socket");
-		} else {
-			incomingData += buffer;
-			std::cout << incomingData << std::endl;
-			// If we find an "End\n" client was done sending
-//			if (incomingData.find(STOP_RECEIVING_CONDITION)
-//					!= std::string::npos)
-				keepReceiving = false;
-		}
+	char* buffer = new char[messageLength + 1];
+	buffer[messageLength] = 0;
+	memset(&buffer[0], 0, sizeof(*buffer));
+	if (socket.receive(&buffer[0], MAX_BUFFER_SIZE) == -1) {
+		syslog(LOG_ERR, "There was an error receiving from socket");
+	} else {
+		incomingData += buffer;
+		std::cout << incomingData << std::endl;
 	}
-	incomingData.erase(
-			incomingData.length() - sizeof(STOP_RECEIVING_CONDITION) + 1,
-			incomingData.length());
 }
 
 void ClientProxy::send(const std::string& data) {

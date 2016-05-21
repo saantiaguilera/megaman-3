@@ -10,7 +10,8 @@
 #include <iostream>
 #include <iterator>
 
-#include "server_AcceptorWorker.h"
+#include "game_engine/server_Engine.h"
+#include "networking/server_AcceptorWorker.h"
 
 #define STOP_LISTENING "q"
 
@@ -30,6 +31,8 @@ Server::Server(const std::string& port) {
 
 void Server::run() {
 	callAcceptorWorker();
+	Engine gameEngine;
+	gameEngine.start();
 }
 
 void Server::callAcceptorWorker() {

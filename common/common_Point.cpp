@@ -7,6 +7,8 @@
 
 #include "common_Point.h"
 
+#include <sstream>
+
 unsigned int Point::getX() const {
 	return x;
 }
@@ -31,3 +33,8 @@ void Point::setY(unsigned int y) {
 Point::~Point() {
 }
 
+std::string Point::toString() const {
+	std::stringstream ss;
+	ss << "(" << getX() << "," << getY() << ")";
+	return ss.str();
+}

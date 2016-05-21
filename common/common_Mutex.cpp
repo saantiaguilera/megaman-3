@@ -17,10 +17,10 @@ Mutex::~Mutex() {
 	pthread_mutex_destroy(&myMutex);
 }
 
-void Mutex::enableLock() {
+void Mutex::lock() {
 	pthread_mutex_lock(&myMutex);
 }
 
-void Mutex::disableLock() {
+void Mutex::unlock() {
 	pthread_mutex_unlock(&myMutex);
 }

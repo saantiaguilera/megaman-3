@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "../common/common_Socket.h"
+#include "../../common/common_Socket.h"
 
 class ClientProxy {
 private:
