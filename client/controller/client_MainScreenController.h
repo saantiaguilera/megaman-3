@@ -40,9 +40,9 @@ class OnEnterPressedInterface {
 
 /* ---------------------- VIEW ---------------------- */
 
-#define PATH_EDIT_TEXT_VIEW "client_home_screen_edit_text"
-#define PATH_PROGRESS_BAR_VIEW "client_home_screen_progress_bar"
-#define PATH_RESULT_TEXT_VIEW "client_home_screen_result_text_view"
+#define PATH_HOME_SCREEN_EDIT_TEXT_VIEW "client_home_screen_edit_text"
+#define PATH_HOME_SCREEN_PROGRESS_BAR_VIEW "client_home_screen_progress_bar"
+#define PATH_HOME_SCREEN_RESULT_TEXT_VIEW "client_home_screen_result_text_view"
 
 class MainScreenView : public Gtk::Window {
 private:
@@ -70,9 +70,9 @@ private:
 public:
   MainScreenView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
           Gtk::Window(cobject) {
-    refBuilder->get_widget(PATH_EDIT_TEXT_VIEW, editText);
-    refBuilder->get_widget(PATH_PROGRESS_BAR_VIEW, progressBar);
-    refBuilder->get_widget(PATH_RESULT_TEXT_VIEW, resultText);
+    refBuilder->get_widget(PATH_HOME_SCREEN_EDIT_TEXT_VIEW, editText);
+    refBuilder->get_widget(PATH_HOME_SCREEN_PROGRESS_BAR_VIEW, progressBar);
+    refBuilder->get_widget(PATH_HOME_SCREEN_RESULT_TEXT_VIEW, resultText);
 
     if(editText)
       editText->signal_activate().connect(sigc::bind<Gtk::Entry*>(sigc::mem_fun(*this, &MainScreenView::onEnterPressed), editText));
@@ -110,8 +110,8 @@ public:
 
 /* ---------------------- CONTROLLER ---------------------- */
 
-#define PATH_LAYOUT "res/layout/home_screen.glade"
-#define PATH_ROOT_VIEW "client_home_screen_root_view"
+#define PATH_HOME_SCREEN_LAYOUT "res/layout/home_screen.glade"
+#define PATH_HOME_SCREEN_ROOT_VIEW "client_home_screen_root_view"
 
 class MainScreenController : public Controller, private OnEnterPressedInterface {
 private:
@@ -175,7 +175,7 @@ public:
     auto refBuilder = Gtk::Builder::create();
 
     try {
-      refBuilder->add_from_file(PATH_LAYOUT);
+      refBuilder->add_from_file(PATH_HOME_SCREEN_LAYOUT);
     } catch(const Glib::FileError& ex) {
       std::cout << "FileError: " << ex.what() << std::endl;
       return;
@@ -187,7 +187,7 @@ public:
       return;
     }
 
-    refBuilder->get_widget_derived(PATH_ROOT_VIEW, view);
+    refBuilder->get_widget_derived(PATH_HOME_SCREEN_ROOT_VIEW, view);
 
     view->setOnEnterPressedListener(this);
   }

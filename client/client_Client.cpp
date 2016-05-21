@@ -9,6 +9,7 @@ class Context;
 #include "commons/client_Controller.h"
 #include "commons/client_Context.h"
 
+#include "controller/client_LobbyController.h"
 #include "controller/client_MainScreenController.h"
 #include "client_Client.h"
 
@@ -21,13 +22,15 @@ Client::~Client()  {
 };
 
 void Client::attachController(Controller *controller) {
-  if (currentController) {
-    currentController->setVisibility(false);
-    delete currentController;
-  }
+  Controller *old = currentController;
 
   currentController = controller;
   currentController->setVisibility(true);
+
+  if (old) {
+    old->setVisibility(false);
+    delete old;
+  }
 }
 
 void Client::start() {
@@ -49,7 +52,7 @@ void Client::onCreateConnection(std::string ip) {
 }
 
 void Client::onFlowToLobby() {
-
+  attachController(new LobbyController(this));
 }
 
 bool Client::onMessageReceived() {
