@@ -9,6 +9,7 @@
 #define CONSTANTS_H_
 
 #define PACKAGE_NAME "com.u.megaslug"
+#define APP_NAME "Megaslug"
 
 //TODO THIS ENUMS SHOULD BE SOMEWHERE ELSE
 

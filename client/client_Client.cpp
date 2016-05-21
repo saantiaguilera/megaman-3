@@ -25,6 +25,7 @@ void Client::attachController(Controller *controller) {
   Controller *old = currentController;
 
   currentController = controller;
+  currentController->getView()->set_title(APP_NAME);
   currentController->setVisibility(true);
 
   if (old) {
