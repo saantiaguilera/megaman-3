@@ -59,8 +59,20 @@
             <property name="can_focus">False</property>
           </object>
           <packing>
-            <property name="x">396</property>
-            <property name="y">222</property>
+            <property name="x">280</property>
+            <property name="y">276</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="client_home_screen_result_text_view">
+            <property name="width_request">200</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">270</property>
           </packing>
         </child>
       </object>
