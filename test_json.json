@@ -1,0 +1,93 @@
+{
+  "response": [
+    {
+      "id": 19,
+      "email": "martin@example.com",
+      "name": "Martin",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/019/medium/tincho.png?1459776940",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 20,
+      "email": "juan@example.com",
+      "name": "Big Data Phd",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/020/medium/juancho.png?1459776940",
+      "admin": false,
+      "role": "admin"
+    },
+    {
+      "id": 21,
+      "email": "candelaria@example.com",
+      "name": "Candelaria",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/021/medium/cande.jpg?1462566953",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 22,
+      "email": "julia@example.com",
+      "name": "Julia m",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/022/medium/Captura_de_pantalla_de_2016-03-10_14_06_35.png?1459778827",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 29,
+      "email": "tomas@example.com",
+      "name": "Tomas",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/029/medium/tom.png?1459776940",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 35,
+      "email": "joey@example.com",
+      "name": "Joey",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/035/medium/joey_%281%29.jpg?1462540158",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 36,
+      "email": "inaki@example.com",
+      "name": "Inaki",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/036/medium/foto-perfil.jpg?1462540159",
+      "admin": false,
+      "role": "admin"
+    },
+    {
+      "id": 38,
+      "email": "vila@example.com.ar",
+      "name": "Agustín Vila",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/038/medium/agustin.jpg?1459776941",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 39,
+      "email": "javier@example.com",
+      "name": "Javier Zapiola",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/039/medium/javier.jpg?1459776941",
+      "admin": false,
+      "role": "editor"
+    },
+    {
+      "id": 40,
+      "email": "nicolas@example.com",
+      "name": "Nicolas",
+      "avatar_url": "http://s3.amazonaws.com/example-production/users/avatar_images/000/000/040/medium/logo_tmp.jpg?1459776941",
+      "admin": false,
+      "role": "editor"
+    }
+  ],
+  "count": 10,
+  "pagination": {
+    "current": 1,
+    "previous": null,
+    "next": 2,
+    "per_page": 10,
+    "pages": 2,
+    "count": 11
+  }
+}
