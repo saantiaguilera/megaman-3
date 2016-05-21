@@ -23,6 +23,7 @@ public:
 	bool isVulnerable() const;
 	// Sets vulnerability (true/false)
 	void setVulnerable(bool vulnerable);
+	virtual void update() {}
 
 private:
 	// Copy constructor

@@ -9,6 +9,8 @@
 
 #include <string>
 
+#include "server_ClientProxy.h"
+
 ReceiverWorker::ReceiverWorker(ClientProxy* client) : client(client) {}
 
 ReceiverWorker::~ReceiverWorker() {

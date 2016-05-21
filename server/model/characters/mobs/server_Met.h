@@ -20,6 +20,8 @@ public:
 	virtual ~Met();
 	// Receive shot from weapon
 	void receiveShotFromProjectile(Projectile* projectile);
+
+	void update();
 private:
 	// Copy constructor
 	Met(const Met&);

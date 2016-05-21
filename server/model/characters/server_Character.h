@@ -8,18 +8,23 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include "../IMovable.h"
+#include "../server_Movable.h"
+#include "../server_MovementVector.h"
 
 class Projectile;
 
 class Weapon;
 
-class Character : IMovable {
+class Character : public Movable{
 protected:
 	// hp are the hitpoints for current life
 	unsigned int hp;
 	// My weapon
 	Weapon* currentWeapon;
+	// Prepare to attack, if true then attack
+	bool readyToAttack;
+	// clock ticks counter
+	unsigned int ticksPassed;
 public:
 	// Constructor
 	Character(unsigned int hp);
@@ -33,6 +38,8 @@ public:
 	unsigned int getHp() const;
 	// Decreases hp of the character
 	void decreaseHp(float damage);
+	// Update the AI
+	virtual void update() {}
 
 private:
 	// Copy constructor

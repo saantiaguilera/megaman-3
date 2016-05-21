@@ -7,9 +7,9 @@
 
 #include "server_ClientProxy.h"
 
+#include <errno.h>
 #include <syslog.h>
 #include <cstring>
-#include <errno.h>
 #include <iostream>
 
 #define MAX_BUFFER_SIZE 10
