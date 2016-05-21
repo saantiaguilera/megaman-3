@@ -43,27 +43,27 @@ public:
 	}
 
 	void add(Element element) {
-		mutex.enableLock();
+		mutex.lock();
 
 		elementList.push_back(element);
 
-		mutex.disableLock();
+		mutex.unlock();
 	}
 
 	void remove(Element element) {
-		mutex.enableLock();
+		mutex.lock();
 
 		elementList.remove(element);
 
-		mutex.disableLock();
+		mutex.unlock();
 	}
 
 	int size() {
-		mutex.enableLock();
+		mutex.lock();
 
 		int size = elementList.size();
 
-		mutex.disableLock();
+		mutex.unlock();
 
 		return size;
 	}
@@ -73,11 +73,11 @@ public:
 	}
 
 	void clear() {
-		mutex.enableLock();
+		mutex.lock();
 
 		elementList.clear();
 
-		mutex.disableLock();
+		mutex.unlock();
 	}
 
 	//So he can access our private stuff. c++11 onwards
@@ -93,11 +93,11 @@ public:
 	public:
 		explicit ConcurrentIterator(ConcurrentList *list) :
 				list(list) {
-			list->mutex.enableLock();
+			list->mutex.lock();
 		}
 
 		virtual ~ConcurrentIterator() {
-			list->mutex.disableLock();
+			list->mutex.unlock();
 		}
 
 		typename std::list<Element>::iterator begin() {
