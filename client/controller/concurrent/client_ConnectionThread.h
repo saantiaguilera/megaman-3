@@ -26,6 +26,7 @@ void onReceive() {
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
 #include "event/client_ConnectionEvent.h"
+#include "event/client_FlowEvent.h"
 #include <unistd.h>
 
 class ReceiverContract {
@@ -37,15 +38,48 @@ public:
 class ConnectionThread : public Thread {
 private:
   ReceiverContract *listener;
+
+  void dispatchEvent(Event *event) {
+    Looper::getMainLooper().put(event);
+    listener->onDataReceived();
+  }
+
 protected:
   virtual void run() {
-    //Do something
+    //Connect to the socket (idk ask the params in the constructor ? ip and port i mean)
     usleep(1000 * 1000 * 3); //1000 micro * 1000 millis * 3 secs.
 
-    //TODO APPEND AN EVENT
-    Looper::getMainLooper().put(new ConnectionEvent(RESULT_OK));
+    //TODO APPEND AN EVENT. This event should be more solid. Like
+    /*
+    If REUSLT_eRROR -> you can append and exception
+    If OK -> append data (like isAdmin?)
+    */
+    dispatchEvent(new ConnectionEvent(RESULT_OK));
 
-    listener->onDataReceived();
+    bool hardcode = true;
+    //Suppose we have already connected
+    while (hardcode) {//while (connected)
+      usleep(1000 * 1000 * 2); //1000 micro * 1000 millis * 2 secs.
+      /**Start receiving ALL DA DATAH' and for every
+       * DATAH' chunk wrap it up and send it
+       */
+      dispatchEvent(new FlowEvent(FLOW_LOBBY));
+
+      //TODO YOU SHOULD CONSIDER YOU CAN BE DA ADMIN
+      /**
+      * Here always before calling the recv() we should fetch from another looper incoming events
+      * Because maybe our admin decided to "start the game" and we need somehow to know that.
+      * We will achieve this by being able to fork loopers (fuck, thats gonna be hard).
+      * GOOGLE HALP DO THE LOOPER CLAS FOR C++
+      */
+      //Imagine you have also already downloaded the map
+
+      usleep(1000 * 1000 * 2); //1000 micro * 1000 millis * 2 secs.
+
+      dispatchEvent(new FlowEvent(FLOW_GAME));
+
+      hardcode = false;
+    }
   }
 
 public:

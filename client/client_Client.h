@@ -8,6 +8,16 @@
 class Context {
 public:
 	virtual void attachView(Gtk::Window *view) = 0;
+
+	//I should consult this.
+	/*
+	I dont like doing a nested tree of view controllers, since the lobby doesnt have any
+	relation with the ip:port view or the game view.
+	Since they are all independent, some root should handle the flow movements (the routing)
+	but since the app->run() blocks me, the only one able to do this
+	OOOOOOOOOOOO BOY I HAD A REVELATION, DA WORK HAS STARTED
+	*/
+	virtual void handleEvent(Event *event) = 0;
 };
 
 /**
