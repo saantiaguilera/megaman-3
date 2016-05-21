@@ -4,6 +4,8 @@
 #include <iostream>
 #include <gtkmm.h>
 #include "concurrent/client_ConnectionThread.h"
+#include "../concurrent/client_Looper.h"
+#include "../../Constants.h"
 
 /**
   * Im gonna copy as much as I can the Android MVC + everything I can
@@ -23,8 +25,6 @@ class OnEnterPressedInterface {
   public:
     virtual void onEnterPressed(Gtk::Entry *editText) = 0;
 };
-
-enum MainScreenResult { RESULT_ERROR, RESULT_INDETERMINATE, RESULT_OK };
 
 /* ---------------------- VIEW ---------------------- */
 
@@ -75,7 +75,7 @@ public:
     callback = listener;
   }
 
-  void setResult(MainScreenResult result) {
+  void setResult(ConnectionResult result) {
     switch (result) {
       case RESULT_OK:
         setProgressBarIndeterminate(false);
@@ -101,11 +101,14 @@ public:
 #define PATH_LAYOUT "res/layout/home_screen.glade"
 #define PATH_ROOT_VIEW "client_home_screen_root_view"
 
-class MainScreenController : private OnEnterPressedInterface, private ConnectionStatus {
+class MainScreenController : private OnEnterPressedInterface, private ReceiverContract {
 private:
   MainScreenView *view;
-  ConcurrentList<ConnectionStatus*> *connectionsList;
+
+  ReceiverContract *connectionListener = NULL;
   ConnectionThread *connectionThread = NULL;
+
+  Glib::Dispatcher dispatcher;
 
   /**
   * Has private inheritance. Why should any class know i can handle this
@@ -115,21 +118,37 @@ private:
     view->setResult(RESULT_INDETERMINATE);
 
     if (!connectionThread) {
-      connectionThread = new ConnectionThread(connectionsList);
+      connectionThread = new ConnectionThread(connectionListener);
       connectionThread->start();
     }
   }
 
-  virtual void onConnection() {
-    view->setResult(RESULT_OK);
+  virtual void onDataReceived() {
+    //We tell the dispatcher that he should check a msg in the main ui thread
+    dispatcher.emit();
   }
 
-  virtual void onDisconnection() {
-    std::cout << "Disconnected" << std::endl;
-  }
+  void onHandleData() {
+    Event *event = Looper::getMainLooper().get();
 
-  virtual void onConnectionError() {
-    view->setResult(RESULT_ERROR);
+    if (event) {
+      switch (event->getId()) {
+        //Do stuff
+        case EVENT_CONNECTION_ACCEPTED:
+          view->setResult(RESULT_OK);
+          break;
+
+        case EVENT_CONNECTION_REFUSED:
+          view->setResult(RESULT_ERROR);
+          break;
+
+        case EVENT_CONNECTION_SHUTDOWN:
+          std::cout << "Disconnected" << std::endl;
+          break;
+      }
+
+      Looper::getMainLooper().pop();
+    }
   }
 
 public:
@@ -146,10 +165,7 @@ public:
   /**
    * Create builder, parse xml, delegate inflate responsibility, set callbacks
    */
-  MainScreenController() : view(nullptr) {
-    connectionsList = new ConcurrentList<ConnectionStatus*>();
-    connectionsList->add(this);
-
+  MainScreenController() : view(nullptr), connectionListener(this), dispatcher() {
     auto refBuilder = Gtk::Builder::create();
 
     try {
@@ -166,6 +182,8 @@ public:
     }
 
     refBuilder->get_widget_derived(PATH_ROOT_VIEW, view);
+
+    dispatcher.connect(sigc::mem_fun(*this, &MainScreenController::onHandleData));
 
     view->setOnEnterPressedListener(this);
   }

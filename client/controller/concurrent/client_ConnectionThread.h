@@ -24,47 +24,33 @@ void onReceive() {
 
 #include "../../../common/common_ThreadsafeList.h"
 #include "../../../common/common_Thread.h"
+#include "../../concurrent/client_Event.h"
+#include "event/client_ConnectionEvent.h"
 #include <unistd.h>
 
-class ConnectionStatus {
+class ReceiverContract {
 public:
-  virtual ~ConnectionStatus() {};
-  virtual void onConnection() = 0;
-  virtual void onDisconnection() = 0;
-  virtual void onConnectionError() = 0;
+  virtual ~ReceiverContract() {};
+  virtual void onDataReceived() = 0;
 };
 
 class ConnectionThread : public Thread {
 private:
-  ConcurrentList<ConnectionStatus*> *listeners;
+  ReceiverContract *listener;
 protected:
   virtual void run() {
     //Do something
     usleep(1000 * 1000 * 3); //1000 micro * 1000 millis * 3 secs.
 
-    ConcurrentList<ConnectionStatus*>::ConcurrentIterator concurrentIterator(listeners);
-    for (std::list<ConnectionStatus*>::iterator iterator = concurrentIterator.begin() ;
-          iterator != concurrentIterator.end() ; ++iterator)
-          (*iterator)->onConnection();
+    //TODO APPEND AN EVENT
+    Looper::getMainLooper().put(new ConnectionEvent(RESULT_OK));
+
+    listener->onDataReceived();
   }
 
 public:
-  ConnectionThread(ConcurrentList<ConnectionStatus*> *listeners) : listeners(listeners) {}
-
-  ~ConnectionThread() {
-    {
-      std::list<ConnectionStatus*> unlockedList = listeners->unblock();
-      for (std::list<ConnectionStatus*>::iterator it = unlockedList.begin();
-    			it != unlockedList.end(); ++it) {
-    		delete (*it);
-    	}
-    }
-
-  	listeners->clear();
-
-  	delete listeners;
-    //TODO WATCHOUT HERE.
-  };
+  ConnectionThread(ReceiverContract *listener) : listener(listener) { }
+  ~ConnectionThread() { };
 };
 
 #endif

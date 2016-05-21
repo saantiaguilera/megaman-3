@@ -1,7 +1,7 @@
 #ifndef CLIENT_CLIENT_LOOPER_H_
 #define CLIENT_CLIENT_LOOPER_H_
 
-#include "client_Runnable.h"
+#include "client_Event.h"
 #include "client_GarbageCollector.h"
 #include "../../common/common_Mutex.h"
 #include "../../common/common_Lock.h"
@@ -18,10 +18,10 @@ class Looper {
 private:
 	Mutex mutex;
 
-	std::queue<Runnable*> messagePool;
+	std::queue<Event*> messagePool;
 
 	bool gcRunning;
-	std::vector<Runnable*> gcPool;
+	std::vector<Event*> gcPool;
 	GarbageCollector *gc;
 
 public:
@@ -30,8 +30,8 @@ public:
         return instance;
     }
 
-	Runnable * get() {
-		Runnable *value;
+	Event * get() {
+		Event *value;
 
 		{
 			Lock lock(mutex);
@@ -51,9 +51,9 @@ public:
 			}
 	}
 
-	void put(Runnable *runnable) {
+	void put(Event *ev) {
 			Lock lock(mutex);
-			messagePool.push(runnable);
+			messagePool.push(ev);
 	}
 private:
 	Looper(Looper const&);
