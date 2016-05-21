@@ -15,7 +15,6 @@
 #include <iostream>
 
 #define MAX_BUFFER_SIZE 10
-#define STOP_RECEIVING_CONDITION "End\n"
 
 ClientProxy::ClientProxy() {
 	connected = false;
@@ -35,20 +34,16 @@ void ClientProxy::acceptNewConnection(const Socket& dispatcherSocket) {
 	}
 }
 
-void ClientProxy::receive(std::string& incomingData) {
+void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::string& incomingData) {
 	// Receive message code
-	uint32_t messageCode;
-	socket.receive((char*) &messageCode, sizeof(uint32_t));
+	socket.receive((char*) &messageCode, sizeof(int));
 	// TODO: Log receive error
 	messageCode = ntohl(messageCode);
-	std::cout << messageCode << std::endl;
 
 	// Receive message length
-	uint32_t messageLength;
-	socket.receive((char*) &messageLength, sizeof(uint32_t));
+	socket.receive((char*) &messageLength, sizeof(unsigned int));
 	// TODO: Log receive error
 	messageLength = ntohl(messageLength);
-	std::cout << messageLength << std::endl;
 
 	// Done workaround of size + 1 to avoid valgrind error
 	char* buffer = new char[messageLength + 1];
@@ -58,7 +53,6 @@ void ClientProxy::receive(std::string& incomingData) {
 		syslog(LOG_ERR, "There was an error receiving from socket");
 	} else {
 		incomingData += buffer;
-		std::cout << incomingData << std::endl;
 	}
 }
 
