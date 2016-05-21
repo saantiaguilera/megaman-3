@@ -42,8 +42,6 @@ private:
   ReceiverContract *listener;
 
   void dispatchEvent(Event *event) {
-    std::cout << "DISPATCHING EVENT FROM CONNECTION THREAD" << std::endl;
-
     Looper::getMainLooper().put(event);
     listener->onDataReceived();
   }
