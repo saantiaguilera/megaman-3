@@ -7,12 +7,12 @@
 #include "concurrent/client_ConnectionThread.h"
 #include "../concurrent/client_Looper.h"
 
-#include "client_Handler.h"
+#include "../commons/client_Handler.h"
 
 class Context;
 
-#include "client_Controller.h"
-#include "client_Context.h"
+#include "../commons/client_Controller.h"
+#include "../commons/client_Context.h"
 
 #include "../../Constants.h"
 
@@ -147,14 +147,14 @@ private:
 
         default:
           return false;
-      } else return false;
+      }
 
       return true;
-    }
+    } else return false;
   }
 
 public:
-  virtual Gtk::Window * getView() { return view; };
+  virtual Gtk::Window * getView() { return view; }
 
   virtual void setVisibility(bool visible) {
     if (!view)
@@ -170,7 +170,7 @@ public:
   /**
    * Create builder, parse xml, delegate inflate responsibility, set callbacks
    */
-  MainScreenController(Context context) : Controller(context), view(nullptr) {
+  MainScreenController(Context *context) : Controller(context), view(nullptr) {
     auto refBuilder = Gtk::Builder::create();
 
     try {

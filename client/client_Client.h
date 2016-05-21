@@ -12,6 +12,7 @@ private:
   ConnectionThread *connectionThread = NULL;
 
 	virtual bool onMessageReceived();
+	void onMessageFromDispatcher();
 
 	virtual void onDataReceived();
 

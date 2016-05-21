@@ -25,8 +25,10 @@ void onReceive() {
 #include "../../../common/common_ThreadsafeList.h"
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
+
 #include "event/client_ConnectionEvent.h"
 #include "event/client_FlowEvent.h"
+
 #include <unistd.h>
 
 class ReceiverContract {

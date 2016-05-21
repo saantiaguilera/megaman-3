@@ -1,14 +1,13 @@
-
 #include <iostream>
 #include <gtkmm.h>
 #include "../Constants.h"
 
-#include "client_Handler.h"
+#include "commons/client_Handler.h"
 
 class Context;
 
-#include "client_Controller.h"
-#include "client_Context.h"
+#include "commons/client_Controller.h"
+#include "commons/client_Context.h"
 
 #include "controller/client_MainScreenController.h"
 #include "client_Client.h"
@@ -34,19 +33,20 @@ void Client::attachController(Controller *controller) {
 void Client::start() {
   auto app = Gtk::Application::create(PACKAGE_NAME);
 
-  MainScreenController *controller = new MainScreenController(*this);
+  MainScreenController *controller = new MainScreenController(this);
   attachController(controller);
 
-  dispatcher.connect(sigc::mem_fun(*this, &Client::onMessageReceived));
+  dispatcher.connect(sigc::mem_fun(*this, &Client::onMessageFromDispatcher));
 
   app->run(*(controller->getView()));
 }
 
 bool Client::onMessageReceived() {
+  bool consumed = false;
+
   Event *event = Looper::getMainLooper().get();
 
   if (event) {
-    bool consumed = false;
 
     switch (event->getId()) {
       //Do stuff
@@ -63,9 +63,13 @@ bool Client::onMessageReceived() {
 
     if (consumed)
       Looper::getMainLooper().pop();
-
-    return consumed;
   }
+
+  return consumed;
+}
+
+void Client::onMessageFromDispatcher() {
+  onMessageReceived();
 }
 
 void Client::onDataReceived() {
