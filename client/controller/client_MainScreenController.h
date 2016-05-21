@@ -16,6 +16,7 @@ class Context;
 
 #include "../../Constants.h"
 
+#include "concurrent/event/client_CreateConnectionEvent.h"
 #include "../client_Client.h"
 
 /**
@@ -123,7 +124,7 @@ private:
   virtual void onEnterPressed(Gtk::Entry *editText) {
     view->setResult(RESULT_INDETERMINATE);
 
-    //TODO Looper::getMainLooper().put(new CreateConnectionEvent(editText->get_text()));
+    Looper::getMainLooper().put(new CreateConnectionEvent(editText->get_text()));
     getContext()->onMessageReceived();
   }
 
