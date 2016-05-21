@@ -1,9 +1,7 @@
-//#include <rapidjson/document.h>
-//#include <rapidjson/rapidjson.h>
-//#include <rapidjson/writer.h>
-//#include <rapidjson/prettywriter.h>
-
+#include <rapidjson/document.h>
+#include <rapidjson/filereadstream.h>
 #include <stdlib.h>
+#include <cstdio>
 #include <iostream>
 #include <string>
 
@@ -20,7 +18,16 @@ int main(int argc, char *argv[]) {
 
     Logger::getInstance().log(1, "Server starting...");
 
-
+    std::string filename = "test_json.json";
+    FILE* pFile = fopen(filename.c_str(), "rb");
+    char buffer[65536];
+    rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
+    rapidjson::Document document;
+    document.ParseStream<rapidjson::FileReadStream>(is);
+    std::cout << document["count"].GetInt() << std::endl;
+    const rapidjson::Value& a = document["response"];
+    for (rapidjson::Value::ConstValueIterator itr = a.Begin(); itr != a.End(); ++itr)
+        std::cout << itr->GetObject()["id"].GetInt() << std::endl;
 //    Fire aFire;
 //    Spark aSpark;
 //    Met met;
