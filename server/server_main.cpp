@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include <glog/logging.h>
 
 #include "server_Server.h"
 #include "model/projectiles/server_Fire.h"
@@ -17,7 +16,6 @@
 #include "model/obstacles/server_Needle.h"
 #include "model/obstacles/server_Precipice.h"
 
-#define LOG_DEST "/var/tmp/fiuba-taller-I-megaman"
 
 int main(int argc, char *argv[]) {
 	if (argc < 2)
@@ -26,11 +24,8 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Welcome to Megaman 3 Server Edition" << std::endl;
 
-    // Initialize Google's logging library.
-    google::SetLogDestination(google::GLOG_INFO, LOG_DEST );
-    google::InitGoogleLogging(argv[0]);
 
-    LOG(INFO) << "Starting server...";
+
 
 //    Fire aFire;
 //    Spark aSpark;
@@ -60,8 +55,6 @@ int main(int argc, char *argv[]) {
 
     Server server = Server(port);
     server.run();
-
-    LOG(INFO) << "Quitting..";
 
     return EXIT_SUCCESS;
 }
