@@ -7,14 +7,8 @@
 #include <iostream>
 #include <string>
 
+#include "server_Logger.h"
 #include "server_Server.h"
-#include "model/projectiles/server_Fire.h"
-#include "model/projectiles/server_Spark.h"
-#include "model/characters/mobs/server_Met.h"
-#include "model/characters/humanoids/server_Bombman.h"
-#include "model/characters/humanoids/server_Sparkman.h"
-#include "model/obstacles/server_Needle.h"
-#include "model/obstacles/server_Precipice.h"
 
 
 int main(int argc, char *argv[]) {
@@ -24,7 +18,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Welcome to Megaman 3 Server Edition" << std::endl;
 
-
+    Logger::getInstance().log(1, "Server starting...");
 
 
 //    Fire aFire;
@@ -55,6 +49,9 @@ int main(int argc, char *argv[]) {
 
     Server server = Server(port);
     server.run();
+
+    Logger::getInstance().log(1, "Server quitting...");
+
 
     return EXIT_SUCCESS;
 }

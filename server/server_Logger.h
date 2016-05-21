@@ -14,7 +14,7 @@ class Logger {
 	// Singleton
 public:
 	// Return logger instance
-	Logger& getInstance();
+	static Logger& getInstance();
 	// Destroyer
 	virtual ~Logger();
 	// Put data in log
