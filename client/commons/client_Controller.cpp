@@ -12,7 +12,7 @@ Context * Controller::getContext() {
 
 Controller::Controller(Context *ctx) : context(ctx) {
 
-};
+}
 
 Controller::~Controller() {
 

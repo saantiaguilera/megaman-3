@@ -66,6 +66,7 @@ void AcceptorWorker::terminate(){
 			it != launchedThreads.end(); ++it) {
 		(*it)->join();
 	}
+	*keepOnListening = false;
 }
 
 AcceptorWorker::AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening) :

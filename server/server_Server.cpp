@@ -30,27 +30,13 @@ Server::Server(const std::string& port) {
 }
 
 void Server::run() {
-	callAcceptorWorker();
-	Engine gameEngine;
-	gameEngine.start();
-}
-
-void Server::callAcceptorWorker() {
+//	callAcceptorWorker();
 	bool keepOnListening = true;
-	std::string userInput;
-
-	// Initiate AcceptorWorker and get him to work
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
-
-	while (keepOnListening && std::getline(std::cin, userInput)) {
-		if (userInput == STOP_LISTENING) {
-			keepOnListening = false;
-			acceptorWorker.terminate();
-		}
-	}
-
-	// We are done listening so join the worker
+	Engine gameEngine;
+	gameEngine.start();
+	acceptorWorker.terminate();
 	acceptorWorker.join();
 }
 

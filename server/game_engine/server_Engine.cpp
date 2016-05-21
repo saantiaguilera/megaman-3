@@ -19,6 +19,7 @@ Engine::Engine() {
 
 void Engine::start() {
 	// TODO: TESTING
+	int i = 0;
     Met met;
 	charactersList.push_back(&met);
 
@@ -28,6 +29,9 @@ void Engine::start() {
 			(*it)->update();
 		}
 		sleep(1);
+		++i;
+		if (i == 5)
+			quit = true;
 //		char response;
 //		std::cout << "Wanna quit? (Y/n): ";
 //		std::cin >> response;

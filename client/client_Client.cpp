@@ -14,12 +14,12 @@ class Context;
 #include "client_Client.h"
 
 Client::Client() : currentController(NULL), dispatcher() {
-};
+}
 
 Client::~Client()  {
     if (connectionThread)
       connectionThread->join();
-};
+}
 
 void Client::attachController(Controller *controller) {
   Controller *old = currentController;
