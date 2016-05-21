@@ -40,6 +40,18 @@ void Client::start() {
   app->run(*(currentController->getView()));
 }
 
+void Client::onCreateConnection(std::string ip) {
+  if (!connectionThread) {
+    std::cout << ip << std::endl;
+    connectionThread = new ConnectionThread(this);
+    connectionThread->start();
+  }
+}
+
+void Client::onFlowToLobby() {
+
+}
+
 bool Client::onMessageReceived() {
   bool consumed = false;
 
@@ -51,11 +63,17 @@ bool Client::onMessageReceived() {
     switch (event->getId()) {
       //Do stuff
       case EVENT_CREATE_CONNECTION:
-        if (!connectionThread) {
-          std::cout << dynamic_cast<CreateConnectionEvent*>(event)->getIP() << std::endl;
-          connectionThread = new ConnectionThread(this);
-          connectionThread->start();
-        }
+        onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
+        consumed = true;
+        break;
+
+      case EVENT_FLOW_LOBBY:
+        onFlowToLobby();
+        consumed = true;
+        break;
+
+      case EVENT_FLOW_GAME:
+        std::cout << "We should be going to game" << std::endl;
         consumed = true;
         break;
 

@@ -16,6 +16,10 @@ private:
 
 	virtual void onDataReceived();
 
+	/* All the stuff he can do :) */
+	void onCreateConnection(std::string ip);
+	void onFlowToLobby();
+
 public:
 	Client();
 
