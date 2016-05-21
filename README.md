@@ -7,8 +7,8 @@
 
 ```Bash
 //Santi A
-Client: g++ `find . -name '*.cpp' -not -path './server/*'` -o mclient -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0`
-Server: g++ `find . -name '*.cpp' -not -path './client/*'` -o mserver -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0`
+Client: g++ `find . -name '*.cpp' -not -path './server/*'` -o mclient -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2`
+Server: g++ `find . -name '*.cpp' -not -path './client/*'` -o mserver -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2`
 ```
 
 ----------------------------
