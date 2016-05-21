@@ -28,13 +28,15 @@ void Client::attachController(Controller *controller) {
   currentController->setVisibility(true);
 
   if (old) {
+    app->add_window(*(currentController->getView()));
+    app->remove_window(*(old->getView()));
     old->setVisibility(false);
     delete old;
   }
 }
 
 void Client::start() {
-  auto app = Gtk::Application::create(PACKAGE_NAME);
+  app = Gtk::Application::create(PACKAGE_NAME);
 
   attachController(new MainScreenController(this));
 

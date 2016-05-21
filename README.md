@@ -14,8 +14,9 @@ Server: g++ `find . -name '*.cpp' -not -path './client/*'` -o mserver -Wall -pip
 ----------------------------
 TODO Santi A
 ----------------------------
-[] Pass to .CPP and separate views and controllers from single .H
-[] Instead of using #define PATH in controllers and views use a private const std::string ??
+- [] Pass to .CPP and separate views and controllers from single .H
+- [] Instead of using #define PATH in controllers and views use a private const std::string ??
+- [] Should I use for views and any gtkmm/glib related thing the Glib::RefPtr<> ?? Investigate
 
 -----------------------------
 Tree

@@ -6,6 +6,8 @@
  */
 class Client : public Context, private ReceiverContract {
 private:
+	Glib::RefPtr<Gtk::Application> app;
+
 	Controller *currentController;
 
 	Glib::Dispatcher dispatcher;
