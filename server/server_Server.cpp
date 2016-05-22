@@ -32,9 +32,14 @@ Server::Server(const std::string& port) {
 void Server::run() {
 //	callAcceptorWorker();
 	bool keepOnListening = true;
+	bool gameFinished = false;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
-	Engine::getInstance().start();
+	// Loop until game has finished and terminate connection
+	while (!gameFinished){
+		gameFinished = Engine::getInstance().isFinished();
+	}
+
 	acceptorWorker.terminate();
 	acceptorWorker.join();
 }

@@ -34,6 +34,8 @@ public:
 	void addNewPlayer(const std::string& name);
 	// Return players list
 	const std::list<Player*>& getPlayersList() const;
+	// Tell if game has finished
+	bool isFinished();
 
 private:
 	// Constructor

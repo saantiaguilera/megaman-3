@@ -8,6 +8,7 @@
 #include "server_Engine.h"
 
 #include <unistd.h>
+#include <iostream>
 
 #include "../model/characters/mobs/server_Met.h"
 
@@ -31,6 +32,7 @@ Engine& Engine::getInstance() {
 }
 
 void Engine::start() {
+	std::cout << "Begin game " << std::endl;
 	// TODO: TESTING
 	int i = 0;
     Met met;
@@ -43,16 +45,24 @@ void Engine::start() {
 		}
 		sleep(1);
 		++i;
-		if (i == 120)
-			quit = true;
-//		char response;
-//		std::cout << "Wanna quit? (Y/n): ";
-//		std::cin >> response;
-//		if(response == 'y' || response == 'Y')
+//		if (i == 10)
 //			quit = true;
+		if ( i % 10 == 0){
+			// TODO: For debugging
+			char response;
+			std::cout << "Wanna quit? (Y/n): ";
+			std::cin >> response;
+			if(response == 'y' || response == 'Y')
+				quit = true;
+		}
+
 	}
 }
 
 void Engine::addNewPlayer(const std::string& name) {
 	playersList.push_back(new Player(name));
+}
+
+bool Engine::isFinished() {
+	return quit;
 }
