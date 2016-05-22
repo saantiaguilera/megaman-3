@@ -29,3 +29,6 @@ Map::~Map() {
 	}
 }
 
+Tile* Map::getTileAt(unsigned int x, unsigned int y) {
+	return tilesMatrix[x][y];
+}
