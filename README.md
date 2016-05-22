@@ -38,8 +38,11 @@ res - Resources (drawables/layouts)
 **How to install SDL stuff:**
 
 Search for them, download the .tar.gz versions (Like SDL2, SDL2_mixer-2.0.1.tar.gz, SDL2_image-2.0.1.tar.gz)
+
 https://www.libsdl.org/projects/SDL_image/
+
 https://www.libsdl.org/projects/SDL_mixer/
+
 https://www.libsdl.org/download-2.0.php
 
 1. Extract
