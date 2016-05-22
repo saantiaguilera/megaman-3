@@ -72,15 +72,15 @@ You should see something like
 
 -D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2_ttf -Wl,-rpath,/usr/local/lib -lSDL2
 
-*This project will be using a wrapper for SDL2 in C++*
+**This project will be using a wrapper for SDL2 in C++**
 
-1. Clone or download this repository and extract it somewhere
+* Clone or download this repository and extract it somewhere
 
 https://github.com/libSDL2pp/libSDL2pp/tree/b3a6c2c5935ee0ade88d3d013d5af992886a0643
 
 (Im using that version, you can use a newer if you like)
 
-2. Run
+* Run
 ```Bash
 #If you dont have cmake
 sudo apt install cmake
