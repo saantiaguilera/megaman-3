@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //#include <iostream>
 //#include <gtkmm.h>
 //#include "../Constants.h"
@@ -16,3 +17,11 @@
 //	Client client;
 //	client.start();
 //}
+=======
+#include "client_Client.h"
+
+int main(int argc, char **argv) {
+	Client client;
+	client.start();
+}
+>>>>>>> 592aaa738c89a08f78fd78cbc90adb9b4736e89b
