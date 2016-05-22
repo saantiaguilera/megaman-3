@@ -49,9 +49,8 @@
 
 class GameView : public Gtk::Window {
 private:
-  SDL2pp::SDL *sdl;
-  SDL2pp::Renderer *renderer;
-  SDL2pp::Texture *sprites;
+  SDL_Window *socketWindow;
+  SDL_Renderer *render;
 
   /**
    * This method should be in charge of drawing everything

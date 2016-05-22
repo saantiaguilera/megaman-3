@@ -17,20 +17,18 @@ GameView::GameView() : Gtk::Window() {
 }
 
 GameView::~GameView() {
-  delete sprites;
-  delete renderer;
-  delete sdl;
+  //TODO Free SDL stuff
 }
 
 bool GameView::onLoopSDL() {
  try {
    std::cout << "onLoopSDL" << std::endl;
 
-   renderer->Clear();
-
-   renderer->Copy(*sprites);
-
-   renderer->Present();
+   SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
+   SDL_RenderClear(render);
+   SDL_SetRenderDrawColor(render, 255, 0, 0, 255);
+   SDL_RenderDrawLine(render, 0, 0, 640, 480);
+   SDL_RenderPresent(render);
 
    return true;
  } catch (std::exception& e) {
@@ -43,26 +41,23 @@ bool GameView::onInitSDL(::Window windowId) {
  try {
    std::cout << "onInitSDL" << std::endl;
 
-   // Initialize SDL library
-   sdl = new SDL2pp::SDL(SDL_INIT_VIDEO);
+   if (SDL_VideoInit(NULL) < 0) {
+     std::cerr << "Couldn't initialize SDL video: " << SDL_GetError()
+               << std::endl;
+     exit(1);
+   }
 
    std::cout << "new SDL(SDLINITVIEO)" << std::endl;
 
-   SDL_Window *socketWindow = SDL_CreateWindowFrom((void *) windowId);
+   socketWindow = SDL_CreateWindowFrom((void *) windowId);
    if (!socketWindow)
      throw std::exception();
 
-   SDL2pp::Window mWindow(socketWindow);
-
-   // Create accelerated video renderer with default driver
-   renderer = new SDL2pp::Renderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
-
- std::cout << "created renderer" << std::endl;
-
-   // Load sprites image as a new texture
-   sprites = new SDL2pp::Texture(*renderer, "res/drawable/some_tiles.png");
-
- std::cout << "created texture" << std::endl;
+   render = SDL_CreateRenderer(socketWindow, -1, SDL_RENDERER_SOFTWARE);
+   if (!render) {
+     std::cerr << "Couldn't create renderer: " << SDL_GetError() << std::endl;
+     exit(1);
+   }
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
    Glib::signal_timeout().connect(slot, 16);
