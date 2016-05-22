@@ -1,17 +1,13 @@
 #include <iostream>
-#include <gtkmm.h>
+
 #include "../Constants.h"
 
-#include "commons/client_Handler.h"
-
-class Context;
-
-#include "commons/client_Controller.h"
-#include "commons/client_Context.h"
+#include "controller/concurrent/event/client_CreateConnectionEvent.h"
 
 #include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
 #include "controller/client_MainScreenController.h"
+
 #include "client_Client.h"
 
 Client::Client() : currentController(NULL), dispatcher() {

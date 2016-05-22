@@ -1,6 +1,12 @@
 #ifndef CLIENT_CLIENT_CONTROLLER_H_
 #define CLIENT_CLIENT_CONTROLLER_H_
 
+class Context;
+
+#include <gtkmm.h>
+#include "client_Handler.h"
+#include "client_Context.h"
+
 class Controller : public Handler {
 private:
   Context *context;

@@ -1,6 +1,11 @@
 #ifndef CLIENT_CLIENT_CONTEXT_H_
 #define CLIENT_CLIENT_CONTEXT_H_
 
+class Controller;
+
+#include "client_Handler.h"
+#include "client_Controller.h"
+
 class Context : public Handler {
 public:
 	virtual ~Context();

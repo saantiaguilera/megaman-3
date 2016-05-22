@@ -1,6 +1,12 @@
 #ifndef CLIENT_CLIENT_CLIENT_H_
 #define CLIENT_CLIENT_CLIENT_H_
 
+#include <gtkmm.h>
+
+#include "controller/concurrent/client_ConnectionThread.h"
+#include "commons/client_Context.h"
+#include "commons/client_Controller.h"
+
 /**
  * Pasar a cpp
  */
