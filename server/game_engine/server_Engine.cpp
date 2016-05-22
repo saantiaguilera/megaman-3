@@ -14,7 +14,12 @@
 Engine::~Engine() {
 }
 
-Engine::Engine() {
+Engine::Engine() : quit(false){
+}
+
+Engine& Engine::getInstance() {
+    static Engine instance;
+    return instance;
 }
 
 void Engine::start() {
@@ -30,7 +35,7 @@ void Engine::start() {
 		}
 		sleep(1);
 		++i;
-		if (i == 5)
+		if (i == 120)
 			quit = true;
 //		char response;
 //		std::cout << "Wanna quit? (Y/n): ";

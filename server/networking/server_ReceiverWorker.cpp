@@ -21,6 +21,10 @@ void ReceiverWorker::run() {
 	std::string inboundData;
 	int messageCode;
 	unsigned int messageLength;
-	client->receive(messageCode, messageLength, inboundData);
+	// TODO: BIG HARDCODE RECEIVED FOR TESTING, CLEAN BEFORE CONNECTING WITH CLIENT
+	messageCode = 1;
+	inboundData = "Carl";
+	messageLength = inboundData.size();
+//	client->receive(messageCode, messageLength, inboundData);
 	InboundMessageInterpreter interpreter(messageCode, messageLength, inboundData);
 }

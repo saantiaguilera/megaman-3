@@ -13,19 +13,22 @@
 #include "../model/characters/server_Character.h"
 
 class Engine {
+	// Singleton
 private:
 	// Keep running flag
 	bool quit;
 	// A thread safe list for holding characters
 	std::list<Character*> charactersList;
 public:
-	// Constructor
-	Engine();
+	// Return logger instance
+	static Engine& getInstance();
 	// Destroyer
 	virtual ~Engine();
 	// Get started
 	void start();
 private:
+	// Constructor
+	Engine();
 	// Copy constructor
 	Engine(const Engine&);
 	// Assignment operator

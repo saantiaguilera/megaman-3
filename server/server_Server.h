@@ -22,8 +22,6 @@ private:
 	Socket dispatcherSocket;
 	// Clients vector
 	std::vector<ClientProxy*> clients;
-	// Joins and frees workers
-	void releaseWorkers();
 
 public:
 	// Constructor

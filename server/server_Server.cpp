@@ -34,24 +34,7 @@ void Server::run() {
 	bool keepOnListening = true;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
-	Engine gameEngine;
-	gameEngine.start();
+	Engine::getInstance().start();
 	acceptorWorker.terminate();
 	acceptorWorker.join();
-}
-
-
-void Server::releaseWorkers() {
-//	// join workers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		(*it)->join();
-//	}
-//
-//	// Free reducers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		delete (*it);
-//	}
-//	reducers.clear();
 }

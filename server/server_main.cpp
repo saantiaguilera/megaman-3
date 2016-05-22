@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+#include "game_engine/server_Player.h"
 #include "server_Logger.h"
 #include "server_Server.h"
 
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]) {
     rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
     rapidjson::Document document;
     document.ParseStream<rapidjson::FileReadStream>(is);
+
 //    std::cout << document["map"].GetInt() << std::endl;
 //    const rapidjson::Value& a = document["response"];
 //    for (rapidjson::Value::ConstValueIterator itr = a.Begin(); itr != a.End(); ++itr)

@@ -29,7 +29,7 @@ void Met::receiveShotFromProjectile(Projectile* projectile) {
 
 void Met::update(){
 	if (readyToAttack){
-		std::cout << "ATTACK!" << std::endl;
+//		std::cout << "ATTACK!" << std::endl;
 //		attack();
 		readyToAttack = false;
 		ticksPassed = 0;
@@ -38,7 +38,7 @@ void Met::update(){
 		return;
 	} else {
 		move();
-		std::cout << "Met's position: " << position.toString() << std::endl;
+//		std::cout << "Met's position: " << position.toString() << std::endl;
 	}
 	ticksPassed++;
 	if (ticksPassed == 3)
