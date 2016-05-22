@@ -26,5 +26,5 @@ void ReceiverWorker::run() {
 	inboundData = "Carl";
 	messageLength = inboundData.size();
 //	client->receive(messageCode, messageLength, inboundData);
-	InboundMessageInterpreter interpreter(messageCode, messageLength, inboundData);
+	InboundMessageInterpreter interpreter(messageCode, inboundData);
 }

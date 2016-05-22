@@ -12,6 +12,14 @@
 #include "../model/characters/mobs/server_Met.h"
 
 Engine::~Engine() {
+	for (std::list<Player*>::iterator it = playersList.begin();
+			it != playersList.end(); ++it) {
+		delete *it;
+	}
+}
+
+const std::list<Player*>& Engine::getPlayersList() const {
+	return playersList;
 }
 
 Engine::Engine() : quit(false){
@@ -43,4 +51,8 @@ void Engine::start() {
 //		if(response == 'y' || response == 'Y')
 //			quit = true;
 	}
+}
+
+void Engine::addNewPlayer(const std::string& name) {
+	playersList.push_back(new Player(name));
 }

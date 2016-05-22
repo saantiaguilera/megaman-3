@@ -13,10 +13,10 @@
 class InboundMessageInterpreter {
 private:
 	// Determine the type of message by analizing its code
-	void analizeMessageCode(int messageCode);
+	void analizeMessageCode(int messageCode, const std::string& inboundMessage);
 public:
 	// Constructor
-	InboundMessageInterpreter(int messageCode, unsigned int messageLength, const std::string& inboundMessage);
+	InboundMessageInterpreter(int messageCode, const std::string& inboundMessage);
 	// Destroyer
 	virtual ~InboundMessageInterpreter();
 

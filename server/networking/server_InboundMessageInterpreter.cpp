@@ -10,16 +10,17 @@
 #include <iostream>
 
 #include "../../common/common_MessageProtocol.h"
+#include "../game_engine/server_Engine.h"
 
-InboundMessageInterpreter::InboundMessageInterpreter(int messageCode,
-		unsigned int messageLength, const std::string& inboundMessage) {
-	analizeMessageCode(messageCode);
+InboundMessageInterpreter::InboundMessageInterpreter(int messageCode, const std::string& inboundMessage) {
+	analizeMessageCode(messageCode, inboundMessage);
 }
 
-void InboundMessageInterpreter::analizeMessageCode(int messageCode) {
+void InboundMessageInterpreter::analizeMessageCode(int messageCode, const std::string& inboundMessage) {
 	switch (messageCode) {
 		case PLAYER_CONNECTED:
-			std::cout << "Player connected!" << std::endl;
+			Engine::getInstance().addNewPlayer(inboundMessage);
+			std::cout << Engine::getInstance().getPlayersList().back()->getName() <<" connected!" << std::endl;
 			break;
 		case START_GAME:
 			std::cout << "Start game!" << std::endl;
