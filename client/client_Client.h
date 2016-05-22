@@ -21,6 +21,7 @@ private:
 	/* All the stuff he can do :) */
 	void onCreateConnection(std::string ip);
 	void onFlowToLobby();
+	void onFlowToGame();
 
 public:
 	Client();
