@@ -20,6 +20,8 @@ public:
 	Map(unsigned int sizeX, unsigned int sizeY);
 	// Destroyer
 	virtual ~Map();
+	// Return the tile at x, y
+	Tile* getTileAt(unsigned int x, unsigned int y);
 private:
 	// Copy constructor
 	Map(const Map&);
