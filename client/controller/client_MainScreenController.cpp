@@ -33,6 +33,7 @@ MainScreenController::MainScreenController(Context *context) : Controller(contex
 }
 
 MainScreenController::~MainScreenController() {
+  delete view;
 }
 
 void MainScreenController::onEnterPressed(Gtk::Entry *editText) {

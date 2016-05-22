@@ -7,7 +7,9 @@
 
 #include "client_GameController.h"
 
-GameController::~GameController() { }
+GameController::~GameController() {
+  delete view;
+}
 
 /**
  * Create builder, parse xml, delegate inflate responsibility, set callbacks

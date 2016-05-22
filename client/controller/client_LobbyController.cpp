@@ -20,7 +20,9 @@ void LobbyController::setVisibility(bool visible) {
   else view->hide();
 }
 
-LobbyController::~LobbyController() { }
+LobbyController::~LobbyController() {
+  delete view;
+}
 
 LobbyController::LobbyController(Context *context) : Controller(context), view(nullptr) {
   auto refBuilder = Gtk::Builder::create();
