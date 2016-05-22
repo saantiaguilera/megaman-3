@@ -47,22 +47,23 @@ https://www.libsdl.org/projects/SDL_ttf/
 
 https://www.libsdl.org/download-2.0.php
 
-1. Extract
-2. Run
+(For each one of them do)
+* Extract
+* Run
 ```Bash
 sudo ./configure
 sudo make all
 sudo make install
 ```
-3. After running the code you can check if you install them correclty by running
+* After running the code you can check if you install them correclty by running
 ```Bash
-
+#Ofc, run the one you are installing, if you are installing currently SDL_ttf, use the SDL2_ttf one....
 pkg-config --cflags --libs sdl2
 pkg-config --cflags --libs SDL2_image
 pkg-config --cflags --libs SDL2_mixer
 pkg-config --cflags --libs SDL2_ttf
 ```
-You should see something like
+You should see something like (depending on which one you are installing)
 
 -D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lSDL2
 
