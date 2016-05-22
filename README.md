@@ -16,7 +16,7 @@ TODO Santi A
 ----------------------------
 - [] Pass to .CPP and separate views and controllers from single .H
 - [] Instead of using #define PATH in controllers and views use a private const std::string ??
-- [] Should I use for views and any gtkmm/glib related thing the Glib::RefPtr<> ?? Investigate
+- [] Should I use for views and any gtkmm/glib related thing the Glib::RefPtr<> ?? Investigate.-> Yes, its throwing free() problems because of this. pass all pointers to smartpointers
 
 -----------------------------
 Tree

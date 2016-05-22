@@ -9,6 +9,7 @@ class Context;
 #include "commons/client_Controller.h"
 #include "commons/client_Context.h"
 
+#include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
 #include "controller/client_MainScreenController.h"
 #include "client_Client.h"
@@ -58,6 +59,10 @@ void Client::onFlowToLobby() {
   attachController(new LobbyController(this));
 }
 
+void Client::onFlowToGame() {
+  attachController(new GameController(this));
+}
+
 bool Client::onMessageReceived() {
   bool consumed = false;
 
@@ -79,7 +84,7 @@ bool Client::onMessageReceived() {
         break;
 
       case EVENT_FLOW_GAME:
-        std::cout << "We should be going to game" << std::endl;
+        onFlowToGame();
         consumed = true;
         break;
 
