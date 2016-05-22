@@ -18,16 +18,16 @@ int main(int argc, char *argv[]) {
 
     Logger::getInstance().log(1, "Server starting...");
 
-    std::string filename = "test_json.json";
+    std::string filename = "./json/basicMap.json";
     FILE* pFile = fopen(filename.c_str(), "rb");
     char buffer[65536];
     rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
     rapidjson::Document document;
     document.ParseStream<rapidjson::FileReadStream>(is);
-    std::cout << document["count"].GetInt() << std::endl;
-    const rapidjson::Value& a = document["response"];
-    for (rapidjson::Value::ConstValueIterator itr = a.Begin(); itr != a.End(); ++itr)
-        std::cout << itr->GetObject()["id"].GetInt() << std::endl;
+//    std::cout << document["map"].GetInt() << std::endl;
+//    const rapidjson::Value& a = document["response"];
+//    for (rapidjson::Value::ConstValueIterator itr = a.Begin(); itr != a.End(); ++itr)
+//        std::cout << itr->GetObject()["id"].GetInt() << std::endl;
 //    Fire aFire;
 //    Spark aSpark;
 //    Met met;

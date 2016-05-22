@@ -38,7 +38,7 @@ public:
 	unsigned int getHp() const;
 	// Decreases hp of the character
 	void decreaseHp(float damage);
-	// Update the AI
+	// Update the AI (make it pure virtual)
 	virtual void update() {}
 
 private:

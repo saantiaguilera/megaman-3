@@ -12,21 +12,33 @@
 
 class MovementVector {
 private:
-	unsigned int x,y;
-	float velocity, acceleration;
+	// Velocity (components x and y), acceleration components (x and y)
+	float vx, vy, ax, ay;
 public:
+	// Constructor
 	MovementVector();
+	// Destroyer
 	virtual ~MovementVector();
-	float getAcceleration() const;
-	void setAcceleration(float acceleration);
-	float getVelocity() const;
-	void setVelocity(float velocity);
-	unsigned int getX() const;
-	void setX(unsigned int x);
-	unsigned int getY() const;
-	void setY(unsigned int y);
 	// To string
 	std::string toString() const;
+	// Get x component of acceleration
+	float getAx() const;
+	// Set x component of acceleration
+	void setAx(float ax);
+	// Get y component of acceleration
+	float getAy() const;
+	// Set y component of acceleration
+	void setAy(float ay);
+	// Get x component of velocity
+	float getVx() const;
+	// Set x component of velocity
+	void setVx(float vx);
+	// Get y component of velocity
+	float getVy() const;
+	// Set x component of velocity
+	void setVy(float vy);
+	// Change both directions
+	void invertMovement();
 };
 
 #endif /* SERVER_MODEL_SERVER_MOVEMENTVECTOR_H_ */
