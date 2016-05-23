@@ -6,7 +6,10 @@
 
 #include <gtkmm.h>
 
+// TODO This two wont be here (because I will put all the draw thingys in a list, instead of having them stored in the class)
 #include "game_engine/client_WorldView.h"
+#include "game_engine/client_SomethingThatIsNotTerrainView.h"
+
 /**
   * Im gonna copy as much as I can the Android MVC + everything I can
   * (eg Use of callbacks from user responses)
@@ -53,7 +56,10 @@ private:
   SDL2pp::SDL *sdl;
   SDL2pp::Window *mainWindow;
   SDL2pp::Renderer *renderer;
+
   WorldView *worldView;
+  SomethingThatIsNotTerrainView *stintv;
+
 
   /**
    * This method should be in charge of drawing everything

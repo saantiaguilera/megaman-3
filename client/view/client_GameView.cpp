@@ -17,6 +17,7 @@ GameView::GameView() : Gtk::Window() {
 
 GameView::~GameView() {
   delete worldView;
+  delete stintv;
   delete renderer;
   delete mainWindow;
   delete sdl;
@@ -27,6 +28,7 @@ bool GameView::onLoopSDL() {
    renderer->Clear();
 
    worldView->draw();
+   stintv->draw();
 
    renderer->Present();
 
@@ -52,6 +54,7 @@ bool GameView::onInitSDL(::Window windowId) {
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
 
    worldView = new WorldView(renderer);
+   stintv = new SomethingThatIsNotTerrainView(renderer);
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
    Glib::signal_timeout().connect(slot, 16);
