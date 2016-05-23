@@ -6,7 +6,7 @@
 
 #include <gtkmm.h>
 
-// TODO This two wont be here (because I will put all the draw thingys in a list, instead of having them stored in the class)
+// TODO This two wont be here (because I will put all the RenderedView's in a list, instead of having them stored in the class)
 #include "game_engine/client_WorldView.h"
 #include "game_engine/client_SomethingThatIsNotTerrainView.h"
 

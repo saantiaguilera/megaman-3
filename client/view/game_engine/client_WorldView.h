@@ -1,13 +1,13 @@
 #ifndef CLIENT_WORLDVIEW_H_
 #define CLIENT_WORLDVIEW_H_
 
+#include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 
 #define TERRAIN_TILE_SIZE 64
 
-class WorldView {
+class WorldView : public RenderedView {
 private:
-  SDL2pp::Renderer *renderer;
   SDL2pp::Texture *terrainTexture;
 
   SDL2pp::Rect *grassRect;
@@ -20,7 +20,7 @@ private:
   int yTiles;
 
   void initTextures() {
-    terrainTexture = new SDL2pp::Texture(*renderer, "res/drawable/some_tiles.png");
+    terrainTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/some_tiles.png");
 
     grassRect = new SDL2pp::Rect(0, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
     clayRect  = new SDL2pp::Rect(TERRAIN_TILE_SIZE, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
@@ -48,7 +48,7 @@ public:
   *
   * note that currently I just show the stuff in the renderer because I still havent parse the map and I dont have a mass center to scroll over
   */
-  WorldView(SDL2pp::Renderer *renderer) : renderer(renderer) {
+  WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer) {
     initTextures();
 
     //Get the x and y of the matrix
@@ -59,7 +59,7 @@ public:
   /*
   Currently its for testing purposes. But it should be something similar
   */
-  void draw() {
+  virtual void draw() {
     //Here we should iterate over the whole matrix (In this case I will simply fill the screen)
     for (int i = 0; i < xTiles * yTiles; ++i) { //i < x * y
       int x = i % xTiles; // X position will be position % columns
@@ -81,7 +81,7 @@ public:
     }
   }
 
-  ~WorldView() {
+  virtual ~WorldView() {
     delete terrainTexture;
     delete skyRect;
     delete rockRect;

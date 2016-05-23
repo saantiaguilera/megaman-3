@@ -2,6 +2,7 @@
 #define CLIENT_SOMETHINGTHATISNOTTERRAIN_H_
 //TODO refactor the name when  you have something better to describe it
 
+#include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 
 #define N_POSITIONS 9
@@ -12,24 +13,23 @@
 #define STINTV_SCREEN_WIDTH 76
 #define STINTV_SCREEN_HEIGHT 80
 
-class SomethingThatIsNotTerrainView {
+class SomethingThatIsNotTerrainView : public RenderedView {
 private:
-  SDL2pp::Renderer *renderer;
   SDL2pp::Texture *texture;
 
   int currentSprite = 0;
   int repetitions = 0;
 
 public:
-  SomethingThatIsNotTerrainView(SDL2pp::Renderer *renderer) : renderer(renderer) {
-    texture = new SDL2pp::Texture(*renderer, "res/drawable/some_character.png");
+  SomethingThatIsNotTerrainView(SDL2pp::Renderer *renderer) : RenderedView(renderer) {
+    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/some_character.png");
   }
 
-  ~SomethingThatIsNotTerrainView() {
+  virtual ~SomethingThatIsNotTerrainView() {
     delete texture;
   }
 
-  void draw() {
+  virtual void draw() {
     ++repetitions;
     if (repetitions > 3) {
       repetitions = 0;
