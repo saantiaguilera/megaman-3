@@ -6,6 +6,7 @@
 
 #include <gtkmm.h>
 
+#include "game_engine/client_WorldView.h"
 /**
   * Im gonna copy as much as I can the Android MVC + everything I can
   * (eg Use of callbacks from user responses)
@@ -52,7 +53,7 @@ private:
   SDL2pp::SDL *sdl;
   SDL2pp::Window *mainWindow;
   SDL2pp::Renderer *renderer;
-  SDL2pp::Texture *sprites;
+  WorldView *worldView;
 
   /**
    * This method should be in charge of drawing everything
