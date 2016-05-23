@@ -15,6 +15,6 @@ Movable::Movable() {
 
 void Movable::move() {
 	// TODO: Make use of accel
-	position.setX(position.getX() + movementVector.getX() * movementVector.getVelocity());
-	position.setY(position.getY() + movementVector.getY() * movementVector.getVelocity());
+	position.setX(position.getX() + movementVector.getVx());
+	position.setY(position.getY() + movementVector.getVy());
 }

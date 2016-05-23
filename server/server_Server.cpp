@@ -32,26 +32,14 @@ Server::Server(const std::string& port) {
 void Server::run() {
 //	callAcceptorWorker();
 	bool keepOnListening = true;
+	bool gameFinished = false;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
-	Engine gameEngine;
-	gameEngine.start();
+	// Loop until game has finished and terminate connection
+	while (!gameFinished){
+		gameFinished = Engine::getInstance().isFinished();
+	}
+
 	acceptorWorker.terminate();
 	acceptorWorker.join();
-}
-
-
-void Server::releaseWorkers() {
-//	// join workers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		(*it)->join();
-//	}
-//
-//	// Free reducers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		delete (*it);
-//	}
-//	reducers.clear();
 }

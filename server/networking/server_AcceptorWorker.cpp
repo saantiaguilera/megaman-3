@@ -47,7 +47,7 @@ void AcceptorWorker::run() {
 			receiverWorker->start();
 		}
 	}
-	std::string inboundData = "Connected, bye!";
+	std::string inboundData = "Connected, bye!\n";
 	for (std::vector<ClientProxy*>::iterator it = clients.begin();
 			it != clients.end(); ++it) {
 		(*it)->send(inboundData);

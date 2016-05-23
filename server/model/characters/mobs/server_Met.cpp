@@ -33,7 +33,9 @@ void Met::update(){
 //		attack();
 		readyToAttack = false;
 		ticksPassed = 0;
-		movementVector.setVelocity(movementVector.getVelocity() * -1);
+		// Start moving to the other side
+		movementVector.invertMovement();
+		return;
 	} else {
 		move();
 		std::cout << "Met's position: " << position.toString() << std::endl;
@@ -42,11 +44,11 @@ void Met::update(){
 	if (ticksPassed == 3)
 		readyToAttack = true;
 	if (ticksPassed == 2){
-		movementVector.setX(0);
-		movementVector.setY(1);
+		movementVector.setVx(0);
+		movementVector.setVy(1);
 	}
 	if (ticksPassed == 1){
-		movementVector.setX(1);
-		movementVector.setY(0);
+		movementVector.setVx(1);
+		movementVector.setVy(0);
 	}
 }
