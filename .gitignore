@@ -1,3 +1,10 @@
+# Santi exe
+program
+clientProgram
+mclient
+mserver
+.clang_complete
+
 ### C++ ###
 # Compiled Object files
 *.slo
@@ -42,6 +49,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*~
+*#
 
 # Eclipse Core
 .project

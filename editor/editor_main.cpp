@@ -4,7 +4,7 @@
  *  Created on: May 14, 2016
  *      Author: santi
  */
-
+/*
 #include <gtkmm.h>
 
 #include "views/editor_MainWindow.h"
@@ -37,3 +37,4 @@ int main(int argc, char *argv[]) {
 
 	return app->run(window);*/
 }
+*/

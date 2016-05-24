@@ -10,15 +10,16 @@
 
 #include "server_Weapon.h"
 
-#define RING_TOSSER_DAMAGE 3
 #define RING_TOSSER_MAX_AMMO 10
 
 class RingTosser: public Weapon {
 public:
 	// Constructor
-	RingTosser() : Weapon(RING_TOSSER_DAMAGE, RING_TOSSER_MAX_AMMO) {}
+	RingTosser();
 	// Destroyer
 	virtual ~RingTosser();
+	// fire weapon
+	void fire();
 private:
 	// Copy constructor
 	RingTosser(const RingTosser&);

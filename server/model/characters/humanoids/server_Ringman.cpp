@@ -7,6 +7,10 @@
 
 #include "server_Ringman.h"
 
+Ringman::Ringman() : Humanoid(RINGMAN_INITIAL_HP) {
+	currentWeapon = new RingTosser();
+}
+
 Ringman::~Ringman() {
 }
 

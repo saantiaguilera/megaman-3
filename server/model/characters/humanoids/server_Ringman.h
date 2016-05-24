@@ -16,9 +16,7 @@
 class Ringman: public Humanoid {
 public:
 	// Constructor
-	Ringman() : Humanoid(RINGMAN_INITIAL_HP) {
-		currentWeapon = new RingTosser();
-	}
+	Ringman();
 	// Destroyer
 	virtual ~Ringman();
 private:

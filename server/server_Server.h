@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "../common/common_Socket.h"
-#include "server_ClientProxy.h"
+#include "networking/server_ClientProxy.h"
 
 #define MAX_QUEUE_SIZE 128
 
@@ -22,10 +22,6 @@ private:
 	Socket dispatcherSocket;
 	// Clients vector
 	std::vector<ClientProxy*> clients;
-	// Calls acceptor worker to accept new clients
-	void callAcceptorWorker();
-	// Joins and frees workers
-	void releaseWorkers();
 
 public:
 	// Constructor
@@ -35,6 +31,12 @@ public:
 	// This method encapsulates the server work
 	// and calls the rest of the methods
 	void run();
+
+public:
+	// Copy constructor
+	Server(const Server&);
+	// Assignment operator
+	Server& operator=(const Server&);
 };
 
 #endif /* SRC_SERVER_SERVER_SERVER_H_ */

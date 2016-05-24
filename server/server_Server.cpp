@@ -10,7 +10,8 @@
 #include <iostream>
 #include <iterator>
 
-#include "server_AcceptorWorker.h"
+#include "game_engine/server_Engine.h"
+#include "networking/server_AcceptorWorker.h"
 
 #define STOP_LISTENING "q"
 
@@ -29,40 +30,21 @@ Server::Server(const std::string& port) {
 }
 
 void Server::run() {
-	callAcceptorWorker();
-}
-
-void Server::callAcceptorWorker() {
+//	callAcceptorWorker();
 	bool keepOnListening = true;
-	std::string userInput;
-
-	// Initiate AcceptorWorker and get him to work
+	bool gameFinished = false;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
-
-	while (keepOnListening && std::getline(std::cin, userInput)) {
-		if (userInput == STOP_LISTENING) {
-			keepOnListening = false;
-			acceptorWorker.terminate();
-		}
+	// Loop until game is ready to start, then start it
+	while(!Engine::getInstance().isRunning()){
+		if(Engine::getInstance().isReadyToStart())
+			Engine::getInstance().start();
+	}
+	// Loop until game has finished and terminate connection
+	while (!gameFinished){
+		gameFinished = Engine::getInstance().isFinished();
 	}
 
-	// We are done listening so join the worker
+	acceptorWorker.terminate();
 	acceptorWorker.join();
-}
-
-
-void Server::releaseWorkers() {
-//	// join workers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		(*it)->join();
-//	}
-//
-//	// Free reducers
-//	for (std::vector<Thread*>::iterator it = reducers.begin();
-//			it != reducers.end(); ++it) {
-//		delete (*it);
-//	}
-//	reducers.clear();
 }

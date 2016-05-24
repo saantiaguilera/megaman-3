@@ -7,6 +7,11 @@
 
 #include "server_Powerup.h"
 
+
+Powerup::Powerup(float dropRate, unsigned int effectAmount) :
+		dropRate(dropRate), effectAmount(effectAmount) {
+}
+
 Powerup::~Powerup() {
 }
 

@@ -16,9 +16,7 @@
 class MagnetMan: public Humanoid {
 public:
 	// Constructor
-	MagnetMan() : Humanoid(MAGNETMAN_INITIAL_HP) {
-		currentWeapon = new MagnetCannon();
-	}
+	MagnetMan();
 	// Destroyer
 	virtual ~MagnetMan();
 private:

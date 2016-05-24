@@ -20,9 +20,9 @@ public:
 	// Destroyer
 	virtual ~Mutex();
 	// Lock the sensitive resources
-	void enableLock();
+	void lock();
 	// Disbale the lock on sensitive resources
-	void disableLock();
+	void unlock();
 public:
 	// Copy constructor
 	// public visibility for use in mapped data

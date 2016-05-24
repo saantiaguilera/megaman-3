@@ -8,32 +8,38 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include <cstddef>
+#include "../server_Movable.h"
+#include "../server_MovementVector.h"
 
-#include "../../../common/common_Point.h"
+class Projectile;
 
 class Weapon;
 
-class Character {
+class Character : public Movable{
 protected:
-	// my current position
-	Point myPoint;
 	// hp are the hitpoints for current life
 	unsigned int hp;
 	// My weapon
 	Weapon* currentWeapon;
+	// Prepare to attack, if true then attack
+	bool readyToAttack;
+	// clock ticks counter
+	unsigned int ticksPassed;
 public:
 	// Constructor
-	Character(unsigned int hp) : hp(hp), currentWeapon(NULL) {}
+	Character(unsigned int hp);
 	// Destroyer
 	virtual ~Character();
-	// Moves the character
-	void move(unsigned int x, unsigned int y);
 	// Attacks
-	void attack(Character* otherCharacter);
+	void attack();
 	// receive shot from weapon parameter
-	void receiveShotFromWeapon(Weapon* weapon);
+	virtual void receiveShotFromProjectile(Projectile* projectile);
+	// Return hp of the character
 	unsigned int getHp() const;
+	// Decreases hp of the character
+	void decreaseHp(float damage);
+	// Update the AI (make it pure virtual later)
+	virtual void update() {}
 
 private:
 	// Copy constructor

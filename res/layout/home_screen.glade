@@ -1,29 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <!-- interface-local-resource-path /home/santiago/Desktop -->
-  <object class="GtkWindow" id="view_main_screen_root">
+  <requires lib="gtk+" version="3.8"/>
+  <!-- interface-local-resource-path /home/santi/workspace/fiuba-taller-I-megaman -->
+  <object class="GtkWindow" id="client_home_screen_root_view">
+    <property name="width_request">640</property>
+    <property name="height_request">480</property>
     <property name="can_focus">False</property>
-    <property name="hexpand">False</property>
-    <property name="vexpand">False</property>
-    <property name="border_width">3</property>
-    <property name="title" translatable="yes">Megaslug</property>
-    <property name="window_position">center</property>
-    <property name="default_width">640</property>
-    <property name="default_height">480</property>
-    <property name="hide_titlebar_when_maximized">True</property>
-    <property name="icon">../drawable/ic_launcher.png</property>
-    <property name="gravity">center</property>
-    <property name="has_resize_grip">False</property>
-    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
-      <object class="GtkImage" id="view_main_screen_background">
+      <object class="GtkLayout" id="layout1">
+        <property name="width_request">32</property>
+        <property name="height_request">32</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="pixbuf">../drawable/home_screen.png</property>
+        <property name="width">0</property>
+        <property name="height">0</property>
+        <child>
+          <object class="GtkLabel" id="label2">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="label" translatable="yes">Enter IP</property>
+          </object>
+          <packing>
+            <property name="x">270</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="client_home_screen_edit_text">
+            <property name="width_request">180</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="can_default">True</property>
+            <property name="events">GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="margin_top">14</property>
+            <property name="activates_default">True</property>
+            <property name="xalign">0.5</property>
+            <property name="shadow_type">out</property>
+            <property name="placeholder_text" translatable="yes">Type here</property>
+          </object>
+          <packing>
+            <property name="x">230</property>
+            <property name="y">210</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinner" id="client_home_screen_progress_bar">
+            <property name="width_request">80</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="x">280</property>
+            <property name="y">276</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="client_home_screen_result_text_view">
+            <property name="width_request">200</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">270</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>

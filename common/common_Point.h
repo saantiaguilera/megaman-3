@@ -8,6 +8,8 @@
 #ifndef COMMON_COMMON_POINT_H_
 #define COMMON_COMMON_POINT_H_
 
+#include <string>
+
 class Point {
 private:
 	// Actual positions
@@ -25,6 +27,8 @@ public:
 	unsigned int getY() const;
 	// set y position
 	void setY(unsigned int y);
+	// To string
+	std::string toString() const;
 private:
 	// Copy constructor
 	Point(const Point&);

@@ -7,12 +7,12 @@
 
 #include "server_AcceptorWorker.h"
 
+#include <iostream>
 #include <iterator>
 #include <string>
-#include <vector>
 
-#include "../common/common_Socket.h"
-#include "../common/common_Lock.h"
+#include "../../common/common_Socket.h"
+#include "server_ReceiverWorker.h"
 
 #define MAX_QUEUE_SIZE 128
 
@@ -38,13 +38,19 @@ void AcceptorWorker::run() {
 		clients.push_back(client);
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
-			// Spawn a receiver worker
-			// It will call our client proxy's receive method
-//			ReceiverWorker* receiverWorker = new ReceiverWorker(client,
-//					mappedData);
-//			launchedThreads.push_back(receiverWorker);
-//			receiverWorker->start();
+			std::cout << "client connected" << std::endl;
+
+//			// Spawn a receiver worker
+//			// It will call our client proxy's receive method
+			ReceiverWorker* receiverWorker = new ReceiverWorker(client);
+			launchedThreads.push_back(receiverWorker);
+			receiverWorker->start();
 		}
+	}
+	std::string inboundData = "Connected, bye!\n";
+	for (std::vector<ClientProxy*>::iterator it = clients.begin();
+			it != clients.end(); ++it) {
+		(*it)->send(inboundData);
 	}
 }
 
@@ -60,6 +66,7 @@ void AcceptorWorker::terminate(){
 			it != launchedThreads.end(); ++it) {
 		(*it)->join();
 	}
+	*keepOnListening = false;
 }
 
 AcceptorWorker::AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening) :

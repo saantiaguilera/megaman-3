@@ -16,9 +16,7 @@
 class Sparkman: public Humanoid {
 public:
 	// Constructor
-	Sparkman() : Humanoid(SPARKMAN_INITIAL_HP) {
-		currentWeapon = new SparksCannon();
-	}
+	Sparkman();
 	// Destroyer
 	virtual ~Sparkman();
 private:

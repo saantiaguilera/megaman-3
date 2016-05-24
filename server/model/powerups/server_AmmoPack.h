@@ -13,9 +13,7 @@
 // Abstract class, still no methods
 class AmmoPack: public Powerup {
 public:
-	AmmoPack(float dropRate, unsigned int effectAmount) :
-		Powerup(dropRate, effectAmount) {
-}
+	AmmoPack(float dropRate, unsigned int effectAmount);
 	virtual ~AmmoPack();
 private:
 	// Copy constructor

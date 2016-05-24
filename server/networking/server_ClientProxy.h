@@ -8,8 +8,9 @@
 #ifndef SRC_SERVER_SERVER_CLIENTPROXY_H_
 #define SRC_SERVER_SERVER_CLIENTPROXY_H_
 
-#include "../common/common_Socket.h"
 #include <string>
+
+#include "../../common/common_Socket.h"
 
 class ClientProxy {
 private:
@@ -27,7 +28,9 @@ public:
 	// Accepts new connection, setting the new socket to his own
 	void acceptNewConnection(const Socket& dispatcherSocket);
 	// Receives incomingData from the net
-	void receive(std::string& incomingData);
+	void receive(int& messageCode, unsigned int& messageLength, std::string& incomingData);
+	// Sends data over the net, through the socket
+	void send(const std::string& data);
 };
 
 #endif /* SRC_SERVER_SERVER_CLIENTPROXY_H_ */

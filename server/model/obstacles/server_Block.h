@@ -15,9 +15,11 @@
 class Block: public Obstacle {
 public:
 	// Constructor
-	Block() : Obstacle(BLOCK_IS_PASSABLE) {}
+	Block();
 	// Destroyer
 	virtual ~Block();
+	// Applies effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Block(const Block&);

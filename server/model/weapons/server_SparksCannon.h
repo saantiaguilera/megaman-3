@@ -10,15 +10,16 @@
 
 #include "server_Weapon.h"
 
-#define SPARKS_CANNON_DAMAGE 4
 #define SPARKS_CANNON_MAX_AMMO 15
 
 class SparksCannon: public Weapon {
 public:
 	// Constructor
-	SparksCannon() : Weapon(SPARKS_CANNON_DAMAGE, SPARKS_CANNON_MAX_AMMO) {}
+	SparksCannon();
 	// Destroyer
 	virtual ~SparksCannon();
+	// fire weapon
+	void fire();
 private:
 	// Copy constructor
 	SparksCannon(const SparksCannon&);

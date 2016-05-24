@@ -14,9 +14,7 @@
 class EnergyCapsule: public Powerup {
 public:
 	// Constructor
-	EnergyCapsule(float dropRate, unsigned int effectAmount) :
-			Powerup(dropRate, effectAmount) {
-	}
+	EnergyCapsule(float dropRate, unsigned int effectAmount);
 	// Destroyer
 	virtual ~EnergyCapsule();
 private:

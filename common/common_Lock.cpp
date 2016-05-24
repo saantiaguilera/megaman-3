@@ -10,11 +10,11 @@
 #include "common_Mutex.h"
 
 Lock::Lock(Mutex &mutex) : aMutex(mutex) {
-    aMutex.enableLock();
+    aMutex.lock();
 }
 
 Lock::~Lock() {
 	// Upon destruction of lock, mutex is disabled
-    aMutex.disableLock();
+    aMutex.unlock();
 }
 
