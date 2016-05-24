@@ -35,5 +35,7 @@ enum Flow { FLOW_START, FLOW_LOBBY, FLOW_GAME };
 #define EVENT_FLOW_START 4
 #define EVENT_FLOW_LOBBY 5
 #define EVENT_FLOW_GAME 6
+#define EVENT_SEND_KEY_MAP 7
+#define EVENT_QUIT 8
 
 #endif /* CONSTANTS_H_ */

@@ -49,10 +49,18 @@
   If you return false: It will dettach from the connections and you wont be called again.
   */
 
+class OnKeyPressListener {
+public:
+  ~OnKeyPressListener() {}
+  virtual bool onKeyPressEvent(GdkEventKey *event) = 0;
+};
+
 /* ---------------------- VIEW ---------------------- */
 
 class GameView : public Gtk::Window {
 private:
+  OnKeyPressListener *listener = NULL;
+
   SDL2pp::SDL *sdl;
   SDL2pp::Window *mainWindow;
   SDL2pp::Renderer *renderer;
@@ -81,9 +89,14 @@ private:
   bool onLoopSDL();
   bool onInitSDL(::Window windowId);
 
+  bool on_key_press_event(GdkEventKey* event) override;
+  bool on_key_release_event(GdkEventKey* event) override;
+
 public:
   GameView();
   virtual ~GameView();
+
+  void setKeyPressListener(OnKeyPressListener *listener);
 };
 
 #endif

@@ -3,6 +3,8 @@
 #include "../Constants.h"
 
 #include "controller/concurrent/event/client_CreateConnectionEvent.h"
+#include "controller/concurrent/event/client_SendKeyMapEvent.h"
+#include "controller/concurrent/event/client_QuitEvent.h"
 
 #include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
@@ -14,8 +16,10 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
-    if (connectionThread)
+    if (connectionThread) {
       connectionThread->join();
+      delete connectionLooper;
+    }
 }
 
 void Client::attachController(Controller *controller) {
@@ -46,7 +50,7 @@ void Client::start() {
 void Client::onCreateConnection(std::string ip) {
   if (!connectionThread) {
     std::cout << ip << std::endl;
-    connectionThread = new ConnectionThread(this);
+    connectionThread = new ConnectionThread(this, (connectionLooper = new Looper()));
     connectionThread->start();
   }
 }
@@ -59,16 +63,21 @@ void Client::onFlowToGame() {
   attachController(new GameController(this));
 }
 
+void Client::quit() {
+  app->quit();
+}
+
 bool Client::onMessageReceived() {
   bool consumed = false;
 
   Event *event = Looper::getMainLooper().get();
 
   if (event) {
-    std::cout << "Event found in onMessageReceived, id: " << event->getId() << std::endl;
+    std::cout << "Event found in Client::onMessageReceived, id: " << event->getId() << std::endl;
 
     switch (event->getId()) {
       //Do stuff
+      //TODO refactor the consumed var unless i found a case where it hasnt has to be consumed
       case EVENT_CREATE_CONNECTION:
         onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
         consumed = true;
@@ -84,6 +93,16 @@ bool Client::onMessageReceived() {
         consumed = true;
         break;
 
+      case EVENT_SEND_KEY_MAP:
+        connectionLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        consumed = true;
+        break;
+
+      case EVENT_QUIT:
+        quit();
+        consumed = true;
+        break;
+
       default:
         consumed = currentController->onMessageReceived();
     }
@@ -91,7 +110,6 @@ bool Client::onMessageReceived() {
     if (consumed)
       Looper::getMainLooper().pop();
   }
-
 
   return consumed;
 }

@@ -40,7 +40,7 @@ void MainScreenView::setResult(ConnectionResult result) {
     }
   }
 
-void MainScreenView::setOnEnterPressedListener(OnEnterPressedInterface *listener) {
+void MainScreenView::setEnterPressedListener(OnEnterPressedInterface *listener) {
     callback = listener;
   }
 

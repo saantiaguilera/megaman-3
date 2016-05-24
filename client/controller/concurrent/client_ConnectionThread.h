@@ -22,10 +22,13 @@ void onReceive() {
 #ifndef CLIENT_EVENTS_CLIENT_CONNECTIONTHREAD_H_
 #define CLIENT_EVENTS_CLIENT_CONNECTIONTHREAD_H_
 
+#include <iostream>
+#include "../../concurrent/client_Looper.h"
 #include "../../../common/common_ThreadsafeList.h"
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
 
+#include "event/client_SendKeyMapEvent.h"
 #include "event/client_ConnectionEvent.h"
 #include "event/client_FlowEvent.h"
 
@@ -40,6 +43,7 @@ public:
 class ConnectionThread : public Thread {
 private:
   ReceiverContract *listener;
+  Looper *handlerLooper;
 
   void dispatchEvent(Event *event) {
     Looper::getMainLooper().put(event);
@@ -80,12 +84,25 @@ protected:
 
       dispatchEvent(new FlowEvent(FLOW_GAME));
 
+      while (true) {
+        Event *event = NULL;
+        while ((event = handlerLooper->get()) != NULL) {
+          std::cout << "In handler looper event obtained with id: " << event->getId() << std::endl;
+
+          if (event->getId() == EVENT_SEND_KEY_MAP)
+            std::cout << dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap().toString() << std::endl;
+          else std::cout << "Event is not of a key pressing..." << std::endl;
+
+          handlerLooper->pop();
+        }
+      }
+
       hardcode = false;
     }
   }
 
 public:
-  ConnectionThread(ReceiverContract *listener) : listener(listener) { }
+  ConnectionThread(ReceiverContract *listener, Looper *handlerLooper) : listener(listener), handlerLooper(handlerLooper) { }
   ~ConnectionThread() { };
 };
 
