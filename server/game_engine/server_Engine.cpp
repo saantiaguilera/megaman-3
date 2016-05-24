@@ -23,7 +23,11 @@ const std::list<Player*>& Engine::getPlayersList() const {
 	return playersList;
 }
 
-Engine::Engine() : quit(false){
+bool Engine::isRunning() const {
+	return running;
+}
+
+Engine::Engine() : quit(false), readyToStart(false), running(false){
 }
 
 Engine& Engine::getInstance() {
@@ -33,6 +37,7 @@ Engine& Engine::getInstance() {
 
 void Engine::start() {
 	std::cout << "Begin game " << std::endl;
+	running = true;
 	// TODO: TESTING
 	int i = 0;
     Met met;
@@ -65,4 +70,12 @@ void Engine::addNewPlayer(const std::string& name) {
 
 bool Engine::isFinished() {
 	return quit;
+}
+
+bool Engine::isReadyToStart() const {
+	return readyToStart;
+}
+
+void Engine::setReadyToStart(bool readyToStart) {
+	this->readyToStart = readyToStart;
 }
