@@ -29,7 +29,7 @@ MainScreenController::MainScreenController(Context *context) : Controller(contex
 
   refBuilder->get_widget_derived(PATH_HOME_SCREEN_ROOT_VIEW, view);
 
-  view->setOnEnterPressedListener(this);
+  view->setEnterPressedListener(this);
 }
 
 MainScreenController::~MainScreenController() {

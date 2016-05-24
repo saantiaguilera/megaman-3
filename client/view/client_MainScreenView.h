@@ -37,7 +37,7 @@ public:
   /**
    * Setter if someone wants to do something about the Enter pressing
    */
-  void setOnEnterPressedListener(OnEnterPressedInterface *listener);
+  void setEnterPressedListener(OnEnterPressedInterface *listener);
 
   void setResult(ConnectionResult result);
 };

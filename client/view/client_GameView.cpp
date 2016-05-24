@@ -65,3 +65,19 @@ bool GameView::onInitSDL(::Window windowId) {
    return true;
  }
 }
+
+void GameView::setKeyPressListener(OnKeyPressListener *listener) {
+  this->listener = listener;
+}
+
+bool GameView::on_key_press_event(GdkEventKey* event) {
+  if (listener)
+    return listener->onKeyPressEvent(event);
+  return Gtk::Window::on_key_press_event(event);
+}
+
+bool GameView::on_key_release_event(GdkEventKey* event) {
+  if (listener)
+    return listener->onKeyPressEvent(event);
+  return Gtk::Window::on_key_release_event(event);
+}

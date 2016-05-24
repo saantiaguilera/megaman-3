@@ -25,10 +25,22 @@ private:
 	GarbageCollector *gc;
 
 public:
-    static Looper& getMainLooper() {
-        static Looper instance;
-        return instance;
-    }
+  static Looper& getMainLooper() {
+    static Looper instance;
+    return instance;
+  }
+
+	explicit Looper() : gcRunning(true) {
+		gc = new GarbageCollector(&gcRunning, &gcPool);
+		gc->start();
+	}
+
+	~Looper() {
+		gcRunning = false;
+		gc->join();
+
+		delete gc;
+	}
 
 	Event * get() {
 		Event *value;
@@ -42,34 +54,34 @@ public:
 	}
 
 	void pop() {
-			Lock lock(mutex);
+		Lock lock(mutex);
 
-			if (!messagePool.empty()) {
-				if (gcRunning)
-					gcPool.push_back(messagePool.front());
-				messagePool.pop();
-			}
+		if (!messagePool.empty()) {
+			if (gcRunning)
+				gcPool.push_back(messagePool.front());
+			messagePool.pop();
+		}
 	}
 
 	void put(Event *ev) {
-			Lock lock(mutex);
-			messagePool.push(ev);
+		Lock lock(mutex);
+		messagePool.push(ev);
 	}
+
+	int size() {
+		int size = -1;
+
+		{
+			Lock lock(mutex);
+			size = messagePool.size();
+		}
+
+		return size;
+	}
+
 private:
 	Looper(Looper const&);
 	void operator=(Looper const&);
-
-	explicit Looper() : gcRunning(true) {
-			gc = new GarbageCollector(&gcRunning, &gcPool);
-			gc->start();
-	};
-
-	~Looper() {
-			gcRunning = false;
-			gc->join();
-
-			delete gc;
-	}
 
 };
 
