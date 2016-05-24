@@ -16,10 +16,12 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
-    if (connectionThread) {
-      connectionThread->join();
-      delete connectionLooper;
-    }
+  if (connectionThread) {
+    connectionThread->join();
+    delete connectionLooper;
+  }
+
+  delete currentController;
 }
 
 void Client::attachController(Controller *controller) {
@@ -64,6 +66,7 @@ void Client::onFlowToGame() {
 }
 
 void Client::quit() {
+  currentController->getView()->hide();
   app->quit();
 }
 
