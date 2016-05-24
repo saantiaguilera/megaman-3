@@ -28,10 +28,10 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			break;
 		case START_GAME:
 			std::cout << "Start game!" << std::endl;
-			// Make the engine run
+			// Set the flag of th engine to ready to start
 			// TODO: Should check that the player willing to start is the admin
 			// TODO: Should validate the amount of players to be at least 1
-			Engine::getInstance().start();
+			Engine::getInstance().setReadyToStart(true);
 			break;
 		case KEY_PRESSED:
 			std::cout << "Key Pressed!" << std::endl;

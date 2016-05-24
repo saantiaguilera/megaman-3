@@ -19,6 +19,11 @@ class Engine {
 private:
 	// Keep running flag
 	bool quit;
+	// Flag to mark engine ready to start
+	// Used as signal for main thread
+	bool readyToStart;
+	// Flag for checking if engine is running
+	bool running;
 	// A thread safe list for holding characters
 	std::list<Character*> charactersList;
 	// A list holding the players
@@ -36,6 +41,12 @@ public:
 	const std::list<Player*>& getPlayersList() const;
 	// Tell if game has finished
 	bool isFinished();
+	// Is engine ready to start?
+	bool isReadyToStart() const;
+	// Set the status of the flag
+	void setReadyToStart(bool readyToStart);
+	// Is engine running?
+	bool isRunning() const;
 
 private:
 	// Constructor

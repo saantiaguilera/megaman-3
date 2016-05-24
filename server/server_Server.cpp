@@ -35,6 +35,11 @@ void Server::run() {
 	bool gameFinished = false;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
 	acceptorWorker.start();
+	// Loop until game is ready to start, then start it
+	while(!Engine::getInstance().isRunning()){
+		if(Engine::getInstance().isReadyToStart())
+			Engine::getInstance().start();
+	}
 	// Loop until game has finished and terminate connection
 	while (!gameFinished){
 		gameFinished = Engine::getInstance().isFinished();
