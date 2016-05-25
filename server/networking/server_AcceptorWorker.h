@@ -17,17 +17,17 @@ class Socket;
 
 class AcceptorWorker: public Thread {
 private:
-	// Clients references vector
-	std::vector<ClientProxy*> clients;
 	// References to launched threads
 	std::vector<Thread*> launchedThreads;
 	// The main socket from the server, from who we will listen
 	Socket* dispatcherSocket;
 	// Flag to continue listening
 	bool* keepOnListening;
+	// Clients references vector
+	std::vector<ClientProxy*>* clients;
 public:
 	// Constructor
-	AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening);
+	AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening, std::vector<ClientProxy*>* clients);
 	// Destroyer
 	virtual ~AcceptorWorker();
 	// Run the worker

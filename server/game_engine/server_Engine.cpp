@@ -47,6 +47,7 @@ void Engine::start() {
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
+			// TODO: Who should add the event to the events list?
 		}
 		sleep(1);
 		++i;
