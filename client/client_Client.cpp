@@ -16,13 +16,27 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
+  if (socket)
+    delete socket;
+
   if (connectionThread) {
-    //I will have to send to the main looper this event too
-    //(because i will have 1 thread that receivs stuff (and sends to the main loop)
-    //and another that sends (receives from x loop))
-    connectionLooper->put(new QuitEvent());
     connectionThread->join();
-    delete connectionLooper;
+    delete connectionThread;
+    connectionThread = NULL;
+  }
+
+  if (senderThread) {
+    senderThread->join();
+    delete senderThread;
+    senderThread = NULL;
+    delete senderLooper;
+    senderLooper = NULL;
+  }
+
+  if (receiverThread) {
+    receiverThread->join();
+    delete receiverThread;
+    receiverThread = NULL;
   }
 
   delete currentController;
@@ -46,7 +60,7 @@ void Client::attachController(Controller *controller) {
 void Client::start() {
   app = Gtk::Application::create(PACKAGE_NAME);
 
-  attachController(new MainScreenController(this));
+  onFlowToStart();
 
   dispatcher.connect(sigc::mem_fun(*this, &Client::onMessageFromDispatcher));
 
@@ -56,9 +70,50 @@ void Client::start() {
 void Client::onCreateConnection(std::string ip) {
   if (!connectionThread) {
     std::cout << ip << std::endl;
-    connectionThread = new ConnectionThread(this, (connectionLooper = new Looper()));
+    connectionThread = new ConnectionThread();
+    connectionThread->setListener(this);
+    connectionThread->setSocket(NULL); //TODO
     connectionThread->start();
   }
+}
+
+void Client::createSenderAndReceiver() {
+  if (connectionThread) {
+    connectionThread->join();
+    delete connectionThread;
+    connectionThread = NULL;
+  }
+
+  if (!senderThread) {
+    senderThread = new SenderThread((senderLooper = new Looper()));
+    senderThread->setSocket(NULL); //TODO
+    senderThread->start();
+  }
+
+  if (!receiverThread) {
+    receiverThread = new ReceiverThread();
+    receiverThread->setListener(this);
+    receiverThread->setSocket(NULL); //TODO
+    receiverThread->start();
+  }
+}
+
+void Client::onFlowToStart() {
+    if (senderThread) {
+      senderThread->join();
+      delete senderThread;
+      senderThread = NULL;
+      delete senderLooper;
+      senderLooper = NULL;
+    }
+
+    if (receiverThread) {
+      receiverThread->join();
+      delete receiverThread;
+      receiverThread = NULL;
+    }
+
+    attachController(new MainScreenController(this));
 }
 
 void Client::onFlowToLobby() {
@@ -96,13 +151,23 @@ bool Client::onMessageReceived() {
         break;
 
       case EVENT_SEND_KEY_MAP:
-        connectionLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
         consumed = true;
         break;
 
-      default:
-        consumed = currentController->onMessageReceived();
+      case EVENT_CONNECTION_ACCEPTED: //consumed = false;
+        createSenderAndReceiver();
+        break;
+
+      case EVENT_CONNECTION_REFUSED: //consumed = false
+      case EVENT_CONNECTION_SHUTDOWN: //consumed = false
+        onFlowToStart();
+        break;
+
     }
+
+    if (!consumed)
+      consumed = currentController->onMessageReceived();
 
     if (consumed)
       Looper::getMainLooper().pop();

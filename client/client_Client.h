@@ -5,6 +5,10 @@
 
 #include "concurrent/client_Looper.h"
 #include "controller/concurrent/client_ConnectionThread.h"
+#include "controller/concurrent/client_ReceiverContract.h"
+#include "controller/concurrent/client_ReceiverThread.h"
+#include "controller/concurrent/client_SenderThread.h"
+#include "../common/common_Socket.h"
 #include "commons/client_Context.h"
 #include "commons/client_Controller.h"
 
@@ -18,8 +22,17 @@ private:
 	Controller *currentController;
 
 	Glib::Dispatcher dispatcher;
+
+	//For creating the initial connection
+	Socket *socket = NULL;
   ConnectionThread *connectionThread = NULL;
-	Looper *connectionLooper = NULL;
+
+	//For sending local events to server
+	SenderThread *senderThread = NULL;
+	Looper *senderLooper = NULL;
+
+	//For receiving data from server
+	ReceiverThread *receiverThread = NULL;
 
 	//Runs in main UI thread. Gets the FIFO event and responds to it or delegates
 	virtual bool onMessageReceived();
@@ -34,6 +47,8 @@ private:
 	void onCreateConnection(std::string ip);
 	void onFlowToLobby();
 	void onFlowToGame();
+	void onFlowToStart();
+	void createSenderAndReceiver();
 
 public:
 	Client();

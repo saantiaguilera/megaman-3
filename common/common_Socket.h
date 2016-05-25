@@ -20,6 +20,7 @@ class Socket {
 private:
 	int fd;
 	struct addrinfo* result;
+	bool active = false;
 public:
 	// Simple constructor
 	Socket();
@@ -41,6 +42,8 @@ public:
 	int send(char* buffer, int size);
 	// Closes socket
 	int terminate();
+
+	bool isActive();
 };
 
 #endif /* SRC_SOCKETS_COMMON_SOCKET_H_ */

@@ -1,6 +1,5 @@
-#ifndef CLIENT_CONNECTIONTHREAD_H_
-#define CLIENT_CONNECTIONTHREAD_H_
-
+#ifndef CLIENT_EVENTS_CLIENT_RECEIVERTHREAD_H_
+#define CLIENT_EVENTS_CLIENT_RECEIVERTHREAD_H_
 
 #include <iostream>
 #include "../../../common/common_Socket.h"
@@ -14,7 +13,7 @@
 
 #include <unistd.h>
 
-class ConnectionThread : public Thread {
+class ReceiverThread : public Thread {
 private:
   ReceiverContract *listener;
   Looper *handlerLooper;
@@ -32,17 +31,24 @@ private:
 
 protected:
   virtual void run() {
-    //TODO DO THE CONNECTION WITH THE SV
-    usleep(1000 * 1000 * 3);
+    usleep(1000 * 1000 * 2);
 
-    //This should be the last line of the run, so that we receive this event, (immediatly a join is called on the connection) and we
-    //dont loose main ui time
-    dispatchEvent(new ConnectionEvent(RESULT_OK));
+    dispatchEvent(new FlowEvent(FLOW_LOBBY));
+
+    usleep(1000 * 1000 * 2); //1000 micro * 1000 millis * 2 secs.
+
+    dispatchEvent(new FlowEvent(FLOW_GAME));
+
+    while (socket && socket->isActive()) {
+      //Well, run should only have this while and everything should happen from server data
+    }
+
+    std::cout << "ReceiverThread::finished running" << std::endl;
   }
 
 public:
-  ConnectionThread(Looper *handlerLooper = NULL) : handlerLooper(handlerLooper) { }
-  ~ConnectionThread() {
+  ReceiverThread(Looper *handlerLooper = NULL) : handlerLooper(handlerLooper) { }
+  ~ReceiverThread() {
   };
 
   void setListener(ReceiverContract *listener) {

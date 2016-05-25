@@ -23,6 +23,7 @@ Socket::Socket(char* ip, const char* port) {
 	int s = 0;
 	struct addrinfo hints;
 	int flag = 0;
+	active = true;
 
 	if (ip == NULL) {
 		flag = AI_PASSIVE; // Flag for server
@@ -40,6 +41,7 @@ Socket::Socket(char* ip, const char* port) {
 	if (s != 0) {
 		syslog(LOG_ERR, "There was an error when creating socket, "
 				"getaddrinfo returned %d: %s", s, gai_strerror(s));
+		active = false;
 	}
 
 	this->fd = socket(this->result->ai_family, this->result->ai_socktype,
@@ -48,6 +50,7 @@ Socket::Socket(char* ip, const char* port) {
 	if (this->fd == -1) {
 		syslog(LOG_ERR, "There was an error when creating socket, "
 				"socket fd was -1");
+		active = false;
 	}
 }
 
@@ -55,10 +58,16 @@ Socket::~Socket() {
 	terminate();
 }
 
+bool Socket::isActive() {
+	return active;
+}
+
 int Socket::terminate() {
 	shutdown(this->fd, SHUT_RDWR);
 	if (fd != -1)
 		close(this->fd);
+
+	active = false;
 	return EXIT_SUCCESS;
 }
 
@@ -74,6 +83,7 @@ int Socket::bind() {
 		syslog(LOG_ERR, "There was an error when binding the socket, "
 				"bind returned -1: %s", strerror(errno));
 		freeaddrinfo(this->result);
+		active = false;
 		return EXIT_FAILURE;
 	}
 	freeaddrinfo(this->result);
@@ -84,6 +94,7 @@ int Socket::listen(int maxQueueSize) {
 	if (::listen(this->fd, maxQueueSize) == -1) {
 		syslog(LOG_ERR, "There was an error when listening, "
 				"listen returned -1");
+		active = false;
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
@@ -94,8 +105,10 @@ int Socket::accept(Socket* client) const {
 	if (client->fd == -1) {
 		syslog(LOG_ERR, "There was an error when accepting a new client, "
 				"accept returned -1");
+		client->active = false;
 		return EXIT_FAILURE;
 	}
+	client->active = true;
 	return EXIT_SUCCESS;
 }
 
@@ -115,9 +128,11 @@ int Socket::connect() {
 	}
 	freeaddrinfo(this->result);
 	if (are_we_connected == false) {
+		active = false;
 		syslog(LOG_ERR, "There was an error when connecting");
 		return EXIT_FAILURE;
 	}
+	active = true;
 	return EXIT_SUCCESS;
 }
 
@@ -135,6 +150,7 @@ int Socket::receive(char* buffer, int size) {
 			// Socket was closed
 			closed_socket = true;
 			syslog(LOG_INFO, "Socket was closed");
+			active = false;
 		} else if (response < 0) {
 			// There was an error
 			is_a_valid_socket = false;
@@ -146,8 +162,10 @@ int Socket::receive(char* buffer, int size) {
 	}
 
 	if (is_a_valid_socket) {
+		active = true;
 		return received;
 	} else {
+		active = false;
 		return -EXIT_FAILURE;
 	}
 }
@@ -182,8 +200,10 @@ int Socket::send(char* buffer, int size) {
 	}
 
 	if (is_a_valid_socket) {
+		active = true;
 		return sent;
 	} else {
+		active = false;
 		return -EXIT_FAILURE;
 	}
 }
