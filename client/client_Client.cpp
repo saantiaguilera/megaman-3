@@ -17,6 +17,10 @@ Client::Client() : currentController(NULL), dispatcher() {
 
 Client::~Client()  {
   if (connectionThread) {
+    //I will have to send to the main looper this event too
+    //(because i will have 1 thread that receivs stuff (and sends to the main loop)
+    //and another that sends (receives from x loop))
+    connectionLooper->put(new QuitEvent());
     connectionThread->join();
     delete connectionLooper;
   }
@@ -65,11 +69,6 @@ void Client::onFlowToGame() {
   attachController(new GameController(this));
 }
 
-void Client::quit() {
-  currentController->getView()->hide();
-  app->quit();
-}
-
 bool Client::onMessageReceived() {
   bool consumed = false;
 
@@ -98,12 +97,6 @@ bool Client::onMessageReceived() {
 
       case EVENT_SEND_KEY_MAP:
         connectionLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
-        consumed = true;
-        break;
-
-      case EVENT_QUIT:
-        connectionLooper->put(new QuitEvent());
-        quit();
         consumed = true;
         break;
 
