@@ -45,6 +45,8 @@ void Server::run() {
 			Engine::getInstance().start();
 	}
 
+	// Uncomment to test sending
+//	eventsList.push_back("Messgage to clients\n");
 	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();
 	acceptorWorker.join();
