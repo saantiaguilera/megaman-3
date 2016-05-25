@@ -1,7 +1,4 @@
-#ifndef SDL_WRAPPER
-#define SDL_WRAPPER
 #include <SDL2pp/SDL2pp.hh>
-#endif
 
 #include <iostream>
 #include "../concurrent/client_Event.h"
@@ -27,47 +24,41 @@ bool GameController::onMessageReceived() {
 
 //https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h
 bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
-  Event *dispatchingEvent = NULL;
+  bool changed = true;
 
   //TODO PASS TO A DEFINE ALL THIS GDKKEYS SO I CAN RE MAP THE CONTROLLERS OF THE GAME EASIER
   //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
-    case GDK_KEY_Left:
+    case KEY_LEFT:
       keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_Right:
+    case KEY_RIGHT:
       keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_Up:
+    case KEY_UP:
       keyMap.setUp(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_Down:
+    case KEY_DOWN:
       keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_s:
+    case KEY_SHOOT:
       keyMap.setShooting(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_a:
+    case KEY_JUMP:
       keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
-      dispatchingEvent = new SendKeyMapEvent(keyMap);
       break;
 
-    case GDK_KEY_Escape: //So the user can quit the app ?
-      dispatchingEvent = new QuitEvent();
+    default:
+      changed = false;
   }
 
-  if (dispatchingEvent) {
-    Looper::getMainLooper().put(dispatchingEvent);
+  if (changed) {
+    Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
     getContext()->onMessageReceived();
     return true;
   }

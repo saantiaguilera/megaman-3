@@ -34,7 +34,6 @@ private:
 	void onCreateConnection(std::string ip);
 	void onFlowToLobby();
 	void onFlowToGame();
-	void quit();
 
 public:
 	Client();

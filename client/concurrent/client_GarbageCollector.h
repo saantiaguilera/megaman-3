@@ -1,6 +1,7 @@
 #ifndef CLIENT_CLIENT_GARBAGECOLLECTOR_H_
 #define CLIENT_CLIENT_GARBAGECOLLECTOR_H_
 
+#include <iostream>
 #include <vector>
 #include "client_Event.h"
 #include "../../common/common_Thread.h"
@@ -11,6 +12,7 @@ class GarbageCollector : public Thread {
 private:
   std::vector<Event*> *objects;
   bool *running;
+
 public:
   GarbageCollector(bool *running, std::vector<Event*> *objects) : Thread(),
                               objects(objects), running(running) {}
@@ -20,18 +22,16 @@ protected:
   		if (objects->size() > MAX_GC_POOL_SIZE) {
         int size = objects->size();
         for (int i = 0 ; i < size ; ++i) {
-    			delete (*objects->begin());
+    			delete (*(objects->begin()));
     			objects->erase(objects->begin());
         }
   		}
     }
 
     while (objects->size() > 0) {
-        delete (*objects->begin());
+        delete (*(objects->begin()));
         objects->erase(objects->begin());
     }
-
-    delete objects;
   }
 private:
   GarbageCollector(const GarbageCollector&);

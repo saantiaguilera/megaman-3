@@ -114,7 +114,6 @@ protected:
 public:
   ConnectionThread(ReceiverContract *listener, Looper *handlerLooper) : listener(listener), handlerLooper(handlerLooper) { }
   ~ConnectionThread() {
-    std::cout << "~ConnectionThread" << std::endl;
   };
 };
 

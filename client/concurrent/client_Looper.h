@@ -36,10 +36,12 @@ public:
 	}
 
 	~Looper() {
-		gcRunning = false;
-		gc->join();
+		if (gcRunning) {
+			gcRunning = false;
+			gc->join();
 
-		delete gc;
+			delete gc;
+		}
 	}
 
 	Event * get() {
