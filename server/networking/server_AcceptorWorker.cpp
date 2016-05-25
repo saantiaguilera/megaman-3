@@ -17,13 +17,6 @@
 #define MAX_QUEUE_SIZE 128
 
 AcceptorWorker::~AcceptorWorker() {
-	// Free clients
-	for (std::vector<ClientProxy*>::iterator it = clients.begin();
-			it != clients.end(); ++it) {
-		delete (*it);
-	}
-	clients.clear();
-
 	// Free workers
 	for (std::vector<Thread*>::iterator it = launchedThreads.begin();
 			it != launchedThreads.end(); ++it) {
@@ -35,7 +28,7 @@ AcceptorWorker::~AcceptorWorker() {
 void AcceptorWorker::run() {
 	while (*keepOnListening) {
 		ClientProxy* client = new ClientProxy;
-		clients.push_back(client);
+		clients->push_back(client);
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
 			std::cout << "client connected" << std::endl;
@@ -47,14 +40,9 @@ void AcceptorWorker::run() {
 			receiverWorker->start();
 		}
 	}
-	std::string inboundData = "Connected, bye!\n";
-	for (std::vector<ClientProxy*>::iterator it = clients.begin();
-			it != clients.end(); ++it) {
-		(*it)->send(inboundData);
-	}
 }
 
-void AcceptorWorker::terminate(){
+void AcceptorWorker::terminate() {
 	// This method was created to avoid the use of select, hoping it was
 	// the best workaround
 	// We simply call it when the server receives the STOP_LISTENING signal
@@ -69,7 +57,9 @@ void AcceptorWorker::terminate(){
 	*keepOnListening = false;
 }
 
-AcceptorWorker::AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening) :
-		dispatcherSocket(dispatcherSocket), keepOnListening(keepOnListening) {
+AcceptorWorker::AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening,
+		std::vector<ClientProxy*>* clients) :
+		dispatcherSocket(dispatcherSocket), keepOnListening(keepOnListening), clients(
+				clients) {
 	dispatcherSocket->listen(MAX_QUEUE_SIZE);
 }

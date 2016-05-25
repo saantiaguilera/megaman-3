@@ -7,16 +7,17 @@
 
 #include "server_Server.h"
 
-#include <iostream>
 #include <iterator>
 
+#include "../common/common_TSQueue.h"
 #include "game_engine/server_Engine.h"
 #include "networking/server_AcceptorWorker.h"
+#include "networking/server_SenderWorker.h"
 
 #define STOP_LISTENING "q"
 
 Server::~Server() {
-	// Free client proxys
+	// Free clients
 	for (std::vector<ClientProxy*>::iterator it = clients.begin();
 			it != clients.end(); ++it) {
 		delete (*it);
@@ -32,19 +33,20 @@ Server::Server(const std::string& port) {
 void Server::run() {
 //	callAcceptorWorker();
 	bool keepOnListening = true;
-	bool gameFinished = false;
-	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening);
+	TSQueue<std::string> eventsList;
+	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
 	acceptorWorker.start();
+	SenderWorker senderWorker(&clients, &eventsList);
+	senderWorker.start();
+
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning()){
 		if(Engine::getInstance().isReadyToStart())
 			Engine::getInstance().start();
 	}
-	// Loop until game has finished and terminate connection
-	while (!gameFinished){
-		gameFinished = Engine::getInstance().isFinished();
-	}
 
+	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();
 	acceptorWorker.join();
+	senderWorker.join();
 }

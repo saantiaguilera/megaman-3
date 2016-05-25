@@ -10,7 +10,6 @@
 #include <errno.h>
 #include <netinet/in.h>
 #include <syslog.h>
-#include <cstdint>
 #include <cstring>
 #include <iostream>
 

@@ -47,9 +47,9 @@ inline TSQueue<T>::~TSQueue() {
 }
 
 template<class T>
-inline void TSQueue<T>::push_back(const T&) {
+inline void TSQueue<T>::push_back(const T& element) {
 	Lock lock(mutex);
-	self.push(T);
+	self.push(element);
 }
 
 template<class T>
