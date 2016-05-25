@@ -84,26 +84,38 @@ protected:
 
       dispatchEvent(new FlowEvent(FLOW_GAME));
 
-      while (true) {
+      bool looping = true;
+      while (looping) {
         Event *event = NULL;
         while ((event = handlerLooper->get()) != NULL) {
-          std::cout << "In handler looper event obtained with id: " << event->getId() << std::endl;
+          switch (event->getId()) {
+            case EVENT_SEND_KEY_MAP:
+              std::cout << dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap().toString() << std::endl;
+              break;
 
-          if (event->getId() == EVENT_SEND_KEY_MAP)
-            std::cout << dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap().toString() << std::endl;
-          else std::cout << "Event is not of a key pressing..." << std::endl;
+            case EVENT_QUIT:
+              looping = false;
+              hardcode = false;
+              break;
+
+            default:
+              std::cout << "Event not recognized by connection thread..." << std::endl;
+
+          }
 
           handlerLooper->pop();
         }
       }
-
-      hardcode = false;
     }
+
+    std::cout << "ConnectionThread::finished running" << std::endl;
   }
 
 public:
   ConnectionThread(ReceiverContract *listener, Looper *handlerLooper) : listener(listener), handlerLooper(handlerLooper) { }
-  ~ConnectionThread() { };
+  ~ConnectionThread() {
+    std::cout << "~ConnectionThread" << std::endl;
+  };
 };
 
 #endif
