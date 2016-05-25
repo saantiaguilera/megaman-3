@@ -6,4 +6,5 @@ LobbyView::LobbyView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
         Gtk::Window(cobject) {
 }
 
-LobbyView::~LobbyView() {}
+LobbyView::~LobbyView() {
+}

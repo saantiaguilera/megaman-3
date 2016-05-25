@@ -17,7 +17,7 @@ public:
   }
 
   ~RenderedView() {
-
+    
   }
 
   virtual void draw() = 0;

@@ -102,6 +102,7 @@ bool Client::onMessageReceived() {
         break;
 
       case EVENT_QUIT:
+        connectionLooper->put(new QuitEvent());
         quit();
         consumed = true;
         break;
