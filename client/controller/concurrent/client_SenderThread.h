@@ -34,7 +34,7 @@ protected:
       }
     }
 
-    std::cout << "SenderTHread::finished running" << std::endl;
+    std::cout << "SenderThread::finished running" << std::endl;
   }
 
 public:

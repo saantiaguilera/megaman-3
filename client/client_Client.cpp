@@ -69,10 +69,11 @@ void Client::start() {
 
 void Client::onCreateConnection(std::string ip) {
   if (!connectionThread) {
-    std::cout << ip << std::endl;
+    std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;
     connectionThread = new ConnectionThread();
     connectionThread->setListener(this);
-    connectionThread->setSocket(NULL); //TODO
+    connectionThread->setSocket((socket = new Socket()));
+    connectionThread->setData(ip.substr(0, ip.find_first_of(":")), ip.substr(ip.find_first_of(":") + 1));
     connectionThread->start();
   }
 }
@@ -86,19 +87,26 @@ void Client::createSenderAndReceiver() {
 
   if (!senderThread) {
     senderThread = new SenderThread((senderLooper = new Looper()));
-    senderThread->setSocket(NULL); //TODO
+    senderThread->setSocket(socket);
     senderThread->start();
   }
 
   if (!receiverThread) {
     receiverThread = new ReceiverThread();
     receiverThread->setListener(this);
-    receiverThread->setSocket(NULL); //TODO
+    receiverThread->setSocket(socket);
     receiverThread->start();
   }
 }
 
 void Client::onFlowToStart() {
+  //TODO Refactor when I have time. (+ Im doing cleanup in a lot of methods, refactor that too)
+  //If we are still at the IP:PORT screen, just remove the connection (because we cant restart a thread)
+  if (connectionThread) {
+    connectionThread->join();
+    delete connectionThread;
+    connectionThread = NULL;
+  } else { //We are somewhere around our game, we should just go to start. Delete the sender and receiver
     if (senderThread) {
       senderThread->join();
       delete senderThread;
@@ -114,6 +122,7 @@ void Client::onFlowToStart() {
     }
 
     attachController(new MainScreenController(this));
+  }
 }
 
 void Client::onFlowToLobby() {
@@ -133,8 +142,6 @@ bool Client::onMessageReceived() {
     std::cout << "Event found in Client::onMessageReceived, id: " << event->getId() << std::endl;
 
     switch (event->getId()) {
-      //Do stuff
-      //TODO refactor the consumed var unless i found a case where it hasnt has to be consumed
       case EVENT_CREATE_CONNECTION:
         onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
         consumed = true;

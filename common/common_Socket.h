@@ -28,6 +28,8 @@ public:
 	Socket(char* ip, const char* port);
 	// Free's socket resources
 	virtual ~Socket();
+	//Prepares the socket for the given params
+	void build(char *ip, const char *port);
 	// Binds the socket to a connection
 	int bind();
 	// Listens for new connections, up to max queue size (blocker)

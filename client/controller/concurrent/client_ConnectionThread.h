@@ -19,6 +19,8 @@ private:
   ReceiverContract *listener;
   Looper *handlerLooper;
   Socket *socket;
+  std::string ip;
+  std::string port;
 
   void dispatchEvent(Event *event) {
     if (listener) {
@@ -32,12 +34,24 @@ private:
 
 protected:
   virtual void run() {
-    //TODO DO THE CONNECTION WITH THE SV
-    usleep(1000 * 1000 * 3);
+    if (socket) {
+      //I would love to use my sockets, but (I WONT SAY WHO COFCOFTINCHOCOFCOF makes me use his that I have to cast to char* the things instead of using string)
+      socket->build((char*) ip.c_str(), port.c_str());
+      int result = socket->connect();
 
-    //This should be the last line of the run, so that we receive this event, (immediatly a join is called on the connection) and we
-    //dont loose main ui time
-    dispatchEvent(new ConnectionEvent(RESULT_OK));
+      switch (result) {
+        case EXIT_SUCCESS:
+          std::cout << "ConnectionThread::Connected to socket" << std::endl;
+          dispatchEvent(new ConnectionEvent(RESULT_OK));
+          break;
+
+        default:
+          std::cout << "ConnectionThread::Error connecting to " << ip << ":" << port << std::endl;
+          dispatchEvent(new ConnectionEvent(RESULT_ERROR));
+      }
+    }
+
+    std::cout << "ConnectionThread::finished running" << std::endl;
   }
 
 public:
@@ -51,6 +65,11 @@ public:
 
   void setSocket(Socket *socket) {
     this->socket = socket;
+  }
+
+  void setData(std::string ip, std::string port) {
+    this->ip = ip;
+    this->port = port;
   }
 };
 

@@ -20,6 +20,14 @@
 #include <iostream>
 
 Socket::Socket(char* ip, const char* port) {
+	build(ip, port);
+}
+
+Socket::~Socket() {
+	terminate();
+}
+
+void Socket::build(char *ip, const char *port) {
 	int s = 0;
 	struct addrinfo hints;
 	int flag = 0;
@@ -52,10 +60,6 @@ Socket::Socket(char* ip, const char* port) {
 				"socket fd was -1");
 		active = false;
 	}
-}
-
-Socket::~Socket() {
-	terminate();
 }
 
 bool Socket::isActive() {
