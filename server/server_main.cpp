@@ -1,5 +1,5 @@
-#include <rapidjson/document.h>
-#include <rapidjson/filereadstream.h>
+//#include <rapidjson/document.h>
+//#include <rapidjson/filereadstream.h>
 #include <stdlib.h>
 #include <cstdio>
 #include <iostream>
@@ -9,6 +9,7 @@
 #include "server_Logger.h"
 #include "server_Server.h"
 
+#include <Box2D/Box2D.h>
 
 int main(int argc, char *argv[]) {
 	if (argc < 2)
@@ -19,12 +20,12 @@ int main(int argc, char *argv[]) {
 
     Logger::getInstance().log(1, "Server starting...");
 
-    std::string filename = "./json/basicMap.json";
-    FILE* pFile = fopen(filename.c_str(), "rb");
-    char buffer[65536];
-    rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
-    rapidjson::Document document;
-    document.ParseStream<rapidjson::FileReadStream>(is);
+//    std::string filename = "./json/basicMap.json";
+//    FILE* pFile = fopen(filename.c_str(), "rb");
+//    char buffer[65536];
+//    rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
+//    rapidjson::Document document;
+//    document.ParseStream<rapidjson::FileReadStream>(is);
 
 //    std::cout << document["map"].GetInt() << std::endl;
 //    const rapidjson::Value& a = document["response"];

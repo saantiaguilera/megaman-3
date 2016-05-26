@@ -6,6 +6,10 @@
 
 > Physics Engine: http://www.iforce2d.net/b2dtut/setup-linux
 
+### BOX2D Install instructions
+```Bash
+sudo apt install libbox2d-dev 
+```
 
 ```Bash
 //Santi A
