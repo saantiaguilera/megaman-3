@@ -9,14 +9,13 @@
 #include "server_Logger.h"
 #include "server_Server.h"
 
-#include <Box2D/Box2D.h>
-
 int main(int argc, char *argv[]) {
 	if (argc < 2)
 		return EXIT_FAILURE;
     std::string port(argv[1]);
 
     std::cout << "Welcome to Megaman 3 Server Edition" << std::endl;
+
 
     Logger::getInstance().log(1, "Server starting...");
 

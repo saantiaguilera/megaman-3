@@ -11,6 +11,7 @@
 sudo apt install libbox2d-dev 
 ```
 
+### Compilation
 ```Bash
 //Santi A
 Client: g++ `find . -name '*.cpp' -not -path './server/*' -not -path './editor/*'` -o mclient -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp`

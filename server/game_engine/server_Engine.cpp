@@ -17,6 +17,8 @@ Engine::~Engine() {
 			it != playersList.end(); ++it) {
 		delete *it;
 	}
+
+	delete myWorld;
 }
 
 const std::list<Player*>& Engine::getPlayersList() const {
@@ -28,6 +30,14 @@ bool Engine::isRunning() const {
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false){
+	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s^2 straight down!
+	myWorld = new b2World(gravity);
+
+	float32 timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
+	int32 velocityIterations = 8;   //how strongly to correct velocity
+	int32 positionIterations = 3;   //how strongly to correct position
+
+	myWorld->Step( timeStep, velocityIterations, positionIterations);
 }
 
 Engine& Engine::getInstance() {

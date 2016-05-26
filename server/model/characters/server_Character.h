@@ -15,6 +15,7 @@ class Projectile;
 
 class Weapon;
 
+
 class Character : public Movable{
 protected:
 	// hp are the hitpoints for current life

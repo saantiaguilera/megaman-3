@@ -8,6 +8,7 @@
 #ifndef SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 #define SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 
+#include <Box2D/Box2D.h>
 #include <list>
 #include <string>
 
@@ -28,6 +29,8 @@ private:
 	std::list<Character*> charactersList;
 	// A list holding the players
 	std::list<Player*>  playersList;
+	// box2dWorld for physics
+	b2World* myWorld;
 public:
 	// Return logger instance
 	static Engine& getInstance();
