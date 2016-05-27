@@ -9,8 +9,9 @@
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
 #include "../../../common/common_Point.h"
+#include "../server_PhysicObject.h"
 
-class Powerup {
+class Powerup : public PhysicObject {
 protected:
 	// my current position
 	Point myPoint;

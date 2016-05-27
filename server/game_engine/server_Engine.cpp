@@ -29,6 +29,10 @@ bool Engine::isRunning() const {
 	return running;
 }
 
+b2World* Engine::getMyWorld() const {
+	return myWorld;
+}
+
 Engine::Engine() : quit(false), readyToStart(false), running(false){
 	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s^2 straight down!
 	myWorld = new b2World(gravity);

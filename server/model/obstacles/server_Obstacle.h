@@ -9,10 +9,11 @@
 #define SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 
 #include "../../../common/common_Point.h"
+#include "../server_PhysicObject.h"
 
 class Character;
 
-class Obstacle {
+class Obstacle : public PhysicObject {
 protected:
 	// my current position
 	Point myPoint;

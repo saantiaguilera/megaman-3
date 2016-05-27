@@ -9,14 +9,14 @@
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
 #include "../server_Movable.h"
-#include "../server_MovementVector.h"
+#include "../server_PhysicObject.h"
 
 class Projectile;
 
 class Weapon;
 
 
-class Character : public Movable{
+class Character : public Movable, public PhysicObject{
 protected:
 	// hp are the hitpoints for current life
 	unsigned int hp;

@@ -50,6 +50,8 @@ public:
 	void setReadyToStart(bool readyToStart);
 	// Is engine running?
 	bool isRunning() const;
+	// Return the world
+	b2World* getMyWorld() const;
 
 private:
 	// Constructor

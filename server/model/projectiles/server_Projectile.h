@@ -9,8 +9,9 @@
 #define SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 
 #include "../../../common/common_Point.h"
+#include "../server_PhysicObject.h"
 
-class Projectile {
+class Projectile : public PhysicObject{
 public:
 	// my current position
 	Point myPoint;
