@@ -35,11 +35,15 @@ const std::string& Player::getName() const {
 Player::~Player() {
 }
 
-unsigned int Player::getId() {
+unsigned int Player::getId() const {
 	return id;
 }
 
 void Player::decreasePlayerLives() {
 	if (lives > 0)
 		--lives;
+}
+
+const Megaman& Player::getMegaman() const {
+	return megaman;
 }
