@@ -13,6 +13,11 @@
 
 class Movable {
 protected:
+	enum _moveState {
+	MS_STOP,
+	MS_LEFT,
+	MS_RIGHT,
+	};
 	// Actual position
 	Point position;
 	// Holder of the movement

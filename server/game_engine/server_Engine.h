@@ -31,6 +31,12 @@ private:
 	std::list<Player*>  playersList;
 	// box2dWorld for physics
 	b2World* myWorld;
+	// Timestep for box2d
+	float32 timeStep;
+	// velocity iterations for box2d
+	int32 velocityIterations;
+	// positions iterations for box2d
+	int32 positionIterations;
 public:
 	// Return logger instance
 	static Engine& getInstance();

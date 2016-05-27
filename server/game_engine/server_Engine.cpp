@@ -37,11 +37,11 @@ Engine::Engine() : quit(false), readyToStart(false), running(false){
 	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s^2 straight down!
 	myWorld = new b2World(gravity);
 
-	float32 timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
-	int32 velocityIterations = 8;   //how strongly to correct velocity
-	int32 positionIterations = 3;   //how strongly to correct position
+	// TODO: Read them from config file
+	timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
+	velocityIterations = 8;   //how strongly to correct velocity
+	positionIterations = 3;   //how strongly to correct position
 
-	myWorld->Step( timeStep, velocityIterations, positionIterations);
 }
 
 Engine& Engine::getInstance() {
@@ -58,6 +58,7 @@ void Engine::start() {
 	charactersList.push_back(&met);
 
 	while(!quit){
+		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();

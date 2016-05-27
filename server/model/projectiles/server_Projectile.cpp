@@ -39,6 +39,9 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type) {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
+
+	// Apply an impulse <-- this directio
+	myBody->ApplyLinearImpulse(b2Vec2(-5,0), myBody->GetWorldCenter(), true);
 }
 
 int Projectile::getProjectileType() const {
