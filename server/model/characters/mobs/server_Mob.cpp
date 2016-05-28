@@ -18,6 +18,7 @@
 Mob::Mob(unsigned int hp) : Character(hp), vulnerable(true) {
 	b2BodyDef mobBodyDef;
 	mobBodyDef.type = b2_dynamicBody;
+	mobBodyDef.fixedRotation = true;
 	// TODO: send x and y positions in constructor
 	mobBodyDef.position.Set(0,0);
 	// TODO: Maybe add it from the outside? when its created
@@ -33,6 +34,11 @@ Mob::Mob(unsigned int hp) : Character(hp), vulnerable(true) {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
+
+    //add foot sensor fixture
+	boxShape.SetAsBox(0.3, 0.3, b2Vec2(0,-2), 0);
+	boxFixtureDef.isSensor = true;
+    myBody->CreateFixture(&boxFixtureDef);
 }
 
 

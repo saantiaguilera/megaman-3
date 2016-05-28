@@ -7,14 +7,12 @@
 
 #include "server_Megaman.h"
 
-#include "../../weapons/server_MagnetCannon.h"
-#include "server_Humanoid.h"
+#include "../../weapons/server_PlasmaCannon.h"
 
 Megaman::Megaman() : Humanoid(MEGAMAN_INITIAL_HP) {
-	currentWeapon = new MagnetCannon();
+	currentWeapon = new PlasmaCannon();
 }
 
 Megaman::~Megaman() {
-	// TODO Auto-generated destructor stub
 }
 

@@ -42,6 +42,19 @@ Engine::Engine() : quit(false), readyToStart(false), running(false){
 	velocityIterations = 8;   //how strongly to correct velocity
 	positionIterations = 3;   //how strongly to correct position
 
+	// TODO: Setting a floor for testing
+	b2BodyDef floorBodyDef;
+	floorBodyDef.type = b2_staticBody;
+	floorBodyDef.position.Set(0,-1);
+	b2FixtureDef floorFixtureDef;
+	b2EdgeShape edgeShape;
+	edgeShape.Set( b2Vec2(-15,0), b2Vec2(15,0) );
+
+	floorFixtureDef.shape = &edgeShape;
+
+	b2Body* floorBody = myWorld->CreateBody(&floorBodyDef);
+	floorBody->CreateFixture(&floorFixtureDef);
+
 }
 
 Engine& Engine::getInstance() {
@@ -64,7 +77,7 @@ void Engine::start() {
 			(*it)->update();
 			// TODO: Who should add the event to the events list?
 		}
-		sleep(1);
+//		sleep(1);
 		++i;
 //		if (i == 10)
 //			quit = true;

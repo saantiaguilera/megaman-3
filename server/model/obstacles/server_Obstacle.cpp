@@ -18,6 +18,7 @@
 Obstacle::Obstacle(bool passable) : passable(passable) {
 	b2BodyDef obstacleBodyDef;
 	obstacleBodyDef.type = b2_staticBody;
+	obstacleBodyDef.fixedRotation = true;
 	// TODO: send x and y positions in constructor
 	obstacleBodyDef.position.Set(0,0);
 	// TODO: Maybe add it from the outside? when its created

@@ -11,12 +11,25 @@ class b2Body;
 
 class PhysicObject {
 protected:
+	enum _moveState {
+	MS_STOP,
+	MS_LEFT,
+	MS_RIGHT,
+	MS_JUMP
+	};
+	// Id of the object
+	static unsigned int id;
+	// box2d body
 	b2Body* myBody;
 public:
 	// Constructor
 	PhysicObject();
 	// Destroyer
 	virtual ~PhysicObject();
+	// Return object id
+	unsigned int getId() const;
+	// Move
+	void move(unsigned int moveState);
 private:
 	// Copy constructor
 	PhysicObject(const PhysicObject&);

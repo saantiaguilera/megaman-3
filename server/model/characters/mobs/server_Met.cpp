@@ -7,8 +7,8 @@
 
 #include "server_Met.h"
 
+#include <Dynamics/b2Body.h>
 #include <iostream>
-#include <string>
 
 #include "../../projectiles/server_Projectile.h"
 
@@ -34,21 +34,19 @@ void Met::update(){
 		readyToAttack = false;
 		ticksPassed = 0;
 		// Start moving to the other side
-		movementVector.invertMovement();
+//		movementVector.invertMovement();
 		return;
 	} else {
-		move();
-		std::cout << "Met's position: " << position.toString() << std::endl;
+		move(MS_LEFT);
+		std::cout << "Met's position: " << myBody->GetPosition().x << "," << myBody->GetPosition().y << std::endl;
 	}
 	ticksPassed++;
 	if (ticksPassed == 3)
 		readyToAttack = true;
 	if (ticksPassed == 2){
-		movementVector.setVx(0);
-		movementVector.setVy(1);
+		move(MS_RIGHT);
 	}
 	if (ticksPassed == 1){
-		movementVector.setVx(1);
-		movementVector.setVy(0);
+		move(MS_STOP);
 	}
 }

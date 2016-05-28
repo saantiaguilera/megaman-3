@@ -41,7 +41,8 @@ void Server::run() {
 
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning()){
-		if(Engine::getInstance().isReadyToStart())
+		// TODO: uncomment for start message
+//		if(Engine::getInstance().isReadyToStart())
 			Engine::getInstance().start();
 	}
 

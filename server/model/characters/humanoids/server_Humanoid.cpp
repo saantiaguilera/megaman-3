@@ -17,6 +17,7 @@
 Humanoid::Humanoid(unsigned int hp) : Character(hp) {
 	b2BodyDef humanoidBodyDef;
 	humanoidBodyDef.type = b2_dynamicBody;
+	humanoidBodyDef.fixedRotation = true;
 	// TODO: send x and y positions in constructor
 	humanoidBodyDef.position.Set(0,0);
 	// TODO: Maybe add it from the outside? when its created

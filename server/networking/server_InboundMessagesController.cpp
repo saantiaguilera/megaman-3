@@ -12,7 +12,6 @@
 #include <list>
 
 #include "../../common/common_MessageProtocol.h"
-#include "../functors/server_FindByPlayerId.h"
 #include "../game_engine/server_Engine.h"
 #include "../game_engine/server_Player.h"
 
@@ -24,7 +23,8 @@ InboundMessagesController::InboundMessagesController(int messageCode, const std:
 
 void InboundMessagesController::analizeMessageCode(int messageCode, const std::string& inboundMessage) {
 	unsigned int incomingId;
-	std::list<Player*>::iterator it;
+	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
+
 	switch (messageCode) {
 		case PLAYER_CONNECTED:
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
@@ -44,7 +44,13 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			// According to the pressed key we should do something
 			// We should get the player id, the key pressed
 			incomingId = 1; // TODO: Replace with inbound one
-			it = std::find_if(Engine::getInstance().getPlayersList().begin(), Engine::getInstance().getPlayersList().end(), FindByPlayerId(incomingId));
+			Player* desiredPlayer;
+			for (std::list<Player*>::iterator it = playerList.begin();
+					it != playerList.end(); ++it) {
+				if ((*it)->getId() == incomingId)
+					desiredPlayer = *it;
+			}
+
 			break;
 		case WEAPON_CHANGE:
 			std::cout << "Weapon change!" << std::endl;

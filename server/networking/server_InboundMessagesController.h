@@ -12,6 +12,12 @@
 
 class InboundMessagesController {
 private:
+	enum _moveKeyCode {
+	MS_STOP,
+	MS_LEFT,
+	MS_RIGHT,
+	MS_JUMP
+	};
 	// Determine the type of message by analizing its code
 	void analizeMessageCode(int messageCode, const std::string& inboundMessage);
 public:

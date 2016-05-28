@@ -8,7 +8,6 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include "../server_Movable.h"
 #include "../server_PhysicObject.h"
 
 class Projectile;
@@ -16,7 +15,7 @@ class Projectile;
 class Weapon;
 
 
-class Character : public Movable, public PhysicObject{
+class Character : public PhysicObject{
 protected:
 	// hp are the hitpoints for current life
 	unsigned int hp;
