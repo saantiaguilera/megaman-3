@@ -47,6 +47,6 @@ void Met::update(){
 		move(MS_RIGHT);
 	}
 	if (ticksPassed == 1){
-		move(MS_STOP);
+		move(MS_JUMP);
 	}
 }

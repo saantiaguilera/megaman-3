@@ -51,3 +51,7 @@ int Projectile::getProjectileType() const {
 unsigned int Projectile::getDamage() const {
 	return damage;
 }
+
+int Projectile::getObjectType() {
+	return OT_PROJECTILE;
+}

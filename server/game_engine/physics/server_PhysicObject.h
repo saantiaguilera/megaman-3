@@ -5,22 +5,34 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_MODEL_SERVER_PHYSICOBJECT_H_
-#define SERVER_MODEL_SERVER_PHYSICOBJECT_H_
+#ifndef SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
+#define SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
 class b2Body;
 
 class PhysicObject {
 protected:
+	// Defined movestates for objects
 	enum _moveState {
-	MS_STOP,
-	MS_LEFT,
-	MS_RIGHT,
-	MS_JUMP
+		MS_STOP,
+		MS_LEFT,
+		MS_RIGHT,
+		MS_JUMP
+		};
+	// Object types for collission detection
+	enum _objectTypes {
+		OT_HUMANOID,
+		OT_MEGAMAN,
+		OT_MOB,
+		OT_POWERUP,
+		OT_OBSTACLE,
+		OT_PROJECTILE
 	};
 	// Id of the object
 	static unsigned int id;
 	// box2d body
 	b2Body* myBody;
+	// number of foot contacts (to avoid air jumping)
+	unsigned int numFootContacts;
 public:
 	// Constructor
 	PhysicObject();
@@ -30,6 +42,8 @@ public:
 	unsigned int getId() const;
 	// Move
 	void move(unsigned int moveState);
+	// Get type of object
+	virtual int getObjectType() = 0;
 private:
 	// Copy constructor
 	PhysicObject(const PhysicObject&);
@@ -37,4 +51,4 @@ private:
 	PhysicObject& operator=(const PhysicObject&);
 };
 
-#endif /* SERVER_MODEL_SERVER_PHYSICOBJECT_H_ */
+#endif /* SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_ */

@@ -9,7 +9,7 @@
 #define SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 
 #include "../../../common/common_Point.h"
-#include "../server_PhysicObject.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Character;
 
@@ -27,6 +27,8 @@ public:
 	// Applies its effect on character
 	virtual void haveEffectOn(Character* character) = 0;
 	bool isPassable() const;
+	// Return object type
+	virtual int getObjectType();
 private:
 	// Copy constructor
 	Obstacle(const Obstacle&);

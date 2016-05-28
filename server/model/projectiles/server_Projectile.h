@@ -9,7 +9,7 @@
 #define SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 
 #include "../../../common/common_Point.h"
-#include "../server_PhysicObject.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile : public PhysicObject{
 public:
@@ -29,6 +29,8 @@ public:
 	unsigned int getDamage() const;
 	// Return the projectiles type
 	int getProjectileType() const;
+	// Return object type
+	virtual int getObjectType();
 
 private:
 	// Copy constructor

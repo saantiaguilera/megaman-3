@@ -24,6 +24,8 @@ public:
 	// Sets vulnerability (true/false)
 	void setVulnerable(bool vulnerable);
 	virtual void update() {}
+	// Return object type
+	virtual int getObjectType();
 
 private:
 	// Copy constructor

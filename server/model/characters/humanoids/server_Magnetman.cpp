@@ -13,4 +13,3 @@ MagnetMan::MagnetMan() : Humanoid(MAGNETMAN_INITIAL_HP) {
 
 MagnetMan::~MagnetMan() {
 }
-

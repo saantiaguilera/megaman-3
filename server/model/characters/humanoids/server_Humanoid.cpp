@@ -39,3 +39,6 @@ Humanoid::Humanoid(unsigned int hp) : Character(hp) {
 Humanoid::~Humanoid() {
 }
 
+int Humanoid::getObjectType() {
+	return OT_HUMANOID;
+}

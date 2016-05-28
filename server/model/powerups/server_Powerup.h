@@ -9,7 +9,7 @@
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
 #include "../../../common/common_Point.h"
-#include "../server_PhysicObject.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Powerup : public PhysicObject {
 protected:
@@ -21,6 +21,8 @@ protected:
 	unsigned int effectAmount;
 	// Overrided by children, applies effect on parameter
 	virtual void haveEffectOn() = 0;
+	// Return object type
+	virtual int getObjectType();
 public:
 	// Constructor
 	Powerup(float dropRate, unsigned int effectAmount);

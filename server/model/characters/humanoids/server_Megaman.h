@@ -18,6 +18,8 @@ public:
 	Megaman();
 	// Destroyer
 	virtual ~Megaman();
+	// Return object type
+	virtual int getObjectType();
 private:
 	// Copy constructor
 	Megaman(const Megaman&);

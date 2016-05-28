@@ -16,6 +16,8 @@ public:
 	Humanoid(unsigned int hp);
 	// Destroyer
 	virtual ~Humanoid();
+	// Return object type
+	virtual int getObjectType();
 private:
 	// Copy constructor
 	Humanoid(const Humanoid&);

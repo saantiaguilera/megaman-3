@@ -16,3 +16,6 @@ Megaman::Megaman() : Humanoid(MEGAMAN_INITIAL_HP) {
 Megaman::~Megaman() {
 }
 
+int Megaman::getObjectType() {
+	return OT_MEGAMAN;
+}

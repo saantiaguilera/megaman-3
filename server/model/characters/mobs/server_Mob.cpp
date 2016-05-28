@@ -53,3 +53,6 @@ void Mob::setVulnerable(bool vulnerable) {
 Mob::~Mob() {
 }
 
+int Mob::getObjectType() {
+	return OT_MOB;
+}

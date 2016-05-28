@@ -44,3 +44,6 @@ bool Obstacle::isPassable() const {
 Obstacle::~Obstacle() {
 }
 
+int Obstacle::getObjectType() {
+	return OT_OBSTACLE;
+}

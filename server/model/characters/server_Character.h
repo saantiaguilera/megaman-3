@@ -8,14 +8,13 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include "../server_PhysicObject.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile;
 
 class Weapon;
 
-
-class Character : public PhysicObject{
+class Character: public PhysicObject {
 protected:
 	// hp are the hitpoints for current life
 	unsigned int hp;
@@ -39,7 +38,8 @@ public:
 	// Decreases hp of the character
 	void decreaseHp(float damage);
 	// Update the AI (make it pure virtual later)
-	virtual void update() {}
+	virtual void update() {
+	}
 
 private:
 	// Copy constructor

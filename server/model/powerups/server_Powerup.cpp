@@ -41,3 +41,6 @@ Powerup::Powerup(float dropRate, unsigned int effectAmount) :
 Powerup::~Powerup() {
 }
 
+int Powerup::getObjectType() {
+	return OT_POWERUP;
+}
