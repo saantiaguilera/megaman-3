@@ -7,7 +7,9 @@
 
 #include "server_Sparkman.h"
 
-Sparkman::Sparkman() : Humanoid(SPARKMAN_INITIAL_HP) {
+#include "../../weapons/server_SparksCannon.h"
+
+Sparkman::Sparkman(float32 x, float32 y) : Humanoid(SPARKMAN_INITIAL_HP, x, y) {
 	currentWeapon = new SparksCannon();
 }
 

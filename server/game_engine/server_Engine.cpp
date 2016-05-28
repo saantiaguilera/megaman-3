@@ -7,14 +7,12 @@
 
 #include "server_Engine.h"
 
-#include <Collision/Shapes/b2EdgeShape.h>
 #include <Common/b2Math.h>
-#include <Dynamics/b2Body.h>
-#include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
 #include <iostream>
 
-#include "../model/characters/mobs/server_Met.h"
+#include "../model/characters/humanoids/server_Megaman.h"
+#include "../model/projectiles/server_Bomb.h"
 #include "physics/server_ContactListener.h"
 
 Engine::~Engine() {
@@ -23,6 +21,7 @@ Engine::~Engine() {
 		delete *it;
 	}
 
+	delete contactListener;
 	delete myWorld;
 }
 
@@ -43,8 +42,8 @@ Engine::Engine() : quit(false), readyToStart(false), running(false){
 	myWorld = new b2World(gravity);
 
 	// Create contact listener for world
-	ContactListener contactListener;
-	myWorld->SetContactListener(&contactListener);
+	contactListener = new ContactListener();
+	myWorld->SetContactListener(contactListener);
 
 	// TODO: Read them from config file
 	timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
@@ -52,17 +51,18 @@ Engine::Engine() : quit(false), readyToStart(false), running(false){
 	positionIterations = 3;   //how strongly to correct position
 
 	// TODO: Setting a floor for testing
-	b2BodyDef floorBodyDef;
-	floorBodyDef.type = b2_staticBody;
-	floorBodyDef.position.Set(0,-1);
-	b2FixtureDef floorFixtureDef;
-	b2EdgeShape edgeShape;
-	edgeShape.Set( b2Vec2(-15,0), b2Vec2(15,0) );
-
-	floorFixtureDef.shape = &edgeShape;
-
-	b2Body* floorBody = myWorld->CreateBody(&floorBodyDef);
-	floorBody->CreateFixture(&floorFixtureDef);
+	// TODO: Needs collision filtering
+//	b2BodyDef floorBodyDef;
+//	floorBodyDef.type = b2_staticBody;
+//	floorBodyDef.position.Set(0,-1);
+//	b2FixtureDef floorFixtureDef;
+//	b2EdgeShape edgeShape;
+//	edgeShape.Set( b2Vec2(-15,0), b2Vec2(15,0) );
+//
+//	floorFixtureDef.shape = &edgeShape;
+//
+//	b2Body* floorBody = myWorld->CreateBody(&floorBodyDef);
+//	floorBody->CreateFixture(&floorFixtureDef);
 
 }
 
@@ -76,8 +76,11 @@ void Engine::start() {
 	running = true;
 	// TODO: TESTING
 	int i = 0;
-    Met met;
-	charactersList.push_back(&met);
+//    Met met;
+//	charactersList.push_back(&met);
+	Megaman megaman(0,0);
+	charactersList.push_back(&megaman);
+	Bomb aBomb(0,-5);
 
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);

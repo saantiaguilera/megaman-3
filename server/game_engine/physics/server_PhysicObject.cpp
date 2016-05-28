@@ -40,3 +40,7 @@ void PhysicObject::move(unsigned int moveState) {
     float impulsey = myBody->GetMass() * velChangey; //disregard time factor
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 }
+
+void PhysicObject::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	// Does nothing
+}

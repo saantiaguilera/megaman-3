@@ -12,7 +12,8 @@
 // Initialize ids value
 unsigned int Player::id = 0;
 
-Player::Player(const std::string& name) : name(name), lives(INITIAL_PLAYER_LIVES){
+// TODO: WARNING: megaman initial positions hardcoded
+Player::Player(const std::string& name) : name(name), lives(INITIAL_PLAYER_LIVES), megaman(0,0){
 	++id;
 	// If its the first player then its admin
 	// TODO: What happens when restarting game? ids are kept

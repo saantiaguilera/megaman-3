@@ -8,7 +8,8 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_MAGNETMAN_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_MAGNETMAN_H_
 
-#include "../../weapons/server_MagnetCannon.h"
+#include <Common/b2Settings.h>
+
 #include "server_Humanoid.h"
 
 #define MAGNETMAN_INITIAL_HP 120
@@ -16,7 +17,7 @@
 class MagnetMan: public Humanoid {
 public:
 	// Constructor
-	MagnetMan();
+	MagnetMan(float32 x, float32 y);
 	// Destroyer
 	virtual ~MagnetMan();
 private:

@@ -18,17 +18,17 @@
 Projectile::~Projectile() {
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type) {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
 
 	b2BodyDef projectileBodyDef;
 	projectileBodyDef.type = b2_kinematicBody;
 	// TODO: send x and y positions in constructor
-	projectileBodyDef.position.Set(0,0);
+	projectileBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
-//	projectileBodyDef.bullet = true;
+	projectileBodyDef.bullet = true;
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
 	// Assign user data for callbacks

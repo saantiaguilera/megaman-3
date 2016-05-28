@@ -8,12 +8,15 @@
 #ifndef SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 #define SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 
-#include <Box2D/Box2D.h>
+#include <Common/b2Settings.h>
 #include <list>
 #include <string>
 
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
+
+class b2World;
+class ContactListener;
 
 class Engine {
 	// Singleton
@@ -37,6 +40,8 @@ private:
 	int32 velocityIterations;
 	// positions iterations for box2d
 	int32 positionIterations;
+	// contact listener for collisions
+	ContactListener* contactListener;
 public:
 	// Return logger instance
 	static Engine& getInstance();

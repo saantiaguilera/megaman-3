@@ -8,7 +8,8 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_BOMBMAN_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_BOMBMAN_H_
 
-#include "../../weapons/server_BombCannon.h"
+#include <Common/b2Settings.h>
+
 #include "server_Humanoid.h"
 
 #define BOMBMAN_INITIAL_HP 100
@@ -16,7 +17,7 @@
 class Bombman: public Humanoid {
 public:
 	// Constructor
-	Bombman();
+	Bombman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Bombman();
 private:

@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_RING_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_RING_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Projectile.h"
 
 #define RING_DAMAGE 1
@@ -15,7 +17,7 @@
 class Ring: public Projectile {
 public:
 	// Constructor
-	Ring();
+	Ring(float32 x, float32 y);
 	// Destroyer
 	virtual ~Ring();
 private:

@@ -7,7 +7,9 @@
 
 #include "server_Bombman.h"
 
-Bombman::Bombman() : Humanoid(BOMBMAN_INITIAL_HP) {
+#include "../../weapons/server_BombCannon.h"
+
+Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 	currentWeapon = new BombCannon();
 }
 

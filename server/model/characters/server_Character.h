@@ -38,8 +38,7 @@ public:
 	// Decreases hp of the character
 	void decreaseHp(float damage);
 	// Update the AI (make it pure virtual later)
-	virtual void update() {
-	}
+	virtual void update() {}
 
 private:
 	// Copy constructor

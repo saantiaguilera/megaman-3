@@ -7,7 +7,9 @@
 
 #include "server_Magnetman.h"
 
-MagnetMan::MagnetMan() : Humanoid(MAGNETMAN_INITIAL_HP) {
+#include "../../weapons/server_MagnetCannon.h"
+
+MagnetMan::MagnetMan(float32 x, float32 y) : Humanoid(MAGNETMAN_INITIAL_HP, x, y) {
 	currentWeapon = new MagnetCannon();
 }
 

@@ -8,7 +8,8 @@
 #ifndef SERVER_MODEL_CHARACTERS_HUMANOIDS_SERVER_SPARKMAN_H_
 #define SERVER_MODEL_CHARACTERS_HUMANOIDS_SERVER_SPARKMAN_H_
 
-#include "../../weapons/server_SparksCannon.h"
+#include <Common/b2Settings.h>
+
 #include "server_Humanoid.h"
 
 #define SPARKMAN_INITIAL_HP 90
@@ -16,7 +17,7 @@
 class Sparkman: public Humanoid {
 public:
 	// Constructor
-	Sparkman();
+	Sparkman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Sparkman();
 private:

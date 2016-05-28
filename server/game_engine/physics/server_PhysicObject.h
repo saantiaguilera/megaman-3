@@ -44,6 +44,8 @@ public:
 	void move(unsigned int moveState);
 	// Get type of object
 	virtual int getObjectType() = 0;
+	// Handle collisions
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	PhysicObject(const PhysicObject&);

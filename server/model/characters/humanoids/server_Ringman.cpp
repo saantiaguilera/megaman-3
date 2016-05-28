@@ -7,7 +7,9 @@
 
 #include "server_Ringman.h"
 
-Ringman::Ringman() : Humanoid(RINGMAN_INITIAL_HP) {
+#include "../../weapons/server_RingTosser.h"
+
+Ringman::Ringman(float32 x, float32 y) : Humanoid(RINGMAN_INITIAL_HP, x, y) {
 	currentWeapon = new RingTosser();
 }
 

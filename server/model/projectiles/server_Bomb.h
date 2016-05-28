@@ -8,13 +8,15 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_BOMB_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_BOMB_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Projectile.h"
 
 #define BOMB_DAMAGE 5
 
 class Bomb: public Projectile {
 public:
-	Bomb();
+	Bomb(float32 x, float32 y);
 	virtual ~Bomb();
 private:
 	// Copy constructor

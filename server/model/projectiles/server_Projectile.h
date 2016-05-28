@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 
+#include <Common/b2Settings.h>
+
 #include "../../../common/common_Point.h"
 #include "../../game_engine/physics/server_PhysicObject.h"
 
@@ -22,7 +24,7 @@ protected:
 	unsigned int damage;
 public:
 	// Constructor
-	Projectile( unsigned int damage, projectile_types_t type);
+	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y);
 	// Destroyer
 	virtual ~Projectile();
 	// Return projectile's damage
