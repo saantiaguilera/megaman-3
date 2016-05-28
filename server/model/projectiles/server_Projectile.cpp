@@ -16,6 +16,7 @@
 #include "../../game_engine/server_Engine.h"
 
 Projectile::~Projectile() {
+	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) {

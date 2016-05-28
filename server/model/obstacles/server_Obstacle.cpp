@@ -40,6 +40,7 @@ Obstacle::Obstacle(float32 x, float32 y) {
 }
 
 Obstacle::~Obstacle() {
+	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 int Obstacle::getObjectType() {

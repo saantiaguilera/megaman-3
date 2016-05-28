@@ -42,6 +42,7 @@ Powerup::Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y
 }
 
 Powerup::~Powerup() {
+	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 int Powerup::getObjectType() {
