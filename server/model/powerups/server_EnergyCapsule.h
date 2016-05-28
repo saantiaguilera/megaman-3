@@ -19,6 +19,8 @@ public:
 	EnergyCapsule(float dropRate, unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~EnergyCapsule();
+	// Double dispatch method, apply effect on character
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	EnergyCapsule(const EnergyCapsule&);

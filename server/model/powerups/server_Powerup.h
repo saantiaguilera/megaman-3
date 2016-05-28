@@ -11,6 +11,7 @@
 #include <Common/b2Settings.h>
 
 #include "../../game_engine/physics/server_PhysicObject.h"
+#include "../characters/server_Character.h"
 
 class Powerup : public PhysicObject {
 protected:
@@ -18,8 +19,6 @@ protected:
 	float dropRate;
 	// Amount of its effect to be applied
 	unsigned int effectAmount;
-	// Overrided by children, applies effect on parameter
-	virtual void haveEffectOn() = 0;
 	// Return object type
 	virtual int getObjectType();
 public:
@@ -27,6 +26,8 @@ public:
 	Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~Powerup();
+	// Overrided by children, applies effect on parameter
+	virtual void haveEffectOn(Character* character) = 0;
 private:
 	// Copy constructor
 	Powerup(const Powerup&);

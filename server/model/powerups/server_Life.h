@@ -21,6 +21,8 @@ public:
 	Life(float32 x, float32 y);
 	// Destroyer
 	virtual ~Life();
+	// Have effect on characters operator
+	virtual void haveEffectOn(Character* character);
 private:
 	// Copy constructor
 	Life(const Life&);

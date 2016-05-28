@@ -14,3 +14,6 @@ EnergyCapsule::EnergyCapsule(float dropRate, unsigned int effectAmount, float32 
 EnergyCapsule::~EnergyCapsule() {
 }
 
+void EnergyCapsule::haveEffectOn(Character* character) {
+	character->increaseHP(effectAmount);
+}

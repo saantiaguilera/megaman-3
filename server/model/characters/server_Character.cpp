@@ -31,6 +31,19 @@ void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
 }
 
+void Character::increaseHP(unsigned int amount) {
+	// TODO: if they have a max hp validate here
+	hp += amount;
+}
+
+Weapon* Character::getCurrentWeapon() const {
+	return currentWeapon;
+}
+
+void Character::setCurrentWeapon(Weapon* anotherWeapon) {
+	this->currentWeapon = anotherWeapon;
+}
+
 void Character::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;

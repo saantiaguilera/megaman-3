@@ -12,12 +12,16 @@
 
 #include "server_Humanoid.h"
 
+class Player;
+
 #define MEGAMAN_INITIAL_HP 150
 
 class Megaman : public Humanoid {
+private:
+	Player* humanOperator;
 public:
 	// Constructor
-	Megaman(float32 x, float32 y);
+	Megaman(Player* humanOperator, float32 x, float32 y);
 	// Destroyer
 	virtual ~Megaman();
 	// Return object type
@@ -27,6 +31,9 @@ public:
 	// Update object (AI)
 	// TODO: For testing collisions
 	virtual void update();
+	// Return my operator
+	Player* getHumanOperator() const;
+
 private:
 	// Copy constructor
 	Megaman(const Megaman&);

@@ -39,6 +39,8 @@ public:
 	const std::string& getName() const;
 	// Decrease the players lives by 1
 	void decreasePlayerLives();
+	// Increase player lives by 1
+	void increasePlayerLives();
 	// Return my megaman
 	const Megaman& getMegaman() const;
 

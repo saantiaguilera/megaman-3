@@ -20,6 +20,8 @@ public:
 	virtual ~Weapon();
 	// Fire weapon reducing ammo
 	virtual void fire() = 0;
+	// Increase ammo by the amount given
+	void increaseAmmoBy(unsigned int ammoAmount);
 
 private:
 	// Copy constructor

@@ -13,7 +13,7 @@
 unsigned int Player::id = 0;
 
 // TODO: WARNING: megaman initial positions hardcoded
-Player::Player(const std::string& name) : name(name), lives(INITIAL_PLAYER_LIVES), megaman(0,0){
+Player::Player(const std::string& name) : name(name), lives(INITIAL_PLAYER_LIVES), megaman(this, 0,0){
 	++id;
 	// If its the first player then its admin
 	// TODO: What happens when restarting game? ids are kept
@@ -47,4 +47,8 @@ void Player::decreasePlayerLives() {
 
 const Megaman& Player::getMegaman() const {
 	return megaman;
+}
+
+void Player::increasePlayerLives() {
+	++lives;
 }

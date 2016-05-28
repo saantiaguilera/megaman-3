@@ -37,8 +37,14 @@ public:
 	unsigned int getHp() const;
 	// Decreases hp of the character
 	void decreaseHp(float damage);
+	// Increase the hp of the character by amount
+	void increaseHP(unsigned int amount);
 	// Update the AI (make it pure virtual later)
 	virtual void update() {}
+	// Return my current weapon
+	Weapon* getCurrentWeapon() const;
+	// Change my weapon for anotherWeapon
+	void setCurrentWeapon(Weapon* anotherWeapon);
 
 private:
 	// Copy constructor

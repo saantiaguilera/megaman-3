@@ -85,7 +85,8 @@ void Engine::start() {
 	int i = 0;
 //    Met met;
 //	charactersList.push_back(&met);
-	Megaman megaman(0,0);
+	Player aPlayer("Lan Hikari");
+	Megaman megaman(&aPlayer, 0,0);
 	charactersList.push_back(&megaman);
 	Bomb* aBomb = new Bomb(0,-5);
 

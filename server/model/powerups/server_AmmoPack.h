@@ -15,8 +15,13 @@
 // Abstract class, still no methods
 class AmmoPack: public Powerup {
 public:
+	// Constructor
 	AmmoPack(float dropRate, unsigned int effectAmount, float32 x, float32 y);
+	// Destroyer
 	virtual ~AmmoPack();
+	// Double dispatch method, apply effect on character
+	virtual void haveEffectOn(Character* character);
+
 private:
 	// Copy constructor
 	AmmoPack(const AmmoPack&);

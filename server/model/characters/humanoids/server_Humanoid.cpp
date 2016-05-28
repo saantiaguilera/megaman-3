@@ -54,6 +54,6 @@ int Humanoid::getObjectType() {
 void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Projectile* projectile = (Projectile*)objectCollidedWith;
-		this->hp -= projectile->getDamage();
+		decreaseHp(projectile->getDamage());
 	}
 }
