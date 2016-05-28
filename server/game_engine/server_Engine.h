@@ -11,6 +11,7 @@
 #include <Common/b2Settings.h>
 #include <list>
 #include <string>
+#include <vector>
 
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
@@ -42,6 +43,9 @@ private:
 	int32 positionIterations;
 	// contact listener for collisions
 	ContactListener* contactListener;
+	// Set containing elements to destroy betweeen steps
+	std::vector<PhysicObject*> objectsToDestroy;
+
 public:
 	// Return logger instance
 	static Engine& getInstance();
@@ -63,6 +67,8 @@ public:
 	bool isRunning() const;
 	// Return the world
 	b2World* getMyWorld() const;
+	// Add new object for deletion
+	void markObjectForRemoval(PhysicObject* objectToMark);
 
 private:
 	// Constructor

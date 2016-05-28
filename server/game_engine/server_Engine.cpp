@@ -9,7 +9,10 @@
 
 #include <Common/b2Math.h>
 #include <Dynamics/b2World.h>
+#include <algorithm>
 #include <iostream>
+#include <iterator>
+#include <vector>
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
@@ -35,6 +38,10 @@ bool Engine::isRunning() const {
 
 b2World* Engine::getMyWorld() const {
 	return myWorld;
+}
+
+void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
+	objectsToDestroy.push_back(objectToMark);
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false){
@@ -80,7 +87,7 @@ void Engine::start() {
 //	charactersList.push_back(&met);
 	Megaman megaman(0,0);
 	charactersList.push_back(&megaman);
-	Bomb aBomb(0,-5);
+	Bomb* aBomb = new Bomb(0,-5);
 
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
@@ -89,6 +96,23 @@ void Engine::start() {
 			(*it)->update();
 			// TODO: Who should add the event to the events list?
 		}
+		//process elements for deletion
+		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
+		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
+		for (; it != end; ++it) {
+			PhysicObject* objectToDelete = *it;
+
+			//delete object... physics body is destroyed here
+			delete objectToDelete;
+
+			//... and remove it from main list of objects
+			std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
+			if ( it != charactersList.end() )
+			  charactersList.erase( it );
+		}
+
+		//clear this list for next time
+		objectsToDestroy.clear();
 //		sleep(1);
 		++i;
 //		if (i == 10)

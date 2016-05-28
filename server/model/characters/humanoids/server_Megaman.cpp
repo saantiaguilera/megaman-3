@@ -9,8 +9,10 @@
 
 #include <Dynamics/b2Body.h>
 #include <iostream>
+#include <vector>
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
+#include "../../../game_engine/server_Engine.h"
 #include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_PlasmaCannon.h"
 
@@ -28,7 +30,8 @@ int Megaman::getObjectType() {
 void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Projectile* projectile = (Projectile*)objectCollidedWith;
-		this->hp -= projectile->getDamage();
+		hp -= projectile->getDamage();
+		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	}
 }
 
