@@ -24,6 +24,9 @@ Obstacle::Obstacle(bool passable) : passable(passable) {
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&obstacleBodyDef);
 
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
+
 	// Add shape to body
 	// TODO: remove hardcoded parameters
 	b2PolygonShape boxShape;

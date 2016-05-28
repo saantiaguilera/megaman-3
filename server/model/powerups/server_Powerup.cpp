@@ -26,6 +26,9 @@ Powerup::Powerup(float dropRate, unsigned int effectAmount) :
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
 
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
+
 	// Add shape to body
 	// TODO: remove hardcoded parameters
 	b2PolygonShape boxShape;

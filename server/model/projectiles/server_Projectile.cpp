@@ -27,7 +27,12 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type) {
 	// TODO: send x and y positions in constructor
 	projectileBodyDef.position.Set(0,0);
 	// TODO: Maybe add it from the outside? when its created
+	// Set it as bullet (it adds heavy workload, check if neccessary)
+//	projectileBodyDef.bullet = true;
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
+
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
 
 	// Add shape to body
 	// TODO: remove hardcoded parameters

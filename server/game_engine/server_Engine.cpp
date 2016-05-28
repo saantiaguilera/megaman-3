@@ -7,10 +7,15 @@
 
 #include "server_Engine.h"
 
-#include <unistd.h>
+#include <Collision/Shapes/b2EdgeShape.h>
+#include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
+#include <Dynamics/b2World.h>
 #include <iostream>
 
 #include "../model/characters/mobs/server_Met.h"
+#include "physics/server_ContactListener.h"
 
 Engine::~Engine() {
 	for (std::list<Player*>::iterator it = playersList.begin();
@@ -36,6 +41,10 @@ b2World* Engine::getMyWorld() const {
 Engine::Engine() : quit(false), readyToStart(false), running(false){
 	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s^2 straight down!
 	myWorld = new b2World(gravity);
+
+	// Create contact listener for world
+	ContactListener contactListener;
+	myWorld->SetContactListener(&contactListener);
 
 	// TODO: Read them from config file
 	timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
