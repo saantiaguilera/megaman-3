@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_BIGENERGYCAPSULE_H_
 #define SERVER_MODEL_POWERUPS_SERVER_BIGENERGYCAPSULE_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_EnergyCapsule.h"
 
 #define BIG_ENERGY_CAPSULE_DROP_RATE 0.05
@@ -15,7 +17,7 @@
 
 class BigEnergyCapsule: public EnergyCapsule {
 public:
-	BigEnergyCapsule();
+	BigEnergyCapsule(float32 x, float32 y);
 	virtual ~BigEnergyCapsule();
 private:
 	// Copy constructor

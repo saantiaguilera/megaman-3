@@ -16,13 +16,13 @@
 #include "../../game_engine/server_Engine.h"
 
 
-Powerup::Powerup(float dropRate, unsigned int effectAmount) :
+Powerup::Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y) :
 		dropRate(dropRate), effectAmount(effectAmount) {
 	// TODO: Use sensors for powerups picking and field of view
 	b2BodyDef powerupBodyDef;
 	powerupBodyDef.type = b2_staticBody;
 	// TODO: send x and y positions in constructor
-	powerupBodyDef.position.Set(0,0);
+	powerupBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
 

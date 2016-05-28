@@ -7,7 +7,7 @@
 
 #include "server_Life.h"
 
-Life::Life() : Powerup(LIFE_DROP_RATE, LIFE_EFFECT_AMOUNT) {}
+Life::Life(float32 x, float32 y) : Powerup(LIFE_DROP_RATE, LIFE_EFFECT_AMOUNT, x, y) {}
 
 Life::~Life() {
 }

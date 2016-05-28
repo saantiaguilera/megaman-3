@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_LIFE_H_
 #define SERVER_MODEL_POWERUPS_SERVER_LIFE_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Powerup.h"
 
 #define LIFE_DROP_RATE 0.01
@@ -16,7 +18,7 @@
 class Life: public Powerup {
 public:
 	// Constructor
-	Life();
+	Life(float32 x, float32 y);
 	// Destroyer
 	virtual ~Life();
 private:

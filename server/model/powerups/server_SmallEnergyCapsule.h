@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_SMALLENERGYCAPSULE_H_
 #define SERVER_MODEL_POWERUPS_SERVER_SMALLENERGYCAPSULE_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_EnergyCapsule.h"
 
 #define SMALL_ENERGY_CAPSULE_DROP_RATE 0.1
@@ -16,7 +18,7 @@
 class SmallEnergyCapsule: public EnergyCapsule {
 public:
 	// Constructor
-	SmallEnergyCapsule();
+	SmallEnergyCapsule(float32 x, float32 y);
 	// Destroyer
 	virtual ~SmallEnergyCapsule();
 private:

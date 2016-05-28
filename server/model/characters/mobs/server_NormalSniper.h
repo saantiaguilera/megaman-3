@@ -8,12 +8,14 @@
 #ifndef SERVER_MODEL_CHARACTERS_MOBS_SERVER_NORMALSNIPER_H_
 #define SERVER_MODEL_CHARACTERS_MOBS_SERVER_NORMALSNIPER_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Sniper.h"
 
 class NormalSniper: public Sniper {
 public:
 	// Constructor
-	NormalSniper();
+	NormalSniper(float32 x, float32 y);
 	// Destroyer
 	virtual ~NormalSniper();
 private:

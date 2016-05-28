@@ -9,7 +9,7 @@
 
 #include "../characters/server_Character.h"
 
-Needle::Needle() : Obstacle(NEEDLE_IS_PASSABLE) {}
+Needle::Needle(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Needle::~Needle() {

@@ -7,7 +7,7 @@
 
 #include "server_Bumpy.h"
 
-Bumpy::Bumpy() : Mob(BUMPY_INITIAL_HP) {}
+Bumpy::Bumpy(float32 x, float32 y) : Mob(BUMPY_INITIAL_HP, x, y) {}
 
 Bumpy::~Bumpy() {
 }

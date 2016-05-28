@@ -9,7 +9,7 @@
 
 #include "../characters/server_Character.h"
 
-Precipice::Precipice() : Obstacle(PRECIPICE_IS_PASSABLE) {}
+Precipice::Precipice(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Precipice::~Precipice() {

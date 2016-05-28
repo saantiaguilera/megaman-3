@@ -12,7 +12,7 @@
 
 #include "../../projectiles/server_Projectile.h"
 
-Met::Met() : Mob(MET_INITIAL_HP) {}
+Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {}
 
 Met::~Met() {
 }

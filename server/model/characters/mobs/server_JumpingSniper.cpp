@@ -7,6 +7,9 @@
 
 #include "server_JumpingSniper.h"
 
+JumpingSniper::JumpingSniper(float32 x, float32 y) : Sniper(x, y) {
+}
+
 JumpingSniper::~JumpingSniper() {
 }
 

@@ -7,6 +7,9 @@
 
 #include "server_NormalSniper.h"
 
+NormalSniper::NormalSniper(float32 x, float32 y) : Sniper(x, y) {
+}
+
 NormalSniper::~NormalSniper() {
 }
 

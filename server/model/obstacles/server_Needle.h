@@ -8,14 +8,14 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_NEEDLE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_NEEDLE_H_
 
-#include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
-#define NEEDLE_IS_PASSABLE false
+#include "server_Obstacle.h"
 
 class Needle: public Obstacle {
 public:
 	// Constructor
-	Needle();
+	Needle(float32 x, float32 y);
 	// Destroyer
 	virtual ~Needle();
 	// Applies effect on character

@@ -15,6 +15,7 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../projectiles/server_Projectile.h"
 
 
 Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
@@ -47,4 +48,11 @@ Humanoid::~Humanoid() {
 
 int Humanoid::getObjectType() {
 	return OT_HUMANOID;
+}
+
+void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
+		Projectile* projectile = (Projectile*)objectCollidedWith;
+		this->hp -= projectile->getDamage();
+	}
 }

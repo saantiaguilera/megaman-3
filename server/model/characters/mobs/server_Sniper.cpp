@@ -9,7 +9,7 @@
 
 #include "../../projectiles/server_Projectile.h"
 
-Sniper::Sniper() : Mob(SNIPER_INITAL_HP) {}
+Sniper::Sniper(float32 x, float32 y) : Mob(SNIPER_INITAL_HP, x, y) {}
 
 
 Sniper::~Sniper() {

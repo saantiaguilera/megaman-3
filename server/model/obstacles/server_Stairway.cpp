@@ -7,7 +7,7 @@
 
 #include "server_Stairway.h"
 
-Stairway::Stairway() : Obstacle(STAIRWAY_IS_PASSABLE) {}
+Stairway::Stairway(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Stairway::~Stairway() {

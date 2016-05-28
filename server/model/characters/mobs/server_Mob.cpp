@@ -9,18 +9,20 @@
 
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Common/b2Math.h>
+#include <Common/b2Settings.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
 
+#include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
 
-Mob::Mob(unsigned int hp) : Character(hp), vulnerable(true) {
+Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true) {
 	b2BodyDef mobBodyDef;
 	mobBodyDef.type = b2_dynamicBody;
 	mobBodyDef.fixedRotation = true;
 	// TODO: send x and y positions in constructor
-	mobBodyDef.position.Set(0,0);
+	mobBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&mobBodyDef);
 

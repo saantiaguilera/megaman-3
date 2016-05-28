@@ -7,8 +7,8 @@
 
 #include "server_AmmoPack.h"
 
-AmmoPack::AmmoPack(float dropRate, unsigned int effectAmount) :
-	Powerup(dropRate, effectAmount) {
+AmmoPack::AmmoPack(float dropRate, unsigned int effectAmount, float32 x, float32 y) :
+	Powerup(dropRate, effectAmount, x, y) {
 }
 
 AmmoPack::~AmmoPack() {

@@ -20,6 +20,8 @@ public:
 	virtual ~Humanoid();
 	// Return object type
 	virtual int getObjectType();
+	// Handle collisions
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Update object (AI)
 	virtual void update() {}
 private:

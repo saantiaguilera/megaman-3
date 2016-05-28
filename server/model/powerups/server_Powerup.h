@@ -8,13 +8,12 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
-#include "../../../common/common_Point.h"
+#include <Common/b2Settings.h>
+
 #include "../../game_engine/physics/server_PhysicObject.h"
 
 class Powerup : public PhysicObject {
 protected:
-	// my current position
-	Point myPoint;
 	// Powerups drop rate
 	float dropRate;
 	// Amount of its effect to be applied
@@ -25,7 +24,7 @@ protected:
 	virtual int getObjectType();
 public:
 	// Constructor
-	Powerup(float dropRate, unsigned int effectAmount);
+	Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~Powerup();
 private:

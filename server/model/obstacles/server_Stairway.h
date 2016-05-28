@@ -8,14 +8,14 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_STAIRWAY_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_STAIRWAY_H_
 
-#include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
-#define STAIRWAY_IS_PASSABLE true
+#include "server_Obstacle.h"
 
 class Stairway: public Obstacle {
 public:
 	// Constructor
-	Stairway();
+	Stairway(float32 x, float32 y);
 	// Constructor
 	virtual ~Stairway();
 	// Applies effect on character

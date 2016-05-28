@@ -10,12 +10,10 @@
 
 #include "server_Obstacle.h"
 
-#define BLOCK_IS_PASSABLE false
-
 class Block: public Obstacle {
 public:
 	// Constructor
-	Block();
+	Block(float32 x, float32 y);
 	// Destroyer
 	virtual ~Block();
 	// Applies effect on character

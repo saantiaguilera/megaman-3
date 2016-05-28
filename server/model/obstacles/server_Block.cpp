@@ -9,7 +9,7 @@
 
 #include "../characters/server_Character.h"
 
-Block::Block() : Obstacle(BLOCK_IS_PASSABLE) {}
+Block::Block(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Block::~Block() {

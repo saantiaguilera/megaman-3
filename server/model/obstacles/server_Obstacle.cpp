@@ -15,12 +15,12 @@
 
 #include "../../game_engine/server_Engine.h"
 
-Obstacle::Obstacle(bool passable) : passable(passable) {
+Obstacle::Obstacle(float32 x, float32 y) {
 	b2BodyDef obstacleBodyDef;
 	obstacleBodyDef.type = b2_staticBody;
 	obstacleBodyDef.fixedRotation = true;
 	// TODO: send x and y positions in constructor
-	obstacleBodyDef.position.Set(0,0);
+	obstacleBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&obstacleBodyDef);
 
@@ -37,11 +37,6 @@ Obstacle::Obstacle(bool passable) : passable(passable) {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
-}
-
-
-bool Obstacle::isPassable() const {
-	return passable;
 }
 
 Obstacle::~Obstacle() {
