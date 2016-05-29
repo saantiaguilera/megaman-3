@@ -26,6 +26,8 @@ protected:
 	bool readyToAttack;
 	// clock ticks counter
 	unsigned int ticksPassed;
+	// Change my weapon for anotherWeapon
+	void setCurrentWeapon(Weapon* anotherWeapon);
 public:
 	// Constructor
 	Character(unsigned int hp);
@@ -45,8 +47,6 @@ public:
 	virtual void update() {}
 	// Return my current weapon
 	Weapon* getCurrentWeapon() const;
-	// Change my weapon for anotherWeapon
-	void setCurrentWeapon(Weapon* anotherWeapon);
 	// Return my hp as a string
 	std::string getHpAsString();
 
