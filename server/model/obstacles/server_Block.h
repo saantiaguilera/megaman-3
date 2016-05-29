@@ -17,7 +17,9 @@ public:
 	// Destroyer
 	virtual ~Block();
 	// Applies effect on character
-	virtual void haveEffectOn(Character* character);
+	virtual void haveEffectOn(Character* character) {}
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	Block(const Block&);
