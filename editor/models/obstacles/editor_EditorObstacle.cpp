@@ -7,8 +7,11 @@
 
 #include "editor_EditorObstacle.h"
 
-EditorObstacle::EditorObstacle(Point aPoint, unsigned int aHeight, unsigned int aWidth) {
-	point = aPoint;
+#include "../../../common/common_Point.h"
+
+EditorObstacle::EditorObstacle(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth) {
+	point.setX(aX);
+	point.setY(aY);
 	height = aHeight;
 	width = aWidth;
 }

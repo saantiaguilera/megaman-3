@@ -12,7 +12,7 @@
 
 class EditorObstacle {
 public:
-	EditorObstacle(Point aPoint, unsigned int aHeight, unsigned int aWidth);
+	EditorObstacle(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth);
 	EditorObstacle();
 	virtual ~EditorObstacle();
 

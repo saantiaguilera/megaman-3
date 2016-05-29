@@ -19,7 +19,7 @@ public:
 	EditorMapParser();
 	virtual ~EditorMapParser();
 
-	void editorMapWithPath(EditorMap *editorMap, std::string path);
+	void editorMapWithPath(EditorMap *editorMap, std::string name);
 };
 
 #endif /* EDITOR_MODELS_EDITOR_EDITORMAPPARSER_H_ */

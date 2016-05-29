@@ -21,14 +21,12 @@ public:
 	void setName(std::string name);
 
 	//Setters
-	void setSpawns(std::vector<EditorObstacle *> *aVector);
-	void setNeedles(std::vector<EditorObstacle *> *aVector);
-	void setPrecipices(std::vector<EditorObstacle *> *aVector);
-	void setBlocks(std::vector<EditorObstacle *> *aVector);
+	void setSpawn(EditorObstacle *aSpawn);
+	void setNeedle(EditorObstacle *aNeedle);
+	void setPrecipice(EditorObstacle *aPrecipice);
+	void setBlock(EditorObstacle *aBlock);
 
 	//Getters
-
-
 
 private:
 	unsigned int id;

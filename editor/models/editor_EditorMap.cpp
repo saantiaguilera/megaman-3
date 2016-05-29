@@ -7,15 +7,20 @@
 
 #include "editor_EditorMap.h"
 
-EditorMap::EditorMap() {
-	// TODO Auto-generated constructor stub
+#include "obstacles/editor_EditorObstacle.h"
 
+EditorMap::EditorMap() {
+	spawns = new std::vector<EditorObstacle *>();
+	needles = new std::vector<EditorObstacle *>();
+	precipices = new std::vector<EditorObstacle *>();
+	blocks = new std::vector<EditorObstacle *>();
 }
 
 EditorMap::~EditorMap() {
 	// TODO : delete all vectors
 }
 
+//Setters
 void EditorMap::setId(unsigned int aNumber) {
 	id = aNumber;
 }
@@ -23,15 +28,16 @@ void EditorMap::setName(std::string aString) {
 	name = aString;
 }
 
-void EditorMap::setSpawns(std::vector<EditorObstacle *> *aVector) {
-	spawns = aVector;
+//setters
+void EditorMap::setSpawn(EditorObstacle *aSpawn) {
+	spawns->push_back(aSpawn);
 }
-void EditorMap::setNeedles(std::vector<EditorObstacle *> *aVector) {
-	needles = aVector;
+void EditorMap::setNeedle(EditorObstacle *aNeedle) {
+	needles->push_back(aNeedle);
 }
-void EditorMap::setPrecipices(std::vector<EditorObstacle *> *aVector) {
-	precipices = aVector;
+void EditorMap::setPrecipice(EditorObstacle *aPrecipice) {
+	precipices->push_back(aPrecipice);
 }
-void EditorMap::setBlocks(std::vector<EditorObstacle *> *aVector) {
-	blocks = aVector;
+void EditorMap::setBlock(EditorObstacle *aBlock) {
+	blocks->push_back(aBlock);
 }
