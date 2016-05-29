@@ -83,6 +83,8 @@ public:
 	void setVelocityIterations(int32 velocityIterations);
 	// Set player initial lives
 	void setPlayerInitialLives(unsigned int playerInitialLives);
+	// Initialize engines world
+	void initializeWorld();
 
 private:
 	// Constructor

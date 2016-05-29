@@ -49,20 +49,7 @@ void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
 	this->playerInitialLives = playerInitialLives;
 }
 
-Engine::Engine() : quit(false), readyToStart(false), running(false){
-	b2Vec2 gravity(0, this->gravity); //normal earth gravity, 9.8 m/s^2 straight down!
-	myWorld = new b2World(gravity);
-
-	// Create contact listener for world
-	contactListener = new ContactListener();
-	myWorld->SetContactListener(contactListener);
-
-	// TODO: Read them from config file
-	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
-	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
-	positionIterations = this->positionIterations;   //how strongly to correct position
-
-}
+Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
 
 Engine& Engine::getInstance() {
     static Engine instance;
@@ -151,4 +138,18 @@ void Engine::setTimeStep(float32 timeStep) {
 
 void Engine::setVelocityIterations(int32 velocityIterations) {
 	this->velocityIterations = velocityIterations;
+}
+
+void Engine::initializeWorld(){
+	b2Vec2 gravity(0, this->gravity); //normal earth gravity, 9.8 m/s^2 straight down!
+	myWorld = new b2World(gravity);
+
+	// Create contact listener for world
+	contactListener = new ContactListener();
+	myWorld->SetContactListener(contactListener);
+
+	// TODO: Read them from config file
+	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
+	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
+	positionIterations = this->positionIterations;   //how strongly to correct position
 }

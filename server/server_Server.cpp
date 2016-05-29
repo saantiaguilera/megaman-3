@@ -34,9 +34,6 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
-    ConfigParser configParser(configFilename);
-    configParser.parseConfigDoc();
-
 //	callAcceptorWorker();
 	bool keepOnListening = true;
 	TSQueue<std::string> eventsList;
@@ -49,13 +46,7 @@ void Server::run() {
 	while(!Engine::getInstance().isRunning()){
 		// TODO: uncomment for start message
 //		if(Engine::getInstance().isReadyToStart())
-			Engine::getInstance().setGravity(configParser.getGravity());
-			Engine::getInstance().setPositionIterations(configParser.getPositionIterations());
-			Engine::getInstance().setVelocityIterations(configParser.getVelocityIterations());
-			Engine::getInstance().setTimeStep(configParser.getTimestep());
-			Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
-
-			Engine::getInstance().start();
+		startGameEngine();
 	}
 
 	// Uncomment to test sending
@@ -65,3 +56,19 @@ void Server::run() {
 	acceptorWorker.join();
 	senderWorker.join();
 }
+
+void Server::startGameEngine(){
+    ConfigParser configParser(configFilename);
+    configParser.parseConfigDoc();
+
+	Engine::getInstance().setGravity(configParser.getGravity());
+	Engine::getInstance().setPositionIterations(configParser.getPositionIterations());
+	Engine::getInstance().setVelocityIterations(configParser.getVelocityIterations());
+	Engine::getInstance().setTimeStep(configParser.getTimestep());
+	Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
+	Engine::getInstance().initializeWorld();
+
+	Engine::getInstance().start();
+}
+
+
