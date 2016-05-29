@@ -28,6 +28,8 @@ public:
 	virtual void update() {}
 	// Return object type
 	virtual int getObjectType();
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 
 private:
 	// Copy constructor

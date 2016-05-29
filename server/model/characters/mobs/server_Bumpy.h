@@ -20,6 +20,10 @@ public:
 	Bumpy(float32 x, float32 y);
 	// Destroyer
 	virtual ~Bumpy();
+	// Receive shot from weapon
+	void receiveShotFromProjectile(Projectile* projectile);
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	Bumpy(const Bumpy&);

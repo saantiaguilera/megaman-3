@@ -7,10 +7,12 @@
 
 #include "server_Met.h"
 
-#include <Dynamics/b2Body.h>
 #include <iostream>
 
 #include "../../projectiles/server_Projectile.h"
+
+#define TICKS_TO_HIDE_UNDER_HELMET 1
+#define ATTACK_INTERVAL_TICKS 3
 
 Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {}
 
@@ -28,25 +30,19 @@ void Met::receiveShotFromProjectile(Projectile* projectile) {
 }
 
 void Met::update(){
+	// Met does not move, just hides and attacks
 	if (readyToAttack){
+		// TODO: Gets vulnerable and shots in 3 different angles (left, up, right)
+		vulnerable = true;
 		std::cout << "ATTACK!" << std::endl;
-//		attack();
 		readyToAttack = false;
 		ticksPassed = 0;
-		// Start moving to the other side
-//		movementVector.invertMovement();
 		return;
-	} else {
-		move(MS_LEFT);
-		std::cout << "Met's position: " << myBody->GetPosition().x << "," << myBody->GetPosition().y << std::endl;
 	}
-	ticksPassed++;
-	if (ticksPassed == 3)
+	++ticksPassed;
+	if (ticksPassed == TICKS_TO_HIDE_UNDER_HELMET){
+		vulnerable = false;
+	} else if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		readyToAttack = true;
-	if (ticksPassed == 2){
-		move(MS_RIGHT);
-	}
-	if (ticksPassed == 1){
-		move(MS_JUMP);
 	}
 }

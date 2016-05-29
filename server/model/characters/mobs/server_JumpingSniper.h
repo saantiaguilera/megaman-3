@@ -18,6 +18,8 @@ public:
 	JumpingSniper(float32 x, float32 y);
 	// Destroyer
 	virtual ~JumpingSniper();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	JumpingSniper(const JumpingSniper&);

@@ -18,6 +18,8 @@ public:
 	NormalSniper(float32 x, float32 y);
 	// Destroyer
 	virtual ~NormalSniper();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	NormalSniper(const NormalSniper&);

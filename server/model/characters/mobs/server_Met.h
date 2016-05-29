@@ -22,7 +22,7 @@ public:
 	virtual ~Met();
 	// Receive shot from weapon
 	void receiveShotFromProjectile(Projectile* projectile);
-
+	// Update myself according to ticks passed
 	void update();
 private:
 	// Copy constructor

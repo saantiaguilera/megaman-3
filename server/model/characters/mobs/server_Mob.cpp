@@ -9,13 +9,13 @@
 
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Common/b2Math.h>
-#include <Common/b2Settings.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../projectiles/server_Projectile.h"
 
 Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true) {
 	b2BodyDef mobBodyDef;
@@ -60,4 +60,12 @@ Mob::~Mob() {
 
 int Mob::getObjectType() {
 	return OT_MOB;
+}
+
+void Mob::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
+		Projectile* projectile = (Projectile*)objectCollidedWith;
+		receiveShotFromProjectile(projectile);
+		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
+	}
 }
