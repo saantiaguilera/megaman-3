@@ -13,6 +13,7 @@
 #include "game_engine/server_Engine.h"
 #include "networking/server_AcceptorWorker.h"
 #include "networking/server_SenderWorker.h"
+#include "server_Logger.h"
 
 #define STOP_LISTENING "q"
 
@@ -23,6 +24,7 @@ Server::~Server() {
 		delete (*it);
 	}
 	clients.clear();
+    Logger::getInstance().log(1, "Server quitting");
 }
 
 Server::Server(const std::string& port) {

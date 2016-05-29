@@ -9,9 +9,12 @@
 
 #include <Dynamics/b2Body.h>
 #include <iostream>
+#include <string>
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../../game_engine/server_Player.h"
+#include "../../../server_Logger.h"
 #include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"
 #include "../../projectiles/server_Projectile.h"
@@ -32,9 +35,11 @@ void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Projectile* projectile = (Projectile*)objectCollidedWith;
 		decreaseHp(projectile->getDamage());
+	    Logger::getInstance().log(1, getHumanOperator()->getName() + " received shot, new hp is " + getHpAsString());
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	} else if (objectCollidedWith->getObjectType() == OT_POWERUP) {
 		Powerup* powerup = (Powerup*)objectCollidedWith;
+	    Logger::getInstance().log(1, getHumanOperator()->getName() + " picked a powerup");
 		powerup->haveEffectOn(this);
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE) {

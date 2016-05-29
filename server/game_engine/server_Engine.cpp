@@ -15,8 +15,8 @@
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
+#include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
-#include "server_LootGenerator.h"
 
 Engine::~Engine() {
 	for (std::list<Player*>::iterator it = playersList.begin();
@@ -26,6 +26,7 @@ Engine::~Engine() {
 
 	delete contactListener;
 	delete myWorld;
+    Logger::getInstance().log(1, "Engine quitting");
 }
 
 const std::list<Player*>& Engine::getPlayersList() const {
@@ -80,6 +81,7 @@ Engine& Engine::getInstance() {
 
 void Engine::start() {
 	std::cout << "Begin game " << std::endl;
+    Logger::getInstance().log(1, "Game engine started");
 	running = true;
 	// TODO: TESTING
 	int i = 0;

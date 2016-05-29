@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
+#include <string>
+
 #include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile;
@@ -45,6 +47,8 @@ public:
 	Weapon* getCurrentWeapon() const;
 	// Change my weapon for anotherWeapon
 	void setCurrentWeapon(Weapon* anotherWeapon);
+	// Return my hp as a string
+	std::string getHpAsString();
 
 private:
 	// Copy constructor

@@ -7,7 +7,8 @@
 
 #include "server_Character.h"
 
-#include <cstddef>
+#include <sstream>
+#include <string>
 
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
@@ -50,4 +51,10 @@ void Character::decreaseHp(float damage) {
 	} else {
 		hp -= damage;
 	}
+}
+
+std::string Character::getHpAsString() {
+	std::stringstream ss;
+	ss << getHp();
+	return ss.str();
 }
