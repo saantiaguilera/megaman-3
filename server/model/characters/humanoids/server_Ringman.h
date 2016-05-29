@@ -20,6 +20,8 @@ public:
 	Ringman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Ringman();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	Ringman(const Ringman&);

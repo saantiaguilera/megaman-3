@@ -20,6 +20,8 @@ public:
 	Bombman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Bombman();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	Bombman(const Bombman&);

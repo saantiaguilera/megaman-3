@@ -23,7 +23,7 @@ public:
 	// Handle collisions
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Update object (AI)
-	virtual void update() {}
+	virtual void update() = 0;
 private:
 	// Copy constructor
 	Humanoid(const Humanoid&);

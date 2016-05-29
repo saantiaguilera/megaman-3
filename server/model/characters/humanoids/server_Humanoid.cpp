@@ -52,6 +52,9 @@ int Humanoid::getObjectType() {
 }
 
 void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
-	// Other humanoids are not affected, at least by now
-	// If making game playable with any humanoid maybe yes
+	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
+		Projectile* projectile = (Projectile*)objectCollidedWith;
+		decreaseHp(projectile->getDamage());
+		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
+	}
 }

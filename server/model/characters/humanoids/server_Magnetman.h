@@ -20,6 +20,8 @@ public:
 	MagnetMan(float32 x, float32 y);
 	// Destroyer
 	virtual ~MagnetMan();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	MagnetMan(const MagnetMan&);

@@ -20,6 +20,8 @@ public:
 	Sparkman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Sparkman();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	Sparkman(const Sparkman&);

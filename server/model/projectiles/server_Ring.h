@@ -14,6 +14,8 @@
 
 #define RING_DAMAGE 1
 
+// Should bounce against walls
+
 class Ring: public Projectile {
 public:
 	// Constructor

@@ -20,6 +20,8 @@ public:
 	Fireman(float32 x, float32 y);
 	// Destroyer
 	virtual ~Fireman();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	Fireman(const Fireman&);

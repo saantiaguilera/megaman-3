@@ -7,9 +7,12 @@
 
 #include "server_Bombman.h"
 
+#include <iostream>
+
 #include "../../../game_engine/physics/server_PhysicObject.h"
-#include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_BombCannon.h"
+
+#define ATTACK_INTERVAL_TICKS 5
 
 Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 	currentWeapon = new BombCannon();
@@ -18,3 +21,18 @@ Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 Bombman::~Bombman() {
 }
 
+void Bombman::update() {
+	// Shots bombs, jumps and walks
+	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
+		// Makes itself vulnerable and shots
+		std::cout << "ATTACK!" << std::endl;
+		ticksPassed = 0;
+	} else if (ticksPassed == 1 || ticksPassed == 3){
+		move(MS_JUMP);
+	} else if (ticksPassed == 2){
+		move(MS_RIGHT);
+	} else {
+		move(MS_LEFT);
+	}
+	++ticksPassed;
+}
