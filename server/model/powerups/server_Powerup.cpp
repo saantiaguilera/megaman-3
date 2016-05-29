@@ -21,7 +21,6 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 	// TODO: Use sensors for powerups picking and field of view
 	b2BodyDef powerupBodyDef;
 	powerupBodyDef.type = b2_staticBody;
-	// TODO: send x and y positions in constructor
 	powerupBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
