@@ -10,13 +10,10 @@
 
 #include <Common/b2Settings.h>
 
-#include "../../../common/common_Point.h"
 #include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile : public PhysicObject{
 public:
-	// my current position
-	Point myPoint;
 	// Type of the projectile
 	enum projectile_types_t { BOMB, FIRE, SPARK, MAGNET, PLASMA, RING } PROJECTILE_TYPE;
 protected:
