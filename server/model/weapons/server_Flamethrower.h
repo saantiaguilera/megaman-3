@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_FLAMETHROWER_H_
 #define SERVER_MODEL_WEAPONS_SERVER_FLAMETHROWER_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Weapon.h"
 
 #define FLAMETHROWER_MAX_AMMO 20
@@ -19,7 +21,7 @@ public:
 	// Destroyer
 	virtual ~Flamethrower();
 	// Fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	Flamethrower(const Flamethrower&);

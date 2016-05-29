@@ -7,8 +7,6 @@
 
 #include "server_Bombman.h"
 
-#include <iostream>
-
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../weapons/server_BombCannon.h"
 
@@ -24,8 +22,7 @@ Bombman::~Bombman() {
 void Bombman::update() {
 	// Shots bombs, jumps and walks
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		// Makes itself vulnerable and shots
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		ticksPassed = 0;
 	} else if (ticksPassed == 1 || ticksPassed == 3){
 		move(MS_JUMP);

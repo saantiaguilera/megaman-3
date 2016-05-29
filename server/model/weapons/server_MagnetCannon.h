@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_MAGNETCANNON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_MAGNETCANNON_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Weapon.h"
 
 #define MAGNET_CANNON_MAX_AMMO 10
@@ -17,7 +19,7 @@ public:
 	MagnetCannon();
 	virtual ~MagnetCannon();
 	// fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	MagnetCannon(const MagnetCannon&);

@@ -29,7 +29,7 @@ void Bumpy::receiveShotFromProjectile(Projectile* projectile) {
 void Bumpy::update() {
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		// Shots downwards
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		ticksPassed = 0;
 	}
 	++ticksPassed;

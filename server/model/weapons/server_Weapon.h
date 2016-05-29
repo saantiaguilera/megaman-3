@@ -7,6 +7,9 @@
 
 #ifndef SERVER_MODEL_WEAPONS_SERVER_WEAPON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_WEAPON_H_
+
+#include <Common/b2Settings.h>
+
 class Character;
 
 class Weapon {
@@ -18,8 +21,8 @@ public:
 	Weapon(unsigned int ammo);
 	// Destroyer
 	virtual ~Weapon();
-	// Fire weapon reducing ammo
-	virtual void fire() = 0;
+	// Fire weapon reducing ammo, passes current position for creating projectile
+	virtual void fire(float32 x, float32 y) = 0;
 	// Increase ammo by the amount given
 	void increaseAmmoBy(unsigned int ammoAmount);
 

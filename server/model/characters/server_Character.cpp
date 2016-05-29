@@ -7,8 +7,8 @@
 
 #include "server_Character.h"
 
+#include <Dynamics/b2Body.h>
 #include <sstream>
-#include <string>
 
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
@@ -21,7 +21,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	currentWeapon->fire();
+	currentWeapon->fire(myBody->GetPosition().x, myBody->GetPosition().y);
 }
 
 unsigned int Character::getHp() const {

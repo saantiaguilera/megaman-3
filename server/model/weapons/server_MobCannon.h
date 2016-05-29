@@ -8,8 +8,10 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_MOBCANNON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_MOBCANNON_H_
 
-#include "server_Weapon.h"
+#include <Common/b2Settings.h>
 #include <limits>
+
+#include "server_Weapon.h"
 
 #define MOB_CANNON_DAMAGE 1
 #define MOB_CANNON_MAX_AMMO std::numeric_limits<unsigned int>::max()
@@ -21,7 +23,7 @@ public:
 	// Destroyer
 	virtual ~MobCannon();
 	// fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	MobCannon(const MobCannon&);

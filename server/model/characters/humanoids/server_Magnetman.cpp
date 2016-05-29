@@ -7,8 +7,6 @@
 
 #include "server_Magnetman.h"
 
-#include <iostream>
-
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../weapons/server_MagnetCannon.h"
 
@@ -24,8 +22,7 @@ MagnetMan::~MagnetMan() {
 void MagnetMan::update() {
 	// Shots magnets, jumps little and walks (directed shots???)
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		// Makes itself vulnerable and shots
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		ticksPassed = 0;
 	} else if (ticksPassed == 3){
 		move(MS_JUMP);

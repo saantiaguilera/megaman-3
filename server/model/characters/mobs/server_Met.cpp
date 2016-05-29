@@ -34,7 +34,7 @@ void Met::update(){
 	if (readyToAttack){
 		// TODO: Gets vulnerable and shots in 3 different angles (left, up, right)
 		vulnerable = true;
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		readyToAttack = false;
 		ticksPassed = 0;
 		return;

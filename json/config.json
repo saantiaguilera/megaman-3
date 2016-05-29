@@ -1,0 +1,8 @@
+{
+  "characters_velocity": {
+    "humanoids": 5,
+    "mobs": 3,
+  },
+  "player_initial_lives": 3,
+  "game_velocity": 60
+}

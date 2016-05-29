@@ -22,7 +22,7 @@ void NormalSniper::update() {
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		// Makes itself vulnerable and shots
 		vulnerable = true;
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		ticksPassed = 0;
 	}
 	++ticksPassed;

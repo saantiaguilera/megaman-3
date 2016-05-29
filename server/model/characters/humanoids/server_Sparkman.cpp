@@ -7,8 +7,6 @@
 
 #include "server_Sparkman.h"
 
-#include <iostream>
-
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../weapons/server_SparksCannon.h"
 
@@ -25,8 +23,7 @@ Sparkman::~Sparkman() {
 void Sparkman::update() {
 	// Shots sparks, jumps all the time. Shots straight and oblique
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		// Makes itself vulnerable and shots
-		std::cout << "ATTACK!" << std::endl;
+		attack();
 		ticksPassed = 0;
 	}else {
 		move(MS_JUMP);
