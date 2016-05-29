@@ -22,9 +22,14 @@
 
 Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN_INITIAL_HP, x, y), humanOperator(humanOperator) {
 	currentWeapon = new PlasmaCannon();
+	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 }
 
 Megaman::~Megaman() {
+	// Clean available weapons map
+	for (std::map<int,Weapon*>::iterator it = availableWeaponsMap.begin(); it != availableWeaponsMap.end(); ++it){
+		delete (*it).second;
+	}
 }
 
 int Megaman::getObjectType() {
@@ -55,4 +60,13 @@ Player* Megaman::getHumanOperator() const {
 void Megaman::update() {
 	std::cout << "Megaman's position: " << myBody->GetPosition().x << "," << myBody->GetPosition().y << std::endl;
 	std::cout << "Megaman's health: " << getHp() << std::endl;
+}
+
+void Megaman::changeWeaponTo(int weaponType) {
+	if (availableWeaponsMap[weaponType] != NULL)
+		setCurrentWeapon(availableWeaponsMap[weaponType]);
+}
+
+void Megaman::makeWeaponAvailable(int weaponType, Weapon* newWeapon) {
+	availableWeaponsMap[weaponType] = newWeapon;
 }

@@ -12,6 +12,8 @@
 
 class Character;
 
+enum WeaponTypes { PLASMA_CANNON, BOMB_CANNON, FLAMETHROWER, MAGNET_CANNON, RING_TOSSER, SPARKS_CANNON };
+
 class Weapon {
 protected:
 	// Ammo of the weapon

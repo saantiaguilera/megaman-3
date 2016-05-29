@@ -10,7 +10,9 @@
 
 #include <Common/b2Settings.h>
 
+#include "../../weapons/server_Weapon.h"
 #include "server_Humanoid.h"
+#include <map>
 
 class Player;
 
@@ -19,6 +21,7 @@ class Player;
 class Megaman : public Humanoid {
 private:
 	Player* humanOperator;
+	std::map<int, Weapon*> availableWeaponsMap;
 public:
 	// Constructor
 	Megaman(Player* humanOperator, float32 x, float32 y);
@@ -33,6 +36,11 @@ public:
 	virtual void update();
 	// Return my operator
 	Player* getHumanOperator() const;
+	// Switch weapon to the chosen one
+	// If its not available then no change is done
+	void changeWeaponTo(int weaponType);
+	// Make a weapon available by setting a reference in the weapons map
+	void makeWeaponAvailable(int weaponType, Weapon* newWeapon);
 
 private:
 	// Copy constructor
