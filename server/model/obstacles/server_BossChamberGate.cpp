@@ -14,5 +14,5 @@ BossChamberGate::~BossChamberGate() {
 }
 
 void BossChamberGate::haveEffectOn(Character* character) {
-	// Teleport to new map
+	// TODO: Teleport to new map
 }

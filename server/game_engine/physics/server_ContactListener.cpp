@@ -28,7 +28,4 @@ void ContactListener::BeginContact(b2Contact* contact) {
 
 	  static_cast<PhysicObject*>(bodyUserDataA)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataB));
 	  static_cast<PhysicObject*>(bodyUserDataB)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataA));
-
-	  // TODO: Here make use of double dispatch for collisions
-
 }

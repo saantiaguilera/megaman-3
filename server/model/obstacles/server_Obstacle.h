@@ -21,7 +21,7 @@ public:
 	// Destroyer
 	virtual ~Obstacle();
 	// Applies its effect on character
-	virtual void haveEffectOn(Character* character) = 0;
+	virtual void haveEffectOn(Character* character) {}
 	// Return object type
 	virtual int getObjectType();
 private:

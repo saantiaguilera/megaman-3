@@ -12,6 +12,7 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"
 #include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_PlasmaCannon.h"
@@ -30,12 +31,15 @@ int Megaman::getObjectType() {
 void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Projectile* projectile = (Projectile*)objectCollidedWith;
-		hp -= projectile->getDamage();
+		decreaseHp(projectile->getDamage());
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	} else if (objectCollidedWith->getObjectType() == OT_POWERUP) {
 		Powerup* powerup = (Powerup*)objectCollidedWith;
 		powerup->haveEffectOn(this);
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
+	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE) {
+		Obstacle* obstacle = (Obstacle*)objectCollidedWith;
+		obstacle->haveEffectOn(this);
 	}
 }
 

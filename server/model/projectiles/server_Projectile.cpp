@@ -25,7 +25,6 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, 
 
 	b2BodyDef projectileBodyDef;
 	projectileBodyDef.type = b2_kinematicBody;
-	// TODO: send x and y positions in constructor
 	projectileBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
@@ -46,7 +45,8 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, 
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
-	// Apply an impulse <-- this directio
+	// Apply an impulse <-- this direction
+	// TODO: Set it in constructor?
 	myBody->ApplyLinearImpulse(b2Vec2(-5,0), myBody->GetWorldCenter(), true);
 }
 

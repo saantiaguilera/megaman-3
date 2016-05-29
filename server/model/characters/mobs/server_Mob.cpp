@@ -21,7 +21,6 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 	b2BodyDef mobBodyDef;
 	mobBodyDef.type = b2_dynamicBody;
 	mobBodyDef.fixedRotation = true;
-	// TODO: send x and y positions in constructor
 	mobBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&mobBodyDef);

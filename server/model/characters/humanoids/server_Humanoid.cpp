@@ -52,8 +52,6 @@ int Humanoid::getObjectType() {
 }
 
 void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
-	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
-		Projectile* projectile = (Projectile*)objectCollidedWith;
-		decreaseHp(projectile->getDamage());
-	}
+	// Other humanoids are not affected, at least by now
+	// If making game playable with any humanoid maybe yes
 }
