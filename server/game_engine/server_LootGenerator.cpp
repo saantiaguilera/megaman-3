@@ -8,6 +8,7 @@
 #include "server_LootGenerator.h"
 
 #include <cstdlib>
+#include <iostream>
 
 #include "../model/powerups/server_BigAmmoPack.h"
 #include "../model/powerups/server_BigEnergyCapsule.h"
@@ -29,24 +30,40 @@ void LootGenerator::generateLootAt(float32 x, float32 y) {
 	// TODO: Check leaks if they are not picked
 	float randomNumber = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 	float probabilityRange = BIG_AMMO_PACK_DROP_RATE;
-	if (probabilityRange > NO_LOOT_DROP_RATE) {
+	if (randomNumber > NO_LOOT_DROP_RATE) {
+		std::cout << "No loot" << std::endl;
 		return;
-	} else if (randomNumber <= probabilityRange){
+	}
+	if (randomNumber <= probabilityRange){
 		// Create a big ammo pack
 		new BigAmmoPack(x, y);
-		probabilityRange += BIG_ENERGY_CAPSULE_DROP_RATE;
-	} else if (randomNumber <= probabilityRange) {
+		std::cout << "Big ammo pack dropped" << std::endl;
+		return;
+	}
+	probabilityRange += BIG_ENERGY_CAPSULE_DROP_RATE;
+	if (randomNumber <= probabilityRange) {
 		// Create big energy capsule
 		new BigEnergyCapsule(x, y);
-		probabilityRange += LIFE_DROP_RATE;
-	} else if (randomNumber <= probabilityRange) {
+		std::cout << "Big energy capsule dropped" << std::endl;
+		return;
+	}
+	probabilityRange += LIFE_DROP_RATE;
+	if (randomNumber <= probabilityRange) {
 		// Create life
 		new Life(x, y);
-		probabilityRange += SMALL_AMMO_PACK_DROP_RATE;
-	} else if (randomNumber <= probabilityRange) {
+		std::cout << "Life dropped" << std::endl;
+		return;
+	}
+	probabilityRange += SMALL_AMMO_PACK_DROP_RATE;
+	if (randomNumber <= probabilityRange) {
 		new SmallAmmoPack(x, y);
-		probabilityRange += SMALL_ENERGY_CAPSULE_DROP_RATE;
-	} else if (randomNumber <= probabilityRange) {
+		std::cout << "Small ammo pack dropped" << std::endl;
+		return;
+	}
+	probabilityRange += SMALL_ENERGY_CAPSULE_DROP_RATE;
+	if (randomNumber <= probabilityRange) {
 		new SmallEnergyCapsule(x, y);
+		std::cout << "Small enrgy capsule dropped" << std::endl;
+		return;
 	}
 }

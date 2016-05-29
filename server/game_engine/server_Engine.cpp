@@ -12,11 +12,11 @@
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <vector>
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
 #include "physics/server_ContactListener.h"
+#include "server_LootGenerator.h"
 
 Engine::~Engine() {
 	for (std::list<Player*>::iterator it = playersList.begin();
