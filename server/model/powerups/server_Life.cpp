@@ -10,7 +10,7 @@
 #include "../../game_engine/server_Player.h"
 #include "../characters/humanoids/server_Megaman.h"
 
-Life::Life(float32 x, float32 y) : Powerup(LIFE_DROP_RATE, LIFE_EFFECT_AMOUNT, x, y) {}
+Life::Life(float32 x, float32 y) : Powerup(LIFE_EFFECT_AMOUNT, x, y) {}
 
 Life::~Life() {
 }

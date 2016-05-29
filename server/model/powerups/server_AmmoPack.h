@@ -16,7 +16,7 @@
 class AmmoPack: public Powerup {
 public:
 	// Constructor
-	AmmoPack(float dropRate, unsigned int effectAmount, float32 x, float32 y);
+	AmmoPack(unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~AmmoPack();
 	// Double dispatch method, apply effect on character

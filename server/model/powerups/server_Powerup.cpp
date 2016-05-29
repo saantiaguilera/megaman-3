@@ -16,8 +16,8 @@
 #include "../../game_engine/server_Engine.h"
 
 
-Powerup::Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y) :
-		dropRate(dropRate), effectAmount(effectAmount) {
+Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
+		effectAmount(effectAmount) {
 	// TODO: Use sensors for powerups picking and field of view
 	b2BodyDef powerupBodyDef;
 	powerupBodyDef.type = b2_staticBody;

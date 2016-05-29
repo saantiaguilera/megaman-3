@@ -16,7 +16,7 @@
 class EnergyCapsule: public Powerup {
 public:
 	// Constructor
-	EnergyCapsule(float dropRate, unsigned int effectAmount, float32 x, float32 y);
+	EnergyCapsule(unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~EnergyCapsule();
 	// Double dispatch method, apply effect on character

@@ -7,8 +7,8 @@
 
 #include "server_EnergyCapsule.h"
 
-EnergyCapsule::EnergyCapsule(float dropRate, unsigned int effectAmount, float32 x, float32 y) :
-		Powerup(dropRate, effectAmount, x, y) {
+EnergyCapsule::EnergyCapsule(unsigned int effectAmount, float32 x, float32 y) :
+		Powerup(effectAmount, x, y) {
 }
 
 EnergyCapsule::~EnergyCapsule() {

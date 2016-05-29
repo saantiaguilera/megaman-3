@@ -15,15 +15,13 @@
 
 class Powerup : public PhysicObject {
 protected:
-	// Powerups drop rate
-	float dropRate;
 	// Amount of its effect to be applied
 	unsigned int effectAmount;
 	// Return object type
 	virtual int getObjectType();
 public:
 	// Constructor
-	Powerup(float dropRate, unsigned int effectAmount, float32 x, float32 y);
+	Powerup(unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~Powerup();
 	// Overrided by children, applies effect on parameter

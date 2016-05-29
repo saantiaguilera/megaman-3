@@ -12,7 +12,6 @@
 
 #include "server_AmmoPack.h"
 
-#define SMALL_AMMO_PACK_DROP_RATE 0.1
 #define SMALL_AMMO_PACK_EFFECT_AMMOUNT 2
 
 class SmallAmmoPack: public AmmoPack {

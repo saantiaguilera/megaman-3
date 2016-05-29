@@ -16,6 +16,9 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Welcome to Megaman 3 Server Edition" << std::endl;
 
+    // Seed rand
+    srand(time(NULL));
+
 
     Logger::getInstance().log(1, "Server starting...");
 

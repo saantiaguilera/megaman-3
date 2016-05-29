@@ -12,7 +12,6 @@
 
 #include "server_AmmoPack.h"
 
-#define BIG_AMMO_PACK_DROP_RATE 0.05
 #define BIG_AMMO_PACK_EFFECT_AMMOUNT 6
 
 class BigAmmoPack: public AmmoPack {

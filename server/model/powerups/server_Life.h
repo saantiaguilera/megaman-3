@@ -12,7 +12,6 @@
 
 #include "server_Powerup.h"
 
-#define LIFE_DROP_RATE 0.01
 #define LIFE_EFFECT_AMOUNT 1
 
 class Life: public Powerup {

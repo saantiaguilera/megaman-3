@@ -12,7 +12,6 @@
 
 #include "server_EnergyCapsule.h"
 
-#define BIG_ENERGY_CAPSULE_DROP_RATE 0.05
 #define BIG_ENERGY_CAPSULE_EFFECT_AMMOUNT 6
 
 class BigEnergyCapsule: public EnergyCapsule {
