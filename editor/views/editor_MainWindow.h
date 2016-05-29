@@ -23,13 +23,17 @@ protected:
     Glib::RefPtr<Gtk::Builder> builder;
 
     //Different Buttons
-    Gtk::Button *btnOk;
-    Gtk::Button *btnCancel;
-    Gtk::Label *lblNotice;
+    Gtk::Button *level1Button;
+    Gtk::Button *level2Button;
+    Gtk::Button *level3Button;
+    Gtk::Button *level4Button;
+
 
    	//signal handlers
-    void on_ok_button_clicked();
-    void on_cancel_button_clicked();
+    void on_level1_button_clicked();
+    void on_level2_button_clicked();
+    void on_level3_button_clicked();
+    void on_level4_button_clicked();
 };
 
 

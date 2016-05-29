@@ -9,77 +9,60 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkButton" id="btnOk">
-            <property name="label" translatable="yes">button</property>
+          <object class="GtkButton" id="level1button">
+            <property name="label" translatable="yes">Nivel 1</property>
             <property name="width_request">100</property>
-            <property name="height_request">33</property>
+            <property name="height_request">80</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
-            <property name="x">6</property>
-            <property name="y">123</property>
+            <property name="x">72</property>
+            <property name="y">63</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btnCancel">
-            <property name="label" translatable="yes">button</property>
+          <object class="GtkButton" id="level2button">
+            <property name="label" translatable="yes">Nivel 2
+</property>
             <property name="width_request">100</property>
-            <property name="height_request">30</property>
+            <property name="height_request">80</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
-            <property name="x">120</property>
-            <property name="y">127</property>
+            <property name="x">247</property>
+            <property name="y">67</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="lblNotice">
-            <property name="width_request">166</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Aca dice algo ...</property>
-          </object>
-          <packing>
-            <property name="x">37</property>
-            <property name="y">30</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow1">
+          <object class="GtkButton" id="level3button">
+            <property name="label" translatable="yes">Nivel 3</property>
             <property name="width_request">100</property>
             <property name="height_request">80</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
-            <child>
-              <object class="GtkLayout" id="layout2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkButton" id="button2">
-                    <property name="label" translatable="yes">button</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">40</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                  </object>
-                  <packing>
-                    <property name="x">-2</property>
-                    <property name="y">4</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
+            <property name="receives_default">True</property>
           </object>
           <packing>
-            <property name="x">244</property>
-            <property name="y">77</property>
+            <property name="x">74</property>
+            <property name="y">237</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="level4button">
+            <property name="label" translatable="yes">Nivel 4</property>
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="x">246</property>
+            <property name="y">236</property>
           </packing>
         </child>
       </object>
