@@ -14,28 +14,29 @@
 #include "../server_Logger.h"
 
 #define DEFAULT_PLAYER_LIVES 3
-#define DEFUALT_GAME_VELOCITY 1/20
+#define DEFAULT_GAME_TIMESTEP 0.05
 #define DEFAULT_HUMANOIDS_VELOCITY 1
 #define DEFAULT_MOBS_VELOCITY 1
+#define DEFAULT_GRAVITY -9.8
+#define DEFAULT_VELOCITY_ITERATIONS 8
+#define DEFAULT_POSITION_ITERATIONS 3
 
 ConfigParser::ConfigParser(const std::string& configFilename) :
-		playerInitialLives(DEFAULT_PLAYER_LIVES), gameVelocity(
-				DEFUALT_GAME_VELOCITY), humanoidsVelocity(
-				DEFAULT_HUMANOIDS_VELOCITY), mobsVelocity(DEFAULT_MOBS_VELOCITY) {
+		playerInitialLives(DEFAULT_PLAYER_LIVES), humanoidsVelocity(
+		DEFAULT_HUMANOIDS_VELOCITY), mobsVelocity(DEFAULT_MOBS_VELOCITY), velocityIterations(
+		DEFAULT_VELOCITY_ITERATIONS), positionIterations(
+		DEFAULT_POSITION_ITERATIONS), timestep(DEFAULT_GAME_TIMESTEP), gravity(
+		DEFAULT_GRAVITY) {
 	std::string filename = "./json/" + configFilename;
 
 	pFile = fopen(filename.c_str(), "rb");
-	if(pFile == NULL)
+	if (pFile == NULL)
 		Logger::getInstance().log(3, "Error opening config file");
 	char buffer[65536];
 	rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
 	document.ParseStream<rapidjson::FileReadStream>(is);
-	if(document.HasParseError())
+	if (document.HasParseError())
 		Logger::getInstance().log(3, "Error parsing JSON file");
-}
-
-unsigned int ConfigParser::getGameVelocity() const {
-	return gameVelocity;
 }
 
 unsigned int ConfigParser::getHumanoidsVelocity() const {
@@ -54,32 +55,80 @@ ConfigParser::~ConfigParser() {
 	fclose(pFile);
 }
 
+float ConfigParser::getGravity() const {
+	return gravity;
+}
+
+unsigned int ConfigParser::getPositionIterations() const {
+	return positionIterations;
+}
+
+float ConfigParser::getTimestep() const {
+	return timestep;
+}
+
+unsigned int ConfigParser::getVelocityIterations() const {
+	return velocityIterations;
+}
+
 void ConfigParser::parseConfigDoc() {
 	// Parsers are ugly, by definition
-	if(document.HasMember("config")){
-		if(document["config"].HasMember("player_initial_lives")){
-			playerInitialLives = document["config"]["player_initial_lives"].GetUint();
+	if (document.HasMember("config")) {
+		if (document["config"].HasMember("player_initial_lives")) {
+			playerInitialLives =
+					document["config"]["player_initial_lives"].GetUint();
 		} else {
-			Logger::getInstance().log(1, "Using default value for player lives");
+			Logger::getInstance().log(1,
+					"Using default value for player lives");
 		}
-		if(document["config"].HasMember("game_velocity")){
-			gameVelocity = document["config"]["game_velocity"].GetUint();
-		} else {
-			Logger::getInstance().log(1, "Using default value for game velocity");
-		}
-		if(document["config"].HasMember("characters_velocity")){
-			if(document["config"]["characters_velocity"].HasMember("humanoids")){
-				humanoidsVelocity = document["config"]["characters_velocity"]["humanoids"].GetUint();
+		if (document["config"].HasMember("characters_velocity")) {
+			if (document["config"]["characters_velocity"].HasMember(
+					"humanoids")) {
+				humanoidsVelocity =
+						document["config"]["characters_velocity"]["humanoids"].GetUint();
 			} else {
-				Logger::getInstance().log(1, "Using default value for humanoids velocities");
+				Logger::getInstance().log(1,
+						"Using default value for humanoids velocities");
 			}
-			if(document["config"]["characters_velocity"].HasMember("mobs")){
-				mobsVelocity = document["config"]["characters_velocity"]["mobs"].GetUint();
+			if (document["config"]["characters_velocity"].HasMember("mobs")) {
+				mobsVelocity =
+						document["config"]["characters_velocity"]["mobs"].GetUint();
 			} else {
-				Logger::getInstance().log(1, "Using default value for mobs velocities");
+				Logger::getInstance().log(1,
+						"Using default value for mobs velocities");
 			}
 		} else {
 			Logger::getInstance().log(1, "Using default value for velocities");
+		}
+		if (document["config"].HasMember("game")) {
+			if (document["config"]["game"].HasMember("gravity")) {
+				gravity = document["config"]["game"]["gravity"].GetFloat();
+			} else {
+				Logger::getInstance().log(1, "Using default value for gravity");
+			}
+			if (document["config"]["game"].HasMember("timestep")) {
+				timestep = document["config"]["game"]["timestep"].GetFloat();
+			} else {
+				Logger::getInstance().log(1,
+						"Using default value for mobs velocities");
+			}
+			if (document["config"]["game"].HasMember("velocity_iterarions")) {
+				velocityIterations =
+						document["config"]["game"]["velocity_iterarions"].GetUint();
+			} else {
+				Logger::getInstance().log(1,
+						"Using default value for mobs velocities");
+			}
+			if (document["config"]["game"].HasMember("position_iterarions")) {
+				positionIterations =
+						document["config"]["game"]["position_iterarions"].GetUint();
+			} else {
+				Logger::getInstance().log(1,
+						"Using default value for mobs velocities");
+			}
+		} else {
+			Logger::getInstance().log(1,
+					"Using default value for game configs");
 		}
 	} else {
 		Logger::getInstance().log(2, "Using default values for configs");

@@ -5,6 +5,11 @@
       "mobs": 3
     },
     "player_initial_lives": 3,
-    "game_velocity": 60
+    "game": {
+      "timestep": 0.05,
+      "gravity": -9.8,
+      "velocity_iterations": 8,
+      "position_iterations": 3
+    }
   }
 }

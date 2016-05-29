@@ -26,7 +26,7 @@ private:
 	bool admin;
 public:
 	// Constructor
-	Player(const std::string& name);
+	Player(const std::string& name, unsigned int initialLives);
 	// Destroyer
 	virtual ~Player();
 	// Current player is admin?

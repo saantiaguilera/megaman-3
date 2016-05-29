@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-#include "parsers/server_ConfigParser.h"
 #include "server_Logger.h"
 #include "server_Server.h"
 
@@ -20,10 +19,7 @@ int main(int argc, char *argv[]) {
 
     Logger::getInstance().log(1, "Server starting...");
 
-    ConfigParser configParser(configFilename);
-    configParser.parseConfigDoc();
-
-    Server server = Server(port);
+    Server server = Server(port, configFilename);
     server.run();
 
     Logger::getInstance().log(1, "Server quitting...");

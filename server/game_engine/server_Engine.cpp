@@ -45,8 +45,12 @@ void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
 	objectsToDestroy.push_back(objectToMark);
 }
 
+void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
+	this->playerInitialLives = playerInitialLives;
+}
+
 Engine::Engine() : quit(false), readyToStart(false), running(false){
-	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s^2 straight down!
+	b2Vec2 gravity(0, this->gravity); //normal earth gravity, 9.8 m/s^2 straight down!
 	myWorld = new b2World(gravity);
 
 	// Create contact listener for world
@@ -54,23 +58,9 @@ Engine::Engine() : quit(false), readyToStart(false), running(false){
 	myWorld->SetContactListener(contactListener);
 
 	// TODO: Read them from config file
-	timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
-	velocityIterations = 8;   //how strongly to correct velocity
-	positionIterations = 3;   //how strongly to correct position
-
-	// TODO: Setting a floor for testing
-	// TODO: Needs collision filtering
-//	b2BodyDef floorBodyDef;
-//	floorBodyDef.type = b2_staticBody;
-//	floorBodyDef.position.Set(0,-1);
-//	b2FixtureDef floorFixtureDef;
-//	b2EdgeShape edgeShape;
-//	edgeShape.Set( b2Vec2(-15,0), b2Vec2(15,0) );
-//
-//	floorFixtureDef.shape = &edgeShape;
-//
-//	b2Body* floorBody = myWorld->CreateBody(&floorBodyDef);
-//	floorBody->CreateFixture(&floorFixtureDef);
+	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
+	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
+	positionIterations = this->positionIterations;   //how strongly to correct position
 
 }
 
@@ -80,14 +70,13 @@ Engine& Engine::getInstance() {
 }
 
 void Engine::start() {
-	std::cout << "Begin game " << std::endl;
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
 	// TODO: TESTING
 	int i = 0;
 //    Met met;
 //	charactersList.push_back(&met);
-	Player aPlayer("Lan Hikari");
+	Player aPlayer("Lan Hikari", playerInitialLives);
 	Megaman megaman(&aPlayer, 0,0);
 	charactersList.push_back(&megaman);
 	Bomb* aBomb = new Bomb(0,-5);
@@ -133,7 +122,7 @@ void Engine::start() {
 }
 
 void Engine::addNewPlayer(const std::string& name) {
-	playersList.push_back(new Player(name));
+	playersList.push_back(new Player(name, playerInitialLives));
 }
 
 bool Engine::isFinished() {
@@ -146,4 +135,20 @@ bool Engine::isReadyToStart() const {
 
 void Engine::setReadyToStart(bool readyToStart) {
 	this->readyToStart = readyToStart;
+}
+
+void Engine::setGravity(float32 gravity) {
+	this->gravity = gravity;
+}
+
+void Engine::setPositionIterations(int32 positionIterations) {
+	this->positionIterations = positionIterations;
+}
+
+void Engine::setTimeStep(float32 timeStep) {
+	this->timeStep = timeStep;
+}
+
+void Engine::setVelocityIterations(int32 velocityIterations) {
+	this->velocityIterations = velocityIterations;
 }

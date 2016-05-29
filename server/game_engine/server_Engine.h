@@ -37,6 +37,8 @@ private:
 	b2World* myWorld;
 	// Timestep for box2d
 	float32 timeStep;
+	// Game gravity
+	float32 gravity;
 	// velocity iterations for box2d
 	int32 velocityIterations;
 	// positions iterations for box2d
@@ -45,6 +47,8 @@ private:
 	ContactListener* contactListener;
 	// Set containing elements to destroy betweeen steps
 	std::vector<PhysicObject*> objectsToDestroy;
+	// Player lives intial qty
+	unsigned int playerInitialLives;
 
 public:
 	// Return logger instance
@@ -69,6 +73,16 @@ public:
 	b2World* getMyWorld() const;
 	// Add new object for deletion
 	void markObjectForRemoval(PhysicObject* objectToMark);
+	// Set game gravity
+	void setGravity(float32 gravity);
+	// Set position iterations
+	void setPositionIterations(int32 positionIterations);
+	// Set timestep
+	void setTimeStep(float32 timeStep);
+	// Set velocity iterations
+	void setVelocityIterations(int32 velocityIterations);
+	// Set player initial lives
+	void setPlayerInitialLives(unsigned int playerInitialLives);
 
 private:
 	// Constructor

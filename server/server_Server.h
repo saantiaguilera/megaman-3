@@ -22,10 +22,12 @@ private:
 	Socket dispatcherSocket;
 	// Clients vector
 	std::vector<ClientProxy*> clients;
+	// Config filename
+	std::string configFilename;
 
 public:
 	// Constructor
-	explicit Server(const std::string& port);
+	explicit Server(const std::string& port, const std::string& configFilename);
 	// Destroyer
 	virtual ~Server();
 	// This method encapsulates the server work

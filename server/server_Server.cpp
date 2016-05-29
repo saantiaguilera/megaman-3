@@ -13,6 +13,7 @@
 #include "game_engine/server_Engine.h"
 #include "networking/server_AcceptorWorker.h"
 #include "networking/server_SenderWorker.h"
+#include "parsers/server_ConfigParser.h"
 #include "server_Logger.h"
 
 #define STOP_LISTENING "q"
@@ -27,12 +28,15 @@ Server::~Server() {
     Logger::getInstance().log(1, "Server quitting");
 }
 
-Server::Server(const std::string& port) {
+Server::Server(const std::string& port, const std::string& configFilename) : configFilename(configFilename) {
 	dispatcherSocket = Socket(NULL, port.c_str());
 	dispatcherSocket.bind();
 }
 
 void Server::run() {
+    ConfigParser configParser(configFilename);
+    configParser.parseConfigDoc();
+
 //	callAcceptorWorker();
 	bool keepOnListening = true;
 	TSQueue<std::string> eventsList;
@@ -45,6 +49,12 @@ void Server::run() {
 	while(!Engine::getInstance().isRunning()){
 		// TODO: uncomment for start message
 //		if(Engine::getInstance().isReadyToStart())
+			Engine::getInstance().setGravity(configParser.getGravity());
+			Engine::getInstance().setPositionIterations(configParser.getPositionIterations());
+			Engine::getInstance().setVelocityIterations(configParser.getVelocityIterations());
+			Engine::getInstance().setTimeStep(configParser.getTimestep());
+			Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
+
 			Engine::getInstance().start();
 	}
 

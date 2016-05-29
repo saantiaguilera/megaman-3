@@ -13,7 +13,8 @@
 
 class ConfigParser {
 private:
-	unsigned int playerInitialLives, gameVelocity, humanoidsVelocity, mobsVelocity;
+	unsigned int playerInitialLives, humanoidsVelocity, mobsVelocity, velocityIterations, positionIterations;
+	float timestep, gravity;
 	FILE* pFile;
 	rapidjson::Document document;
 public:
@@ -21,8 +22,6 @@ public:
 	ConfigParser(const std::string& configFilename);
 	// Destroyer
 	virtual ~ConfigParser();
-	// Get game velocity
-	unsigned int getGameVelocity() const;
 	// Get humanoids velocity
 	unsigned int getHumanoidsVelocity() const;
 	// Get mobs velocity
@@ -31,6 +30,14 @@ public:
 	unsigned int getPlayerInitialLives() const;
 	// Parse the document
 	void parseConfigDoc();
+	// Get game gravity
+	float getGravity() const;
+	// Get position iterations
+	unsigned int getPositionIterations() const;
+	// Get timestep
+	float getTimestep() const;
+	// Get velocity iterations
+	unsigned int getVelocityIterations() const;
 
 private:
 	// Copy constructor
