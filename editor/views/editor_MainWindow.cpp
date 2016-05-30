@@ -8,8 +8,11 @@
 #include "editor_MainWindow.h"
 
 #include "gtkmm.h"
-#include "iostream"
+#include <iostream>
+#include "../controllers/editor_EditorController.h"
+#include "../models/editor_EditorMapParser.h"
 
+//Constructors
 MainWindow::MainWindow() {
 }
 
@@ -24,27 +27,42 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     builder->get_widget("level3button", level4Button);
 
 
-    level1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level1_button_clicked));
-    level2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level2_button_clicked));
-    level3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level3_button_clicked));
-    level4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level4_button_clicked));
+    level1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level1ButtonWasTapped));
+    level2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level2ButtonWasTapped));
+    level3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level3ButtonWasTapped));
+    level4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level4ButtonWasTapped));
+}
+
+//Setters
+void MainWindow::setDelegate(EditorController *aDelegate) {
+	delegate = aDelegate;
 }
 
 
-void MainWindow::on_level1_button_clicked(){
+//Signals
+void MainWindow::level1ButtonWasTapped(){
 	std::cout<<"level 1 button was tapped"<<std::endl;
+
+	EditorMapParser mapParser;
+	EditorMap *map = new EditorMap();
+
+	mapParser.editorMapWithPath(map, "level1.json");
+
+	delegate->presentMapWindowWithMap(map);
 }
 
-void MainWindow::on_level2_button_clicked(){
+void MainWindow::level2ButtonWasTapped(){
 	std::cout<<"level 2 button was tapped"<<std::endl;
 }
 
-void MainWindow::on_level3_button_clicked(){
+void MainWindow::level3ButtonWasTapped(){
 	std::cout<<"level 3 button was tapped"<<std::endl;
 }
 
-void MainWindow::on_level4_button_clicked(){
+void MainWindow::level4ButtonWasTapped(){
 	std::cout<<"level 4 button was tapped"<<std::endl;
+
+	delegate->presentMainWindowWithoutSavingMap();
 }
 
 

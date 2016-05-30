@@ -23,10 +23,12 @@ EditorController::EditorController() {
 	}
 
 	mainWindow = 0;
+	mapWindow = 0;
 
 	builder->get_widget_derived("mainWindow", mainWindow);
-//	Gtk::Main::run(*mainWindow);
+	builder->get_widget_derived("mapWindow", mapWindow);
 
+	Gtk::Main::run(*mainWindow);
 }
 
 EditorController::~EditorController() {
@@ -54,20 +56,34 @@ void EditorController::begin() {
 //	MainWindow *mainWindow = 0;
 //
 //	builder->get_widget_derived("mainWindow", mainWindow);
-	Gtk::Main::run(*mainWindow);
+//	Gtk::Main::run(*mainWindow);
+//	Gtk::Main::run(*mainWindow2);
+
+//	showMainWindow();
 }
 
 //Main window delegate
-
 void EditorController::presentMainWindowSavingMap(EditorMap *map) {
-	std::cout<<map<<std::endl;
+	std::cout<<map->getName()<<std::endl;
+	showMainWindow();
 }
 
 void EditorController::presentMainWindowWithoutSavingMap() {
-
+	showMainWindow();
 }
 
 void EditorController::presentMapWindowWithMap(EditorMap *map) {
-	std::cout<<map<<std::endl;
+	std::cout<<map->getName()<<std::endl;
+	showMapWindow();
+}
+
+void EditorController::showMainWindow() {
+	mainWindow->show();
+	mapWindow->hide();
+}
+
+void EditorController::showMapWindow() {
+	mainWindow->hide();
+	mapWindow->show();
 }
 

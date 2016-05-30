@@ -9,6 +9,7 @@
 #define EDITOR_VIEWS_EDITOR_MAINWINDOW_H_
 
 #include <gtkmm.h>
+class EditorController;
 
 class MainWindow : public Gtk::Window {
 public:
@@ -16,11 +17,17 @@ public:
     MainWindow();
     MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);//constructor
 
+    //Setters
+    void setDelegate(EditorController *aDelegate);
+
 	//Destructors
 	virtual ~MainWindow();
 protected:
 	//Needed to upload xml from GLADE
     Glib::RefPtr<Gtk::Builder> builder;
+
+    //Delegate
+    EditorController *delegate;
 
     //Different Buttons
     Gtk::Button *level1Button;
@@ -30,10 +37,10 @@ protected:
 
 
    	//signal handlers
-    void on_level1_button_clicked();
-    void on_level2_button_clicked();
-    void on_level3_button_clicked();
-    void on_level4_button_clicked();
+    void level1ButtonWasTapped();
+    void level2ButtonWasTapped();
+    void level3ButtonWasTapped();
+    void level4ButtonWasTapped();
 };
 
 

@@ -27,6 +27,7 @@ public:
 	void setBlock(EditorObstacle *aBlock);
 
 	//Getters
+	std::string getName();
 
 private:
 	unsigned int id;

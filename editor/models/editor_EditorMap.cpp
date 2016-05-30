@@ -28,7 +28,6 @@ void EditorMap::setName(std::string aString) {
 	name = aString;
 }
 
-//setters
 void EditorMap::setSpawn(EditorObstacle *aSpawn) {
 	spawns->push_back(aSpawn);
 }
@@ -40,4 +39,9 @@ void EditorMap::setPrecipice(EditorObstacle *aPrecipice) {
 }
 void EditorMap::setBlock(EditorObstacle *aBlock) {
 	blocks->push_back(aBlock);
+}
+
+//Getters
+std::string EditorMap::getName() {
+	return name;
 }
