@@ -10,6 +10,7 @@
 #include <Dynamics/b2Body.h>
 #include <sstream>
 
+#include "../../game_engine/server_Engine.h"
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
@@ -48,6 +49,7 @@ void Character::setCurrentWeapon(Weapon* anotherWeapon) {
 void Character::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
+		Engine::getInstance().markObjectForRemoval(this);
 	} else {
 		hp -= damage;
 	}

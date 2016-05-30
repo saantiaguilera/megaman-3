@@ -41,6 +41,8 @@ public:
 	void changeWeaponTo(int weaponType);
 	// Make a weapon available by setting a reference in the weapons map
 	void makeWeaponAvailable(int weaponType, Weapon* newWeapon);
+	// Decreases hp of megaman and eventually its operators lives
+	virtual void decreaseHp(float damage);
 
 private:
 	// Copy constructor

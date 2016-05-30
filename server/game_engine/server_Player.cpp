@@ -8,18 +8,20 @@
 #include "server_Player.h"
 
 #include "../server_Logger.h"
+#include "server_Engine.h"
 
 // Initialize ids value
 unsigned int Player::id = 0;
 
 // TODO: WARNING: megaman initial positions hardcoded
-Player::Player(const std::string& name, unsigned int initialLives) : name(name), lives(initialLives), megaman(this, 0,0){
+Player::Player(const std::string& name, unsigned int initialLives) : name(name), lives(initialLives){
     Logger::getInstance().log(1, "Player " + name + " added");
 	++id;
 	// If its the first player then its admin
 	// TODO: What happens when restarting game? ids are kept
 	if (id == 1)
 		admin = true;
+	megaman = new Megaman(this, 0, 0);
 }
 
 bool Player::isAdmin() const {
@@ -44,9 +46,11 @@ unsigned int Player::getId() const {
 void Player::decreasePlayerLives() {
 	if (lives > 0)
 		--lives;
+	if (lives == 0)
+		Engine::getInstance().markObjectForRemoval(megaman);
 }
 
-const Megaman& Player::getMegaman() const {
+Megaman* Player::getMegaman() const {
 	return megaman;
 }
 

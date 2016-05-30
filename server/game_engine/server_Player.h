@@ -21,7 +21,7 @@ private:
 	// When lives reach 0 player is dead
 	unsigned int lives;
 	// It also has a megaman (could have any character, maybe to me able to play with any)
-	Megaman megaman;
+	Megaman* megaman;
 	// The first player to connect is the admin
 	bool admin;
 public:
@@ -42,7 +42,7 @@ public:
 	// Increase player lives by 1
 	void increasePlayerLives();
 	// Return my megaman
-	const Megaman& getMegaman() const;
+	Megaman* getMegaman() const;
 
 private:
 	// Copy constructor

@@ -70,3 +70,12 @@ void Megaman::changeWeaponTo(int weaponType) {
 void Megaman::makeWeaponAvailable(int weaponType, Weapon* newWeapon) {
 	availableWeaponsMap[weaponType] = newWeapon;
 }
+
+void Megaman::decreaseHp(float damage) {
+	if (((int)hp - (int)damage) < 0){
+		hp = 0;
+		getHumanOperator()->decreasePlayerLives();
+	} else {
+		hp -= damage;
+	}
+}
