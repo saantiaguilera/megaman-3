@@ -14,9 +14,8 @@
 
 class EditorController {
 public:
-	EditorController();
+	EditorController(int argc, char *argv[]);
 	virtual ~EditorController();
-
 	void begin();
 
 	void presentMainWindowSavingMap(EditorMap *map);

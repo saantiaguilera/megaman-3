@@ -22,9 +22,16 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     Gtk::Window(cobject), builder(refGlade){
     builder->get_widget("savebutton", saveButton);
     builder->get_widget("backbutton", backButton);
-
+//    builder->get_widget("level2button", level2Button);
+//    builder->get_widget("level3button", level3Button);
+//    builder->get_widget("level3button", level4Button);
+//
+//
     saveButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::saveButtonWasTapped));
     backButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::backButtonWasTapped));
+//    level2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level2_button_clicked));
+//    level3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level3_button_clicked));
+//    level4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::on_level4_button_clicked));
 }
 
 //Signals

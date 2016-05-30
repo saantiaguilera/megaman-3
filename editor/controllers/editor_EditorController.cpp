@@ -15,20 +15,25 @@
 #include "../models/editor_EditorMap.h"
 
 
-EditorController::EditorController() {
+EditorController::EditorController(int argc, char *argv[]) {
+	Glib::RefPtr<Gtk::Application> gtkmm_main = Gtk::Application::create(argc, argv, "org.gtkmm.example");
+
 	try {
 		builder = Gtk::Builder::create_from_file("editor/editor.glade");
 	} catch (Glib::FileError& e) {
 		std::cout<<e.what()<<std::endl;
 	}
 
-	mainWindow = 0;
+//	mainWindow = 0;
 	mapWindow = 0;
 
-	builder->get_widget_derived("mainWindow", mainWindow);
+//	builder->get_widget_derived("mainWindow", mainWindow);
 	builder->get_widget_derived("mapWindow", mapWindow);
 
-	Gtk::Main::run(*mainWindow);
+//	gtkmm_main->run(*mainWindow);
+	gtkmm_main->run(*mapWindow);
+
+//	showMapWindow();
 }
 
 EditorController::~EditorController() {
@@ -78,12 +83,13 @@ void EditorController::presentMapWindowWithMap(EditorMap *map) {
 }
 
 void EditorController::showMainWindow() {
-	mainWindow->show();
-	mapWindow->hide();
+	mainWindow->set_visible(true);
+	mapWindow->set_visible(false);
 }
 
 void EditorController::showMapWindow() {
-	mainWindow->hide();
-	mapWindow->show();
+	mainWindow->set_visible(false);
+	std::cout<<"lleg";
+	mapWindow->set_visible(true);
 }
 

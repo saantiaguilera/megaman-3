@@ -18,9 +18,7 @@ int main(int argc, char *argv[]) {
 
 	std::cout<<argc<<argv[0]<<std::endl;
 
-	Gtk::Main kit(argc, argv);
-
-	EditorController editorController = EditorController();
+	EditorController editorController = EditorController(argc, argv);
 
 	editorController.begin();
 
