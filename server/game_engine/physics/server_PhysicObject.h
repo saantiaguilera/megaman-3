@@ -18,14 +18,15 @@ protected:
 		MS_RIGHT,
 		MS_JUMP
 		};
-	// Object types for collission detection
+	// Object types for collision detection
 	enum _objectTypes {
 		OT_HUMANOID,
 		OT_MEGAMAN,
 		OT_MOB,
 		OT_POWERUP,
 		OT_OBSTACLE,
-		OT_PROJECTILE
+		OT_PROJECTILE,
+		OT_LADDER
 	};
 	// Id of the object
 	static unsigned int id;
@@ -46,6 +47,11 @@ public:
 	virtual int getObjectType() = 0;
 	// Handle collisions
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Handle collision stop
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith);
+	// Return my body
+	b2Body* getMyBody() const;
+
 private:
 	// Copy constructor
 	PhysicObject(const PhysicObject&);

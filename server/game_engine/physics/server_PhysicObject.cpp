@@ -44,3 +44,11 @@ void PhysicObject::move(unsigned int moveState) {
 void PhysicObject::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	// Does nothing
 }
+
+void PhysicObject::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
+	// Does nothing
+}
+
+b2Body* PhysicObject::getMyBody() const {
+	return myBody;
+}

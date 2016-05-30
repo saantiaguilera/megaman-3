@@ -47,7 +47,7 @@ void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	    Logger::getInstance().log(1, getHumanOperator()->getName() + " picked a powerup");
 		powerup->haveEffectOn(this);
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
-	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE) {
+	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE || objectCollidedWith->getObjectType() == OT_LADDER) {
 		Obstacle* obstacle = (Obstacle*)objectCollidedWith;
 		obstacle->haveEffectOn(this);
 	}
@@ -69,6 +69,13 @@ void Megaman::changeWeaponTo(int weaponType) {
 
 void Megaman::makeWeaponAvailable(int weaponType, Weapon* newWeapon) {
 	availableWeaponsMap[weaponType] = newWeapon;
+}
+
+void Megaman::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
+	if(objectCollidedWith->getObjectType() == OT_LADDER){
+		// If we stopped colliding with the ladder then allow gravity effects
+		myBody->SetGravityScale(1);
+	}
 }
 
 void Megaman::decreaseHp(float damage) {

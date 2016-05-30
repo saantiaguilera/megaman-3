@@ -31,6 +31,8 @@ public:
 	virtual int getObjectType();
 	// Handle collisions
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Handle stop collisions
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith);
 	// Update object (AI)
 	// TODO: For testing collisions
 	virtual void update();

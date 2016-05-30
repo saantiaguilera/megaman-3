@@ -11,13 +11,20 @@
 #include <Dynamics/b2WorldCallbacks.h>
 
 class ContactListener: public b2ContactListener {
+private:
+	void* bodyUserDataA;
+	void* bodyUserDataB;
 public:
 	// Constructor
 	ContactListener();
 	// Destroyer
 	virtual ~ContactListener();
-	// Begin contact callback function, is called when contact is generated
+	// Begin contact callback method, is called when contact is generated
 	void BeginContact(b2Contact* contact);
+	// End contact callback method, called when contact is finished
+	void EndContact(b2Contact* contact);
+	// Handle contact function is called inside callback methods
+	void getBodyUserDataForContact(b2Contact* contact);
 private:
 	// Copy constructor
 	ContactListener(const ContactListener&);
