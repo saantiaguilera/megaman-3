@@ -27,7 +27,7 @@ public:
 	// Get the serialized string
 	const std::string& getSerialized() const;
 	// serializer method, pure virtual
-	virtual void seralize() = 0;
+	virtual void serialize() = 0;
 	// Serialize id
 	std::string serializeObjectId();
 private:

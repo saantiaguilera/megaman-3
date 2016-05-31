@@ -10,6 +10,8 @@
 
 #include <string>
 
+class Player;
+
 class InboundMessagesController {
 private:
 	enum _moveKeyCode {
@@ -20,6 +22,8 @@ private:
 	};
 	// Determine the type of message by analizing its code
 	void analizeMessageCode(int messageCode, const std::string& inboundMessage);
+	// Get the desired player
+	Player* getDesiredPlayer(const std::string& playerId);
 public:
 	// Constructor
 	InboundMessagesController(int messageCode, const std::string& inboundMessage);
