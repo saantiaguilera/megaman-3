@@ -28,7 +28,9 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 Megaman::~Megaman() {
 	// Clean available weapons map
 	for (std::map<int,Weapon*>::iterator it = availableWeaponsMap.begin(); it != availableWeaponsMap.end(); ++it){
-		delete (*it).second;
+		// Cause we delete the current one at the characters destructor
+		if ((*it).second != currentWeapon)
+			delete (*it).second;
 	}
 }
 

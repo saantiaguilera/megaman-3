@@ -11,6 +11,8 @@
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../serializers/server_HpChangeSerializer.h"
+#include "../../serializers/server_ObjectDestructionSerializer.h"
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
@@ -31,11 +33,15 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
+	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	// TODO: Add it to the event list
 }
 
 void Character::increaseHP(unsigned int amount) {
 	// TODO: if they have a max hp validate here
 	hp += amount;
+	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	// TODO: Add it to the event list
 }
 
 Weapon* Character::getCurrentWeapon() const {
@@ -50,8 +56,12 @@ void Character::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
 		Engine::getInstance().markObjectForRemoval(this);
+		ObjectDestructionSerializer objectDestructionSerializer(id, myBody->GetPosition().x, myBody->GetPosition().y);
+		// TODO: Add it to the event list
 	} else {
 		hp -= damage;
+		HpChangeSerializer hpChangeSerializer(getHp(), id);
+		// TODO: Add it to the event list
 	}
 }
 
