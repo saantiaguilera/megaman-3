@@ -7,7 +7,13 @@
 
 #include "server_Ring.h"
 
-Ring::Ring() : Projectile(RING_DAMAGE, Projectile::RING) {}
+#include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
+
+Ring::Ring(float32 x, float32 y) : Projectile(RING_DAMAGE, Projectile::RING, x, y) {
+	// Make it bouncy
+	myBody->GetFixtureList()->SetRestitution(1);
+}
 
 
 Ring::~Ring() {

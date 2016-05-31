@@ -7,7 +7,7 @@
 
 #include "server_Spawn.h"
 
-Spawn::Spawn() : Obstacle(SPAWN_IS_PASSABLE) {}
+Spawn::Spawn(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Spawn::~Spawn() {

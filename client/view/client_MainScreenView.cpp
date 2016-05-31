@@ -17,7 +17,6 @@ MainScreenView::MainScreenView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::
 }
 
 MainScreenView::~MainScreenView() {
-
 }
 
 void MainScreenView::setResult(ConnectionResult result) {

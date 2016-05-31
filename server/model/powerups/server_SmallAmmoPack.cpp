@@ -7,9 +7,8 @@
 
 #include "server_SmallAmmoPack.h"
 
-SmallAmmoPack::SmallAmmoPack() :
-		AmmoPack(SMALL_AMMO_PACK_DROP_RATE,
-				SMALL_AMMO_PACK_EFFECT_AMMOUNT) {
+SmallAmmoPack::SmallAmmoPack(float32 x, float32 y) :
+		AmmoPack(SMALL_AMMO_PACK_EFFECT_AMMOUNT, x, y) {
 }
 
 SmallAmmoPack::~SmallAmmoPack() {

@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_SPARKSCANNON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_SPARKSCANNON_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Weapon.h"
 
 #define SPARKS_CANNON_MAX_AMMO 15
@@ -19,7 +21,7 @@ public:
 	// Destroyer
 	virtual ~SparksCannon();
 	// fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	SparksCannon(const SparksCannon&);

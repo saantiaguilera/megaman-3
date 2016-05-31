@@ -8,13 +8,20 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_AMMOPACK_H_
 #define SERVER_MODEL_POWERUPS_SERVER_AMMOPACK_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Powerup.h"
 
 // Abstract class, still no methods
 class AmmoPack: public Powerup {
 public:
-	AmmoPack(float dropRate, unsigned int effectAmount);
+	// Constructor
+	AmmoPack(unsigned int effectAmount, float32 x, float32 y);
+	// Destroyer
 	virtual ~AmmoPack();
+	// Double dispatch method, apply effect on character
+	virtual void haveEffectOn(Character* character);
+
 private:
 	// Copy constructor
 	AmmoPack(const AmmoPack&);

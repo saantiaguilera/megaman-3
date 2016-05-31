@@ -7,7 +7,7 @@
 
 #include "server_Fire.h"
 
-Fire::Fire() : Projectile(FIRE_DAMAGE, Projectile::FIRE) {}
+Fire::Fire(float32 x, float32 y) : Projectile(FIRE_DAMAGE, Projectile::FIRE, x, y) {}
 
 
 Fire::~Fire() {

@@ -8,14 +8,18 @@
 #ifndef SERVER_MODEL_CHARACTERS_MOBS_SERVER_JUMPINGSNIPER_H_
 #define SERVER_MODEL_CHARACTERS_MOBS_SERVER_JUMPINGSNIPER_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Sniper.h"
 
 class JumpingSniper: public Sniper {
 public:
 	// Constructor
-	JumpingSniper();
+	JumpingSniper(float32 x, float32 y);
 	// Destroyer
 	virtual ~JumpingSniper();
+	// Update myself according to ticks passed
+	void update();
 private:
 	// Copy constructor
 	JumpingSniper(const JumpingSniper&);

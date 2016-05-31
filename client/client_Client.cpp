@@ -16,9 +16,27 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
+  if (socket)
+    delete socket;
+
   if (connectionThread) {
     connectionThread->join();
-    delete connectionLooper;
+    delete connectionThread;
+    connectionThread = NULL;
+  }
+
+  if (senderThread) {
+    senderThread->join();
+    delete senderThread;
+    senderThread = NULL;
+    delete senderLooper;
+    senderLooper = NULL;
+  }
+
+  if (receiverThread) {
+    receiverThread->join();
+    delete receiverThread;
+    receiverThread = NULL;
   }
 
   delete currentController;
@@ -42,7 +60,7 @@ void Client::attachController(Controller *controller) {
 void Client::start() {
   app = Gtk::Application::create(PACKAGE_NAME);
 
-  attachController(new MainScreenController(this));
+  onFlowToStart();
 
   dispatcher.connect(sigc::mem_fun(*this, &Client::onMessageFromDispatcher));
 
@@ -51,9 +69,59 @@ void Client::start() {
 
 void Client::onCreateConnection(std::string ip) {
   if (!connectionThread) {
-    std::cout << ip << std::endl;
-    connectionThread = new ConnectionThread(this, (connectionLooper = new Looper()));
+    std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;
+    connectionThread = new ConnectionThread();
+    connectionThread->setListener(this);
+    connectionThread->setSocket((socket = new Socket()));
+    connectionThread->setData(ip.substr(0, ip.find_first_of(":")), ip.substr(ip.find_first_of(":") + 1));
     connectionThread->start();
+  }
+}
+
+void Client::createSenderAndReceiver() {
+  if (connectionThread) {
+    connectionThread->join();
+    delete connectionThread;
+    connectionThread = NULL;
+  }
+
+  if (!senderThread) {
+    senderThread = new SenderThread((senderLooper = new Looper()));
+    senderThread->setSocket(socket);
+    senderThread->start();
+  }
+
+  if (!receiverThread) {
+    receiverThread = new ReceiverThread();
+    receiverThread->setListener(this);
+    receiverThread->setSocket(socket);
+    receiverThread->start();
+  }
+}
+
+void Client::onFlowToStart() {
+  //TODO Refactor when I have time. (+ Im doing cleanup in a lot of methods, refactor that too)
+  //If we are still at the IP:PORT screen, just remove the connection (because we cant restart a thread)
+  if (connectionThread) {
+    connectionThread->join();
+    delete connectionThread;
+    connectionThread = NULL;
+  } else { //We are somewhere around our game, we should just go to start. Delete the sender and receiver
+    if (senderThread) {
+      senderThread->join();
+      delete senderThread;
+      senderThread = NULL;
+      delete senderLooper;
+      senderLooper = NULL;
+    }
+
+    if (receiverThread) {
+      receiverThread->join();
+      delete receiverThread;
+      receiverThread = NULL;
+    }
+
+    attachController(new MainScreenController(this));
   }
 }
 
@@ -65,11 +133,6 @@ void Client::onFlowToGame() {
   attachController(new GameController(this));
 }
 
-void Client::quit() {
-  currentController->getView()->hide();
-  app->quit();
-}
-
 bool Client::onMessageReceived() {
   bool consumed = false;
 
@@ -79,8 +142,6 @@ bool Client::onMessageReceived() {
     std::cout << "Event found in Client::onMessageReceived, id: " << event->getId() << std::endl;
 
     switch (event->getId()) {
-      //Do stuff
-      //TODO refactor the consumed var unless i found a case where it hasnt has to be consumed
       case EVENT_CREATE_CONNECTION:
         onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
         consumed = true;
@@ -97,18 +158,23 @@ bool Client::onMessageReceived() {
         break;
 
       case EVENT_SEND_KEY_MAP:
-        connectionLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
         consumed = true;
         break;
 
-      case EVENT_QUIT:
-        quit();
-        consumed = true;
+      case EVENT_CONNECTION_ACCEPTED: //consumed = false;
+        createSenderAndReceiver();
         break;
 
-      default:
-        consumed = currentController->onMessageReceived();
+      case EVENT_CONNECTION_REFUSED: //consumed = false
+      case EVENT_CONNECTION_SHUTDOWN: //consumed = false
+        onFlowToStart();
+        break;
+
     }
+
+    if (!consumed)
+      consumed = currentController->onMessageReceived();
 
     if (consumed)
       Looper::getMainLooper().pop();

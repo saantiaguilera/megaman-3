@@ -8,14 +8,14 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_SPAWN_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_SPAWN_H_
 
-#include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
-#define SPAWN_IS_PASSABLE true
+#include "server_Obstacle.h"
 
 class Spawn: public Obstacle {
 public:
 	// Constructor
-	Spawn();
+	Spawn(float32 x, float32 y);
 	// Destroyer
 	virtual ~Spawn();
 	// Applies effect on character

@@ -8,11 +8,13 @@
 #include "server_Met.h"
 
 #include <iostream>
-#include <string>
 
 #include "../../projectiles/server_Projectile.h"
 
-Met::Met() : Mob(MET_INITIAL_HP) {}
+#define TICKS_TO_HIDE_UNDER_HELMET 1
+#define ATTACK_INTERVAL_TICKS 3
+
+Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {}
 
 Met::~Met() {
 }
@@ -28,27 +30,19 @@ void Met::receiveShotFromProjectile(Projectile* projectile) {
 }
 
 void Met::update(){
+	// Met does not move, just hides and attacks
 	if (readyToAttack){
-		std::cout << "ATTACK!" << std::endl;
-//		attack();
+		// TODO: Gets vulnerable and shots in 3 different angles (left, up, right)
+		vulnerable = true;
+		attack();
 		readyToAttack = false;
 		ticksPassed = 0;
-		// Start moving to the other side
-		movementVector.invertMovement();
 		return;
-	} else {
-		move();
-		std::cout << "Met's position: " << position.toString() << std::endl;
 	}
-	ticksPassed++;
-	if (ticksPassed == 3)
+	++ticksPassed;
+	if (ticksPassed == TICKS_TO_HIDE_UNDER_HELMET){
+		vulnerable = false;
+	} else if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		readyToAttack = true;
-	if (ticksPassed == 2){
-		movementVector.setVx(0);
-		movementVector.setVy(1);
-	}
-	if (ticksPassed == 1){
-		movementVector.setVx(1);
-		movementVector.setVy(0);
 	}
 }

@@ -8,14 +8,15 @@
 #ifndef SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 #define SERVER_MODEL_CHARACTERS_SERVER_CHARACTER_H_
 
-#include "../server_Movable.h"
-#include "../server_MovementVector.h"
+#include <string>
+
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile;
 
 class Weapon;
 
-class Character : public Movable{
+class Character: public PhysicObject {
 protected:
 	// hp are the hitpoints for current life
 	unsigned int hp;
@@ -25,6 +26,8 @@ protected:
 	bool readyToAttack;
 	// clock ticks counter
 	unsigned int ticksPassed;
+	// Change my weapon for anotherWeapon
+	void setCurrentWeapon(Weapon* anotherWeapon);
 public:
 	// Constructor
 	Character(unsigned int hp);
@@ -37,9 +40,15 @@ public:
 	// Return hp of the character
 	unsigned int getHp() const;
 	// Decreases hp of the character
-	void decreaseHp(float damage);
+	virtual void decreaseHp(float damage);
+	// Increase the hp of the character by amount
+	void increaseHP(unsigned int amount);
 	// Update the AI (make it pure virtual later)
 	virtual void update() {}
+	// Return my current weapon
+	Weapon* getCurrentWeapon() const;
+	// Return my hp as a string
+	std::string getHpAsString();
 
 private:
 	// Copy constructor

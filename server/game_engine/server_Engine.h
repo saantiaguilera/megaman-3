@@ -8,11 +8,16 @@
 #ifndef SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 #define SERVER_GAME_ENGINE_SERVER_ENGINE_H_
 
+#include <Common/b2Settings.h>
 #include <list>
 #include <string>
+#include <vector>
 
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
+
+class b2World;
+class ContactListener;
 
 class Engine {
 	// Singleton
@@ -28,6 +33,23 @@ private:
 	std::list<Character*> charactersList;
 	// A list holding the players
 	std::list<Player*>  playersList;
+	// box2dWorld for physics
+	b2World* myWorld;
+	// Timestep for box2d
+	float32 timeStep;
+	// Game gravity
+	float32 gravity;
+	// velocity iterations for box2d
+	int32 velocityIterations;
+	// positions iterations for box2d
+	int32 positionIterations;
+	// contact listener for collisions
+	ContactListener* contactListener;
+	// Set containing elements to destroy betweeen steps
+	std::vector<PhysicObject*> objectsToDestroy;
+	// Player lives intial qty
+	unsigned int playerInitialLives;
+
 public:
 	// Return logger instance
 	static Engine& getInstance();
@@ -47,6 +69,22 @@ public:
 	void setReadyToStart(bool readyToStart);
 	// Is engine running?
 	bool isRunning() const;
+	// Return the world
+	b2World* getMyWorld() const;
+	// Add new object for deletion
+	void markObjectForRemoval(PhysicObject* objectToMark);
+	// Set game gravity
+	void setGravity(float32 gravity);
+	// Set position iterations
+	void setPositionIterations(int32 positionIterations);
+	// Set timestep
+	void setTimeStep(float32 timeStep);
+	// Set velocity iterations
+	void setVelocityIterations(int32 velocityIterations);
+	// Set player initial lives
+	void setPlayerInitialLives(unsigned int playerInitialLives);
+	// Initialize engines world
+	void initializeWorld();
 
 private:
 	// Constructor

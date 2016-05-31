@@ -8,8 +8,10 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_PLASMACANNON_H_
 #define SERVER_MODEL_WEAPONS_SERVER_PLASMACANNON_H_
 
-#include "server_Weapon.h"
+#include <Common/b2Settings.h>
 #include <limits>
+
+#include "server_Weapon.h"
 
 #define PLASMA_CANNON_DAMAGE 2
 #define PLASMA_CANNON_MAX_AMMO std::numeric_limits<unsigned int>::max()
@@ -21,7 +23,7 @@ public:
 	// Destroyer
 	virtual ~PlasmaCannon();
 	// fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	PlasmaCannon(const PlasmaCannon&);

@@ -8,24 +8,22 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_OBSTACLE_H_
 
-#include "../../../common/common_Point.h"
+#include <Common/b2Settings.h>
+
+#include "../../game_engine/physics/server_PhysicObject.h"
 
 class Character;
 
-class Obstacle {
-protected:
-	// my current position
-	Point myPoint;
-	// is passable?
-	bool passable;
+class Obstacle : public PhysicObject {
 public:
 	// Constructor
-	Obstacle(bool passable);
+	Obstacle(float32 x, float32 y);
 	// Destroyer
 	virtual ~Obstacle();
 	// Applies its effect on character
-	virtual void haveEffectOn(Character* character) = 0;
-	bool isPassable() const;
+	virtual void haveEffectOn(Character* character) {}
+	// Return object type
+	virtual int getObjectType();
 private:
 	// Copy constructor
 	Obstacle(const Obstacle&);

@@ -8,23 +8,24 @@
 #ifndef SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 #define SERVER_MODEL_POWERUPS_SERVER_POWERUP_H_
 
-#include "../../../common/common_Point.h"
+#include <Common/b2Settings.h>
 
-class Powerup {
+#include "../../game_engine/physics/server_PhysicObject.h"
+#include "../characters/server_Character.h"
+
+class Powerup : public PhysicObject {
 protected:
-	// my current position
-	Point myPoint;
-	// Powerups drop rate
-	float dropRate;
 	// Amount of its effect to be applied
 	unsigned int effectAmount;
-	// Overrided by children, applies effect on parameter
-	virtual void haveEffectOn() = 0;
+	// Return object type
+	virtual int getObjectType();
 public:
 	// Constructor
-	Powerup(float dropRate, unsigned int effectAmount);
+	Powerup(unsigned int effectAmount, float32 x, float32 y);
 	// Destroyer
 	virtual ~Powerup();
+	// Overrided by children, applies effect on parameter
+	virtual void haveEffectOn(Character* character) = 0;
 private:
 	// Copy constructor
 	Powerup(const Powerup&);

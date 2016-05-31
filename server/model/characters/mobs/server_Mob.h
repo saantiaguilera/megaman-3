@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_CHARACTERS_MOBS_SERVER_MOB_H_
 #define SERVER_MODEL_CHARACTERS_MOBS_SERVER_MOB_H_
 
+#include <Common/b2Settings.h>
+
 #include "../server_Character.h"
 
 class Mob: public Character {
@@ -16,7 +18,7 @@ protected:
 	bool vulnerable;
 public:
 	// Constructor
-	Mob(unsigned int hp);
+	Mob(unsigned int hp, float32 x, float32 y);
 	// Destroyer
 	virtual ~Mob();
 	// Is currently vulnerable?
@@ -24,6 +26,10 @@ public:
 	// Sets vulnerability (true/false)
 	void setVulnerable(bool vulnerable);
 	virtual void update() {}
+	// Return object type
+	virtual int getObjectType();
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 
 private:
 	// Copy constructor

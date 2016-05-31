@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_WEAPONS_SERVER_RINGTOSSER_H_
 #define SERVER_MODEL_WEAPONS_SERVER_RINGTOSSER_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Weapon.h"
 
 #define RING_TOSSER_MAX_AMMO 10
@@ -19,7 +21,7 @@ public:
 	// Destroyer
 	virtual ~RingTosser();
 	// fire weapon
-	void fire();
+	virtual void fire(float32 x, float32 y);
 private:
 	// Copy constructor
 	RingTosser(const RingTosser&);

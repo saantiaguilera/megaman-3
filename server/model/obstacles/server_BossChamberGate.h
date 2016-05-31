@@ -8,14 +8,14 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_BOSSCHAMBERGATE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_BOSSCHAMBERGATE_H_
 
-#include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
-#define BOSS_CHAMBER_GATE_IS_PASSABLE false
+#include "server_Obstacle.h"
 
 class BossChamberGate: public Obstacle {
 public:
 	// Constructor
-	BossChamberGate();
+	BossChamberGate(float32 x, float32 y);
 	// Destroyer
 	virtual ~BossChamberGate();
 	// Applies effect on character

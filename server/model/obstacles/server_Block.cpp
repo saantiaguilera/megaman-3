@@ -7,14 +7,20 @@
 
 #include "server_Block.h"
 
-#include "../characters/server_Character.h"
+#include <Common/b2Settings.h>
 
-Block::Block() : Obstacle(BLOCK_IS_PASSABLE) {}
+#include "../../game_engine/physics/server_PhysicObject.h"
+#include "../../game_engine/server_Engine.h"
+
+Block::Block(float32 x, float32 y) : Obstacle(x, y) {}
 
 
 Block::~Block() {
 }
 
-void Block::haveEffectOn(Character* character) {
-	// Do not allow to pass
+void Block::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	// If we get hit by a projectile destroy it
+	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
+		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
+	}
 }

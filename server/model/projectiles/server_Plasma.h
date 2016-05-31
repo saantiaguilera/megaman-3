@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_PLASMA_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_PLASMA_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Projectile.h"
 
 #define PLASMA_DAMAGE 1
@@ -15,7 +17,7 @@
 class Plasma: public Projectile {
 public:
 	// Constructor
-	Plasma();
+	Plasma(float32 x, float32 y);
 	// Destroyer
 	virtual ~Plasma();
 private:

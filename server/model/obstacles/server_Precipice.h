@@ -8,14 +8,14 @@
 #ifndef SERVER_MODEL_OBSTACLES_SERVER_PRECIPICE_H_
 #define SERVER_MODEL_OBSTACLES_SERVER_PRECIPICE_H_
 
-#include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
-#define PRECIPICE_IS_PASSABLE false
+#include "server_Obstacle.h"
 
 class Precipice: public Obstacle {
 public:
 	// Constructor
-	Precipice();
+	Precipice(float32 x, float32 y);
 	// Destroyer
 	virtual ~Precipice();
 	// Applies effect on character

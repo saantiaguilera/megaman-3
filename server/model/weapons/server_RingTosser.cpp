@@ -7,6 +7,8 @@
 
 #include "server_RingTosser.h"
 
+#include "../projectiles/server_Ring.h"
+
 RingTosser::RingTosser() : Weapon(RING_TOSSER_MAX_AMMO) {}
 
 
@@ -14,6 +16,9 @@ RingTosser::RingTosser() : Weapon(RING_TOSSER_MAX_AMMO) {}
 RingTosser::~RingTosser() {
 }
 
-void RingTosser::fire() {
-	--ammo;
+void RingTosser::fire(float32 x, float32 y) {
+	if (ammo > 0){
+		--ammo;
+		new Ring(x, y);
+	}
 }

@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_FIRE_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_FIRE_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Projectile.h"
 
 #define FIRE_DAMAGE 6
@@ -15,7 +17,7 @@
 
 class Fire: public Projectile {
 public:
-	Fire();
+	Fire(float32 x, float32 y);
 	virtual ~Fire();
 private:
 	// Copy constructor

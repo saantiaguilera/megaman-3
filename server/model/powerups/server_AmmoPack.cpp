@@ -7,10 +7,16 @@
 
 #include "server_AmmoPack.h"
 
-AmmoPack::AmmoPack(float dropRate, unsigned int effectAmount) :
-	Powerup(dropRate, effectAmount) {
+#include "../characters/server_Character.h"
+#include "../weapons/server_Weapon.h"
+
+AmmoPack::AmmoPack(unsigned int effectAmount, float32 x, float32 y) :
+	Powerup(effectAmount, x, y) {
 }
 
 AmmoPack::~AmmoPack() {
 }
 
+void AmmoPack::haveEffectOn(Character* character) {
+	character->getCurrentWeapon()->increaseAmmoBy(effectAmount);
+}

@@ -7,7 +7,7 @@
 
 #include "server_Plasma.h"
 
-Plasma::Plasma() : Projectile(PLASMA_DAMAGE, Projectile::PLASMA) {}
+Plasma::Plasma(float32 x, float32 y) : Projectile(PLASMA_DAMAGE, Projectile::PLASMA, x, y) {}
 
 
 Plasma::~Plasma() {

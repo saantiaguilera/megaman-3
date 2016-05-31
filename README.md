@@ -4,14 +4,24 @@
 
 > Logging: https://github.com/google/glog
 
+> Physics Engine: http://www.iforce2d.net/b2dtut/setup-linux
 
+### BOX2D Install instructions
+```Bash
+sudo apt install libbox2d-dev 
+```
+
+### Compilation
 ```Bash
 //Santi A
-Client: g++ `find . -name '*.cpp' -not -path './server/*'` -o mclient -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp`
+Client: g++ `find . -name '*.cpp' -not -path './server/*' -not -path './editor/*'` -o mclient -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp`
 Server: g++ `find . -name '*.cpp' -not -path './client/*'` -o mserver -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0` -std=c++11 -lglog
 ```
 
-
+### Run
+```Bash
+Server: ./server port config_filename.json
+```
 ##TODO Santi A
 ----------------------------
 - Pass to .CPP and separate views and controllers from single .H

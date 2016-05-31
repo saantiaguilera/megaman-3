@@ -8,12 +8,12 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_PROJECTILE_H_
 
-#include "../../../common/common_Point.h"
+#include <Common/b2Settings.h>
 
-class Projectile {
+#include "../../game_engine/physics/server_PhysicObject.h"
+
+class Projectile : public PhysicObject{
 public:
-	// my current position
-	Point myPoint;
 	// Type of the projectile
 	enum projectile_types_t { BOMB, FIRE, SPARK, MAGNET, PLASMA, RING } PROJECTILE_TYPE;
 protected:
@@ -21,13 +21,15 @@ protected:
 	unsigned int damage;
 public:
 	// Constructor
-	Projectile( unsigned int damage, projectile_types_t type);
+	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y);
 	// Destroyer
 	virtual ~Projectile();
 	// Return projectile's damage
 	unsigned int getDamage() const;
 	// Return the projectiles type
 	int getProjectileType() const;
+	// Return object type
+	virtual int getObjectType();
 
 private:
 	// Copy constructor

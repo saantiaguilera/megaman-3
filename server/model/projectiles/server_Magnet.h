@@ -8,6 +8,8 @@
 #ifndef SERVER_MODEL_PROJECTILES_SERVER_MAGNET_H_
 #define SERVER_MODEL_PROJECTILES_SERVER_MAGNET_H_
 
+#include <Common/b2Settings.h>
+
 #include "server_Projectile.h"
 
 #define MAGNET_DAMAGE 4
@@ -15,7 +17,7 @@
 class Magnet: public Projectile {
 public:
 	// Constructor
-	Magnet();
+	Magnet(float32 x, float32 y);
 	// Destroyer
 	virtual ~Magnet();
 private:

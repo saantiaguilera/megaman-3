@@ -7,9 +7,8 @@
 
 #include "server_BigEnergyCapsule.h"
 
-BigEnergyCapsule::BigEnergyCapsule() :
-EnergyCapsule(BIG_ENERGY_CAPSULE_DROP_RATE,
-		BIG_ENERGY_CAPSULE_EFFECT_AMMOUNT) {
+BigEnergyCapsule::BigEnergyCapsule(float32 x, float32 y) :
+EnergyCapsule(BIG_ENERGY_CAPSULE_EFFECT_AMMOUNT, x, y) {
 }
 
 BigEnergyCapsule::~BigEnergyCapsule() {
