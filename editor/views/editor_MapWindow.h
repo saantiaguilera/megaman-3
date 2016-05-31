@@ -30,6 +30,11 @@ protected:
     //Different Buttons
     Gtk::Button *backButton;
     Gtk::Button *saveButton;
+    Gtk::EventBox *eventBox;
+
+    // Override mouse events
+    bool on_button_press_event(GdkEventButton *event);
+    bool motion_notify_event( GtkWidget *widget, GdkEventMotion *event );
 
 
    	//signal handlers
