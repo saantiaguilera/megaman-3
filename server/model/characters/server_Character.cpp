@@ -11,6 +11,7 @@
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../serializers/server_AmmoChangeSerializer.h"
 #include "../../serializers/server_HpChangeSerializer.h"
 #include "../../serializers/server_ObjectDestructionSerializer.h"
 #include "../projectiles/server_Projectile.h"
@@ -18,13 +19,14 @@
 
 Character::Character(unsigned int hp) : hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(0) {}
 
-
 Character::~Character() {
 	delete currentWeapon;
 }
 
 void Character::attack() {
 	currentWeapon->fire(myBody->GetPosition().x, myBody->GetPosition().y);
+	AmmoChangeSerializer ammoChangeSerializer(currentWeapon->getAmmo(), getId());
+	// TODO: Add to events queue
 }
 
 unsigned int Character::getHp() const {
@@ -56,8 +58,6 @@ void Character::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
 		Engine::getInstance().markObjectForRemoval(this);
-		ObjectDestructionSerializer objectDestructionSerializer(id, myBody->GetPosition().x, myBody->GetPosition().y);
-		// TODO: Add it to the event list
 	} else {
 		hp -= damage;
 		HpChangeSerializer hpChangeSerializer(getHp(), id);

@@ -8,6 +8,7 @@
 #include "server_Engine.h"
 
 #include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
 #include <Dynamics/b2World.h>
 #include <algorithm>
 #include <iostream>
@@ -15,6 +16,7 @@
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
+#include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
 
@@ -43,6 +45,8 @@ b2World* Engine::getMyWorld() const {
 
 void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
 	objectsToDestroy.push_back(objectToMark);
+	ObjectDestructionSerializer objectDestructionSerializer(objectToMark->getId(), objectToMark->getMyBody()->GetPosition().x, objectToMark->getMyBody()->GetPosition().y);
+	// TODO: Add to events queue
 }
 
 void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
@@ -67,6 +71,7 @@ void Engine::start() {
 	Megaman megaman(&aPlayer, 0,0);
 	charactersList.push_back(&megaman);
 	Bomb* aBomb = new Bomb(0,-5);
+	aBomb->getMyBody()->SetAwake(false);
 
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);

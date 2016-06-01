@@ -18,3 +18,7 @@ void Weapon::increaseAmmoBy(unsigned int ammoAmount) {
 	// TODO: If weapon has max ammo validate here
 	ammo += ammoAmount;
 }
+
+unsigned int Weapon::getAmmo() const {
+	return ammo;
+}

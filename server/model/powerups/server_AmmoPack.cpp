@@ -7,6 +7,7 @@
 
 #include "server_AmmoPack.h"
 
+#include "../../serializers/server_AmmoChangeSerializer.h"
 #include "../characters/server_Character.h"
 #include "../weapons/server_Weapon.h"
 
@@ -19,4 +20,6 @@ AmmoPack::~AmmoPack() {
 
 void AmmoPack::haveEffectOn(Character* character) {
 	character->getCurrentWeapon()->increaseAmmoBy(effectAmount);
+	AmmoChangeSerializer ammoChangeSerializer(character->getCurrentWeapon()->getAmmo(), character->getId());
+	// TODO: Add to events queue
 }
