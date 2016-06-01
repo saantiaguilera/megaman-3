@@ -16,6 +16,7 @@
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
+#include "../serializers/server_MovementSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
@@ -60,7 +61,7 @@ Engine& Engine::getInstance() {
     return instance;
 }
 
-void Engine::start() {
+void Engine::start(EventContext* context) {
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
 	// TODO: TESTING
@@ -78,7 +79,12 @@ void Engine::start() {
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
-			// TODO: Who should add the event to the events list?
+			// TODO: For testing events queue
+			// TODO: MAKE A METHOD IN PHYSIC OBJECT TO GET THE POSITION TO NOT VIOLATE ENCAPSULATION
+			MovementSerializer serializer((*it)->getId(), (*it)->getMyBody()->GetPosition().x, (*it)->getMyBody()->GetPosition().y);
+			serializer.serialize();
+			context->dispatchEvent(serializer.getSerialized());
+			// TODO: Who should add the event to the events list? Yes, inside the update method
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();

@@ -18,7 +18,7 @@
 
 class ClientProxy;
 
-class SenderWorker: public Thread, EventContext {
+class SenderWorker: public Thread, public EventContext {
 private:
 	// The clients to send the data to
 	std::vector<ClientProxy*>* clients;

@@ -44,7 +44,7 @@ public:
 	// Increase the hp of the character by amount
 	void increaseHP(unsigned int amount);
 	// Update the AI (make it pure virtual later)
-	virtual void update() {}
+	virtual void update() {};
 	// Return my current weapon
 	Weapon* getCurrentWeapon() const;
 	// Return my hp as a string

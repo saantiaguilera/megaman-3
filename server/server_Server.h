@@ -14,6 +14,8 @@
 #include "../common/common_Socket.h"
 #include "networking/server_ClientProxy.h"
 
+class EventContext;
+
 #define MAX_QUEUE_SIZE 128
 
 class Server {
@@ -34,7 +36,7 @@ public:
 	// and calls the rest of the methods
 	void run();
 	// Start game engine
-	void startGameEngine();
+	void startGameEngine(EventContext* context);
 
 public:
 	// Copy constructor

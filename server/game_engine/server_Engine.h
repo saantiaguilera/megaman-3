@@ -15,6 +15,7 @@
 
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
+#include "server_EventContext.h"
 
 class b2World;
 class ContactListener;
@@ -56,7 +57,7 @@ public:
 	// Destroyer
 	virtual ~Engine();
 	// Get started
-	void start();
+	void start(EventContext* context);
 	// Add new player to the game
 	void addNewPlayer(const std::string& name);
 	// Return players list
