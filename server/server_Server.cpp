@@ -9,7 +9,6 @@
 
 #include <iterator>
 
-#include "../common/common_TSQueue.h"
 #include "game_engine/server_Engine.h"
 #include "networking/server_AcceptorWorker.h"
 #include "networking/server_SenderWorker.h"
@@ -36,7 +35,7 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 void Server::run() {
 //	callAcceptorWorker();
 	bool keepOnListening = true;
-	TSQueue<std::string> eventsList;
+	ConcurrentList<std::string> eventsList;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
 	acceptorWorker.start();
 	SenderWorker senderWorker(&clients, &eventsList);

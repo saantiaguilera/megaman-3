@@ -68,6 +68,18 @@ public:
 		return size;
 	}
 
+	Element pop_front() {
+		mutex.lock();
+
+		Element element = elementList.front();
+
+		elementList.pop_front();
+
+		mutex.unlock();
+
+		return element;
+	}
+
 	std::list<Element> unblock() {
 		return elementList;
 	}
