@@ -19,7 +19,6 @@ Obstacle::Obstacle(float32 x, float32 y) {
 	b2BodyDef obstacleBodyDef;
 	obstacleBodyDef.type = b2_staticBody;
 	obstacleBodyDef.fixedRotation = true;
-	// TODO: send x and y positions in constructor
 	obstacleBodyDef.position.Set(x,y);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&obstacleBodyDef);

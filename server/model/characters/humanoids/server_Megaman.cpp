@@ -13,7 +13,10 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../../game_engine/server_EventContext.h"
 #include "../../../game_engine/server_Player.h"
+#include "../../../serializers/server_HpChangeSerializer.h"
+#include "../../../serializers/server_LifeChangeSerializer.h"
 #include "../../../server_Logger.h"
 #include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"
@@ -84,7 +87,13 @@ void Megaman::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
 		getHumanOperator()->decreasePlayerLives();
+		LifeChangeSerializer lifeChangeSerializer(getHumanOperator()->getId());
+		lifeChangeSerializer.serialize();
+		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer.getSerialized());
 	} else {
 		hp -= damage;
+		HpChangeSerializer hpChangeSerializer(getHp(), id);
+		hpChangeSerializer.serialize();
+		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer.getSerialized());
 	}
 }

@@ -46,8 +46,6 @@ b2World* Engine::getMyWorld() const {
 
 void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
 	objectsToDestroy.push_back(objectToMark);
-	ObjectDestructionSerializer objectDestructionSerializer(objectToMark->getId(), objectToMark->getPositionX(), objectToMark->getPositionY());
-	// TODO: Add to events queue
 }
 
 void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
@@ -78,18 +76,18 @@ void Engine::start() {
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
-			// TODO: For testing events queue
-			// TODO: MAKE A METHOD IN PHYSIC OBJECT TO GET THE POSITION TO NOT VIOLATE ENCAPSULATION
 			MovementSerializer serializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			serializer.serialize();
 			context->dispatchEvent(serializer.getSerialized());
-			// TODO: Who should add the event to the events list? Yes, inside the update method
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
 		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 		for (; it != end; ++it) {
 			PhysicObject* objectToDelete = *it;
+			ObjectDestructionSerializer objectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			objectDestructionSerializer.serialize();
+			context->dispatchEvent(objectDestructionSerializer.getSerialized());
 
 			//delete object... physics body is destroyed here
 			delete objectToDelete;

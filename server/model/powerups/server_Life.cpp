@@ -7,6 +7,8 @@
 
 #include "server_Life.h"
 
+#include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
 #include "../../game_engine/server_Player.h"
 #include "../../serializers/server_LifeChangeSerializer.h"
 #include "../characters/humanoids/server_Megaman.h"
@@ -19,5 +21,6 @@ Life::~Life() {
 void Life::haveEffectOn(Character* character) {
 	((Megaman*)character)->getHumanOperator()->increasePlayerLives();
 	LifeChangeSerializer lifeChangeSerializer(((Megaman*)character)->getHumanOperator()->getId());
-	// TODO: Add to events queue
+	lifeChangeSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer.getSerialized());
 }
