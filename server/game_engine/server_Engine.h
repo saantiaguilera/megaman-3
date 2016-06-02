@@ -50,6 +50,8 @@ private:
 	std::vector<PhysicObject*> objectsToDestroy;
 	// Player lives intial qty
 	unsigned int playerInitialLives;
+	// Context for sending messages
+	EventContext* context;
 
 public:
 	// Return logger instance
@@ -57,7 +59,7 @@ public:
 	// Destroyer
 	virtual ~Engine();
 	// Get started
-	void start(EventContext* context);
+	void start();
 	// Add new player to the game
 	void addNewPlayer(const std::string& name);
 	// Return players list
@@ -86,6 +88,8 @@ public:
 	void setPlayerInitialLives(unsigned int playerInitialLives);
 	// Initialize engines world
 	void initializeWorld();
+	EventContext* getContext() const;
+	void setContext(EventContext* context);
 
 private:
 	// Constructor

@@ -51,6 +51,7 @@ public:
 	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith);
 	// Return my body
 	b2Body* getMyBody() const;
+	// Return
 
 private:
 	// Copy constructor

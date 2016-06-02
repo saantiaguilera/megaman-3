@@ -61,7 +61,7 @@ Engine& Engine::getInstance() {
     return instance;
 }
 
-void Engine::start(EventContext* context) {
+void Engine::start() {
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
 	// TODO: TESTING
@@ -69,8 +69,7 @@ void Engine::start(EventContext* context) {
 //    Met met;
 //	charactersList.push_back(&met);
 	Player aPlayer("Lan Hikari", playerInitialLives);
-	Megaman megaman(&aPlayer, 0,0);
-	charactersList.push_back(&megaman);
+	charactersList.push_back(aPlayer.getMegaman());
 	Bomb* aBomb = new Bomb(0,-5);
 	aBomb->getMyBody()->SetAwake(false);
 
@@ -163,4 +162,12 @@ void Engine::initializeWorld(){
 	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
 	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
 	positionIterations = this->positionIterations;   //how strongly to correct position
+}
+
+EventContext* Engine::getContext() const {
+	return context;
+}
+
+void Engine::setContext(EventContext* context) {
+	this->context = context;
 }

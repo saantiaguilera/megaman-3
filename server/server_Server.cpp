@@ -41,11 +41,14 @@ void Server::run() {
 	SenderWorker senderWorker(&clients, &eventsQueue);
 	senderWorker.start();
 
+	// Set the context for dispatching events
+	Engine::getInstance().setContext(&senderWorker);
+
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning()){
 		// TODO: uncomment for start message
 		if(Engine::getInstance().isReadyToStart())
-		startGameEngine(&senderWorker);
+		startGameEngine();
 	}
 
 	// Uncomment to test sending
@@ -56,7 +59,7 @@ void Server::run() {
 	senderWorker.join();
 }
 
-void Server::startGameEngine(EventContext* context){
+void Server::startGameEngine(){
     ConfigParser configParser(configFilename);
     configParser.parseConfigDoc();
     // Initialize with configs set in config file
@@ -67,5 +70,5 @@ void Server::startGameEngine(EventContext* context){
 	Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
 	Engine::getInstance().initializeWorld();
 
-	Engine::getInstance().start(context);
+	Engine::getInstance().start();
 }
