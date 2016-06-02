@@ -12,7 +12,7 @@
 class EditorController;
 
 
-class MapWindow : public Gtk::Window{
+class MapWindow : public Gtk::Window {
 public:
 	//Constructors
     MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
@@ -27,19 +27,29 @@ protected:
     //Delegate
     EditorController *delegate;
 
+    Gtk::Image *draggingImage;
+
     //Different Buttons
     Gtk::Button *backButton;
     Gtk::Button *saveButton;
     Gtk::EventBox *eventBox;
+    Gtk::ScrolledWindow *scrolledWindow;
+    Gtk::Fixed *layoutWindow;
+
+    Gtk::Button *blockButton;
+
 
     // Override mouse events
     bool on_button_press_event(GdkEventButton *event);
-    bool motion_notify_event( GtkWidget *widget, GdkEventMotion *event );
-
+	bool on_motion_notify_event(GdkEventMotion*event);
 
    	//signal handlers
     void backButtonWasTapped();
     void saveButtonWasTapped();
+
+
+    void blockButtonWasTapped();
+
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */
