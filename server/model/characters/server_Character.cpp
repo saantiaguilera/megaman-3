@@ -24,7 +24,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	currentWeapon->fire(myBody->GetPosition().x, myBody->GetPosition().y);
+	currentWeapon->fire(getPositionX(), getPositionY());
 	AmmoChangeSerializer ammoChangeSerializer(currentWeapon->getAmmo(), getId());
 	// TODO: Add to events queue
 }

@@ -46,7 +46,7 @@ b2World* Engine::getMyWorld() const {
 
 void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
 	objectsToDestroy.push_back(objectToMark);
-	ObjectDestructionSerializer objectDestructionSerializer(objectToMark->getId(), objectToMark->getMyBody()->GetPosition().x, objectToMark->getMyBody()->GetPosition().y);
+	ObjectDestructionSerializer objectDestructionSerializer(objectToMark->getId(), objectToMark->getPositionX(), objectToMark->getPositionY());
 	// TODO: Add to events queue
 }
 
@@ -80,7 +80,7 @@ void Engine::start() {
 			(*it)->update();
 			// TODO: For testing events queue
 			// TODO: MAKE A METHOD IN PHYSIC OBJECT TO GET THE POSITION TO NOT VIOLATE ENCAPSULATION
-			MovementSerializer serializer((*it)->getId(), (*it)->getMyBody()->GetPosition().x, (*it)->getMyBody()->GetPosition().y);
+			MovementSerializer serializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			serializer.serialize();
 			context->dispatchEvent(serializer.getSerialized());
 			// TODO: Who should add the event to the events list? Yes, inside the update method

@@ -60,7 +60,7 @@ Player* Megaman::getHumanOperator() const {
 }
 
 void Megaman::update() {
-	std::cout << "Megaman's position: " << myBody->GetPosition().x << "," << myBody->GetPosition().y << std::endl;
+	std::cout << "Megaman's position: " << getPositionX() << "," << getPositionY() << std::endl;
 	std::cout << "Megaman's health: " << getHp() << std::endl;
 }
 

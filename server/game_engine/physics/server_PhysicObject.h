@@ -51,7 +51,10 @@ public:
 	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith);
 	// Return my body
 	b2Body* getMyBody() const;
-	// Return
+	// Return my x position
+	float getPositionX() const;
+	// Return my y position
+	float getPositionY() const;
 
 private:
 	// Copy constructor

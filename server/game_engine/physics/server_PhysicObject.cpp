@@ -52,3 +52,11 @@ void PhysicObject::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
 b2Body* PhysicObject::getMyBody() const {
 	return myBody;
 }
+
+float PhysicObject::getPositionX() const {
+	return myBody->GetPosition().x;
+}
+
+float PhysicObject::getPositionY() const {
+	return myBody->GetPosition().y;
+}
