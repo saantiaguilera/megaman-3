@@ -10,23 +10,17 @@
 #include "views/editor_MainWindow.h"
 #include <iostream>
 #include <exception>
+#include "models/editor_EditorMapParser.h"
+#include "models/editor_EditorMap.h"
+#include "controllers/editor_EditorController.h"
 
 int main(int argc, char *argv[]) {
-	Gtk::Main kit(argc, argv);
 
-	Glib::RefPtr<Gtk::Builder> builder;
+	std::cout<<argc<<argv[0]<<std::endl;
 
-	try {
-		builder = Gtk::Builder::create_from_file("editor/editor.glade");
-	} catch (Glib::FileError& e) {
-		std::cout<<e.what()<<std::endl;
-	}
+	EditorController editorController = EditorController(argc, argv);
 
-	MainWindow *mainWindow = 0;
-
-	builder->get_widget_derived("mainWindow", mainWindow);
-
-	Gtk::Main::run(*mainWindow);
+	editorController.begin();
 
 	return EXIT_SUCCESS;
 }
