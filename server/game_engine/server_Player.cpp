@@ -7,8 +7,10 @@
 
 #include "server_Player.h"
 
+#include "../serializers/server_ObjectCreationSerializer.h"
 #include "../server_Logger.h"
 #include "server_Engine.h"
+#include "server_EventContext.h"
 
 // Initialize ids value
 unsigned int Player::id = 0;
@@ -22,6 +24,9 @@ Player::Player(const std::string& name, unsigned int initialLives) : name(name),
 	if (id == 1)
 		admin = true;
 	megaman = new Megaman(this, 0, 0);
+	ObjectCreationSerializer objectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
+	objectCreationSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer.getSerialized());
 }
 
 bool Player::isAdmin() const {
