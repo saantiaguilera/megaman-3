@@ -37,10 +37,6 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
       keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
       break;
 
-    case KEY_UP:
-      keyMap.setUp(gdkEvent->type == GDK_KEY_PRESS);
-      break;
-
     case KEY_DOWN:
       keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
       break;

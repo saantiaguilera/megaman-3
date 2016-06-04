@@ -2,19 +2,18 @@
 #define CLIENT_KEYMAP_H_
 
 #include <string>
-#include <sstream>  
+#include <sstream>
 
 class KeyMap {
 private:
-  bool up, down, left, right, shoot, jump;
+  bool down, left, right, shoot, jump;
 
 public:
-  KeyMap(bool up = false,
-          bool down = false,
+  KeyMap(bool down = false,
           bool left = false,
           bool right = false,
           bool shoot = false,
-          bool jump = false) : up(up), down(down), left(left), right(right),
+          bool jump = false) : down(down), left(left), right(right),
                         shoot(shoot), jump(jump) {
   }
 
@@ -24,8 +23,6 @@ public:
 
   std::string toString() {
     std::ostringstream os;
-
-    os << "Up::" << (up ? "true" : "false") << "\n";
     os << "Down::" << (down ? "true" : "false") << "\n";
     os << "Left::" << (left ? "true" : "false") << "\n";
     os << "Right::" << (right ? "true" : "false") << "\n";
@@ -33,10 +30,6 @@ public:
     os << "Jump::" << (jump ? "true" : "false") << "\n";
 
     return os.str();
-  }
-
-  void setUp(bool u) {
-    up = u;
   }
 
   void setDown(bool d) {
@@ -57,10 +50,6 @@ public:
 
   void setJumping(bool j) {
     jump = j;
-  }
-
-  bool isUp() {
-    return up;
   }
 
   //Holy. So salty ::salt::
