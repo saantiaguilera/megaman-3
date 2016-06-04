@@ -1,5 +1,10 @@
 # Megaman X3 in C++
 
+#TODO
+- Add chat
+
+
+
 > JSON Parser: https://github.com/miloyip/rapidjson
 
 > Logging: https://github.com/google/glog
