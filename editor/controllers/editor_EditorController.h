@@ -8,7 +8,7 @@
 #ifndef EDITOR_CONTROLLERS_EDITOR_EDITORCONTROLLER_H_
 #define EDITOR_CONTROLLERS_EDITOR_EDITORCONTROLLER_H_
 
-#include "../models/editor_EditorMap.h"
+#include "../../common/common_MapViewParser.h"
 #include "../views/editor_MainWindow.h"
 #include "../views/editor_MapWindow.h"
 
@@ -18,9 +18,9 @@ public:
 	virtual ~EditorController();
 	void begin();
 
-	void presentMainWindowSavingMap(EditorMap *map);
+	void presentMainWindowSavingMap(MapView *map);
 	void presentMainWindowWithoutSavingMap();
-	void presentMapWindowWithMap(EditorMap *map);
+	void presentMapWindowWithMap(MapView *map);
 
 private:
 	Glib::RefPtr<Gtk::Builder> builder;

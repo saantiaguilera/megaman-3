@@ -10,8 +10,6 @@
 #include "views/editor_MainWindow.h"
 #include <iostream>
 #include <exception>
-#include "models/editor_EditorMapParser.h"
-#include "models/editor_EditorMap.h"
 #include "controllers/editor_EditorController.h"
 
 int main(int argc, char *argv[]) {

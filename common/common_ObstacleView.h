@@ -8,13 +8,13 @@
 #ifndef EDITOR_MODELS_OBSTACLES_EDITOR_EDITOROBSTACLE_H_
 #define EDITOR_MODELS_OBSTACLES_EDITOR_EDITOROBSTACLE_H_
 
-#include "../../../common/common_Point.h"
+#include "common_Point.h"
 
-class EditorObstacle {
+class ObstacleView {
 public:
-	EditorObstacle(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth);
-	EditorObstacle();
-	virtual ~EditorObstacle();
+	ObstacleView(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth);
+	ObstacleView();
+	virtual ~ObstacleView();
 
 	unsigned int getHeight();
 	unsigned int getWidth();
