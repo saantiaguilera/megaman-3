@@ -30,9 +30,7 @@ MapConstants::MapConstants() {
 	imageMap[ObstacleViewTypeSmallAmmoPack] = "./res/drawable/powerups/ammo/small_ammo.png";
 }
 
-MapConstants::~MapConstants() {
-	// TODO Auto-generated destructor stub
-}
+MapConstants::~MapConstants() {}
 
 std::string MapConstants::getImagePathWithObstacleViewType(ObstacleViewType obstacleViewType) {
 	return imageMap[obstacleViewType];

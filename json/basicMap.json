@@ -2,7 +2,7 @@
   "map": {
     "id": 1,
     "name": "Bombman",
-    "objects": [
+    "obstacles": [
       {
         "x": 0,
         "y": 0,
