@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "server_Serializer.h"
+#include "../../common/common_Serializer.h"
 
 class NewPlayerSerializer: public Serializer {
 private:

@@ -8,7 +8,7 @@
 #ifndef SERVER_SERIALIZERS_SERVER_AMMOCHANGESERIALIZER_H_
 #define SERVER_SERIALIZERS_SERVER_AMMOCHANGESERIALIZER_H_
 
-#include "server_Serializer.h"
+#include "../../common/common_Serializer.h"
 
 class AmmoChangeSerializer: public Serializer {
 private:

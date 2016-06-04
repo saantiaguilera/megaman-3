@@ -5,7 +5,7 @@
  *      Author: mastanca
  */
 
-#include "server_Serializer.h"
+#include "common_Serializer.h"
 
 #include <sstream>
 
