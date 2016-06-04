@@ -20,7 +20,8 @@ CODE - LENGTH - NAME
 
 #define START_GAME 3             // C (admin) -> S -> Cs
 /*
-CODE - LENGTH - MAPID
+C->S: CODE - LENGTH - MAPID
+S->C: CODE - LENGTH - JSONMAP
 */
 
 #define SEND_MAP 4               // S -> Cs
