@@ -20,6 +20,8 @@ private:
 	bool connected;
 	// The actual socket
 	Socket socket;
+	// Check result of send
+	void checkConnection(int sendResult);
 public:
 	// Constructor
 	ClientProxy();
