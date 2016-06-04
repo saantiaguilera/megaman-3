@@ -17,6 +17,7 @@ protected:
 public:
   PlayerConnectedSerializer(std::string name) : Serializer(), name(name) {
     messageCode = PLAYER_CONNECTED;
+    serialize();
   }
 
   ~PlayerConnectedSerializer() {

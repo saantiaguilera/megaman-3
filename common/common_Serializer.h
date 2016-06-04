@@ -20,7 +20,8 @@ protected:
 	// The serialized string
 	std::string serialized;
 
-	// serializer method, pure virtual
+	// serializer method, pure virtual.
+	//@Note: You should call it accordingly in the subclass. The base class wont call it anywhere
 	virtual void serialize() = 0;
 public:
 	// Constructor for messages with no id

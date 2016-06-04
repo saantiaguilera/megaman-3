@@ -20,7 +20,6 @@ Serializer::~Serializer() {
 }
 
 const std::string& Serializer::getSerialized() {
-	this->serialize();
 	return serialized;
 }
 

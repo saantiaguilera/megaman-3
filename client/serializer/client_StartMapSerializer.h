@@ -22,6 +22,7 @@ protected:
 public:
   StartMapSerializer(int mapId) : Serializer(), mapId(mapId) {
     messageCode = START_GAME;
+    serialize();
   }
 
   ~StartMapSerializer() {
