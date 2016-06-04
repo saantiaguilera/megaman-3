@@ -4,7 +4,7 @@
 #include "client_GameView.h"
 
 GameView::GameView() : Gtk::Window() {
- set_size_request(1920, 1080);
+ set_size_request(800, 600); //TODO
 
  Gtk::Socket *socket = manage(new Gtk::Socket());
 
@@ -37,6 +37,10 @@ bool GameView::onLoopSDL() {
    std::cout << "Something bad happened" << std::endl;
    return false;
  }
+}
+
+void GameView::loadMapFromAsset(MapView *mapView) {
+  //TODO
 }
 
 bool GameView::onInitSDL(::Window windowId) {

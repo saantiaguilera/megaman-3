@@ -35,4 +35,3 @@ MapConstants::~MapConstants() {}
 std::string MapConstants::getImagePathWithObstacleViewType(ObstacleViewType obstacleViewType) {
 	return imageMap[obstacleViewType];
 }
-
