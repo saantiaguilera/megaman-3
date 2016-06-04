@@ -10,12 +10,13 @@
  */
 class OnEnterPressedInterface {
   public:
-    virtual void onEnterPressed(Gtk::Entry *editText) = 0;
+    virtual void onEnterPressed(std::string ipport, std::string name) = 0;
 };
 
 class MainScreenView : public Gtk::Window {
 private:
-    Gtk::Entry *editText = nullptr;
+    Gtk::Entry *ipText = nullptr;
+    Gtk::Entry *nameText = nullptr;
     Gtk::Spinner *progressBar = nullptr;
     Gtk::Label *resultText = nullptr;
 

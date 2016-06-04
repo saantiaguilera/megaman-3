@@ -11,18 +11,23 @@
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../serializers/server_AmmoChangeSerializer.h"
+#include "../../serializers/server_HpChangeSerializer.h"
+#include "../../serializers/server_ObjectDestructionSerializer.h"
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
 Character::Character(unsigned int hp) : hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(0) {}
-
 
 Character::~Character() {
 	delete currentWeapon;
 }
 
 void Character::attack() {
-	currentWeapon->fire(myBody->GetPosition().x, myBody->GetPosition().y);
+	currentWeapon->fire(getPositionX(), getPositionY());
+	AmmoChangeSerializer ammoChangeSerializer(currentWeapon->getAmmo(), getId());
+	ammoChangeSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(&ammoChangeSerializer);
 }
 
 unsigned int Character::getHp() const {
@@ -31,11 +36,17 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
+	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	hpChangeSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 }
 
 void Character::increaseHP(unsigned int amount) {
 	// TODO: if they have a max hp validate here
 	hp += amount;
+	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	hpChangeSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 }
 
 Weapon* Character::getCurrentWeapon() const {
@@ -52,6 +63,9 @@ void Character::decreaseHp(float damage) {
 		Engine::getInstance().markObjectForRemoval(this);
 	} else {
 		hp -= damage;
+		HpChangeSerializer hpChangeSerializer(getHp(), id);
+		hpChangeSerializer.serialize();
+		Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 	}
 }
 

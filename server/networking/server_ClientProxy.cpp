@@ -7,11 +7,11 @@
 
 #include "server_ClientProxy.h"
 
-#include <errno.h>
 #include <netinet/in.h>
 #include <syslog.h>
 #include <cstring>
-#include <iostream>
+
+#include "../../common/common_Serializer.h"
 
 #define MAX_BUFFER_SIZE 10
 
@@ -48,16 +48,23 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 	char* buffer = new char[messageLength + 1];
 	buffer[messageLength] = 0;
 	memset(&buffer[0], 0, sizeof(*buffer));
-	if (socket.receive(&buffer[0], MAX_BUFFER_SIZE) == -1) {
+	if (socket.receive(&buffer[0], messageLength) == -1) {
 		syslog(LOG_ERR, "There was an error receiving from socket");
 	} else {
 		incomingData += buffer;
 	}
 }
 
-void ClientProxy::send(const std::string& data) {
-	if (this->socket.send((char*) data.c_str(), data.length()) == -1) {
-		syslog(LOG_ERR, "There was an error while sending data %s",
-				strerror(errno));
-	}
+void ClientProxy::send(Serializer* serializer) {
+	// Send message code
+	int messageCode = htonl(serializer->getMessageCode());
+	socket.send((char*) &messageCode, sizeof(int));
+	// TODO: Log receive error
+
+	// Send message length
+	int messageLength = htonl(serializer->getMessageLength());
+	socket.send((char*) &messageLength, sizeof(unsigned int));
+	// TODO: Log receive error
+
+	socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
 }

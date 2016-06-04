@@ -18,7 +18,7 @@
 
 Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 		effectAmount(effectAmount) {
-	// TODO: Use sensors for powerups picking and field of view
+	// TODO: Use sensors for powerups field of view
 	b2BodyDef powerupBodyDef;
 	powerupBodyDef.type = b2_staticBody;
 	powerupBodyDef.position.Set(x,y);
@@ -38,6 +38,7 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
+	myBody->GetFixtureList()->SetSensor(true);
 }
 
 Powerup::~Powerup() {

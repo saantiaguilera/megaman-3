@@ -55,6 +55,10 @@ void Socket::build(char *ip, const char *port) {
 	this->fd = socket(this->result->ai_family, this->result->ai_socktype,
 			this->result->ai_protocol);
 
+	// TODO: Erase before production
+	int optval = 1;
+	setsockopt(this->fd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval);
+
 	if (this->fd == -1) {
 		syslog(LOG_ERR, "There was an error when creating socket, "
 				"socket fd was -1");
@@ -80,6 +84,10 @@ int Socket::bind() {
 	int anotherfd = socket(this->result->ai_family, this->result->ai_socktype,
 			this->result->ai_protocol);
 	this->fd = anotherfd;
+
+	// TODO: Erase before production
+	int optval = 1;
+	setsockopt(this->fd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval);
 
 	if (::bind(this->fd, this->result->ai_addr, this->result->ai_addrlen)
 			== -1) {

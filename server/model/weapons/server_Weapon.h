@@ -27,6 +27,8 @@ public:
 	virtual void fire(float32 x, float32 y) = 0;
 	// Increase ammo by the amount given
 	void increaseAmmoBy(unsigned int ammoAmount);
+	// Return current ammo
+	unsigned int getAmmo() const;
 
 private:
 	// Copy constructor

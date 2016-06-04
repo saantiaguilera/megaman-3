@@ -8,6 +8,7 @@
 #include "server_Engine.h"
 
 #include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
 #include <Dynamics/b2World.h>
 #include <algorithm>
 #include <iostream>
@@ -15,6 +16,8 @@
 
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/projectiles/server_Bomb.h"
+#include "../serializers/server_MovementSerializer.h"
+#include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
 
@@ -64,22 +67,27 @@ void Engine::start() {
 //    Met met;
 //	charactersList.push_back(&met);
 	Player aPlayer("Lan Hikari", playerInitialLives);
-	Megaman megaman(&aPlayer, 0,0);
-	charactersList.push_back(&megaman);
+	charactersList.push_back(aPlayer.getMegaman());
 	Bomb* aBomb = new Bomb(0,-5);
+	aBomb->getMyBody()->SetAwake(false);
 
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
-			// TODO: Who should add the event to the events list?
+			MovementSerializer serializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			serializer.serialize();
+			context->dispatchEvent(&serializer);
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
 		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 		for (; it != end; ++it) {
 			PhysicObject* objectToDelete = *it;
+			ObjectDestructionSerializer objectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			objectDestructionSerializer.serialize();
+			context->dispatchEvent(&objectDestructionSerializer);
 
 			//delete object... physics body is destroyed here
 			delete objectToDelete;
@@ -152,4 +160,12 @@ void Engine::initializeWorld(){
 	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
 	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
 	positionIterations = this->positionIterations;   //how strongly to correct position
+}
+
+EventContext* Engine::getContext() const {
+	return context;
+}
+
+void Engine::setContext(EventContext* context) {
+	this->context = context;
 }

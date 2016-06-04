@@ -15,6 +15,7 @@
 
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
+#include "server_EventContext.h"
 
 class b2World;
 class ContactListener;
@@ -49,6 +50,8 @@ private:
 	std::vector<PhysicObject*> objectsToDestroy;
 	// Player lives intial qty
 	unsigned int playerInitialLives;
+	// Context for sending messages
+	EventContext* context;
 
 public:
 	// Return logger instance
@@ -85,6 +88,8 @@ public:
 	void setPlayerInitialLives(unsigned int playerInitialLives);
 	// Initialize engines world
 	void initializeWorld();
+	EventContext* getContext() const;
+	void setContext(EventContext* context);
 
 private:
 	// Constructor

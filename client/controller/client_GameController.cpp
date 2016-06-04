@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include "../concurrent/client_Event.h"
-#include "concurrent/event/client_SendKeyMapEvent.h"
-#include "concurrent/event/client_QuitEvent.h"
+#include "../event/client_SendKeyMapEvent.h"
+#include "../event/client_QuitEvent.h"
 #include "client_GameController.h"
 
 GameController::~GameController() {
@@ -35,10 +35,6 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
 
     case KEY_RIGHT:
       keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
-      break;
-
-    case KEY_UP:
-      keyMap.setUp(gdkEvent->type == GDK_KEY_PRESS);
       break;
 
     case KEY_DOWN:

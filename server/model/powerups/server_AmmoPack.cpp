@@ -7,6 +7,9 @@
 
 #include "server_AmmoPack.h"
 
+#include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
+#include "../../serializers/server_AmmoChangeSerializer.h"
 #include "../characters/server_Character.h"
 #include "../weapons/server_Weapon.h"
 
@@ -19,4 +22,7 @@ AmmoPack::~AmmoPack() {
 
 void AmmoPack::haveEffectOn(Character* character) {
 	character->getCurrentWeapon()->increaseAmmoBy(effectAmount);
+	AmmoChangeSerializer ammoChangeSerializer(character->getCurrentWeapon()->getAmmo(), character->getId());
+	ammoChangeSerializer.serialize();
+	Engine::getInstance().getContext()->dispatchEvent(&ammoChangeSerializer);
 }

@@ -7,12 +7,11 @@
 #include "../view/client_GameView.h"
 #include "../concurrent/client_Looper.h"
 
-#define KEY_UP GDK_KEY_Up
 #define KEY_DOWN GDK_KEY_Down
 #define KEY_LEFT GDK_KEY_Left
 #define KEY_RIGHT GDK_KEY_Right
 #define KEY_SHOOT GDK_KEY_s
-#define KEY_JUMP GDK_KEY_a
+#define KEY_JUMP GDK_KEY_Up
 
 class GameController : public Controller, private OnKeyPressListener {
 private:

@@ -9,30 +9,34 @@
 #define SERVER_NETWORKING_SERVER_SENDERWORKER_H_
 
 #include <string>
+#include <vector>
 
+#include "../../common/common_ConcurrentList.h"
+#include "../../common/common_Serializer.h"
 #include "../../common/common_Thread.h"
-#include "../../common/common_TSQueue.h"
+#include "../game_engine/server_EventContext.h"
+#include "server_ClientProxy.h"
 
 class ClientProxy;
 
-class SenderWorker: public Thread {
+class SenderWorker: public Thread, public EventContext {
 private:
 	// The clients to send the data to
 	std::vector<ClientProxy*>* clients;
 	// The events list (Should be thread safe)
 	// TODO: Maybe use an event class? (code, size, message)
-	TSQueue<std::string>* eventsQueue;
+	ConcurrentList<Serializer*>* eventsQueue;
 	// Keep on running?
 	bool keepRunning;
 public:
 	// Constructor
-	SenderWorker(std::vector<ClientProxy*>* clients, TSQueue<std::string>* eventsQueue);
+	SenderWorker(std::vector<ClientProxy*>* clients, ConcurrentList<Serializer*>* eventsQueue);
 	// Destroyer
 	virtual ~SenderWorker();
 	// Run the worker
 	void run();
-	// Push an event to send
-	void pushEvent(const std::string& event);
+	// Push an event
+	virtual void dispatchEvent(Serializer* serializer);
 	// Toogle keep running
 	void setKeepRunning(bool keepRunning);
 };

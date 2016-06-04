@@ -10,6 +10,8 @@
 
 #include <Common/b2Settings.h>
 
+class Powerup;
+
 #define BIG_AMMO_PACK_DROP_RATE 0.05
 #define BIG_ENERGY_CAPSULE_DROP_RATE 0.05
 #define LIFE_DROP_RATE 0.01
@@ -27,6 +29,8 @@ public:
 	virtual ~LootGenerator();
 	// Generate loot according to drop rates at position x y
 	void generateLootAt(float32 x, float32 y);
+	// Push dropped event
+	void notifyNewLootAt(Powerup* powerup, float32 x, float32 y);
 private:
 	// Copy constructor
 	LootGenerator(const LootGenerator&);

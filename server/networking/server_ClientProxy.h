@@ -12,6 +12,8 @@
 
 #include "../../common/common_Socket.h"
 
+class Serializer;
+
 class ClientProxy {
 private:
 	// Flag to check status of the socket
@@ -30,7 +32,7 @@ public:
 	// Receives incomingData from the net
 	void receive(int& messageCode, unsigned int& messageLength, std::string& incomingData);
 	// Sends data over the net, through the socket
-	void send(const std::string& data);
+	void send(Serializer* serializer);
 };
 
 #endif /* SRC_SERVER_SERVER_CLIENTPROXY_H_ */

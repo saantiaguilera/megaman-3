@@ -9,7 +9,6 @@
 
 #include <iterator>
 
-#include "../common/common_TSQueue.h"
 #include "game_engine/server_Engine.h"
 #include "networking/server_AcceptorWorker.h"
 #include "networking/server_SenderWorker.h"
@@ -34,23 +33,23 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
-//	callAcceptorWorker();
+	startGameEngine();
 	bool keepOnListening = true;
-	TSQueue<std::string> eventsList;
+	ConcurrentList<Serializer*> eventsQueue;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
 	acceptorWorker.start();
-	SenderWorker senderWorker(&clients, &eventsList);
+	SenderWorker senderWorker(&clients, &eventsQueue);
 	senderWorker.start();
+
+	// Set the context for dispatching events
+	Engine::getInstance().setContext(&senderWorker);
 
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning()){
-		// TODO: uncomment for start message
-//		if(Engine::getInstance().isReadyToStart())
-		startGameEngine();
+		if(Engine::getInstance().isReadyToStart())
+		Engine::getInstance().start();
 	}
 
-	// Uncomment to test sending
-//	eventsList.push_back("Messgage to clients\n");
 	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();
 	acceptorWorker.join();
@@ -60,15 +59,11 @@ void Server::run() {
 void Server::startGameEngine(){
     ConfigParser configParser(configFilename);
     configParser.parseConfigDoc();
-
+    // Initialize with configs set in config file
 	Engine::getInstance().setGravity(configParser.getGravity());
 	Engine::getInstance().setPositionIterations(configParser.getPositionIterations());
 	Engine::getInstance().setVelocityIterations(configParser.getVelocityIterations());
 	Engine::getInstance().setTimeStep(configParser.getTimestep());
 	Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
 	Engine::getInstance().initializeWorld();
-
-	Engine::getInstance().start();
 }
-
-

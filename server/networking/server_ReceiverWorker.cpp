@@ -22,9 +22,9 @@ void ReceiverWorker::run() {
 	int messageCode;
 	unsigned int messageLength;
 	// TODO: BIG HARDCODE RECEIVED FOR TESTING, CLEAN BEFORE CONNECTING WITH CLIENT
-	messageCode = 3; // 1 for player connected, 3 for starting game
-	inboundData = "Carl";
-	messageLength = inboundData.size();
-//	client->receive(messageCode, messageLength, inboundData);
+//	messageCode = 1; // 1 for player connected, 3 for starting game
+//	inboundData = "Carl";
+//	messageLength = inboundData.size();
+	client->receive(messageCode, messageLength, inboundData);
 	InboundMessagesController interpreter(messageCode, inboundData);
 }

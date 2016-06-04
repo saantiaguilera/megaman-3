@@ -13,7 +13,10 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../../game_engine/server_EventContext.h"
 #include "../../../game_engine/server_Player.h"
+#include "../../../serializers/server_HpChangeSerializer.h"
+#include "../../../serializers/server_LifeChangeSerializer.h"
 #include "../../../server_Logger.h"
 #include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"
@@ -28,7 +31,9 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 Megaman::~Megaman() {
 	// Clean available weapons map
 	for (std::map<int,Weapon*>::iterator it = availableWeaponsMap.begin(); it != availableWeaponsMap.end(); ++it){
-		delete (*it).second;
+		// Cause we delete the current one at the characters destructor
+		if ((*it).second != currentWeapon)
+			delete (*it).second;
 	}
 }
 
@@ -58,7 +63,7 @@ Player* Megaman::getHumanOperator() const {
 }
 
 void Megaman::update() {
-	std::cout << "Megaman's position: " << myBody->GetPosition().x << "," << myBody->GetPosition().y << std::endl;
+	std::cout << "Megaman's position: " << getPositionX() << "," << getPositionY() << std::endl;
 	std::cout << "Megaman's health: " << getHp() << std::endl;
 }
 
@@ -82,7 +87,13 @@ void Megaman::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = 0;
 		getHumanOperator()->decreasePlayerLives();
+		LifeChangeSerializer lifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
+		lifeChangeSerializer.serialize();
+		Engine::getInstance().getContext()->dispatchEvent(&lifeChangeSerializer);
 	} else {
 		hp -= damage;
+		HpChangeSerializer hpChangeSerializer(getHp(), id);
+		hpChangeSerializer.serialize();
+		Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 	}
 }
