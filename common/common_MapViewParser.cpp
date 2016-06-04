@@ -14,18 +14,7 @@
 #include <iostream>
 #include "common_ObstacleView.h"
 #include <sstream>
-
-#define MAP_NAME "map"
-#define ID_NAME "id"
-#define MAPNAME_NAME "name"
-#define SPAWNS_NAME "spawns"
-#define X_NAME "x"
-#define Y_NAME "y"
-#define SPAWN_TYPE_NAME "type"
-#define NEEDLES_NAME "needles"
-#define PRECIPICES_NAME "precipices"
-#define BLOCKS_NAME "blocks"
-
+#include "common_MapConstants.h"
 
 MapVeiwParser::MapVeiwParser() {}
 
@@ -47,7 +36,7 @@ void MapVeiwParser::editorMapWithPath(MapView *MapView, std::string name) {
 	MapView->setId(mapJson[ID_NAME].GetInt());
 	MapView->setName(mapJson[MAPNAME_NAME].GetString());
 
-	const rapidjson::Value& obstaclesJson = mapJson[SPAWNS_NAME];
+	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
 
 	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
 		unsigned int x = obstaclesJson[i][X_NAME].GetInt();
