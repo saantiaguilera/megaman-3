@@ -9,10 +9,14 @@
 #define EDITOR_VIEWS_EDITOR_MAPWINDOW_H_
 
 #include <gtkmm.h>
+
+#include "editor_MapFixedWindow.h"
+#include "obstacles/editor_ObstacleView.h"
+
 class EditorController;
 
 
-class MapWindow : public Gtk::Window{
+class MapWindow : public Gtk::Window {
 public:
 	//Constructors
     MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
@@ -27,19 +31,43 @@ protected:
     //Delegate
     EditorController *delegate;
 
-    //Different Buttons
+    Gtk::Image *draggingImage;
+
+    //Navigation Buttons
     Gtk::Button *backButton;
     Gtk::Button *saveButton;
+
+    //Add Buttons
+    Gtk::Button *blockButton;
+    Gtk::Button *needleButton;
+    Gtk::Button *precipiceButton;
+    Gtk::Button *spawnButton;
+    std::vector<Gtk::Button *> *addButtonVector;
+    void addButtonWithName(Gtk::Button *aButton, std::string aName);
+
+    //Window Buttons
     Gtk::EventBox *eventBox;
+    Gtk::ScrolledWindow *scrolledWindow;
+    MapFixedWindow *fixedWindow;
 
     // Override mouse events
     bool on_button_press_event(GdkEventButton *event);
-    bool motion_notify_event( GtkWidget *widget, GdkEventMotion *event );
+	bool on_motion_notify_event(GdkEventMotion*event);
 
-
-   	//signal handlers
+   	//Signal handlers
     void backButtonWasTapped();
     void saveButtonWasTapped();
+
+    //Add Button Signals
+    void blockButtonWasTapped();
+    void needleButtonWasTapped();
+    void precipiceButtonWasTapped();
+    void spawnButtonWasTapped();
+
+private:
+    bool draggingImageIsMoving = false;
+    void draggingBegin();
+    void draggingEnd();
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */
