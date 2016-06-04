@@ -142,8 +142,6 @@ bool Client::onMessageReceived() {
   Event *event = Looper::getMainLooper().get();
 
   if (event) {
-    std::cout << "Event found in Client::onMessageReceived, id: " << event->getId() << std::endl;
-
     switch (event->getId()) {
       case EVENT_CREATE_CONNECTION:
         onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIPAndPort(), dynamic_cast<CreateConnectionEvent*>(event)->getName());

@@ -11,7 +11,7 @@
 #include <gtkmm.h>
 
 #include "editor_MapFixedWindow.h"
-#include "obstacles/editor_ObstacleView.h"
+//#include "obstacles/editor_ObstacleView.h"
 
 class EditorController;
 

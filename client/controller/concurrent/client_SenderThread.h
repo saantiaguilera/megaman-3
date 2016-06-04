@@ -27,7 +27,7 @@ private:
 
 protected:
   void send(Serializer *serializer) {
-    std::cout << "serialized data is " << serializer->getSerialized() << std::endl;
+    std::cout << "Sending::id: " << serializer->getMessageCode() << " data: " << serializer->getSerialized() << std::endl;
 
     int code = htonl(serializer->getMessageCode());
     socket->send((char*) &code, sizeof(int));

@@ -10,7 +10,7 @@
 #include "gtkmm.h"
 #include <iostream>
 #include "../controllers/editor_EditorController.h"
-#include "../models/editor_EditorMapParser.h"
+#include "../../common/common_MapViewParser.h"
 
 //Constructors
 MainWindow::MainWindow() {
@@ -43,8 +43,8 @@ void MainWindow::setDelegate(EditorController *aDelegate) {
 void MainWindow::level1ButtonWasTapped(){
 	std::cout<<"level 1 button was tapped"<<std::endl;
 
-	EditorMapParser mapParser;
-	EditorMap *map = new EditorMap();
+	MapVeiwParser mapParser;
+	MapView *map = new MapView();
 
 
 	mapParser.editorMapWithPath(map, "level1.json");

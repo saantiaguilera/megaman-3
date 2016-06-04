@@ -8,18 +8,18 @@
 #ifndef EDITOR_MODELS_EDITOR_EDITORMAPPARSER_H_
 #define EDITOR_MODELS_EDITOR_EDITORMAPPARSER_H_
 
-#include "editor_EditorMap.h"
+#include "common_MapView.h"
 #include <string>
 #include "rapidjson/document.h"
 #include "rapidjson/filereadstream.h"
 
 
-class EditorMapParser {
+class MapVeiwParser {
 public:
-	EditorMapParser();
-	virtual ~EditorMapParser();
+	MapVeiwParser();
+	virtual ~MapVeiwParser();
 
-	void editorMapWithPath(EditorMap *editorMap, std::string name);
+	void editorMapWithPath(MapView *editorMap, std::string name);
 };
 
 #endif /* EDITOR_MODELS_EDITOR_EDITORMAPPARSER_H_ */

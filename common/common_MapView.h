@@ -8,35 +8,39 @@
 #ifndef EDITOR_MODELS_EDITOR_EDITORMAP_H_
 #define EDITOR_MODELS_EDITOR_EDITORMAP_H_
 
-#include "obstacles/editor_EditorObstacle.h"
+#include "common_ObstacleView.h"
 #include <vector>
 #include <string>
 
-class EditorMap {
+class MapView {
 public:
-	EditorMap();
-	virtual ~EditorMap();
+	MapView();
+	virtual ~MapView();
 
 	void setId(unsigned int id);
 	void setName(std::string name);
 
 	//Setters
-	void setSpawn(EditorObstacle *aSpawn);
-	void setNeedle(EditorObstacle *aNeedle);
-	void setPrecipice(EditorObstacle *aPrecipice);
-	void setBlock(EditorObstacle *aBlock);
+//	void setSpawn(EditorObstacle *aSpawn);
+//	void setNeedle(EditorObstacle *aNeedle);
+//	void setPrecipice(EditorObstacle *aPrecipice);
+//	void setBlock(EditorObstacle *aBlock);
 
 	//Getters
 	std::string getName();
+	void setObstacle(ObstacleView *obstacle);
+
 
 private:
 	unsigned int id;
 	std::string name;
 
-	std::vector<EditorObstacle *> *spawns;
-	std::vector<EditorObstacle *> *needles;
-	std::vector<EditorObstacle *> *precipices;
-	std::vector<EditorObstacle *> *blocks;
+	std::vector<ObstacleView *> *obstacles;
+
+//	std::vector<EditorObstacle *> *spawns;
+//	std::vector<EditorObstacle *> *needles;
+//	std::vector<EditorObstacle *> *precipices;
+//	std::vector<EditorObstacle *> *blocks;
 };
 
 #endif /* EDITOR_MODELS_EDITOR_EDITORMAP_H_ */

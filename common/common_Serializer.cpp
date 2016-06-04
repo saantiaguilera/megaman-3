@@ -32,6 +32,5 @@ int Serializer::getMessageCode() const {
 }
 
 int Serializer::getMessageLength() const {
-	std::cout << "Serialized: " << serialized << std::endl;
 	return serialized.length();
 }
