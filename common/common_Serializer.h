@@ -19,7 +19,8 @@ protected:
 	int messageCode;
 	// The serialized string
 	std::string serialized;
-	// serializer method, pure virtual
+	// serializer method, pure virtual.
+	//@Note: You should call it accordingly in the subclass. The base class wont call it anywhere
 	virtual void serialize() = 0;
 public:
 	// Constructor for messages with no id
@@ -29,7 +30,7 @@ public:
 	// Destroyer
 	virtual ~Serializer();
 	// Get the serialized string
-	std::string getSerialized();
+	const std::string& getSerialized();
 	// Get the related obj id
 	unsigned int getObjectId() const;
 	int getMessageCode() const;

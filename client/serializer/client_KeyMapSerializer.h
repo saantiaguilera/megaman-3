@@ -26,6 +26,7 @@ protected:
 public:
   KeyMapSerializer(KeyMap keyMap) : Serializer(), keyMap(keyMap) {
     messageCode = KEY_PRESSED;
+    serialize();
   }
 
   ~KeyMapSerializer() {
