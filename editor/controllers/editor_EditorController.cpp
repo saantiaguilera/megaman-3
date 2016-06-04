@@ -36,36 +36,9 @@ EditorController::EditorController(int argc, char *argv[]) {
 //	showMapWindow();
 }
 
-EditorController::~EditorController() {
-	// TODO Auto-generated destructor stub
-}
+EditorController::~EditorController() {}
 
-void EditorController::begin() {
-//	EditorMapParser mapParser;
-//	EditorMap *map = new EditorMap();
-//
-//	mapParser.editorMapWithPath(map, "level1.json");
-//
-//	delete map;
-//
-//	Gtk::Main kit(argc, argv);
-//
-//	Glib::RefPtr<Gtk::Builder> builder;
-//
-//	try {
-//		builder = Gtk::Builder::create_from_file("editor/editor.glade");
-//	} catch (Glib::FileError& e) {
-//		std::cout<<e.what()<<std::endl;
-//	}
-//
-//	MainWindow *mainWindow = 0;
-//
-//	builder->get_widget_derived("mainWindow", mainWindow);
-//	Gtk::Main::run(*mainWindow);
-//	Gtk::Main::run(*mainWindow2);
-
-//	showMainWindow();
-}
+void EditorController::begin() {}
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(EditorMap *map) {
@@ -89,7 +62,6 @@ void EditorController::showMainWindow() {
 
 void EditorController::showMapWindow() {
 	mainWindow->set_visible(false);
-	std::cout<<"lleg";
 	mapWindow->set_visible(true);
 }
 

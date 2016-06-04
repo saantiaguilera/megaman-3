@@ -12,14 +12,11 @@
 #include "../../common/common_MessageProtocol.h"
 
 EndGameSerializer::EndGameSerializer() {
-
+	messageCode = END_GAME;
 }
 
 EndGameSerializer::~EndGameSerializer() {
 }
 
 void EndGameSerializer::serialize() {
-	messageCode = END_GAME;
-	messageLength = 0;
-	serialized = "";
 }

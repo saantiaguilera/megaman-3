@@ -13,7 +13,8 @@
 #include "../../common/common_MessageProtocol.h"
 
 MovementSerializer::MovementSerializer(unsigned int objectId, float x, float y) : PositionSerializer(objectId, x, y) {
-
+	messageCode = UPDATE_MOVEMENTS;
+	serialize();
 }
 
 MovementSerializer::~MovementSerializer() {
@@ -21,7 +22,6 @@ MovementSerializer::~MovementSerializer() {
 
 void MovementSerializer::serialize() {
 	std::stringstream ss;
-	messageCode = UPDATE_MOVEMENTS;
 	ss << serializePosition();
 	serialized = ss.str();
 }

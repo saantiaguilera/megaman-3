@@ -27,14 +27,9 @@
 #define BLOCKS_NAME "blocks"
 
 
-EditorMapParser::EditorMapParser() {
-	// TODO Auto-generated constructor stub
+EditorMapParser::EditorMapParser() {}
 
-}
-
-EditorMapParser::~EditorMapParser() {
-	// TODO Auto-generated destructor stub
-}
+EditorMapParser::~EditorMapParser() {}
 
 
 void EditorMapParser::editorMapWithPath(EditorMap *editorMap, std::string name) {
@@ -99,4 +94,3 @@ void EditorMapParser::editorMapWithPath(EditorMap *editorMap, std::string name) 
 
 	std::cout<<"termine"<<std::endl;
 }
-

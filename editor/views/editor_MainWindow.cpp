@@ -46,6 +46,7 @@ void MainWindow::level1ButtonWasTapped(){
 	EditorMapParser mapParser;
 	EditorMap *map = new EditorMap();
 
+
 	mapParser.editorMapWithPath(map, "level1.json");
 
 	delegate->presentMapWindowWithMap(map);

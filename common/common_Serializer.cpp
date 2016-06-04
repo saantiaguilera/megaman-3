@@ -7,7 +7,7 @@
 
 #include "common_Serializer.h"
 
-#include <sstream>
+#include <iostream>
 
 Serializer::Serializer() : objectId(0), messageCode(0), serialized("") {
 }
@@ -19,7 +19,7 @@ Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(
 Serializer::~Serializer() {
 }
 
-const std::string& Serializer::getSerialized() {
+std::string Serializer::getSerialized() {
 	return serialized;
 }
 
@@ -32,5 +32,6 @@ int Serializer::getMessageCode() const {
 }
 
 int Serializer::getMessageLength() const {
+	std::cout << "Serialized: " << serialized << std::endl;
 	return serialized.length();
 }

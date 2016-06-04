@@ -30,8 +30,6 @@ public:
 	// To string
 	std::string toString() const;
 private:
-	// Copy constructor
-	Point(const Point&);
 	// Assignment operator
 	Point& operator=(const Point&);
 };

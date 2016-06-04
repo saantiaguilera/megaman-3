@@ -13,7 +13,8 @@
 #include "../../common/common_MessageProtocol.h"
 
 ObjectDestructionSerializer::ObjectDestructionSerializer(unsigned int objectId, float x, float y) : PositionSerializer(objectId, x, y) {
-
+	messageCode = OBJECT_DESTROYED;
+	serialize();
 }
 
 ObjectDestructionSerializer::~ObjectDestructionSerializer() {
@@ -21,7 +22,6 @@ ObjectDestructionSerializer::~ObjectDestructionSerializer() {
 
 void ObjectDestructionSerializer::serialize() {
 	std::stringstream ss;
-	messageCode = OBJECT_DESTROYED;
 	ss << serializePosition();
 	serialized = ss.str();
 }

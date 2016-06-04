@@ -32,9 +32,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				Engine::getInstance().addNewPlayer(inboundMessage);
 				std::cout << "Player name: " << inboundMessage << std::endl;
-				NewPlayerSerializer newPlayerSerializer(inboundMessage);
-				newPlayerSerializer.serialize();
-				Engine::getInstance().getContext()->dispatchEvent(&newPlayerSerializer);
+				NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(inboundMessage);
+				Engine::getInstance().getContext()->dispatchEvent(newPlayerSerializer);
 			}
 			break;
 		case START_GAME:
@@ -44,9 +43,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 				desiredPlayer = getDesiredPlayer(inboundMessage);
 				if (desiredPlayer->isAdmin()){
 					Engine::getInstance().setReadyToStart(true);
-					StartGameSerializer startGameSerializer;
-					startGameSerializer.serialize();
-					Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
+					StartGameSerializer* startGameSerializer = new StartGameSerializer;
+					Engine::getInstance().getContext()->dispatchEvent(startGameSerializer);
 				}
 			}
 			break;

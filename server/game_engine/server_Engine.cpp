@@ -76,18 +76,16 @@ void Engine::start() {
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
-			MovementSerializer serializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-			serializer.serialize();
-			context->dispatchEvent(&serializer);
+			MovementSerializer* serializer = new MovementSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			context->dispatchEvent(serializer);
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
 		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 		for (; it != end; ++it) {
 			PhysicObject* objectToDelete = *it;
-			ObjectDestructionSerializer objectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-			objectDestructionSerializer.serialize();
-			context->dispatchEvent(&objectDestructionSerializer);
+			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			context->dispatchEvent(objectDestructionSerializer);
 
 			//delete object... physics body is destroyed here
 			delete objectToDelete;
