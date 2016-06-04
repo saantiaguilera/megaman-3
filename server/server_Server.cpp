@@ -33,7 +33,7 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
-//	callAcceptorWorker();
+	startGameEngine();
 	bool keepOnListening = true;
 	ConcurrentList<std::string> eventsQueue;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
@@ -47,11 +47,9 @@ void Server::run() {
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning()){
 		if(Engine::getInstance().isReadyToStart())
-		startGameEngine();
+		Engine::getInstance().start();
 	}
 
-	// Uncomment to test sending
-//	eventsList.push_back("Messgage to clients\n");
 	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();
 	acceptorWorker.join();
@@ -68,6 +66,4 @@ void Server::startGameEngine(){
 	Engine::getInstance().setTimeStep(configParser.getTimestep());
 	Engine::getInstance().setPlayerInitialLives(configParser.getPlayerInitialLives());
 	Engine::getInstance().initializeWorld();
-
-	Engine::getInstance().start();
 }

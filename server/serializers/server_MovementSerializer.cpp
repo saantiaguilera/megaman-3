@@ -20,10 +20,9 @@ MovementSerializer::~MovementSerializer() {
 }
 
 void MovementSerializer::serialize() {
-	// int uint float float
 	std::stringstream ss;
-	ss << UPDATE_MOVEMENTS;
-	ss << serializeObjectId();
+	messageCode = UPDATE_MOVEMENTS;
 	ss << serializePosition();
 	serialized = ss.str();
+	messageLength = serialized.length();
 }

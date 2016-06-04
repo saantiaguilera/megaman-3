@@ -20,10 +20,9 @@ AmmoChangeSerializer::~AmmoChangeSerializer() {
 }
 
 void AmmoChangeSerializer::serialize() {
-	// int uint uint
 	std::stringstream ss;
-	ss << AMMO_CHANGE;
-	ss << serializeObjectId();
-	ss << newAmmo;
+	messageCode = AMMO_CHANGE;
+	ss << "{" << "ammo:" << newAmmo << "," << "id: " << objectId << "}";
 	serialized = ss.str();
+	messageLength = serialized.length();
 }

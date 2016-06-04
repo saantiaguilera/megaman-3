@@ -20,10 +20,9 @@ HpChangeSerializer::~HpChangeSerializer() {
 }
 
 void HpChangeSerializer::serialize() {
-	// int uint uint
 	std::stringstream ss;
-	ss << HP_CHANGE;
-	ss << serializeObjectId();
-	ss << newHp;
+	messageCode = HP_CHANGE;
+	ss << "{" << "\"hp\": " << newHp << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
+	messageLength = serialized.length();
 }

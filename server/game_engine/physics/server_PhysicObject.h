@@ -11,13 +11,6 @@ class b2Body;
 
 class PhysicObject {
 protected:
-	// Defined movestates for objects
-	enum _moveState {
-		MS_STOP,
-		MS_LEFT,
-		MS_RIGHT,
-		MS_JUMP
-		};
 	// Object types for collision detection
 	enum _objectTypes {
 		OT_HUMANOID,
@@ -35,6 +28,14 @@ protected:
 	// number of foot contacts (to avoid air jumping)
 	unsigned int numFootContacts;
 public:
+	// Defined movestates for objects
+	enum _moveState {
+		MS_LEFT,
+		MS_RIGHT,
+		MS_DOWN,
+		MS_JUMP,
+		MS_STOP
+		};
 	// Constructor
 	PhysicObject();
 	// Destroyer

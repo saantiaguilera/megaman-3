@@ -12,7 +12,7 @@
 
 #include "../../common/common_MessageProtocol.h"
 
-LifeChangeSerializer::LifeChangeSerializer(unsigned int playerId) : Serializer(playerId) {
+LifeChangeSerializer::LifeChangeSerializer(unsigned int playerId, unsigned int newLifeCount) : Serializer(playerId), newLifeCount(newLifeCount) {
 
 }
 
@@ -22,7 +22,8 @@ LifeChangeSerializer::~LifeChangeSerializer() {
 void LifeChangeSerializer::serialize() {
 	// int uint float float
 	std::stringstream ss;
-	ss << LIFE_CHANGE;
-	ss << serializeObjectId();
+	messageCode = LIFE_CHANGE;
+	ss << "{" << "life: " << newLifeCount << "," << "id: " << objectId << "}";
 	serialized = ss.str();
+	messageLength = serialized.length();
 }
