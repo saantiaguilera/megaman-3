@@ -24,15 +24,15 @@ EditorController::EditorController(int argc, char *argv[]) {
 		std::cout<<e.what()<<std::endl;
 	}
 
-	mainWindow = 0;
-//	mapWindow = 0;
+//	mainWindow = 0;
+	mapWindow = 0;
 
 
-	builder->get_widget_derived("mainWindow", mainWindow);
-//	builder->get_widget_derived("mapWindow", mapWindow);
+//	builder->get_widget_derived("mainWindow", mainWindow);
+	builder->get_widget_derived("mapWindow", mapWindow);
 
-	gtkmm_main->run(*mainWindow);
-//	gtkmm_main->run(*mapWindow);
+//	gtkmm_main->run(*mainWindow);
+	gtkmm_main->run(*mapWindow);
 
 //	showMapWindow();
 }
