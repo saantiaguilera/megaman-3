@@ -40,11 +40,13 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				std::cout << "Start game!" << std::endl;
 				// Set the flag of th engine to ready to start
-				// TODO: Should check that the player willing to start is the admin
-				Engine::getInstance().setReadyToStart(true);
-				StartGameSerializer startGameSerializer;
-				startGameSerializer.serialize();
-				Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
+				desiredPlayer = getDesiredPlayer(inboundMessage);
+				if (desiredPlayer->isAdmin()){
+					Engine::getInstance().setReadyToStart(true);
+					StartGameSerializer startGameSerializer;
+					startGameSerializer.serialize();
+					Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
+				}
 			}
 			break;
 		case KEY_PRESSED:
