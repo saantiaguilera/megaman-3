@@ -6,6 +6,7 @@
 #include "server_Logger.h"
 #include "server_Server.h"
 
+#include "serializers/server_StartGameSerializer.h"
 int main(int argc, char *argv[]) {
 	if (argc < 3)
 		return EXIT_FAILURE;
@@ -18,6 +19,10 @@ int main(int argc, char *argv[]) {
     srand(time(NULL));
 
     Logger::getInstance().log(1, "Server starting...");
+
+    StartGameSerializer* serializer = new StartGameSerializer();
+
+    delete serializer;
 
     Server server = Server(port, configFilename);
     server.run();

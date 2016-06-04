@@ -67,4 +67,7 @@ void ClientProxy::send(Serializer* serializer) {
 	// TODO: Log receive error
 
 	socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
+
+	// delete the sended serializer
+	delete serializer;
 }

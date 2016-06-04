@@ -19,7 +19,21 @@ GameController::GameController(Context *context) : Controller(context), view(nul
 }
 
 bool GameController::onMessageReceived() {
-  return true;
+  Event *event = Looper::getMainLooper().get();
+
+  if (event) {
+    switch (event->getId()) {
+      //Do stuff
+      case EVENT_RECEIVED_MAP:
+        //TODO
+        break;
+
+      default:
+        return false;
+    }
+
+    return true;
+  } else return false;
 }
 
 //https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h

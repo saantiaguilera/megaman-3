@@ -19,7 +19,7 @@ Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(
 Serializer::~Serializer() {
 }
 
-const std::string& Serializer::getSerialized() {
+std::string Serializer::getSerialized() {
 	return serialized;
 }
 

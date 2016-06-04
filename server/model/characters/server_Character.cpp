@@ -25,9 +25,8 @@ Character::~Character() {
 
 void Character::attack() {
 	currentWeapon->fire(getPositionX(), getPositionY());
-	AmmoChangeSerializer ammoChangeSerializer(currentWeapon->getAmmo(), getId());
-	ammoChangeSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(&ammoChangeSerializer);
+	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(currentWeapon->getAmmo(), getId());
+	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 }
 
 unsigned int Character::getHp() const {

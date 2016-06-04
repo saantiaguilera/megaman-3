@@ -8,7 +8,7 @@
 
 #include "client_MainScreenController.h"
 
-#define PATH_HOME_SCREEN_LAYOUT "res/layout/home_screen.glade"
+#define PATH_HOME_SCREEN_LAYOUT "res/layout/client_main_screen.glade"
 #define PATH_HOME_SCREEN_ROOT_VIEW "client_home_screen_root_view"
 
 MainScreenController::MainScreenController(Context *context) : Controller(context), view(nullptr) {

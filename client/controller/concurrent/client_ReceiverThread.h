@@ -6,11 +6,13 @@
 #include "../../concurrent/client_Looper.h"
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
+
 #include "../../event/client_DisconnectedPlayerEvent.h"
 #include "../../event/client_NewPlayerEvent.h"
-
 #include "../../event/client_ConnectionEvent.h"
 #include "../../event/client_FlowEvent.h"
+#include "../../event/client_ReceivedMapEvent.h"
+
 #include "client_ReceiverContract.h"
 #include "../../../common/common_MessageProtocol.h"
 
@@ -72,6 +74,11 @@ protected:
 
         case DISCONNECTED_PLAYER:
           dispatchEvent(new DisconnectedPlayerEvent(json));
+          break;
+
+        case START_GAME:
+          dispatchEvent(new FlowEvent(FLOW_GAME));
+          dispatchEvent(new ReceivedMapEvent(json));
           break;
       }
     }
