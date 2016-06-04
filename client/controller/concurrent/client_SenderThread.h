@@ -13,6 +13,7 @@
 #include "../../../common/common_Serializer.h"
 #include "../../serializer/client_KeyMapSerializer.h"
 #include "../../serializer/client_PlayerConnectedSerializer.h"
+#include "../../serializer/client_StartMapSerializer.h"
 
 #include <string>
 #include <unistd.h>
@@ -26,6 +27,8 @@ private:
 
 protected:
   void send(Serializer *serializer) {
+    serializer->serialize();
+
     std::cout << "serialized data is " << serializer->getSerialized() << std::endl;
 
     int code = htonl(serializer->getMessageCode());
@@ -56,8 +59,7 @@ protected:
             break;
 
           case EVENT_START_GAME:
-            std::cout << "start game with ";
-            std::cout << dynamic_cast<StartMapEvent*>(event)->getMapId() << std::endl;
+            serializer = new StartMapSerializer(dynamic_cast<StartMapEvent*>(event)->getMapId());
             break;
 
           default:
