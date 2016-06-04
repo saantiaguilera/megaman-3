@@ -12,18 +12,14 @@
 
 class ObstacleView {
 public:
-	ObstacleView(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth);
+	ObstacleView(unsigned int aX, unsigned int aY);
 	ObstacleView();
 	virtual ~ObstacleView();
 
-	unsigned int getHeight();
-	unsigned int getWidth();
 	Point getPoint();
 
 protected:
 		Point point;
-		unsigned int height;
-		unsigned int width;
 };
 
 //Tiene que haber bloques puas escaleras y presipicios
