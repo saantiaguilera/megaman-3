@@ -21,6 +21,10 @@ CODE - LENGTH - NAME
 #define START_GAME 3             // C (admin) -> S -> Cs
 #define SEND_MAP 4               // S -> Cs
 #define KEY_PRESSED 5            // C -> S
+/*
+CODE - LENGTH - CHARARRAY WITH KEY PRESSES (0 FALSE 1 TRUE)
+*/
+
 #define UPDATE_MOVEMENTS 6       // S -> Cs
 #define OBJECT_CREATED 7         // S -> Cs
 #define OBJECT_DESTROYED 8       // S -> Cs
