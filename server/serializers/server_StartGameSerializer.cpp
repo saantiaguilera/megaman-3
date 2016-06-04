@@ -13,14 +13,11 @@
 #include "../../common/common_MessageProtocol.h"
 
 StartGameSerializer::StartGameSerializer() {
-
+	messageCode = START_GAME;
 }
 
 StartGameSerializer::~StartGameSerializer() {
 }
 
 void StartGameSerializer::serialize() {
-	messageCode = START_GAME;
-	serialized = "";
-	messageLength = 0;
 }

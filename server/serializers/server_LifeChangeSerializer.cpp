@@ -13,16 +13,15 @@
 #include "../../common/common_MessageProtocol.h"
 
 LifeChangeSerializer::LifeChangeSerializer(unsigned int playerId, unsigned int newLifeCount) : Serializer(playerId), newLifeCount(newLifeCount) {
-
+	messageCode = LIFE_CHANGE;
+	serialize();
 }
 
 LifeChangeSerializer::~LifeChangeSerializer() {
 }
 
 void LifeChangeSerializer::serialize() {
-	// int uint float float
 	std::stringstream ss;
-	messageCode = LIFE_CHANGE;
 	ss << "{" << "\"life\": " << newLifeCount << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
 }

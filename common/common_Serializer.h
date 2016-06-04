@@ -19,7 +19,6 @@ protected:
 	int messageCode;
 	// The serialized string
 	std::string serialized;
-
 	// serializer method, pure virtual
 	virtual void serialize() = 0;
 public:
@@ -30,7 +29,7 @@ public:
 	// Destroyer
 	virtual ~Serializer();
 	// Get the serialized string
-	const std::string& getSerialized();
+	std::string getSerialized();
 	// Get the related obj id
 	unsigned int getObjectId() const;
 	int getMessageCode() const;

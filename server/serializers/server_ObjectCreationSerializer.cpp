@@ -13,7 +13,8 @@
 #include "../../common/common_MessageProtocol.h"
 
 ObjectCreationSerializer::ObjectCreationSerializer(unsigned int objectId, float x, float y) : PositionSerializer(objectId, x, y) {
-
+	messageCode = OBJECT_CREATED;
+	serialize();
 }
 
 ObjectCreationSerializer::~ObjectCreationSerializer() {
@@ -21,7 +22,6 @@ ObjectCreationSerializer::~ObjectCreationSerializer() {
 
 void ObjectCreationSerializer::serialize() {
 	std::stringstream ss;
-	messageCode = OBJECT_CREATED;
 	ss << serializePosition();
 	serialized = ss.str();
 }

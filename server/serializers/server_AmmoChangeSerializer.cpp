@@ -13,7 +13,8 @@
 #include "../../common/common_MessageProtocol.h"
 
 AmmoChangeSerializer::AmmoChangeSerializer(unsigned int newAmmo, unsigned int objectId) : Serializer(objectId), newAmmo(newAmmo) {
-
+	messageCode = AMMO_CHANGE;
+	serialize();
 }
 
 AmmoChangeSerializer::~AmmoChangeSerializer() {
@@ -21,7 +22,6 @@ AmmoChangeSerializer::~AmmoChangeSerializer() {
 
 void AmmoChangeSerializer::serialize() {
 	std::stringstream ss;
-	messageCode = AMMO_CHANGE;
 	ss << "{" << "\"ammo\": " << newAmmo << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
 }

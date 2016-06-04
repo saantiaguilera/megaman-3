@@ -13,7 +13,8 @@
 #include "../../common/common_MessageProtocol.h"
 
 HpChangeSerializer::HpChangeSerializer(unsigned int newHp, unsigned int objectId) : Serializer(objectId), newHp(newHp) {
-
+	messageCode = HP_CHANGE;
+	serialize();
 }
 
 HpChangeSerializer::~HpChangeSerializer() {
@@ -21,7 +22,6 @@ HpChangeSerializer::~HpChangeSerializer() {
 
 void HpChangeSerializer::serialize() {
 	std::stringstream ss;
-	messageCode = HP_CHANGE;
 	ss << "{" << "\"hp\": " << newHp << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
 }
