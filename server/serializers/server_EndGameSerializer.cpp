@@ -7,6 +7,8 @@
 
 #include "server_EndGameSerializer.h"
 
+#include <string>
+
 #include "../../common/common_MessageProtocol.h"
 
 EndGameSerializer::EndGameSerializer() {

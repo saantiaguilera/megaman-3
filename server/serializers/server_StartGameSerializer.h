@@ -8,7 +8,7 @@
 #ifndef SERVER_SERIALIZERS_SERVER_STARTGAMESERIALIZER_H_
 #define SERVER_SERIALIZERS_SERVER_STARTGAMESERIALIZER_H_
 
-#include "../../common/server_Serializer.h"
+#include "../../common/common_Serializer.h"
 
 class StartGameSerializer: public Serializer {
 public:

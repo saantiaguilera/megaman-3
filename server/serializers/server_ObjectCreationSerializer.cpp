@@ -20,10 +20,9 @@ ObjectCreationSerializer::~ObjectCreationSerializer() {
 }
 
 void ObjectCreationSerializer::serialize() {
-	// int uint float float
 	std::stringstream ss;
-	ss << OBJECT_CREATED;
-	ss << serializeObjectId();
+	messageCode = OBJECT_CREATED;
 	ss << serializePosition();
 	serialized = ss.str();
+	messageLength = serialized.length();
 }

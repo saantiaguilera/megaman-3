@@ -17,6 +17,6 @@ PositionSerializer::~PositionSerializer() {
 
 std::string PositionSerializer::serializePosition() {
 	std::stringstream ss;
-	ss << "{ x: " << x << ", y: " << y << "}";
+	ss << "{ \"position\": { \"x\": " << x << ", \"y\": " << y << "} }";
 	return ss.str();
 }
