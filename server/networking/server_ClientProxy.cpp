@@ -57,17 +57,25 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 
 void ClientProxy::send(Serializer* serializer) {
 	// Send message code
+	int sendResult;
 	int messageCode = htonl(serializer->getMessageCode());
-	socket.send((char*) &messageCode, sizeof(int));
-	// TODO: Log receive error
+	sendResult = socket.send((char*) &messageCode, sizeof(int));
+	checkConnection(sendResult);
 
 	// Send message length
 	int messageLength = htonl(serializer->getMessageLength());
-	socket.send((char*) &messageLength, sizeof(unsigned int));
-	// TODO: Log receive error
+	sendResult =socket.send((char*) &messageLength, sizeof(unsigned int));
+	checkConnection(sendResult);
 
-	socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
+	sendResult = socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
+	checkConnection(sendResult);
 
 	// delete the sended serializer
 	delete serializer;
+}
+
+void ClientProxy::checkConnection(int sendResult){
+	if(sendResult == -1)
+		connected = false;
+
 }

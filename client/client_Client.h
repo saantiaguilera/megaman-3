@@ -59,7 +59,7 @@ public:
 
 	virtual void attachController(Controller *controller);
 
-	void start();
+	void start(int argc, char** argv);
 
 private:
 	Client(const Client&);
