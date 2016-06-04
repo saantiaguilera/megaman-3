@@ -24,5 +24,4 @@ void NewPlayerSerializer::serialize() {
 	messageCode = NEW_PLAYER;
 	ss << playerName;
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

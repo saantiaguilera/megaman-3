@@ -26,7 +26,7 @@ Player::Player(const std::string& name, unsigned int initialLives) : name(name),
 	megaman = new Megaman(this, 0, 0);
 	ObjectCreationSerializer objectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
 	objectCreationSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer.getSerialized());
+	Engine::getInstance().getContext()->dispatchEvent(&objectCreationSerializer);
 }
 
 bool Player::isAdmin() const {

@@ -24,5 +24,4 @@ void ObjectDestructionSerializer::serialize() {
 	messageCode = OBJECT_DESTROYED;
 	ss << serializePosition();
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

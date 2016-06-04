@@ -24,5 +24,4 @@ void HpChangeSerializer::serialize() {
 	messageCode = HP_CHANGE;
 	ss << "{" << "\"hp\": " << newHp << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

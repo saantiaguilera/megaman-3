@@ -8,7 +8,7 @@
 #ifndef SERVER_GAME_ENGINE_SERVER_EVENTCONTEXT_H_
 #define SERVER_GAME_ENGINE_SERVER_EVENTCONTEXT_H_
 
-#include <string>
+class Serializer;
 
 class EventContext {
 public:
@@ -17,7 +17,7 @@ public:
 	// Destroyer
 	virtual ~EventContext();
 	// Pure virtual method
-	virtual void dispatchEvent(const std::string& event) = 0 ;
+	virtual void dispatchEvent(Serializer* serializer) = 0 ;
 private:
 	// Copy constructor
 	EventContext(const EventContext&);

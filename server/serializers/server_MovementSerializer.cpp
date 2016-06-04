@@ -24,5 +24,4 @@ void MovementSerializer::serialize() {
 	messageCode = UPDATE_MOVEMENTS;
 	ss << serializePosition();
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

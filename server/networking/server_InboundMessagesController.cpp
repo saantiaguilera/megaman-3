@@ -33,7 +33,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 				Engine::getInstance().addNewPlayer(inboundMessage);
 				NewPlayerSerializer newPlayerSerializer(inboundMessage);
 				newPlayerSerializer.serialize();
-				Engine::getInstance().getContext()->dispatchEvent(newPlayerSerializer.getSerialized());
+				Engine::getInstance().getContext()->dispatchEvent(&newPlayerSerializer);
 			}
 			break;
 		case START_GAME:
@@ -44,7 +44,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 				Engine::getInstance().setReadyToStart(true);
 				StartGameSerializer startGameSerializer;
 				startGameSerializer.serialize();
-				Engine::getInstance().getContext()->dispatchEvent(startGameSerializer.getSerialized());
+				Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
 			}
 			break;
 		case KEY_PRESSED:
