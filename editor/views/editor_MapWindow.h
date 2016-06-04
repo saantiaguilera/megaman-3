@@ -11,7 +11,7 @@
 #include <gtkmm.h>
 
 #include "editor_MapFixedWindow.h"
-//#include "obstacles/editor_ObstacleView.h"
+#include "../../common/common_MapConstants.h"
 
 class EditorController;
 
@@ -38,10 +38,27 @@ protected:
     Gtk::Button *saveButton;
 
     //Add Buttons
+    Gtk::Button *ladderButton;
     Gtk::Button *blockButton;
     Gtk::Button *needleButton;
     Gtk::Button *precipiceButton;
-    Gtk::Button *spawnButton;
+    Gtk::Button *bossChamberButton;
+
+    //Spawns
+    Gtk::Button *megamanSpawnButton;
+    Gtk::Button *bumpySpawnButton;
+    Gtk::Button *jumpingSniperSpawnButton;
+    Gtk::Button *metSpawnButton;
+    Gtk::Button *normalSniperSpawnButton;
+
+    //Powerups
+    Gtk::Button *lifeButton;
+    Gtk::Button *energySmallButton;
+    Gtk::Button *energyBigButton;
+    Gtk::Button *bigAmmoButton;
+    Gtk::Button *smallAmmoButton;
+
+
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
 
@@ -58,16 +75,34 @@ protected:
     void backButtonWasTapped();
     void saveButtonWasTapped();
 
-    //Add Button Signals
+        //Add Button Signals
+    void ladderButtonWasTapped();
     void blockButtonWasTapped();
     void needleButtonWasTapped();
     void precipiceButtonWasTapped();
-    void spawnButtonWasTapped();
+    void bossChamberButtonWasTapped();
+
+        //Spawns
+    void megamanSpawnButtonWasTapped();
+    void bumpySpawnButtonWasTapped();
+    void jumpingSniperSpawnButtonWasTapped();
+    void metSpawnButtonWasTapped();
+    void normalSniperSpawnButtonWasTapped();
+
+        //Powerups
+    void lifeButtonWasTapped();
+    void energySmallButtonWasTapped();
+    void energyBigButtonWasTapped();
+    void bigAmmoButtonWasTapped();
+    void smallAmmoButtonWasTapped();
 
 private:
     bool draggingImageIsMoving = false;
     void draggingBegin();
     void draggingEnd();
+
+    void addDraggingImageWithType(ObstacleViewType obstacleViewType);
+
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

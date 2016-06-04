@@ -14,12 +14,16 @@
 #include "rapidjson/filereadstream.h"
 
 
-class MapVeiwParser {
+class MapViewParser {
+private:
+	void parse(rapidjson::Document &document, MapView *mapView);
+
 public:
-	MapVeiwParser();
-	virtual ~MapVeiwParser();
+	MapViewParser();
+	virtual ~MapViewParser();
 
 	void editorMapWithPath(MapView *editorMap, std::string name);
+	void clientMapFromString(MapView *map, std::string json);
 };
 
 #endif /* EDITOR_MODELS_EDITOR_EDITORMAPPARSER_H_ */

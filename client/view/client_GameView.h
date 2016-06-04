@@ -10,6 +10,8 @@
 #include "game_engine/client_WorldView.h"
 #include "game_engine/client_SomethingThatIsNotTerrainView.h"
 
+#include "../../common/common_MapView.h"
+
 /**
   * Im gonna copy as much as I can the Android MVC + everything I can
   * (eg Use of callbacks from user responses)
@@ -95,6 +97,8 @@ private:
 public:
   GameView();
   virtual ~GameView();
+
+  void loadMapFromAsset(MapView *mapView);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

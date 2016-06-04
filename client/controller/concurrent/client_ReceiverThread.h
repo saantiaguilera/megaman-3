@@ -36,8 +36,6 @@ private:
 
 protected:
   virtual void run() {
-    usleep(1000 * 1000 * 2);
-
     dispatchEvent(new FlowEvent(FLOW_LOBBY));
 
     while (socket && socket->isActive()) {

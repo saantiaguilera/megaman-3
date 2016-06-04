@@ -27,6 +27,7 @@ EditorController::EditorController(int argc, char *argv[]) {
 //	mainWindow = 0;
 	mapWindow = 0;
 
+
 //	builder->get_widget_derived("mainWindow", mainWindow);
 	builder->get_widget_derived("mapWindow", mapWindow);
 
