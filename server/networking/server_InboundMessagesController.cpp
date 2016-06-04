@@ -39,7 +39,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 		case START_GAME:
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				std::cout << "Start game!" << std::endl;
-				// Set the flag of th engine to ready to start
+				// Set the flag of the engine to ready to start
 				desiredPlayer = getDesiredPlayer(inboundMessage);
 				if (desiredPlayer->isAdmin()){
 					Engine::getInstance().setReadyToStart(true);
@@ -58,9 +58,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			 break;
 		case WEAPON_CHANGE:
 			std::cout << "Weapon change!" << std::endl;
-			// Weapons should have an id, this should have the id of the player
-			// and the corresponding weapon id to switch
 			desiredPlayer = getDesiredPlayer(inboundMessage);
+			desiredPlayer->getMegaman()->changeWeaponTo(processWeaponType(inboundMessage));
 			break;
 		default:
 			break;
@@ -81,7 +80,7 @@ Player* InboundMessagesController::getDesiredPlayer(
 	return NULL;
 }
 
-int InboundMessagesController::processMovement(const std::string& keyMap, Player* player) {
+void InboundMessagesController::processMovement(const std::string& keyMap, Player* player) {
 	std::stringstream ss;
 	ss.str(keyMap);
 //	bool jump, down, left, right, shoot;
@@ -108,6 +107,13 @@ int InboundMessagesController::processMovement(const std::string& keyMap, Player
 		player->getMegaman()->attack();
 	}
 
+}
+
+int InboundMessagesController::processWeaponType(
+		const std::string& weaponType) {
+	std::stringstream ss(weaponType);
+	int incomingWeaponType;
+	ss >> incomingWeaponType;
 }
 
 InboundMessagesController::~InboundMessagesController() {
