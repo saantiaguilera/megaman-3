@@ -16,6 +16,10 @@ public:
 	EditorObstacle();
 	virtual ~EditorObstacle();
 
+	unsigned int getHeight();
+	unsigned int getWidth();
+	Point getPoint();
+
 protected:
 		Point point;
 		unsigned int height;

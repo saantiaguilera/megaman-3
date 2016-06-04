@@ -9,6 +9,10 @@
 #define EDITOR_VIEWS_EDITOR_MAPWINDOW_H_
 
 #include <gtkmm.h>
+
+#include "editor_MapFixedWindow.h"
+#include "obstacles/editor_ObstacleView.h"
+
 class EditorController;
 
 
@@ -29,27 +33,41 @@ protected:
 
     Gtk::Image *draggingImage;
 
-    //Different Buttons
+    //Navigation Buttons
     Gtk::Button *backButton;
     Gtk::Button *saveButton;
+
+    //Add Buttons
+    Gtk::Button *blockButton;
+    Gtk::Button *needleButton;
+    Gtk::Button *precipiceButton;
+    Gtk::Button *spawnButton;
+    std::vector<Gtk::Button *> *addButtonVector;
+    void addButtonWithName(Gtk::Button *aButton, std::string aName);
+
+    //Window Buttons
     Gtk::EventBox *eventBox;
     Gtk::ScrolledWindow *scrolledWindow;
-    Gtk::Fixed *layoutWindow;
-
-    Gtk::Button *blockButton;
-
+    MapFixedWindow *fixedWindow;
 
     // Override mouse events
     bool on_button_press_event(GdkEventButton *event);
 	bool on_motion_notify_event(GdkEventMotion*event);
 
-   	//signal handlers
+   	//Signal handlers
     void backButtonWasTapped();
     void saveButtonWasTapped();
 
-
+    //Add Button Signals
     void blockButtonWasTapped();
+    void needleButtonWasTapped();
+    void precipiceButtonWasTapped();
+    void spawnButtonWasTapped();
 
+private:
+    bool draggingImageIsMoving = false;
+    void draggingBegin();
+    void draggingEnd();
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

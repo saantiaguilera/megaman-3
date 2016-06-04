@@ -9,6 +9,7 @@
 
 #include "../../../common/common_Point.h"
 
+//Constructors
 EditorObstacle::EditorObstacle(unsigned int aX, unsigned int aY, unsigned int aHeight, unsigned int aWidth) {
 	point.setX(aX);
 	point.setY(aY);
@@ -17,12 +18,21 @@ EditorObstacle::EditorObstacle(unsigned int aX, unsigned int aY, unsigned int aH
 }
 
 
-EditorObstacle::EditorObstacle() {
-	// TODO Auto-generated constructor stub
-
+EditorObstacle::EditorObstacle(){
 }
 
+//Destructors
 EditorObstacle::~EditorObstacle() {
-	// TODO Auto-generated destructor stub
 }
 
+//Getters
+unsigned int EditorObstacle::getHeight() {
+	return height;
+}
+
+unsigned int EditorObstacle::getWidth() {
+	return width;
+}
+Point EditorObstacle::getPoint() {
+	return point;
+}
