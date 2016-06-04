@@ -31,6 +31,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 		case PLAYER_CONNECTED:
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				Engine::getInstance().addNewPlayer(inboundMessage);
+				std::cout << "Player name: " << inboundMessage << std::endl;
 				NewPlayerSerializer newPlayerSerializer(inboundMessage);
 				newPlayerSerializer.serialize();
 				Engine::getInstance().getContext()->dispatchEvent(&newPlayerSerializer);
@@ -114,6 +115,7 @@ int InboundMessagesController::processWeaponType(
 	std::stringstream ss(weaponType);
 	int incomingWeaponType;
 	ss >> incomingWeaponType;
+	return incomingWeaponType;
 }
 
 InboundMessagesController::~InboundMessagesController() {
