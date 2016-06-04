@@ -27,8 +27,6 @@ private:
 
 protected:
   void send(Serializer *serializer) {
-    serializer->serialize();
-
     std::cout << "serialized data is " << serializer->getSerialized() << std::endl;
 
     int code = htonl(serializer->getMessageCode());

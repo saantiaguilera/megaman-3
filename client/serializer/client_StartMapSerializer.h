@@ -10,21 +10,24 @@
 class StartMapSerializer : public Serializer {
 private:
   int mapId;
-public:
-  StartMapSerializer(int mapId) : Serializer(), mapId(mapId) {
-  }
 
-  ~StartMapSerializer() {
-  }
-
+protected:
   virtual void serialize() {
     std::stringstream ss;
     ss << mapId;
 
     serialized = ss.str();
-
-    messageLength = serialized.length();
   }
+
+public:
+  StartMapSerializer(int mapId) : Serializer(), mapId(mapId) {
+    messageCode = START_GAME;
+  }
+
+  ~StartMapSerializer() {
+  }
+
+
 
 };
 

@@ -8,6 +8,12 @@
 class PlayerConnectedSerializer : public Serializer {
 private:
   std::string name;
+
+protected:
+  virtual void serialize() {
+    serialized = name;
+  }
+
 public:
   PlayerConnectedSerializer(std::string name) : Serializer(), name(name) {
     messageCode = PLAYER_CONNECTED;
@@ -15,11 +21,6 @@ public:
 
   ~PlayerConnectedSerializer() {
 
-  }
-
-  virtual void serialize() {
-    serialized = name;
-    messageLength = serialized.length();
   }
 
 };

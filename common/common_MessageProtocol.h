@@ -19,6 +19,10 @@ CODE - LENGTH - NAME
 */
 
 #define START_GAME 3             // C (admin) -> S -> Cs
+/*
+CODE - LENGTH - MAPID
+*/
+
 #define SEND_MAP 4               // S -> Cs
 #define KEY_PRESSED 5            // C -> S
 /*

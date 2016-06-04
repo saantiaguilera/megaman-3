@@ -9,10 +9,10 @@
 
 #include <sstream>
 
-Serializer::Serializer() : objectId(0), messageCode(0), messageLength(-1) {
+Serializer::Serializer() : objectId(0), messageCode(0), serialized("") {
 }
 
-Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(0), messageLength(-1) {
+Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(0) {
 
 }
 

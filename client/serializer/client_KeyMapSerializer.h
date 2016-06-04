@@ -10,15 +10,8 @@
 class KeyMapSerializer : public Serializer {
 private:
   KeyMap keyMap;
-public:
-  KeyMapSerializer(KeyMap keyMap) : Serializer(), keyMap(keyMap) {
-    messageCode = KEY_PRESSED;
-  }
 
-  ~KeyMapSerializer() {
-
-  }
-
+protected:
   virtual void serialize() {
     std::stringstream ss;
     ss << (int) keyMap.isJumping();
@@ -28,8 +21,15 @@ public:
     ss << (int) keyMap.isShooting();
 
     serialized = ss.str();
+  }
 
-    messageLength = serialized.length();
+public:
+  KeyMapSerializer(KeyMap keyMap) : Serializer(), keyMap(keyMap) {
+    messageCode = KEY_PRESSED;
+  }
+
+  ~KeyMapSerializer() {
+
   }
 
 };

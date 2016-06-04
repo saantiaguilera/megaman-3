@@ -17,10 +17,11 @@ protected:
 	unsigned int objectId;
 	// The message code
 	int messageCode;
-	// Length of the message
-	int messageLength;
 	// The serialized string
 	std::string serialized;
+
+	// serializer method, pure virtual
+	virtual void serialize() = 0;
 public:
 	// Constructor for messages with no id
 	Serializer();
@@ -30,8 +31,6 @@ public:
 	virtual ~Serializer();
 	// Get the serialized string
 	const std::string& getSerialized();
-	// serializer method, pure virtual
-	virtual void serialize() = 0;
 	// Get the related obj id
 	unsigned int getObjectId() const;
 	int getMessageCode() const;
