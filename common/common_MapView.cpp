@@ -31,6 +31,13 @@ void MapView::setObstacle(ObstacleView *obstacle) {
 	obstacles->push_back(obstacle);
 }
 
+void MapView::setHeight(unsigned int aHeight) {
+	height = aHeight;
+}
+void MapView::setWidth(unsigned int aWidth) {
+	width = aWidth;
+}
+
 //Getters
 std::string MapView::getName() {
 	return name;

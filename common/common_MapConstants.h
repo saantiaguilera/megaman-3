@@ -38,10 +38,14 @@ typedef enum {
 #define MAP_NAME "map"
 #define ID_NAME "id"
 #define MAPNAME_NAME "name"
+#define MAPHEIGHT_NAME "height"
+#define MAPWIDTH_NAME "width"
+
+#define OBSTACLES_NAME "obstacles"
+
 #define X_NAME "x"
 #define Y_NAME "y"
-#define SPAWN_TYPE_NAME "type"
-#define OBSTACLES_NAME "obstacles"
+#define TYPE_NAME "type"
 
 class MapConstants {
 public:

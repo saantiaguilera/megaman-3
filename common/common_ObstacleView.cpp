@@ -8,10 +8,10 @@
 #include "common_ObstacleView.h"
 
 //Constructors
-ObstacleView::ObstacleView(unsigned int aX, unsigned int aY) {
+ObstacleView::ObstacleView(unsigned int aX, unsigned int aY, ObstacleViewType aType) {
 	point.setX(aX);
 	point.setY(aY);
-
+	type = aType;
 }
 
 
