@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "../event/client_StartMapEvent.h"
+#include "../concurrent/client_Looper.h"
 #include "client_LobbyController.h"
 
 #define PATH_LOBBY_LAYOUT "res/layout/client_lobby.glade"
@@ -46,5 +48,6 @@ LobbyController::LobbyController(Context *context) : Controller(context), view(n
 }
 
 void LobbyController::onMapStart(int mapId) {
-  std::cout << "onMapStart:: " << mapId << std::endl;
+  Looper::getMainLooper().put(new StartMapEvent(mapId));
+  getContext()->onMessageReceived();
 }

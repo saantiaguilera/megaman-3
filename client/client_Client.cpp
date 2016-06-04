@@ -5,6 +5,7 @@
 #include "controller/concurrent/event/client_CreateConnectionEvent.h"
 #include "controller/concurrent/event/client_SendKeyMapEvent.h"
 #include "controller/concurrent/event/client_QuitEvent.h"
+#include "event/client_StartMapEvent.h"
 
 #include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
@@ -159,6 +160,11 @@ bool Client::onMessageReceived() {
 
       case EVENT_SEND_KEY_MAP:
         senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        consumed = true;
+        break;
+
+      case EVENT_START_GAME:
+        senderLooper->put(new StartMapEvent(dynamic_cast<StartMapEvent*>(event)->getMapId()));
         consumed = true;
         break;
 
