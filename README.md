@@ -1,9 +1,10 @@
 # Megaman X3 in C++
 
-#TODO
+##TODO
+
 - Add chat
 
-
+##Dependencies
 
 > JSON Parser: https://github.com/miloyip/rapidjson
 
