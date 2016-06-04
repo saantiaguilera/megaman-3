@@ -24,9 +24,8 @@ Player::Player(const std::string& name, unsigned int initialLives) : name(name),
 	if (id == 1)
 		admin = true;
 	megaman = new Megaman(this, 0, 0);
-	ObjectCreationSerializer objectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
-	objectCreationSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(&objectCreationSerializer);
+	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
 
 bool Player::isAdmin() const {

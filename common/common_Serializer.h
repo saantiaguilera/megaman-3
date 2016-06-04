@@ -30,7 +30,7 @@ public:
 	// Destroyer
 	virtual ~Serializer();
 	// Get the serialized string
-	const std::string& getSerialized();
+	std::string getSerialized();
 	// Get the related obj id
 	unsigned int getObjectId() const;
 	int getMessageCode() const;
