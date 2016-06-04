@@ -7,6 +7,7 @@
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
 #include "../../event/client_StartMapEvent.h"
+#include "../../../common/common_MessageProtocol.h"
 
 #include "event/client_SendKeyMapEvent.h"
 
@@ -22,7 +23,15 @@ private:
 
 protected:
   virtual void run() {
-    std::cout << "Senderthread, client name is " << name << std::endl;
+    if (socket && socket->isActive()) {
+      int code = htonl(PLAYER_CONNECTED);
+      socket->send((char*) &code, sizeof(int));
+
+      int length = htonl(name.length());
+      socket->send((char*) &length, sizeof(length));
+
+      socket->send((char*) name.c_str(), name.length());
+    }
 
     while (socket && socket->isActive()) {
       Event *event = NULL;
