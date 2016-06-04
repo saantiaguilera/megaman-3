@@ -6,11 +6,12 @@
 #include "../commons/client_Controller.h"
 #include "../view/client_LobbyView.h"
 
-class LobbyController : public Controller {
+class LobbyController : public Controller, private LobbyViewListener {
 private:
   LobbyView *view;
 
   virtual bool onMessageReceived();
+  virtual void onMapStart(int mapId);
 
 public:
   virtual Gtk::Window * getView();

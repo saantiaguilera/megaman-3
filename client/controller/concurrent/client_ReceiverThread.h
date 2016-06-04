@@ -34,11 +34,11 @@ protected:
     usleep(1000 * 1000 * 2);
 
     dispatchEvent(new FlowEvent(FLOW_LOBBY));
-
+/*
     usleep(1000 * 1000 * 2); //1000 micro * 1000 millis * 2 secs.
 
     dispatchEvent(new FlowEvent(FLOW_GAME));
-
+*/
     while (socket && socket->isActive()) {
       //Well, run should only have this while and everything should happen from server data
     }

@@ -41,4 +41,10 @@ LobbyController::LobbyController(Context *context) : Controller(context), view(n
   }
 
   refBuilder->get_widget_derived(PATH_LOBBY_ROOT_VIEW, view);
+
+  view->setListener(this);
+}
+
+void LobbyController::onMapStart(int mapId) {
+  std::cout << "onMapStart:: " << mapId << std::endl;
 }
