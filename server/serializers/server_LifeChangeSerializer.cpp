@@ -23,7 +23,7 @@ void LifeChangeSerializer::serialize() {
 	// int uint float float
 	std::stringstream ss;
 	messageCode = LIFE_CHANGE;
-	ss << "{" << "life: " << newLifeCount << "," << "id: " << objectId << "}";
+	ss << "{" << "\"life\": " << newLifeCount << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
 	messageLength = serialized.length();
 }

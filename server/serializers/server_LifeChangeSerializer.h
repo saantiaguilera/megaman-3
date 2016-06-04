@@ -8,7 +8,7 @@
 #ifndef SERVER_SERIALIZERS_SERVER_LIFECHANGESERIALIZER_H_
 #define SERVER_SERIALIZERS_SERVER_LIFECHANGESERIALIZER_H_
 
-#include "server_Serializer.h"
+#include "../../common/common_Serializer.h"
 
 class LifeChangeSerializer: public Serializer {
 private:

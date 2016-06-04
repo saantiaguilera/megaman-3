@@ -21,7 +21,8 @@ NewPlayerSerializer::~NewPlayerSerializer() {
 void NewPlayerSerializer::serialize() {
 	// int uint float float
 	std::stringstream ss;
-	ss << NEW_PLAYER;
+	messageCode = NEW_PLAYER;
 	ss << playerName;
 	serialized = ss.str();
+	messageLength = serialized.length();
 }

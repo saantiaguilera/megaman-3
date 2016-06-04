@@ -8,7 +8,7 @@
 #ifndef SERVER_SERIALIZERS_SERVER_HPCHANGESERIALIZER_H_
 #define SERVER_SERIALIZERS_SERVER_HPCHANGESERIALIZER_H_
 
-#include "server_Serializer.h"
+#include "../../common/server_Serializer.h"
 
 class HpChangeSerializer: public Serializer {
 private:

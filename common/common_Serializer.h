@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SERVER_SERIALIZERS_SERVER_SERIALIZER_H_
-#define SERVER_SERIALIZERS_SERVER_SERIALIZER_H_
+#ifndef COMMON_COMMON_SERIALIZER_H_
+#define COMMON_COMMON_SERIALIZER_H_
 
 #include <string>
 #include "../../common/common_MessageProtocol.h"
@@ -44,4 +44,4 @@ private:
 	Serializer& operator=(const Serializer&);
 };
 
-#endif /* SERVER_SERIALIZERS_SERVER_SERIALIZER_H_ */
+#endif /* COMMON_COMMON_SERIALIZER_H_ */
