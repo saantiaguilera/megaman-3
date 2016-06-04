@@ -9,6 +9,7 @@
 #define SRC_SOCKETS_COMMON_SOCKET_H_
 
 #include <string>
+#include <netinet/in.h>
 
 struct addrinfo;
 

@@ -27,6 +27,7 @@ enum ConnectionResult { RESULT_ERROR, RESULT_OK, RESULT_INDETERMINATE };
 */
 enum Flow { FLOW_START, FLOW_LOBBY, FLOW_GAME };
 
+//Move to another side, this is client side.
 #define EVENT_NON_EXISTENT -1
 #define EVENT_CREATE_CONNECTION 0
 #define EVENT_CONNECTION_ACCEPTED 1
@@ -37,5 +38,8 @@ enum Flow { FLOW_START, FLOW_LOBBY, FLOW_GAME };
 #define EVENT_FLOW_GAME 6
 #define EVENT_SEND_KEY_MAP 7
 #define EVENT_QUIT 8
+#define EVENT_START_GAME 9
+#define EVENT_PLAYER_CONNECTED 10
+#define EVENT_PLAYER_DISCONNECTED 11
 
 #endif /* CONSTANTS_H_ */

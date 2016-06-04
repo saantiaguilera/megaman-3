@@ -9,7 +9,15 @@
 #define COMMON_COMMON_MESSAGEPROTOCOL_H_
 
 #define PLAYER_CONNECTED 1       // C -> S
+/*
+CODE - LENGTH - NAME
+*/
+
 #define NEW_PLAYER 2             // S -> Cs
+/*
+CODE - LENGTH - NAME
+*/
+
 #define START_GAME 3             // C (admin) -> S -> Cs
 #define SEND_MAP 4               // S -> Cs
 #define KEY_PRESSED 5            // C -> S
@@ -21,6 +29,11 @@
 #define WEAPON_CHANGE 11          // C -> S
 #define END_GAME 12               // S -> C
 #define LIFE_CHANGE 13            // S -> C
+
+#define DISCONNECTED_PLAYER 14
+/*
+CODE - LENGTH - NAME
+*/
 
 
 #endif /* COMMON_COMMON_MESSAGEPROTOCOL_H_ */

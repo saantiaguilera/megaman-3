@@ -4,7 +4,7 @@
 
 #include "../../Constants.h"
 
-#include "concurrent/event/client_CreateConnectionEvent.h"
+#include "../event/client_CreateConnectionEvent.h"
 
 #include "client_MainScreenController.h"
 
@@ -36,10 +36,10 @@ MainScreenController::~MainScreenController() {
   delete view;
 }
 
-void MainScreenController::onEnterPressed(Gtk::Entry *editText) {
+void MainScreenController::onEnterPressed(std::string ipport, std::string name) {
   view->setResult(RESULT_INDETERMINATE);
 
-  Looper::getMainLooper().put(new CreateConnectionEvent(editText->get_text()));
+  Looper::getMainLooper().put(new CreateConnectionEvent(ipport, name));
   getContext()->onMessageReceived();
 }
 

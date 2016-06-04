@@ -2,9 +2,10 @@
 
 #include "../Constants.h"
 
-#include "controller/concurrent/event/client_CreateConnectionEvent.h"
-#include "controller/concurrent/event/client_SendKeyMapEvent.h"
-#include "controller/concurrent/event/client_QuitEvent.h"
+#include "event/client_CreateConnectionEvent.h"
+#include "event/client_SendKeyMapEvent.h"
+#include "event/client_QuitEvent.h"
+#include "event/client_StartMapEvent.h"
 
 #include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
@@ -67,8 +68,9 @@ void Client::start() {
   app->run(*(currentController->getView()));
 }
 
-void Client::onCreateConnection(std::string ip) {
+void Client::onCreateConnection(std::string ip, std::string name) {
   if (!connectionThread) {
+    clientName = name;
     std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;
     connectionThread = new ConnectionThread();
     connectionThread->setListener(this);
@@ -88,6 +90,7 @@ void Client::createSenderAndReceiver() {
   if (!senderThread) {
     senderThread = new SenderThread((senderLooper = new Looper()));
     senderThread->setSocket(socket);
+    senderThread->setClientName(clientName);
     senderThread->start();
   }
 
@@ -143,7 +146,7 @@ bool Client::onMessageReceived() {
 
     switch (event->getId()) {
       case EVENT_CREATE_CONNECTION:
-        onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
+        onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIPAndPort(), dynamic_cast<CreateConnectionEvent*>(event)->getName());
         consumed = true;
         break;
 
@@ -159,6 +162,11 @@ bool Client::onMessageReceived() {
 
       case EVENT_SEND_KEY_MAP:
         senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        consumed = true;
+        break;
+
+      case EVENT_START_GAME:
+        senderLooper->put(new StartMapEvent(dynamic_cast<StartMapEvent*>(event)->getMapId()));
         consumed = true;
         break;
 

@@ -8,8 +8,8 @@
 #include "../../../common/common_Thread.h"
 #include "../../concurrent/client_Event.h"
 
-#include "event/client_ConnectionEvent.h"
-#include "event/client_FlowEvent.h"
+#include "../../event/client_ConnectionEvent.h"
+#include "../../event/client_FlowEvent.h"
 #include "client_ReceiverContract.h"
 
 #include <unistd.h>

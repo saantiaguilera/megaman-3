@@ -17,6 +17,8 @@
  */
 class Client : public Context, private ReceiverContract {
 private:
+	std::string clientName;
+
 	Glib::RefPtr<Gtk::Application> app;
 
 	Controller *currentController;
@@ -44,7 +46,7 @@ private:
 	virtual void onDataReceived();
 
 	/* All the stuff he can do :) */
-	void onCreateConnection(std::string ip);
+	void onCreateConnection(std::string ip, std::string name);
 	void onFlowToLobby();
 	void onFlowToGame();
 	void onFlowToStart();
