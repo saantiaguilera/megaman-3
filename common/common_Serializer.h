@@ -9,7 +9,7 @@
 #define COMMON_COMMON_SERIALIZER_H_
 
 #include <string>
-#include "../../common/common_MessageProtocol.h"
+#include "common_MessageProtocol.h"
 
 class Serializer {
 protected:
