@@ -58,6 +58,7 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 }
 
 void ClientProxy::send(Serializer* serializer) {
+	// TODO: Maybe put in another thread?
 	// Send message code
 	int sendResult;
 	int messageCode = htonl(serializer->getMessageCode());
@@ -71,9 +72,6 @@ void ClientProxy::send(Serializer* serializer) {
 
 	sendResult = socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
 	checkConnection(sendResult);
-
-	// delete the sended serializer
-	delete serializer;
 }
 
 void ClientProxy::checkConnection(int sendResult){

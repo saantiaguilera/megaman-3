@@ -20,10 +20,6 @@ int main(int argc, char *argv[]) {
 
     Logger::getInstance().log(1, "Server starting...");
 
-    StartGameSerializer* serializer = new StartGameSerializer();
-
-    delete serializer;
-
     Server server = Server(port, configFilename);
     server.run();
 

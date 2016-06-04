@@ -36,7 +36,7 @@ public:
 	// and calls the rest of the methods
 	void run();
 	// Start game engine
-	void startGameEngine();
+	void initializeGameEngine();
 
 public:
 	// Copy constructor
