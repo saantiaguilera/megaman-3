@@ -15,6 +15,10 @@ class Serializer {
 protected:
 	// the referenced object id
 	unsigned int objectId;
+	// The message code
+	int messageCode;
+	// Length of the message
+	int messageLength;
 	// The serialized string
 	std::string serialized;
 public:
@@ -28,8 +32,11 @@ public:
 	const std::string& getSerialized() const;
 	// serializer method, pure virtual
 	virtual void serialize() = 0;
-	// Serialize id
-	std::string serializeObjectId();
+	// Get the related obj id
+	unsigned int getObjectId() const;
+	int getMessageCode() const;
+	int getMessageLength() const;
+
 private:
 	// Copy constructor
 	Serializer(const Serializer&);

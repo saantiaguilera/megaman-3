@@ -11,9 +11,11 @@
 #include "server_Serializer.h"
 
 class LifeChangeSerializer: public Serializer {
+private:
+	int newLifeCount;
 public:
 	// Constructor
-	LifeChangeSerializer(unsigned int playerId );
+	LifeChangeSerializer(unsigned int playerId, unsigned int newLifeCount);
 	// Destroyer
 	virtual ~LifeChangeSerializer();
 	// Serialize object
