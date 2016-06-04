@@ -23,5 +23,5 @@ void EnergyCapsule::haveEffectOn(Character* character) {
 	character->increaseHP(effectAmount);
 	HpChangeSerializer hpChangeSerializer( character->getHp(), character->getId());
 	hpChangeSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer.getSerialized());
+	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 }

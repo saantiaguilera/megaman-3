@@ -24,5 +24,4 @@ void AmmoChangeSerializer::serialize() {
 	messageCode = AMMO_CHANGE;
 	ss << "{" << "\"ammo\": " << newAmmo << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

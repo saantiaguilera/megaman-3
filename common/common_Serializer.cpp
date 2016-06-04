@@ -32,5 +32,5 @@ int Serializer::getMessageCode() const {
 }
 
 int Serializer::getMessageLength() const {
-	return messageLength;
+	return serialized.length();
 }

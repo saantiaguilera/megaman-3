@@ -24,5 +24,4 @@ void ObjectCreationSerializer::serialize() {
 	messageCode = OBJECT_CREATED;
 	ss << serializePosition();
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

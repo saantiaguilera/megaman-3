@@ -78,7 +78,7 @@ void Engine::start() {
 			(*it)->update();
 			MovementSerializer serializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			serializer.serialize();
-			context->dispatchEvent(serializer.getSerialized());
+			context->dispatchEvent(&serializer);
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
@@ -87,7 +87,7 @@ void Engine::start() {
 			PhysicObject* objectToDelete = *it;
 			ObjectDestructionSerializer objectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			objectDestructionSerializer.serialize();
-			context->dispatchEvent(objectDestructionSerializer.getSerialized());
+			context->dispatchEvent(&objectDestructionSerializer);
 
 			//delete object... physics body is destroyed here
 			delete objectToDelete;

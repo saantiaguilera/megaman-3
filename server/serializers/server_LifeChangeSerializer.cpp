@@ -25,5 +25,4 @@ void LifeChangeSerializer::serialize() {
 	messageCode = LIFE_CHANGE;
 	ss << "{" << "\"life\": " << newLifeCount << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
-	messageLength = serialized.length();
 }

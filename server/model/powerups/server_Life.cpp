@@ -22,5 +22,5 @@ void Life::haveEffectOn(Character* character) {
 	((Megaman*)character)->getHumanOperator()->increasePlayerLives();
 	LifeChangeSerializer lifeChangeSerializer(((Megaman*)character)->getHumanOperator()->getId(), ((Megaman*)character)->getHumanOperator()->getLives());
 	lifeChangeSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer.getSerialized());
+	Engine::getInstance().getContext()->dispatchEvent(&lifeChangeSerializer);
 }

@@ -35,7 +35,7 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 void Server::run() {
 	startGameEngine();
 	bool keepOnListening = true;
-	ConcurrentList<std::string> eventsQueue;
+	ConcurrentList<Serializer*> eventsQueue;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
 	acceptorWorker.start();
 	SenderWorker senderWorker(&clients, &eventsQueue);
