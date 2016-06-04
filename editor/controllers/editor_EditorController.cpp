@@ -11,8 +11,8 @@
 #include "../views/editor_MainWindow.h"
 #include <iostream>
 #include <exception>
-#include "../models/editor_EditorMapParser.h"
-#include "../models/editor_EditorMap.h"
+#include "../../common/common_MapViewParser.h"
+#include "../../common/common_MapView.h"
 
 
 EditorController::EditorController(int argc, char *argv[]) {
@@ -41,7 +41,7 @@ EditorController::~EditorController() {}
 void EditorController::begin() {}
 
 //Main window delegate
-void EditorController::presentMainWindowSavingMap(EditorMap *map) {
+void EditorController::presentMainWindowSavingMap(MapView *map) {
 	std::cout<<map->getName()<<std::endl;
 	showMainWindow();
 }
@@ -50,7 +50,7 @@ void EditorController::presentMainWindowWithoutSavingMap() {
 	showMainWindow();
 }
 
-void EditorController::presentMapWindowWithMap(EditorMap *map) {
+void EditorController::presentMapWindowWithMap(MapView *map) {
 	std::cout<<map->getName()<<std::endl;
 	showMapWindow();
 }
