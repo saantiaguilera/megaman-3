@@ -20,8 +20,7 @@ StartGameSerializer::~StartGameSerializer() {
 }
 
 void StartGameSerializer::serialize() {
-	// int uint float float
-	std::stringstream ss;
-	ss << START_GAME;
-	serialized = ss.str();
+	messageCode = START_GAME;
+	serialized = "";
+	messageLength = 0;
 }

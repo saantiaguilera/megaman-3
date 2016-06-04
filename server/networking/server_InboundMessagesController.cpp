@@ -82,7 +82,7 @@ Player* InboundMessagesController::getDesiredPlayer(
 int InboundMessagesController::processMovement(const std::string& keyMap, Player* player) {
 	std::stringstream ss;
 	ss.str(keyMap);
-//	bool up, down, left, right, shoot;
+//	bool jump, down, left, right, shoot;
 	std::vector<bool> keysVector;
 	bool aux;
 	for (int i = 0; i < MAX_MOVE_STATES; ++i){

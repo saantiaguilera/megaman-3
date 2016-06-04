@@ -23,12 +23,6 @@ const std::string& Serializer::getSerialized() const {
 	return serialized;
 }
 
-std::string Serializer::serializeObjectId() {
-	std::stringstream ss;
-	ss << objectId;
-	return ss.str();
-}
-
 unsigned int Serializer::getObjectId() const {
 	return objectId;
 }

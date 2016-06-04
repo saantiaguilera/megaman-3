@@ -20,10 +20,9 @@ ObjectDestructionSerializer::~ObjectDestructionSerializer() {
 }
 
 void ObjectDestructionSerializer::serialize() {
-	// int uint float float
 	std::stringstream ss;
-	ss << OBJECT_DESTROYED;
-	ss << serializeObjectId();
+	messageCode = OBJECT_DESTROYED;
 	ss << serializePosition();
 	serialized = ss.str();
+	messageLength = serialized.length();
 }
