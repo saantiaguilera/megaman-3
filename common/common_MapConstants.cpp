@@ -9,25 +9,25 @@
 
 MapConstants::MapConstants() {
 	//Obstacle
-	imageMap[ObstacleViewTypeLadder] = "hola";
-	imageMap[ObstacleViewTypeBlock] = "hola";
-	imageMap[ObstacleViewTypeNeedle] = "hola";
-	imageMap[ObstacleViewTypePrecipice] = "hola";
-	imageMap[ObstacleViewTypeBossChamberGate] = "hola";
+	imageMap[ObstacleViewTypeLadder] = "./res/drawable/blocks/ladder.png";
+	imageMap[ObstacleViewTypeBlock] = "./res/drawable/blocks/block.png";
+	imageMap[ObstacleViewTypeNeedle] = "./res/drawable/blocks/spike.png";
+	imageMap[ObstacleViewTypePrecipice] = "./res/drawable/blocks/sky.jpg";
+	imageMap[ObstacleViewTypeBossChamberGate] = "./res/drawable/blocks/boss_lair.png";
 
 	//Spawns
-	imageMap[ObstacleViewTypeMegaman] = "hola";
-	imageMap[ObstacleViewTypeBumpy] = "hola";
-	imageMap[ObstacleViewTypeJumpingSnyper] = "hola";
-	imageMap[ObstacleViewTypeMet] = "hola";
-	imageMap[ObstacleViewTypeNormalSnyper] = "hola";
+	imageMap[ObstacleViewTypeMegaman] = "./res/drawable/spawns/megaman/spawn.png";
+	imageMap[ObstacleViewTypeBumpy] = "./res/drawable/spawns/bumpy/spawn.png";
+	imageMap[ObstacleViewTypeJumpingSnyper] = "./res/drawable/spawns/jumping_sniper/spawn.png";
+	imageMap[ObstacleViewTypeMet] = "./res/drawable/spawns/met/spawn.png";
+	imageMap[ObstacleViewTypeNormalSnyper] = "./res/drawable/spawns/normal_sniper/spawn.png";
 
 	//Powerups
-	imageMap[ObstacleViewTypeLife] = "hola";
-	imageMap[ObstacleViewTypeBigEnergyCapsule] = "hola";
-	imageMap[ObstacleViewTypeSmallEnergyCapsule] = "hola";
-	imageMap[ObstacleViewTypeBigAmmoPack] = "hola";
-	imageMap[ObstacleViewTypeSmallAmmoPack] = "hola";
+	imageMap[ObstacleViewTypeLife] = "./res/drawable/powerups/hp/hp.png";
+	imageMap[ObstacleViewTypeBigEnergyCapsule] = "./res/drawable/powerups/energy/energy.png";
+	imageMap[ObstacleViewTypeSmallEnergyCapsule] = "./res/drawable/powerups/energy/energy.png";
+	imageMap[ObstacleViewTypeBigAmmoPack] = "./res/drawable/powerups/ammo/big_ammo.png";
+	imageMap[ObstacleViewTypeSmallAmmoPack] = "./res/drawable/powerups/ammo/small_ammo.png";
 }
 
 MapConstants::~MapConstants() {
