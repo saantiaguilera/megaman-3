@@ -34,6 +34,7 @@ void ClientProxy::acceptNewConnection(const Socket& dispatcherSocket) {
 }
 
 void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::string& incomingData) {
+	incomingData = "";
 	// Receive message code
 	socket.receive((char*) &messageCode, sizeof(int));
 	// TODO: Log receive error
@@ -53,6 +54,7 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 	} else {
 		incomingData += buffer;
 	}
+	delete buffer;
 }
 
 void ClientProxy::send(Serializer* serializer) {

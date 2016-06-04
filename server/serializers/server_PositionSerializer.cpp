@@ -18,6 +18,6 @@ PositionSerializer::~PositionSerializer() {
 
 std::string PositionSerializer::serializePosition() {
 	std::stringstream ss;
-	ss << "{ \"position\": { \"x\": " << x << ", \"y\": " << y << "} }";
+	ss << "{ \"id\": " << getObjectId() << ", \"position\": { \"x\": " << x << ", \"y\": " << y << "} }";
 	return ss.str();
 }
