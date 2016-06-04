@@ -2,9 +2,9 @@
 
 #include "../Constants.h"
 
-#include "controller/concurrent/event/client_CreateConnectionEvent.h"
-#include "controller/concurrent/event/client_SendKeyMapEvent.h"
-#include "controller/concurrent/event/client_QuitEvent.h"
+#include "event/client_CreateConnectionEvent.h"
+#include "event/client_SendKeyMapEvent.h"
+#include "event/client_QuitEvent.h"
 #include "event/client_StartMapEvent.h"
 
 #include "controller/client_GameController.h"

@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include "../concurrent/client_Event.h"
-#include "concurrent/event/client_SendKeyMapEvent.h"
-#include "concurrent/event/client_QuitEvent.h"
+#include "../event/client_SendKeyMapEvent.h"
+#include "../event/client_QuitEvent.h"
 #include "client_GameController.h"
 
 GameController::~GameController() {

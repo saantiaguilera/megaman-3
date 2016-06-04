@@ -1,8 +1,8 @@
 #ifndef CLIENT_EVENTS_CLIENT_FLOWEVENT_H_
 #define CLIENT_EVENTS_CLIENT_FLOWEVENT_H_
 
-#include "../../../../Constants.h"
-#include "../../../concurrent/client_Event.h"
+#include "../../Constants.h"
+#include "../concurrent/client_Event.h"
 
 /*
 If time is on our side let it implement a data holder that can have information

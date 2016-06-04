@@ -9,8 +9,8 @@
 #include "../../event/client_DisconnectedPlayerEvent.h"
 #include "../../event/client_NewPlayerEvent.h"
 
-#include "event/client_ConnectionEvent.h"
-#include "event/client_FlowEvent.h"
+#include "../../event/client_ConnectionEvent.h"
+#include "../../event/client_FlowEvent.h"
 #include "client_ReceiverContract.h"
 #include "../../../common/common_MessageProtocol.h"
 

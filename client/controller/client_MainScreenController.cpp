@@ -4,7 +4,7 @@
 
 #include "../../Constants.h"
 
-#include "concurrent/event/client_CreateConnectionEvent.h"
+#include "../event/client_CreateConnectionEvent.h"
 
 #include "client_MainScreenController.h"
 

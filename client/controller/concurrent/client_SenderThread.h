@@ -9,7 +9,7 @@
 #include "../../event/client_StartMapEvent.h"
 #include "../../../common/common_MessageProtocol.h"
 
-#include "event/client_SendKeyMapEvent.h"
+#include "../../event/client_SendKeyMapEvent.h"
 
 #include <string>
 #include <unistd.h>
