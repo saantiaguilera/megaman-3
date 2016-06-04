@@ -10,6 +10,7 @@
 
 #include "event/client_SendKeyMapEvent.h"
 
+#include <string>
 #include <unistd.h>
 
 class SenderThread : public Thread {
@@ -17,9 +18,13 @@ private:
   Looper *handlerLooper;
   Socket *socket;
 
+  std::string name;
+
 protected:
   virtual void run() {
-    while (true) { //socket && socket->isActive()
+    std::cout << "Senderthread, client name is " << name << std::endl;
+
+    while (socket && socket->isActive()) {
       Event *event = NULL;
       while ((event = handlerLooper->get()) != NULL) {
         switch (event->getId()) {
@@ -47,6 +52,12 @@ public:
   SenderThread(Looper *handlerLooper) : handlerLooper(handlerLooper) { }
   ~SenderThread() {
   };
+
+  void setClientName(std::string name) {
+    if (name.length() == 0)
+      this->name = "Undefined player";
+    else this->name = name;
+  }
 
   void setSocket(Socket *socket) {
     this->socket = socket;

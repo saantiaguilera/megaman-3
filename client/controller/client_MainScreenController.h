@@ -14,7 +14,7 @@ private:
   * Has private inheritance. Why should any class know i can handle this
   * Since this is something internal of this controller, I think its ok
   */
-  virtual void onEnterPressed(Gtk::Entry *editText);
+  virtual void onEnterPressed(std::string ipport, std::string name);
 
   virtual bool onMessageReceived();
 

@@ -9,9 +9,11 @@ If time is on our side let it implement a data holder that can have information 
 */
 class CreateConnectionEvent : public Event {
 private:
-  std::string ip;
+  std::string ipport;
+  std::string name;
+
 public:
-  CreateConnectionEvent(std::string ip) : ip(ip) {}
+  CreateConnectionEvent(std::string ipport, std::string name) : ipport(ipport), name(name) {}
 
   ~CreateConnectionEvent() { }
 
@@ -19,8 +21,12 @@ public:
     return EVENT_CREATE_CONNECTION;
   }
 
-  std::string getIP() {
-    return ip;
+  std::string getIPAndPort() {
+    return ipport;
+  }
+
+  std::string getName() {
+    return name;
   }
 };
 

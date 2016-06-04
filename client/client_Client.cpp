@@ -68,8 +68,9 @@ void Client::start() {
   app->run(*(currentController->getView()));
 }
 
-void Client::onCreateConnection(std::string ip) {
+void Client::onCreateConnection(std::string ip, std::string name) {
   if (!connectionThread) {
+    clientName = name;
     std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;
     connectionThread = new ConnectionThread();
     connectionThread->setListener(this);
@@ -89,6 +90,7 @@ void Client::createSenderAndReceiver() {
   if (!senderThread) {
     senderThread = new SenderThread((senderLooper = new Looper()));
     senderThread->setSocket(socket);
+    senderThread->setClientName(clientName);
     senderThread->start();
   }
 
@@ -144,7 +146,7 @@ bool Client::onMessageReceived() {
 
     switch (event->getId()) {
       case EVENT_CREATE_CONNECTION:
-        onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIP());
+        onCreateConnection(dynamic_cast<CreateConnectionEvent*>(event)->getIPAndPort(), dynamic_cast<CreateConnectionEvent*>(event)->getName());
         consumed = true;
         break;
 

@@ -34,9 +34,6 @@ private:
 
 protected:
   virtual void run() {
-
-    dispatchEvent(new ConnectionEvent(RESULT_OK));
-    /*
     if (socket) {
       //I would love to use my sockets, but (I WONT SAY WHO COFCOFTINCHOCOFCOF makes me use his that I have to cast to char* the things instead of using string)
       socket->build((char*) ip.c_str(), port.c_str());
@@ -53,7 +50,7 @@ protected:
           dispatchEvent(new ConnectionEvent(RESULT_ERROR));
       }
     }
-    */
+
     std::cout << "ConnectionThread::finished running" << std::endl;
   }
 
