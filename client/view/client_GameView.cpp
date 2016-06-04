@@ -40,7 +40,7 @@ bool GameView::onLoopSDL() {
 }
 
 void GameView::loadMapFromAsset(MapView *mapView) {
-  //TODO
+  worldView->from(mapView);
 }
 
 bool GameView::onInitSDL(::Window windowId) {

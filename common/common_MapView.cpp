@@ -9,10 +9,6 @@
 
 MapView::MapView() {
 	obstacles = new std::vector<ObstacleView *>();
-//	spawns = new std::vector<EditorObstacle *>();
-//	needles = new std::vector<EditorObstacle *>();
-//	precipices = new std::vector<EditorObstacle *>();
-//	blocks = new std::vector<EditorObstacle *>();
 }
 
 MapView::~MapView() {
@@ -41,4 +37,24 @@ void MapView::setWidth(unsigned int aWidth) {
 //Getters
 std::string MapView::getName() {
 	return name;
+}
+
+unsigned int MapView::getWidth() {
+	return width;
+}
+
+unsigned int MapView::getHeight() {
+	return height;
+}
+
+unsigned int MapView::getId() {
+	return id;
+}
+
+ObstacleView * MapView::getObstacle(int position) {
+	return obstacles->at(position);
+}
+
+std::vector<ObstacleView *> * MapView::getObstacles() {
+	return obstacles;
 }

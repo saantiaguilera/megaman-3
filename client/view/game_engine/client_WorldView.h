@@ -4,30 +4,13 @@
 #include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define TERRAIN_TILE_SIZE 64
+#include "../../../common/common_MapView.h"
+
+#define TERRAIN_TILE_SIZE 100
 
 class WorldView : public RenderedView {
 private:
-  SDL2pp::Texture *terrainTexture;
-
-  SDL2pp::Rect *grassRect;
-  SDL2pp::Rect *rockRect;
-  SDL2pp::Rect *sandRect;
-  SDL2pp::Rect *skyRect;
-  SDL2pp::Rect *clayRect;
-
-  int xTiles;
-  int yTiles;
-
-  void initTextures() {
-    terrainTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/some_tiles.png");
-
-    grassRect = new SDL2pp::Rect(0, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
-    clayRect  = new SDL2pp::Rect(TERRAIN_TILE_SIZE, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
-    sandRect  = new SDL2pp::Rect(TERRAIN_TILE_SIZE * 2, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
-    rockRect  = new SDL2pp::Rect(TERRAIN_TILE_SIZE * 3, 0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
-    skyRect   = new SDL2pp::Rect(0, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
-  }
+  SDL2pp::Texture *texture;
 
 public:
   /**
@@ -49,45 +32,20 @@ public:
   * note that currently I just show the stuff in the renderer because I still havent parse the map and I dont have a mass center to scroll over
   */
   WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer) {
-    initTextures();
-
-    //Get the x and y of the matrix
-    xTiles = renderer->GetOutputWidth() / TERRAIN_TILE_SIZE;
-    yTiles = renderer->GetOutputHeight() / TERRAIN_TILE_SIZE;
   }
 
-  /*
-  Currently its for testing purposes. But it should be something similar
-  */
   virtual void draw() {
-    //Here we should iterate over the whole matrix (In this case I will simply fill the screen)
-    for (int i = 0; i < xTiles * yTiles; ++i) { //i < x * y
-      int x = i % xTiles; // X position will be position % columns
-      int y = i / xTiles; // Y position will be position / columns
-
-      SDL2pp::Rect *rect;
-
-      //Something for testing different textures inside a one
-      if (y < 8)
-        rect = skyRect;
-      else if (y < 9)
-        rect = (x % 2 == 0) ? sandRect : grassRect;
-      else if (y < 13)
-        rect = clayRect;
-      else rect = rockRect;
-
       //For each of them render a texture (imagine background variable you get it from the )
-      renderer->Copy(*terrainTexture, *rect, SDL2pp::Rect(x * TERRAIN_TILE_SIZE, y * TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
-    }
+      //renderer->Copy(*terrainTexture, *rect, SDL2pp::Rect(x * TERRAIN_TILE_SIZE, y * TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
+  }
+
+  void from(MapView *mapView) {
+    texture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
+          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
   }
 
   virtual ~WorldView() {
-    delete terrainTexture;
-    delete skyRect;
-    delete rockRect;
-    delete clayRect;
-    delete sandRect;
-    delete grassRect;
+    delete texture;
   }
 
 };
