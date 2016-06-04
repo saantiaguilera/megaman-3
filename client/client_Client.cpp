@@ -58,8 +58,8 @@ void Client::attachController(Controller *controller) {
   }
 }
 
-void Client::start() {
-  app = Gtk::Application::create(PACKAGE_NAME);
+void Client::start(int argc, char** argv) {
+  app = Gtk::Application::create(argc, argv, PACKAGE_NAME);
 
   onFlowToStart();
 
