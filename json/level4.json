@@ -2,43 +2,16 @@
   "map": {
     "id": 1,
     "name": "Bombman",
-    "spawns": [
+    "objects": [
       {
         "x": 15,
         "y": 0,
-        "type": "Met"
+        "type": 1
       },
       {
         "x": 23,
         "y": 5,
-        "type": "CommonSniper"
-      }
-    ],
-    "needles": [
-      {
-        "x": 10,
-        "y": 10
-      }
-    ],
-    "precipices": [
-      {
-        "x": 30,
-        "y": 0
-      }
-    ],
-    "blocks": [
-      {
-        "x": 2,
-        "y": 0
-      },
-      {
-        "x": 2,
-        "y": 5
-      },
-      {
-        "x": 10,
-        "y": 0
-      }
-    ]
+        "type": 2
+      }]
   }
 }
