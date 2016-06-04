@@ -181,7 +181,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button1">
+                  <object class="GtkButton" id="ladderbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -241,7 +241,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="spawnbutton">
+                  <object class="GtkButton" id="bosschaimberbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -282,7 +282,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button2">
+                  <object class="GtkButton" id="megamanspawnbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -297,7 +297,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button3">
+                  <object class="GtkButton" id="bumpyspawnbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -312,7 +312,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button4">
+                  <object class="GtkButton" id="jumpingsniperspawnbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -327,7 +327,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button5">
+                  <object class="GtkButton" id="metspawnbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -342,7 +342,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button6">
+                  <object class="GtkButton" id="normalsniperspawnbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -382,7 +382,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button7">
+                  <object class="GtkButton" id="lifebutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -397,7 +397,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button8">
+                  <object class="GtkButton" id="energysmallbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -412,7 +412,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button9">
+                  <object class="GtkButton" id="energybigbutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -427,7 +427,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button10">
+                  <object class="GtkButton" id="bigammobutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>
@@ -442,7 +442,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="button11">
+                  <object class="GtkButton" id="smallammobutton">
                     <property name="width_request">50</property>
                     <property name="height_request">50</property>
                     <property name="visible">True</property>

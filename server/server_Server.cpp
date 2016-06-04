@@ -33,7 +33,7 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
-	startGameEngine();
+	initializeGameEngine();
 	bool keepOnListening = true;
 	ConcurrentList<Serializer*> eventsQueue;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
@@ -56,7 +56,7 @@ void Server::run() {
 	senderWorker.join();
 }
 
-void Server::startGameEngine(){
+void Server::initializeGameEngine(){
     ConfigParser configParser(configFilename);
     configParser.parseConfigDoc();
     // Initialize with configs set in config file

@@ -43,6 +43,8 @@ public:
 	void increasePlayerLives();
 	// Return my megaman
 	Megaman* getMegaman() const;
+	// Set the megaman of the player
+	void setMegaman();
 
 private:
 	// Copy constructor

@@ -10,11 +10,7 @@
 #include "../controllers/editor_EditorController.h"
 #include <iostream>
 #include <exception>
-
-
-#define kObstacleSize 100
-#define kWindowsPadding 20
-#define kMaxAddButtonHeight 500
+#include "../models/editor_ObstacleViewContainer.h"
 
 MapWindow::MapWindow() {
 	// TODO Auto-generated constructor stub
@@ -35,8 +31,22 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
     builder->get_widget("blockbutton", blockButton);
     builder->get_widget("needlebutton", needleButton);
+    builder->get_widget("ladderbutton", ladderButton);
     builder->get_widget("precipicebutton", precipiceButton);
-    builder->get_widget("spawnbutton", spawnButton);
+    builder->get_widget("bosschaimberbutton", bossChamberButton);
+
+    builder->get_widget("megamanspawnbutton", megamanSpawnButton);
+    builder->get_widget("bumpyspawnbutton", bumpySpawnButton);
+    builder->get_widget("jumpingsniperspawnbutton", jumpingSniperSpawnButton);
+    builder->get_widget("metspawnbutton", metSpawnButton);
+    builder->get_widget("normalsniperspawnbutton", normalSniperSpawnButton);
+
+    builder->get_widget("lifebutton", lifeButton);
+    builder->get_widget("energysmallbutton", energySmallButton);
+    builder->get_widget("energybigbutton", energyBigButton);
+    builder->get_widget("bigammobutton", bigAmmoButton);
+    builder->get_widget("smallammobutton", smallAmmoButton);
+
 
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
@@ -53,10 +63,11 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
     saveButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::saveButtonWasTapped));
     backButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::backButtonWasTapped));
+
+
     blockButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::blockButtonWasTapped));
     needleButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::needleButtonWasTapped));
     precipiceButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::precipiceButtonWasTapped));
-    spawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::spawnButtonWasTapped));
 
 }
 
@@ -73,43 +84,74 @@ void MapWindow::backButtonWasTapped() {
 
 //Add Buttons
 void MapWindow::blockButtonWasTapped() {
-	draggingBegin();
-	Gdk::Pixbuf::create_from_file("./res/drawable/blocks/block_grass.png");
-	draggingImage = new Gtk::Image("./res/drawable/blocks/block_grass.png");
-	draggingImage->show();
-
-    draggingImage->set_size_request(kObstacleSize, kObstacleSize);
-    fixedWindow->put(*draggingImage, 0, 0);
+	addDraggingImageWithType(ObstacleViewTypeBlock);
 }
 
 void MapWindow::needleButtonWasTapped() {
-	draggingBegin();
-	Gdk::Pixbuf::create_from_file("./res/drawable/blocks/block_grass.png");
-	draggingImage = new Gtk::Image("./res/drawable/blocks/block_grass.png");
-	draggingImage->show();
-
-    draggingImage->set_size_request(kObstacleSize, kObstacleSize);
-    fixedWindow->put(*draggingImage, 0, 0);
+	addDraggingImageWithType(ObstacleViewTypeNeedle);
 }
 
 void MapWindow::precipiceButtonWasTapped() {
-	draggingBegin();
-	Gdk::Pixbuf::create_from_file("./res/drawable/blocks/block_grass.png");
-	draggingImage = new Gtk::Image("./res/drawable/blocks/block_grass.png");
-	draggingImage->show();
-
-    draggingImage->set_size_request(kObstacleSize, kObstacleSize);
-    fixedWindow->put(*draggingImage, 0, 0);
+	addDraggingImageWithType(ObstacleViewTypePrecipice);
+}
+void MapWindow::ladderButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeLadder);
 }
 
-void MapWindow::spawnButtonWasTapped() {
-	draggingBegin();
-	Gdk::Pixbuf::create_from_file("./res/drawable/blocks/block_grass.png");
-	draggingImage = new Gtk::Image("./res/drawable/blocks/block_grass.png");
-	draggingImage->show();
+void MapWindow::bossChamberButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBossChamberGate);
+}
 
-    draggingImage->set_size_request(kObstacleSize, kObstacleSize);
-    fixedWindow->put(*draggingImage, 0, 0);
+    //Spawns
+void MapWindow::megamanSpawnButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeMegaman);
+}
+
+void MapWindow::bumpySpawnButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBumpy);
+}
+
+void MapWindow::jumpingSniperSpawnButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeJumpingSnyper);
+}
+
+void MapWindow::metSpawnButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeMet);
+}
+
+void MapWindow::normalSniperSpawnButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeNormalSnyper);
+}
+
+
+    //Powerups
+void MapWindow::lifeButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeLife);
+}
+
+void MapWindow::energySmallButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeSmallEnergyCapsule);
+}
+
+void MapWindow::energyBigButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBigEnergyCapsule);
+}
+
+void MapWindow::bigAmmoButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBigAmmoPack);
+}
+
+void MapWindow::smallAmmoButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeSmallAmmoPack);
+}
+
+void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
+	draggingBegin();
+
+	ObstacleViewContainer *obstacleViewContainer = new ObstacleViewContainer(obstacleViewType);
+	draggingImage = obstacleViewContainer->getImage();
+
+	fixedWindow->put(*draggingImage, 0, 0);
 }
 
 //Events
