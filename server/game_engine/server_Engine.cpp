@@ -71,6 +71,12 @@ void Engine::start() {
 	Bomb* aBomb = new Bomb(0,-5);
 	aBomb->getMyBody()->SetAwake(false);
 
+	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
+	for (std::list<Player*>::iterator it = playerList.begin();
+			it != playerList.end(); ++it) {
+		(*it)->setMegaman();
+	}
+
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		for (std::list<Character*>::iterator it = charactersList.begin();

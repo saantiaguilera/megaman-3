@@ -23,9 +23,7 @@ Player::Player(const std::string& name, unsigned int initialLives) : name(name),
 	// TODO: What happens when restarting game? ids are kept
 	if (id == 1)
 		admin = true;
-	megaman = new Megaman(this, 0, 0);
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
-	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
+	megaman = NULL;
 }
 
 bool Player::isAdmin() const {
@@ -60,4 +58,10 @@ Megaman* Player::getMegaman() const {
 
 void Player::increasePlayerLives() {
 	++lives;
+}
+
+void Player::setMegaman() {
+	megaman = new Megaman(this, 0, 0);
+	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
