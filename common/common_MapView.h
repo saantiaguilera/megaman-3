@@ -17,75 +17,23 @@ public:
 	MapView();
 	virtual ~MapView();
 
+	//Setters
 	void setId(unsigned int id);
 	void setName(std::string name);
-
-	//Setters
-//	void setSpawn(EditorObstacle *aSpawn);
-//	void setNeedle(EditorObstacle *aNeedle);
-//	void setPrecipice(EditorObstacle *aPrecipice);
-//	void setBlock(EditorObstacle *aBlock);
+	void setHeight(unsigned int aHeight);
+	void setWidth(unsigned int aWidth);
+	void setObstacle(ObstacleView *obstacle);
 
 	//Getters
 	std::string getName();
-	void setObstacle(ObstacleView *obstacle);
-
 
 private:
 	unsigned int id;
 	std::string name;
+	unsigned int height;
+	unsigned int width;
 
 	std::vector<ObstacleView *> *obstacles;
-
-//	std::vector<EditorObstacle *> *spawns;
-//	std::vector<EditorObstacle *> *needles;
-//	std::vector<EditorObstacle *> *precipices;
-//	std::vector<EditorObstacle *> *blocks;
 };
 
 #endif /* EDITOR_MODELS_EDITOR_EDITORMAP_H_ */
-
-/*{
-  "map": {
-    "id": 1,
-    "name": "Bombman",
-    "spawns": [
-      {
-        "x": 15,
-        "y": 0,
-        "type": "Met"
-      },
-      {
-        "x": 23,
-        "y": 5,
-        "type": "CommonSniper"
-      }
-    ],
-    "needles": [
-      {
-        "x": 10,
-        "y": 10
-      }
-    ],
-    "precipices": [
-      {
-        "x": 30,
-        "y": 0
-      }
-    ],
-    "blocks": [
-      {
-        "x": 2,
-        "y": 0
-      },
-      {
-        "x": 2,
-        "y": 5
-      },
-      {
-        "x": 10,
-        "y": 0
-      }
-    ]
-  }
-}*/
