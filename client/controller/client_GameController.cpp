@@ -1,9 +1,14 @@
 #include <SDL2pp/SDL2pp.hh>
 
+#include "../../common/common_MapViewParser.h"
+#include "../../common/common_MapView.h"
+
 #include <iostream>
 #include "../concurrent/client_Event.h"
 #include "../event/client_SendKeyMapEvent.h"
 #include "../event/client_QuitEvent.h"
+#include "../event/client_ReceivedMapEvent.h"
+
 #include "client_GameController.h"
 
 GameController::~GameController() {
@@ -22,10 +27,14 @@ bool GameController::onMessageReceived() {
   Event *event = Looper::getMainLooper().get();
 
   if (event) {
+    MapViewParser parser;
+    MapView mapView;
+
     switch (event->getId()) {
       //Do stuff
       case EVENT_RECEIVED_MAP:
-        //TODO
+        parser.clientMapFromString(&mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
+        this->view->loadMapFromAsset(&mapView);
         break;
 
       default:
