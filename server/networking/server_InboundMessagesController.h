@@ -25,7 +25,9 @@ private:
 	// Get the desired player
 	Player* getDesiredPlayer(const std::string& playerId);
 	// Get the movement from the input
-	int processMovement(const std::string& keyMap, Player* player);
+	void processMovement(const std::string& keyMap, Player* player);
+	// Get the weapon type
+	int processWeaponType(const std::string& weaponType);
 public:
 	// Constructor
 	InboundMessagesController(int messageCode, const std::string& inboundMessage);

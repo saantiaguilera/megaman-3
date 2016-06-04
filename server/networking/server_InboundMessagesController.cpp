@@ -31,6 +31,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 		case PLAYER_CONNECTED:
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				Engine::getInstance().addNewPlayer(inboundMessage);
+				std::cout << "Player name: " << inboundMessage << std::endl;
 				NewPlayerSerializer newPlayerSerializer(inboundMessage);
 				newPlayerSerializer.serialize();
 				Engine::getInstance().getContext()->dispatchEvent(&newPlayerSerializer);
@@ -39,12 +40,14 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 		case START_GAME:
 			if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT){
 				std::cout << "Start game!" << std::endl;
-				// Set the flag of th engine to ready to start
-				// TODO: Should check that the player willing to start is the admin
-				Engine::getInstance().setReadyToStart(true);
-				StartGameSerializer startGameSerializer;
-				startGameSerializer.serialize();
-				Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
+				// Set the flag of the engine to ready to start
+				desiredPlayer = getDesiredPlayer(inboundMessage);
+				if (desiredPlayer->isAdmin()){
+					Engine::getInstance().setReadyToStart(true);
+					StartGameSerializer startGameSerializer;
+					startGameSerializer.serialize();
+					Engine::getInstance().getContext()->dispatchEvent(&startGameSerializer);
+				}
 			}
 			break;
 		case KEY_PRESSED:
@@ -56,9 +59,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode, const std::s
 			 break;
 		case WEAPON_CHANGE:
 			std::cout << "Weapon change!" << std::endl;
-			// Weapons should have an id, this should have the id of the player
-			// and the corresponding weapon id to switch
 			desiredPlayer = getDesiredPlayer(inboundMessage);
+			desiredPlayer->getMegaman()->changeWeaponTo(processWeaponType(inboundMessage));
 			break;
 		default:
 			break;
@@ -79,7 +81,7 @@ Player* InboundMessagesController::getDesiredPlayer(
 	return NULL;
 }
 
-int InboundMessagesController::processMovement(const std::string& keyMap, Player* player) {
+void InboundMessagesController::processMovement(const std::string& keyMap, Player* player) {
 	std::stringstream ss;
 	ss.str(keyMap);
 //	bool jump, down, left, right, shoot;
@@ -106,6 +108,14 @@ int InboundMessagesController::processMovement(const std::string& keyMap, Player
 		player->getMegaman()->attack();
 	}
 
+}
+
+int InboundMessagesController::processWeaponType(
+		const std::string& weaponType) {
+	std::stringstream ss(weaponType);
+	int incomingWeaponType;
+	ss >> incomingWeaponType;
+	return incomingWeaponType;
 }
 
 InboundMessagesController::~InboundMessagesController() {

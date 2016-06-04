@@ -29,7 +29,7 @@ public:
 	// Destroyer
 	virtual ~Serializer();
 	// Get the serialized string
-	const std::string& getSerialized() const;
+	const std::string& getSerialized();
 	// serializer method, pure virtual
 	virtual void serialize() = 0;
 	// Get the related obj id
