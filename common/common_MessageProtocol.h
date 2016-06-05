@@ -32,14 +32,35 @@ CODE - LENGTH - CHARARRAY WITH KEY PRESSES (0 FALSE 1 TRUE)
 
 #define UPDATE_MOVEMENTS 6       // S -> Cs
 #define OBJECT_CREATED 7         // S -> Cs
+/*
+CODE - LENGTH - { "id": ID, "type": TYPE, "position": { "x": 5, "y": 8 } }
+*/
 #define OBJECT_DESTROYED 8       // S -> Cs
+/*
+CODE - LENGTH - { "id": ID }
+*/
 #define HP_CHANGE 9              // S -> C
+/*
+CODE - LENGTH - { "hp": 50 }
+*/
 #define AMMO_CHANGE 10            // S -> C
+/*
+CODE - LENGTH - { "ammo": 50, "special": bool }
+*/
 #define WEAPON_CHANGE 11          // C -> S
+/*
+CODE - LENGTH - CHARARRAY WITH KEY PRESSES (0 FALSE 1 TRUE)
+*/
 #define END_GAME 12               // S -> C
+/*
+CODE
+*/
 #define LIFE_CHANGE 13            // S -> C
+/*
+CODE - LENGTH - { "life": 3 }
+*/
 
-#define DISCONNECTED_PLAYER 14
+#define DISCONNECTED_PLAYER 14   // S -> Cs
 /*
 CODE - LENGTH - NAME
 */
