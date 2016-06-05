@@ -1,41 +1,25 @@
-#ifndef CLIENT_MEGAMANVIEW_H_
-#define CLIENT_MEGAMANVIEW_H_
+#ifndef CLIENT_BIGENERGYVIEW_H_
+#define CLIENT_BIGENERGYVIEW_H_
 
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define N_POSITIONS 1
-
-#define N_REPETITIONS 1
-
-class MegamanView : public AnimatedView {
+class BigEnergyView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
 
-  int currentSprite = 0;
-  int repetitions = 0;
-
 public:
-  MegamanView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman.png");
+  BigEnergyView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/powerups/energy/energy_big.png");
   }
 
-  virtual ~MegamanView() {
+  virtual ~BigEnergyView() {
     delete texture;
   }
 
   virtual void draw(Point &massCenter) {
-    ++repetitions;
-    if (repetitions > N_REPETITIONS) {
-      repetitions = 0;
-      ++currentSprite;
-
-      if (currentSprite > N_POSITIONS)
-        currentSprite = 0;
-    }
-
     Point cameraPoint;
     cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
     cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
@@ -43,8 +27,7 @@ public:
     if (getX() > cameraPoint.getX() && ((unsigned int) (getX() - TERRAIN_TILE_SIZE)) < (cameraPoint.getX() + renderer->GetOutputWidth()) &&
       getY() > cameraPoint.getY() && ((unsigned int) (getY() - TERRAIN_TILE_SIZE)) < (cameraPoint.getY() + renderer->GetOutputHeight())) {
         renderer->Copy(*texture,
-          SDL2pp::Rect(0 + TERRAIN_TILE_SIZE * currentSprite, 0,
-            TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
+          SDL2pp::NullOpt,
           SDL2pp::Rect(
             getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
             getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,

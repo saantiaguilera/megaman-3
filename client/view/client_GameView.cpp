@@ -40,6 +40,9 @@ bool GameView::onLoopSDL() {
 
    worldView->draw(massCenter);
 
+   for (AnimatedView* view : animatedViews)
+    view->draw(massCenter);
+
    renderer->Present();
 
    return true;

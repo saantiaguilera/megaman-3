@@ -1,5 +1,5 @@
-#ifndef CLIENT_MEGAMANVIEW_H_
-#define CLIENT_MEGAMANVIEW_H_
+#ifndef CLIENT_MAGNETMANVIEW_H_
+#define CLIENT_MAGNETMANVIEW_H_
 
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
@@ -10,7 +10,7 @@
 
 #define N_REPETITIONS 1
 
-class MegamanView : public AnimatedView {
+class MagnetmanView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
 
@@ -18,11 +18,11 @@ private:
   int repetitions = 0;
 
 public:
-  MegamanView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman.png");
+  MagnetmanView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_magnetman.png");
   }
 
-  virtual ~MegamanView() {
+  virtual ~MagnetmanView() {
     delete texture;
   }
 

@@ -17,6 +17,7 @@ class AnimatedView : public RenderedView {
     virtual ~AnimatedView() {
     }
 
+    //TODO Do polymorphism, the methods below are really similar between classes.
     virtual void draw(Point &massCenter) = 0;
 
     virtual void move(unsigned int x, unsigned int y) {
@@ -24,7 +25,6 @@ class AnimatedView : public RenderedView {
         setY(y);
     }
 
-    //It should implement
     unsigned int getX() { return x; }
     unsigned int getY() { return y; }
     void setX(unsigned int x) { this->x = x; }
