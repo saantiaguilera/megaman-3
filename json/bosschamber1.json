@@ -1,11 +1,36 @@
 {
     "map": {
         "name": "Bombman",
-        "filename" : "bosschamber1.json",
+        "filename": "bosschamber1.json",
         "height": 1000,
         "width": 1000,
         "id": 6,
         "obstacles": [
-         ]
+            {
+                "x": 0,
+                "y": 300,
+                "type": 1
+            },
+            {
+                "x": 0,
+                "y": 200,
+                "type": 1
+            },
+            {
+                "x": 0,
+                "y": 100,
+                "type": 1
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "type": 1
+            },
+            {
+                "x": 0,
+                "y": 400,
+                "type": 1
+            }
+        ]
     }
 }

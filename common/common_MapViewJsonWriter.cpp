@@ -83,6 +83,8 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	//}
 	std::string string = s.GetString();
 
+	string += '\n';
+
 //TODO : No es la mejor forma creo pero bueno estoy cansado
 	fprintf(fp, "%s",string.c_str());
 	fclose(fp);
