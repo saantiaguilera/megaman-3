@@ -10,6 +10,7 @@
 
 #include <string>
 
+
 class JsonMapParser {
 public:
 	// Constructor

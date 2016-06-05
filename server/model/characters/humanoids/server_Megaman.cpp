@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 
+#include "../../../../common/common_MapConstants.h"
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
 #include "../../../game_engine/server_EventContext.h"
@@ -52,7 +53,11 @@ void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	    Logger::getInstance().log(1, getHumanOperator()->getName() + " picked a powerup");
 		powerup->haveEffectOn(this);
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
-	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE || objectCollidedWith->getObjectType() == OT_LADDER) {
+	} else if (objectCollidedWith->getObjectType() == ObstacleViewTypeBlock ||
+			objectCollidedWith->getObjectType() == ObstacleViewTypeBossChamberGate ||
+			objectCollidedWith->getObjectType() == ObstacleViewTypeLadder ||
+			objectCollidedWith->getObjectType() == ObstacleViewTypeNeedle ||
+			objectCollidedWith->getObjectType() == ObstacleViewTypePrecipice ) {
 		Obstacle* obstacle = (Obstacle*)objectCollidedWith;
 		obstacle->haveEffectOn(this);
 	}
@@ -77,7 +82,7 @@ void Megaman::makeWeaponAvailable(int weaponType, Weapon* newWeapon) {
 }
 
 void Megaman::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
-	if(objectCollidedWith->getObjectType() == OT_LADDER){
+	if(objectCollidedWith->getObjectType() == ObstacleViewTypeLadder){
 		// If we stopped colliding with the ladder then allow gravity effects
 		myBody->SetGravityScale(1);
 	}

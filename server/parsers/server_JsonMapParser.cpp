@@ -12,6 +12,11 @@
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
+#include "../model/obstacles/server_Block.h"
+#include "../model/obstacles/server_BossChamberGate.h"
+#include "../model/obstacles/server_Ladder.h"
+#include "../model/obstacles/server_Needle.h"
+#include "../model/obstacles/server_Precipice.h"
 
 
 JsonMapParser::JsonMapParser() {
@@ -32,7 +37,26 @@ void JsonMapParser::parseDocument(const std::string& name) {
 		unsigned int y = obstaclesJson[i][Y_NAME].GetInt();
 		int type = obstaclesJson[i][TYPE_NAME].GetInt();
 
-//		ObstacleView *obstacle = new ObstacleView(x, y, (ObstacleViewType)type);
-//		mapView->setObstacle(obstacle);
+		switch (type) {
+			case ObstacleViewTypeBlock:
+				new Block(x, y);
+				break;
+			case ObstacleViewTypeBossChamberGate:
+				new BossChamberGate(x, y);
+				break;
+			case ObstacleViewTypeLadder:
+				new Ladder(x, y);
+				break;
+			case ObstacleViewTypeNeedle:
+				new Needle(x, y);
+				break;
+			case ObstacleViewTypePrecipice:
+				new Precipice(x, y);
+				break;
+			default:
+				break;
+		}
+
+
 	}
 }
