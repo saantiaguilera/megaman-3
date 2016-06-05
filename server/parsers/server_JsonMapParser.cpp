@@ -7,26 +7,23 @@
 
 #include "server_JsonMapParser.h"
 
+#include <rapidjson/document.h>
 #include <rapidjson/rapidjson.h>
-#include <stddef.h>
 
 #include "../../common/common_MapConstants.h"
+#include "../../common/common_MapViewParser.h"
 
 
-JsonMapParser::JsonMapParser(rapidjson::Document* document) : document(document) {
-
+JsonMapParser::JsonMapParser() {
 }
 
 JsonMapParser::~JsonMapParser() {
-	delete document;
-	document = NULL;
 }
 
-void JsonMapParser::parseDocument() {
+void JsonMapParser::parseDocument(const std::string& name) {
+	MapViewParser mapParser;
+	rapidjson::Document* document = mapParser.serverMapFromPath(name);
 	const rapidjson::Value& mapJson = (*document)[MAP_NAME];
-
-//	mapView->setId(mapJson[ID_NAME].GetInt());
-//	mapView->setName(mapJson[MAPNAME_NAME].GetString());
 
 	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
 

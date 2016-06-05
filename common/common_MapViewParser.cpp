@@ -44,10 +44,11 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 	parse(document, mapView);
 }
 
-void MapViewParser::serverMapFromPath(const std::string& name) {
+rapidjson::Document* MapViewParser::serverMapFromPath(const std::string& name) {
 	rapidjson::Document* document = new rapidjson::Document;
 	readMapFromFile(name, document);
-	//JsonMapParser mapParser(document);
+
+	return document;
 }
 
 void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document* document) {

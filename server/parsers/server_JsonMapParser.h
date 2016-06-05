@@ -8,18 +8,16 @@
 #ifndef SERVER_PARSERS_SERVER_JSONMAPPARSER_H_
 #define SERVER_PARSERS_SERVER_JSONMAPPARSER_H_
 
-#include <rapidjson/document.h>
+#include <string>
 
 class JsonMapParser {
-private:
-	rapidjson::Document* document;
 public:
 	// Constructor
-	JsonMapParser(rapidjson::Document* document);
+	JsonMapParser();
 	// Destroyer
 	virtual ~JsonMapParser();
 	// Parse the json document
-	void parseDocument();
+	void parseDocument(const std::string& name);
 private:
 	// Copy constructor
 	JsonMapParser(const JsonMapParser&);
