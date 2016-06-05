@@ -8,6 +8,8 @@
 #ifndef COMMON_COMMON_MAPCONSTANTS_H_
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
+#define TERRAIN_TILE_SIZE 100
+
 #include <map>
 
 typedef enum {

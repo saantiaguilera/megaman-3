@@ -15,7 +15,16 @@ GameView::GameView() : Gtk::Window() {
 
 GameView::~GameView() {
   delete worldView;
-  delete stintv;
+
+  delete factoryView;
+
+  for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
+    it != animatedViews.end() ; ++it) {
+      delete (*it);
+  }
+
+  animatedViews.clear();
+
   delete renderer;
   delete mainWindow;
   delete sdl;
@@ -25,8 +34,11 @@ bool GameView::onLoopSDL() {
  try {
    renderer->Clear();
 
-   worldView->draw();
-   //stintv->draw();
+   Point massCenter;
+   massCenter.setX(0);
+   massCenter.setY(0);
+
+   worldView->draw(massCenter);
 
    renderer->Present();
 
@@ -64,7 +76,6 @@ bool GameView::onInitSDL(::Window windowId) {
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
 
    worldView = new WorldView(renderer);
-   stintv = new SomethingThatIsNotTerrainView(renderer);
 
    worldView->from(tempMapView);
    delete tempMapView;
