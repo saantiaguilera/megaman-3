@@ -121,8 +121,8 @@ void Engine::start() {
 	}
 }
 
-void Engine::addNewPlayer(const std::string& name) {
-	playersList.push_back(new Player(name, playerInitialLives));
+void Engine::addNewPlayer(unsigned int id, const std::string& name) {
+	playersList.push_back(new Player(id, name, playerInitialLives));
 }
 
 bool Engine::isFinished() {

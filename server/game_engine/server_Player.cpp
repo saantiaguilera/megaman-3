@@ -12,16 +12,17 @@
 #include "server_Engine.h"
 #include "server_EventContext.h"
 
-// Initialize ids value
-unsigned int Player::id = 0;
+// Note: Due to implementation of connections, the second player connected is
+// assigned as admin, there is always one proxy waiting for connection
+#define ADMIN_ID 2
+
 
 // TODO: WARNING: megaman initial positions hardcoded
-Player::Player(const std::string& name, unsigned int initialLives) : name(name), lives(initialLives){
+Player::Player(unsigned int id, const std::string& name, unsigned int initialLives) : id(id), name(name), lives(initialLives){
     Logger::getInstance().log(1, "Player " + name + " added");
-	++id;
 	// If its the first player then its admin
 	// TODO: What happens when restarting game? ids are kept
-	if (id == 1)
+	if (id == ADMIN_ID)
 		admin = true;
 	megaman = NULL;
 }

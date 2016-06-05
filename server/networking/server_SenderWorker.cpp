@@ -24,9 +24,7 @@ SenderWorker::~SenderWorker() {
 
 void SenderWorker::run() {
 	while(keepRunning){
-		if (eventsQueue->size() == 0){
-			continue;
-		} else {
+		if (eventsQueue->size() != 0){
 			Serializer* event = eventsQueue->pop_front();
 			for (std::vector<ClientProxy*>::iterator it = clients->begin();
 				it != clients->end(); ++it){
