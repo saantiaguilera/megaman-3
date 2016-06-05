@@ -24,6 +24,7 @@ public:
 private:
 	ObstacleViewType type;
 	Gtk::Image *image;
+	bool isShowing = false;
 };
 
 #endif /* EDITOR_MODELS_EDITOR_OBSTACLEVIEWCONTAINER_H_ */

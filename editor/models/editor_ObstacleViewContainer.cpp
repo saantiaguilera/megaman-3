@@ -25,9 +25,11 @@ ObstacleViewContainer::~ObstacleViewContainer() {}
 
 
 Gtk::Image *ObstacleViewContainer::getImage() {
-	image->show();
-
-    image->set_size_request(kObstacleSize, kObstacleSize);
+	if (!isShowing) {
+		image->show();
+		image->set_size_request(kObstacleSize, kObstacleSize);
+		isShowing = !isShowing;
+	}
 
 	return image;
 }
