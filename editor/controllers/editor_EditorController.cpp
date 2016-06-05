@@ -13,6 +13,7 @@
 #include <exception>
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
+#include "../../common/common_MapViewJsonWriter.h"
 
 
 EditorController::EditorController(int argc, char *argv[]) {
@@ -23,6 +24,10 @@ EditorController::EditorController(int argc, char *argv[]) {
 	} catch (Glib::FileError& e) {
 		std::cout<<e.what()<<std::endl;
 	}
+
+	MapView *mapView = new MapView();
+
+	MapViewJsonWriter().writeMapInFilenname(mapView, "level2.json");
 
 	builder->get_widget_derived("mainWindow", mainWindow);
 	builder->get_widget_derived("mapWindow", mapWindow);

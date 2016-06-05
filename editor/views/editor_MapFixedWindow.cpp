@@ -40,7 +40,6 @@ void MapFixedWindow::setMapView(MapView *aMapView) {
 	set_size_request(mapView->getWidth(), mapView->getHeight());
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
 
-	std::cout<<"log"<<obstacles<<obstacles->size()<<std::endl;
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
 		ObstacleView *obstacleView = *it;
 
