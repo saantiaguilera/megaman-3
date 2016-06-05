@@ -18,6 +18,7 @@
 #include "../game_engine/server_EventContext.h"
 #include "../game_engine/server_Player.h"
 #include "../model/characters/humanoids/server_Megaman.h"
+#include "../parsers/server_JsonMapParser.h"
 #include "../serializers/server_NewPlayerSerializer.h"
 #include "../serializers/server_StartGameSerializer.h"
 
@@ -52,6 +53,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
+				JsonMapParser mapParser;
+				mapParser.parseDocument("level1.json");
 				Engine::getInstance().setReadyToStart(true);
 				StartGameSerializer* startGameSerializer =
 						new StartGameSerializer;

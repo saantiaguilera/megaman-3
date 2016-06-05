@@ -7,7 +7,13 @@
 
 #include "server_PhysicObject.h"
 
+#include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
+#include <stddef.h>
+
+#include "../../serializers/server_ObjectCreationSerializer.h"
+#include "../server_Engine.h"
+#include "../server_EventContext.h"
 
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
@@ -55,6 +61,11 @@ b2Body* PhysicObject::getMyBody() const {
 
 float PhysicObject::getPositionX() const {
 	return myBody->GetPosition().x;
+}
+
+void PhysicObject::notify() {
+	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(getId(), getPositionX(), getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
 
 float PhysicObject::getPositionY() const {

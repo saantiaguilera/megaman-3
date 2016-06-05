@@ -17,7 +17,7 @@
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
-Character::Character(unsigned int hp) : hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(0) {}
+Character::Character(unsigned int hp) : PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(0) {}
 
 Character::~Character() {
 	delete currentWeapon;

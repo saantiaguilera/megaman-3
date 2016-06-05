@@ -18,7 +18,8 @@ protected:
 		OT_MOB,
 		OT_POWERUP,
 		OT_PROJECTILE,
-		OT_OBSTACLE
+		OT_OBSTACLE,
+		OT_LADDER
 	};
 	// Id of the object
 	static unsigned int id;
@@ -26,6 +27,8 @@ protected:
 	b2Body* myBody;
 	// number of foot contacts (to avoid air jumping)
 	unsigned int numFootContacts;
+	// notify creation of the object
+	void notify();
 public:
 	// Defined movestates for objects
 	enum _moveState {
