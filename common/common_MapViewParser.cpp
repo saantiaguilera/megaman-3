@@ -51,12 +51,8 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 }
 
 void MapViewParser::clientMapFromString(MapView *mapView, std::string json) {
-	std::cout << "MapViewParser:: rapidjson::Document" << std::endl;
 	rapidjson::Document document;
-
-	std::cout << "MapViewParser:: parse document from json.c_str()" << std::endl;
 	document.Parse(json.c_str());
 
-	std::cout << "MapViewParser:: parse(document, mapView)" << std::endl;
 	parse(document, mapView);
 }
