@@ -25,6 +25,9 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 	std::cout << "2" << std::endl;
 	mapView->setId(mapJson[ID_NAME].GetInt());
 	mapView->setName(mapJson[MAPNAME_NAME].GetString());
+	mapView->setHeight(mapJson[MAPHEIGHT_NAME].GetInt());
+	mapView->setWidth(mapJson[MAPWIDTH_NAME].GetInt());
+
 
 	std::cout << "3" << std::endl;
 	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
