@@ -14,6 +14,11 @@
 #include "client_RingmanView.h"
 #include "client_SniperView.h"
 #include "client_SparkmanView.h"
+#include "client_BigAmmoView.h"
+#include "client_BigEnergyView.h"
+#include "client_LifeView.h"
+#include "client_SmallAmmoView.h"
+#include "client_SmallEnergyView.h"
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -30,19 +35,25 @@ class AnimatedFactoryView {
 
     AnimatedView * make(int type) {
       AnimatedView *view = NULL;
+
       switch (type) {
         case ObstacleViewTypeMegaman:
           view = new MegamanView(renderer);
           break;
     		case ObstacleViewTypeBigAmmoPack:
+          view = new BigAmmoView(renderer);
     			break;
     		case ObstacleViewTypeBigEnergyCapsule:
+          view = new BigEnergyView(renderer);
     			break;
     		case ObstacleViewTypeLife:
+          view = new LifeView(renderer);
     			break;
     		case ObstacleViewTypeSmallAmmoPack:
+          view = new SmallAmmoView(renderer);
     			break;
     		case ObstacleViewTypeSmallEnergyCapsule:
+          view = new SmallEnergyView(renderer);
     			break;
     		case ObstacleViewTypeBumpy:
           view = new BumpyView(renderer);
