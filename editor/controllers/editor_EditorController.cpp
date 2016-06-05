@@ -25,10 +25,6 @@ EditorController::EditorController(int argc, char *argv[]) {
 		std::cout<<e.what()<<std::endl;
 	}
 
-	MapView *mapView = new MapView();
-
-	MapViewJsonWriter().writeMapInFilenname(mapView, "level2.json");
-
 	builder->get_widget_derived("mainWindow", mainWindow);
 	builder->get_widget_derived("mapWindow", mapWindow);
 
@@ -44,7 +40,7 @@ void EditorController::begin() {
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
-	std::cout<<map->getName()<<std::endl;
+	MapViewJsonWriter().writeMapInFilenname(map, "level1.json");
 	showMainWindow();
 }
 

@@ -47,3 +47,16 @@ void MapFixedWindow::setMapView(MapView *aMapView) {
 	    setObstacleViewContainer(obstacleViewContainer);
 	}
 }
+
+MapView *MapFixedWindow::saveMapView() {
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer*obstacleViewContainer = *it;
+
+		mapView->getObstacles()->clear();
+
+		mapView->getObstacles()->push_back(obstacleViewContainer->getObstacleView());
+	}
+
+
+	return mapView;
+}

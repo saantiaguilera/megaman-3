@@ -36,10 +36,6 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
-
-
-//	writer.Key("hol");
-
 	writer.StartObject();
 	//{
 	writer.Key(MAP_NAME);
@@ -71,13 +67,12 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 
 	writer.EndArray();
 
-//	std::vector<ObstacleView *> *obstacles;
-
 	writer.EndObject();
 	//}
 	writer.EndObject();
 	//}
 	std::string string = s.GetString();
+
 //TODO : No es la mejor forma creo pero bueno estoy cansado
 	fprintf(fp, "%s",string.c_str());
 

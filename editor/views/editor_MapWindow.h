@@ -37,6 +37,7 @@ protected:
     EditorController *delegate;
 
     Gtk::Image *draggingImage;
+    ObstacleViewContainer *draggingImageContainer;
 
     //Navigation Buttons
     Gtk::Button *backButton;

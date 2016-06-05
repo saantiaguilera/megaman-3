@@ -29,3 +29,13 @@ Point ObstacleView::getPoint() {
 ObstacleViewType ObstacleView::getType() {
 	return type;
 }
+
+//Setters
+void ObstacleView::setPosition(unsigned int aX, unsigned int aY) {
+	point.setX(aX);
+	point.setY(aY);
+}
+
+void ObstacleView::setType(ObstacleViewType aType) {
+	type = aType;
+}
