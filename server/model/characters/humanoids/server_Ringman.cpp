@@ -14,6 +14,7 @@
 
 Ringman::Ringman(float32 x, float32 y) : Humanoid(RINGMAN_INITIAL_HP, x, y) {
 	currentWeapon = new RingTosser();
+	notify();
 }
 
 Ringman::~Ringman() {

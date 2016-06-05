@@ -91,14 +91,17 @@ protected:
             break;
 
           case UPDATE_MOVEMENTS:
+            while (!GameView::isRunning()) {}
             GameView::moveViewFromJSON(json);
             break;
 
           case OBJECT_CREATED:
+            while (!GameView::isRunning()) {}
             GameView::addViewFromJSON(json);
             break;
 
           case OBJECT_DESTROYED:
+            while (!GameView::isRunning()) {}
             GameView::removeViewFromJSON(json);
         }
       }

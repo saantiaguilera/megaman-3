@@ -87,6 +87,7 @@ void Engine::start() {
 		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 		for (; it != end; ++it) {
 			PhysicObject* objectToDelete = *it;
+			std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
 			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			context->dispatchEvent(objectDestructionSerializer);
 

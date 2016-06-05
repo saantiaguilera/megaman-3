@@ -73,6 +73,7 @@ public:
   static void addViewFromJSON(std::string json);
   static void removeViewFromJSON(std::string json);
   static void moveViewFromJSON(std::string json);
+  static bool isRunning();
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

@@ -17,6 +17,7 @@
 Bumpy::Bumpy(float32 x, float32 y) : Mob(BUMPY_INITIAL_HP, x, y) {
 	// Bumpy flies so...
 	myBody->SetGravityScale(0);
+	notify();
 }
 
 Bumpy::~Bumpy() {

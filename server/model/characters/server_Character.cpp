@@ -7,17 +7,19 @@
 
 #include "server_Character.h"
 
-#include <Dynamics/b2Body.h>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
 #include "../../serializers/server_AmmoChangeSerializer.h"
 #include "../../serializers/server_HpChangeSerializer.h"
-#include "../../serializers/server_ObjectDestructionSerializer.h"
 #include "../projectiles/server_Projectile.h"
 #include "../weapons/server_Weapon.h"
 
-Character::Character(unsigned int hp) : PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(0) {}
+Character::Character(unsigned int hp) :
+		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
+				0) {
+}
 
 Character::~Character() {
 	delete currentWeapon;
@@ -25,7 +27,8 @@ Character::~Character() {
 
 void Character::attack() {
 	currentWeapon->fire(getPositionX(), getPositionY());
-	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(currentWeapon);
+	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
+			currentWeapon);
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 }
 
@@ -57,7 +60,7 @@ void Character::setCurrentWeapon(Weapon* anotherWeapon) {
 }
 
 void Character::decreaseHp(float damage) {
-	if (((int)hp - (int)damage) < 0){
+	if (((int) hp - (int) damage) < 0) {
 		hp = 0;
 		Engine::getInstance().markObjectForRemoval(this);
 	} else {

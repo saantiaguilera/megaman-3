@@ -32,7 +32,6 @@ GameView::~GameView() {
   }
 
   animatedViews.clear();
-
   if (renderer)
     delete renderer;
 
@@ -44,7 +43,6 @@ GameView::~GameView() {
 }
 
 void GameView::addViewFromJSON(std::string json) {
-  std::cout << "addViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -53,8 +51,6 @@ void GameView::addViewFromJSON(std::string json) {
   unsigned int positionX = (unsigned int) document["position"]["x"].GetUint();
   unsigned int positionY = (unsigned int) document["position"]["y"].GetUint();
 
-  std::cout << "parsed stuff" << std::endl;
-
   if (factoryView) {
     AnimatedView * view = factoryView->make(viewType, viewId);
 
@@ -62,25 +58,18 @@ void GameView::addViewFromJSON(std::string json) {
       view->setX(positionX);
       view->setY(positionY);
 
-      std::cout << "created view" << std::endl;
-
       //TODO Race conditions ?
       animatedViews.push_back(view);
-
-      std::cout << "animatedViews has one more element" << std::endl;
     }
   }
 }
 
 void GameView::removeViewFromJSON(std::string json) {
-  std::cout << "removeViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
   unsigned int id = document["id"].GetUint();
   int position = -1;
-
-  std::cout << "parsed stuff" << std::endl;
 
   for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
     if (animatedViews.at(i)->getId() == id) {
@@ -89,8 +78,6 @@ void GameView::removeViewFromJSON(std::string json) {
     }
   }
 
-  std::cout << "position to remove is " << position << std::endl;
-
   if (position != -1) {
     delete animatedViews.at(position);
     animatedViews.erase(animatedViews.begin() + position);
@@ -98,7 +85,6 @@ void GameView::removeViewFromJSON(std::string json) {
 }
 
 void GameView::moveViewFromJSON(std::string json) {
-  std::cout << "moveViewFROMJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -106,8 +92,6 @@ void GameView::moveViewFromJSON(std::string json) {
   unsigned int positionX = document["position"]["x"].GetUint();
   unsigned int positionY = document["position"]["y"].GetUint();
   int index = -1;
-
-  std::cout << "parsed stuff" << std::endl;
 
   for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
     if (animatedViews.at(i)->getId() == id) {
@@ -124,25 +108,25 @@ void GameView::moveViewFromJSON(std::string json) {
 }
 
 bool GameView::onLoopSDL() {
- try {
-   renderer->Clear();
+  try {
+    renderer->Clear();
 
-   Point massCenter;
-   massCenter.setX(0);
-   massCenter.setY(0);
+    Point massCenter;
+    massCenter.setX(0);
+    massCenter.setY(0);
 
-   worldView->draw(massCenter);
+    worldView->draw(massCenter);
 
-   for (AnimatedView* view : animatedViews)
-    view->draw(massCenter);
+    for (AnimatedView* view : animatedViews)
+      view->draw(massCenter);
 
-   renderer->Present();
+    renderer->Present();
 
-   return true;
- } catch (std::exception& e) {
-   std::cout << "Something bad happened" << std::endl;
-   return false;
- }
+    return true;
+  } catch (std::exception& e) {
+    std::cout << "Something bad happened" << std::endl;
+    return false;
+  }
 }
 
 void GameView::loadMapFromAsset(MapView *mapView) {
@@ -152,8 +136,9 @@ void GameView::loadMapFromAsset(MapView *mapView) {
   } else {
     tempMapView = mapView;
 
-    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
-    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
+    onInitSDL(socket->get_id());
+//    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
+//    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
   }
 }
 
@@ -186,6 +171,10 @@ bool GameView::onInitSDL(::Window windowId) {
    std::cout << "Something bad happened" << std::endl;
    return true;
  }
+}
+
+bool GameView::isRunning() {
+  return factoryView;
 }
 
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {

@@ -39,8 +39,6 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 	myBody->GetFixtureList()->SetSensor(true);
-
-	PhysicObject::notify();
 }
 
 Powerup::~Powerup() {

@@ -9,6 +9,7 @@
 
 SmallEnergyCapsule::SmallEnergyCapsule(float32 x, float32 y) :
 		EnergyCapsule(SMALL_ENERGY_CAPSULE_EFFECT_AMMOUNT, x, y) {
+	notify();
 }
 
 SmallEnergyCapsule::~SmallEnergyCapsule() {

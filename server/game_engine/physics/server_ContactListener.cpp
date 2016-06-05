@@ -10,6 +10,8 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/Contacts/b2Contact.h>
+#include <stddef.h>
+#include <iostream>
 
 #include "server_PhysicObject.h"
 
@@ -21,6 +23,7 @@ ContactListener::~ContactListener() {
 }
 
 void ContactListener::BeginContact(b2Contact* contact) {
+	std::cout << "Collision!" << std::endl;
 	getBodyUserDataForContact(contact);
 
 	static_cast<PhysicObject*>(bodyUserDataA)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataB));

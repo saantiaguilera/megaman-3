@@ -14,6 +14,7 @@
 
 Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 	currentWeapon = new BombCannon();
+	notify();
 }
 
 Bombman::~Bombman() {
