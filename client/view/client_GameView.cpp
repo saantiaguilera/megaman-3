@@ -56,6 +56,7 @@ void GameView::addViewFromJSON(std::string json) {
   std::cout << "parsed stuff" << std::endl;
 
   if (factoryView) {
+    std::cout << "factoryView exists" << std::endl;
     AnimatedView * view = factoryView->make(viewType, viewId);
 
     if (view) {
@@ -124,25 +125,25 @@ void GameView::moveViewFromJSON(std::string json) {
 }
 
 bool GameView::onLoopSDL() {
- try {
-   renderer->Clear();
+  try {
+    renderer->Clear();
 
-   Point massCenter;
-   massCenter.setX(0);
-   massCenter.setY(0);
+    Point massCenter;
+    massCenter.setX(0);
+    massCenter.setY(0);
 
-   worldView->draw(massCenter);
+    worldView->draw(massCenter);
 
-   for (AnimatedView* view : animatedViews)
-    view->draw(massCenter);
+    for (AnimatedView* view : animatedViews)
+      view->draw(massCenter);
 
-   renderer->Present();
+    renderer->Present();
 
-   return true;
- } catch (std::exception& e) {
-   std::cout << "Something bad happened" << std::endl;
-   return false;
- }
+    return true;
+  } catch (std::exception& e) {
+    std::cout << "Something bad happened" << std::endl;
+    return false;
+  }
 }
 
 void GameView::loadMapFromAsset(MapView *mapView) {
@@ -152,8 +153,9 @@ void GameView::loadMapFromAsset(MapView *mapView) {
   } else {
     tempMapView = mapView;
 
-    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
-    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
+    onInitSDL(socket->get_id());
+//    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
+//    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
   }
 }
 
@@ -186,6 +188,10 @@ bool GameView::onInitSDL(::Window windowId) {
    std::cout << "Something bad happened" << std::endl;
    return true;
  }
+}
+
+bool GameView::isRunning() {
+  return factoryView;
 }
 
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {
