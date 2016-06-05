@@ -1,19 +1,15 @@
 {
-  "map": {
-    "id": 1,
-    "name": "Bombman",
-    "height" : 1000,
-    "width" : 1000,
-    "obstacles": [
-      {
-        "x": 15,
-        "y": 0,
-        "type": 1
-      },
-      {
-        "x": 23,
-        "y": 5,
-        "type": 2
-      }]
-  }
+    "map": {
+        "name": "Bombman",
+        "height": 1000,
+        "width": 1000,
+        "id": 1,
+        "obstacles": [
+            {
+                "x": 300,
+                "y": 0,
+                "type": 10
+            }
+        ]
+    }
 }

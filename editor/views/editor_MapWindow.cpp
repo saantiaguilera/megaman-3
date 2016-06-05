@@ -108,7 +108,8 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
-	delegate->presentMainWindowWithoutSavingMap();
+	MapView *savedMap = fixedWindow->saveMapView();
+	delegate->presentMainWindowSavingMap(savedMap);
 }
 
 void MapWindow::backButtonWasTapped() {
@@ -207,9 +208,10 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 	int x = event->x;
 	int y = event->y;
 
+	x = x - (x % kObstacleSize);
+	y = y - (y % kObstacleSize);
+
 	draggingImageContainer->getObstacleView()->setPosition(x, y);
-
-
 
 	return true;
 }

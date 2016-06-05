@@ -9,7 +9,7 @@
 
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/stringbuffer.h"
-#include "rapidjson/writer.h"
+#include "rapidjson/prettywriter.h"
 #include "rapidjson/document.h"
 #include <iostream>
 #include <sstream>
@@ -34,7 +34,7 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 
 	FILE* fp = fopen(path.c_str(), "w"); // non-Windows use "w"
 	rapidjson::StringBuffer s;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(s);
 
 	writer.StartObject();
 	//{
@@ -51,18 +51,25 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	writer.Key(MAPWIDTH_NAME);
 	writer.Int(mapView->getWidth());
 
+	writer.Key("id");
+	writer.Int(1);
+
 	writer.Key(MAPOBSTACLES_NAME);
 	writer.StartArray();
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
 
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
 		ObstacleView *obstacleView = *it;
+		writer.StartObject();
 		writer.Key(X_NAME);
 		writer.Int(obstacleView->getPoint().getX());
+
 		writer.Key(Y_NAME);
 		writer.Int(obstacleView->getPoint().getY());
+
 		writer.Key(TYPE_NAME);
 		writer.Int(obstacleView->getType());
+		writer.EndObject();
 	}
 
 	writer.EndArray();
