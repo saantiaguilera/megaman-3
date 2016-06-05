@@ -15,7 +15,7 @@
 
 #include "../../game_engine/server_Engine.h"
 
-Obstacle::Obstacle(float32 x, float32 y) {
+Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 	b2BodyDef obstacleBodyDef;
 	obstacleBodyDef.type = b2_staticBody;
 	obstacleBodyDef.fixedRotation = true;
@@ -36,6 +36,8 @@ Obstacle::Obstacle(float32 x, float32 y) {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
+
+	PhysicObject::notify();
 }
 
 Obstacle::~Obstacle() {

@@ -27,6 +27,8 @@ protected:
 	b2Body* myBody;
 	// number of foot contacts (to avoid air jumping)
 	unsigned int numFootContacts;
+	// notify creation of the object
+	void notify();
 public:
 	// Defined movestates for objects
 	enum _moveState {

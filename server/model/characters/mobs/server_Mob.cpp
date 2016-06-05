@@ -43,6 +43,8 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 	boxShape.SetAsBox(0.3, 0.3, b2Vec2(0,-2), 0);
 	boxFixtureDef.isSensor = true;
     myBody->CreateFixture(&boxFixtureDef);
+
+	PhysicObject::notify();
 }
 
 
