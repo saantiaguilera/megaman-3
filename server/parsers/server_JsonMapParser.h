@@ -12,6 +12,8 @@
 
 
 class JsonMapParser {
+private:
+	void inflateObstacle(int type, unsigned int x, unsigned int y);
 public:
 	// Constructor
 	JsonMapParser();
