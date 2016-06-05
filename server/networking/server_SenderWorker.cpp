@@ -23,16 +23,15 @@ SenderWorker::~SenderWorker() {
 }
 
 void SenderWorker::run() {
-	while (keepRunning){
-		for (std::vector<ClientProxy*>::iterator it = clients->begin();
-				it != clients->end(); ++it) {
-			if (eventsQueue->size() == 0){
-				continue;
-			} else {
-				(*it)->send(eventsQueue->pop_front());
+	while(keepRunning){
+		if (eventsQueue->size() != 0){
+			Serializer* event = eventsQueue->pop_front();
+			for (std::vector<ClientProxy*>::iterator it = clients->begin();
+				it != clients->end(); ++it){
+				(*it)->send(event);
 			}
+			delete event;
 		}
-		sleep(0.1);
 	}
 }
 

@@ -15,7 +15,11 @@
 
 #define MAX_BUFFER_SIZE 10
 
+// Initialize ids value
+unsigned int ClientProxy::id = 0;
+
 ClientProxy::ClientProxy() {
+	++id;
 	connected = false;
 	socket = Socket();
 }
@@ -57,7 +61,12 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 	delete buffer;
 }
 
+unsigned int ClientProxy::getId() const {
+	return id;
+}
+
 void ClientProxy::send(Serializer* serializer) {
+	// TODO: Maybe put in another thread?
 	// Send message code
 	int sendResult;
 	int messageCode = htonl(serializer->getMessageCode());
@@ -71,9 +80,6 @@ void ClientProxy::send(Serializer* serializer) {
 
 	sendResult = socket.send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
 	checkConnection(sendResult);
-
-	// delete the sended serializer
-	delete serializer;
 }
 
 void ClientProxy::checkConnection(int sendResult){

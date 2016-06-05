@@ -21,16 +21,16 @@ private:
 	MS_JUMP
 	};
 	// Determine the type of message by analizing its code
-	void analizeMessageCode(int messageCode, const std::string& inboundMessage);
+	void analizeMessageCode(int messageCode, unsigned int clientId, const std::string& inboundMessage);
 	// Get the desired player
-	Player* getDesiredPlayer(const std::string& playerId);
+	Player* getDesiredPlayer(unsigned int playerId);
 	// Get the movement from the input
 	void processMovement(const std::string& keyMap, Player* player);
 	// Get the weapon type
 	int processWeaponType(const std::string& weaponType);
 public:
 	// Constructor
-	InboundMessagesController(int messageCode, const std::string& inboundMessage);
+	InboundMessagesController(int messageCode, unsigned int clientId, const std::string& inboundMessage);
 	// Destroyer
 	virtual ~InboundMessagesController();
 

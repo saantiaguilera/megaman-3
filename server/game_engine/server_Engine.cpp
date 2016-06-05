@@ -66,13 +66,20 @@ void Engine::start() {
 	int i = 0;
 //    Met met;
 //	charactersList.push_back(&met);
-	Player aPlayer("Lan Hikari", playerInitialLives);
-	charactersList.push_back(aPlayer.getMegaman());
-	Bomb* aBomb = new Bomb(0,-5);
-	aBomb->getMyBody()->SetAwake(false);
+//	Player aPlayer("Lan Hikari", playerInitialLives);
+//	charactersList.push_back(aPlayer.getMegaman());
+//	Bomb* aBomb = new Bomb(0,-5);
+//	aBomb->getMyBody()->SetAwake(false);
+
+	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
+	for (std::list<Player*>::iterator it = playerList.begin();
+			it != playerList.end(); ++it) {
+		(*it)->setMegaman();
+	}
 
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
+		// For AI
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
@@ -114,8 +121,8 @@ void Engine::start() {
 	}
 }
 
-void Engine::addNewPlayer(const std::string& name) {
-	playersList.push_back(new Player(name, playerInitialLives));
+void Engine::addNewPlayer(unsigned int id, const std::string& name) {
+	playersList.push_back(new Player(id, name, playerInitialLives));
 }
 
 bool Engine::isFinished() {
@@ -154,7 +161,6 @@ void Engine::initializeWorld(){
 	contactListener = new ContactListener();
 	myWorld->SetContactListener(contactListener);
 
-	// TODO: Read them from config file
 	timeStep = this->timeStep;      //the length of time passed to simulate (seconds)
 	velocityIterations = this->velocityIterations;   //how strongly to correct velocity
 	positionIterations = this->positionIterations;   //how strongly to correct position
