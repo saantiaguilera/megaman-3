@@ -7,6 +7,7 @@
 
 #include "server_InboundMessagesController.h"
 
+#include <unistd.h>
 #include <iostream>
 #include <list>
 #include <sstream>
@@ -53,13 +54,14 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
-				JsonMapParser mapParser;
-				mapParser.parseDocument("level1.json");
-				Engine::getInstance().setReadyToStart(true);
 				StartGameSerializer* startGameSerializer =
 						new StartGameSerializer;
 				Engine::getInstance().getContext()->dispatchEvent(
 						startGameSerializer);
+				sleep(0.1); // Wait for the map to be sent
+				JsonMapParser mapParser;
+				mapParser.parseDocument("level1.json");
+				Engine::getInstance().setReadyToStart(true);
 			}
 		}
 		break;
