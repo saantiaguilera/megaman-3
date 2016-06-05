@@ -75,7 +75,7 @@ private:
   WorldView *worldView = NULL;
   MapView *tempMapView = NULL;
 
-  AnimatedFactoryView *factoryView;
+  AnimatedFactoryView *factoryView = NULL;
   std::vector<AnimatedView*> animatedViews;
 
   /**
@@ -106,6 +106,10 @@ public:
   virtual ~GameView();
 
   void loadMapFromAsset(MapView *mapView);
+
+  void addViewFromJSON(std::string json);
+  void removeViewFromJSON(std::string json);
+  void moveViewFromJSON(std::string json);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

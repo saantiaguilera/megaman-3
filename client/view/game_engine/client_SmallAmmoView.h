@@ -11,7 +11,7 @@ private:
   SDL2pp::Texture *texture;
 
 public:
-  SmallAmmoView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+  SmallAmmoView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/powerups/ammo/small_ammo.png");
   }
 

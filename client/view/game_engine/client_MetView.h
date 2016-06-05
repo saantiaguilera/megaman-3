@@ -18,7 +18,7 @@ private:
   int repetitions = 0;
 
 public:
-  MetView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+  MetView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_met.png");
   }
 
