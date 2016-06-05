@@ -14,7 +14,7 @@
 
 ### BOX2D Install instructions
 ```Bash
-sudo apt install libbox2d-dev 
+sudo apt install libbox2d-dev
 ```
 
 ### Compilation
@@ -111,3 +111,9 @@ pkg-config --cflags --libs sdl2pp
 You should see something like
 
 -D_REENTRANT -I/usr/local/include -I/usr/local/include/SDL2 -L/usr/local/lib /usr/local/lib/libSDL2main.a -lSDL2pp -lSDL2_image -lSDL2_ttf -lSDL2_mixer -Wl,-rpath,/usr/local/lib -lSDL2
+
+## Installation
+
+sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
