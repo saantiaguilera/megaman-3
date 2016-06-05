@@ -18,6 +18,8 @@ class BigEnergyCapsule: public EnergyCapsule {
 public:
 	BigEnergyCapsule(float32 x, float32 y);
 	virtual ~BigEnergyCapsule();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	BigEnergyCapsule(const BigEnergyCapsule&);

@@ -34,3 +34,8 @@ void Bumpy::update() {
 	}
 	++ticksPassed;
 }
+
+int Bumpy::getTypeForSerialization() {
+	return ObstacleViewTypeBumpy;
+}
+

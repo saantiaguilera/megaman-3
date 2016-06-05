@@ -23,3 +23,7 @@ void Life::haveEffectOn(Character* character) {
 	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(((Megaman*)character)->getHumanOperator()->getId(), ((Megaman*)character)->getHumanOperator()->getLives());
 	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 }
+
+int Life::getTypeForSerialization() {
+	return ObstacleViewTypeLife;
+}

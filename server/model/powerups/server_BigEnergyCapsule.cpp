@@ -14,3 +14,7 @@ EnergyCapsule(BIG_ENERGY_CAPSULE_EFFECT_AMMOUNT, x, y) {
 BigEnergyCapsule::~BigEnergyCapsule() {
 }
 
+int BigEnergyCapsule::getTypeForSerialization() {
+	return ObstacleViewTypeBigEnergyCapsule;
+}
+

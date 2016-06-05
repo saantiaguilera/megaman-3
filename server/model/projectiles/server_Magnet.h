@@ -20,6 +20,8 @@ public:
 	Magnet(float32 x, float32 y);
 	// Destroyer
 	virtual ~Magnet();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Magnet(const Magnet&);

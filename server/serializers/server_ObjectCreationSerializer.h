@@ -13,7 +13,7 @@
 class ObjectCreationSerializer: public PositionSerializer {
 public:
 	// Constructor
-	ObjectCreationSerializer(unsigned int objectId, float x, float y);
+	ObjectCreationSerializer(unsigned int objectId, int objectType, float x, float y);
 	// Destroyer
 	virtual ~ObjectCreationSerializer();
 	// Serialize object

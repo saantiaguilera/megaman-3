@@ -28,6 +28,8 @@ protected:
 	unsigned int ticksPassed;
 	// Change my weapon for anotherWeapon
 	void setCurrentWeapon(Weapon* anotherWeapon);
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 public:
 	// Constructor
 	Character(unsigned int hp);

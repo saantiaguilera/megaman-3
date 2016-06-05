@@ -7,6 +7,8 @@
 
 #ifndef SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
 #define SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
+
+#include "../../../common/common_MapConstants.h"
 class b2Body;
 
 class PhysicObject {
@@ -48,6 +50,8 @@ public:
 	void move(unsigned int moveState);
 	// Get type of object
 	virtual int getObjectType() = 0;
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 	// Handle collisions
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Handle collision stop

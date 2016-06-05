@@ -33,3 +33,7 @@ void MagnetMan::update() {
 	}
 	++ticksPassed;
 }
+
+int MagnetMan::getTypeForSerialization() {
+	return ObstacleViewTypeMagnetman;
+}

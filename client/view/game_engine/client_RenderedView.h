@@ -2,6 +2,9 @@
 #define CLIENT_RENDEREDVIEW_H_
 
 #include <SDL2pp/SDL2pp.hh>
+#include "../../../common/common_Point.h"
+
+//renderer->Copy(Texture, Rect for cropping the texture, Rect for scaling the texture inside the renderer)
 
 class RenderedView {
 protected:
@@ -17,10 +20,10 @@ public:
   }
 
   ~RenderedView() {
-    
+
   }
 
-  virtual void draw() = 0;
+  virtual void draw(Point &massCenter) = 0;
 };
 
 #endif

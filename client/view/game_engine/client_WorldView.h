@@ -15,8 +15,6 @@
 #define PATH_NEEDLE "./res/drawable/blocks/spike.png"
 #define PATH_SKY "./res/drawable/blocks/sky.jpg"
 
-#define TERRAIN_TILE_SIZE 100
-
 class WorldView : public RenderedView {
 private:
   SDL2pp::Texture *backgroundTexture;
@@ -27,10 +25,31 @@ public:
   WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer), backgroundTexture(NULL), mapTexture(NULL), textureExists(false) {
   }
 
-  virtual void draw() {
+  virtual void draw(Point &massCenter) {
     if (textureExists) {
-      renderer->Copy(*backgroundTexture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
-      renderer->Copy(*mapTexture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+      int x,y;
+      x = (massCenter.getX() - (renderer->GetOutputWidth() / 2));
+      y = (massCenter.getY() - (renderer->GetOutputHeight() / 2));
+
+      Point cameraPoint;
+      if (x < 0) {
+        cameraPoint.setX(0);
+        massCenter.setX(renderer->GetOutputWidth() / 2);
+      } else cameraPoint.setX(x);
+
+      if (y < 0) {
+        cameraPoint.setY(0);
+        massCenter.setY(renderer->GetOutputHeight() / 2);
+      } else cameraPoint.setY(y);
+
+      renderer->Copy(*backgroundTexture, SDL2pp::Rect(
+            cameraPoint.getX(),
+            cameraPoint.getY(),
+            renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+      renderer->Copy(*mapTexture, SDL2pp::Rect(
+            cameraPoint.getX(),
+            cameraPoint.getY(),
+            renderer->GetOutputWidth(), renderer->GetOutputHeight()));
     }
   }
 

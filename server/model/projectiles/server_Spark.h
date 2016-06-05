@@ -20,6 +20,8 @@ public:
 	Spark(float32 x, float32 y);
 	// Destroyer
 	virtual ~Spark();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Spark(const Spark&);

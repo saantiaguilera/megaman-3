@@ -20,6 +20,8 @@ public:
 	SmallEnergyCapsule(float32 x, float32 y);
 	// Destroyer
 	virtual ~SmallEnergyCapsule();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	SmallEnergyCapsule(const SmallEnergyCapsule&);

@@ -13,3 +13,7 @@ Fire::Fire(float32 x, float32 y) : Projectile(FIRE_DAMAGE, Projectile::FIRE, x, 
 Fire::~Fire() {
 }
 
+int Fire::getTypeForSerialization() {
+	return ObstacleViewTypeFire;
+}
+

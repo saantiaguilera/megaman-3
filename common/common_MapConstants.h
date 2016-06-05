@@ -8,6 +8,8 @@
 #ifndef COMMON_COMMON_MAPCONSTANTS_H_
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
+#define TERRAIN_TILE_SIZE 100
+
 #include <map>
 
 typedef enum {
@@ -32,7 +34,22 @@ typedef enum {
 	ObstacleViewTypeBigEnergyCapsule = 11,
 	ObstacleViewTypeSmallEnergyCapsule = 12,
 	ObstacleViewTypeBigAmmoPack = 13,
-	ObstacleViewTypeSmallAmmoPack = 14
+	ObstacleViewTypeSmallAmmoPack = 14,
+
+	// Bosses
+	ObstacleViewTypeBombman = 15,
+	ObstacleViewTypeFireman = 16,
+	ObstacleViewTypeMagnetman = 17,
+	ObstacleViewTypeRingman = 18,
+	ObstacleViewTypeSparkman = 19,
+
+	// Projectiles
+	ObstacleViewTypeBomb = 20,
+	ObstacleViewTypeFire = 21,
+	ObstacleViewTypeMagnet = 22,
+	ObstacleViewTypeRing = 23,
+	ObstacleViewTypeSpark = 24,
+	ObstacleViewTypePlasma = 25
 } ObstacleViewType;
 
 #define MAP_NAME "map"

@@ -31,3 +31,7 @@ void NormalSniper::update() {
 	}
 }
 
+int NormalSniper::getTypeForSerialization() {
+	return ObstacleViewTypeNormalSnyper;
+}
+

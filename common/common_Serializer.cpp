@@ -12,6 +12,10 @@
 Serializer::Serializer() : objectId(0), messageCode(0), serialized("") {
 }
 
+Serializer::Serializer(unsigned int objectId, int objectType) : objectId(objectId), messageCode(0), objectType(objectType) {
+
+}
+
 Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(0) {
 
 }
@@ -29,6 +33,10 @@ unsigned int Serializer::getObjectId() const {
 
 int Serializer::getMessageCode() const {
 	return messageCode;
+}
+
+int Serializer::getObjectType() {
+	return objectType;
 }
 
 int Serializer::getMessageLength() const {

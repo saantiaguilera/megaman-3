@@ -12,3 +12,7 @@ Bomb::Bomb(float32 x, float32 y) : Projectile(BOMB_DAMAGE, Projectile::BOMB, x, 
 Bomb::~Bomb() {
 }
 
+int Bomb::getTypeForSerialization() {
+	return ObstacleViewTypeBomb;
+}
+

@@ -19,3 +19,7 @@ Ring::Ring(float32 x, float32 y) : Projectile(RING_DAMAGE, Projectile::RING, x, 
 Ring::~Ring() {
 }
 
+int Ring::getTypeForSerialization() {
+	return ObstacleViewTypeRing;
+}
+
