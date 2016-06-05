@@ -28,16 +28,14 @@ bool GameController::onMessageReceived() {
 
   if (event) {
     MapViewParser parser;
-    MapView mapView;
+    MapView *mapView;
 
     switch (event->getId()) {
       //Do stuff
       case EVENT_RECEIVED_MAP:
-        std::cout << "GameController:: parser.clientMapFromString" << std::endl;
-        parser.clientMapFromString(&mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
-        std::cout << "GameController:: loadMapFromAsset" << std::endl;
-        this->view->loadMapFromAsset(&mapView);
-        std::cout << "GameController:: finished reiceiving map" << std::endl;
+        mapView = new MapView();
+        parser.clientMapFromString(mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
+        this->view->loadMapFromAsset(mapView);
         break;
 
       default:
