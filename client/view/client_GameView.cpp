@@ -1,5 +1,4 @@
 #include <iostream>
-#include <gtkmm/socket.h>
 
 #include "client_GameView.h"
 
@@ -8,13 +7,10 @@
 GameView::GameView() : Gtk::Window() {
  set_size_request(800, 600); //TODO
 
- Gtk::Socket *socket = manage(new Gtk::Socket());
+ socket = manage(new Gtk::Socket());
 
  add(*socket);
  show_all();
-
- sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
- Glib::signal_timeout().connect(slot, 50);
 }
 
 GameView::~GameView() {
@@ -29,7 +25,6 @@ bool GameView::onLoopSDL() {
  try {
    renderer->Clear();
 
-   std::cout << "Bouta draw the world view" << std::endl;
    worldView->draw();
    //stintv->draw();
 
@@ -44,10 +39,14 @@ bool GameView::onLoopSDL() {
 
 void GameView::loadMapFromAsset(MapView *mapView) {
   if (worldView) {
-    std::cout << "GameView::loading world view" << std::endl;
     worldView->from(mapView);
     delete mapView;
-  } else tempMapView = mapView;
+  } else {
+    tempMapView = mapView;
+
+    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
+    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
+  }
 }
 
 bool GameView::onInitSDL(::Window windowId) {
@@ -65,15 +64,10 @@ bool GameView::onInitSDL(::Window windowId) {
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
 
    worldView = new WorldView(renderer);
-
-   if (tempMapView) {
-     std::cout << "GameView::loading world view" << std::endl;
-     worldView->from(tempMapView);
-     delete tempMapView;
-     tempMapView = NULL;
-   }
-
    stintv = new SomethingThatIsNotTerrainView(renderer);
+
+   worldView->from(tempMapView);
+   delete tempMapView;
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);

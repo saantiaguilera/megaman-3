@@ -26,7 +26,6 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 	mapView->setHeight(mapJson[MAPHEIGHT_NAME].GetInt());
 	mapView->setWidth(mapJson[MAPWIDTH_NAME].GetInt());
 
-
 	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
 
 	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
@@ -48,6 +47,7 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 rapidjson::Document* MapViewParser::serverMapFromPath(const std::string& name) {
 	rapidjson::Document* document = new rapidjson::Document;
 	readMapFromFile(name, document);
+
 	return document;
 }
 
@@ -64,7 +64,6 @@ void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document
 
 void MapViewParser::clientMapFromString(MapView *mapView, std::string json) {
 	rapidjson::Document document;
-
 	document.Parse(json.c_str());
 
 	parse(document, mapView);
