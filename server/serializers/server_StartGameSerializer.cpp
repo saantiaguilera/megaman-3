@@ -23,7 +23,7 @@ StartGameSerializer::~StartGameSerializer() {
 
 void StartGameSerializer::serialize() {
 	// TODO: Remove this hardcode here
-	std::ifstream iFile("/home/mastanca/workspace/fiuba-taller-I-megaman/json/level1.json");
+	std::ifstream iFile("./json/level1.json");
 	std::stringstream ss;
 	if (!iFile)
 		return;

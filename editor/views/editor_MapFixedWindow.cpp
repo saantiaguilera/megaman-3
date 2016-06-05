@@ -40,7 +40,6 @@ void MapFixedWindow::setMapView(MapView *aMapView) {
 	set_size_request(mapView->getWidth(), mapView->getHeight());
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
 
-	std::cout<<"log"<<obstacles<<obstacles->size()<<std::endl;
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
 		ObstacleView *obstacleView = *it;
 
@@ -48,3 +47,24 @@ void MapFixedWindow::setMapView(MapView *aMapView) {
 	    setObstacleViewContainer(obstacleViewContainer);
 	}
 }
+
+MapView *MapFixedWindow::saveMapView() {
+	mapView->getObstacles()->clear();
+
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer*obstacleViewContainer = *it;
+
+		mapView->getObstacles()->push_back(obstacleViewContainer->getObstacleView());
+	}
+
+	return mapView;
+}
+
+void MapFixedWindow::removeAllChildViews() {
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer*obstacleViewContainer = *it;
+
+		remove(*obstacleViewContainer->getImage());
+	}
+}
+

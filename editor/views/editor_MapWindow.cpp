@@ -108,11 +108,14 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
-	delegate->presentMainWindowWithoutSavingMap();
-//	std::cout<<"Save button"<<std::endl;
+	MapView *savedMap = fixedWindow->saveMapView();
+	fixedWindow->removeAllChildViews();
+
+	delegate->presentMainWindowSavingMap(savedMap);
 }
 
 void MapWindow::backButtonWasTapped() {
+	fixedWindow->removeAllChildViews();
 	delegate->presentMainWindowWithoutSavingMap();
 }
 
@@ -184,9 +187,11 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 	ObstacleView *obstacleView = new ObstacleView(0, 0, obstacleViewType);
 
-	ObstacleViewContainer *obstacleViewContainer = new ObstacleViewContainer(obstacleView);
-	draggingImage = obstacleViewContainer->getImage();
-	fixedWindow->setObstacleViewContainer(obstacleViewContainer);
+	draggingImageContainer = new ObstacleViewContainer(obstacleView);
+
+
+	draggingImage = draggingImageContainer->getImage();
+	fixedWindow->setObstacleViewContainer(draggingImageContainer);
 }
 
 //Size
@@ -206,7 +211,10 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 	int x = event->x;
 	int y = event->y;
 
-	std::cout<<"didPress"<<x<<y<<std::endl;
+	x = x - (x % kObstacleSize);
+	y = y - (y % kObstacleSize);
+
+	draggingImageContainer->getObstacleView()->setPosition(x, y);
 
 	return true;
 }
@@ -215,7 +223,6 @@ bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {
 	int x = event->x;
 	int y = event->y;
 
-	std::cout<<"x in event box : "<<x<<"y in event box : "<<y<<std::endl;
 	if (draggingImageIsMoving) {
 		fixedWindow->move(*draggingImage, x - (x % kObstacleSize), y - (y % kObstacleSize));
 	}

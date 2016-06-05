@@ -13,6 +13,8 @@
 #include <exception>
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
+#include "../../common/common_MapViewJsonWriter.h"
+
 
 
 EditorController::EditorController(int argc, char *argv[]) {
@@ -39,7 +41,14 @@ void EditorController::begin() {
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
-	std::cout<<map->getName()<<std::endl;
+	rapidjson::Document document;
+	std::stringstream ss;
+	ss<<"level"<<map->getId()<<".json";
+	std::string path = ss.str();
+
+	std::cout<<"Main Path "<<path<<std::endl;
+
+	MapViewJsonWriter().writeMapInFilenname(map, path);
 	showMainWindow();
 }
 

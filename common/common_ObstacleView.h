@@ -20,6 +20,10 @@ public:
 	Point getPoint();
 	ObstacleViewType getType();
 
+	//Setters
+	void setPosition(unsigned int aX, unsigned int aY);
+	void setType(ObstacleViewType aType);
+
 protected:
 		Point point;
 		ObstacleViewType type;

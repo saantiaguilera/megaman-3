@@ -39,7 +39,7 @@ void JsonMapParser::parseDocument(const std::string& name) {
 	rapidjson::Document* document = mapParser.serverMapFromPath(name);
 	const rapidjson::Value& mapJson = (*document)[MAP_NAME];
 
-	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
+	const rapidjson::Value& obstaclesJson = mapJson[MAPOBSTACLES_NAME];
 
 	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
 		unsigned int x = obstaclesJson[i][X_NAME].GetInt();

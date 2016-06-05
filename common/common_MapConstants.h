@@ -43,7 +43,7 @@ typedef enum {
 #define MAPHEIGHT_NAME "height"
 #define MAPWIDTH_NAME "width"
 
-#define OBSTACLES_NAME "obstacles"
+#define MAPOBSTACLES_NAME "obstacles"
 
 #define X_NAME "x"
 #define Y_NAME "y"
