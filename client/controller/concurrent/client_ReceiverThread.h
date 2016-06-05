@@ -15,6 +15,8 @@
 #include "../../event/client_FlowEvent.h"
 #include "../../event/client_ReceivedMapEvent.h"
 
+#include "../../view/client_GameView.h"
+
 #include "client_ReceiverContract.h"
 #include "../../../common/common_MessageProtocol.h"
 
@@ -87,6 +89,17 @@ protected:
             dispatchEvent(new FlowEvent(FLOW_GAME));
             dispatchEvent(new ReceivedMapEvent(json));
             break;
+
+          case UPDATE_MOVEMENTS:
+            GameView::moveViewFromJSON(json);
+            break;
+
+          case OBJECT_CREATED:
+            GameView::addViewFromJSON(json);
+            break;
+
+          case OBJECT_DESTROYED:
+            GameView::removeViewFromJSON(json);
         }
       }
     } catch (const std::exception& e) {
