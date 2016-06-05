@@ -29,6 +29,8 @@ public:
 	void increaseAmmoBy(unsigned int ammoAmount);
 	// Return current ammo
 	unsigned int getAmmo() const;
+	// Tell if the weapon is a special one
+	virtual bool isSpecial();
 
 private:
 	// Copy constructor

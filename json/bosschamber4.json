@@ -3,8 +3,8 @@
         "name": "Bombman",
         "height": 1000,
         "width": 1000,
-        "id": 4,
+        "id": 9,
         "obstacles": [
-                   ]
+         ]
     }
 }

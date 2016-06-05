@@ -22,3 +22,7 @@ void Weapon::increaseAmmoBy(unsigned int ammoAmount) {
 unsigned int Weapon::getAmmo() const {
 	return ammo;
 }
+
+bool Weapon::isSpecial() {
+	return true;
+}
