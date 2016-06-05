@@ -18,6 +18,7 @@ public:
 	virtual ~ObstacleView();
 
 	Point getPoint();
+	ObstacleViewType getType();
 
 protected:
 		Point point;

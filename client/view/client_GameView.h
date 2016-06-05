@@ -68,6 +68,8 @@ private:
   SDL2pp::Renderer *renderer;
 
   WorldView *worldView;
+  MapView *tempMapView = NULL;
+  
   SomethingThatIsNotTerrainView *stintv;
 
 
