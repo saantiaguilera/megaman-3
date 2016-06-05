@@ -24,6 +24,8 @@ public:
 	virtual ~PlasmaCannon();
 	// fire weapon
 	virtual void fire(float32 x, float32 y);
+	// Tell if the weapon is a special one
+	virtual bool isSpecial();
 private:
 	// Copy constructor
 	PlasmaCannon(const PlasmaCannon&);
