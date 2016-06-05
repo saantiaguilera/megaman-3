@@ -41,29 +41,28 @@ void MainWindow::setDelegate(EditorController *aDelegate) {
 
 //Signals
 void MainWindow::level1ButtonWasTapped(){
-	std::cout<<"level 1 button was tapped"<<std::endl;
-
-	MapViewParser mapParser;
-	MapView *map = new MapView();
-
-	mapParser.editorMapWithPath(map, "level1.json");
-
-	delegate->presentMapWindowWithMap(map);
+	presentMapWindowWithMapName("level1.json");
 }
 
 void MainWindow::level2ButtonWasTapped(){
-	std::cout<<"level 2 button was tapped"<<std::endl;
+	presentMapWindowWithMapName("level2.json");
 }
 
 void MainWindow::level3ButtonWasTapped(){
-	std::cout<<"level 3 button was tapped"<<std::endl;
+	presentMapWindowWithMapName("level3.json");
 }
 
 void MainWindow::level4ButtonWasTapped(){
-	std::cout<<"level 4 button was tapped"<<std::endl;
-
-	delegate->presentMainWindowWithoutSavingMap();
+	presentMapWindowWithMapName("level4.json");
 }
 
+void MainWindow::presentMapWindowWithMapName(std::string mapName) {
+	MapViewParser mapParser;
+	MapView *map = new MapView();
+
+	mapParser.editorMapWithPath(map, mapName);
+
+	delegate->presentMapWindowWithMap(map);
+}
 
 
