@@ -3,6 +3,8 @@
 
 #include "client_GameView.h"
 
+#define DRAW_TIME_STEP 16
+
 GameView::GameView() : Gtk::Window() {
  set_size_request(800, 600); //TODO
 
@@ -61,7 +63,7 @@ bool GameView::onInitSDL(::Window windowId) {
    stintv = new SomethingThatIsNotTerrainView(renderer);
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
-   Glib::signal_timeout().connect(slot, 16);
+   Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
 
    return false;
  } catch (std::exception& e) {

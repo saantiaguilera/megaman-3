@@ -21,6 +21,11 @@ ObstacleView::ObstacleView(){
 //Destructors
 ObstacleView::~ObstacleView() {
 }
+
 Point ObstacleView::getPoint() {
 	return point;
+}
+
+ObstacleViewType ObstacleView::getType() {
+	return type;
 }
