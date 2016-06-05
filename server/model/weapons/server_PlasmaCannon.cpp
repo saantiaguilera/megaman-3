@@ -21,3 +21,7 @@ void PlasmaCannon::fire(float32 x, float32 y) {
 		new Plasma(x, y);
 	}
 }
+
+bool PlasmaCannon::isSpecial() {
+	return false;
+}

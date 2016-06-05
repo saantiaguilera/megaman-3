@@ -9,13 +9,15 @@
 #define SERVER_SERIALIZERS_SERVER_AMMOCHANGESERIALIZER_H_
 
 #include "../../common/common_Serializer.h"
+#include "../model/weapons/server_Weapon.h"
 
 class AmmoChangeSerializer: public Serializer {
 private:
 	unsigned int newAmmo;
+	Weapon* weapon;
 public:
 	// Constructor
-	AmmoChangeSerializer(unsigned int newAmmo, unsigned int objectId);
+	AmmoChangeSerializer(Weapon* weapon);
 	// Destroyer
 	virtual ~AmmoChangeSerializer();
 	// Serialize object
