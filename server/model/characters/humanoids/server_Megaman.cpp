@@ -27,6 +27,7 @@
 Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN_INITIAL_HP, x, y), humanOperator(humanOperator) {
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
+	notify();
 }
 
 Megaman::~Megaman() {

@@ -13,6 +13,7 @@
 Ring::Ring(float32 x, float32 y) : Projectile(RING_DAMAGE, Projectile::RING, x, y) {
 	// Make it bouncy
 	myBody->GetFixtureList()->SetRestitution(1);
+	notify();
 }
 
 

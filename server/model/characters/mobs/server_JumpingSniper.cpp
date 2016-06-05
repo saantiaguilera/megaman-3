@@ -12,6 +12,7 @@
 #define ATTACK_INTERVAL_TICKS 3
 
 JumpingSniper::JumpingSniper(float32 x, float32 y) : Sniper(x, y) {
+	notify();
 }
 
 JumpingSniper::~JumpingSniper() {

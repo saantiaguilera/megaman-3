@@ -14,6 +14,7 @@
 
 Fireman::Fireman(float32 x, float32 y) : Humanoid(FIREMAN_INITIAL_HP, x, y) {
 	currentWeapon = new Flamethrower();
+	notify();
 }
 
 Fireman::~Fireman() {

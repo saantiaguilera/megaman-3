@@ -58,7 +58,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 						new StartGameSerializer;
 				Engine::getInstance().getContext()->dispatchEvent(
 						startGameSerializer);
-				sleep(0.1); // Wait for the map to be sent
 				JsonMapParser mapParser;
 				mapParser.parseDocument("level1.json");
 				Engine::getInstance().setReadyToStart(true);

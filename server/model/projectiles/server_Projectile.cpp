@@ -48,8 +48,6 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, 
 	// Apply an impulse <-- this direction
 	// TODO: Set it in constructor?
 	myBody->ApplyLinearImpulse(b2Vec2(-5,0), myBody->GetWorldCenter(), true);
-
-	PhysicObject::notify();
 }
 
 int Projectile::getProjectileType() const {

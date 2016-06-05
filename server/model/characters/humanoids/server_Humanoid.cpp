@@ -39,8 +39,6 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
-
-	PhysicObject::notify();
 }
 
 
