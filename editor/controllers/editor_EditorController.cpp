@@ -16,7 +16,7 @@
 
 
 EditorController::EditorController(int argc, char *argv[]) {
-	Glib::RefPtr<Gtk::Application> gtkmm_main = Gtk::Application::create(argc, argv, "org.gtkmm.example");
+	gtkmm_main = Gtk::Application::create(argc, argv, "org.gtkmm.example");
 
 	try {
 		builder = Gtk::Builder::create_from_file("editor/editor.glade");
@@ -24,22 +24,18 @@ EditorController::EditorController(int argc, char *argv[]) {
 		std::cout<<e.what()<<std::endl;
 	}
 
-//	mainWindow = 0;
-	mapWindow = 0;
-
-
-//	builder->get_widget_derived("mainWindow", mainWindow);
+	builder->get_widget_derived("mainWindow", mainWindow);
 	builder->get_widget_derived("mapWindow", mapWindow);
 
-//	gtkmm_main->run(*mainWindow);
-	gtkmm_main->run(*mapWindow);
-
-//	showMapWindow();
+	mainWindow->setDelegate(this);
+	mapWindow->setDelegate(this);
 }
 
 EditorController::~EditorController() {}
 
-void EditorController::begin() {}
+void EditorController::begin() {
+	gtkmm_main->run(*mainWindow);
+}
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
@@ -52,17 +48,22 @@ void EditorController::presentMainWindowWithoutSavingMap() {
 }
 
 void EditorController::presentMapWindowWithMap(MapView *map) {
-	std::cout<<map->getName()<<std::endl;
 	showMapWindow();
+	mapWindow->setMapView(map);
 }
 
 void EditorController::showMainWindow() {
 	mainWindow->set_visible(true);
 	mapWindow->set_visible(false);
+	gtkmm_main->add_window(*mainWindow);
+	gtkmm_main->remove_window(*mapWindow);
 }
 
 void EditorController::showMapWindow() {
-	mainWindow->set_visible(false);
 	mapWindow->set_visible(true);
+	mainWindow->set_visible(false);
+	gtkmm_main->add_window(*mapWindow);
+	gtkmm_main->remove_window(*mainWindow);
+
 }
 

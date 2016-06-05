@@ -41,6 +41,9 @@ protected:
     void level2ButtonWasTapped();
     void level3ButtonWasTapped();
     void level4ButtonWasTapped();
+
+private:
+    void presentMapWindowWithMapName(std::string mapName);
 };
 
 
