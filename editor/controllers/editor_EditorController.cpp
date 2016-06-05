@@ -32,6 +32,14 @@ EditorController::EditorController(int argc, char *argv[]) {
 	builder->get_widget_derived("mapWindow", mapWindow);
 
 //	gtkmm_main->run(*mainWindow);
+	MapView *mapView = new MapView();
+
+	MapViewParser().editorMapWithPath(mapView, "level1.json");
+
+	std::cout<<mapView->getObstacles()->size()<<std::endl	;
+
+	mapWindow->setMapView(mapView);
+
 	gtkmm_main->run(*mapWindow);
 
 //	showMapWindow();

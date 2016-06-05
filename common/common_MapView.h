@@ -30,7 +30,7 @@ public:
 	unsigned int getWidth();
 	unsigned int getHeight();
 	ObstacleView * getObstacle(int position);
-	std::vector<ObstacleView *> * getObstacles();
+	std::vector<ObstacleView *> *getObstacles();
 
 private:
 	unsigned int id;

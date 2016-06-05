@@ -9,20 +9,22 @@
 #define EDITOR_MODELS_EDITOR_OBSTACLEVIEWCONTAINER_H_
 
 #include "../../common/common_MapConstants.h"
+#include "../../common/common_ObstacleView.h"
 #include "gtkmm.h"
 
 #define kObstacleSize 100
 
 class ObstacleViewContainer {
 public:
-	ObstacleViewContainer(ObstacleViewType aType);
+	ObstacleViewContainer(ObstacleView *aObstacleView);
 	ObstacleViewContainer();
 	virtual ~ObstacleViewContainer();
 
 	Gtk::Image *getImage();
+	ObstacleView *getObstacleView();
 
 private:
-	ObstacleViewType type;
+	ObstacleView *obstacleView;
 	Gtk::Image *image;
 	bool isShowing = false;
 };
