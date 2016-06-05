@@ -66,12 +66,6 @@ void Engine::start() {
 	running = true;
 	// TODO: TESTING
 	int i = 0;
-//    Met met;
-//	charactersList.push_back(&met);
-//	Player aPlayer("Lan Hikari", playerInitialLives);
-//	charactersList.push_back(aPlayer.getMegaman());
-//	Bomb* aBomb = new Bomb(0,-5);
-//	aBomb->getMyBody()->SetAwake(false);
 
 	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
 	for (std::list<Player*>::iterator it = playerList.begin();
