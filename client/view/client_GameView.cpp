@@ -29,8 +29,9 @@ bool GameView::onLoopSDL() {
  try {
    renderer->Clear();
 
+   std::cout << "Bouta draw the world view" << std::endl;
    worldView->draw();
-   stintv->draw();
+   //stintv->draw();
 
    renderer->Present();
 
@@ -42,7 +43,11 @@ bool GameView::onLoopSDL() {
 }
 
 void GameView::loadMapFromAsset(MapView *mapView) {
-  worldView->from(mapView);
+  if (worldView) {
+    std::cout << "GameView::loading world view" << std::endl;
+    worldView->from(mapView);
+    delete mapView;
+  } else tempMapView = mapView;
 }
 
 bool GameView::onInitSDL(::Window windowId) {
@@ -60,6 +65,14 @@ bool GameView::onInitSDL(::Window windowId) {
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
 
    worldView = new WorldView(renderer);
+
+   if (tempMapView) {
+     std::cout << "GameView::loading world view" << std::endl;
+     worldView->from(tempMapView);
+     delete tempMapView;
+     tempMapView = NULL;
+   }
+
    stintv = new SomethingThatIsNotTerrainView(renderer);
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);

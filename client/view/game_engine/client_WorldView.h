@@ -26,18 +26,32 @@ public:
   }
 
   virtual void draw() {
-      renderer->Copy(*texture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+    std::cout << "WorldView::draw" << std::endl;
+
+    if (!renderer)
+      std::cout << "WorldView::renderer is null" << std::endl;
+
+    std::cout << "WorldView::width= " << renderer->GetOutputWidth() << " height= " << renderer->GetOutputHeight() << std::endl;
+    renderer->Copy(*texture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
   }
 
   void from(MapView *mapView) {
+    std::cout << "WorldView::inflate map of resources" << std::endl;
     std::map<ObstacleViewType, SDL2pp::Surface*> texturesMap;
     texturesMap[ObstacleViewTypeLadder] = new SDL2pp::Surface(PATH_LADDER);
     texturesMap[ObstacleViewTypeBlock] = new SDL2pp::Surface(PATH_BLOCK);
     texturesMap[ObstacleViewTypeNeedle] = new SDL2pp::Surface(PATH_NEEDLE);
     texturesMap[ObstacleViewTypePrecipice] = new SDL2pp::Surface(PATH_SKY);
 
+    std::cout << "WorldView::if texture exists remove it" << std::endl;
+
     if (texture)
       delete texture;
+
+    if (!mapView)
+      std::cout << "Map view is null" << std::endl;
+
+    std::cout << "WorldView::texture width= " << mapView->getWidth() << " height= " << mapView->getHeight() << std::endl;
 
     texture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
