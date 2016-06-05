@@ -10,7 +10,6 @@
 #include <cstdio>
 #include <sstream>
 
-#include "../server/parsers/server_JsonMapParser.h"
 #include "common_MapConstants.h"
 #include "common_ObstacleView.h"
 #include "rapidjson/rapidjson.h"
@@ -46,10 +45,10 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 	parse(document, mapView);
 }
 
-void MapViewParser::serverMapFromPath(const std::string& name) {
+rapidjson::Document* MapViewParser::serverMapFromPath(const std::string& name) {
 	rapidjson::Document* document = new rapidjson::Document;
 	readMapFromFile(name, document);
-	JsonMapParser mapParser(document);
+	return document;
 }
 
 void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document* document) {
@@ -64,12 +63,9 @@ void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document
 }
 
 void MapViewParser::clientMapFromString(MapView *mapView, std::string json) {
-	std::cout << "MapViewParser:: rapidjson::Document" << std::endl;
 	rapidjson::Document document;
 
-	std::cout << "MapViewParser:: parse document from json.c_str()" << std::endl;
 	document.Parse(json.c_str());
 
-	std::cout << "MapViewParser:: parse(document, mapView)" << std::endl;
 	parse(document, mapView);
 }

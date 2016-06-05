@@ -23,7 +23,7 @@ public:
 	MapViewParser();
 	virtual ~MapViewParser();
 
-	void serverMapFromPath(const std::string& name);
+	rapidjson::Document* serverMapFromPath(const std::string& name);
 	void editorMapWithPath(MapView *editorMap, std::string name);
 	void clientMapFromString(MapView *map, std::string json);
 };
