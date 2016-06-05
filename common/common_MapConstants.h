@@ -56,7 +56,6 @@ public:
 
 private:
 	std::map<ObstacleViewType, std::string> imageMap;
-
 };
 
 #endif /* COMMON_COMMON_MAPCONSTANTS_H_ */

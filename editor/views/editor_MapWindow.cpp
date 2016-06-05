@@ -12,14 +12,11 @@
 #include <exception>
 #include "../models/editor_ObstacleViewContainer.h"
 
-MapWindow::MapWindow() {
-	// TODO Auto-generated constructor stub
+#define kObstacleSide 100
 
-}
+MapWindow::MapWindow() {}
 
-MapWindow::~MapWindow() {
-	delete addButtonVector;
-}
+MapWindow::~MapWindow() {}
 
 MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject), builder(refGlade){
@@ -47,6 +44,10 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     builder->get_widget("bigammobutton", bigAmmoButton);
     builder->get_widget("smallammobutton", smallAmmoButton);
 
+    //SpinButons
+    builder->get_widget("heightspinbutton", heightSpinButton);
+    builder->get_widget("widthspinbutton", widthSpinButton);
+
 
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
@@ -68,6 +69,40 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     blockButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::blockButtonWasTapped));
     needleButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::needleButtonWasTapped));
     precipiceButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::precipiceButtonWasTapped));
+    ladderButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::ladderButtonWasTapped));
+    bossChamberButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bossChamberButtonWasTapped));
+    megamanSpawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::megamanSpawnButtonWasTapped));
+    bumpySpawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bumpySpawnButtonWasTapped));
+    jumpingSniperSpawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::jumpingSniperSpawnButtonWasTapped));
+    metSpawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::metSpawnButtonWasTapped));
+    normalSniperSpawnButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::normalSniperSpawnButtonWasTapped));
+    lifeButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::lifeButtonWasTapped));
+    energySmallButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::energySmallButtonWasTapped));
+    energyBigButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::energyBigButtonWasTapped));
+    bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
+    smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
+
+    //Spin Buttons
+    int minHeight = 0;
+    int minWidth = 0;
+
+    get_size(minWidth, minHeight);
+
+    int minHeightTruncated = minHeight + kObstacleSide - (minHeight % kObstacleSide);
+    int minWidthTruncated = minWidth + kObstacleSide - (minWidth % kObstacleSide);
+
+    heightSpinButton->set_range(minHeightTruncated, kObstacleSide * 1000);
+    widthSpinButton->set_range(minWidthTruncated, kObstacleSide * 1000);
+
+    heightSpinButton->set_numeric(true);
+    widthSpinButton->set_numeric(true);
+    heightSpinButton->set_increments(100, 100);
+    widthSpinButton->set_increments(100, 100);
+
+    fixedWindow->set_size_request(minWidthTruncated, minHeightTruncated);
+
+    heightSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
+    widthSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
 
 }
 
@@ -154,6 +189,15 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 	fixedWindow->put(*draggingImage, 0, 0);
 }
 
+//Size
+
+void MapWindow::sizeDidModify() {
+	int height = heightSpinButton->get_value_as_int();
+	int width = widthSpinButton->get_value_as_int();
+
+	fixedWindow->set_size_request(width, height);
+}
+
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
 	draggingEnd();
@@ -163,8 +207,7 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 	int x = event->x;
 	int y = event->y;
 
-
-	std::cout<<x<<y<<std::endl;
+	std::cout<<"didPress"<<x<<y<<std::endl;
 
 	return true;
 }
