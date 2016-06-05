@@ -14,3 +14,7 @@ BigAmmoPack::BigAmmoPack(float32 x, float32 y) :
 BigAmmoPack::~BigAmmoPack() {
 }
 
+int BigAmmoPack::getTypeForSerialization() {
+	return ObstacleViewTypeBigAmmoPack;
+}
+

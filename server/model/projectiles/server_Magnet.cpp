@@ -13,3 +13,7 @@ Magnet::Magnet(float32 x, float32 y) : Projectile(MAGNET_DAMAGE, Projectile::MAG
 Magnet::~Magnet() {
 }
 
+int Magnet::getTypeForSerialization() {
+	return ObstacleViewTypeMagnet;
+}
+

@@ -22,6 +22,8 @@ public:
 	Ring(float32 x, float32 y);
 	// Destroyer
 	virtual ~Ring();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Ring(const Ring&);

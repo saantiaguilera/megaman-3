@@ -21,6 +21,8 @@ public:
 	virtual ~AmmoPack();
 	// Double dispatch method, apply effect on character
 	virtual void haveEffectOn(Character* character);
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 
 private:
 	// Copy constructor

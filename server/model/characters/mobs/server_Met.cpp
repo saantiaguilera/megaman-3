@@ -46,3 +46,7 @@ void Met::update(){
 		readyToAttack = true;
 	}
 }
+
+int Met::getTypeForSerialization() {
+	return ObstacleViewTypeMet;
+}

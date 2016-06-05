@@ -30,6 +30,8 @@ public:
 	int getProjectileType() const;
 	// Return object type
 	virtual int getObjectType();
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 
 private:
 	// Copy constructor

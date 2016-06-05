@@ -13,3 +13,7 @@ Plasma::Plasma(float32 x, float32 y) : Projectile(PLASMA_DAMAGE, Projectile::PLA
 Plasma::~Plasma() {
 }
 
+int Plasma::getTypeForSerialization() {
+	return ObstacleViewTypePlasma;
+}
+

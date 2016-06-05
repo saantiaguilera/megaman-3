@@ -14,3 +14,7 @@ SmallAmmoPack::SmallAmmoPack(float32 x, float32 y) :
 SmallAmmoPack::~SmallAmmoPack() {
 }
 
+int SmallAmmoPack::getTypeForSerialization() {
+	return ObstacleViewTypeSmallAmmoPack;
+}
+

@@ -21,6 +21,7 @@ ObjectCreationSerializer::~ObjectCreationSerializer() {
 }
 
 void ObjectCreationSerializer::serialize() {
+	// { "id": ID, "type": TYPE, "position": { "x": 5, "y": 8 } }
 	std::stringstream ss;
 	ss << serializePosition();
 	serialized = ss.str();

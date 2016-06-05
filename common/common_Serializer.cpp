@@ -31,6 +31,10 @@ int Serializer::getMessageCode() const {
 	return messageCode;
 }
 
+int Serializer::getObjectType() {
+	return objectType;
+}
+
 int Serializer::getMessageLength() const {
 	return serialized.length();
 }

@@ -23,6 +23,8 @@ public:
 	// Receive shot from projectile, killed when vulnerable or half hp when
 	// ring or fire
 	void receiveShotFromProjectile(Projectile* projectile);
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 private:
 	// Copy constructor
 	Sniper(const Sniper&);

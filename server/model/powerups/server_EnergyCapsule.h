@@ -21,6 +21,8 @@ public:
 	virtual ~EnergyCapsule();
 	// Double dispatch method, apply effect on character
 	virtual void haveEffectOn(Character* character);
+	// get type for serialization
+	virtual int getTypeForSerialization() = 0;
 private:
 	// Copy constructor
 	EnergyCapsule(const EnergyCapsule&);

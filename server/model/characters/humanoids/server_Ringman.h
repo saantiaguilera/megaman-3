@@ -22,6 +22,8 @@ public:
 	virtual ~Ringman();
 	// Update myself according to ticks passed
 	void update();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Ringman(const Ringman&);

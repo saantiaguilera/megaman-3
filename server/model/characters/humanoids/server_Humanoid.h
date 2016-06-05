@@ -24,6 +24,8 @@ public:
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Update object (AI)
 	virtual void update() = 0;
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 private:
 	// Copy constructor
 	Humanoid(const Humanoid&);
