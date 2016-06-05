@@ -58,6 +58,10 @@ protected:
     Gtk::Button *bigAmmoButton;
     Gtk::Button *smallAmmoButton;
 
+    //Spin Buttons
+    Gtk::SpinButton *heightSpinButton;
+    Gtk::SpinButton *widthSpinButton;
+
 
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
@@ -95,6 +99,9 @@ protected:
     void energyBigButtonWasTapped();
     void bigAmmoButtonWasTapped();
     void smallAmmoButtonWasTapped();
+
+    //Size
+    void sizeDidModify();
 
 private:
     bool draggingImageIsMoving = false;

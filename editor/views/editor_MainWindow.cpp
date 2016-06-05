@@ -43,7 +43,7 @@ void MainWindow::setDelegate(EditorController *aDelegate) {
 void MainWindow::level1ButtonWasTapped(){
 	std::cout<<"level 1 button was tapped"<<std::endl;
 
-	MapVeiwParser mapParser;
+	MapViewParser mapParser;
 	MapView *map = new MapView();
 
 
