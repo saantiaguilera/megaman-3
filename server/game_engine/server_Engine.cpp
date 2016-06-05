@@ -174,3 +174,7 @@ EventContext* Engine::getContext() {
 void Engine::setContext(EventContext* context) {
 	this->context = context;
 }
+
+std::list<Character*>* Engine::getCharactersList() {
+	return &charactersList;
+}

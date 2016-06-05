@@ -66,7 +66,6 @@ unsigned int ClientProxy::getId() const {
 }
 
 void ClientProxy::send(Serializer* serializer) {
-	// TODO: Maybe put in another thread?
 	// Send message code
 	int sendResult;
 	int messageCode = htonl(serializer->getMessageCode());
