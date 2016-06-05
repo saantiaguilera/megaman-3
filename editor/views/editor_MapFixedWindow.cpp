@@ -7,16 +7,16 @@
 
 #include "editor_MapFixedWindow.h"
 
-MapFixedWindow::MapFixedWindow() {
-	// TODO Auto-generated constructor stub
+//Constructor
+MapFixedWindow::MapFixedWindow() {}
 
-}
-
-MapFixedWindow::~MapFixedWindow() {
-	// TODO Auto-generated destructor stub
-}
+MapFixedWindow::~MapFixedWindow() {}
 
 MapFixedWindow::MapFixedWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
-    Gtk::Fixed(cobject), builder(refGlade) {
+    Gtk::Fixed(cobject), builder(refGlade) {}
 
+
+void MapFixedWindow::setObstacleViewContainer(ObstacleViewContainer *obstacleViewContainer) {
+	obstacleViewContainers->push_back(obstacleViewContainer);
+	put(*obstacleViewContainer->getImage(), 0, 0);
 }

@@ -185,8 +185,8 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 	ObstacleViewContainer *obstacleViewContainer = new ObstacleViewContainer(obstacleViewType);
 	draggingImage = obstacleViewContainer->getImage();
-
-	fixedWindow->put(*draggingImage, 0, 0);
+//	fixedWindow->put(*draggingImage, 0, 0);
+//	fixedWindow->setObstacleViewContainer(obstacleViewContainer);
 }
 
 //Size
