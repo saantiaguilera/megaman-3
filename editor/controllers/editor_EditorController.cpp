@@ -41,14 +41,7 @@ void EditorController::begin() {
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
-	rapidjson::Document document;
-	std::stringstream ss;
-	ss<<"level"<<map->getId()<<".json";
-	std::string path = ss.str();
-
-	std::cout<<"Main Path "<<path<<std::endl;
-
-	MapViewJsonWriter().writeMapInFilenname(map, path);
+	MapViewJsonWriter().writeMapInFilenname(map, map->getFilename());
 	showMainWindow();
 }
 

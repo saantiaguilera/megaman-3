@@ -43,6 +43,11 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	writer.Key(MAPNAME_NAME);
 	writer.String(mapView->getName().c_str());
 
+	writer.Key(MAPFILENAME_NAME);
+	writer.String(mapView->getFilename().c_str());
+
+
+
 	writer.Key(MAPHEIGHT_NAME);
 	writer.Int(mapView->getHeight());
 

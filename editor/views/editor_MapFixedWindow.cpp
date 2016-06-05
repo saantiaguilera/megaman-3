@@ -61,10 +61,12 @@ MapView *MapFixedWindow::saveMapView() {
 }
 
 void MapFixedWindow::removeAllChildViews() {
-	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
-		ObstacleViewContainer*obstacleViewContainer = *it;
+	std::vector<Gtk::Widget *> children = get_children();
 
-		remove(*obstacleViewContainer->getImage());
+	for(std::vector<Gtk::Widget *>::iterator it = children.begin(); it != children.end(); ++it) {
+		Gtk::Widget *child = *it;
+
+		remove(*child);
 	}
 }
 

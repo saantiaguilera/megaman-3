@@ -23,6 +23,10 @@ void MapView::setName(std::string aString) {
 	name = aString;
 }
 
+void MapView::setFilename(std::string aFilename) {
+	filename = aFilename;
+}
+
 void MapView::setObstacle(ObstacleView *obstacle) {
 	obstacles->push_back(obstacle);
 }
@@ -37,6 +41,10 @@ void MapView::setWidth(unsigned int aWidth) {
 //Getters
 std::string MapView::getName() {
 	return name;
+}
+
+std::string MapView::getFilename() {
+	return filename;
 }
 
 unsigned int MapView::getWidth() {
