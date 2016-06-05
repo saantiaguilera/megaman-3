@@ -5,6 +5,9 @@
 
 #define DRAW_TIME_STEP 16
 
+AnimatedFactoryView * GameView::factoryView = NULL;
+std::vector<AnimatedView*> GameView::animatedViews;
+
 GameView::GameView() : Gtk::Window() {
  set_size_request(800, 600); //TODO
 
@@ -18,8 +21,10 @@ GameView::~GameView() {
   if (worldView)
     delete worldView;
 
-  if (factoryView)
+  if (factoryView) {
     delete factoryView;
+    factoryView = NULL;
+  }
 
   for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
     it != animatedViews.end() ; ++it) {
