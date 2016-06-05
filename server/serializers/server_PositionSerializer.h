@@ -20,6 +20,8 @@ protected:
 	// Serialize given positions
 	std::string serializePosition();
 public:
+	// Constructor with object type
+	PositionSerializer(unsigned int objectId, int objectType, float x, float y);
 	// Constructor
 	PositionSerializer(unsigned int objectId, float x, float y);
 	// Destroyer

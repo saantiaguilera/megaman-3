@@ -29,6 +29,8 @@ public:
 	Serializer();
 	// Constructor for messages object id
 	Serializer(unsigned int objectId);
+	// Constructor for messages object id and tye
+	Serializer(unsigned int objectId, int objectType);
 	// Destroyer
 	virtual ~Serializer();
 	// Get the serialized string

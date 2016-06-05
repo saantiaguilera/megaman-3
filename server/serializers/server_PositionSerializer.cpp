@@ -9,6 +9,10 @@
 
 #include <sstream>
 
+PositionSerializer::PositionSerializer(unsigned int objectId, int objectType, float x, float y) : Serializer(objectId, objectType), x(x), y(y) {
+	serializePosition();
+}
+
 PositionSerializer::PositionSerializer(unsigned int objectId, float x, float y) : Serializer(objectId), x(x), y(y) {
 	serializePosition();
 }

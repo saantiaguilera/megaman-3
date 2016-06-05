@@ -12,7 +12,7 @@
 
 #include "../../common/common_MessageProtocol.h"
 
-ObjectCreationSerializer::ObjectCreationSerializer(unsigned int objectId, float x, float y) : PositionSerializer(objectId, x, y) {
+ObjectCreationSerializer::ObjectCreationSerializer(unsigned int objectId, int objectType, float x, float y) : PositionSerializer(objectId, objectType, x, y) {
 	messageCode = OBJECT_CREATED;
 	serialize();
 }
