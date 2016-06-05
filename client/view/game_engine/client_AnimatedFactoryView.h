@@ -19,6 +19,7 @@
 #include "client_LifeView.h"
 #include "client_SmallAmmoView.h"
 #include "client_SmallEnergyView.h"
+#include "client_ProjectileView.h"
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -67,17 +68,26 @@ class AnimatedFactoryView {
     		case ObstacleViewTypeNormalSnyper:
           view = new SniperView(id, renderer);
     			break;
-        case ObstacleViewTypeFire:
+        case ObstacleViewTypeFireman:
           view = new FiremanView(id, renderer);
           break;
-        case ObstacleViewTypeMagnet:
+        case ObstacleViewTypeMagnetman:
           view = new MagnetmanView(id, renderer);
           break;
-        case ObstacleViewTypeRing:
+        case ObstacleViewTypeRingman:
           view = new RingmanView(id, renderer);
           break;
-        case ObstacleViewTypeSpark:
+        case ObstacleViewTypeSparkman:
           view = new SparkmanView(id, renderer);
+          break;
+        case ObstacleViewTypeBomb:
+        case ObstacleViewTypeFire:
+        case ObstacleViewTypeMagnet:
+        case ObstacleViewTypeRing:
+        case ObstacleViewTypeSpark:
+        case ObstacleViewTypePlasma:
+          view = new ProjectileView(id, renderer);
+          break;
     	}
 
       return view;
