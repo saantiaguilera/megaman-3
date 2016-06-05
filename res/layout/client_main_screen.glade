@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+  <requires lib="gtk+" version="3.8"/>
+  <!-- interface-local-resource-path /home/santi/workspace/fiuba-taller-I-megaman -->
+  <object class="GtkWindow" id="client_home_screen_root_view">
+    <property name="width_request">640</property>
+    <property name="height_request">480</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkLayout" id="layout1">
+        <property name="width_request">32</property>
+        <property name="height_request">32</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="width">0</property>
+        <property name="height">0</property>
+        <child>
+          <object class="GtkLabel" id="label2">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="label" translatable="yes">Enter IP</property>
+          </object>
+          <packing>
+            <property name="x">270</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="client_home_screen_edit_text">
+            <property name="width_request">180</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="can_default">True</property>
+            <property name="events">GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="margin_top">14</property>
+            <property name="activates_default">True</property>
+            <property name="xalign">0.5</property>
+            <property name="shadow_type">out</property>
+            <property name="placeholder_text" translatable="yes">Type here</property>
+          </object>
+          <packing>
+            <property name="x">230</property>
+            <property name="y">210</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinner" id="client_home_screen_progress_bar">
+            <property name="width_request">80</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="x">280</property>
+            <property name="y">276</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="client_home_screen_result_text_view">
+            <property name="width_request">200</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="x">220</property>
+            <property name="y">270</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="client_home_screen_name_text">
+            <property name="width_request">180</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="xalign">0.5</property>
+            <property name="placeholder_text" translatable="yes">Name</property>
+          </object>
+          <packing>
+            <property name="x">230</property>
+            <property name="y">50</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

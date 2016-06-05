@@ -1,0 +1,8 @@
+Loop with:
+* MainLoop (Glib::MainLoop) - It lets me set a timer and every n time call a method in the main UI, useful if I have to set a refresh rate for the window. But is this the case ? Since I will only display things when the server tells me.
+* Dispatcher (Glib::Dispatcher) - I have to hold a reference to it, but I can emit a signal to call a method in the main UI. This is useful in a server case since each time the server sends me something I just signal the dispatcher to check out the new message.
+
+SDL:
+* Sprites (Use all in the same image, just get an x,y from it and SDL does his stuff)
+* Tiles (Use a squared one, so I can perform a matrix of tiles and its easier to move around)
+* Really useful for gtkmm with sdl stuff: http://nyaocat.jp/
