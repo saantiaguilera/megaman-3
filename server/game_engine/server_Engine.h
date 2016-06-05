@@ -16,6 +16,7 @@
 #include "../model/characters/server_Character.h"
 #include "server_Player.h"
 #include "server_EventContext.h"
+#include "../../common/common_Mutex.h"
 
 class b2World;
 class ContactListener;
@@ -23,6 +24,8 @@ class ContactListener;
 class Engine {
 	// Singleton
 private:
+	// Mutex for locking shared resources
+	Mutex mutex;
 	// Keep running flag
 	bool quit;
 	// Flag to mark engine ready to start
@@ -63,7 +66,7 @@ public:
 	// Add new player to the game
 	void addNewPlayer(unsigned int id, const std::string& name);
 	// Return players list
-	const std::list<Player*>& getPlayersList() const;
+	const std::list<Player*>& getPlayersList();
 	// Tell if game has finished
 	bool isFinished();
 	// Is engine ready to start?
@@ -73,7 +76,7 @@ public:
 	// Is engine running?
 	bool isRunning() const;
 	// Return the world
-	b2World* getMyWorld() const;
+	b2World* getMyWorld();
 	// Add new object for deletion
 	void markObjectForRemoval(PhysicObject* objectToMark);
 	// Set game gravity
@@ -88,7 +91,7 @@ public:
 	void setPlayerInitialLives(unsigned int playerInitialLives);
 	// Initialize engines world
 	void initializeWorld();
-	EventContext* getContext() const;
+	EventContext* getContext();
 	void setContext(EventContext* context);
 
 private:

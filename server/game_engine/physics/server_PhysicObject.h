@@ -17,9 +17,13 @@ protected:
 		OT_MEGAMAN,
 		OT_MOB,
 		OT_POWERUP,
-		OT_OBSTACLE,
 		OT_PROJECTILE,
-		OT_LADDER
+		OT_OBSTACLE,
+		OT_BLOCK,
+		OT_LADDER,
+		OT_BOSS_CHAMBER_GATE,
+		OT_NEEDLE,
+		OT_PRECIPICE
 	};
 	// Id of the object
 	static unsigned int id;
