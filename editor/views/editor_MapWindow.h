@@ -12,6 +12,7 @@
 
 #include "editor_MapFixedWindow.h"
 #include "../../common/common_MapConstants.h"
+#include "../../common/common_MapView.h"
 
 class EditorController;
 
@@ -23,6 +24,10 @@ public:
 
 	MapWindow();
 	virtual ~MapWindow();
+
+    //Setters
+    void setMapView(MapView *aMapView);
+    void setDelegate(EditorController *aDelegate);
 
 protected:
 	//Needed to upload xml from GLADE

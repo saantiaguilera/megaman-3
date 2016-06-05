@@ -17,8 +17,7 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
-  if (socket)
-    delete socket;
+  socket->terminate();
 
   if (connectionThread) {
     connectionThread->join();
@@ -39,6 +38,9 @@ Client::~Client()  {
     delete receiverThread;
     receiverThread = NULL;
   }
+
+  if (socket)
+    delete socket;
 
   delete currentController;
 }

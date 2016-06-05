@@ -10,6 +10,7 @@
 
 #include <gtkmm.h>
 #include "../models/editor_ObstacleViewContainer.h"
+#include "../../common/common_MapView.h"
 
 class MapFixedWindow : public Gtk::Fixed {
 public:
@@ -18,11 +19,12 @@ public:
 	virtual ~MapFixedWindow();
 
 	void setObstacleViewContainer(ObstacleViewContainer *obstacleViewContainer);
+	void setMapView(MapView *aMapView);
 
 private :
     Glib::RefPtr<Gtk::Builder> builder;
     std::vector<ObstacleViewContainer *> *obstacleViewContainers;
-
+    MapView *mapView;
 
 };
 

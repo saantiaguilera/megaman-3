@@ -20,6 +20,8 @@ int main(int argc, char *argv[]) {
 
 	editorController.begin();
 
+	std::cout<<"fin?"<<std::endl;
+
 	return EXIT_SUCCESS;
 }
 

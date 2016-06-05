@@ -108,13 +108,12 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
-//	delegate->presentMainWindowWithoutSavingMap();
-	std::cout<<"Save button"<<std::endl;
+	delegate->presentMainWindowWithoutSavingMap();
+//	std::cout<<"Save button"<<std::endl;
 }
 
 void MapWindow::backButtonWasTapped() {
-//	delegate->presentMainWindowWithoutSavingMap();
-	std::cout<<"Back button"<<std::endl;
+	delegate->presentMainWindowWithoutSavingMap();
 }
 
 //Add Buttons
@@ -183,14 +182,14 @@ void MapWindow::smallAmmoButtonWasTapped() {
 void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 	draggingBegin();
 
-	ObstacleViewContainer *obstacleViewContainer = new ObstacleViewContainer(obstacleViewType);
+	ObstacleView *obstacleView = new ObstacleView(0, 0, obstacleViewType);
+
+	ObstacleViewContainer *obstacleViewContainer = new ObstacleViewContainer(obstacleView);
 	draggingImage = obstacleViewContainer->getImage();
-//	fixedWindow->put(*draggingImage, 0, 0);
-//	fixedWindow->setObstacleViewContainer(obstacleViewContainer);
+	fixedWindow->setObstacleViewContainer(obstacleViewContainer);
 }
 
 //Size
-
 void MapWindow::sizeDidModify() {
 	int height = heightSpinButton->get_value_as_int();
 	int width = widthSpinButton->get_value_as_int();
@@ -230,4 +229,17 @@ void MapWindow::draggingBegin() {
 
 void MapWindow::draggingEnd() {
 	draggingImageIsMoving = false;
+}
+
+//Setters
+void MapWindow::setMapView(MapView *aMapView) {
+	heightSpinButton->set_value(aMapView->getHeight());
+	widthSpinButton->set_value(aMapView->getWidth());
+	sizeDidModify();
+
+	fixedWindow->setMapView(aMapView);
+}
+
+void MapWindow::setDelegate(EditorController *aDelegate) {
+	delegate = aDelegate;
 }

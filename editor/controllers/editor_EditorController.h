@@ -24,10 +24,10 @@ public:
 
 private:
 	Glib::RefPtr<Gtk::Builder> builder;
+	Glib::RefPtr<Gtk::Application> gtkmm_main;
 
-
-	MainWindow *mainWindow;
-	MapWindow *mapWindow;
+	MainWindow *mainWindow = NULL;
+	MapWindow *mapWindow = NULL;
 
 	void showMainWindow();
 	void showMapWindow();
