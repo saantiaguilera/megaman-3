@@ -5,14 +5,15 @@
  *      Author: santi
  */
 
-#include "common_MapView.h"
-#include <string>
-#include <iostream>
-#include "common_ObstacleView.h"
-#include <sstream>
-#include "common_MapConstants.h"
-
 #include "common_MapViewParser.h"
+
+#include <cstdio>
+#include <sstream>
+
+#include "../server/parsers/server_JsonMapParser.h"
+#include "common_MapConstants.h"
+#include "common_ObstacleView.h"
+#include "rapidjson/rapidjson.h"
 
 MapViewParser::MapViewParser() {}
 
@@ -40,6 +41,18 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 }
 
 void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
+	rapidjson::Document document;
+	readMapFromFile(name, &document);
+	parse(document, mapView);
+}
+
+void MapViewParser::serverMapFromPath(const std::string& name) {
+	rapidjson::Document* document = new rapidjson::Document;
+	readMapFromFile(name, document);
+	JsonMapParser mapParser(document);
+}
+
+void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document* document) {
 	std::stringstream ss;
 	ss<<"./json/"<<name;
 	std::string path = ss.str();
@@ -47,10 +60,7 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 	FILE* pFile = fopen(filename.c_str(), "rb");
 	char buffer[65536];
 	rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
-	rapidjson::Document document;
-	document.ParseStream<rapidjson::FileReadStream>(is);
-
-	parse(document, mapView);
+	document->ParseStream<rapidjson::FileReadStream>(is);
 }
 
 void MapViewParser::clientMapFromString(MapView *mapView, std::string json) {
