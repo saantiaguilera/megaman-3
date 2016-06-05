@@ -18,7 +18,7 @@ private:
   int repetitions = 0;
 
 public:
-  RingmanView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+  RingmanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_ringman.png");
   }
 

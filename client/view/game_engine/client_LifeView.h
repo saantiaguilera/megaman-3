@@ -11,7 +11,7 @@ private:
   SDL2pp::Texture *texture;
 
 public:
-  LifeView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+  LifeView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/powerups/hp/hp.png");
   }
 

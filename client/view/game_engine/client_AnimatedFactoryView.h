@@ -33,51 +33,51 @@ class AnimatedFactoryView {
     virtual ~AnimatedFactoryView() {
     }
 
-    AnimatedView * make(int type) {
+    AnimatedView * make(int type, unsigned int id) {
       AnimatedView *view = NULL;
 
       switch (type) {
         case ObstacleViewTypeMegaman:
-          view = new MegamanView(renderer);
+          view = new MegamanView(id, renderer);
           break;
     		case ObstacleViewTypeBigAmmoPack:
-          view = new BigAmmoView(renderer);
+          view = new BigAmmoView(id, renderer);
     			break;
     		case ObstacleViewTypeBigEnergyCapsule:
-          view = new BigEnergyView(renderer);
+          view = new BigEnergyView(id, renderer);
     			break;
     		case ObstacleViewTypeLife:
-          view = new LifeView(renderer);
+          view = new LifeView(id, renderer);
     			break;
     		case ObstacleViewTypeSmallAmmoPack:
-          view = new SmallAmmoView(renderer);
+          view = new SmallAmmoView(id, renderer);
     			break;
     		case ObstacleViewTypeSmallEnergyCapsule:
-          view = new SmallEnergyView(renderer);
+          view = new SmallEnergyView(id, renderer);
     			break;
     		case ObstacleViewTypeBumpy:
-          view = new BumpyView(renderer);
+          view = new BumpyView(id, renderer);
     			break;
     		case ObstacleViewTypeJumpingSnyper:
-          view = new JumpingSniperView(renderer);
+          view = new JumpingSniperView(id, renderer);
     			break;
     		case ObstacleViewTypeMet:
-          view = new MetView(renderer);
+          view = new MetView(id, renderer);
     			break;
     		case ObstacleViewTypeNormalSnyper:
-          view = new SniperView(renderer);
+          view = new SniperView(id, renderer);
     			break;
         case ObstacleViewTypeFire:
-          view = new FiremanView(renderer);
+          view = new FiremanView(id, renderer);
           break;
         case ObstacleViewTypeMagnet:
-          view = new MagnetmanView(renderer);
+          view = new MagnetmanView(id, renderer);
           break;
         case ObstacleViewTypeRing:
-          view = new RingmanView(renderer);
+          view = new RingmanView(id, renderer);
           break;
         case ObstacleViewTypeSpark:
-          view = new SparkmanView(renderer);
+          view = new SparkmanView(id, renderer);
     	}
 
       return view;

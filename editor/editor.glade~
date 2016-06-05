@@ -32,7 +32,7 @@
   <object class="GtkImage" id="imageenergy">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">../res/drawable/powerups/energy/energy.png</property>
+    <property name="pixbuf">../res/drawable/powerups/energy/energy_big.png</property>
     <property name="icon_size">0</property>
   </object>
   <object class="GtkImage" id="imageenrgysmall">

@@ -24,7 +24,7 @@ MapConstants::MapConstants() {
 
 	//Powerups
 	imageMap[ObstacleViewTypeLife] = "./res/drawable/powerups/hp/hp.png";
-	imageMap[ObstacleViewTypeBigEnergyCapsule] = "./res/drawable/powerups/energy/energy.png";
+	imageMap[ObstacleViewTypeBigEnergyCapsule] = "./res/drawable/powerups/energy/energy_big.png";
 	imageMap[ObstacleViewTypeSmallEnergyCapsule] = "./res/drawable/powerups/energy/energy.png";
 	imageMap[ObstacleViewTypeBigAmmoPack] = "./res/drawable/powerups/ammo/big_ammo.png";
 	imageMap[ObstacleViewTypeSmallAmmoPack] = "./res/drawable/powerups/ammo/small_ammo.png";
