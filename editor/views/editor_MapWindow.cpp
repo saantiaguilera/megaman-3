@@ -110,6 +110,8 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 void MapWindow::saveButtonWasTapped() {
 	MapView *savedMap = fixedWindow->saveMapView();
 	fixedWindow->removeAllChildViews();
+	savedMap->setHeight(heightSpinButton->get_value_as_int());
+	savedMap->setWidth(widthSpinButton->get_value_as_int());
 
 	delegate->presentMainWindowSavingMap(savedMap);
 }

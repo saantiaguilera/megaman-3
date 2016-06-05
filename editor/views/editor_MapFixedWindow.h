@@ -27,7 +27,6 @@ private :
     Glib::RefPtr<Gtk::Builder> builder;
     std::vector<ObstacleViewContainer *> *obstacleViewContainers;
     MapView *mapView;
-
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPFIXEDWINDOW_H_ */

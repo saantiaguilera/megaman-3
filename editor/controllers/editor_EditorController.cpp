@@ -14,6 +14,7 @@
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
 #include "../../common/common_MapViewJsonWriter.h"
+#include "../../common/common_MapConstants.h"
 
 
 
@@ -41,14 +42,8 @@ void EditorController::begin() {
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
-	rapidjson::Document document;
-	std::stringstream ss;
-	ss<<"level"<<map->getId()<<".json";
-	std::string path = ss.str();
-
-	std::cout<<"Main Path "<<path<<std::endl;
-
-	MapViewJsonWriter().writeMapInFilenname(map, path);
+	translateNonObstacleToCenter(map);
+	MapViewJsonWriter().writeMapInFilenname(map, map->getFilename());
 	showMainWindow();
 }
 
@@ -58,6 +53,7 @@ void EditorController::presentMainWindowWithoutSavingMap() {
 
 void EditorController::presentMapWindowWithMap(MapView *map) {
 	showMapWindow();
+	translateNonObstacleToCorner(map);
 	mapWindow->setMapView(map);
 }
 
@@ -73,6 +69,44 @@ void EditorController::showMapWindow() {
 	mainWindow->set_visible(false);
 	gtkmm_main->add_window(*mapWindow);
 	gtkmm_main->remove_window(*mainWindow);
-
 }
 
+void EditorController::translateNonObstacleToCenter(MapView *mapView) {
+	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
+
+	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
+		ObstacleView *obstacleView = *it;
+
+		if (centerObstacleViewType(obstacleView->getType())) {
+			int centerX = obstacleView->getPoint().getX() - (TERRAIN_TILE_SIZE / 2);
+			int centerY = obstacleView->getPoint().getY() - (TERRAIN_TILE_SIZE / 2);
+			obstacleView->setPosition(centerX, centerY);
+		}
+	}
+}
+
+void EditorController::translateNonObstacleToCorner(MapView *mapView) {
+	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
+
+	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
+		ObstacleView *obstacleView = *it;
+
+		if (centerObstacleViewType(obstacleView->getType())) {
+			int centerX = obstacleView->getPoint().getX() + (TERRAIN_TILE_SIZE / 2);
+			int centerY = obstacleView->getPoint().getY() + (TERRAIN_TILE_SIZE / 2);
+			obstacleView->setPosition(centerX, centerY);
+		}
+	}
+}
+
+
+
+bool EditorController::centerObstacleViewType(ObstacleViewType type) {
+	bool isNotBlock = !(type == ObstacleViewTypeBlock);
+	bool isNotLadder = !(type == ObstacleViewTypeLadder);
+	bool isNotNeedle = !(type == ObstacleViewTypeNeedle);
+	bool isNotPrecipice = !(type == ObstacleViewTypePrecipice);
+	bool isNotBossChamber = !(type == ObstacleViewTypeBossChamberGate);
+
+	return isNotBlock && isNotLadder && isNotNeedle && isNotPrecipice && isNotBossChamber;
+}
