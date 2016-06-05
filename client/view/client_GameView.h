@@ -3,13 +3,15 @@
 
 #include <SDL2pp/SDL2pp.hh>
 
+#include <vector>
 #include <gtkmm.h>
 #include <gtkmm/socket.h>
 #include <X11/Xlib.h>
 
 // TODO This two wont be here (because I will put all the RenderedView's in a list, instead of having them stored in the class)
 #include "game_engine/client_WorldView.h"
-#include "game_engine/client_SomethingThatIsNotTerrainView.h"
+#include "game_engine/client_AnimatedView.h"
+#include "game_engine/client_AnimatedFactoryView.h"
 
 #include "../../common/common_MapView.h"
 
@@ -73,8 +75,8 @@ private:
   WorldView *worldView = NULL;
   MapView *tempMapView = NULL;
 
-  SomethingThatIsNotTerrainView *stintv = NULL;
-
+  AnimatedFactoryView *factoryView;
+  std::vector<AnimatedView*> animatedViews;
 
   /**
    * This method should be in charge of drawing everything
