@@ -64,7 +64,7 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(getId(), getPositionX(), getPositionY());
+	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(getId(), getTypeForSerialization(), getPositionX(), getPositionY());
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
 
