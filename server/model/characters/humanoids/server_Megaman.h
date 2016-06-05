@@ -45,6 +45,8 @@ public:
 	void makeWeaponAvailable(int weaponType, Weapon* newWeapon);
 	// Decreases hp of megaman and eventually its operators lives
 	virtual void decreaseHp(float damage);
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 
 private:
 	// Copy constructor

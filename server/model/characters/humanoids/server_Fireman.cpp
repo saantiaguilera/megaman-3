@@ -34,3 +34,7 @@ void Fireman::update() {
 	++ticksPassed;
 }
 
+int Fireman::getTypeForSerialization() {
+	return ObstacleViewTypeFireman;
+}
+

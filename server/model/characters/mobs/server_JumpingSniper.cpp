@@ -31,3 +31,7 @@ void JumpingSniper::update() {
 	++ticksPassed;
 }
 
+int JumpingSniper::getTypeForSerialization() {
+	return ObstacleViewTypeJumpingSnyper;
+}
+

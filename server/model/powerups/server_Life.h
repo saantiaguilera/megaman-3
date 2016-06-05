@@ -22,6 +22,8 @@ public:
 	virtual ~Life();
 	// Have effect on characters operator
 	virtual void haveEffectOn(Character* character);
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Life(const Life&);

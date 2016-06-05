@@ -34,3 +34,7 @@ void Ringman::update() {
 	++ticksPassed;
 }
 
+int Ringman::getTypeForSerialization() {
+	return ObstacleViewTypeRingman;
+}
+

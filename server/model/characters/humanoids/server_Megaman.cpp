@@ -96,3 +96,7 @@ void Megaman::decreaseHp(float damage) {
 		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	}
 }
+
+int Megaman::getTypeForSerialization() {
+	return ObstacleViewTypeMegaman;
+}

@@ -24,6 +24,8 @@ public:
 	virtual void haveEffectOn(Character* character) {}
 	// Return object type
 	virtual int getObjectType();
+	// Get type for serialization
+	virtual int getTypeForSerialization() { return 0;}
 private:
 	// Copy constructor
 	Obstacle(const Obstacle&);

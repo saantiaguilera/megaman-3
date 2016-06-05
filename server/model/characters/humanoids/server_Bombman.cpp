@@ -33,3 +33,7 @@ void Bombman::update() {
 	}
 	++ticksPassed;
 }
+
+int Bombman::getTypeForSerialization() {
+	return ObstacleViewTypeBombman;
+}

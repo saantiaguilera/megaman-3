@@ -37,7 +37,8 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
-	PhysicObject::notify();
+	// Obstacles are generated when client inflates json, no need to notify
+//	PhysicObject::notify();
 }
 
 Obstacle::~Obstacle() {

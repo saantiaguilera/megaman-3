@@ -26,6 +26,8 @@ public:
 	virtual ~Powerup();
 	// Overrided by children, applies effect on parameter
 	virtual void haveEffectOn(Character* character) = 0;
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 private:
 	// Copy constructor
 	Powerup(const Powerup&);

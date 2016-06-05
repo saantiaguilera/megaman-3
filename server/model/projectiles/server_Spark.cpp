@@ -13,3 +13,7 @@ Spark::Spark(float32 x, float32 y) : Projectile(SPARKS_DAMAGE, Projectile::SPARK
 Spark::~Spark() {
 }
 
+int Spark::getTypeForSerialization() {
+	return ObstacleViewTypeSpark;
+}
+

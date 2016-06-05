@@ -22,6 +22,8 @@ public:
 	virtual ~Fireman();
 	// Update myself according to ticks passed
 	void update();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Fireman(const Fireman&);

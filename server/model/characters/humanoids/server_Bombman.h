@@ -22,6 +22,8 @@ public:
 	virtual ~Bombman();
 	// Update myself according to ticks passed
 	void update();
+	// get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Bombman(const Bombman&);

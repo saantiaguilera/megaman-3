@@ -31,3 +31,7 @@ void Sparkman::update() {
 	++ticksPassed;
 }
 
+int Sparkman::getTypeForSerialization() {
+	return ObstacleViewTypeSparkman;
+}
+

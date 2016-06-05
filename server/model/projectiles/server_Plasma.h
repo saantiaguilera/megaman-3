@@ -20,6 +20,8 @@ public:
 	Plasma(float32 x, float32 y);
 	// Destroyer
 	virtual ~Plasma();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Plasma(const Plasma&);

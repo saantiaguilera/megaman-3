@@ -14,3 +14,7 @@ SmallEnergyCapsule::SmallEnergyCapsule(float32 x, float32 y) :
 SmallEnergyCapsule::~SmallEnergyCapsule() {
 }
 
+int SmallEnergyCapsule::getTypeForSerialization() {
+	return ObstacleViewTypeSmallEnergyCapsule;
+}
+

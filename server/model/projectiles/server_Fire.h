@@ -19,6 +19,8 @@ class Fire: public Projectile {
 public:
 	Fire(float32 x, float32 y);
 	virtual ~Fire();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	Fire(const Fire&);

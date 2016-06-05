@@ -30,6 +30,8 @@ public:
 	virtual int getObjectType();
 	// Handle collision
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Get type for serialization
+	virtual int getTypeForSerialization() = 0;
 
 private:
 	// Copy constructor

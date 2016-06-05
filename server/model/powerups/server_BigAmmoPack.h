@@ -20,6 +20,8 @@ public:
 	BigAmmoPack(float32 x, float32 y);
 	// Destroyer
 	virtual ~BigAmmoPack();
+	// Get type for serialization
+	virtual int getTypeForSerialization();
 private:
 	// Copy constructor
 	BigAmmoPack(const BigAmmoPack&);
