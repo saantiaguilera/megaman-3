@@ -20,38 +20,28 @@
 class WorldView : public RenderedView {
 private:
   SDL2pp::Texture *texture;
+  bool textureExists;
 
 public:
-  WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer) {
+  WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer), texture(NULL), textureExists(false) {
   }
 
   virtual void draw() {
-    std::cout << "WorldView::draw" << std::endl;
-
-    if (!renderer)
-      std::cout << "WorldView::renderer is null" << std::endl;
-
-    std::cout << "WorldView::width= " << renderer->GetOutputWidth() << " height= " << renderer->GetOutputHeight() << std::endl;
-    renderer->Copy(*texture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+    if (textureExists)
+      renderer->Copy(*texture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
   }
 
   void from(MapView *mapView) {
-    std::cout << "WorldView::inflate map of resources" << std::endl;
+    textureExists = false;
+
     std::map<ObstacleViewType, SDL2pp::Surface*> texturesMap;
     texturesMap[ObstacleViewTypeLadder] = new SDL2pp::Surface(PATH_LADDER);
     texturesMap[ObstacleViewTypeBlock] = new SDL2pp::Surface(PATH_BLOCK);
     texturesMap[ObstacleViewTypeNeedle] = new SDL2pp::Surface(PATH_NEEDLE);
     texturesMap[ObstacleViewTypePrecipice] = new SDL2pp::Surface(PATH_SKY);
 
-    std::cout << "WorldView::if texture exists remove it" << std::endl;
-
     if (texture)
       delete texture;
-
-    if (!mapView)
-      std::cout << "Map view is null" << std::endl;
-
-    std::cout << "WorldView::texture width= " << mapView->getWidth() << " height= " << mapView->getHeight() << std::endl;
 
     texture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
@@ -84,10 +74,14 @@ public:
     delete texturesMap[ObstacleViewTypeNeedle];
     delete texturesMap[ObstacleViewTypePrecipice];
     delete skySurface;
+
+    textureExists = true;
   }
 
   virtual ~WorldView() {
-    delete texture;
+    if (texture) {
+      delete texture;
+    }
   }
 
 };

@@ -1,10 +1,11 @@
 #ifndef CLIENT_GAMEVIEW_H_
 #define CLIENT_GAMEVIEW_H_
 
-#include <X11/Xlib.h>
 #include <SDL2pp/SDL2pp.hh>
 
 #include <gtkmm.h>
+#include <gtkmm/socket.h>
+#include <X11/Xlib.h>
 
 // TODO This two wont be here (because I will put all the RenderedView's in a list, instead of having them stored in the class)
 #include "game_engine/client_WorldView.h"
@@ -63,14 +64,16 @@ class GameView : public Gtk::Window {
 private:
   OnKeyPressListener *listener = NULL;
 
-  SDL2pp::SDL *sdl;
-  SDL2pp::Window *mainWindow;
-  SDL2pp::Renderer *renderer;
+  Gtk::Socket *socket = NULL;
 
-  WorldView *worldView;
+  SDL2pp::SDL *sdl = NULL;
+  SDL2pp::Window *mainWindow = NULL;
+  SDL2pp::Renderer *renderer = NULL;
+
+  WorldView *worldView = NULL;
   MapView *tempMapView = NULL;
-  
-  SomethingThatIsNotTerrainView *stintv;
+
+  SomethingThatIsNotTerrainView *stintv = NULL;
 
 
   /**
