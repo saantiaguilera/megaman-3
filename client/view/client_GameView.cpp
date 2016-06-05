@@ -44,6 +44,7 @@ GameView::~GameView() {
 }
 
 void GameView::addViewFromJSON(std::string json) {
+  std::cout << "addViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -52,20 +53,34 @@ void GameView::addViewFromJSON(std::string json) {
   unsigned int positionX = (unsigned int) document["position"]["x"].GetUint();
   unsigned int positionY = (unsigned int) document["position"]["y"].GetUint();
 
-  AnimatedView * view = factoryView->make(viewType, viewId);
-  view->setX(positionX);
-  view->setY(positionY);
+  std::cout << "parsed stuff" << std::endl;
 
-  //TODO Race conditions ?
-  animatedViews.push_back(view);
+  if (factoryView) {
+    AnimatedView * view = factoryView->make(viewType, viewId);
+
+    if (view) {
+      view->setX(positionX);
+      view->setY(positionY);
+
+      std::cout << "created view" << std::endl;
+
+      //TODO Race conditions ?
+      animatedViews.push_back(view);
+
+      std::cout << "animatedViews has one more element" << std::endl;
+    }
+  }
 }
 
 void GameView::removeViewFromJSON(std::string json) {
+  std::cout << "removeViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
   unsigned int id = document["id"].GetUint();
   int position = -1;
+
+  std::cout << "parsed stuff" << std::endl;
 
   for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
     if (animatedViews.at(i)->getId() == id) {
@@ -74,6 +89,8 @@ void GameView::removeViewFromJSON(std::string json) {
     }
   }
 
+  std::cout << "position to remove is " << position << std::endl;
+
   if (position != -1) {
     delete animatedViews.at(position);
     animatedViews.erase(animatedViews.begin() + position);
@@ -81,6 +98,7 @@ void GameView::removeViewFromJSON(std::string json) {
 }
 
 void GameView::moveViewFromJSON(std::string json) {
+  std::cout << "moveViewFROMJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -88,6 +106,8 @@ void GameView::moveViewFromJSON(std::string json) {
   unsigned int positionX = document["position"]["x"].GetUint();
   unsigned int positionY = document["position"]["y"].GetUint();
   int index = -1;
+
+  std::cout << "parsed stuff" << std::endl;
 
   for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
     if (animatedViews.at(i)->getId() == id) {

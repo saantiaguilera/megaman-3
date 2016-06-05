@@ -62,8 +62,6 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
 
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
-		std::cout<<"Pase 2"<<std::endl;
-
 		ObstacleView *obstacleView = *it;
 		writer.StartObject();
 		writer.Key(X_NAME);
@@ -87,7 +85,6 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 
 //TODO : No es la mejor forma creo pero bueno estoy cansado
 	fprintf(fp, "%s",string.c_str());
-
 	fclose(fp);
 }
 

@@ -68,5 +68,13 @@ void MapFixedWindow::removeAllChildViews() {
 
 		remove(*child);
 	}
+
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer*obstacleViewContainer = *it;
+
+		delete obstacleViewContainer;
+	}
+
+	obstacleViewContainers->clear();
 }
 
