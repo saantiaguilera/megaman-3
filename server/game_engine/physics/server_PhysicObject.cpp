@@ -10,6 +10,7 @@
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
 #include <stddef.h>
+#include <iostream>
 
 #include "../../serializers/server_ObjectCreationSerializer.h"
 #include "../server_Engine.h"
@@ -64,6 +65,7 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
+	std::cout << "Called notify, object id: " << getId() << " " << getTypeForSerialization() << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }

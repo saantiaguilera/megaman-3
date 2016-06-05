@@ -15,6 +15,7 @@
 
 Sparkman::Sparkman(float32 x, float32 y) : Humanoid(SPARKMAN_INITIAL_HP, x, y) {
 	currentWeapon = new SparksCannon();
+	notify();
 }
 
 Sparkman::~Sparkman() {

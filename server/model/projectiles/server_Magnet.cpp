@@ -7,7 +7,9 @@
 
 #include "server_Magnet.h"
 
-Magnet::Magnet(float32 x, float32 y) : Projectile(MAGNET_DAMAGE, Projectile::MAGNET, x, y) {}
+Magnet::Magnet(float32 x, float32 y) : Projectile(MAGNET_DAMAGE, Projectile::MAGNET, x, y) {
+	notify();
+}
 
 
 Magnet::~Magnet() {
