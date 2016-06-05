@@ -31,6 +31,9 @@ private:
 
 	void showMainWindow();
 	void showMapWindow();
+	void translateNonObstacleToCenter(MapView *mapView);
+	void translateNonObstacleToCorner(MapView *mapView);
+	bool centerObstacleViewType(ObstacleViewType type);
 };
 
 #endif /* EDITOR_CONTROLLERS_EDITOR_EDITORCONTROLLER_H_ */
