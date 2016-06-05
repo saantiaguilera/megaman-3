@@ -16,10 +16,11 @@
 // assigned as admin, there is always one proxy waiting for connection
 #define ADMIN_ID 2
 
-
 // TODO: WARNING: megaman initial positions hardcoded
-Player::Player(unsigned int id, const std::string& name, unsigned int initialLives) : id(id), name(name), lives(initialLives){
-    Logger::getInstance().log(1, "Player " + name + " added");
+Player::Player(unsigned int id, const std::string& name,
+		unsigned int initialLives) :
+		id(id), name(name), lives(initialLives) {
+	Logger::getInstance().log(1, "Player " + name + " added");
 	// If its the first player then its admin
 	// TODO: What happens when restarting game? ids are kept
 	if (id == ADMIN_ID)
@@ -63,6 +64,8 @@ void Player::increasePlayerLives() {
 
 void Player::setMegaman() {
 	megaman = new Megaman(this, 0, 0);
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(megaman->getId(), megaman->getPositionX(), megaman->getPositionY());
+	ObjectCreationSerializer* objectCreationSerializer =
+			new ObjectCreationSerializer(megaman->getId(),
+					megaman->getPositionX(), megaman->getPositionY());
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }

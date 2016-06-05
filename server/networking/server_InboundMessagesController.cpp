@@ -52,7 +52,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
-				// TODO: Breaks here
 				Engine::getInstance().setReadyToStart(true);
 				StartGameSerializer* startGameSerializer =
 						new StartGameSerializer;
