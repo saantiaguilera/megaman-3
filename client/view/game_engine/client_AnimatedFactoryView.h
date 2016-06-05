@@ -56,6 +56,17 @@ class AnimatedFactoryView {
     		case ObstacleViewTypeNormalSnyper:
           view = new SniperView(renderer);
     			break;
+        case ObstacleViewTypeFire:
+          view = new FiremanView(renderer);
+          break;
+        case ObstacleViewTypeMagnet:
+          view = new MagnetmanView(renderer);
+          break;
+        case ObstacleViewTypeRing:
+          view = new RingmanView(renderer);
+          break;
+        case ObstacleViewTypeSpark:
+          view = new SparkmanView(renderer);
     	}
 
       return view;
