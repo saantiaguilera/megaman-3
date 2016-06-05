@@ -6,6 +6,14 @@
 #include "client_AnimatedView.h"
 
 #include "client_MegamanView.h"
+#include "client_BumpyView.h"
+#include "client_FiremanView.h"
+#include "client_JumpingSniperView.h"
+#include "client_MagnetmanView.h"
+#include "client_MetView.h"
+#include "client_RingmanView.h"
+#include "client_SniperView.h"
+#include "client_SparkmanView.h"
 
 #include <SDL2pp/SDL2pp.hh>
 
@@ -37,12 +45,16 @@ class AnimatedFactoryView {
     		case ObstacleViewTypeSmallEnergyCapsule:
     			break;
     		case ObstacleViewTypeBumpy:
+          view = new BumpyView(renderer);
     			break;
     		case ObstacleViewTypeJumpingSnyper:
+          view = new JumpingSniperView(renderer);
     			break;
     		case ObstacleViewTypeMet:
+          view = new MetView(renderer);
     			break;
     		case ObstacleViewTypeNormalSnyper:
+          view = new SniperView(renderer);
     			break;
     	}
 

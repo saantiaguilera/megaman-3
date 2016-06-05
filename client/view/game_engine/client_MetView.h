@@ -1,5 +1,5 @@
-#ifndef CLIENT_MEGAMANVIEW_H_
-#define CLIENT_MEGAMANVIEW_H_
+#ifndef CLIENT_METVIEW_H_
+#define CLIENT_METVIEW_H_
 
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
@@ -10,7 +10,7 @@
 
 #define N_REPETITIONS 1
 
-class MegamanView : public AnimatedView {
+class MetView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
 
@@ -18,11 +18,11 @@ private:
   int repetitions = 0;
 
 public:
-  MegamanView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman.png");
+  MetView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_met.png");
   }
 
-  virtual ~MegamanView() {
+  virtual ~MetView() {
     delete texture;
   }
 
