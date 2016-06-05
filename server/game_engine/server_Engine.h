@@ -61,7 +61,7 @@ public:
 	// Get started
 	void start();
 	// Add new player to the game
-	void addNewPlayer(const std::string& name);
+	void addNewPlayer(unsigned int id, const std::string& name);
 	// Return players list
 	const std::list<Player*>& getPlayersList() const;
 	// Tell if game has finished

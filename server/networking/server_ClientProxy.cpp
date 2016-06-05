@@ -15,7 +15,11 @@
 
 #define MAX_BUFFER_SIZE 10
 
+// Initialize ids value
+unsigned int ClientProxy::id = 0;
+
 ClientProxy::ClientProxy() {
+	++id;
 	connected = false;
 	socket = Socket();
 }
@@ -55,6 +59,10 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 		incomingData += buffer;
 	}
 	delete buffer;
+}
+
+unsigned int ClientProxy::getId() const {
+	return id;
 }
 
 void ClientProxy::send(Serializer* serializer) {

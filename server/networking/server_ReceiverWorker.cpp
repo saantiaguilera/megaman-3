@@ -23,7 +23,7 @@ void ReceiverWorker::run() {
 	unsigned int messageLength;
 	while(client->isConnected()){
 		client->receive(messageCode, messageLength, inboundData);
-		InboundMessagesController interpreter(messageCode, inboundData);
+		InboundMessagesController interpreter(messageCode, client->getId(), inboundData);
 	}
 
 }

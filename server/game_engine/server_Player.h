@@ -15,7 +15,7 @@
 class Player {
 private:
 	// Id of the player
-	static unsigned int id;
+	unsigned int id;
 	// String identifier of the player, must be set upon connection
 	std::string name;
 	// When lives reach 0 player is dead
@@ -26,7 +26,7 @@ private:
 	bool admin;
 public:
 	// Constructor
-	Player(const std::string& name, unsigned int initialLives);
+	Player(unsigned int id, const std::string& name, unsigned int initialLives);
 	// Destroyer
 	virtual ~Player();
 	// Current player is admin?
