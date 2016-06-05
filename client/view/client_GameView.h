@@ -15,45 +15,6 @@
 
 #include "../../common/common_MapView.h"
 
-/**
-  * Im gonna copy as much as I can the Android MVC + everything I can
-  * (eg Use of callbacks from user responses)
-  *
-  * Since this is mega fast sonic gotta go fast coding Im not gonna do
-  * .cpp files and the MVC pattern im prolly gonna implement it in a
-  * whole .h file for making include's problems dissappear
-  */
-
-  /*
-  Working with SDL && GTKmm:
-  1. Create the usual GTKmm stuff you will want to display, where you will place the SDL stuff just leave an empty container
-  2. Add in that container a Gtk::Socket (Set wver you want, like size or styles)
-  3. Connect a signal timeout (put whatever you want is timeout millis) to execute a bool method that will init sdl
-  Eg.
-  sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &aClass::initSDLMethod), theSocket->get_id());
-  Glib::signal_timeout().connect(slot, 200);
-
-  Note: When you init the SDL you will need a ::Window (From x11 lib). This value you can get it from the socket->get_id()
-
-  4. Inside the initSDLMethod init the SDL with GTKmm. A simple example could be
-
-  SDL_VideoInit(NULL)
-  SDL_Window *window = SDL_CreateWindowFrom((void *) windowId); //windowId its the param we receive from the function (the ::Window)
-  SDL_Surface *surface = SDL_GetWindowSurface(window);
-
-  sigc::slot<bool> slot = sigc::mem_fun(*this, &aClass::loopSDLMethod);
-  Glib::signal_timeout().connect(slot, 16);
-
-  Note: See that SDL doesnt even realize we are using GTKmm with him, the "connection" is done via the socket window id !
-
-  5. Do your stuff in the loopSDLMethod we are connecting there.
-
-  Notes:
-  - the Glib::signal_timout().connect() method has to return a boolean. This means:
-  If you return true: It will continue connected and it will be called again after the timeout passes (its like keep looping)
-  If you return false: It will dettach from the connections and you wont be called again.
-  */
-
 class OnKeyPressListener {
 public:
   ~OnKeyPressListener() {}
@@ -75,8 +36,8 @@ private:
   WorldView *worldView = NULL;
   MapView *tempMapView = NULL;
 
-  AnimatedFactoryView *factoryView;
-  std::vector<AnimatedView*> animatedViews;
+  static AnimatedFactoryView *factoryView;
+  static std::vector<AnimatedView*> animatedViews;
 
   /**
    * This method should be in charge of drawing everything
@@ -106,6 +67,12 @@ public:
   virtual ~GameView();
 
   void loadMapFromAsset(MapView *mapView);
+
+  //THIS IS HELLA AWFUL M8
+  //TODO Due to time its gonna be static. Do it nice.
+  static void addViewFromJSON(std::string json);
+  static void removeViewFromJSON(std::string json);
+  static void moveViewFromJSON(std::string json);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

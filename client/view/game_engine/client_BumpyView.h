@@ -18,7 +18,7 @@ private:
   int repetitions = 0;
 
 public:
-  BumpyView(SDL2pp::Renderer *renderer) : AnimatedView(renderer) {
+  BumpyView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_bumpy.png");
   }
 

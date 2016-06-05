@@ -1,8 +1,12 @@
 #include <iostream>
 
+#include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
 #define DRAW_TIME_STEP 16
+
+AnimatedFactoryView * GameView::factoryView = NULL;
+std::vector<AnimatedView*> GameView::animatedViews;
 
 GameView::GameView() : Gtk::Window() {
  set_size_request(800, 600); //TODO
@@ -14,9 +18,13 @@ GameView::GameView() : Gtk::Window() {
 }
 
 GameView::~GameView() {
-  delete worldView;
+  if (worldView)
+    delete worldView;
 
-  delete factoryView;
+  if (factoryView) {
+    delete factoryView;
+    factoryView = NULL;
+  }
 
   for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
     it != animatedViews.end() ; ++it) {
@@ -25,9 +33,74 @@ GameView::~GameView() {
 
   animatedViews.clear();
 
-  delete renderer;
-  delete mainWindow;
-  delete sdl;
+  if (renderer)
+    delete renderer;
+
+  if (mainWindow)
+    delete mainWindow;
+
+  if (sdl)
+    delete sdl;
+}
+
+void GameView::addViewFromJSON(std::string json) {
+  rapidjson::Document document;
+  document.Parse(json.c_str());
+
+  unsigned int viewId = document["id"].GetUint();
+  int viewType = document["type"].GetInt();
+  unsigned int positionX = (unsigned int) document["position"]["x"].GetUint();
+  unsigned int positionY = (unsigned int) document["position"]["y"].GetUint();
+
+  AnimatedView * view = factoryView->make(viewType, viewId);
+  view->setX(positionX);
+  view->setY(positionY);
+
+  //TODO Race conditions ?
+  animatedViews.push_back(view);
+}
+
+void GameView::removeViewFromJSON(std::string json) {
+  rapidjson::Document document;
+  document.Parse(json.c_str());
+
+  unsigned int id = document["id"].GetUint();
+  int position = -1;
+
+  for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
+    if (animatedViews.at(i)->getId() == id) {
+      position = i;
+      break;
+    }
+  }
+
+  if (position != -1) {
+    delete animatedViews.at(position);
+    animatedViews.erase(animatedViews.begin() + position);
+  }
+}
+
+void GameView::moveViewFromJSON(std::string json) {
+  rapidjson::Document document;
+  document.Parse(json.c_str());
+
+  unsigned int id = document["id"].GetUint();
+  unsigned int positionX = document["position"]["x"].GetUint();
+  unsigned int positionY = document["position"]["y"].GetUint();
+  int index = -1;
+
+  for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
+    if (animatedViews.at(i)->getId() == id) {
+      index = i;
+      break;
+    }
+  }
+
+  if (index != -1) {
+    AnimatedView * view = animatedViews.at(index);
+    view->setX(positionX);
+    view->setY(positionY);
+  }
 }
 
 bool GameView::onLoopSDL() {
@@ -77,6 +150,8 @@ bool GameView::onInitSDL(::Window windowId) {
 
    // Create accelerated video renderer with default driver
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
+
+   factoryView = new AnimatedFactoryView(renderer);
 
    worldView = new WorldView(renderer);
 

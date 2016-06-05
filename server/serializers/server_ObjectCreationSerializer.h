@@ -9,11 +9,12 @@
 #define SERVER_SERIALIZERS_SERVER_OBJECTCREATIONSERIALIZER_H_
 
 #include "server_PositionSerializer.h"
+#include "../game_engine/physics/server_PhysicObject.h"
 
 class ObjectCreationSerializer: public PositionSerializer {
 public:
 	// Constructor
-	ObjectCreationSerializer(unsigned int objectId, int objectType, float x, float y);
+	ObjectCreationSerializer(PhysicObject* object);
 	// Destroyer
 	virtual ~ObjectCreationSerializer();
 	// Serialize object

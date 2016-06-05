@@ -30,7 +30,7 @@ public:
 	// Generate loot according to drop rates at position x y
 	void generateLootAt(float32 x, float32 y);
 	// Push dropped event
-	void notifyNewLootAt(Powerup* powerup, float32 x, float32 y);
+	void notifyNewLootAt(Powerup* powerup);
 private:
 	// Copy constructor
 	LootGenerator(const LootGenerator&);

@@ -9,12 +9,17 @@
 class AnimatedView : public RenderedView {
   protected:
     unsigned int x,y;
+    unsigned int id;
 
   public:
-    AnimatedView(SDL2pp::Renderer *renderer) : RenderedView(renderer) {
+    AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), id(id) {
     }
 
     virtual ~AnimatedView() {
+    }
+
+    unsigned int getId() {
+      return id;
     }
 
     //TODO Do polymorphism, the methods below are really similar between classes.

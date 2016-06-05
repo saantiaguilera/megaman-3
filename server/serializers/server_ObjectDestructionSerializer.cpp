@@ -22,6 +22,6 @@ ObjectDestructionSerializer::~ObjectDestructionSerializer() {
 
 void ObjectDestructionSerializer::serialize() {
 	std::stringstream ss;
-	ss << serializePosition();
+	ss << "{ \"id\": " << getObjectId() << "}";
 	serialized = ss.str();
 }
