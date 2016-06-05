@@ -19,16 +19,19 @@
 
 class WorldView : public RenderedView {
 private:
-  SDL2pp::Texture *texture;
+  SDL2pp::Texture *backgroundTexture;
+  SDL2pp::Texture *mapTexture;
   bool textureExists;
 
 public:
-  WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer), texture(NULL), textureExists(false) {
+  WorldView(SDL2pp::Renderer *renderer) : RenderedView(renderer), backgroundTexture(NULL), mapTexture(NULL), textureExists(false) {
   }
 
   virtual void draw() {
-    if (textureExists)
-      renderer->Copy(*texture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+    if (textureExists) {
+      renderer->Copy(*backgroundTexture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+      renderer->Copy(*mapTexture, SDL2pp::Rect(0, 0, renderer->GetOutputWidth(), renderer->GetOutputHeight()));
+    }
   }
 
   void from(MapView *mapView) {
@@ -40,19 +43,26 @@ public:
     texturesMap[ObstacleViewTypeNeedle] = new SDL2pp::Surface(PATH_NEEDLE);
     texturesMap[ObstacleViewTypePrecipice] = new SDL2pp::Surface(PATH_SKY);
 
-    if (texture)
-      delete texture;
+    if (mapTexture)
+      delete mapTexture;
 
-    texture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
+    if (backgroundTexture)
+      delete backgroundTexture;
+
+    mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
-    //TODO Use texture lock ?
+
+    backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
+          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
+
+    mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
     //Fill all the texture with sky
     SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
 
     for (unsigned int i = 0 ; i < mapView->getWidth() ; i += TERRAIN_TILE_SIZE) {
       for (unsigned int j = 0 ; j < mapView->getHeight() ; j += TERRAIN_TILE_SIZE) {
-        texture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
+        backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
           *skySurface);
       }
     }
@@ -64,7 +74,7 @@ public:
 
       std::map<ObstacleViewType, SDL2pp::Surface*>::iterator it = texturesMap.find(view->getType());
       if (it != texturesMap.end()) {
-        texture->Update(SDL2pp::Rect(view->getPoint().getX(), view->getPoint().getY(), TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
+        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX(), view->getPoint().getY(), TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
             *texturesMap[view->getType()]);
       }
     }
@@ -79,9 +89,11 @@ public:
   }
 
   virtual ~WorldView() {
-    if (texture) {
-      delete texture;
-    }
+    if (mapTexture)
+      delete mapTexture;
+
+    if (backgroundTexture)
+      delete backgroundTexture;
   }
 
 };
