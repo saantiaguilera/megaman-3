@@ -48,8 +48,8 @@ void GameView::addViewFromJSON(std::string json) {
 
   unsigned int viewId = document["id"].GetUint();
   int viewType = document["type"].GetInt();
-  unsigned int positionX = (unsigned int) document["position"]["x"].GetUint();
-  unsigned int positionY = (unsigned int) document["position"]["y"].GetUint();
+  unsigned int positionX = (unsigned int) document["position"]["x"].GetFloat();
+  unsigned int positionY = (unsigned int) document["position"]["y"].GetFloat();
 
   if (factoryView) {
     AnimatedView * view = factoryView->make(viewType, viewId);
@@ -89,8 +89,8 @@ void GameView::moveViewFromJSON(std::string json) {
   document.Parse(json.c_str());
 
   unsigned int id = document["id"].GetUint();
-  unsigned int positionX = document["position"]["x"].GetUint();
-  unsigned int positionY = document["position"]["y"].GetUint();
+  unsigned int positionX = (unsigned int) document["position"]["x"].GetFloat();
+  unsigned int positionY = (unsigned int) document["position"]["y"].GetFloat();
   int index = -1;
 
   for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {

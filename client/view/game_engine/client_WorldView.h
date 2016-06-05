@@ -78,7 +78,6 @@ public:
 
     //Fill all the texture with sky
     SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
-
     for (unsigned int i = 0 ; i < mapView->getWidth() ; i += TERRAIN_TILE_SIZE) {
       for (unsigned int j = 0 ; j < mapView->getHeight() ; j += TERRAIN_TILE_SIZE) {
         backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
