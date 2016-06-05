@@ -16,6 +16,7 @@
 #include "../../common/common_MapViewJsonWriter.h"
 
 
+
 EditorController::EditorController(int argc, char *argv[]) {
 	gtkmm_main = Gtk::Application::create(argc, argv, "org.gtkmm.example");
 
@@ -40,7 +41,14 @@ void EditorController::begin() {
 
 //Main window delegate
 void EditorController::presentMainWindowSavingMap(MapView *map) {
-	MapViewJsonWriter().writeMapInFilenname(map, "level1.json");
+	rapidjson::Document document;
+	std::stringstream ss;
+	ss<<"level"<<map->getId()<<".json";
+	std::string path = ss.str();
+
+	std::cout<<"Main Path "<<path<<std::endl;
+
+	MapViewJsonWriter().writeMapInFilenname(map, path);
 	showMainWindow();
 }
 

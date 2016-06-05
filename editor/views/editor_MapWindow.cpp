@@ -109,10 +109,13 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 //Signals
 void MapWindow::saveButtonWasTapped() {
 	MapView *savedMap = fixedWindow->saveMapView();
+	fixedWindow->removeAllChildViews();
+
 	delegate->presentMainWindowSavingMap(savedMap);
 }
 
 void MapWindow::backButtonWasTapped() {
+	fixedWindow->removeAllChildViews();
 	delegate->presentMainWindowWithoutSavingMap();
 }
 

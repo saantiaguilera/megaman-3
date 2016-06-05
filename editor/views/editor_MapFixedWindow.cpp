@@ -49,14 +49,22 @@ void MapFixedWindow::setMapView(MapView *aMapView) {
 }
 
 MapView *MapFixedWindow::saveMapView() {
+	mapView->getObstacles()->clear();
+
 	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
 		ObstacleViewContainer*obstacleViewContainer = *it;
-
-		mapView->getObstacles()->clear();
 
 		mapView->getObstacles()->push_back(obstacleViewContainer->getObstacleView());
 	}
 
-
 	return mapView;
 }
+
+void MapFixedWindow::removeAllChildViews() {
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer*obstacleViewContainer = *it;
+
+		remove(*obstacleViewContainer->getImage());
+	}
+}
+

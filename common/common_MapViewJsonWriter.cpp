@@ -30,8 +30,6 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	ss<<"./json/"<<filename;
 	std::string path = ss.str();
 
-	std::cout<<mapView<<"   "<<path<<std::endl;
-
 	FILE* fp = fopen(path.c_str(), "w"); // non-Windows use "w"
 	rapidjson::StringBuffer s;
     rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(s);
@@ -51,14 +49,16 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	writer.Key(MAPWIDTH_NAME);
 	writer.Int(mapView->getWidth());
 
-	writer.Key("id");
-	writer.Int(1);
+	writer.Key(ID_NAME);
+	writer.Int(mapView->getId());
 
 	writer.Key(MAPOBSTACLES_NAME);
 	writer.StartArray();
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
 
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
+		std::cout<<"Pase 2"<<std::endl;
+
 		ObstacleView *obstacleView = *it;
 		writer.StartObject();
 		writer.Key(X_NAME);
