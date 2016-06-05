@@ -27,15 +27,17 @@ bool GameController::onMessageReceived() {
   Event *event = Looper::getMainLooper().get();
 
   if (event) {
-    MapViewParser parser;
+    MapViewParser *parser;
     MapView *mapView;
 
     switch (event->getId()) {
       //Do stuff
       case EVENT_RECEIVED_MAP:
         mapView = new MapView();
-        parser.clientMapFromString(mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
+        parser = new MapViewParser();
+        parser->clientMapFromString(mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
         this->view->loadMapFromAsset(mapView);
+        delete parser;
         break;
 
       default:

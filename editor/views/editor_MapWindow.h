@@ -27,6 +27,7 @@ public:
 
     //Setters
     void setMapView(MapView *aMapView);
+    void setDelegate(EditorController *aDelegate);
 
 protected:
 	//Needed to upload xml from GLADE

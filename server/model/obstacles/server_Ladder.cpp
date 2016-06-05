@@ -10,7 +10,7 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 
-#include "../../game_engine/physics/server_PhysicObject.h"
+#include "../../../common/common_MapConstants.h"
 #include "../characters/server_Character.h"
 
 Ladder::Ladder(float32 x, float32 y) : Obstacle(x, y) {
@@ -28,5 +28,5 @@ void Ladder::haveEffectOn(Character* character) {
 }
 
 int Ladder::getObjectType() {
-	return OT_LADDER;
+	return ObstacleViewTypeLadder;
 }

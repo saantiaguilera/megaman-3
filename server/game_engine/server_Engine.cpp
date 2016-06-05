@@ -32,7 +32,7 @@ Engine::~Engine() {
     Logger::getInstance().log(1, "Engine quitting");
 }
 
-const std::list<Player*>& Engine::getPlayersList() const {
+const std::list<Player*>& Engine::getPlayersList() {
 	return playersList;
 }
 
@@ -40,12 +40,14 @@ bool Engine::isRunning() const {
 	return running;
 }
 
-b2World* Engine::getMyWorld() const {
+b2World* Engine::getMyWorld() {
 	return myWorld;
 }
 
 void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
+	mutex.lock();
 	objectsToDestroy.push_back(objectToMark);
+	mutex.unlock();
 }
 
 void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
@@ -122,7 +124,9 @@ void Engine::start() {
 }
 
 void Engine::addNewPlayer(unsigned int id, const std::string& name) {
+	mutex.lock();
 	playersList.push_back(new Player(id, name, playerInitialLives));
+	mutex.unlock();
 }
 
 bool Engine::isFinished() {
@@ -134,7 +138,9 @@ bool Engine::isReadyToStart() const {
 }
 
 void Engine::setReadyToStart(bool readyToStart) {
+	mutex.lock();
 	this->readyToStart = readyToStart;
+	mutex.unlock();
 }
 
 void Engine::setGravity(float32 gravity) {
@@ -166,7 +172,7 @@ void Engine::initializeWorld(){
 	positionIterations = this->positionIterations;   //how strongly to correct position
 }
 
-EventContext* Engine::getContext() const {
+EventContext* Engine::getContext() {
 	return context;
 }
 

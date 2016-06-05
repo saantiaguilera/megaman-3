@@ -5,14 +5,14 @@
  *      Author: santi
  */
 
-#include "common_MapView.h"
-#include <string>
-#include <iostream>
-#include "common_ObstacleView.h"
-#include <sstream>
-#include "common_MapConstants.h"
-
 #include "common_MapViewParser.h"
+
+#include <cstdio>
+#include <sstream>
+
+#include "common_MapConstants.h"
+#include "common_ObstacleView.h"
+#include "rapidjson/rapidjson.h"
 
 MapViewParser::MapViewParser() {}
 
@@ -25,7 +25,6 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 	mapView->setName(mapJson[MAPNAME_NAME].GetString());
 	mapView->setHeight(mapJson[MAPHEIGHT_NAME].GetInt());
 	mapView->setWidth(mapJson[MAPWIDTH_NAME].GetInt());
-
 
 	const rapidjson::Value& obstaclesJson = mapJson[OBSTACLES_NAME];
 
@@ -40,6 +39,19 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 }
 
 void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
+	rapidjson::Document document;
+	readMapFromFile(name, &document);
+	parse(document, mapView);
+}
+
+rapidjson::Document* MapViewParser::serverMapFromPath(const std::string& name) {
+	rapidjson::Document* document = new rapidjson::Document;
+	readMapFromFile(name, document);
+
+	return document;
+}
+
+void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document* document) {
 	std::stringstream ss;
 	ss<<"./json/"<<name;
 	std::string path = ss.str();
@@ -47,19 +59,12 @@ void MapViewParser::editorMapWithPath(MapView *mapView, std::string name) {
 	FILE* pFile = fopen(filename.c_str(), "rb");
 	char buffer[65536];
 	rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
-	rapidjson::Document document;
-	document.ParseStream<rapidjson::FileReadStream>(is);
-
-	parse(document, mapView);
+	document->ParseStream<rapidjson::FileReadStream>(is);
 }
 
 void MapViewParser::clientMapFromString(MapView *mapView, std::string json) {
-	std::cout << "MapViewParser:: rapidjson::Document" << std::endl;
 	rapidjson::Document document;
-
-	std::cout << "MapViewParser:: parse document from json.c_str()" << std::endl;
 	document.Parse(json.c_str());
 
-	std::cout << "MapViewParser:: parse(document, mapView)" << std::endl;
 	parse(document, mapView);
 }

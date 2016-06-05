@@ -17,11 +17,13 @@
 class MapViewParser {
 private:
 	void parse(rapidjson::Document &document, MapView *mapView);
+	void readMapFromFile(const std::string& name, rapidjson::Document* document);
 
 public:
 	MapViewParser();
 	virtual ~MapViewParser();
 
+	rapidjson::Document* serverMapFromPath(const std::string& name);
 	void editorMapWithPath(MapView *editorMap, std::string name);
 	void clientMapFromString(MapView *map, std::string json);
 };

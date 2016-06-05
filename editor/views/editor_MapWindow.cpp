@@ -108,13 +108,12 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
-//	delegate->presentMainWindowWithoutSavingMap();
-	std::cout<<"Save button"<<std::endl;
+	delegate->presentMainWindowWithoutSavingMap();
+//	std::cout<<"Save button"<<std::endl;
 }
 
 void MapWindow::backButtonWasTapped() {
-//	delegate->presentMainWindowWithoutSavingMap();
-	std::cout<<"Back button"<<std::endl;
+	delegate->presentMainWindowWithoutSavingMap();
 }
 
 //Add Buttons
@@ -239,4 +238,8 @@ void MapWindow::setMapView(MapView *aMapView) {
 	sizeDidModify();
 
 	fixedWindow->setMapView(aMapView);
+}
+
+void MapWindow::setDelegate(EditorController *aDelegate) {
+	delegate = aDelegate;
 }

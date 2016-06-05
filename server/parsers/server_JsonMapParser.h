@@ -8,12 +8,17 @@
 #ifndef SERVER_PARSERS_SERVER_JSONMAPPARSER_H_
 #define SERVER_PARSERS_SERVER_JSONMAPPARSER_H_
 
+#include <string>
+
+
 class JsonMapParser {
 public:
 	// Constructor
-	JsonMapParser(int mapNumber);
+	JsonMapParser();
 	// Destroyer
 	virtual ~JsonMapParser();
+	// Parse the json document
+	void parseDocument(const std::string& name);
 private:
 	// Copy constructor
 	JsonMapParser(const JsonMapParser&);
