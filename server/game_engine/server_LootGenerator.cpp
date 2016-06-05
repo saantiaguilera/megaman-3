@@ -39,34 +39,34 @@ void LootGenerator::generateLootAt(float32 x, float32 y) {
 	}
 	if (randomNumber <= probabilityRange){
 		// Create a big ammo pack
-		notifyNewLootAt(new BigAmmoPack(x, y), x, y);
+		notifyNewLootAt(new BigAmmoPack(x, y));
 		return;
 	}
 	probabilityRange += BIG_ENERGY_CAPSULE_DROP_RATE;
 	if (randomNumber <= probabilityRange) {
 		// Create big energy capsule
-		notifyNewLootAt(new BigEnergyCapsule(x, y), x, y);
+		notifyNewLootAt(new BigEnergyCapsule(x, y));
 		return;
 	}
 	probabilityRange += LIFE_DROP_RATE;
 	if (randomNumber <= probabilityRange) {
 		// Create life
-		notifyNewLootAt(new Life(x, y), x, y);
+		notifyNewLootAt(new Life(x, y));
 		return;
 	}
 	probabilityRange += SMALL_AMMO_PACK_DROP_RATE;
 	if (randomNumber <= probabilityRange) {
-		notifyNewLootAt(new SmallAmmoPack(x, y), x, y);
+		notifyNewLootAt(new SmallAmmoPack(x, y));
 		return;
 	}
 	probabilityRange += SMALL_ENERGY_CAPSULE_DROP_RATE;
 	if (randomNumber <= probabilityRange) {
-		notifyNewLootAt(new SmallEnergyCapsule(x, y), x, y);
+		notifyNewLootAt(new SmallEnergyCapsule(x, y));
 		return;
 	}
 }
 
-void LootGenerator::notifyNewLootAt(Powerup* powerup, float32 x, float32 y) {
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(powerup->getId(), powerup->getTypeForSerialization(), x, y);
+void LootGenerator::notifyNewLootAt(Powerup* powerup) {
+	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(powerup);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }

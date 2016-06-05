@@ -65,7 +65,6 @@ void Player::increasePlayerLives() {
 void Player::setMegaman() {
 	megaman = new Megaman(this, 0, 0);
 	ObjectCreationSerializer* objectCreationSerializer =
-			new ObjectCreationSerializer(megaman->getId(), megaman->getTypeForSerialization(),
-					megaman->getPositionX(), megaman->getPositionY());
+			new ObjectCreationSerializer(megaman);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
