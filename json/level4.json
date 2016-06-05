@@ -1,10 +1,11 @@
 {
     "map": {
         "name": "Bombman",
+        "filename": "level4.json",
         "height": 1000,
         "width": 1000,
         "id": 4,
         "obstacles": [
-                   ]
+        ]
     }
 }

@@ -20,12 +20,14 @@ public:
 	//Setters
 	void setId(unsigned int id);
 	void setName(std::string name);
+	void setFilename(std::string aFilename);
 	void setHeight(unsigned int aHeight);
 	void setWidth(unsigned int aWidth);
 	void setObstacle(ObstacleView *obstacle);
 
 	//Getters
 	std::string getName();
+	std::string getFilename();
 	unsigned int getId();
 	unsigned int getWidth();
 	unsigned int getHeight();
@@ -35,6 +37,7 @@ public:
 private:
 	unsigned int id;
 	std::string name;
+	std::string filename;
 	unsigned int height;
 	unsigned int width;
 
