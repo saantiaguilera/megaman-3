@@ -68,5 +68,7 @@ CODE - LENGTH - { "life": 3 }
 CODE - LENGTH - NAME
 */
 
+#define ENTERED_BOSS_CHAMBER 15	 // S -> Cs
+
 
 #endif /* COMMON_COMMON_MESSAGEPROTOCOL_H_ */
