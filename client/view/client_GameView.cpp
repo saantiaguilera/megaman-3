@@ -1,12 +1,15 @@
 #include <iostream>
 
+#include "../../common/common_MapConstants.h"
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define DRAW_TIME_STEP 16
+#define DRAW_TIME_STEP 33 //30 fps
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
+SDL2pp::Mixer * GameView::mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
+SDL2pp::Chunk * GameView::shootSound = new SDL2pp::Chunk("../../res/sound/shoot.mp3");
 
 GameView::GameView() : Gtk::Window() {
  set_size_request(800, 600); //TODO
@@ -24,6 +27,16 @@ GameView::~GameView() {
   if (factoryView) {
     delete factoryView;
     factoryView = NULL;
+  }
+
+  if (mixer) {
+    delete mixer;
+    mixer = NULL;
+  }
+
+  if (shootSound) {
+    delete shootSound;
+    shootSound = NULL;
   }
 
   for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
@@ -60,6 +73,10 @@ void GameView::addViewFromJSON(std::string json) {
 
       //TODO Race conditions ?
       animatedViews.push_back(view);
+      
+      //Its a bullet, play sound
+      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
+        mixer->PlayChannel(-1, *shootSound);
     }
   }
 }

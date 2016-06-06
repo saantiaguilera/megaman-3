@@ -38,6 +38,8 @@ private:
 
   static AnimatedFactoryView *factoryView;
   static std::vector<AnimatedView*> animatedViews;
+  static SDL2pp::Mixer *mixer;
+  static SDL2pp::Chunk *shootSound;
 
   /**
    * This method should be in charge of drawing everything
