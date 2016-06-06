@@ -23,7 +23,6 @@ StartGameSerializer::~StartGameSerializer() {
 }
 
 void StartGameSerializer::serialize() {
-	// TODO: Remove this hardcode here
 	std::string fileroute = "./json/" + mapFileName;
 	std::ifstream iFile(fileroute);
 	std::stringstream ss;
