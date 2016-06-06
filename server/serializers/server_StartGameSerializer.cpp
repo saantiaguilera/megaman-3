@@ -13,7 +13,8 @@
 
 #include "../../common/common_MessageProtocol.h"
 
-StartGameSerializer::StartGameSerializer() {
+StartGameSerializer::StartGameSerializer(const std::string& mapNumber) {
+	mapFileName = "level" + mapNumber + ".json";
 	messageCode = START_GAME;
 	serialize();
 }
@@ -23,7 +24,8 @@ StartGameSerializer::~StartGameSerializer() {
 
 void StartGameSerializer::serialize() {
 	// TODO: Remove this hardcode here
-	std::ifstream iFile("./json/level1.json");
+	std::string fileroute = "./json/" + mapFileName;
+	std::ifstream iFile(fileroute);
 	std::stringstream ss;
 	if (!iFile)
 		return;
