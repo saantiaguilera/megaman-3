@@ -25,7 +25,7 @@ private:
   KeyMap keyMap;
 
   virtual bool onMessageReceived();
-  bool onKeyPressEvent(GdkEventKey *event);
+  virtual bool onKeyPressEvent(GdkEventKey *event);
 
 public:
   virtual Gtk::Window * getView();

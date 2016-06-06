@@ -52,7 +52,7 @@ bool GameController::onMessageReceived() {
 
 //https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h
 bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
-  bool changed = true;
+  bool notify = true;
 
   //TODO PASS TO A DEFINE ALL THIS GDKKEYS SO I CAN RE MAP THE CONTROLLERS OF THE GAME EASIER
   //TODO REFACTOR DIS
@@ -83,30 +83,40 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
       break;
 
     case KEY_WEAPON_1:
-      Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon1));
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon1));
+      else notify = false;
       break;
 
     case KEY_WEAPON_2:
-      Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon2));
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon2));
+      else notify = false;
       break;
 
     case KEY_WEAPON_3:
-      Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon3));
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon3));
+      else notify = false;
       break;
 
     case KEY_WEAPON_4:
-      Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon4));
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon4));
+      else notify = false;
       break;
 
     case KEY_WEAPON_5:
-      Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon5));
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon5));
+      else notify = false;
       break;
 
     default:
-      changed = false;
+      notify = false;
   }
 
-  if (changed) {
+  if (notify) {
     getContext()->onMessageReceived();
     return true;
   }
