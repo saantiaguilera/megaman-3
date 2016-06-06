@@ -27,20 +27,22 @@ public:
 
   virtual void draw(Point &massCenter) {
     if (textureExists) {
-      int x,y;
-      x = (massCenter.getX() - (renderer->GetOutputWidth() / 2));
-      y = (massCenter.getY() - (renderer->GetOutputHeight() / 2));
-
       Point cameraPoint;
-      if (x < 0) {
+      if (massCenter.getX() - renderer->GetOutputWidth() / 2 < 0) {
         cameraPoint.setX(0);
         massCenter.setX(renderer->GetOutputWidth() / 2);
-      } else cameraPoint.setX(x);
+      } else if ((unsigned int) getRenderer()->GetOutputWidth() < massCenter.getX() + renderer->GetOutputWidth() / 2) {
+        cameraPoint.setX(mapTexture->GetWidth() - renderer->GetOutputWidth());
+        massCenter.setX(mapTexture->GetWidth() - renderer->GetOutputWidth() / 2);
+      } else cameraPoint.setX(massCenter.getX() - renderer->GetOutputWidth() / 2);
 
-      if (y < 0) {
+      if (massCenter.getY() - renderer->GetOutputHeight() / 2 < 0) {
         cameraPoint.setY(0);
         massCenter.setY(renderer->GetOutputHeight() / 2);
-      } else cameraPoint.setY(y);
+      } else if ((unsigned int) getRenderer()->GetOutputHeight() < massCenter.getY() + renderer->GetOutputHeight() / 2) {
+        cameraPoint.setY(mapTexture->GetHeight() - renderer->GetOutputHeight());
+        massCenter.setY(mapTexture->GetHeight() - renderer->GetOutputHeight() / 2);
+      } else cameraPoint.setY(massCenter.getY() - renderer->GetOutputHeight() / 2);
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),

@@ -35,6 +35,7 @@ JsonMapParser::~JsonMapParser() {
 }
 
 void JsonMapParser::parseDocument(const std::string& name) {
+	std::string mapFileName = "level" + name + ".json";
 	MapViewParser mapParser;
 	rapidjson::Document* document = mapParser.serverMapFromPath(name);
 	const rapidjson::Value& mapJson = (*document)[MAP_NAME];

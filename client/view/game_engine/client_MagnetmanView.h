@@ -40,8 +40,8 @@ public:
     cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
     cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
 
-    if (getX() > cameraPoint.getX() && ((unsigned int) (getX() - TERRAIN_TILE_SIZE)) < (cameraPoint.getX() + renderer->GetOutputWidth()) &&
-      getY() > cameraPoint.getY() && ((unsigned int) (getY() - TERRAIN_TILE_SIZE)) < (cameraPoint.getY() + renderer->GetOutputHeight())) {
+    if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
+      getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
         renderer->Copy(*texture,
           SDL2pp::Rect(0 + TERRAIN_TILE_SIZE * currentSprite, 0,
             TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),

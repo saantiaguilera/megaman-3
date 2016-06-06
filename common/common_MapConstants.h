@@ -12,6 +12,15 @@
 
 #include <map>
 
+//TODO tincho ponele a cada una el nombre (nose si tienen, onda FireGun ?)
+typedef enum {
+	Weapon1 = 1,
+	Weapon2 = 2,
+	Weapon3 = 3,
+	Weapon4 = 4,
+	Weapon5 = 5
+} WeaponType;
+
 typedef enum {
 	//Obstacles
 

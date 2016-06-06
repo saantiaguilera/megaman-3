@@ -2,18 +2,24 @@
 #define CLIENT_EVENTS_CLIENT_SENDERTHREAD_H_
 
 #include <iostream>
+
 #include "../../../common/common_Socket.h"
-#include "../../concurrent/client_Looper.h"
 #include "../../../common/common_Thread.h"
+
+#include "../../concurrent/client_Looper.h"
 #include "../../concurrent/client_Event.h"
-#include "../../event/client_StartMapEvent.h"
+
 #include "../../../common/common_MessageProtocol.h"
+
+#include "../../event/client_StartMapEvent.h"
 #include "../../event/client_SendKeyMapEvent.h"
+#include "../../event/client_SendChangeWeaponEvent.h"
 
 #include "../../../common/common_Serializer.h"
 #include "../../serializer/client_KeyMapSerializer.h"
 #include "../../serializer/client_PlayerConnectedSerializer.h"
 #include "../../serializer/client_StartMapSerializer.h"
+#include "../../serializer/client_ChangeWeaponSerializer.h"
 
 #include <string>
 #include <unistd.h>
@@ -56,6 +62,10 @@ protected:
             serializer = new KeyMapSerializer(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap());
             break;
 
+          case EVENT_SEND_CHANGE_WEAPON:
+            serializer = new ChangeWeaponSerializer(dynamic_cast<SendChangeWeaponEvent*>(event)->getWeaponType());
+            break;
+
           case EVENT_START_GAME:
             serializer = new StartMapSerializer(dynamic_cast<StartMapEvent*>(event)->getMapId());
             break;
@@ -67,6 +77,7 @@ protected:
         if (serializer) {
           send(serializer);
           delete serializer;
+          serializer = NULL;
         }
 
         handlerLooper->pop();

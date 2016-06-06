@@ -4,6 +4,7 @@
 
 #include "event/client_CreateConnectionEvent.h"
 #include "event/client_SendKeyMapEvent.h"
+#include "event/client_SendChangeWeaponEvent.h"
 #include "event/client_QuitEvent.h"
 #include "event/client_StartMapEvent.h"
 
@@ -162,6 +163,11 @@ bool Client::onMessageReceived() {
 
       case EVENT_SEND_KEY_MAP:
         senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        consumed = true;
+        break;
+
+      case EVENT_SEND_CHANGE_WEAPON:
+        senderLooper->put(new SendChangeWeaponEvent(dynamic_cast<SendChangeWeaponEvent*>(event)->getWeaponType()));
         consumed = true;
         break;
 

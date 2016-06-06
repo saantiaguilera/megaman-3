@@ -12,6 +12,11 @@
 #define KEY_RIGHT GDK_KEY_Right
 #define KEY_SHOOT GDK_KEY_s
 #define KEY_JUMP GDK_KEY_Up
+#define KEY_WEAPON_1 GDK_KEY_1
+#define KEY_WEAPON_2 GDK_KEY_2
+#define KEY_WEAPON_3 GDK_KEY_3
+#define KEY_WEAPON_4 GDK_KEY_4
+#define KEY_WEAPON_5 GDK_KEY_5
 
 class GameController : public Controller, private OnKeyPressListener {
 private:
@@ -20,7 +25,7 @@ private:
   KeyMap keyMap;
 
   virtual bool onMessageReceived();
-  bool onKeyPressEvent(GdkEventKey *event);
+  virtual bool onKeyPressEvent(GdkEventKey *event);
 
 public:
   virtual Gtk::Window * getView();
