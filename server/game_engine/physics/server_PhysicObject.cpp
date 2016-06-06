@@ -65,7 +65,6 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
-	std::cout << "Called notify, object id: " << getId() << " " << getTypeForSerialization() << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }

@@ -28,6 +28,8 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 	notify();
+	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(this);
+	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 
 Megaman::~Megaman() {
