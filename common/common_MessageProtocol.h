@@ -49,11 +49,11 @@ CODE - LENGTH - { "ammo": 50, "special": bool }
 */
 #define WEAPON_CHANGE 11          // C -> S
 /*
-CODE - LENGTH - CHARARRAY WITH KEY PRESSES (0 FALSE 1 TRUE)
+CODE - LENGTH - WEAPONID
 */
 #define END_GAME 12               // S -> C
 /*
-CODE
+CODE - LENGTH (ZERO)
 */
 #define LIFE_CHANGE 13            // S -> C
 /*
