@@ -8,16 +8,21 @@
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
-SDL2pp::Mixer * GameView::mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
-SDL2pp::Chunk * GameView::shootSound = new SDL2pp::Chunk("../../res/sound/shoot.mp3");
+SDL2pp::Mixer * GameView::mixer = NULL;
+SDL2pp::Chunk * GameView::shootSound = NULL;
 
 GameView::GameView() : Gtk::Window() {
- set_size_request(800, 600); //TODO
+  set_size_request(800, 600); //TODO
 
- socket = manage(new Gtk::Socket());
+  socket = manage(new Gtk::Socket());
 
- add(*socket);
- show_all();
+  if (!shootSound)
+    shootSound = new SDL2pp::Chunk("../../res/sound/shoot.mp3");
+  if (!mixer)
+    mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
+
+  add(*socket);
+  show_all();
 }
 
 GameView::~GameView() {
@@ -73,7 +78,7 @@ void GameView::addViewFromJSON(std::string json) {
 
       //TODO Race conditions ?
       animatedViews.push_back(view);
-      
+
       //Its a bullet, play sound
       if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
         mixer->PlayChannel(-1, *shootSound);
