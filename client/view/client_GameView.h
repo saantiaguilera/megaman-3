@@ -18,8 +18,7 @@
 enum BarView {
   BAR_LIFE,
   BAR_HP,
-  BAR_AMMO,
-  BAR_SPECIAL_AMMO
+  BAR_AMMO
 };
 
 class OnKeyPressListener {
@@ -40,7 +39,6 @@ private:
   Gtk::Label *hpBarView = NULL;
   Gtk::Label *lifeBarView = NULL;
   Gtk::Label *ammoBarView = NULL;
-  Gtk::Label *specialAmmoBarView = NULL;
 
   SDL2pp::SDL *sdl = NULL;
   SDL2pp::Window *mainWindow = NULL;

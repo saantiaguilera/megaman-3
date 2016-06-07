@@ -64,19 +64,6 @@
             <property name="xalign">0</property>
           </object>
         </child>
-        <child>
-          <object class="GtkLabel" id="game_view_special_ammo_label">
-            <property name="width_request">200</property>
-            <property name="height_request">30</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_left">20</property>
-            <property name="margin_top">90</property>
-            <property name="label" translatable="yes">Special Ammunition: NaN</property>
-            <property name="xalign">0</property>
-          </object>
-        </child>
       </object>
     </child>
   </object>
