@@ -4,6 +4,13 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
+#define PATH_GAME_VIEW_CONTAINER "game_view_layout"
+#define PATH_GAME_VIEW_SOCKET_CONTAINER "game_view_socket_container"
+#define PATH_GAME_VIEW_HP_BAR "game_view_hp_label"
+#define PATH_GAME_VIEW_LIFE_BAR "game_view_life_label"
+#define PATH_GAME_VIEW_AMMO_BAR "game_view_ammo_label"
+#define PATH_GAME_VIEW_SPECIAL_AMMO_BAR "game_view_special_ammo_label"
+
 #define DRAW_TIME_STEP 33 //30 fps
 
 AnimatedFactoryView * GameView::factoryView = NULL;
@@ -12,8 +19,18 @@ SDL2pp::Mixer * GameView::mixer = NULL;
 SDL2pp::Chunk * GameView::shootSound = NULL;
 Point GameView::massCenter;
 
-GameView::GameView() : Gtk::Window() {
+GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
+        Gtk::Window(cobject){
+
+  refBuilder->get_widget(PATH_GAME_VIEW_CONTAINER, containerView);
+  refBuilder->get_widget(PATH_GAME_VIEW_SOCKET_CONTAINER, socketContainerView);
+  refBuilder->get_widget(PATH_GAME_VIEW_HP_BAR, hpBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_LIFE_BAR, lifeBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_AMMO_BAR, ammoBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_SPECIAL_AMMO_BAR, specialAmmoBarView);
+
   set_size_request(800, 600); //TODO
+  socketContainerView->set_size_request(800, 600);
 
   socket = manage(new Gtk::Socket());
 
@@ -22,7 +39,7 @@ GameView::GameView() : Gtk::Window() {
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
 
-  add(*socket);
+  socketContainerView->add(*socket);
   show_all();
 }
 

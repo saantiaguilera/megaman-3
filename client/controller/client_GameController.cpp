@@ -17,6 +17,9 @@
 
 #include "client_GameController.h"
 
+#define PATH_LOBBY_LAYOUT "res/layout/client_game_view.glade"
+#define PATH_LOBBY_ROOT_VIEW "client_game_view_window"
+
 GameController::~GameController() {
   delete view;
 }
@@ -25,7 +28,23 @@ GameController::~GameController() {
  * Create builder, parse xml, delegate inflate responsibility, set callbacks
  */
 GameController::GameController(Context *context) : Controller(context), view(nullptr) {
-  view = new GameView();
+  auto refBuilder = Gtk::Builder::create();
+
+  try {
+    refBuilder->add_from_file(PATH_LOBBY_LAYOUT);
+  } catch(const Glib::FileError& ex) {
+    std::cout << "FileError: " << ex.what() << std::endl;
+    return;
+  } catch(const Glib::MarkupError& ex) {
+    std::cout << "MarkupError: " << ex.what() << std::endl;
+    return;
+  } catch(const Gtk::BuilderError& ex) {
+    std::cout << "BuilderError: " << ex.what() << std::endl;
+    return;
+  }
+
+  refBuilder->get_widget_derived(PATH_LOBBY_ROOT_VIEW, view);
+
   view->setKeyPressListener(this);
 }
 
