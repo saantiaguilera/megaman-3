@@ -55,11 +55,11 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
 				StartGameSerializer* startGameSerializer =
-						new StartGameSerializer;
+						new StartGameSerializer(inboundMessage);
 				Engine::getInstance().getContext()->dispatchEvent(
 						startGameSerializer);
 				JsonMapParser mapParser;
-				mapParser.parseDocument("level1.json");
+				mapParser.parseDocument(inboundMessage);
 				Engine::getInstance().setReadyToStart(true);
 			}
 		}

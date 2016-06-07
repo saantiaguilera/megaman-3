@@ -11,9 +11,11 @@
 #include "../../common/common_Serializer.h"
 
 class StartGameSerializer: public Serializer {
+private:
+	std::string mapFileName;
 public:
 	// Constructor
-	StartGameSerializer();
+	StartGameSerializer(const std::string& mapNumber);
 	// Destroyer
 	virtual ~StartGameSerializer();
 	// Serialize object

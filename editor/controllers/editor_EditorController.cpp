@@ -78,8 +78,8 @@ void EditorController::translateNonObstacleToCenter(MapView *mapView) {
 		ObstacleView *obstacleView = *it;
 
 		if (centerObstacleViewType(obstacleView->getType())) {
-			int centerX = obstacleView->getPoint().getX() - (TERRAIN_TILE_SIZE / 2);
-			int centerY = obstacleView->getPoint().getY() - (TERRAIN_TILE_SIZE / 2);
+			int centerX = obstacleView->getPoint().getX() + (TERRAIN_TILE_SIZE / 2);
+			int centerY = obstacleView->getPoint().getY() + (TERRAIN_TILE_SIZE / 2);
 			obstacleView->setPosition(centerX, centerY);
 		}
 	}
@@ -92,8 +92,8 @@ void EditorController::translateNonObstacleToCorner(MapView *mapView) {
 		ObstacleView *obstacleView = *it;
 
 		if (centerObstacleViewType(obstacleView->getType())) {
-			int centerX = obstacleView->getPoint().getX() + (TERRAIN_TILE_SIZE / 2);
-			int centerY = obstacleView->getPoint().getY() + (TERRAIN_TILE_SIZE / 2);
+			int centerX = obstacleView->getPoint().getX() - (TERRAIN_TILE_SIZE / 2);
+			int centerY = obstacleView->getPoint().getY() - (TERRAIN_TILE_SIZE / 2);
 			obstacleView->setPosition(centerX, centerY);
 		}
 	}

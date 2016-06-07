@@ -37,7 +37,7 @@ void PhysicObject::move(unsigned int moveState) {
     switch ( moveState )
     {
       case MS_LEFT:  desiredVelx = -5; break;
-      case MS_STOP:  desiredVelx =  0; break;
+      case MS_DOWN:  desiredVely =  -5; break;
       case MS_RIGHT: desiredVelx =  5; break;
       case MS_JUMP: desiredVely = 5; break;
     }
@@ -65,7 +65,6 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
-	std::cout << "Called notify, object id: " << getId() << " " << getTypeForSerialization() << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
