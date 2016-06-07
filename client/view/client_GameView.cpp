@@ -34,12 +34,12 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
   socketContainerView->set_size_request(800, 600);
 
   socket = manage(new Gtk::Socket());
-
-  if (!shootSound)
-    shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
+/*
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
-
+  if (!shootSound)
+    shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
+*/
   socketContainerView->add(*socket);
   show_all();
 }
@@ -102,8 +102,8 @@ void GameView::addViewFromJSON(std::string json) {
         refreshMassCenter();
 
       //Its a bullet, play sound
-      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
-        mixer->PlayChannel(-1, *shootSound);
+//      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
+//        mixer->PlayChannel(-1, *shootSound);
     }
   }
 }
