@@ -14,6 +14,10 @@
 #include "../../event/client_ConnectionEvent.h"
 #include "../../event/client_FlowEvent.h"
 #include "../../event/client_ReceivedMapEvent.h"
+#include "../../event/client_AmmoChangeEvent.h"
+#include "../../event/client_GaugeChangeEvent.h"
+#include "../../event/client_HpChangeEvent.h"
+#include "../../event/client_LifeChangeEvent.h"
 
 #include "../../view/client_GameView.h"
 
@@ -103,6 +107,19 @@ protected:
           case OBJECT_DESTROYED:
             while (!GameView::isRunning()) {}
             GameView::removeViewFromJSON(json);
+            break;
+
+          case HP_CHANGE:
+            dispatchEvent(new HpChangeEvent(json));
+            break;
+
+          case AMMO_CHANGE:
+            dispatchEvent(new AmmoChangeEvent(json));
+            break;
+
+          case LIFE_CHANGE:
+            dispatchEvent(new LifeChangeEvent(json));
+            break;
         }
       }
     } catch (const std::exception& e) {

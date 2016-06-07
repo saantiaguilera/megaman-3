@@ -11,6 +11,8 @@ class AnimatedView : public RenderedView {
     unsigned int x,y;
     unsigned int id;
 
+    bool deviatesMassCenter = false;
+
   public:
     AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), id(id) {
     }
@@ -28,6 +30,10 @@ class AnimatedView : public RenderedView {
     virtual void move(unsigned int x, unsigned int y) {
         setX(x);
         setY(y);
+    }
+
+    bool doesDeviateMassCenter() {
+      return deviatesMassCenter;
     }
 
     unsigned int getX() { return x; }

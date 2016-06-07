@@ -10,8 +10,15 @@
 #include "../event/client_QuitEvent.h"
 #include "../event/client_ReceivedMapEvent.h"
 #include "../event/client_SendChangeWeaponEvent.h"
+#include "../event/client_AmmoChangeEvent.h"
+#include "../event/client_GaugeChangeEvent.h"
+#include "../event/client_HpChangeEvent.h"
+#include "../event/client_LifeChangeEvent.h"
 
 #include "client_GameController.h"
+
+#define PATH_LOBBY_LAYOUT "res/layout/client_game_view.glade"
+#define PATH_LOBBY_ROOT_VIEW "client_game_view_window"
 
 GameController::~GameController() {
   delete view;
@@ -21,7 +28,23 @@ GameController::~GameController() {
  * Create builder, parse xml, delegate inflate responsibility, set callbacks
  */
 GameController::GameController(Context *context) : Controller(context), view(nullptr) {
-  view = new GameView();
+  auto refBuilder = Gtk::Builder::create();
+
+  try {
+    refBuilder->add_from_file(PATH_LOBBY_LAYOUT);
+  } catch(const Glib::FileError& ex) {
+    std::cout << "FileError: " << ex.what() << std::endl;
+    return;
+  } catch(const Glib::MarkupError& ex) {
+    std::cout << "MarkupError: " << ex.what() << std::endl;
+    return;
+  } catch(const Gtk::BuilderError& ex) {
+    std::cout << "BuilderError: " << ex.what() << std::endl;
+    return;
+  }
+
+  refBuilder->get_widget_derived(PATH_LOBBY_ROOT_VIEW, view);
+
   view->setKeyPressListener(this);
 }
 
@@ -40,6 +63,18 @@ bool GameController::onMessageReceived() {
         parser->clientMapFromString(mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
         this->view->loadMapFromAsset(mapView);
         delete parser;
+        break;
+
+      case EVENT_AMMO_CHANGE:
+        view->onBarChange(dynamic_cast<AmmoChangeEvent*>(event)->isSpecial() ? BAR_SPECIAL_AMMO : BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        break;
+
+      case EVENT_HP_CHANGE:
+        view->onBarChange(BAR_HP, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        break;
+
+      case EVENT_LIFE_CHANGE:
+        view->onBarChange(BAR_LIFE, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
         break;
 
       default:
