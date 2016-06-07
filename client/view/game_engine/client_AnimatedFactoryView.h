@@ -29,6 +29,7 @@ class AnimatedFactoryView {
 
   public:
     AnimatedFactoryView(SDL2pp::Renderer *renderer) : renderer(renderer) {
+      MegamanView::resetCharacterCount();
     }
 
     virtual ~AnimatedFactoryView() {
