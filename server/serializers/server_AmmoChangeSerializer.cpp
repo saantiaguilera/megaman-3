@@ -22,6 +22,6 @@ AmmoChangeSerializer::~AmmoChangeSerializer() {
 
 void AmmoChangeSerializer::serialize() {
 	std::stringstream ss;
-	ss << "{" << "\"ammo\": " << newAmmo << "," << "\"id\": " << objectId << ", \"special\": " << weapon->isSpecial() << "}";
+	ss << "{" << "\"ammo\": " << newAmmo << ", \"special\": " << std::boolalpha << weapon->isSpecial() << "}";
 	serialized = ss.str();
 }
