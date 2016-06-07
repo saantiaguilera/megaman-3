@@ -8,6 +8,8 @@
 #ifndef SERVER_SERIALIZERS_SERVER_ENTEREDBOSSCHAMBERSERIALIZER_H_
 #define SERVER_SERIALIZERS_SERVER_ENTEREDBOSSCHAMBERSERIALIZER_H_
 
+#include "../../common/common_Serializer.h"
+
 class EnteredBossChamberSerializer: public Serializer {
 public:
 	// Constructor

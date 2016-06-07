@@ -69,6 +69,9 @@ CODE - LENGTH - NAME
 */
 
 #define ENTERED_BOSS_CHAMBER 15	 // S -> Cs
+/*
+CODE - LENGTH - MAPJSON
+*/
 
 
 #endif /* COMMON_COMMON_MESSAGEPROTOCOL_H_ */

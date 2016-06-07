@@ -16,6 +16,7 @@
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
 #include "../../projectiles/server_Projectile.h"
+#include "../../weapons/server_MobCannon.h"
 
 Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true) {
 	b2BodyDef mobBodyDef;
@@ -44,6 +45,7 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 	boxFixtureDef.isSensor = true;
     myBody->CreateFixture(&boxFixtureDef);
 
+    currentWeapon = new MobCannon();
 }
 
 

@@ -93,6 +93,7 @@ public:
 	void initializeWorld();
 	EventContext* getContext();
 	void setContext(EventContext* context);
+	std::list<Character*>* getCharactersList();
 
 private:
 	// Constructor

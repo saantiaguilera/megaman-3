@@ -19,6 +19,7 @@
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
 				0) {
+	Engine::getInstance().getCharactersList()->push_back(this);
 }
 
 Character::~Character() {
