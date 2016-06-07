@@ -10,6 +10,7 @@ AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
 SDL2pp::Mixer * GameView::mixer = NULL;
 SDL2pp::Chunk * GameView::shootSound = NULL;
+Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window() {
   set_size_request(800, 600); //TODO
@@ -79,6 +80,9 @@ void GameView::addViewFromJSON(std::string json) {
       //TODO Race conditions ?
       animatedViews.push_back(view);
 
+      if (view->doesDeviateMassCenter())
+        refreshMassCenter();
+
       //Its a bullet, play sound
       if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
         mixer->PlayChannel(-1, *shootSound);
@@ -101,8 +105,13 @@ void GameView::removeViewFromJSON(std::string json) {
   }
 
   if (position != -1) {
-    delete animatedViews.at(position);
+    AnimatedView *view = animatedViews.at(position);
     animatedViews.erase(animatedViews.begin() + position);
+
+    if (view->doesDeviateMassCenter())
+      refreshMassCenter();
+
+    delete view;
   }
 }
 
@@ -124,18 +133,35 @@ void GameView::moveViewFromJSON(std::string json) {
 
   if (index != -1) {
     AnimatedView * view = animatedViews.at(index);
+
     view->setX(positionX);
     view->setY(positionY);
+
+    if (view->doesDeviateMassCenter())
+      refreshMassCenter();
   }
+}
+
+void GameView::refreshMassCenter() {
+  int x = 0;
+  int y = 0;
+  int count = 0;
+
+  for (AnimatedView* view : animatedViews) {
+      if (view->doesDeviateMassCenter()) {
+        x += view->getX();
+        y += view->getY();
+        count++;
+      }
+  }
+
+  massCenter.setX(x / count);
+  massCenter.setY(y / count);
 }
 
 bool GameView::onLoopSDL() {
   try {
     renderer->Clear();
-
-    Point massCenter;
-    massCenter.setX(0);
-    massCenter.setY(0);
 
     worldView->draw(massCenter);
 

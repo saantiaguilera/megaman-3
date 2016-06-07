@@ -41,6 +41,8 @@ private:
   static SDL2pp::Mixer *mixer;
   static SDL2pp::Chunk *shootSound;
 
+  static Point massCenter;
+
   /**
    * This method should be in charge of drawing everything
    * ofc it will delegate to other classes their stuff, but only here things will get drawn (which is called every 16ms)
@@ -63,6 +65,8 @@ private:
 
   bool on_key_press_event(GdkEventKey* event) override;
   bool on_key_release_event(GdkEventKey* event) override;
+
+  static void refreshMassCenter();
 
 public:
   GameView();
