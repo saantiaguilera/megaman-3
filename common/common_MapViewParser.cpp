@@ -54,7 +54,7 @@ rapidjson::Document* MapViewParser::serverMapFromPath(const std::string& name) {
 
 void MapViewParser::readMapFromFile(const std::string& name, rapidjson::Document* document) {
 	std::stringstream ss;
-	ss<<"./json/"<<name;
+	ss << "./json/" << name;
 	std::string path = ss.str();
 	std::string filename = path;
 	FILE* pFile = fopen(filename.c_str(), "rb");
