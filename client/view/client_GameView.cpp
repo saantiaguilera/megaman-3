@@ -15,7 +15,7 @@
 #define DRAW_TIME_STEP 33 //30 fps
 
 #define SCREEN_HEIGHT 800
-#define SCREEN_WIDTH 600
+#define SCREEN_WIDTH 800
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
@@ -36,6 +36,9 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
   set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
   containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
   socketContainerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+  massCenter.setX(0);
+  massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
   socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -178,8 +181,10 @@ void GameView::refreshMassCenter() {
       }
   }
 
-  massCenter.setX(x / count);
-  massCenter.setY(y / count);
+  if (count > 0) {
+    massCenter.setX(x / count);
+    massCenter.setY(y / count);
+  }
 }
 
 bool GameView::onLoopSDL() {
