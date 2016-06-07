@@ -15,6 +15,13 @@
 
 #include "../../common/common_MapView.h"
 
+enum BarView {
+  BAR_LIFE,
+  BAR_HP,
+  BAR_AMMO,
+  BAR_SPECIAL_AMMO
+};
+
 class OnKeyPressListener {
 public:
   ~OnKeyPressListener() {}
@@ -28,6 +35,12 @@ private:
   OnKeyPressListener *listener = NULL;
 
   Gtk::Socket *socket = NULL;
+  Gtk::Layout *containerView = NULL;
+  Gtk::Layout *socketContainerView = NULL;
+  Gtk::Label *hpBarView = NULL;
+  Gtk::Label *lifeBarView = NULL;
+  Gtk::Label *ammoBarView = NULL;
+  Gtk::Label *specialAmmoBarView = NULL;
 
   SDL2pp::SDL *sdl = NULL;
   SDL2pp::Window *mainWindow = NULL;
@@ -40,6 +53,8 @@ private:
   static std::vector<AnimatedView*> animatedViews;
   static SDL2pp::Mixer *mixer;
   static SDL2pp::Chunk *shootSound;
+
+  static Point massCenter;
 
   /**
    * This method should be in charge of drawing everything
@@ -64,8 +79,10 @@ private:
   bool on_key_press_event(GdkEventKey* event) override;
   bool on_key_release_event(GdkEventKey* event) override;
 
+  static void refreshMassCenter();
+
 public:
-  GameView();
+  GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder);
   virtual ~GameView();
 
   void loadMapFromAsset(MapView *mapView);
@@ -76,6 +93,8 @@ public:
   static void removeViewFromJSON(std::string json);
   static void moveViewFromJSON(std::string json);
   static bool isRunning();
+
+  void onBarChange(BarView bar, int amount);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

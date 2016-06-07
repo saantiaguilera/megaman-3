@@ -1,27 +1,51 @@
 #include <iostream>
+#include <sstream>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
+#define PATH_GAME_VIEW_CONTAINER "game_view_layout"
+#define PATH_GAME_VIEW_SOCKET_CONTAINER "game_view_socket_container"
+#define PATH_GAME_VIEW_HP_BAR "game_view_hp_label"
+#define PATH_GAME_VIEW_LIFE_BAR "game_view_life_label"
+#define PATH_GAME_VIEW_AMMO_BAR "game_view_ammo_label"
+#define PATH_GAME_VIEW_SPECIAL_AMMO_BAR "game_view_special_ammo_label"
+
 #define DRAW_TIME_STEP 33 //30 fps
+
+#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 600
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
 SDL2pp::Mixer * GameView::mixer = NULL;
 SDL2pp::Chunk * GameView::shootSound = NULL;
+Point GameView::massCenter;
 
-GameView::GameView() : Gtk::Window() {
-  set_size_request(800, 600); //TODO
+GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
+        Gtk::Window(cobject){
+
+  refBuilder->get_widget(PATH_GAME_VIEW_CONTAINER, containerView);
+  refBuilder->get_widget(PATH_GAME_VIEW_SOCKET_CONTAINER, socketContainerView);
+  refBuilder->get_widget(PATH_GAME_VIEW_HP_BAR, hpBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_LIFE_BAR, lifeBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_AMMO_BAR, ammoBarView);
+  refBuilder->get_widget(PATH_GAME_VIEW_SPECIAL_AMMO_BAR, specialAmmoBarView);
+
+  set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
+  containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
+  socketContainerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
 
   socket = manage(new Gtk::Socket());
-
-  if (!shootSound)
-    shootSound = new SDL2pp::Chunk("../../res/sound/shoot.mp3");
+  socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
+/*
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
-
-  add(*socket);
+  if (!shootSound)
+    shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
+*/
+  socketContainerView->add(*socket);
   show_all();
 }
 
@@ -79,9 +103,12 @@ void GameView::addViewFromJSON(std::string json) {
       //TODO Race conditions ?
       animatedViews.push_back(view);
 
+      if (view->doesDeviateMassCenter())
+        refreshMassCenter();
+
       //Its a bullet, play sound
-      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
-        mixer->PlayChannel(-1, *shootSound);
+//      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
+//        mixer->PlayChannel(-1, *shootSound);
     }
   }
 }
@@ -101,8 +128,13 @@ void GameView::removeViewFromJSON(std::string json) {
   }
 
   if (position != -1) {
-    delete animatedViews.at(position);
+    AnimatedView *view = animatedViews.at(position);
     animatedViews.erase(animatedViews.begin() + position);
+
+    if (view->doesDeviateMassCenter())
+      refreshMassCenter();
+
+    delete view;
   }
 }
 
@@ -124,18 +156,35 @@ void GameView::moveViewFromJSON(std::string json) {
 
   if (index != -1) {
     AnimatedView * view = animatedViews.at(index);
+
     view->setX(positionX);
     view->setY(positionY);
+
+    if (view->doesDeviateMassCenter())
+      refreshMassCenter();
   }
+}
+
+void GameView::refreshMassCenter() {
+  int x = 0;
+  int y = 0;
+  int count = 0;
+
+  for (AnimatedView* view : animatedViews) {
+      if (view->doesDeviateMassCenter()) {
+        x += view->getX();
+        y += view->getY();
+        count++;
+      }
+  }
+
+  massCenter.setX(x / count);
+  massCenter.setY(y / count);
 }
 
 bool GameView::onLoopSDL() {
   try {
     renderer->Clear();
-
-    Point massCenter;
-    massCenter.setX(0);
-    massCenter.setY(0);
 
     worldView->draw(massCenter);
 
@@ -197,6 +246,31 @@ bool GameView::onInitSDL(::Window windowId) {
 
 bool GameView::isRunning() {
   return factoryView;
+}
+
+void GameView::onBarChange(BarView bar, int amount) {
+  std::stringstream text;
+  switch (bar) {
+    case BAR_AMMO:
+      text << "Ammunition: " << amount;
+      ammoBarView->set_text(text.str());
+      break;
+
+    case BAR_SPECIAL_AMMO:
+      text << "Special Ammunition: " << amount;
+      specialAmmoBarView->set_text(text.str());
+      break;
+
+    case BAR_HP:
+      text << "HP: " << amount;
+      hpBarView->set_text(text.str());
+      break;
+
+    case BAR_LIFE:
+      text << "Lifes: " << amount;
+      lifeBarView->set_text(text.str());
+      break;
+  }
 }
 
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {

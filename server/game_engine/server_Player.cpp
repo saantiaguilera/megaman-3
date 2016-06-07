@@ -63,8 +63,7 @@ void Player::increasePlayerLives() {
 }
 
 void Player::setMegaman() {
-	megaman = new Megaman(this, 0, 0);
-	ObjectCreationSerializer* objectCreationSerializer =
-			new ObjectCreationSerializer(megaman);
-	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
+	if (megaman == NULL){
+		megaman = new Megaman(this, 100, 100);
+	}
 }

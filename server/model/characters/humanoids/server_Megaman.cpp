@@ -16,6 +16,7 @@
 #include "../../../game_engine/server_Engine.h"
 #include "../../../game_engine/server_EventContext.h"
 #include "../../../game_engine/server_Player.h"
+#include "../../../serializers/server_AmmoChangeSerializer.h"
 #include "../../../serializers/server_HpChangeSerializer.h"
 #include "../../../serializers/server_LifeChangeSerializer.h"
 #include "../../../server_Logger.h"
@@ -28,8 +29,12 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 	notify();
-	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(this);
+	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), getId());
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
+	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(getCurrentWeapon());
+	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
+	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
+	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 }
 
 Megaman::~Megaman() {

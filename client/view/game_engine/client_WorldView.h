@@ -1,6 +1,8 @@
 #ifndef CLIENT_WORLDVIEW_H_
 #define CLIENT_WORLDVIEW_H_
 
+#include <iostream>
+
 #include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 #include <map>
@@ -28,7 +30,7 @@ public:
   virtual void draw(Point &massCenter) {
     if (textureExists) {
       Point cameraPoint;
-      if (massCenter.getX() - renderer->GetOutputWidth() / 2 < 0) {
+      if (massCenter.getX() - (unsigned int) (renderer->GetOutputWidth() / 2) < 0) {
         cameraPoint.setX(0);
         massCenter.setX(renderer->GetOutputWidth() / 2);
       } else if ((unsigned int) getRenderer()->GetOutputWidth() < massCenter.getX() + renderer->GetOutputWidth() / 2) {
@@ -36,7 +38,7 @@ public:
         massCenter.setX(mapTexture->GetWidth() - renderer->GetOutputWidth() / 2);
       } else cameraPoint.setX(massCenter.getX() - renderer->GetOutputWidth() / 2);
 
-      if (massCenter.getY() - renderer->GetOutputHeight() / 2 < 0) {
+      if (massCenter.getY() - (unsigned int) (renderer->GetOutputHeight() / 2) < 0) {
         cameraPoint.setY(0);
         massCenter.setY(renderer->GetOutputHeight() / 2);
       } else if ((unsigned int) getRenderer()->GetOutputHeight() < massCenter.getY() + renderer->GetOutputHeight() / 2) {
@@ -94,7 +96,8 @@ public:
 
       std::map<ObstacleViewType, SDL2pp::Surface*>::iterator it = texturesMap.find(view->getType());
       if (it != texturesMap.end()) {
-        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX(), view->getPoint().getY(), TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
+        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX(), view->getPoint().getY(),
+            TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
             *texturesMap[view->getType()]);
       }
     }
