@@ -228,6 +228,12 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 }
 
 void MapWindow::dropDraggingImage(int aX, int aY) {
+	ObstacleViewContainer *obstacleViewContainer = fixedWindow->obstacleViewContainerWithPosition(aX, aY);
+
+	if (obstacleViewContainer != NULL) {
+		return;
+	}
+
 	draggingEnd();
 
 	draggingImage = 0;
@@ -249,7 +255,6 @@ void MapWindow::dragImage(int aX, int aY) {
 	}
 
 	draggingImageContainer = obstacleViewContainer;
-
 
 	draggingImage = draggingImageContainer->getImage();
 }
