@@ -10,6 +10,10 @@
 #include "../event/client_QuitEvent.h"
 #include "../event/client_ReceivedMapEvent.h"
 #include "../event/client_SendChangeWeaponEvent.h"
+#include "../event/client_AmmoChangeEvent.h"
+#include "../event/client_GaugeChangeEvent.h"
+#include "../event/client_HpChangeEvent.h"
+#include "../event/client_LifeChangeEvent.h"
 
 #include "client_GameController.h"
 
@@ -40,6 +44,18 @@ bool GameController::onMessageReceived() {
         parser->clientMapFromString(mapView, dynamic_cast<ReceivedMapEvent*>(event)->getMapJSON());
         this->view->loadMapFromAsset(mapView);
         delete parser;
+        break;
+
+      case EVENT_AMMO_CHANGE:
+        view->onBarChange(dynamic_cast<AmmoChangeEvent*>(event)->isSpecial() ? BAR_SPECIAL_AMMO : BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        break;
+
+      case EVENT_HP_CHANGE:
+        view->onBarChange(BAR_HP, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        break;
+
+      case EVENT_LIFE_CHANGE:
+        view->onBarChange(BAR_LIFE, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
         break;
 
       default:

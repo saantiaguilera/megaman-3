@@ -225,6 +225,10 @@ bool GameView::isRunning() {
   return factoryView;
 }
 
+void GameView::onBarChange(BarView bar, int amount) {
+  //TODO
+}
+
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {
   this->listener = listener;
 }

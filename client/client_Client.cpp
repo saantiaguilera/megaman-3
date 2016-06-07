@@ -184,7 +184,7 @@ bool Client::onMessageReceived() {
       case EVENT_CONNECTION_SHUTDOWN: //consumed = false
         onFlowToStart();
         break;
-
+        
     }
 
     if (!consumed)

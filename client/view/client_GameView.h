@@ -15,6 +15,13 @@
 
 #include "../../common/common_MapView.h"
 
+enum BarView {
+  BAR_LIFE,
+  BAR_HP,
+  BAR_AMMO,
+  BAR_SPECIAL_AMMO
+};
+
 class OnKeyPressListener {
 public:
   ~OnKeyPressListener() {}
@@ -80,6 +87,8 @@ public:
   static void removeViewFromJSON(std::string json);
   static void moveViewFromJSON(std::string json);
   static bool isRunning();
+
+  void onBarChange(BarView bar, int amount);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };
