@@ -8,6 +8,7 @@
 #include "editor_MapFixedWindow.h"
 
 #include <iostream>
+#include "../../common/common_MapConstants.h"
 
 //Constructor
 MapFixedWindow::MapFixedWindow() {}
@@ -76,5 +77,28 @@ void MapFixedWindow::removeAllChildViews() {
 	}
 
 	obstacleViewContainers->clear();
+}
+
+void MapFixedWindow::removeObstacleContainerView(ObstacleViewContainer *obstacleViewContainer) {
+	remove(*obstacleViewContainer->getImage());
+	obstacleViewContainers->erase(std::remove(obstacleViewContainers->begin(), obstacleViewContainers->end(), obstacleViewContainer), obstacleViewContainers->end());
+
+	delete obstacleViewContainer;
+}
+
+ObstacleViewContainer *MapFixedWindow::obstacleViewContainerWithPosition(int aX, int aY) {
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer *obstacleViewContainer = *it;
+
+		int x = obstacleViewContainer->getObstacleView()->getPoint().getX();
+		int y = obstacleViewContainer->getObstacleView()->getPoint().getY();
+
+		bool aXandAYAreInRange = (x < aX) && (y < aY) && (aX < (x + kObstacleSize)) && (aY < (y + kObstacleSize));
+
+		if (aXandAYAreInRange) {
+			return obstacleViewContainer;
+		}
+	}
+	return NULL;
 }
 
