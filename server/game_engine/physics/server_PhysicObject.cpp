@@ -10,8 +10,8 @@
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
 #include <stddef.h>
-#include <iostream>
 
+#include "../../serializers/server_MovementSerializer.h"
 #include "../../serializers/server_ObjectCreationSerializer.h"
 #include "../server_Engine.h"
 #include "../server_EventContext.h"
@@ -46,6 +46,9 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangey = desiredVely - vel.y;
     float impulsey = myBody->GetMass() * velChangey; //disregard time factor
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
+
+	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(serializer);
 }
 
 void PhysicObject::handleCollisionWith(PhysicObject* objectCollidedWith) {
