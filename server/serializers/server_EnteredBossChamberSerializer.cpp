@@ -7,6 +7,11 @@
 
 #include "server_EnteredBossChamberSerializer.h"
 
+#include <sstream>
+#include <string>
+#include <fstream>
+
+
 #include "../../common/common_MessageProtocol.h"
 
 
