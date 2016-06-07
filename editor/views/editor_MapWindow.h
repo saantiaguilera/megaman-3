@@ -115,6 +115,9 @@ private:
     void draggingEnd();
 
     void addDraggingImageWithType(ObstacleViewType obstacleViewType);
+    void dropDraggingImage(int aX, int aY);
+    void dragImage(int aX, int aY);
+
 
 };
 

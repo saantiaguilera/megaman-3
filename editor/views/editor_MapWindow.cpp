@@ -206,19 +206,43 @@ void MapWindow::sizeDidModify() {
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
+	if (draggingImageIsMoving) {
+		dropDraggingImage(event->x, event->y);
+	} else {
+		dragImage(event->x, event->y);
+	}
+
+
+	return true;
+}
+
+void MapWindow::dropDraggingImage(int aX, int aY) {
 	draggingEnd();
 
 	draggingImage = 0;
 
-	int x = event->x;
-	int y = event->y;
-
-	x = x - (x % kObstacleSize);
-	y = y - (y % kObstacleSize);
+	int x = aX - (aX % kObstacleSize);
+	int y = aY - (aY % kObstacleSize);
 
 	draggingImageContainer->getObstacleView()->setPosition(x, y);
+}
 
-	return true;
+void MapWindow::dragImage(int aX, int aY) {
+	draggingBegin();
+
+//	obstacle view from fixed
+//	ObstacleView *obstacleView = new ObstacleView(0, 0, obstacleViewType);
+	ObstacleViewContainer *obstacleViewContainer = fixedWindow->obstacleViewContainerWithPosition(aX, aY);
+
+	if (obstacleViewContainer == NULL) {
+		draggingEnd();
+		return;
+	}
+
+	draggingImageContainer = obstacleViewContainer;
+
+
+	draggingImage = draggingImageContainer->getImage();
 }
 
 bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {

@@ -22,6 +22,7 @@ public:
 	void setMapView(MapView *aMapView);
 	MapView *saveMapView();
 	void removeAllChildViews();
+	ObstacleViewContainer *obstacleViewContainerWithPosition(int aX, int aY);
 
 private :
     Glib::RefPtr<Gtk::Builder> builder;
