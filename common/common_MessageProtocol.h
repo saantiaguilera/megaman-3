@@ -8,6 +8,9 @@
 #ifndef COMMON_COMMON_MESSAGEPROTOCOL_H_
 #define COMMON_COMMON_MESSAGEPROTOCOL_H_
 
+//SANTI TODO HP_CHANGE / AMMO_CHANGE / END_GAME / LIFE_CHANGE
+//TODO Habria que agregar un ON_BOSS ? Ya que necesito saber que el mapa que estoy recibiendo es del boss y no de un nuevo juego (o a menos que mevayas a pasar TOODO de vuelta (onda destruir lo viejo y crear devuelta las cosas nuevas))
+
 #define PLAYER_CONNECTED 1       // C -> S
 /*
 CODE - LENGTH - NAME
@@ -49,11 +52,11 @@ CODE - LENGTH - { "ammo": 50, "special": bool }
 */
 #define WEAPON_CHANGE 11          // C -> S
 /*
-CODE - LENGTH - CHARARRAY WITH KEY PRESSES (0 FALSE 1 TRUE)
+CODE - LENGTH - WEAPONID
 */
 #define END_GAME 12               // S -> C
 /*
-CODE
+CODE - LENGTH (ZERO)
 */
 #define LIFE_CHANGE 13            // S -> C
 /*
@@ -64,6 +67,8 @@ CODE - LENGTH - { "life": 3 }
 /*
 CODE - LENGTH - NAME
 */
+
+#define ENTERED_BOSS_CHAMBER 15	 // S -> Cs
 
 
 #endif /* COMMON_COMMON_MESSAGEPROTOCOL_H_ */

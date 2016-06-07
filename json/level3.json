@@ -1,11 +1,46 @@
 {
-  "map": {
-    "id": 3,
-    "filename" : "level3.json",
-    "name": "Bombman",
-    "height" : 1000,
-    "width" : 1000,
-    "obstacles": [
-     	]
-  }
+    "map": {
+        "name": "Bombman",
+        "filename": "level3.json",
+        "height": 1000,
+        "width": 1000,
+        "id": 3,
+        "obstacles": [
+            {
+                "x": 0,
+                "y": 300,
+                "type": 1
+            },
+            {
+                "x": 100,
+                "y": 300,
+                "type": 1
+            },
+            {
+                "x": 100,
+                "y": 200,
+                "type": 0
+            },
+            {
+                "x": 200,
+                "y": 200,
+                "type": 1
+            },
+            {
+                "x": 300,
+                "y": 200,
+                "type": 1
+            },
+            {
+                "x": 400,
+                "y": 200,
+                "type": 2
+            },
+            {
+                "x": 500,
+                "y": 200,
+                "type": 1
+            }
+        ]
+    }
 }
