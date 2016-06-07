@@ -18,7 +18,8 @@ typedef enum {
 	Weapon2 = 2,
 	Weapon3 = 3,
 	Weapon4 = 4,
-	Weapon5 = 5
+	Weapon5 = 5,
+	Weapon6 = 6
 } WeaponType;
 
 typedef enum {

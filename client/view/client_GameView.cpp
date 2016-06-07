@@ -10,12 +10,11 @@
 #define PATH_GAME_VIEW_HP_BAR "game_view_hp_label"
 #define PATH_GAME_VIEW_LIFE_BAR "game_view_life_label"
 #define PATH_GAME_VIEW_AMMO_BAR "game_view_ammo_label"
-#define PATH_GAME_VIEW_SPECIAL_AMMO_BAR "game_view_special_ammo_label"
 
 #define DRAW_TIME_STEP 33 //30 fps
 
 #define SCREEN_HEIGHT 800
-#define SCREEN_WIDTH 600
+#define SCREEN_WIDTH 800
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
@@ -31,11 +30,13 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
   refBuilder->get_widget(PATH_GAME_VIEW_HP_BAR, hpBarView);
   refBuilder->get_widget(PATH_GAME_VIEW_LIFE_BAR, lifeBarView);
   refBuilder->get_widget(PATH_GAME_VIEW_AMMO_BAR, ammoBarView);
-  refBuilder->get_widget(PATH_GAME_VIEW_SPECIAL_AMMO_BAR, specialAmmoBarView);
 
   set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
   containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
   socketContainerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+  massCenter.setX(0);
+  massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
   socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -178,8 +179,10 @@ void GameView::refreshMassCenter() {
       }
   }
 
-  massCenter.setX(x / count);
-  massCenter.setY(y / count);
+  if (count > 0) {
+    massCenter.setX(x / count);
+    massCenter.setY(y / count);
+  }
 }
 
 bool GameView::onLoopSDL() {
@@ -190,6 +193,13 @@ bool GameView::onLoopSDL() {
 
     for (AnimatedView* view : animatedViews)
       view->draw(massCenter);
+
+/* TODO
+    ammoBarView->signal_draw();
+    hpBarView->signal_draw();
+    lifeBarView->signal_draw();
+    specialAmmoBarView->signal_draw();
+*/
 
     renderer->Present();
 
@@ -254,11 +264,6 @@ void GameView::onBarChange(BarView bar, int amount) {
     case BAR_AMMO:
       text << "Ammunition: " << amount;
       ammoBarView->set_text(text.str());
-      break;
-
-    case BAR_SPECIAL_AMMO:
-      text << "Special Ammunition: " << amount;
-      specialAmmoBarView->set_text(text.str());
       break;
 
     case BAR_HP:

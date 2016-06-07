@@ -17,6 +17,7 @@
 #define KEY_WEAPON_3 GDK_KEY_3
 #define KEY_WEAPON_4 GDK_KEY_4
 #define KEY_WEAPON_5 GDK_KEY_5
+#define KEY_WEAPON_6 GDK_KEY_6
 
 class GameController : public Controller, private OnKeyPressListener {
 private:

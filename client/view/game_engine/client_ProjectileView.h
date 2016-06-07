@@ -12,7 +12,7 @@ private:
 
 public:
   ProjectileView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/bullet/normal_bullet.png");
+    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/bullets/normal_bullet.png");
   }
 
   virtual ~ProjectileView() {

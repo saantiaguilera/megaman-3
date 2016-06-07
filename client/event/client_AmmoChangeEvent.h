@@ -4,15 +4,10 @@
 #include "client_GaugeChangeEvent.h"
 
 class AmmoChangeEvent : public GaugeChangeEvent {
-private:
-  bool special = false;
-
 public:
   AmmoChangeEvent(std::string json);
 
   virtual ~AmmoChangeEvent();
-
-  bool isSpecial();
 
   virtual int getId();
 

@@ -8,16 +8,11 @@ AmmoChangeEvent::AmmoChangeEvent(std::string json) : GaugeChangeEvent() {
   rapidjson::Document document;
   document.Parse(json.c_str());
 
-  amount = document["ammo"].GetInt();
-  special = document["special"].GetBool();
+  amount = document["ammo"].GetUint();
 }
 
 AmmoChangeEvent::~AmmoChangeEvent() {
 
-}
-
-bool AmmoChangeEvent::isSpecial() {
-  return special;
 }
 
 int AmmoChangeEvent::getId() {

@@ -6,7 +6,7 @@
 
 class GaugeChangeEvent : public Event {
 protected:
-  int amount;
+  unsigned int amount;
 
 public:
   GaugeChangeEvent() {
@@ -18,7 +18,7 @@ public:
 
   virtual int getId() = 0;
 
-  int getAmount() {
+  unsigned int getAmount() {
     return amount;
   }
 

@@ -123,7 +123,8 @@ protected:
         }
       }
     } catch (const std::exception& e) {
-      //TODO DO SOMETHING
+      std::cout << "Exception caught in Receiver thread" << std::endl;
+      std::cout << e.what() << std::endl;
     }
 
     std::cout << "ReceiverThread::finished running" << std::endl;

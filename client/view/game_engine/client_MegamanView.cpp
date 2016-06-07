@@ -11,7 +11,24 @@ int MegamanView::megamansCount = 0;
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
   deviatesMassCenter = true;
 
-  texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman.png");
+  switch (megamansCount) {
+    case 0:
+      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_1.png");
+      break;
+    case 1:
+      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_2.png");
+      break;
+    case 2:
+      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_3.png");
+      break;
+    case 3:
+      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_4.png");
+      break;
+
+    default:
+      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_1.png");
+  }
+
   megamanNumber = megamansCount;
   megamansCount++;
 }

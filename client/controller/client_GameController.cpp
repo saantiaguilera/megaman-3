@@ -66,7 +66,7 @@ bool GameController::onMessageReceived() {
         break;
 
       case EVENT_AMMO_CHANGE:
-        view->onBarChange(dynamic_cast<AmmoChangeEvent*>(event)->isSpecial() ? BAR_SPECIAL_AMMO : BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        view->onBarChange(BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
         break;
 
       case EVENT_HP_CHANGE:
@@ -144,6 +144,12 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
     case KEY_WEAPON_5:
       if (gdkEvent->type == GDK_KEY_PRESS)
         Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon5));
+      else notify = false;
+      break;
+
+    case KEY_WEAPON_6:
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon6));
       else notify = false;
       break;
 

@@ -7,7 +7,7 @@ LifeChangeEvent::LifeChangeEvent(std::string json) : GaugeChangeEvent() {
   rapidjson::Document document;
   document.Parse(json.c_str());
 
-  amount = document["life"].GetInt();
+  amount = document["life"].GetUint();
 }
 
 LifeChangeEvent::~LifeChangeEvent() {
