@@ -37,10 +37,10 @@ private:
   Gtk::Socket *socket = NULL;
   Gtk::Layout *containerView = NULL;
   Gtk::Layout *socketContainerView = NULL;
-  Gtk::Label *hpBarView;
-  Gtk::Label *lifeBarView;
-  Gtk::Label *ammoBarView;
-  Gtk::Label *specialAmmoBarView;
+  Gtk::Label *hpBarView = NULL;
+  Gtk::Label *lifeBarView = NULL;
+  Gtk::Label *ammoBarView = NULL;
+  Gtk::Label *specialAmmoBarView = NULL;
 
   SDL2pp::SDL *sdl = NULL;
   SDL2pp::Window *mainWindow = NULL;

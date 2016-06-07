@@ -36,7 +36,7 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
   socket = manage(new Gtk::Socket());
 
   if (!shootSound)
-    shootSound = new SDL2pp::Chunk("../../res/sound/shoot.mp3");
+    shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
 

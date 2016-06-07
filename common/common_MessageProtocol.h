@@ -8,8 +8,7 @@
 #ifndef COMMON_COMMON_MESSAGEPROTOCOL_H_
 #define COMMON_COMMON_MESSAGEPROTOCOL_H_
 
-//SANTI TODO HP_CHANGE / AMMO_CHANGE / END_GAME / LIFE_CHANGE
-//TODO Habria que agregar un ON_BOSS ? Ya que necesito saber que el mapa que estoy recibiendo es del boss y no de un nuevo juego (o a menos que mevayas a pasar TOODO de vuelta (onda destruir lo viejo y crear devuelta las cosas nuevas))
+//SANTI TODO END_GAME / ENTER_BOSS_CHAMBER / CHANGE COLOR OF MEGAMANS
 
 #define PLAYER_CONNECTED 1       // C -> S
 /*
