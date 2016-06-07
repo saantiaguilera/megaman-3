@@ -66,7 +66,7 @@ bool GameController::onMessageReceived() {
         break;
 
       case EVENT_AMMO_CHANGE:
-        view->onBarChange(dynamic_cast<AmmoChangeEvent*>(event)->isSpecial() ? BAR_SPECIAL_AMMO : BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
+        view->onBarChange(BAR_AMMO, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
         break;
 
       case EVENT_HP_CHANGE:

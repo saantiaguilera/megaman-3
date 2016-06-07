@@ -7,7 +7,7 @@ HpChangeEvent::HpChangeEvent(std::string json) : GaugeChangeEvent() {
   rapidjson::Document document;
   document.Parse(json.c_str());
 
-  amount = document["hp"].GetInt();
+  amount = document["hp"].GetUint();
 }
 
 HpChangeEvent::~HpChangeEvent() {
