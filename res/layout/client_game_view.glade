@@ -34,7 +34,7 @@
             <property name="can_focus">False</property>
             <property name="halign">start</property>
             <property name="margin_left">20</property>
-            <property name="label" translatable="yes">label</property>
+            <property name="label" translatable="yes">Lifes: NaN</property>
             <property name="xalign">0</property>
           </object>
         </child>
@@ -47,7 +47,7 @@
             <property name="halign">start</property>
             <property name="margin_left">20</property>
             <property name="margin_top">30</property>
-            <property name="label" translatable="yes">label</property>
+            <property name="label" translatable="yes">HP: NaN</property>
             <property name="xalign">0</property>
           </object>
         </child>
@@ -60,7 +60,7 @@
             <property name="halign">start</property>
             <property name="margin_left">20</property>
             <property name="margin_top">60</property>
-            <property name="label" translatable="yes">label</property>
+            <property name="label" translatable="yes">Ammunition: NaN</property>
             <property name="xalign">0</property>
           </object>
         </child>
@@ -73,7 +73,7 @@
             <property name="halign">start</property>
             <property name="margin_left">20</property>
             <property name="margin_top">90</property>
-            <property name="label" translatable="yes">label</property>
+            <property name="label" translatable="yes">Special Ammunition: NaN</property>
             <property name="xalign">0</property>
           </object>
         </child>

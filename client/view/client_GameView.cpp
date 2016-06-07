@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/rapidjson/document.h"
@@ -243,7 +244,28 @@ bool GameView::isRunning() {
 }
 
 void GameView::onBarChange(BarView bar, int amount) {
-  //TODO
+  std::stringstream text;
+  switch (bar) {
+    case BAR_AMMO:
+      text << "Ammunition: " << amount;
+      ammoBarView->set_text(text.str());
+      break;
+
+    case BAR_SPECIAL_AMMO:
+      text << "Special Ammunition: " << amount;
+      specialAmmoBarView->set_text(text.str());
+      break;
+
+    case BAR_HP:
+      text << "HP: " << amount;
+      hpBarView->set_text(text.str());
+      break;
+
+    case BAR_LIFE:
+      text << "Lifes: " << amount;
+      lifeBarView->set_text(text.str());
+      break;
+  }
 }
 
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {
