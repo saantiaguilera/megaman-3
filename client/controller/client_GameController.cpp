@@ -18,7 +18,7 @@
 #include "client_GameController.h"
 
 #define PATH_LOBBY_LAYOUT "res/layout/client_game_view.glade"
-#define PATH_LOBBY_ROOT_VIEW "client_game_view_window"
+#define PATH_LOBBY_ROOT_VIEW "game_view_window"
 
 GameController::~GameController() {
   delete view;
