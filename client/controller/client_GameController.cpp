@@ -147,6 +147,12 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
       else notify = false;
       break;
 
+    case KEY_WEAPON_6:
+      if (gdkEvent->type == GDK_KEY_PRESS)
+        Looper::getMainLooper().put(new SendChangeWeaponEvent(Weapon6));
+      else notify = false;
+      break;
+
     default:
       notify = false;
   }

@@ -195,7 +195,12 @@ bool GameView::onLoopSDL() {
 
     for (AnimatedView* view : animatedViews)
       view->draw(massCenter);
-
+/* TODO
+    ammoBarView->signal_draw();
+    hpBarView->signal_draw();
+    lifeBarView->signal_draw();
+    specialAmmoBarView->signal_draw();
+*/
     renderer->Present();
 
     return true;
