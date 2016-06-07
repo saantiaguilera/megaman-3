@@ -28,11 +28,9 @@ public:
   }
 
   virtual void draw(Point &massCenter) {
-    std::cout << getRenderer()->GetOutputHeight() << " - " << getRenderer()->GetOutputWidth() << std::endl;
-
     if (textureExists) {
       Point cameraPoint;
-      if (massCenter.getX() - (renderer->GetOutputWidth() / 2) < 0) {
+      if (massCenter.getX() - (unsigned int) (renderer->GetOutputWidth() / 2) < 0) {
         cameraPoint.setX(0);
         massCenter.setX(renderer->GetOutputWidth() / 2);
       } else if ((unsigned int) getRenderer()->GetOutputWidth() < massCenter.getX() + renderer->GetOutputWidth() / 2) {
@@ -40,7 +38,7 @@ public:
         massCenter.setX(mapTexture->GetWidth() - renderer->GetOutputWidth() / 2);
       } else cameraPoint.setX(massCenter.getX() - renderer->GetOutputWidth() / 2);
 
-      if (massCenter.getY() - (renderer->GetOutputHeight() / 2) < 0) {
+      if (massCenter.getY() - (unsigned int) (renderer->GetOutputHeight() / 2) < 0) {
         cameraPoint.setY(0);
         massCenter.setY(renderer->GetOutputHeight() / 2);
       } else if ((unsigned int) getRenderer()->GetOutputHeight() < massCenter.getY() + renderer->GetOutputHeight() / 2) {

@@ -35,7 +35,7 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
 
   set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
   containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
-  socketContainerView->set_size_request(SCREEN_HEIGHT, SCREEN_WIDTH);
+  socketContainerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
 
   socket = manage(new Gtk::Socket());
   socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
