@@ -14,6 +14,9 @@
 
 #define DRAW_TIME_STEP 33 //30 fps
 
+#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 600
+
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
 SDL2pp::Mixer * GameView::mixer = NULL;
@@ -30,10 +33,12 @@ GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& re
   refBuilder->get_widget(PATH_GAME_VIEW_AMMO_BAR, ammoBarView);
   refBuilder->get_widget(PATH_GAME_VIEW_SPECIAL_AMMO_BAR, specialAmmoBarView);
 
-  set_size_request(800, 600); //TODO
-  socketContainerView->set_size_request(800, 600);
+  set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
+  containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
+  socketContainerView->set_size_request(SCREEN_HEIGHT, SCREEN_WIDTH);
 
   socket = manage(new Gtk::Socket());
+  socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
 /*
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
