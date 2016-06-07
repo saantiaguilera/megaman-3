@@ -3,8 +3,8 @@
 
 #include "client_MegamanView.h"
 
-#define N_POSITIONS 1
-#define N_REPETITIONS 1
+#define N_POSITIONS 3
+#define N_REPETITIONS 3
 
 int MegamanView::megamansCount = 0;
 
