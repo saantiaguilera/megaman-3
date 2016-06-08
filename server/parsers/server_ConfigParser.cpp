@@ -7,7 +7,7 @@
 
 #include "server_ConfigParser.h"
 
-#include <rapidjson/filereadstream.h>
+#include "../../common/rapidjson/filereadstream.h"
 #include <cstdio>
 #include <iostream>
 

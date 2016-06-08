@@ -7,8 +7,8 @@
 
 #include "server_JsonMapParser.h"
 
-#include <rapidjson/document.h>
-#include <rapidjson/rapidjson.h>
+#include "../../common/rapidjson/document.h"
+#include "../../common/rapidjson/rapidjson.h"
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"

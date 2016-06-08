@@ -9,7 +9,7 @@
 #define SERVER_PARSERS_SERVER_CONFIGPARSER_H_
 
 #include <string>
-#include "rapidjson/document.h"
+#include "../../common/rapidjson/document.h"
 
 class ConfigParser {
 private:
