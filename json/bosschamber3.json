@@ -1,0 +1,11 @@
+{
+    "map": {
+        "name": "Bombman",
+        "filename" : "bosschamber3.json",
+        "height": 1000,
+        "width": 1000,
+        "id": 8,
+        "obstacles": [
+         ]
+    }
+}
