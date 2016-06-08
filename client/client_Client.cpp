@@ -18,7 +18,8 @@ Client::Client() : currentController(NULL), dispatcher() {
 }
 
 Client::~Client()  {
-  socket->terminate();
+  if (socket)
+    socket->terminate();
 
   if (connectionThread) {
     connectionThread->join();
@@ -184,7 +185,7 @@ bool Client::onMessageReceived() {
       case EVENT_CONNECTION_SHUTDOWN: //consumed = false
         onFlowToStart();
         break;
-        
+
     }
 
     if (!consumed)
