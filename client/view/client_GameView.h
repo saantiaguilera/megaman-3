@@ -12,6 +12,8 @@
 #include "game_engine/client_WorldView.h"
 #include "game_engine/client_AnimatedView.h"
 #include "game_engine/client_AnimatedFactoryView.h"
+#include "game_engine/client_DefaultBarView.h"
+#include "game_engine/client_LifeBarView.h"
 
 #include "../../common/common_MapView.h"
 
@@ -34,11 +36,6 @@ private:
   OnKeyPressListener *listener = NULL;
 
   Gtk::Socket *socket = NULL;
-  Gtk::Layout *containerView = NULL;
-  Gtk::Layout *socketContainerView = NULL;
-  Gtk::Label *hpBarView = NULL;
-  Gtk::Label *lifeBarView = NULL;
-  Gtk::Label *ammoBarView = NULL;
 
   SDL2pp::SDL *sdl = NULL;
   SDL2pp::Window *mainWindow = NULL;
@@ -46,6 +43,10 @@ private:
 
   WorldView *worldView = NULL;
   MapView *tempMapView = NULL;
+
+  DefaultBarView *healthBarView = NULL;
+  DefaultBarView *ammoBarView = NULL;
+  LifeBarView *lifeBarView = NULL;
 
   static AnimatedFactoryView *factoryView;
   static std::vector<AnimatedView*> animatedViews;
@@ -80,7 +81,7 @@ private:
   static void refreshMassCenter();
 
 public:
-  GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder);
+  GameView();
   virtual ~GameView();
 
   void loadMapFromAsset(MapView *mapView);

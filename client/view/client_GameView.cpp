@@ -5,13 +5,14 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define PATH_GAME_VIEW_CONTAINER "game_view_layout"
-#define PATH_GAME_VIEW_SOCKET_CONTAINER "game_view_socket_container"
-#define PATH_GAME_VIEW_HP_BAR "game_view_hp_label"
-#define PATH_GAME_VIEW_LIFE_BAR "game_view_life_label"
-#define PATH_GAME_VIEW_AMMO_BAR "game_view_ammo_label"
-
 #define DRAW_TIME_STEP 33 //30 fps
+
+#define HEALTH_BAR_X 12
+#define HEALTH_BAR_Y 12
+#define AMMO_BAR_X 79
+#define AMMO_BAR_Y 12
+#define LIFE_BAR_X 146
+#define LIFE_BAR_Y 5
 
 #define SCREEN_HEIGHT 800
 #define SCREEN_WIDTH 800
@@ -22,31 +23,21 @@ SDL2pp::Mixer * GameView::mixer = NULL;
 SDL2pp::Chunk * GameView::shootSound = NULL;
 Point GameView::massCenter;
 
-GameView::GameView(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder) :
-        Gtk::Window(cobject){
-
-  refBuilder->get_widget(PATH_GAME_VIEW_CONTAINER, containerView);
-  refBuilder->get_widget(PATH_GAME_VIEW_SOCKET_CONTAINER, socketContainerView);
-  refBuilder->get_widget(PATH_GAME_VIEW_HP_BAR, hpBarView);
-  refBuilder->get_widget(PATH_GAME_VIEW_LIFE_BAR, lifeBarView);
-  refBuilder->get_widget(PATH_GAME_VIEW_AMMO_BAR, ammoBarView);
+GameView::GameView() : Gtk::Window(){
 
   set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
-  containerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
-  socketContainerView->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
 
   massCenter.setX(0);
   massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
-  socket->set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT);
 /*
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
   if (!shootSound)
     shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
 */
-  socketContainerView->add(*socket);
+  add(*socket);
   show_all();
 }
 
@@ -73,6 +64,15 @@ GameView::~GameView() {
     it != animatedViews.end() ; ++it) {
       delete (*it);
   }
+
+  if (ammoBarView)
+    delete ammoBarView;
+
+  if (healthBarView)
+    delete healthBarView;
+
+  if (lifeBarView)
+    delete lifeBarView;
 
   animatedViews.clear();
   if (renderer)
@@ -194,12 +194,9 @@ bool GameView::onLoopSDL() {
     for (AnimatedView* view : animatedViews)
       view->draw(massCenter);
 
-/* TODO
-    ammoBarView->signal_draw();
-    hpBarView->signal_draw();
-    lifeBarView->signal_draw();
-    specialAmmoBarView->signal_draw();
-*/
+    healthBarView->draw(massCenter);
+    ammoBarView->draw(massCenter);
+    lifeBarView->draw(massCenter);
 
     renderer->Present();
 
@@ -241,6 +238,18 @@ bool GameView::onInitSDL(::Window windowId) {
 
    worldView = new WorldView(renderer);
 
+   healthBarView = new DefaultBarView(renderer);
+   healthBarView->setX(HEALTH_BAR_X);
+   healthBarView->setY(HEALTH_BAR_Y);
+
+   ammoBarView = new DefaultBarView(renderer);
+   ammoBarView->setX(AMMO_BAR_X);
+   ammoBarView->setY(AMMO_BAR_Y);
+
+   lifeBarView = new LifeBarView(renderer);
+   lifeBarView->setX(LIFE_BAR_X);
+   lifeBarView->setY(LIFE_BAR_Y);
+
    worldView->from(tempMapView);
    delete tempMapView;
 
@@ -259,21 +268,17 @@ bool GameView::isRunning() {
 }
 
 void GameView::onBarChange(BarView bar, int amount) {
-  std::stringstream text;
   switch (bar) {
     case BAR_AMMO:
-      text << "Ammunition: " << amount;
-      ammoBarView->set_text(text.str());
+      ammoBarView->setAmountPercentage(amount);
       break;
 
     case BAR_HP:
-      text << "HP: " << amount;
-      hpBarView->set_text(text.str());
+      healthBarView->setAmountPercentage(amount);
       break;
 
     case BAR_LIFE:
-      text << "Lifes: " << amount;
-      lifeBarView->set_text(text.str());
+      lifeBarView->setLifes(3);
       break;
   }
 }
