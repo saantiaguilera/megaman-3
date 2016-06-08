@@ -21,3 +21,7 @@ void Flamethrower::fire(float32 x, float32 y) {
 		new Fire(x + BULLET_X_OFFSET, y);
 	}
 }
+
+unsigned int Flamethrower::getMaxAmmo() {
+	return FLAMETHROWER_MAX_AMMO;
+}

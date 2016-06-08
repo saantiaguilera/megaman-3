@@ -22,3 +22,7 @@ void RingTosser::fire(float32 x, float32 y) {
 		new Ring(x + BULLET_X_OFFSET, y);
 	}
 }
+
+unsigned int RingTosser::getMaxAmmo() {
+	return RING_TOSSER_MAX_AMMO;
+}

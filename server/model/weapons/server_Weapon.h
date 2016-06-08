@@ -33,6 +33,8 @@ public:
 	unsigned int getAmmo() const;
 	// Tell if the weapon is a special one
 	virtual bool isSpecial();
+	// Return max ammo of the weapon
+	virtual unsigned int getMaxAmmo() = 0;
 
 private:
 	// Copy constructor

@@ -7,6 +7,7 @@
 
 #include "server_AmmoChangeSerializer.h"
 
+#include <iostream>
 #include <sstream>
 #include <string>
 
@@ -21,7 +22,10 @@ AmmoChangeSerializer::~AmmoChangeSerializer() {
 }
 
 void AmmoChangeSerializer::serialize() {
+	unsigned int ammoPercentage = (newAmmo * 100) / weapon->getMaxAmmo();
+
 	std::stringstream ss;
-	ss << "{" << "\"ammo\": " << newAmmo << ", \"special\": " << std::boolalpha << weapon->isSpecial() << "}";
+	ss << "{" << "\"ammo\": " << ammoPercentage << ", \"special\": " << std::boolalpha << weapon->isSpecial() << "}";
 	serialized = ss.str();
+	std::cout << serialized << std::endl;
 }

@@ -22,3 +22,6 @@ void BombCannon::fire(float32 x, float32 y) {
 	}
 }
 
+unsigned int BombCannon::getMaxAmmo() {
+	return BOMB_MAX_AMMO;
+}

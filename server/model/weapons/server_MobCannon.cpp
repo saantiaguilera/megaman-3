@@ -23,3 +23,7 @@ void MobCannon::fire(float32 x, float32 y) {
 		new Plasma(x + BULLET_X_OFFSET, y);
 	}
 }
+
+unsigned int MobCannon::getMaxAmmo() {
+	return MOB_CANNON_MAX_AMMO;
+}

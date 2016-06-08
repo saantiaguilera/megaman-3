@@ -26,6 +26,8 @@ public:
 	virtual void fire(float32 x, float32 y);
 	// Tell if the weapon is a special one
 	virtual bool isSpecial();
+	// Return max ammo of the weapon
+	virtual unsigned int getMaxAmmo();
 private:
 	// Copy constructor
 	PlasmaCannon(const PlasmaCannon&);

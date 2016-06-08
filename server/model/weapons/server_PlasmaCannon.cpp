@@ -25,3 +25,7 @@ void PlasmaCannon::fire(float32 x, float32 y) {
 bool PlasmaCannon::isSpecial() {
 	return false;
 }
+
+unsigned int PlasmaCannon::getMaxAmmo() {
+	return PLASMA_CANNON_MAX_AMMO;
+}

@@ -21,3 +21,7 @@ void MagnetCannon::fire(float32 x, float32 y) {
 		new Magnet(x + BULLET_X_OFFSET, y);
 	}
 }
+
+unsigned int MagnetCannon::getMaxAmmo() {
+	return MAGNET_CANNON_MAX_AMMO;
+}

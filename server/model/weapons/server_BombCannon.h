@@ -22,6 +22,8 @@ public:
 	virtual ~BombCannon();
 	// fire weapon
 	virtual void fire(float32 x, float32 y);
+	// Return max ammo of the weapon
+	virtual unsigned int getMaxAmmo();
 private:
 	// Copy constructor
 	BombCannon(const BombCannon&);
