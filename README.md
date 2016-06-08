@@ -20,7 +20,7 @@ sudo apt install libbox2d-dev
 ### Compilation
 ```Bash
 //Santi A
-Client: g++ `find . -name '*.cpp' -not -path './server/*' -not -path './editor/*'` -o mclient -std=c++11 -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp`
+Client: g++ `find . -name '*.cpp' -not -path './server/*' -not -path './editor/*'` -o mclient -std=c++11 -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp` -lX11
 Server: g++ `find . -name '*.cpp' -not -path './client/*' -not -path './editor/*'` -o mserver -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0` `pkg-config --cflags --libs box2d` -std=c++11 -lglog
 ```
 

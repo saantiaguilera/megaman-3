@@ -14,9 +14,6 @@
 #define LIFE_BAR_X 146
 #define LIFE_BAR_Y 5
 
-#define SCREEN_HEIGHT 800
-#define SCREEN_WIDTH 800
-
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
 SDL2pp::Mixer * GameView::mixer = NULL;
@@ -24,8 +21,10 @@ SDL2pp::Chunk * GameView::shootSound = NULL;
 Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
+  int screenWidth, screenHeight;
+  getDesktopResolution(screenWidth, screenHeight);
 
-  set_size_request(SCREEN_WIDTH, SCREEN_HEIGHT); //TODO
+  set_size_request(screenWidth, screenHeight); //TODO
 
   massCenter.setX(0);
   massCenter.setY(0);
@@ -261,6 +260,13 @@ bool GameView::onInitSDL(::Window windowId) {
    std::cout << "Something bad happened" << std::endl;
    return true;
  }
+}
+
+void GameView::getDesktopResolution(int& horizontal, int& vertical) {
+  Display* disp = XOpenDisplay(NULL);
+  Screen* scrn = DefaultScreenOfDisplay(disp);
+  vertical = scrn->height;
+  horizontal = scrn->width;
 }
 
 bool GameView::isRunning() {

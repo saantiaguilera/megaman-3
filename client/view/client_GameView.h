@@ -80,6 +80,8 @@ private:
 
   static void refreshMassCenter();
 
+  void getDesktopResolution(int& horizontal, int& vertical);
+
 public:
   GameView();
   virtual ~GameView();
