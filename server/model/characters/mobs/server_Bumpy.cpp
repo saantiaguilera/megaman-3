@@ -12,7 +12,6 @@
 
 #include "../../projectiles/server_Projectile.h"
 
-#define ATTACK_INTERVAL_TICKS 3
 
 Bumpy::Bumpy(float32 x, float32 y) : Mob(BUMPY_INITIAL_HP, x, y) {
 	// Bumpy flies so...

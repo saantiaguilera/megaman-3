@@ -18,6 +18,7 @@ BombCannon::~BombCannon() {
 void BombCannon::fire(float32 x, float32 y) {
 	if (ammo > 0){
 		--ammo;
-		new Bomb(x, y);
+		new Bomb(x + BULLET_X_OFFSET, y);
 	}
 }
+

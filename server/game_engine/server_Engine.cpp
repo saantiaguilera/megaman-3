@@ -13,10 +13,10 @@
 #include <algorithm>
 #include <iostream>
 #include <iterator>
+#include <sstream>
 
-#include "../model/characters/humanoids/server_Megaman.h"
-#include "../model/projectiles/server_Bomb.h"
-#include "../serializers/server_MovementSerializer.h"
+#include "../../common/common_MapConstants.h"
+#include "../parsers/server_JsonMapParser.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
@@ -52,6 +52,20 @@ void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
 
 void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
 	this->playerInitialLives = playerInitialLives;
+}
+
+void Engine::teleportToBossChamber() {
+	for ( b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()){
+		PhysicObject* object = static_cast<PhysicObject*>(b->GetUserData());
+	  if (object->getTypeForSerialization() != ObstacleViewTypeMegaman){
+		  markObjectForRemoval(object);
+	  }
+	}
+
+	JsonMapParser mapParser;
+	std::stringstream ss;
+	ss << currentMapId;
+	mapParser.parseDocument("bosschamber" + ss.str() + ".json");
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}

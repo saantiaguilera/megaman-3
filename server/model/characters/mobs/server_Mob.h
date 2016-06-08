@@ -12,6 +12,9 @@
 
 #include "../server_Character.h"
 
+#define ATTACK_INTERVAL_TICKS 500
+
+
 class Mob: public Character {
 protected:
 	// Is affected by attacks?

@@ -18,6 +18,6 @@ MagnetCannon::~MagnetCannon() {
 void MagnetCannon::fire(float32 x, float32 y) {
 	if (ammo > 0){
 		--ammo;
-		new Magnet(x, y);
+		new Magnet(x + BULLET_X_OFFSET, y);
 	}
 }

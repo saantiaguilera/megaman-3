@@ -59,7 +59,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 				Engine::getInstance().getContext()->dispatchEvent(
 						startGameSerializer);
 				JsonMapParser mapParser;
-				mapParser.parseDocument(inboundMessage);
+				mapParser.parseDocument("level" + inboundMessage + ".json");
 				Engine::getInstance().setReadyToStart(true);
 			}
 		}

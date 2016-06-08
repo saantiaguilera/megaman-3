@@ -19,6 +19,6 @@ RingTosser::~RingTosser() {
 void RingTosser::fire(float32 x, float32 y) {
 	if (ammo > 0){
 		--ammo;
-		new Ring(x, y);
+		new Ring(x + BULLET_X_OFFSET, y);
 	}
 }

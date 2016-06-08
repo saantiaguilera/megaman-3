@@ -55,6 +55,8 @@ private:
 	unsigned int playerInitialLives;
 	// Context for sending messages
 	EventContext* context;
+	// Current map identifier, to grab the corresponding boss chamber
+	int currentMapId;
 
 public:
 	// Return logger instance
@@ -91,9 +93,14 @@ public:
 	void setPlayerInitialLives(unsigned int playerInitialLives);
 	// Initialize engines world
 	void initializeWorld();
+	// Get current context
 	EventContext* getContext();
+	// Set the context for dispatching events
 	void setContext(EventContext* context);
+	// Return a list of characters
 	std::list<Character*>* getCharactersList();
+	// Teleport to boss map
+	void teleportToBossChamber();
 
 private:
 	// Constructor

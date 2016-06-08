@@ -18,6 +18,6 @@ Flamethrower::~Flamethrower() {
 void Flamethrower::fire(float32 x, float32 y) {
 	if (ammo > 0){
 		--ammo;
-		new Fire(x, y);
+		new Fire(x + BULLET_X_OFFSET, y);
 	}
 }

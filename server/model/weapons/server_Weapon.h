@@ -10,6 +10,8 @@
 
 #include <Common/b2Settings.h>
 
+#define BULLET_X_OFFSET 5
+
 class Character;
 
 enum WeaponTypes { PLASMA_CANNON, BOMB_CANNON, FLAMETHROWER, MAGNET_CANNON, RING_TOSSER, SPARKS_CANNON };

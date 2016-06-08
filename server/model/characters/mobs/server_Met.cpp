@@ -12,7 +12,6 @@
 #include "../../projectiles/server_Projectile.h"
 
 #define TICKS_TO_HIDE_UNDER_HELMET 1
-#define ATTACK_INTERVAL_TICKS 3
 
 Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {
 	notify();

@@ -20,6 +20,8 @@ public:
 	virtual ~BossChamberGate();
 	// Applies effect on character
 	virtual void haveEffectOn(Character* character);
+	// Get the object type
+	int getObjectType();
 private:
 	// Copy constructor
 	BossChamberGate(const BossChamberGate&);

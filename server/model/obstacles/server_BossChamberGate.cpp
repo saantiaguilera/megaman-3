@@ -7,6 +7,10 @@
 
 #include "server_BossChamberGate.h"
 
+#include "../../../common/common_MapConstants.h"
+#include "../../game_engine/server_Engine.h"
+
+
 BossChamberGate::BossChamberGate(float32 x, float32 y) : Obstacle(x, y) {}
 
 
@@ -14,5 +18,9 @@ BossChamberGate::~BossChamberGate() {
 }
 
 void BossChamberGate::haveEffectOn(Character* character) {
-	// TODO: Teleport to new map
+	Engine::getInstance().teleportToBossChamber();
+}
+
+int BossChamberGate::getObjectType(){
+	return ObstacleViewTypeBossChamberGate;
 }
