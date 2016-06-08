@@ -1,4 +1,4 @@
-.PHONY: all clean
+.PHONY: all clean client server editor
 all: client server editor
 
 client:

@@ -7,7 +7,7 @@ LDFLAGS := -lglog $(shell pkg-config --libs box2d) -pthread
 all: server
 
 server: $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $^ -o $@ $(LDFLAGS)
 
 .o.c:
 	$(CXX) $(CFLAGS) $(CXXFLAGS) -c $< -o $@

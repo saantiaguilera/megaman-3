@@ -7,7 +7,7 @@ LDFLAGS := $(shell pkg-config --libs gtkmm-3.0) -pthread
 all: editor
 
 editor: $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $^ -o $@ $(LDFLAGS)
 
 .o.c:
 	$(CXX) $(CFLAGS) $(CXXFLAGS) -c $< -o $@
