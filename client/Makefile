@@ -22,4 +22,3 @@ deps: $(SRCS)
 	$(CXX) $(CFLAGS) $(CXXFLAGS) -MM $(SRCS) > deps
 
 -include deps
-
