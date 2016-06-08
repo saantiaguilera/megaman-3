@@ -5,21 +5,21 @@
 - Add chat
 
 ##HOW TO INSTALL THIS
-1. Install dependencies: sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-2. Install more dependencies (I will later do this automatically prolly or with a script): Install glog and SDL2pp. You can find them both below.
-3. In a console do:
+- Install dependencies: sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+- Install more dependencies (I will later do this automatically prolly or with a script): Install glog and SDL2pp. You can find them both below.
+- In a console do:
 ```Bash
 sudo vim /etc/ld.so.conf 
 append at eol > include /usr/local/lib > write file
 sudo ldconfig
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ```
-4. Inside the repo folder do
+- Inside the repo folder do
 ```Bash
 sudo make
 sudo make clean #Optional, if you want to clean the .o things
 ```
-5. Run whatever you like (./mclient ./meditor ./mserver)
+- Run whatever you like (./mclient ./meditor ./mserver)
 
 ##Dependencies
 
