@@ -118,6 +118,9 @@ private:
     void dropDraggingImage(int aX, int aY);
     void dragImage(int aX, int aY);
 
+    void deleteDraggingImage();
+	void deleteImage(int aX, int aY);
+
 
 };
 

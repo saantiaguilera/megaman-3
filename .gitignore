@@ -1,4 +1,7 @@
 # Santi exe
+client/deps
+editor/deps
+server/deps
 program
 clientProgram
 mclient

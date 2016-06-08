@@ -64,8 +64,6 @@ Engine& Engine::getInstance() {
 void Engine::start() {
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
-	// TODO: TESTING
-	int i = 0;
 
 	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
 	for (std::list<Player*>::iterator it = playerList.begin();
@@ -79,8 +77,6 @@ void Engine::start() {
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
-			MovementSerializer* serializer = new MovementSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-			context->dispatchEvent(serializer);
 		}
 		//process elements for deletion
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
@@ -99,22 +95,8 @@ void Engine::start() {
 			if ( it != charactersList.end() )
 			  charactersList.erase( it );
 		}
-
 		//clear this list for next time
 		objectsToDestroy.clear();
-//		sleep(1);
-		++i;
-//		if (i == 10)
-//			quit = true;
-		if ( i % 10 == 0){
-			// TODO: For debugging
-			char response;
-			std::cout << "Wanna quit? (Y/n): ";
-			std::cin >> response;
-			if(response == 'y' || response == 'Y')
-				quit = true;
-		}
-
 	}
 }
 

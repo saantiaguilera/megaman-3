@@ -13,6 +13,8 @@
 #include "../models/editor_ObstacleViewContainer.h"
 
 #define kObstacleSide 100
+#define kLeftClickButton 1
+#define kRightClickButton 3
 
 MapWindow::MapWindow() {}
 
@@ -206,17 +208,32 @@ void MapWindow::sizeDidModify() {
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
-	if (draggingImageIsMoving) {
-		dropDraggingImage(event->x, event->y);
-	} else {
-		dragImage(event->x, event->y);
-	}
+	if (event->button == kRightClickButton) {
+		if (draggingImageIsMoving) {
+			deleteDraggingImage();
+		} else {
+			deleteImage(event->x, event->y);
+		}
 
+	} else if (event->button == kLeftClickButton) {
+		if (draggingImageIsMoving) {
+			dropDraggingImage(event->x, event->y);
+		} else {
+			dragImage(event->x, event->y);
+		}
+
+	}
 
 	return true;
 }
 
 void MapWindow::dropDraggingImage(int aX, int aY) {
+	ObstacleViewContainer *obstacleViewContainer = fixedWindow->obstacleViewContainerWithPosition(aX, aY);
+
+	if (obstacleViewContainer != NULL) {
+		return;
+	}
+
 	draggingEnd();
 
 	draggingImage = 0;
@@ -230,8 +247,6 @@ void MapWindow::dropDraggingImage(int aX, int aY) {
 void MapWindow::dragImage(int aX, int aY) {
 	draggingBegin();
 
-//	obstacle view from fixed
-//	ObstacleView *obstacleView = new ObstacleView(0, 0, obstacleViewType);
 	ObstacleViewContainer *obstacleViewContainer = fixedWindow->obstacleViewContainerWithPosition(aX, aY);
 
 	if (obstacleViewContainer == NULL) {
@@ -241,8 +256,22 @@ void MapWindow::dragImage(int aX, int aY) {
 
 	draggingImageContainer = obstacleViewContainer;
 
-
 	draggingImage = draggingImageContainer->getImage();
+}
+
+void MapWindow::deleteDraggingImage() {
+	draggingEnd();
+
+	draggingImage = 0;
+	fixedWindow->removeObstacleContainerView(draggingImageContainer);
+}
+
+void MapWindow::deleteImage(int aX, int aY) {
+	ObstacleViewContainer *obstacleViewContainerToRemove = fixedWindow->obstacleViewContainerWithPosition(aX, aY);
+	if (obstacleViewContainerToRemove == NULL) {
+		return;
+	}
+	fixedWindow->removeObstacleContainerView(obstacleViewContainerToRemove);
 }
 
 bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {
