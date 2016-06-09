@@ -44,11 +44,6 @@ GameView::~GameView() {
   if (worldView)
     delete worldView;
 
-  if (factoryView) {
-    delete factoryView;
-    factoryView = NULL;
-  }
-
   if (mixer) {
     delete mixer;
     mixer = NULL;
@@ -59,15 +54,7 @@ GameView::~GameView() {
     shootSound = NULL;
   }
 
-  for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
-    it != animatedViews.end() ; ++it) {
-      delete (*it);
-  }
-
-  animatedViews.clear();
-
-  massCenter.setX(0);
-  massCenter.setY(0);
+  resetAnimations();
 
   if (ammoBarView)
     delete ammoBarView;
@@ -86,6 +73,23 @@ GameView::~GameView() {
 
   if (sdl)
     delete sdl;
+}
+
+void GameView::resetAnimations() {
+  if (factoryView) {
+    delete factoryView;
+    factoryView = NULL;
+  }
+
+  for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
+    it != animatedViews.end() ; ++it) {
+      delete (*it);
+  }
+
+  animatedViews.clear();
+
+  massCenter.setX(0);
+  massCenter.setY(0);
 }
 
 void GameView::addViewFromJSON(std::string json) {
@@ -212,8 +216,10 @@ bool GameView::onLoopSDL() {
 
 void GameView::loadMapFromAsset(MapView *mapView) {
   if (worldView) {
+    resetAnimations();
     worldView->from(mapView);
     delete mapView;
+    factoryView = new AnimatedFactoryView(renderer);
   } else {
     tempMapView = mapView;
 
@@ -237,8 +243,6 @@ bool GameView::onInitSDL(::Window windowId) {
    // Create accelerated video renderer with default driver
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
 
-   factoryView = new AnimatedFactoryView(renderer);
-
    worldView = new WorldView(renderer);
 
    healthBarView = new DefaultBarView(renderer);
@@ -255,6 +259,8 @@ bool GameView::onInitSDL(::Window windowId) {
 
    worldView->from(tempMapView);
    delete tempMapView;
+
+   factoryView = new AnimatedFactoryView(renderer);
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);

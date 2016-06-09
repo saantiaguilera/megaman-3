@@ -94,6 +94,10 @@ protected:
             dispatchEvent(new ReceivedMapEvent(json));
             break;
 
+          case ENTERED_BOSS_CHAMBER:
+            dispatchEvent(new ReceivedMapEvent(json));
+            break;
+
           case END_GAME:
             dispatchEvent(new FlowEvent(FLOW_LOBBY));
             break;

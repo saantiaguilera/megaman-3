@@ -54,6 +54,7 @@ private:
   static SDL2pp::Chunk *shootSound;
 
   static Point massCenter;
+  static void refreshMassCenter();
 
   /**
    * This method should be in charge of drawing everything
@@ -78,8 +79,7 @@ private:
   bool on_key_press_event(GdkEventKey* event) override;
   bool on_key_release_event(GdkEventKey* event) override;
 
-  static void refreshMassCenter();
-
+  void resetAnimations();
   void getDesktopResolution(int& horizontal, int& vertical);
 
 public:
