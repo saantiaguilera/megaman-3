@@ -64,6 +64,11 @@ GameView::~GameView() {
       delete (*it);
   }
 
+  animatedViews.clear();
+
+  massCenter.setX(0);
+  massCenter.setY(0);
+
   if (ammoBarView)
     delete ammoBarView;
 
@@ -73,7 +78,6 @@ GameView::~GameView() {
   if (lifeBarView)
     delete lifeBarView;
 
-  animatedViews.clear();
   if (renderer)
     delete renderer;
 
