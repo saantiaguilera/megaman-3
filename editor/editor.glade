@@ -3,11 +3,6 @@
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <!-- interface-local-resource-path /home/santi/Documents/Fiuba/TallerDeProgramacionI/fiuba-taller-I-megaman/res/drawable -->
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
   <object class="GtkImage" id="image4">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -37,6 +32,11 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">../res/drawable/blocks/block2.png</property>
+  </object>
+  <object class="GtkImage" id="imageblock3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../res/drawable/blocks/block3.png</property>
   </object>
   <object class="GtkImage" id="imagebosschambergate">
     <property name="visible">True</property>
@@ -356,32 +356,17 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="block3button">
-                    <property name="label" translatable="yes">button</property>
                     <property name="width_request">70</property>
                     <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="image">imageblock3</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="button4">
-                    <property name="label" translatable="yes">button</property>
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">4</property>
                   </packing>
                 </child>
               </object>
