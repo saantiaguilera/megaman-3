@@ -12,8 +12,9 @@
 #include <exception>
 #include "../models/editor_ObstacleViewContainer.h"
 #include "../models/dialogs/editor_DialogManager.h"
+#include "../../common/common_MapConstants.h"
 
-#define kObstacleSide 100
+//#define kObstacleSide 100
 #define kLeftClickButton 1
 #define kRightClickButton 3
 
@@ -91,11 +92,11 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
     get_size(minWidth, minHeight);
 
-    int minHeightTruncated = minHeight + kObstacleSide - (minHeight % kObstacleSide);
-    int minWidthTruncated = minWidth + kObstacleSide - (minWidth % kObstacleSide);
+    int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
+    int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
 
-    heightSpinButton->set_range(minHeightTruncated, kObstacleSide * 1000);
-    widthSpinButton->set_range(minWidthTruncated, kObstacleSide * 1000);
+    heightSpinButton->set_range(minHeightTruncated, TERRAIN_TILE_SIZE * 1000);
+    widthSpinButton->set_range(minWidthTruncated, TERRAIN_TILE_SIZE * 1000);
 
     heightSpinButton->set_numeric(true);
     widthSpinButton->set_numeric(true);
@@ -246,8 +247,8 @@ void MapWindow::dropDraggingImage(int aX, int aY) {
 
 	draggingImage = 0;
 
-	int x = aX - (aX % kObstacleSize);
-	int y = aY - (aY % kObstacleSize);
+	int x = aX - (aX % TERRAIN_TILE_SIZE);
+	int y = aY - (aY % TERRAIN_TILE_SIZE);
 
 	draggingImageContainer->getObstacleView()->setPosition(x, y);
 }
@@ -287,7 +288,7 @@ bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {
 	int y = event->y;
 
 	if (draggingImageIsMoving) {
-		fixedWindow->move(*draggingImage, x - (x % kObstacleSize), y - (y % kObstacleSize));
+		fixedWindow->move(*draggingImage, x - (x % TERRAIN_TILE_SIZE), y - (y % TERRAIN_TILE_SIZE));
 	}
 
 	return true;

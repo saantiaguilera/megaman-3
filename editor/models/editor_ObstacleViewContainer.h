@@ -12,8 +12,6 @@
 #include "../../common/common_ObstacleView.h"
 #include "gtkmm.h"
 
-#define kObstacleSize 100
-
 class ObstacleViewContainer {
 public:
 	ObstacleViewContainer(ObstacleView *aObstacleView);
