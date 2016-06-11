@@ -12,10 +12,10 @@
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
-#define PATH_LADDER "./res/drawable/blocks/ladder.png"
-#define PATH_BLOCK "./res/drawable/blocks/block.png"
-#define PATH_NEEDLE "./res/drawable/blocks/spike.png"
-#define PATH_SKY "./res/drawable/blocks/sky.jpg"
+#define PATH_LADDER "res/drawable/blocks/ladder.png"
+#define PATH_BLOCK "res/drawable/blocks/block.png"
+#define PATH_NEEDLE "res/drawable/blocks/spike.png"
+#define PATH_SKY "res/drawable/blocks/sky.jpg"
 
 class WorldView : public RenderedView {
 private:
@@ -74,17 +74,23 @@ public:
       delete backgroundTexture;
 
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET,
+                mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth(),
+                mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight());
 
     backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET,
+                mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth(),
+                mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight());
+
+    std::cout << "sizes are " << backgroundTexture->GetWidth() << " " << backgroundTexture->GetHeight() << std::endl;
 
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
     //Fill all the texture with sky
     SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
-    for (unsigned int i = 0 ; i < mapView->getWidth() ; i += TERRAIN_TILE_SIZE) {
-      for (unsigned int j = 0 ; j < mapView->getHeight() ; j += TERRAIN_TILE_SIZE) {
+    for (int i = 0 ; i < backgroundTexture->GetWidth() ; i += TERRAIN_TILE_SIZE) {
+      for (int j = 0 ; j < backgroundTexture->GetHeight() ; j += TERRAIN_TILE_SIZE) {
         backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
           *skySurface);
       }

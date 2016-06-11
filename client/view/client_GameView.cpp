@@ -105,6 +105,7 @@ void GameView::addViewFromJSON(std::string json) {
     AnimatedView * view = factoryView->make(viewType, viewId);
 
     if (view) {
+      std::cout << "setx" << std::endl;
       view->setX(positionX);
       view->setY(positionY);
 
@@ -258,6 +259,7 @@ bool GameView::onInitSDL(::Window windowId) {
    lifeBarView->setY(LIFE_BAR_Y);
 
    worldView->from(tempMapView);
+
    delete tempMapView;
 
    factoryView = new AnimatedFactoryView(renderer);
