@@ -31,31 +31,38 @@ public:
   virtual void draw(Point &massCenter) {
     if (textureExists) {
       Point cameraPoint;
+      int rendererWidth, rendererHeight, massCenterX, massCenterY, textureWidth, textureHeight;
+      rendererWidth = getRenderer()->GetOutputWidth();
+      rendererHeight = getRenderer()->GetOutputHeight();
+      massCenterX = massCenter.getX();
+      massCenterY = massCenter.getY();
+      textureWidth = mapTexture->GetWidth();
+      textureHeight = mapTexture->GetHeight();
 
-      if ((int) massCenter.getX() - (getRenderer()->GetOutputWidth() / 2) < 0) {
+      if ((int) massCenterX - (rendererWidth / 2) < 0) {
         cameraPoint.setX(0);
-        massCenter.setX(getRenderer()->GetOutputWidth() / 2);
-      } else if ((unsigned int) getRenderer()->GetOutputWidth() < massCenter.getX() + getRenderer()->GetOutputWidth() / 2) {
-        cameraPoint.setX(mapTexture->GetWidth() - getRenderer()->GetOutputWidth());
-        massCenter.setX(mapTexture->GetWidth() - getRenderer()->GetOutputWidth() / 2);
-      } else cameraPoint.setX(massCenter.getX() - getRenderer()->GetOutputWidth() / 2);
+        massCenter.setX(rendererWidth / 2);
+      } else if ((unsigned int) rendererWidth < massCenterX + rendererWidth / 2) {
+        cameraPoint.setX(textureWidth - rendererWidth);
+        massCenter.setX(textureWidth - rendererWidth / 2);
+      } else cameraPoint.setX(massCenterX - rendererWidth / 2);
 
-      if ((int) massCenter.getY() - (getRenderer()->GetOutputHeight() / 2) < 0) {
+      if ((int) massCenterY - (rendererHeight / 2) < 0) {
         cameraPoint.setY(0);
-        massCenter.setY(getRenderer()->GetOutputHeight() / 2);
-      } else if ((unsigned int) getRenderer()->GetOutputHeight() < massCenter.getY() + getRenderer()->GetOutputHeight() / 2) {
-        cameraPoint.setY(mapTexture->GetHeight() - getRenderer()->GetOutputHeight());
-        massCenter.setY(mapTexture->GetHeight() - getRenderer()->GetOutputHeight() / 2);
-      } else cameraPoint.setY(massCenter.getY() - getRenderer()->GetOutputHeight() / 2);
+        massCenter.setY(rendererHeight / 2);
+      } else if ((unsigned int) rendererHeight < massCenterY + rendererHeight / 2) {
+        cameraPoint.setY(textureHeight - rendererHeight);
+        massCenter.setY(textureHeight - rendererHeight / 2);
+      } else cameraPoint.setY(massCenterY - rendererHeight / 2);
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
+            rendererWidth, rendererHeight));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
+            rendererWidth, rendererHeight));
     }
   }
 

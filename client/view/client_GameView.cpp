@@ -5,7 +5,7 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define DRAW_TIME_STEP 50
+#define DRAW_TIME_STEP 33
 
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
