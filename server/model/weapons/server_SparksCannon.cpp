@@ -15,10 +15,10 @@ SparksCannon::SparksCannon() : Weapon(SPARKS_CANNON_MAX_AMMO) {}
 SparksCannon::~SparksCannon() {
 }
 
-void SparksCannon::fire(float32 x, float32 y) {
+void SparksCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Spark(x + BULLET_X_OFFSET, y);
+		new Spark(x + facingPosition, y);
 	}
 }
 

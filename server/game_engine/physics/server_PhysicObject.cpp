@@ -37,8 +37,8 @@ void PhysicObject::move(unsigned int moveState) {
     switch ( moveState )
     {
       case MS_LEFT:  desiredVelx = -5; break;
-      case MS_DOWN:  desiredVely =  -5; break;
-      case MS_RIGHT: desiredVelx =  5; break;
+      case MS_DOWN:  desiredVely =  -5; facingPosition = OT_LEFT; break;
+      case MS_RIGHT: desiredVelx =  5; facingPosition = OT_RIGHT; break;
       case MS_JUMP: desiredVely = 5; break;
     }
     float velChangex = desiredVelx - vel.x;

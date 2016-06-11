@@ -27,7 +27,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	currentWeapon->fire(getPositionX(), getPositionY());
+	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
 			currentWeapon);
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);

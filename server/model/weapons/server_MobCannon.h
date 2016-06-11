@@ -23,7 +23,7 @@ public:
 	// Destroyer
 	virtual ~MobCannon();
 	// fire weapon
-	virtual void fire(float32 x, float32 y);
+	virtual void fire(float32 x, float32 y, int facingPosition);
 	// Return max ammo of the weapon
 	virtual unsigned int getMaxAmmo();
 private:

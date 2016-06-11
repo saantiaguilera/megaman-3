@@ -7,11 +7,14 @@
 
 #include "server_JsonMapParser.h"
 
-#include "../../common/rapidjson/document.h"
-#include "../../common/rapidjson/rapidjson.h"
+#include <list>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
+#include "../../common/rapidjson/document.h"
+#include "../../common/rapidjson/rapidjson.h"
+#include "../game_engine/server_Engine.h"
+#include "../game_engine/server_Player.h"
 #include "../model/characters/mobs/server_Bumpy.h"
 #include "../model/characters/mobs/server_JumpingSniper.h"
 #include "../model/characters/mobs/server_Met.h"
@@ -51,6 +54,7 @@ void JsonMapParser::parseDocument(const std::string& name) {
 }
 
 void JsonMapParser::inflateObstacle(int type, unsigned int x, unsigned int y) {
+	std::list<Player*> playerList;
 	switch (type) {
 		case ObstacleViewTypeBlock:
 			new Block(x, y);
@@ -94,8 +98,14 @@ void JsonMapParser::inflateObstacle(int type, unsigned int x, unsigned int y) {
 		case ObstacleViewTypeNormalSnyper:
 			new NormalSniper(x, y);
 			break;
+		case ObstacleViewTypeMegaman:
+			playerList = Engine::getInstance().getPlayersList();
+			for (std::list<Player*>::iterator it = playerList.begin();
+					it != playerList.end(); ++it) {
+				(*it)->setMegaman(x, y);
+			}
+			break;
 		default:
 			break;
-			// TODO: Megaman remains
 	}
 }

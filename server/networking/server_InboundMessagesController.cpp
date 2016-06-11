@@ -48,7 +48,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		}
 		break;
 	case START_GAME:
-		// Here inbound message is the map to load 1
 		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
 			std::cout << "Start game!" << std::endl;
 			// Set the flag of the engine to ready to start

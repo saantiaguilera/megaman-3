@@ -23,7 +23,7 @@ public:
 	// Destroyer
 	virtual ~PlasmaCannon();
 	// fire weapon
-	virtual void fire(float32 x, float32 y);
+	virtual void fire(float32 x, float32 y, int facingPosition);
 	// Tell if the weapon is a special one
 	virtual bool isSpecial();
 	// Return max ammo of the weapon

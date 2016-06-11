@@ -62,6 +62,12 @@ public:
 	float getPositionX() const;
 	// Return my y position
 	float getPositionY() const;
+	// Facing position
+	enum _facingSide {
+		OT_RIGHT = 5,
+		OT_LEFT = -5
+	};
+	int facingPosition;
 
 private:
 	// Copy constructor

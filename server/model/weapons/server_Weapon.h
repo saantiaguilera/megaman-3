@@ -26,7 +26,7 @@ public:
 	// Destroyer
 	virtual ~Weapon();
 	// Fire weapon reducing ammo, passes current position for creating projectile
-	virtual void fire(float32 x, float32 y) = 0;
+	virtual void fire(float32 x, float32 y, int facingPosition) = 0;
 	// Increase ammo by the amount given
 	void increaseAmmoBy(unsigned int ammoAmount);
 	// Return current ammo

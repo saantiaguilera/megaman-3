@@ -79,12 +79,6 @@ void Engine::start() {
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
 
-	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
-	for (std::list<Player*>::iterator it = playerList.begin();
-			it != playerList.end(); ++it) {
-		(*it)->setMegaman();
-	}
-
 	while(!quit){
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For AI
@@ -96,18 +90,21 @@ void Engine::start() {
 		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
 		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 		for (; it != end; ++it) {
-			PhysicObject* objectToDelete = *it;
-			std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
-			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-			context->dispatchEvent(objectDestructionSerializer);
+			if (!myWorld->IsLocked()){
+				PhysicObject* objectToDelete = *it;
+				std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
+				ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+				context->dispatchEvent(objectDestructionSerializer);
 
-			//delete object... physics body is destroyed here
-			delete objectToDelete;
+				//delete object... physics body is destroyed here
+				myWorld->DestroyBody(objectToDelete->getMyBody());
+				delete objectToDelete;
 
-			//... and remove it from main list of objects
-			std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
-			if ( it != charactersList.end() )
-			  charactersList.erase( it );
+				//... and remove it from main list of objects
+				std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
+				if ( it != charactersList.end() )
+				  charactersList.erase( it );
+			}
 		}
 		//clear this list for next time
 		objectsToDestroy.clear();
