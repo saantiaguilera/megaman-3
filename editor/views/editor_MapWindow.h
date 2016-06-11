@@ -67,11 +67,6 @@ protected:
     Gtk::Button *bigAmmoButton;
     Gtk::Button *smallAmmoButton;
 
-    //Spin Buttons
-    Gtk::SpinButton *heightSpinButton;
-    Gtk::SpinButton *widthSpinButton;
-
-
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
 

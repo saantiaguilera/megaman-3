@@ -48,11 +48,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     builder->get_widget("bigammobutton", bigAmmoButton);
     builder->get_widget("smallammobutton", smallAmmoButton);
 
-    //SpinButons
-    builder->get_widget("heightspinbutton", heightSpinButton);
-    builder->get_widget("widthspinbutton", widthSpinButton);
-
-
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
     builder->get_widget_derived("fixedwindow", fixedWindow);
@@ -104,9 +99,11 @@ void MapWindow::saveButtonWasTapped() {
 
 void MapWindow::saveMap() {
 	MapView *savedMap = fixedWindow->saveMapView();
+
+	savedMap->setHeight(fixedWindow->mapHeight());
+	savedMap->setWidth(fixedWindow->mapWidth());
+
 	fixedWindow->removeAllChildViews();
-	savedMap->setHeight(heightSpinButton->get_value_as_int());
-	savedMap->setWidth(widthSpinButton->get_value_as_int());
 
 	delegate->presentMainWindowSavingMap(savedMap);
 }
@@ -190,8 +187,8 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 	draggingImageContainer = new ObstacleViewContainer(obstacleView);
 
-
 	draggingImage = draggingImageContainer->getImage();
+	draggingImage->hide();
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
 }
 
@@ -215,7 +212,6 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 		} else {
 			dragImage(event->x, event->y);
 		}
-
 	}
 
 	resizeFixView();
@@ -258,6 +254,9 @@ void MapWindow::dropDraggingImage(int aX, int aY) {
 	int y = aY - (aY % TERRAIN_TILE_SIZE);
 
 	draggingImageContainer->getObstacleView()->setPosition(x, y);
+	ObstacleViewType type = draggingImageContainer->getObstacleView()->getType();
+
+	addDraggingImageWithType(type);
 }
 
 void MapWindow::dragImage(int aX, int aY) {
@@ -295,6 +294,7 @@ bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {
 	int y = event->y;
 
 	if (draggingImageIsMoving) {
+		draggingImage->show();
 		fixedWindow->move(*draggingImage, x - (x % TERRAIN_TILE_SIZE), y - (y % TERRAIN_TILE_SIZE));
 	}
 
@@ -311,9 +311,6 @@ void MapWindow::draggingEnd() {
 
 //Setters
 void MapWindow::setMapView(MapView *aMapView) {
-	heightSpinButton->set_value(aMapView->getHeight());
-	widthSpinButton->set_value(aMapView->getWidth());
-
 	fixedWindow->setMapView(aMapView);
 
 	resizeFixView();
