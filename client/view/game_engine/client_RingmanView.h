@@ -43,8 +43,8 @@ public:
     if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
       getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
         renderer->Copy(*texture,
-          SDL2pp::Rect(0 + TERRAIN_TILE_SIZE * currentSprite, 0,
-            TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
+          SDL2pp::Rect(0 + TERRAIN_REAL_TILE_SIZE * currentSprite, 0,
+            TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE),
           SDL2pp::Rect(
             getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
             getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,

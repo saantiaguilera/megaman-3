@@ -93,7 +93,7 @@ ObstacleViewContainer *MapFixedWindow::obstacleViewContainerWithPosition(int aX,
 		int x = obstacleViewContainer->getObstacleView()->getPoint().getX();
 		int y = obstacleViewContainer->getObstacleView()->getPoint().getY();
 
-		bool aXandAYAreInRange = (x < aX) && (y < aY) && (aX < (x + kObstacleSize)) && (aY < (y + kObstacleSize));
+		bool aXandAYAreInRange = (x < aX) && (y < aY) && (aX < (x + TERRAIN_TILE_SIZE)) && (aY < (y + TERRAIN_TILE_SIZE));
 
 		if (aXandAYAreInRange) {
 			return obstacleViewContainer;

@@ -14,10 +14,10 @@ private:
 protected:
   virtual void serialize() {
     std::stringstream ss;
-    ss << (int) keyMap.isJumping();
-    ss << (int) keyMap.isDown();
-    ss << (int) keyMap.isLeft();
-    ss << (int) keyMap.isRight();
+    ss << (int) keyMap.isJumping() << " ";
+    ss << (int) keyMap.isDown() << " ";
+    ss << (int) keyMap.isLeft() << " ";
+    ss << (int) keyMap.isRight() << " ";
     ss << (int) keyMap.isShooting();
 
     serialized = ss.str();
