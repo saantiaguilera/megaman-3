@@ -101,7 +101,7 @@ public:
 
       std::map<ObstacleViewType, SDL2pp::Surface*>::iterator it = texturesMap.find(view->getType());
       if (it != texturesMap.end()) {
-        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX(), view->getPoint().getY(),
+        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX() - TERRAIN_TILE_SIZE / 2, view->getPoint().getY() / 2,
             TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
             *texturesMap[view->getType()]);
       }
