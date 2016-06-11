@@ -111,6 +111,14 @@ void Engine::destroyObjects() {
 	objectsToDestroy.clear();
 }
 
+int Engine::getCurrentMapId() const {
+	return currentMapId;
+}
+
+void Engine::setCurrentMapId(int currentMapId) {
+	this->currentMapId = currentMapId;
+}
+
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
 
 Engine& Engine::getInstance() {

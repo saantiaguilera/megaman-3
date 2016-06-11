@@ -107,6 +107,8 @@ public:
 	std::list<Character*>* getCharactersList();
 	// Teleport to boss map
 	void teleportToBossChamber();
+	int getCurrentMapId() const;
+	void setCurrentMapId(int currentMapId);
 
 private:
 	// Constructor

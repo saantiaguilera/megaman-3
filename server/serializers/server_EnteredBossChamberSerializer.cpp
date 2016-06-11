@@ -11,8 +11,8 @@
 #include <string>
 #include <fstream>
 
-
 #include "../../common/common_MessageProtocol.h"
+#include "../game_engine/server_Engine.h"
 
 
 EnteredBossChamberSerializer::EnteredBossChamberSerializer() {
@@ -25,7 +25,9 @@ EnteredBossChamberSerializer::~EnteredBossChamberSerializer() {
 
 void EnteredBossChamberSerializer::serialize() {
 	// TODO: Get the desired bosschamber, not this hardcoded one
-	std::string filename = "bosschamber1.json";
+	std::stringstream mapIdstring;
+	mapIdstring << Engine::getInstance().getCurrentMapId();
+	std::string filename = "bosschamber" + mapIdstring.str() + ".json";
 	std::string fileroute = "./json/" + filename;
 	std::ifstream iFile(fileroute);
 	std::stringstream ss;

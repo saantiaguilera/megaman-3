@@ -59,6 +59,10 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 						startGameSerializer);
 				JsonMapParser mapParser;
 				mapParser.parseDocument("level" + inboundMessage + ".json");
+				int selectedMapId;
+				std::stringstream inboundMessageStream(inboundMessage);
+				inboundMessageStream >> selectedMapId;
+				Engine::getInstance().setCurrentMapId(selectedMapId);
 				Engine::getInstance().setReadyToStart(true);
 			}
 		}
@@ -72,7 +76,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		processMovement(inboundMessage, desiredPlayer);
 		break;
 	case WEAPON_CHANGE:
-		// TODO: Check what inbound message represens here
 		std::cout << "Weapon change!" << std::endl;
 		desiredPlayer = getDesiredPlayer(clientId);
 		desiredPlayer->getMegaman()->changeWeaponTo(
