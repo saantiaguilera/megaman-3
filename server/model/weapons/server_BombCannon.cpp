@@ -22,9 +22,7 @@ BombCannon::~BombCannon() {
 void BombCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		Bomb* aBomb = new Bomb(x + facingPosition, y);
-		aBomb->getMyBody()->ApplyLinearImpulse(b2Vec2(50,0), aBomb->getMyBody()->GetWorldCenter(), true);
-
+		Bomb* aBomb = new Bomb(x, y, facingPosition);
 		Engine::getInstance().markObjectForCreation(aBomb);
 	}
 }

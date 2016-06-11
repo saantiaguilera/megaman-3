@@ -11,7 +11,7 @@
 #include "../../../common/common_MapConstants.h"
 class b2Body;
 
-#define BODIES_SIZE 70
+#define BODIES_SIZE 40
 
 class PhysicObject {
 protected:

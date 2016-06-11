@@ -22,9 +22,11 @@ protected:
 	// Initial x and y, need for them to be storaged because
 	// box2d does not allow to create objects during time step
 	float32 initialX, initialY;
+	int facingPosition;
+
 public:
 	// Constructor
-	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y);
+	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y, int facingPosition);
 	// Destroyer
 	virtual ~Projectile();
 	// Return projectile's damage

@@ -17,7 +17,7 @@
 class Magnet: public Projectile {
 public:
 	// Constructor
-	Magnet(float32 x, float32 y);
+	Magnet(float32 x, float32 y, int facingPosition);
 	// Destroyer
 	virtual ~Magnet();
 	// Get type for serialization

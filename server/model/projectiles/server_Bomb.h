@@ -16,7 +16,7 @@
 
 class Bomb: public Projectile {
 public:
-	Bomb(float32 x, float32 y);
+	Bomb(float32 x, float32 y, int facingPosition);
 	virtual ~Bomb();
 	// Get type for serialization
 	virtual int getTypeForSerialization();

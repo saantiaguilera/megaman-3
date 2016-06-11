@@ -22,7 +22,7 @@ Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) : PhysicObject(), initialX(x), initialY(y) {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, int facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
 }
@@ -60,7 +60,11 @@ void Projectile::setBody() {
 
 	// Apply an impulse <-- this direction
 	// TODO: Set it in constructor?
-	myBody->SetLinearVelocity(b2Vec2(1,0));
+	if (facingPosition > 0){
+		myBody->SetLinearVelocity(b2Vec2(5,0));
+	} else {
+		myBody->SetLinearVelocity(b2Vec2(-5,0));
+	}
 	myBody->SetGravityScale(0);
 
 	notify();
