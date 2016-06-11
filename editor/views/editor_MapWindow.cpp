@@ -86,7 +86,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
     smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
 
-    //Spin Buttons
     int minHeight = 0;
     int minWidth = 0;
 
@@ -94,9 +93,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
     int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
     int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
-
-    heightSpinButton->set_range(minHeightTruncated, TERRAIN_TILE_SIZE * 1000);
-    widthSpinButton->set_range(minWidthTruncated, TERRAIN_TILE_SIZE * 1000);
 
     heightSpinButton->set_numeric(true);
     widthSpinButton->set_numeric(true);
@@ -217,27 +213,19 @@ void MapWindow::sizeDidModify() {
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
-	int fixedWidth;
-	int fixedHeight;
-
-	fixedWindow->get_size_request(fixedWidth, fixedHeight);
-
+//		Have to delete tile
 	if (event->button == kRightClickButton) {
-
+//		Decide whether to remove while moving or static move
 		if (draggingImageIsMoving) {
 			deleteDraggingImage();
 		} else {
 			deleteImage(event->x, event->y);
 		}
 
+//		Have to add a new tile
 	} else if (event->button == kLeftClickButton) {
-		if ((event->y + TERRAIN_TILE_SIZE) > fixedHeight) {
-			fixedWindow->set_size_request(fixedWidth,fixedHeight + 3 * TERRAIN_TILE_SIZE);
-		}
-		if ((event->x + TERRAIN_TILE_SIZE) > fixedWidth) {
-			fixedWindow->set_size_request(fixedWidth + 3 * TERRAIN_TILE_SIZE, fixedHeight);
-		}
 
+//		Deside whether image have to be drop or just move it
 		if (draggingImageIsMoving) {
 			dropDraggingImage(event->x, event->y);
 		} else {
@@ -245,6 +233,27 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 		}
 
 	}
+
+	//		Resize fixed if the block a user is removing is near edges
+
+	int mapHeight = fixedWindow->mapHeight();
+	int mapWidth = fixedWindow->mapWidth();
+
+	std::cout<<"Map height : "<<mapHeight<<" Map Width : "<<mapWidth<<std::endl;
+
+    int minHeight = 0;
+    int minWidth = 0;
+
+    scrolledWindow->get_size_request(minWidth, minHeight);
+
+    int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
+    int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
+
+    mapHeight = minHeightTruncated > mapHeight ? minHeightTruncated : mapHeight;
+    mapWidth= minWidthTruncated > mapWidth ? minWidthTruncated : mapWidth;
+
+
+	fixedWindow->set_size_request(mapWidth +  3 * TERRAIN_TILE_SIZE,mapHeight + 3 * TERRAIN_TILE_SIZE);
 
 	return true;
 }
