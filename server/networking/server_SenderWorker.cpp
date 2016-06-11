@@ -37,6 +37,5 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 }
 
 void SenderWorker::dispatchEvent(Serializer* serializer) {
-	std::cout << "Dispatched event" << std::endl;
 	eventsQueue->add(serializer);
 }
