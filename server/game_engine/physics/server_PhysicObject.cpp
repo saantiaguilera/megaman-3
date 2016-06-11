@@ -16,6 +16,8 @@
 #include "../server_Engine.h"
 #include "../server_EventContext.h"
 
+#define STEP_LENGTH 5
+
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
 
@@ -36,10 +38,10 @@ void PhysicObject::move(unsigned int moveState) {
     float desiredVely = 0;
     switch ( moveState )
     {
-      case MS_LEFT:  desiredVelx = -5; break;
-      case MS_DOWN:  desiredVely =  -5; facingPosition = OT_LEFT; break;
-      case MS_RIGHT: desiredVelx =  5; facingPosition = OT_RIGHT; break;
-      case MS_JUMP: desiredVely = 5; break;
+      case MS_LEFT:  desiredVelx = -STEP_LENGTH; break;
+      case MS_DOWN:  desiredVely =  -STEP_LENGTH; facingPosition = OT_LEFT; break;
+      case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = OT_RIGHT; break;
+      case MS_JUMP: desiredVely = STEP_LENGTH; break;
     }
     float velChangex = desiredVelx - vel.x;
     float impulsex = myBody->GetMass() * velChangex; //disregard time factor
@@ -74,4 +76,8 @@ void PhysicObject::notify() {
 
 float PhysicObject::getPositionY() const {
 	return myBody->GetPosition().y;
+}
+
+void PhysicObject::setBody() {
+	// Does nothing, redefined in projectiles
 }

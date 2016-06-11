@@ -19,17 +19,31 @@ Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) : PhysicObject() {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) : PhysicObject(), initialX(x), initialY(y) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
+}
 
+int Projectile::getProjectileType() const {
+	return PROJECTILE_TYPE;
+}
+
+unsigned int Projectile::getDamage() const {
+	return damage;
+}
+
+int Projectile::getObjectType() {
+	return OT_PROJECTILE;
+}
+
+void Projectile::setBody() {
 	b2BodyDef projectileBodyDef;
 	projectileBodyDef.type = b2_kinematicBody;
-	projectileBodyDef.position.Set(x,y);
+	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
 //	projectileBodyDef.bullet = true;
-	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
+//	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
 	// Assign user data for callbacks
 	myBody->SetUserData( this );
@@ -49,16 +63,4 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, 
 	// TODO: Set it in constructor?
 	myBody->ApplyLinearImpulse(b2Vec2(5,0), myBody->GetWorldCenter(), true);
 	myBody->SetGravityScale(0);
-}
-
-int Projectile::getProjectileType() const {
-	return PROJECTILE_TYPE;
-}
-
-unsigned int Projectile::getDamage() const {
-	return damage;
-}
-
-int Projectile::getObjectType() {
-	return OT_PROJECTILE;
 }

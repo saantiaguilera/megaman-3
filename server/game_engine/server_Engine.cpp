@@ -17,6 +17,7 @@
 
 #include "../../common/common_MapConstants.h"
 #include "../parsers/server_JsonMapParser.h"
+#include "../serializers/server_ObjectCreationSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
@@ -68,6 +69,48 @@ void Engine::teleportToBossChamber() {
 	mapParser.parseDocument("bosschamber" + ss.str() + ".json");
 }
 
+void Engine::createObjects() {
+	//process elements for creation
+	std::vector<PhysicObject*>::iterator it = objectsToCreate.begin();
+	std::vector<PhysicObject*>::iterator end = objectsToCreate.end();
+	for (; it != end; ++it) {
+		if (!myWorld->IsLocked()){
+			PhysicObject* objectToCreate = *it;
+			objectToCreate->setBody();
+			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
+			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
+			context->dispatchEvent(objectCreationSerializer);
+		}
+	}
+	//clear this list for next time
+	objectsToCreate.clear();
+}
+
+void Engine::destroyObjects() {
+	//process elements for deletion
+	std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
+	std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
+	for (; it != end; ++it) {
+		if (!myWorld->IsLocked()){
+			PhysicObject* objectToDelete = *it;
+			std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
+			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+			context->dispatchEvent(objectDestructionSerializer);
+
+			//delete object... physics body is destroyed here
+			myWorld->DestroyBody(objectToDelete->getMyBody());
+			delete objectToDelete;
+
+			//... and remove it from main list of objects
+			std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
+			if ( it != charactersList.end() )
+			  charactersList.erase( it );
+		}
+	}
+	//clear this list for next time
+	objectsToDestroy.clear();
+}
+
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
 
 Engine& Engine::getInstance() {
@@ -80,34 +123,14 @@ void Engine::start() {
 	running = true;
 
 	while(!quit){
+		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For AI
 		for (std::list<Character*>::iterator it = charactersList.begin();
 				it != charactersList.end(); ++it) {
 			(*it)->update();
 		}
-		//process elements for deletion
-		std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
-		std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
-		for (; it != end; ++it) {
-			if (!myWorld->IsLocked()){
-				PhysicObject* objectToDelete = *it;
-				std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
-				ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-				context->dispatchEvent(objectDestructionSerializer);
-
-				//delete object... physics body is destroyed here
-				myWorld->DestroyBody(objectToDelete->getMyBody());
-				delete objectToDelete;
-
-				//... and remove it from main list of objects
-				std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
-				if ( it != charactersList.end() )
-				  charactersList.erase( it );
-			}
-		}
-		//clear this list for next time
-		objectsToDestroy.clear();
+		destroyObjects();
 	}
 }
 
