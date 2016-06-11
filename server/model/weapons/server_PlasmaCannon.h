@@ -9,12 +9,11 @@
 #define SERVER_MODEL_WEAPONS_SERVER_PLASMACANNON_H_
 
 #include <Common/b2Settings.h>
-#include <limits>
 
 #include "server_Weapon.h"
 
 #define PLASMA_CANNON_DAMAGE 2
-#define PLASMA_CANNON_MAX_AMMO std::numeric_limits<unsigned int>::max()
+#define PLASMA_CANNON_MAX_AMMO 5000
 
 class PlasmaCannon: public Weapon {
 public:
