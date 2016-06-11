@@ -17,10 +17,10 @@ MobCannon::MobCannon() : Weapon(MOB_CANNON_MAX_AMMO) {}
 MobCannon::~MobCannon() {
 }
 
-void MobCannon::fire(float32 x, float32 y) {
+void MobCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Plasma(x + BULLET_X_OFFSET, y);
+		new Plasma(x + facingPosition, y);
 	}
 }
 

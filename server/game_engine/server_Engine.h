@@ -51,12 +51,18 @@ private:
 	ContactListener* contactListener;
 	// Set containing elements to destroy betweeen steps
 	std::vector<PhysicObject*> objectsToDestroy;
-	// Player lives intial qty
+	// Vector containing elements to create betweeen steps
+	std::vector<PhysicObject*> objectsToCreate;
+	// Player lives intial
 	unsigned int playerInitialLives;
 	// Context for sending messages
 	EventContext* context;
 	// Current map identifier, to grab the corresponding boss chamber
 	int currentMapId;
+	// Iterate over the to create list and create the bodies
+	void createObjects();
+	// Iterate over the to destroy list and destroy the bodies
+	void destroyObjects();
 
 public:
 	// Return logger instance

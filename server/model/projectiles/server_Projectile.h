@@ -19,6 +19,9 @@ public:
 protected:
 	// Damage to be inflicted
 	unsigned int damage;
+	// Initial x and y, need for them to be storaged because
+	// box2d does not allow to create objects during time step
+	float32 initialX, initialY;
 public:
 	// Constructor
 	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y);
@@ -32,6 +35,8 @@ public:
 	virtual int getObjectType();
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
+	// Set the projectiles body
+	virtual void setBody();
 
 private:
 	// Copy constructor

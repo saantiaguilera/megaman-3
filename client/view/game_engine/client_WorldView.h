@@ -50,11 +50,11 @@ public:
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
     }
   }
 

@@ -8,7 +8,6 @@
 #include "server_Bomb.h"
 
 Bomb::Bomb(float32 x, float32 y) : Projectile(BOMB_DAMAGE, Projectile::BOMB, x, y) {
-	notify();
 }
 
 Bomb::~Bomb() {

@@ -11,6 +11,8 @@
 #include "../../../common/common_MapConstants.h"
 class b2Body;
 
+#define BODIES_SIZE 70
+
 class PhysicObject {
 protected:
 	// Object types for collision detection
@@ -62,6 +64,14 @@ public:
 	float getPositionX() const;
 	// Return my y position
 	float getPositionY() const;
+	// Facing position
+	enum _facingSide {
+		OT_RIGHT = 5,
+		OT_LEFT = -5
+	};
+	int facingPosition;
+	// Set my body
+	virtual void setBody();
 
 private:
 	// Copy constructor

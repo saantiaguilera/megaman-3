@@ -15,10 +15,10 @@ PlasmaCannon::PlasmaCannon() : Weapon(PLASMA_CANNON_MAX_AMMO) {}
 PlasmaCannon::~PlasmaCannon() {
 }
 
-void PlasmaCannon::fire(float32 x, float32 y) {
+void PlasmaCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Plasma(x + BULLET_X_OFFSET, y);
+		new Plasma(x + facingPosition, y);
 	}
 }
 

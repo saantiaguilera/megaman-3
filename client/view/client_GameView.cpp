@@ -24,7 +24,7 @@ GameView::GameView() : Gtk::Window(){
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
 
-  set_size_request(screenWidth, screenHeight); //TODO
+  set_size_request(800, 800); //TODO
 
   massCenter.setX(0);
   massCenter.setY(0);

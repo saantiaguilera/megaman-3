@@ -16,10 +16,10 @@ RingTosser::RingTosser() : Weapon(RING_TOSSER_MAX_AMMO) {}
 RingTosser::~RingTosser() {
 }
 
-void RingTosser::fire(float32 x, float32 y) {
+void RingTosser::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Ring(x + BULLET_X_OFFSET, y);
+		new Ring(x + facingPosition, y);
 	}
 }
 

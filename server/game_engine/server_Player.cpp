@@ -62,8 +62,8 @@ void Player::increasePlayerLives() {
 	++lives;
 }
 
-void Player::setMegaman() {
+void Player::setMegaman(uint x, uint y) {
 	if (megaman == NULL){
-		megaman = new Megaman(this, 100, 100);
+		megaman = new Megaman(this, x, y);
 	}
 }
