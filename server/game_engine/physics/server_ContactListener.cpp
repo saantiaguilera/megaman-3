@@ -23,7 +23,6 @@ ContactListener::~ContactListener() {
 }
 
 void ContactListener::BeginContact(b2Contact* contact) {
-	std::cout << "Collision!" << std::endl;
 	getBodyUserDataForContact(contact);
 
 	static_cast<PhysicObject*>(bodyUserDataA)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataB));

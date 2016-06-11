@@ -37,6 +37,8 @@ public:
 	virtual int getTypeForSerialization() = 0;
 	// Set the projectiles body
 	virtual void setBody();
+	// Set user data for callbacks
+	virtual void setUserData();
 
 private:
 	// Copy constructor

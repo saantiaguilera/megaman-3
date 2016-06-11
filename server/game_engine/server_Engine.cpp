@@ -77,6 +77,7 @@ void Engine::createObjects() {
 		if (!myWorld->IsLocked()){
 			PhysicObject* objectToCreate = *it;
 			objectToCreate->setBody();
+			objectToCreate->setUserData();
 			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
 			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
 			context->dispatchEvent(objectCreationSerializer);
@@ -117,6 +118,12 @@ int Engine::getCurrentMapId() const {
 
 void Engine::setCurrentMapId(int currentMapId) {
 	this->currentMapId = currentMapId;
+}
+
+void Engine::markObjectForCreation(PhysicObject* objectToMark) {
+	mutex.lock();
+	objectsToCreate.push_back(objectToMark);
+	mutex.unlock();
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}

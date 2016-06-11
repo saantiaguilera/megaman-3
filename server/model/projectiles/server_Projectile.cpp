@@ -43,10 +43,7 @@ void Projectile::setBody() {
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
 //	projectileBodyDef.bullet = true;
-//	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
-
-	// Assign user data for callbacks
-	myBody->SetUserData( this );
+	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
 	// Add shape to body
 	b2PolygonShape boxShape;
@@ -64,4 +61,9 @@ void Projectile::setBody() {
 	myBody->SetGravityScale(0);
 
 	notify();
+}
+
+void Projectile::setUserData() {
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
 }

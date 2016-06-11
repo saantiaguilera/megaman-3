@@ -7,6 +7,8 @@
 
 #include "server_Character.h"
 
+#include <iostream>
+#include <list>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
@@ -27,6 +29,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
+	std::cout << getPositionX() << ", " << getPositionY() << std::endl;
 	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
 			currentWeapon);

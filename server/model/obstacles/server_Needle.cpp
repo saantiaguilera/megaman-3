@@ -18,3 +18,11 @@ Needle::~Needle() {
 void Needle::haveEffectOn(Character* character) {
 	character->decreaseHp(character->getHp());
 }
+
+void Needle::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	int objectCollidedWithType = objectCollidedWith->getObjectType();
+	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN){
+		haveEffectOn((Character*) objectCollidedWith);
+	}
+}
+

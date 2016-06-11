@@ -87,6 +87,8 @@ public:
 	b2World* getMyWorld();
 	// Add new object for deletion
 	void markObjectForRemoval(PhysicObject* objectToMark);
+	// Add new object for creation
+	void markObjectForCreation(PhysicObject* objectToMark);
 	// Set game gravity
 	void setGravity(float32 gravity);
 	// Set position iterations
@@ -107,7 +109,9 @@ public:
 	std::list<Character*>* getCharactersList();
 	// Teleport to boss map
 	void teleportToBossChamber();
+	// Return the current selected map id
 	int getCurrentMapId() const;
+	// Set the current map id
 	void setCurrentMapId(int currentMapId);
 
 private:

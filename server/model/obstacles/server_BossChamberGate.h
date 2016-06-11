@@ -22,6 +22,8 @@ public:
 	virtual void haveEffectOn(Character* character);
 	// Get the object type
 	int getObjectType();
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	BossChamberGate(const BossChamberGate&);
