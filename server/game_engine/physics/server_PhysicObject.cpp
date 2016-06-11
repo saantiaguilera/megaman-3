@@ -39,15 +39,17 @@ void PhysicObject::move(unsigned int moveState) {
     float desiredVely = 0;
     switch ( moveState )
     {
-      case MS_LEFT:  desiredVelx = -STEP_LENGTH; break;
-      case MS_DOWN:  desiredVely =  -STEP_LENGTH; facingPosition = FS_LEFT; break;
+      case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;
+      case MS_DOWN:  desiredVely =  -STEP_LENGTH; break;
       case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = FS_RIGHT; break;
       case MS_JUMP: desiredVely = STEP_LENGTH; break;
     }
     float velChangex = desiredVelx - vel.x;
     float impulsex = myBody->GetMass() * velChangex; //disregard time factor
-    float velChangey = desiredVely - vel.y;
-    float impulsey = myBody->GetMass() * velChangey; //disregard time factor
+    float velChangey = desiredVely;
+    float impulsey = myBody->GetMass() * velChangey / 2; //disregard time factor
+    std::cout << "ImpulseX: " << impulsex << std::endl;
+    std::cout << "ImpulseY: " << impulsey/2 << std::endl;
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());

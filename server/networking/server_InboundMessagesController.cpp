@@ -69,7 +69,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		break;
 	case KEY_PRESSED:
 		// Here inbound message is a map of keys-boolean
-		std::cout << "Key Pressed!" << std::endl;
 		// According to the pressed key we should do something
 		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
@@ -109,6 +108,7 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 	}
 
 	if (keysVector[0] == true) {
+		std::cout << "trying to jump" << std::endl;
 		player->getMegaman()->move(PhysicObject::_moveState::MS_JUMP);
 	}
 	if (keysVector[1] == true) {
