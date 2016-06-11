@@ -42,7 +42,7 @@ void Projectile::setBody() {
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
-//	projectileBodyDef.bullet = true;
+	projectileBodyDef.bullet = true;
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
 	// Add shape to body

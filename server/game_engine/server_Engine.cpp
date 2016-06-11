@@ -103,9 +103,9 @@ void Engine::destroyObjects() {
 			delete objectToDelete;
 
 			//... and remove it from main list of objects
-			std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
-			if ( it != charactersList.end() )
-			  charactersList.erase( it );
+			std::list<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
+			if ( it != updatablesList.end() )
+				updatablesList.erase( it );
 		}
 	}
 	//clear this list for next time
@@ -126,6 +126,10 @@ void Engine::markObjectForCreation(PhysicObject* objectToMark) {
 	mutex.unlock();
 }
 
+std::list<PhysicObject*>* Engine::getUpdatablesList() {
+	return &updatablesList;
+}
+
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
 
 Engine& Engine::getInstance() {
@@ -140,9 +144,9 @@ void Engine::start() {
 	while(!quit){
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
-		// For AI
-		for (std::list<Character*>::iterator it = charactersList.begin();
-				it != charactersList.end(); ++it) {
+		// For updating AI and movements of bullets
+		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
+				it != updatablesList.end(); ++it) {
 			(*it)->update();
 		}
 		destroyObjects();
@@ -204,8 +208,4 @@ EventContext* Engine::getContext() {
 
 void Engine::setContext(EventContext* context) {
 	this->context = context;
-}
-
-std::list<Character*>* Engine::getCharactersList() {
-	return &charactersList;
 }

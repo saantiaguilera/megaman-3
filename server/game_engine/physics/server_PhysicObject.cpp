@@ -87,3 +87,8 @@ void PhysicObject::setBody() {
 void PhysicObject::setUserData() {
 	// Do nothing, redefined in projectiles
 }
+
+void PhysicObject::update() {
+	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(serializer);
+}

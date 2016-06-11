@@ -34,7 +34,7 @@ private:
 	// Flag for checking if engine is running
 	bool running;
 	// A thread safe list for holding characters
-	std::list<Character*> charactersList;
+	std::list<PhysicObject*> updatablesList;
 	// A list holding the players
 	std::list<Player*>  playersList;
 	// box2dWorld for physics
@@ -105,14 +105,14 @@ public:
 	EventContext* getContext();
 	// Set the context for dispatching events
 	void setContext(EventContext* context);
-	// Return a list of characters
-	std::list<Character*>* getCharactersList();
 	// Teleport to boss map
 	void teleportToBossChamber();
 	// Return the current selected map id
 	int getCurrentMapId() const;
 	// Set the current map id
 	void setCurrentMapId(int currentMapId);
+	// Return list of updatables
+	std::list<PhysicObject*>* getUpdatablesList();
 
 private:
 	// Constructor
