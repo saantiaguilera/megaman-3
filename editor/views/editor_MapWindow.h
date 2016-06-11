@@ -29,6 +29,9 @@ public:
     void setMapView(MapView *aMapView);
     void setDelegate(EditorController *aDelegate);
 
+    void saveMap();
+    void back();
+
 protected:
 	//Needed to upload xml from GLADE
     Glib::RefPtr<Gtk::Builder> builder;
@@ -120,8 +123,6 @@ private:
 
     void deleteDraggingImage();
 	void deleteImage(int aX, int aY);
-
-
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

@@ -11,6 +11,7 @@
 #include <iostream>
 #include <exception>
 #include "../models/editor_ObstacleViewContainer.h"
+#include "../models/dialogs/editor_DialogManager.h"
 
 #define kObstacleSide 100
 #define kLeftClickButton 1
@@ -105,11 +106,14 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
     heightSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
     widthSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
-
 }
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
+	DialogManager(this).showSaveDialog();
+}
+
+void MapWindow::saveMap() {
 	MapView *savedMap = fixedWindow->saveMapView();
 	fixedWindow->removeAllChildViews();
 	savedMap->setHeight(heightSpinButton->get_value_as_int());
@@ -118,9 +122,13 @@ void MapWindow::saveButtonWasTapped() {
 	delegate->presentMainWindowSavingMap(savedMap);
 }
 
-void MapWindow::backButtonWasTapped() {
+void MapWindow::back() {
 	fixedWindow->removeAllChildViews();
 	delegate->presentMainWindowWithoutSavingMap();
+}
+
+void MapWindow::backButtonWasTapped() {
+	DialogManager(this).showBackDialog();
 }
 
 //Add Buttons
