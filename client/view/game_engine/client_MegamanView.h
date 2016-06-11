@@ -9,12 +9,16 @@ class MegamanView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
 
+  ORIENTATION lastOrientation;
+
   int currentSprite = 0;
   int repetitions = 0;
 
   //Used for knowing if we have to draw megaman of what color
   static int megamansCount;
   int megamanNumber = 0;
+
+  void step();
 
 public:
   MegamanView(unsigned int id, SDL2pp::Renderer *renderer);

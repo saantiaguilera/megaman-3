@@ -12,15 +12,16 @@
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
-#define PATH_LADDER "./res/drawable/blocks/ladder.png"
-#define PATH_BLOCK "./res/drawable/blocks/block.png"
-#define PATH_NEEDLE "./res/drawable/blocks/spike.png"
-#define PATH_SKY "./res/drawable/blocks/sky.jpg"
+#define PATH_LADDER "res/drawable/blocks/ladder.png"
+#define PATH_BLOCK "res/drawable/blocks/block.png"
+#define PATH_NEEDLE "res/drawable/blocks/spike.png"
+#define PATH_SKY "res/drawable/blocks/sky.jpg"
 
 class WorldView : public RenderedView {
 private:
   SDL2pp::Texture *backgroundTexture;
   SDL2pp::Texture *mapTexture;
+
   bool textureExists;
 
 public:
@@ -50,11 +51,11 @@ public:
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
     }
   }
 
@@ -73,18 +74,21 @@ public:
     if (backgroundTexture)
       delete backgroundTexture;
 
+    int mWidth = mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth();
+    int mHeight = mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight();
+
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
     backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET, mapView->getWidth(), mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
     //Fill all the texture with sky
     SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
-    for (unsigned int i = 0 ; i < mapView->getWidth() ; i += TERRAIN_TILE_SIZE) {
-      for (unsigned int j = 0 ; j < mapView->getHeight() ; j += TERRAIN_TILE_SIZE) {
+    for (int i = 0 ; i < mWidth ; i += TERRAIN_TILE_SIZE) {
+      for (int j = 0 ; j < mHeight ; j += TERRAIN_TILE_SIZE) {
         backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
           *skySurface);
       }
@@ -113,6 +117,8 @@ public:
   }
 
   virtual ~WorldView() {
+    textureExists = false;
+
     if (mapTexture)
       delete mapTexture;
 

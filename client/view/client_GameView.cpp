@@ -5,7 +5,7 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define DRAW_TIME_STEP 33 //30 fps
+#define DRAW_TIME_STEP 50
 
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
@@ -24,7 +24,7 @@ GameView::GameView() : Gtk::Window(){
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
 
-  set_size_request(800, 800); //TODO
+  set_size_request(screenWidth, screenHeight);
 
   massCenter.setX(0);
   massCenter.setY(0);
@@ -41,8 +41,10 @@ GameView::GameView() : Gtk::Window(){
 }
 
 GameView::~GameView() {
-  if (worldView)
+  if (worldView) {
     delete worldView;
+    worldView = NULL;
+  }
 
   if (mixer) {
     delete mixer;
@@ -56,23 +58,35 @@ GameView::~GameView() {
 
   resetAnimations();
 
-  if (ammoBarView)
+  if (ammoBarView) {
     delete ammoBarView;
+    ammoBarView = NULL;
+  }
 
-  if (healthBarView)
+  if (healthBarView) {
     delete healthBarView;
+    healthBarView = NULL;
+  }
 
-  if (lifeBarView)
+  if (lifeBarView) {
     delete lifeBarView;
+    lifeBarView = NULL;
+  }
 
-  if (renderer)
+  if (renderer) {
     delete renderer;
+    renderer = NULL;
+  }
 
-  if (mainWindow)
+  if (mainWindow) {
     delete mainWindow;
+    mainWindow = NULL;
+  }
 
-  if (sdl)
+  if (sdl) {
     delete sdl;
+    sdl = NULL;
+  }
 }
 
 void GameView::resetAnimations() {
@@ -258,6 +272,7 @@ bool GameView::onInitSDL(::Window windowId) {
    lifeBarView->setY(LIFE_BAR_Y);
 
    worldView->from(tempMapView);
+
    delete tempMapView;
 
    factoryView = new AnimatedFactoryView(renderer);
