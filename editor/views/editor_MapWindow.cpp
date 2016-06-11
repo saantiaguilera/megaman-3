@@ -94,15 +94,7 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
     int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
 
-    heightSpinButton->set_numeric(true);
-    widthSpinButton->set_numeric(true);
-    heightSpinButton->set_increments(100, 100);
-    widthSpinButton->set_increments(100, 100);
-
     fixedWindow->set_size_request(minWidthTruncated, minHeightTruncated);
-
-    heightSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
-    widthSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
 }
 
 //Signals
@@ -203,14 +195,6 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
 }
 
-//Size
-void MapWindow::sizeDidModify() {
-//	int height = heightSpinButton->get_value_as_int();
-//	int width = widthSpinButton->get_value_as_int();
-//
-//	fixedWindow->set_size_request(width, height);
-}
-
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
 //		Have to delete tile
@@ -234,12 +218,14 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 
 	}
 
-	//		Resize fixed if the block a user is removing is near edges
+	resizeFixView();
 
+	return true;
+}
+
+void MapWindow::resizeFixView() {
 	int mapHeight = fixedWindow->mapHeight();
 	int mapWidth = fixedWindow->mapWidth();
-
-	std::cout<<"Map height : "<<mapHeight<<" Map Width : "<<mapWidth<<std::endl;
 
     int minHeight = 0;
     int minWidth = 0;
@@ -255,7 +241,6 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 
 	fixedWindow->set_size_request(mapWidth +  3 * TERRAIN_TILE_SIZE,mapHeight + 3 * TERRAIN_TILE_SIZE);
 
-	return true;
 }
 
 void MapWindow::dropDraggingImage(int aX, int aY) {
@@ -328,9 +313,10 @@ void MapWindow::draggingEnd() {
 void MapWindow::setMapView(MapView *aMapView) {
 	heightSpinButton->set_value(aMapView->getHeight());
 	widthSpinButton->set_value(aMapView->getWidth());
-	sizeDidModify();
 
 	fixedWindow->setMapView(aMapView);
+
+	resizeFixView();
 }
 
 void MapWindow::setDelegate(EditorController *aDelegate) {

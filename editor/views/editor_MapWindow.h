@@ -123,6 +123,8 @@ private:
 
     void deleteDraggingImage();
 	void deleteImage(int aX, int aY);
+	void resizeFixView();
+
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */
