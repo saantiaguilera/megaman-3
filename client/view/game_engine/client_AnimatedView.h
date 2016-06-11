@@ -6,7 +6,7 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define MAX_STEP_FOR_IDLE 8
+#define MAX_STEP_FOR_IDLE 4
 
 enum ORIENTATION {
   IDLE,
