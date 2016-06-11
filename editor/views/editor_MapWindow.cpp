@@ -209,15 +209,21 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 //Size
 void MapWindow::sizeDidModify() {
-	int height = heightSpinButton->get_value_as_int();
-	int width = widthSpinButton->get_value_as_int();
-
-	fixedWindow->set_size_request(width, height);
+//	int height = heightSpinButton->get_value_as_int();
+//	int width = widthSpinButton->get_value_as_int();
+//
+//	fixedWindow->set_size_request(width, height);
 }
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
+	int fixedWidth;
+	int fixedHeight;
+
+	fixedWindow->get_size_request(fixedWidth, fixedHeight);
+
 	if (event->button == kRightClickButton) {
+
 		if (draggingImageIsMoving) {
 			deleteDraggingImage();
 		} else {
@@ -225,6 +231,13 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 		}
 
 	} else if (event->button == kLeftClickButton) {
+		if ((event->y + TERRAIN_TILE_SIZE) > fixedHeight) {
+			fixedWindow->set_size_request(fixedWidth,fixedHeight + 3 * TERRAIN_TILE_SIZE);
+		}
+		if ((event->x + TERRAIN_TILE_SIZE) > fixedWidth) {
+			fixedWindow->set_size_request(fixedWidth + 3 * TERRAIN_TILE_SIZE, fixedHeight);
+		}
+
 		if (draggingImageIsMoving) {
 			dropDraggingImage(event->x, event->y);
 		} else {
