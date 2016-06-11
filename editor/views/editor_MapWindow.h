@@ -67,11 +67,6 @@ protected:
     Gtk::Button *bigAmmoButton;
     Gtk::Button *smallAmmoButton;
 
-    //Spin Buttons
-    Gtk::SpinButton *heightSpinButton;
-    Gtk::SpinButton *widthSpinButton;
-
-
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
 
@@ -123,6 +118,8 @@ private:
 
     void deleteDraggingImage();
 	void deleteImage(int aX, int aY);
+	void resizeFixView();
+
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

@@ -27,6 +27,8 @@ public:
 
 	ObstacleViewContainer *obstacleViewContainerWithPosition(int aX, int aY);
 
+	int mapWidth();
+	int mapHeight();
 
 private :
     Glib::RefPtr<Gtk::Builder> builder;
