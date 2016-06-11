@@ -102,6 +102,7 @@ void EditorController::translateNonObstacleToCorner(MapView *mapView) {
 
 
 bool EditorController::centerObstacleViewType(ObstacleViewType type) {
+	return true;
 	bool isNotBlock = !(type == ObstacleViewTypeBlock);
 	bool isNotLadder = !(type == ObstacleViewTypeLadder);
 	bool isNotNeedle = !(type == ObstacleViewTypeNeedle);
