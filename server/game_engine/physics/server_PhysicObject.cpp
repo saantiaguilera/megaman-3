@@ -89,6 +89,8 @@ void PhysicObject::setUserData() {
 }
 
 void PhysicObject::update() {
-	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-	Engine::getInstance().getContext()->dispatchEvent(serializer);
+	if (myBody != NULL){
+		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+		Engine::getInstance().getContext()->dispatchEvent(serializer);
+	}
 }
