@@ -7,6 +7,10 @@
 
 #include "server_BombCannon.h"
 
+#include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
+
+#include "../../game_engine/server_Engine.h"
 #include "../projectiles/server_Bomb.h"
 
 BombCannon::BombCannon() : Weapon(BOMB_MAX_AMMO) {}
@@ -18,7 +22,10 @@ BombCannon::~BombCannon() {
 void BombCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Bomb(x + facingPosition, y);
+		Bomb* aBomb = new Bomb(x + facingPosition, y);
+		aBomb->getMyBody()->ApplyLinearImpulse(b2Vec2(50,0), aBomb->getMyBody()->GetWorldCenter(), true);
+
+		Engine::getInstance().markObjectForCreation(aBomb);
 	}
 }
 

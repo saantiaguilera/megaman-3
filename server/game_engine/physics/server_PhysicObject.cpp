@@ -10,6 +10,7 @@
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
 #include <stddef.h>
+#include <iostream>
 
 #include "../../serializers/server_MovementSerializer.h"
 #include "../../serializers/server_ObjectCreationSerializer.h"
@@ -21,7 +22,7 @@
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0),facingPosition(FS_LEFT) {
 	++id;
 }
 
@@ -39,8 +40,8 @@ void PhysicObject::move(unsigned int moveState) {
     switch ( moveState )
     {
       case MS_LEFT:  desiredVelx = -STEP_LENGTH; break;
-      case MS_DOWN:  desiredVely =  -STEP_LENGTH; facingPosition = OT_LEFT; break;
-      case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = OT_RIGHT; break;
+      case MS_DOWN:  desiredVely =  -STEP_LENGTH; facingPosition = FS_LEFT; break;
+      case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = FS_RIGHT; break;
       case MS_JUMP: desiredVely = STEP_LENGTH; break;
     }
     float velChangex = desiredVelx - vel.x;
@@ -70,6 +71,7 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
+	std::cout << "Notify creation" << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
@@ -80,4 +82,17 @@ float PhysicObject::getPositionY() const {
 
 void PhysicObject::setBody() {
 	// Does nothing, redefined in projectiles
+}
+
+void PhysicObject::setUserData() {
+	// Do nothing, redefined in projectiles
+}
+
+void PhysicObject::update() {
+//	if (myBody != NULL){
+//		std::cout << "Body position: "  << myBody->GetPosition().x << ", " << myBody->GetPosition().y << std::endl;
+//		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+//		std::cout << "Movement serializer created" << std::endl;
+//		Engine::getInstance().getContext()->dispatchEvent(serializer);
+//	}
 }

@@ -24,3 +24,10 @@ void BossChamberGate::haveEffectOn(Character* character) {
 int BossChamberGate::getObjectType(){
 	return ObstacleViewTypeBossChamberGate;
 }
+
+void BossChamberGate::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	int objectCollidedWithType = objectCollidedWith->getObjectType();
+	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN){
+		haveEffectOn((Character*) objectCollidedWith);
+	}
+}

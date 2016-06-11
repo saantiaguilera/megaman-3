@@ -77,6 +77,8 @@ void Engine::createObjects() {
 		if (!myWorld->IsLocked()){
 			PhysicObject* objectToCreate = *it;
 			objectToCreate->setBody();
+			objectToCreate->setUserData();
+			updatablesList.push_back(objectToCreate);
 			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
 			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
 			context->dispatchEvent(objectCreationSerializer);
@@ -102,13 +104,31 @@ void Engine::destroyObjects() {
 			delete objectToDelete;
 
 			//... and remove it from main list of objects
-			std::list<Character*>::iterator it = std::find(charactersList.begin(), charactersList.end(), objectToDelete);
-			if ( it != charactersList.end() )
-			  charactersList.erase( it );
+			std::list<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
+			if ( it != updatablesList.end() )
+				updatablesList.erase( it );
 		}
 	}
 	//clear this list for next time
 	objectsToDestroy.clear();
+}
+
+int Engine::getCurrentMapId() const {
+	return currentMapId;
+}
+
+void Engine::setCurrentMapId(int currentMapId) {
+	this->currentMapId = currentMapId;
+}
+
+void Engine::markObjectForCreation(PhysicObject* objectToMark) {
+	mutex.lock();
+	objectsToCreate.push_back(objectToMark);
+	mutex.unlock();
+}
+
+std::list<PhysicObject*>* Engine::getUpdatablesList() {
+	return &updatablesList;
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
@@ -125,9 +145,9 @@ void Engine::start() {
 	while(!quit){
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
-		// For AI
-		for (std::list<Character*>::iterator it = charactersList.begin();
-				it != charactersList.end(); ++it) {
+		// For updating AI and movements of bullets
+		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
+				it != updatablesList.end(); ++it) {
 			(*it)->update();
 		}
 		destroyObjects();
@@ -189,8 +209,4 @@ EventContext* Engine::getContext() {
 
 void Engine::setContext(EventContext* context) {
 	this->context = context;
-}
-
-std::list<Character*>* Engine::getCharactersList() {
-	return &charactersList;
 }

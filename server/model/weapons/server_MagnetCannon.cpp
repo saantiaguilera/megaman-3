@@ -7,6 +7,7 @@
 
 #include "server_MagnetCannon.h"
 
+#include "../../game_engine/server_Engine.h"
 #include "../projectiles/server_Magnet.h"
 
 MagnetCannon::MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
@@ -18,7 +19,7 @@ MagnetCannon::~MagnetCannon() {
 void MagnetCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Magnet(x + facingPosition, y);
+		Engine::getInstance().markObjectForCreation(new Magnet(x + facingPosition, y));
 	}
 }
 

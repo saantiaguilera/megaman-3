@@ -20,6 +20,8 @@ public:
 	virtual ~Precipice();
 	// Applies effect on character
 	virtual void haveEffectOn(Character* character);
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	Precipice(const Precipice&);

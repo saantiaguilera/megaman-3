@@ -22,6 +22,8 @@ public:
 	virtual void haveEffectOn(Character* character);
 	// Return my object type
 	virtual int getObjectType();
+	// Handle collision
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	Ladder(const Ladder&);

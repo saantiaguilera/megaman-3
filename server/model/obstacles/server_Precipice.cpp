@@ -18,3 +18,10 @@ Precipice::~Precipice() {
 void Precipice::haveEffectOn(Character* character) {
 	character->decreaseHp(character->getHp());
 }
+
+void Precipice::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	int objectCollidedWithType = objectCollidedWith->getObjectType();
+	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN || objectCollidedWithType == OT_MOB){
+		haveEffectOn((Character*) objectCollidedWith);
+	}
+}

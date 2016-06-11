@@ -12,8 +12,11 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
+#include <stddef.h>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
+#include "../../serializers/server_MovementSerializer.h"
 
 Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
@@ -33,7 +36,8 @@ unsigned int Projectile::getDamage() const {
 }
 
 int Projectile::getObjectType() {
-	return OT_PROJECTILE;
+//	return OT_PROJECTILE;
+	return 30;
 }
 
 void Projectile::setBody() {
@@ -42,17 +46,12 @@ void Projectile::setBody() {
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
-//	projectileBodyDef.bullet = true;
-//	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
+	projectileBodyDef.bullet = true;
+	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
-	// Assign user data for callbacks
-	myBody->SetUserData( this );
-
-	// Add shape to body
-	// TODO: remove hardcoded parameters
+	// Add shape to bodysetBody
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(1,1);
-
+	boxShape.SetAsBox(BODIES_SIZE/2,BODIES_SIZE/2);
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
@@ -61,8 +60,21 @@ void Projectile::setBody() {
 
 	// Apply an impulse <-- this direction
 	// TODO: Set it in constructor?
-	myBody->ApplyLinearImpulse(b2Vec2(5,0), myBody->GetWorldCenter(), true);
+	myBody->SetLinearVelocity(b2Vec2(1,0));
 	myBody->SetGravityScale(0);
 
 	notify();
+}
+
+void Projectile::setUserData() {
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
+}
+
+void Projectile::update() {
+	if (myBody != NULL){
+//		move(1);
+		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+		Engine::getInstance().getContext()->dispatchEvent(serializer);
+	}
 }

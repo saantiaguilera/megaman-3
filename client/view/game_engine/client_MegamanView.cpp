@@ -6,10 +6,20 @@
 #define N_POSITIONS 3
 #define N_REPETITIONS 3
 
+#define FIRST_LEFT 4
+#define LAST_LEFT 6
+
+#define IDLE_LEFT 7
+#define IDLE_RIGHT 0
+
+#define FIRST_RIGHT 1
+#define LAST_RIGHT 3
+
 int MegamanView::megamansCount = 0;
 
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
   deviatesMassCenter = true;
+  lastOrientation = IDLE;
 
   switch (megamansCount) {
     case 0:
@@ -37,15 +47,53 @@ MegamanView::~MegamanView() {
  delete texture;
 }
 
-void MegamanView::draw(Point &massCenter) {
+void MegamanView::step() {
   ++repetitions;
   if (repetitions > N_REPETITIONS) {
     repetitions = 0;
     ++currentSprite;
-
-    if (currentSprite > N_POSITIONS)
-      currentSprite = 0;
   }
+}
+
+void MegamanView::draw(Point &massCenter) {
+  AnimatedView::draw(massCenter);
+
+  if (mOrientation == lastOrientation) {
+    switch (mOrientation) {
+      case UP:
+      case DOWN:
+      case IDLE:
+        break;
+      case LEFT:
+        step();
+        if (currentSprite > LAST_LEFT)
+          currentSprite = FIRST_LEFT;
+        break;
+      case RIGHT:
+        step();
+        if (currentSprite > LAST_RIGHT)
+          currentSprite = FIRST_RIGHT;
+        break;
+    }
+  } else {
+    switch (mOrientation) {
+      case UP:
+      case DOWN:
+      case IDLE:
+        if (lastOrientation == LEFT)
+          currentSprite = IDLE_LEFT;
+        else currentSprite = IDLE_RIGHT;
+        break;
+      case LEFT:
+        currentSprite = FIRST_LEFT;
+        break;
+      case RIGHT:
+        currentSprite = FIRST_RIGHT;
+        break;
+    }
+  }
+
+  lastOrientation = mOrientation;
 
   Point cameraPoint;
   cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));

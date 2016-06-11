@@ -7,12 +7,9 @@
 
 #include "server_SenderWorker.h"
 
-#include <unistd.h>
+#include <iostream>
 #include <iterator>
-#include <queue>
-#include <vector>
 
-#include "server_ClientProxy.h"
 
 SenderWorker::SenderWorker(std::vector<ClientProxy*>* clients,
 		ConcurrentList<Serializer*>* eventsQueue) :
@@ -40,5 +37,6 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 }
 
 void SenderWorker::dispatchEvent(Serializer* serializer) {
+	std::cout << "Dispatched event" << std::endl;
 	eventsQueue->add(serializer);
 }

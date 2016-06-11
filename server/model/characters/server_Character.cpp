@@ -7,6 +7,8 @@
 
 #include "server_Character.h"
 
+#include <iostream>
+#include <list>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
@@ -19,7 +21,7 @@
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
 				0) {
-	Engine::getInstance().getCharactersList()->push_back(this);
+	Engine::getInstance().getUpdatablesList()->push_back(this);
 }
 
 Character::~Character() {
@@ -27,6 +29,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
+	std::cout << getPositionX() << ", " << getPositionY() << std::endl;
 	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
 			currentWeapon);

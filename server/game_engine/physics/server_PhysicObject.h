@@ -66,12 +66,17 @@ public:
 	float getPositionY() const;
 	// Facing position
 	enum _facingSide {
-		OT_RIGHT = 5,
-		OT_LEFT = -5
+		FS_RIGHT = 75,
+		FS_LEFT = -75
 	};
 	int facingPosition;
+	// The following methods are needed to create projectiles in runtime
 	// Set my body
 	virtual void setBody();
+	// Set user data for callbacks
+	virtual void setUserData();
+	// For AI and bullet movements
+	virtual void update();
 
 private:
 	// Copy constructor

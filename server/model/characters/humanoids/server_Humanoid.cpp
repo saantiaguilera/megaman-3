@@ -30,7 +30,6 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	myBody->SetUserData( this );
 
 	// Add shape to body
-	// TODO: remove hardcoded parameters
 	b2PolygonShape boxShape;
 	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 

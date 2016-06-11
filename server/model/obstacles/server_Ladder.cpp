@@ -30,3 +30,11 @@ void Ladder::haveEffectOn(Character* character) {
 int Ladder::getObjectType() {
 	return ObstacleViewTypeLadder;
 }
+
+
+void Ladder::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	int objectCollidedWithType = objectCollidedWith->getObjectType();
+	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN){
+		haveEffectOn((Character*) objectCollidedWith);
+	}
+}
