@@ -3,7 +3,17 @@
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <!-- interface-local-resource-path /home/santi/Documents/Fiuba/TallerDeProgramacionI/fiuba-taller-I-megaman/res/drawable -->
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
   <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
+  <object class="GtkImage" id="image5">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-missing-image</property>
@@ -17,6 +27,16 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">../res/drawable/blocks/block.png</property>
+  </object>
+  <object class="GtkImage" id="imageblock1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../res/drawable/blocks/block1.png</property>
+  </object>
+  <object class="GtkImage" id="imageblock2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../res/drawable/blocks/block2.png</property>
   </object>
   <object class="GtkImage" id="imagebosschambergate">
     <property name="visible">True</property>
@@ -80,7 +100,7 @@
   <object class="GtkImage" id="imageprecipice">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">../res/drawable/blocks/sky.jpg</property>
+    <property name="pixbuf">../res/drawable/blocks/sky.png</property>
   </object>
   <object class="GtkImage" id="imagesmallammo">
     <property name="visible">True</property>
@@ -103,67 +123,16 @@
             <property name="spacing">8</property>
             <child>
               <object class="GtkBox" id="box7">
+                <property name="width_request">400</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="label4">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Height</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSpinButton" id="heightspinbutton">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="truncate_multiline">True</property>
-                    <property name="shadow_type">none</property>
-                    <property name="input_purpose">digits</property>
-                    <property name="climb_rate">100</property>
-                    <property name="numeric">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="W">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Width</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSpinButton" id="widthspinbutton">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="truncate_multiline">True</property>
-                    <property name="climb_rate">100</property>
-                    <property name="numeric">True</property>
-                    <property name="value">1000</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">3</property>
-                  </packing>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
-                <property name="expand">True</property>
+                <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
@@ -175,6 +144,9 @@
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Map Editor
 </property>
+                <attributes>
+                  <attribute name="foreground" value="#eeeeeeeeecec"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -186,7 +158,7 @@
               <object class="GtkButton" id="backbutton">
                 <property name="label">gtk-go-back</property>
                 <property name="width_request">100</property>
-                <property name="height_request">100</property>
+                <property name="height_request">50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -203,7 +175,7 @@
               <object class="GtkButton" id="savebutton">
                 <property name="label">gtk-save</property>
                 <property name="width_request">100</property>
-                <property name="height_request">100</property>
+                <property name="height_request">50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -241,6 +213,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Obstacles</property>
+                    <attributes>
+                      <attribute name="foreground" value="#eeeeeeeeecec"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -251,8 +226,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="ladderbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -266,8 +241,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="blockbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -281,8 +256,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="needlebutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -296,8 +271,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="precipicebutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -311,8 +286,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bosschaimberbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -333,6 +308,90 @@
               </packing>
             </child>
             <child>
+              <object class="GtkBox" id="box9">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label14">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="padding">5</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="block1button">
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="image">imageblock1</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="block2button">
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="image">imageblock2</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button3">
+                    <property name="label" translatable="yes">button</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button4">
+                    <property name="label" translatable="yes">button</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkBox" id="box1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -342,6 +401,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Spawns</property>
+                    <attributes>
+                      <attribute name="foreground" value="#eeeeeeeeecec"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -352,8 +414,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="megamanspawnbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -367,8 +429,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bumpyspawnbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -382,8 +444,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="jumpingsniperspawnbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -397,8 +459,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="metspawnbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -412,8 +474,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="normalsniperspawnbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -429,7 +491,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -442,6 +504,9 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Powerups</property>
+                    <attributes>
+                      <attribute name="foreground" value="#eeeeeeeeecec"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -452,8 +517,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="lifebutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -467,8 +532,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="energysmallbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -482,8 +547,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="energybigbutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -497,8 +562,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bigammobutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -512,8 +577,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="smallammobutton">
-                    <property name="width_request">50</property>
-                    <property name="height_request">50</property>
+                    <property name="width_request">70</property>
+                    <property name="height_request">70</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -529,7 +594,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -558,6 +623,7 @@
                           <object class="GtkFixed" id="fixedwindow">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="margin_top">3</property>
                           </object>
                         </child>
                       </object>
@@ -568,7 +634,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">5</property>
               </packing>
             </child>
           </object>

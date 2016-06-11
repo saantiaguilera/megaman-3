@@ -11,8 +11,11 @@ MapConstants::MapConstants() {
 	//Obstacle
 	imageMap[ObstacleViewTypeLadder] = "./res/drawable/blocks/ladder.png";
 	imageMap[ObstacleViewTypeBlock] = "./res/drawable/blocks/block.png";
+	imageMap[ObstacleViewTypeBlock1] = "./res/drawable/blocks/block1.png";
+	imageMap[ObstacleViewTypeBlock2] = "./res/drawable/blocks/block2.png";
+	imageMap[ObstacleViewTypeBlock3] = "./res/drawable/blocks/block3.png";
 	imageMap[ObstacleViewTypeNeedle] = "./res/drawable/blocks/spike.png";
-	imageMap[ObstacleViewTypePrecipice] = "./res/drawable/blocks/sky.jpg";
+	imageMap[ObstacleViewTypePrecipice] = "./res/drawable/blocks/sky.png";
 	imageMap[ObstacleViewTypeBossChamberGate] = "./res/drawable/blocks/boss_lair.png";
 
 	//Spawns

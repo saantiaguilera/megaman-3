@@ -49,6 +49,10 @@ protected:
     //Add Buttons
     Gtk::Button *ladderButton;
     Gtk::Button *blockButton;
+    Gtk::Button *block1Button;
+    Gtk::Button *block2Button;
+    Gtk::Button *block3Button;
+
     Gtk::Button *needleButton;
     Gtk::Button *precipiceButton;
     Gtk::Button *bossChamberButton;
@@ -86,6 +90,10 @@ protected:
         //Add Button Signals
     void ladderButtonWasTapped();
     void blockButtonWasTapped();
+    void block1ButtonWasTapped();
+    void block2ButtonWasTapped();
+    void block3ButtonWasTapped();
+
     void needleButtonWasTapped();
     void precipiceButtonWasTapped();
     void bossChamberButtonWasTapped();

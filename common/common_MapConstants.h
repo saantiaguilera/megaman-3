@@ -8,7 +8,7 @@
 #ifndef COMMON_COMMON_MAPCONSTANTS_H_
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
-#define TERRAIN_REAL_TILE_SIZE 100
+#define TERRAIN_REAL_TILE_SIZE 70
 #define TERRAIN_TILE_SIZE 70
 
 #include <map>
@@ -28,39 +28,43 @@ typedef enum {
 
 	ObstacleViewTypeLadder = 0,
 	ObstacleViewTypeBlock = 1,
-	ObstacleViewTypeNeedle = 2,
-	ObstacleViewTypePrecipice = 3,
-	ObstacleViewTypeBossChamberGate = 4,
+	ObstacleViewTypeBlock1 = 2,
+	ObstacleViewTypeBlock2 = 3,
+	ObstacleViewTypeBlock3 = 4,
+
+	ObstacleViewTypeNeedle = 5,
+	ObstacleViewTypePrecipice = 6,
+	ObstacleViewTypeBossChamberGate = 7,
 
 	//Spawns
 
-	ObstacleViewTypeMegaman = 5,
-	ObstacleViewTypeBumpy = 6,
-	ObstacleViewTypeJumpingSnyper = 7,
-	ObstacleViewTypeMet = 8,
-	ObstacleViewTypeNormalSnyper = 9,
+	ObstacleViewTypeMegaman = 8,
+	ObstacleViewTypeBumpy = 9,
+	ObstacleViewTypeJumpingSnyper = 10,
+	ObstacleViewTypeMet = 11,
+	ObstacleViewTypeNormalSnyper = 12,
 
 	//Powerups
-	ObstacleViewTypeLife = 10,
-	ObstacleViewTypeBigEnergyCapsule = 11,
-	ObstacleViewTypeSmallEnergyCapsule = 12,
-	ObstacleViewTypeBigAmmoPack = 13,
-	ObstacleViewTypeSmallAmmoPack = 14,
+	ObstacleViewTypeLife = 13,
+	ObstacleViewTypeBigEnergyCapsule = 14,
+	ObstacleViewTypeSmallEnergyCapsule = 15,
+	ObstacleViewTypeBigAmmoPack = 16,
+	ObstacleViewTypeSmallAmmoPack = 17,
 
 	// Bosses
-	ObstacleViewTypeBombman = 15,
-	ObstacleViewTypeFireman = 16,
-	ObstacleViewTypeMagnetman = 17,
-	ObstacleViewTypeRingman = 18,
-	ObstacleViewTypeSparkman = 19,
+	ObstacleViewTypeBombman = 18,
+	ObstacleViewTypeFireman = 19,
+	ObstacleViewTypeMagnetman = 20,
+	ObstacleViewTypeRingman = 21,
+	ObstacleViewTypeSparkman = 22,
 
 	// Projectiles
-	ObstacleViewTypeBomb = 20,
-	ObstacleViewTypeFire = 21,
-	ObstacleViewTypeMagnet = 22,
-	ObstacleViewTypeRing = 23,
-	ObstacleViewTypeSpark = 24,
-	ObstacleViewTypePlasma = 25
+	ObstacleViewTypeBomb = 23,
+	ObstacleViewTypeFire = 24,
+	ObstacleViewTypeMagnet = 25,
+	ObstacleViewTypeRing = 26,
+	ObstacleViewTypeSpark = 27,
+	ObstacleViewTypePlasma = 28
 } ObstacleViewType;
 
 #define MAP_NAME "map"

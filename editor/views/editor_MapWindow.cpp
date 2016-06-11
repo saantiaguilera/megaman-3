@@ -31,6 +31,10 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     builder->get_widget("backbutton", backButton);
 
     builder->get_widget("blockbutton", blockButton);
+    builder->get_widget("block1button", block1Button);
+    builder->get_widget("block2button", block2Button);
+    builder->get_widget("block3button", block3Button);
+
     builder->get_widget("needlebutton", needleButton);
     builder->get_widget("ladderbutton", ladderButton);
     builder->get_widget("precipicebutton", precipiceButton);
@@ -51,6 +55,7 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
     builder->get_widget_derived("fixedwindow", fixedWindow);
+    override_background_color(Gdk::RGBA("gray"));
     builder->get_widget("eventbox", eventBox);
 
 
@@ -66,6 +71,10 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 
     blockButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::blockButtonWasTapped));
+    block1Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::block1ButtonWasTapped));
+    block2Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::block2ButtonWasTapped));
+    block3Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::block3ButtonWasTapped));
+
     needleButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::needleButtonWasTapped));
     precipiceButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::precipiceButtonWasTapped));
     ladderButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::ladderButtonWasTapped));
@@ -120,6 +129,17 @@ void MapWindow::backButtonWasTapped() {
 //Add Buttons
 void MapWindow::blockButtonWasTapped() {
 	addDraggingImageWithType(ObstacleViewTypeBlock);
+}
+
+void MapWindow::block1ButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBlock1);
+}
+
+void MapWindow::block2ButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBlock2);
+}
+void MapWindow::block3ButtonWasTapped() {
+	addDraggingImageWithType(ObstacleViewTypeBlock3);
 }
 
 void MapWindow::needleButtonWasTapped() {
