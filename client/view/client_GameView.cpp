@@ -5,7 +5,7 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define DRAW_TIME_STEP 33 //30 fps
+#define DRAW_TIME_STEP 50
 
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
@@ -24,7 +24,7 @@ GameView::GameView() : Gtk::Window(){
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
 
-  set_size_request(800, 800); //TODO
+  set_size_request(screenWidth, screenHeight);
 
   massCenter.setX(0);
   massCenter.setY(0);
@@ -105,7 +105,6 @@ void GameView::addViewFromJSON(std::string json) {
     AnimatedView * view = factoryView->make(viewType, viewId);
 
     if (view) {
-      std::cout << "setx" << std::endl;
       view->setX(positionX);
       view->setY(positionY);
 

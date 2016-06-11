@@ -6,9 +6,11 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define LEFT 0
-#define RIGHT 1
-#define IDLE 2
+enum ORIENTATION {
+  IDLE,
+  LEFT,
+  RIGHT,
+};
 
 class AnimatedView : public RenderedView {
   protected:
@@ -17,7 +19,7 @@ class AnimatedView : public RenderedView {
     int counter;
 
     //Because it throws memory corruption if I use a fucking enum
-    int mOrientation;
+    ORIENTATION mOrientation;
 
     bool deviatesMassCenter = false;
 

@@ -47,14 +47,17 @@ public:
         massCenter.setY(mapTexture->GetHeight() - getRenderer()->GetOutputHeight() / 2);
       } else cameraPoint.setY(massCenter.getY() - getRenderer()->GetOutputHeight() / 2);
 
+      std::cout << "draw with " << cameraPoint.getX() << " " << cameraPoint.getY() << " " << getRenderer()->GetOutputWidth() << " " << getRenderer()->GetOutputHeight() << std::endl;
+      std::cout << "mass center " << massCenter.getX() << " " << massCenter.getY() << std::endl;
+
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
             cameraPoint.getY(),
-            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()), SDL2pp::NullOpt);
+            getRenderer()->GetOutputWidth(), getRenderer()->GetOutputHeight()));
     }
   }
 
@@ -73,23 +76,22 @@ public:
     if (backgroundTexture)
       delete backgroundTexture;
 
+    int mWidth = mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth();
+    int mHeight = mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight();
+
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET,
-                mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth(),
-                mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
     backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET,
-                mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth(),
-                mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight());
+          SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
 
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
     //Fill all the texture with sky
     SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
-    for (int i = 0 ; i < backgroundTexture->GetWidth() ; i += TERRAIN_TILE_SIZE) {
-      for (int j = 0 ; j < backgroundTexture->GetHeight() ; j += TERRAIN_TILE_SIZE) {
+    for (int i = 0 ; i < mWidth ; i += TERRAIN_TILE_SIZE) {
+      for (int j = 0 ; j < mHeight ; j += TERRAIN_TILE_SIZE) {
         backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
           *skySurface);
       }
@@ -113,6 +115,8 @@ public:
     delete texturesMap[ObstacleViewTypeNeedle];
     delete texturesMap[ObstacleViewTypePrecipice];
     delete skySurface;
+
+    std::cout << "Parsed map " << mWidth << " " << mHeight << std::endl;
 
     textureExists = true;
   }

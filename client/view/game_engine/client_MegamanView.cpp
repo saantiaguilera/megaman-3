@@ -6,11 +6,20 @@
 #define N_POSITIONS 3
 #define N_REPETITIONS 3
 
+#define FIRST_LEFT 4
+#define LAST_LEFT 6
+
+#define IDLE_LEFT 7
+#define IDLE_RIGHT 0
+
+#define FIRST_RIGHT 1
+#define LAST_RIGHT 3
+
 int MegamanView::megamansCount = 0;
 
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
   deviatesMassCenter = true;
-  //lastOrientation = IDLE;
+  lastOrientation = IDLE;
 
   switch (megamansCount) {
     case 0:
@@ -44,24 +53,24 @@ void MegamanView::draw(Point &massCenter) {
     repetitions = 0;
     ++currentSprite;
   }
-/*
+
   switch (mOrientation) {
     case IDLE:
       if (lastOrientation == LEFT)
-        currentSprite = 7;
-      else currentSprite = 0;
+        currentSprite = IDLE_LEFT;
+      else currentSprite = IDLE_RIGHT;
       break;
     case LEFT:
-      if (currentSprite > 6)
-        currentSprite = 4;
+      if (currentSprite > LAST_LEFT)
+        currentSprite = FIRST_LEFT;
       break;
     case RIGHT:
-      if (currentSprite > 3)
-        currentSprite = 1;
+      if (currentSprite > LAST_RIGHT)
+        currentSprite = FIRST_RIGHT;
       break;
   }
-*/
-//  lastOrientation = mOrientation;
+
+  lastOrientation = mOrientation;
 
   Point cameraPoint;
   cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));

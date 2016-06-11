@@ -9,7 +9,7 @@ class MegamanView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
 
-  //ORIENTATION lastOrientation;
+  ORIENTATION lastOrientation;
 
   int currentSprite = 0;
   int repetitions = 0;
