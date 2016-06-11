@@ -24,7 +24,6 @@ EnteredBossChamberSerializer::~EnteredBossChamberSerializer() {
 }
 
 void EnteredBossChamberSerializer::serialize() {
-	// TODO: Get the desired bosschamber, not this hardcoded one
 	std::stringstream mapIdstring;
 	mapIdstring << Engine::getInstance().getCurrentMapId();
 	std::string filename = "bosschamber" + mapIdstring.str() + ".json";

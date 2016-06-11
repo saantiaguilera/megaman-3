@@ -16,7 +16,6 @@
 // assigned as admin, there is always one proxy waiting for connection
 #define ADMIN_ID 2
 
-// TODO: WARNING: megaman initial positions hardcoded
 Player::Player(unsigned int id, const std::string& name,
 		unsigned int initialLives) :
 		id(id), name(name), lives(initialLives) {

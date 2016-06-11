@@ -49,9 +49,8 @@ void Projectile::setBody() {
 	myBody->SetUserData( this );
 
 	// Add shape to body
-	// TODO: remove hardcoded parameters
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(1,1);
+	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
