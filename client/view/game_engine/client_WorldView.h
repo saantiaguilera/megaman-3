@@ -83,7 +83,6 @@ public:
                 mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth(),
                 mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight());
 
-    std::cout << "sizes are " << backgroundTexture->GetWidth() << " " << backgroundTexture->GetHeight() << std::endl;
 
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
