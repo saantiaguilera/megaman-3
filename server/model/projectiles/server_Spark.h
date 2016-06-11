@@ -17,7 +17,7 @@
 class Spark: public Projectile {
 public:
 	// Constructor
-	Spark(float32 x, float32 y);
+	Spark(float32 x, float32 y, int facingPosition);
 	// Destroyer
 	virtual ~Spark();
 	// Get type for serialization

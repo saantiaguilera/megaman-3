@@ -19,7 +19,7 @@ MobCannon::~MobCannon() {
 void MobCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		Engine::getInstance().markObjectForCreation(new Plasma(x + facingPosition, y));
+		Engine::getInstance().markObjectForCreation(new Plasma(x, y, facingPosition));
 	}
 }
 

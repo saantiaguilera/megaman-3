@@ -19,7 +19,7 @@ MagnetCannon::~MagnetCannon() {
 void MagnetCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		Engine::getInstance().markObjectForCreation(new Magnet(x + facingPosition, y));
+		Engine::getInstance().markObjectForCreation(new Magnet(x, y, facingPosition));
 	}
 }
 

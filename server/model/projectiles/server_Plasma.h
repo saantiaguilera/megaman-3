@@ -17,7 +17,7 @@
 class Plasma: public Projectile {
 public:
 	// Constructor
-	Plasma(float32 x, float32 y);
+	Plasma(float32 x, float32 y, int facingPosition);
 	// Destroyer
 	virtual ~Plasma();
 	// Get type for serialization
