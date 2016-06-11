@@ -63,4 +63,6 @@ void Projectile::setBody() {
 	// TODO: Set it in constructor?
 	myBody->ApplyLinearImpulse(b2Vec2(5,0), myBody->GetWorldCenter(), true);
 	myBody->SetGravityScale(0);
+
+	notify();
 }
