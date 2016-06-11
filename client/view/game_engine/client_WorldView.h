@@ -21,6 +21,7 @@ class WorldView : public RenderedView {
 private:
   SDL2pp::Texture *backgroundTexture;
   SDL2pp::Texture *mapTexture;
+
   bool textureExists;
 
 public:
@@ -46,9 +47,6 @@ public:
         cameraPoint.setY(mapTexture->GetHeight() - getRenderer()->GetOutputHeight());
         massCenter.setY(mapTexture->GetHeight() - getRenderer()->GetOutputHeight() / 2);
       } else cameraPoint.setY(massCenter.getY() - getRenderer()->GetOutputHeight() / 2);
-
-      std::cout << "draw with " << cameraPoint.getX() << " " << cameraPoint.getY() << " " << getRenderer()->GetOutputWidth() << " " << getRenderer()->GetOutputHeight() << std::endl;
-      std::cout << "mass center " << massCenter.getX() << " " << massCenter.getY() << std::endl;
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX(),
@@ -85,7 +83,6 @@ public:
     backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
-
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
     //Fill all the texture with sky
@@ -116,12 +113,12 @@ public:
     delete texturesMap[ObstacleViewTypePrecipice];
     delete skySurface;
 
-    std::cout << "Parsed map " << mWidth << " " << mHeight << std::endl;
-
     textureExists = true;
   }
 
   virtual ~WorldView() {
+    textureExists = false;
+
     if (mapTexture)
       delete mapTexture;
 

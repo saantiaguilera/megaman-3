@@ -41,8 +41,10 @@ GameView::GameView() : Gtk::Window(){
 }
 
 GameView::~GameView() {
-  if (worldView)
+  if (worldView) {
     delete worldView;
+    worldView = NULL;
+  }
 
   if (mixer) {
     delete mixer;
@@ -56,23 +58,35 @@ GameView::~GameView() {
 
   resetAnimations();
 
-  if (ammoBarView)
+  if (ammoBarView) {
     delete ammoBarView;
+    ammoBarView = NULL;
+  }
 
-  if (healthBarView)
+  if (healthBarView) {
     delete healthBarView;
+    healthBarView = NULL;
+  }
 
-  if (lifeBarView)
+  if (lifeBarView) {
     delete lifeBarView;
+    lifeBarView = NULL;
+  }
 
-  if (renderer)
+  if (renderer) {
     delete renderer;
+    renderer = NULL;
+  }
 
-  if (mainWindow)
+  if (mainWindow) {
     delete mainWindow;
+    mainWindow = NULL;
+  }
 
-  if (sdl)
+  if (sdl) {
     delete sdl;
+    sdl = NULL;
+  }
 }
 
 void GameView::resetAnimations() {

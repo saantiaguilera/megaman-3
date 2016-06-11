@@ -47,27 +47,50 @@ MegamanView::~MegamanView() {
  delete texture;
 }
 
-void MegamanView::draw(Point &massCenter) {
+void MegamanView::step() {
   ++repetitions;
   if (repetitions > N_REPETITIONS) {
     repetitions = 0;
     ++currentSprite;
   }
+}
 
-  switch (mOrientation) {
-    case IDLE:
-      if (lastOrientation == LEFT)
-        currentSprite = IDLE_LEFT;
-      else currentSprite = IDLE_RIGHT;
-      break;
-    case LEFT:
-      if (currentSprite > LAST_LEFT)
+void MegamanView::draw(Point &massCenter) {
+  AnimatedView::draw(massCenter);
+
+  if (mOrientation == lastOrientation) {
+    switch (mOrientation) {
+      case UP:
+      case DOWN:
+      case IDLE:
+        break;
+      case LEFT:
+        step();
+        if (currentSprite > LAST_LEFT)
+          currentSprite = FIRST_LEFT;
+        break;
+      case RIGHT:
+        step();
+        if (currentSprite > LAST_RIGHT)
+          currentSprite = FIRST_RIGHT;
+        break;
+    }
+  } else {
+    switch (mOrientation) {
+      case UP:
+      case DOWN:
+      case IDLE:
+        if (lastOrientation == LEFT)
+          currentSprite = IDLE_LEFT;
+        else currentSprite = IDLE_RIGHT;
+        break;
+      case LEFT:
         currentSprite = FIRST_LEFT;
-      break;
-    case RIGHT:
-      if (currentSprite > LAST_RIGHT)
+        break;
+      case RIGHT:
         currentSprite = FIRST_RIGHT;
-      break;
+        break;
+    }
   }
 
   lastOrientation = mOrientation;

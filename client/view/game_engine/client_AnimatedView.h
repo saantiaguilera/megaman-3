@@ -6,25 +6,28 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
+#define MAX_STEP_FOR_IDLE 8
+
 enum ORIENTATION {
   IDLE,
   LEFT,
   RIGHT,
+  UP,
+  DOWN
 };
 
 class AnimatedView : public RenderedView {
   protected:
-    unsigned int x,y;
+    unsigned int x,y, previousX, previousY;
     unsigned int id;
     int counter;
 
-    //Because it throws memory corruption if I use a fucking enum
     ORIENTATION mOrientation;
 
     bool deviatesMassCenter = false;
 
   public:
-    AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), id(id), counter(0), mOrientation(IDLE) {
+    AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), x(0), y(0), previousX(0), previousY(0), id(id), counter(0), mOrientation(IDLE) {
     }
 
     virtual ~AnimatedView() {
@@ -34,12 +37,26 @@ class AnimatedView : public RenderedView {
       return id;
     }
 
-    //TODO Do polymorphism, the methods below are really similar between classes.
-    virtual void draw(Point &massCenter) = 0;
+    virtual void draw(Point &massCenter) {
+      if (x == previousX && y == previousY) {
+        counter++;
+        if (counter > MAX_STEP_FOR_IDLE)
+          mOrientation = IDLE;
+      } else {
+        counter = 0;
+        if (x != previousX) {
+          mOrientation = ((int) (x - previousX)) > 0 ? RIGHT : LEFT;
+          previousX = x;
+        } else {
+          mOrientation = ((int) (y - previousY)) > 0 ? UP : DOWN;
+          previousY = y;
+        }
+      }
+    }
 
     virtual void move(unsigned int x, unsigned int y) {
-        setX(x);
-        setY(y);
+      setX(x);
+      setY(y);
     }
 
     bool doesDeviateMassCenter() {
@@ -50,21 +67,12 @@ class AnimatedView : public RenderedView {
     unsigned int getY() { return y; }
 
     void setX(unsigned int x) {
-      if (this->x - x == 0) {
-        counter++;
-        if (counter > 5)
-          mOrientation = IDLE;
-      } else if (this->x - x > 0) {
-        mOrientation = LEFT;
-        counter = 0;
-      } else {
-        mOrientation = RIGHT;
-        counter = 0;
-      }
-
       this->x = x;
     }
-    void setY(unsigned int y) { this->y = y; }
+
+    void setY(unsigned int y) {
+      this->y = y;
+    }
 
 };
 

@@ -18,6 +18,8 @@ private:
   static int megamansCount;
   int megamanNumber = 0;
 
+  void step();
+
 public:
   MegamanView(unsigned int id, SDL2pp::Renderer *renderer);
   virtual ~MegamanView();
