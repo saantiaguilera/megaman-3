@@ -48,7 +48,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		}
 		break;
 	case START_GAME:
-		// Here inbound message is the map to load 1
 		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
 			std::cout << "Start game!" << std::endl;
 			// Set the flag of the engine to ready to start
@@ -60,6 +59,10 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 						startGameSerializer);
 				JsonMapParser mapParser;
 				mapParser.parseDocument("level" + inboundMessage + ".json");
+				int selectedMapId;
+				std::stringstream inboundMessageStream(inboundMessage);
+				inboundMessageStream >> selectedMapId;
+				Engine::getInstance().setCurrentMapId(selectedMapId);
 				Engine::getInstance().setReadyToStart(true);
 			}
 		}
@@ -73,7 +76,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		processMovement(inboundMessage, desiredPlayer);
 		break;
 	case WEAPON_CHANGE:
-		// TODO: Check what inbound message represens here
 		std::cout << "Weapon change!" << std::endl;
 		desiredPlayer = getDesiredPlayer(clientId);
 		desiredPlayer->getMegaman()->changeWeaponTo(

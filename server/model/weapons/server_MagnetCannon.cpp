@@ -15,10 +15,10 @@ MagnetCannon::MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
 MagnetCannon::~MagnetCannon() {
 }
 
-void MagnetCannon::fire(float32 x, float32 y) {
+void MagnetCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Magnet(x + BULLET_X_OFFSET, y);
+		new Magnet(x + facingPosition, y);
 	}
 }
 

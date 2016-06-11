@@ -19,36 +19,9 @@ Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) : PhysicObject() {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y) : PhysicObject(), initialX(x), initialY(y) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
-
-	b2BodyDef projectileBodyDef;
-	projectileBodyDef.type = b2_kinematicBody;
-	projectileBodyDef.position.Set(x,y);
-	// TODO: Maybe add it from the outside? when its created
-	// Set it as bullet (it adds heavy workload, check if neccessary)
-	projectileBodyDef.bullet = true;
-	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
-
-	// Assign user data for callbacks
-	myBody->SetUserData( this );
-
-	// Add shape to body
-	// TODO: remove hardcoded parameters
-	b2PolygonShape boxShape;
-	boxShape.SetAsBox(1,1);
-
-	// Add fixture
-	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
-	boxFixtureDef.density = 1;
-	myBody->CreateFixture(&boxFixtureDef);
-
-	// Apply an impulse <-- this direction
-	// TODO: Set it in constructor?
-	myBody->ApplyLinearImpulse(b2Vec2(0,5), myBody->GetWorldCenter(), true);
-	myBody->SetGravityScale(0);
 }
 
 int Projectile::getProjectileType() const {
@@ -61,4 +34,34 @@ unsigned int Projectile::getDamage() const {
 
 int Projectile::getObjectType() {
 	return OT_PROJECTILE;
+}
+
+void Projectile::setBody() {
+	b2BodyDef projectileBodyDef;
+	projectileBodyDef.type = b2_kinematicBody;
+	projectileBodyDef.position.Set(initialX,initialY);
+	// TODO: Maybe add it from the outside? when its created
+	// Set it as bullet (it adds heavy workload, check if neccessary)
+//	projectileBodyDef.bullet = true;
+//	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
+
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
+
+	// Add shape to body
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+
+	// Add fixture
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
+	myBody->CreateFixture(&boxFixtureDef);
+
+	// Apply an impulse <-- this direction
+	// TODO: Set it in constructor?
+	myBody->ApplyLinearImpulse(b2Vec2(5,0), myBody->GetWorldCenter(), true);
+	myBody->SetGravityScale(0);
+
+	notify();
 }

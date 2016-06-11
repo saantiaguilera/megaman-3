@@ -15,10 +15,10 @@ Flamethrower::Flamethrower() : Weapon(FLAMETHROWER_MAX_AMMO) {}
 Flamethrower::~Flamethrower() {
 }
 
-void Flamethrower::fire(float32 x, float32 y) {
+void Flamethrower::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Fire(x + BULLET_X_OFFSET, y);
+		new Fire(x + facingPosition, y);
 	}
 }
 

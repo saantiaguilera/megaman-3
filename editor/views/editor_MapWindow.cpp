@@ -48,11 +48,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     builder->get_widget("bigammobutton", bigAmmoButton);
     builder->get_widget("smallammobutton", smallAmmoButton);
 
-    //SpinButons
-    builder->get_widget("heightspinbutton", heightSpinButton);
-    builder->get_widget("widthspinbutton", widthSpinButton);
-
-
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
     builder->get_widget_derived("fixedwindow", fixedWindow);
@@ -86,7 +81,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
     smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
 
-    //Spin Buttons
     int minHeight = 0;
     int minWidth = 0;
 
@@ -95,18 +89,7 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
     int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
 
-    heightSpinButton->set_range(minHeightTruncated, TERRAIN_TILE_SIZE * 1000);
-    widthSpinButton->set_range(minWidthTruncated, TERRAIN_TILE_SIZE * 1000);
-
-    heightSpinButton->set_numeric(true);
-    widthSpinButton->set_numeric(true);
-    heightSpinButton->set_increments(100, 100);
-    widthSpinButton->set_increments(100, 100);
-
     fixedWindow->set_size_request(minWidthTruncated, minHeightTruncated);
-
-    heightSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
-    widthSpinButton->signal_value_changed().connect(sigc::mem_fun(* this, &MapWindow::sizeDidModify));
 }
 
 //Signals
@@ -116,9 +99,11 @@ void MapWindow::saveButtonWasTapped() {
 
 void MapWindow::saveMap() {
 	MapView *savedMap = fixedWindow->saveMapView();
+
+	savedMap->setHeight(fixedWindow->mapHeight());
+	savedMap->setWidth(fixedWindow->mapWidth());
+
 	fixedWindow->removeAllChildViews();
-	savedMap->setHeight(heightSpinButton->get_value_as_int());
-	savedMap->setWidth(widthSpinButton->get_value_as_int());
 
 	delegate->presentMainWindowSavingMap(savedMap);
 }
@@ -202,51 +187,56 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 	draggingImageContainer = new ObstacleViewContainer(obstacleView);
 
-
 	draggingImage = draggingImageContainer->getImage();
+	draggingImage->hide();
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
-}
-
-//Size
-void MapWindow::sizeDidModify() {
-//	int height = heightSpinButton->get_value_as_int();
-//	int width = widthSpinButton->get_value_as_int();
-//
-//	fixedWindow->set_size_request(width, height);
 }
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
-	int fixedWidth;
-	int fixedHeight;
-
-	fixedWindow->get_size_request(fixedWidth, fixedHeight);
-
+//		Have to delete tile
 	if (event->button == kRightClickButton) {
-
+//		Decide whether to remove while moving or static move
 		if (draggingImageIsMoving) {
 			deleteDraggingImage();
 		} else {
 			deleteImage(event->x, event->y);
 		}
 
+//		Have to add a new tile
 	} else if (event->button == kLeftClickButton) {
-		if ((event->y + TERRAIN_TILE_SIZE) > fixedHeight) {
-			fixedWindow->set_size_request(fixedWidth,fixedHeight + 3 * TERRAIN_TILE_SIZE);
-		}
-		if ((event->x + TERRAIN_TILE_SIZE) > fixedWidth) {
-			fixedWindow->set_size_request(fixedWidth + 3 * TERRAIN_TILE_SIZE, fixedHeight);
-		}
 
+//		Deside whether image have to be drop or just move it
 		if (draggingImageIsMoving) {
 			dropDraggingImage(event->x, event->y);
 		} else {
 			dragImage(event->x, event->y);
 		}
-
 	}
 
+	resizeFixView();
+
 	return true;
+}
+
+void MapWindow::resizeFixView() {
+	int mapHeight = fixedWindow->mapHeight();
+	int mapWidth = fixedWindow->mapWidth();
+
+    int minHeight = 0;
+    int minWidth = 0;
+
+    scrolledWindow->get_size_request(minWidth, minHeight);
+
+    int minHeightTruncated = minHeight + TERRAIN_TILE_SIZE - (minHeight % TERRAIN_TILE_SIZE);
+    int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
+
+    mapHeight = minHeightTruncated > mapHeight ? minHeightTruncated : mapHeight;
+    mapWidth= minWidthTruncated > mapWidth ? minWidthTruncated : mapWidth;
+
+
+	fixedWindow->set_size_request(mapWidth +  3 * TERRAIN_TILE_SIZE,mapHeight + 3 * TERRAIN_TILE_SIZE);
+
 }
 
 void MapWindow::dropDraggingImage(int aX, int aY) {
@@ -264,6 +254,9 @@ void MapWindow::dropDraggingImage(int aX, int aY) {
 	int y = aY - (aY % TERRAIN_TILE_SIZE);
 
 	draggingImageContainer->getObstacleView()->setPosition(x, y);
+	ObstacleViewType type = draggingImageContainer->getObstacleView()->getType();
+
+	addDraggingImageWithType(type);
 }
 
 void MapWindow::dragImage(int aX, int aY) {
@@ -301,6 +294,7 @@ bool MapWindow::on_motion_notify_event(GdkEventMotion* event) {
 	int y = event->y;
 
 	if (draggingImageIsMoving) {
+		draggingImage->show();
 		fixedWindow->move(*draggingImage, x - (x % TERRAIN_TILE_SIZE), y - (y % TERRAIN_TILE_SIZE));
 	}
 
@@ -317,11 +311,9 @@ void MapWindow::draggingEnd() {
 
 //Setters
 void MapWindow::setMapView(MapView *aMapView) {
-	heightSpinButton->set_value(aMapView->getHeight());
-	widthSpinButton->set_value(aMapView->getWidth());
-	sizeDidModify();
-
 	fixedWindow->setMapView(aMapView);
+
+	resizeFixView();
 }
 
 void MapWindow::setDelegate(EditorController *aDelegate) {

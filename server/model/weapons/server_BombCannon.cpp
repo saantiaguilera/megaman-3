@@ -15,10 +15,10 @@ BombCannon::BombCannon() : Weapon(BOMB_MAX_AMMO) {}
 BombCannon::~BombCannon() {
 }
 
-void BombCannon::fire(float32 x, float32 y) {
+void BombCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		new Bomb(x + BULLET_X_OFFSET, y);
+		new Bomb(x + facingPosition, y);
 	}
 }
 

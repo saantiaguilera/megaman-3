@@ -16,7 +16,6 @@
 // assigned as admin, there is always one proxy waiting for connection
 #define ADMIN_ID 2
 
-// TODO: WARNING: megaman initial positions hardcoded
 Player::Player(unsigned int id, const std::string& name,
 		unsigned int initialLives) :
 		id(id), name(name), lives(initialLives) {
@@ -62,8 +61,8 @@ void Player::increasePlayerLives() {
 	++lives;
 }
 
-void Player::setMegaman() {
+void Player::setMegaman(uint x, uint y) {
 	if (megaman == NULL){
-		megaman = new Megaman(this, 100, 100);
+		megaman = new Megaman(this, x, y);
 	}
 }

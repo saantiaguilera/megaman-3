@@ -9,12 +9,11 @@
 #define SERVER_MODEL_WEAPONS_SERVER_MOBCANNON_H_
 
 #include <Common/b2Settings.h>
-#include <limits>
 
 #include "server_Weapon.h"
 
 #define MOB_CANNON_DAMAGE 1
-#define MOB_CANNON_MAX_AMMO std::numeric_limits<unsigned int>::max()
+#define MOB_CANNON_MAX_AMMO 5000
 
 class MobCannon: public Weapon {
 public:
@@ -23,7 +22,7 @@ public:
 	// Destroyer
 	virtual ~MobCannon();
 	// fire weapon
-	virtual void fire(float32 x, float32 y);
+	virtual void fire(float32 x, float32 y, int facingPosition);
 	// Return max ammo of the weapon
 	virtual unsigned int getMaxAmmo();
 private:

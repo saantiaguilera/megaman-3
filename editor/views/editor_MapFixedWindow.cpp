@@ -99,6 +99,32 @@ ObstacleViewContainer *MapFixedWindow::obstacleViewContainerWithPosition(int aX,
 			return obstacleViewContainer;
 		}
 	}
+
 	return NULL;
 }
 
+int MapFixedWindow::mapWidth() {
+	int maxWidth= 0;
+
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer *obstacleViewContainer = *it;
+		int x = obstacleViewContainer->getObstacleView()->getPoint().getX();
+
+		maxWidth = (x > maxWidth) ? x : maxWidth;
+	}
+
+	return maxWidth;
+}
+
+int MapFixedWindow::mapHeight() {
+	int maxHeight= 0;
+
+	for(std::vector<ObstacleViewContainer *>::iterator it = obstacleViewContainers->begin(); it != obstacleViewContainers->end(); ++it) {
+		ObstacleViewContainer *obstacleViewContainer = *it;
+		int y = obstacleViewContainer->getObstacleView()->getPoint().getY();
+
+		maxHeight = (y > maxHeight) ? y : maxHeight;
+	}
+
+	return maxHeight;
+}
