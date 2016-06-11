@@ -9,7 +9,7 @@
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
 #define TERRAIN_REAL_TILE_SIZE 100
-#define TERRAIN_TILE_SIZE 100
+#define TERRAIN_TILE_SIZE 70
 
 #include <map>
 

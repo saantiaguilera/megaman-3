@@ -7,6 +7,7 @@
 
 #include "editor_ObstacleViewContainer.h"
 
+#include "../../common/common_MapConstants.h"
 #include <iostream>
 
 ObstacleViewContainer::ObstacleViewContainer(ObstacleView *aObstacleView) {
@@ -17,8 +18,13 @@ ObstacleViewContainer::ObstacleViewContainer(ObstacleView *aObstacleView) {
 	std::cout<<MapConstants().getImagePathWithObstacleViewType(type)<<std::endl;
 	Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
 
+	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
+	temp =  temp->scale_simple(TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE, Gdk::INTERP_BILINEAR);
 
-	image = new Gtk::Image(MapConstants().getImagePathWithObstacleViewType(type));
+
+
+	image = new Gtk::Image();
+	image->set(temp);
 }
 
 ObstacleViewContainer::ObstacleViewContainer() {}
@@ -30,7 +36,7 @@ Gtk::Image *ObstacleViewContainer::getImage() {
 	if (!isShowing) {
 		std::cout<<"entre"<<std::endl;
 		image->show();
-		image->set_size_request(kObstacleSize, kObstacleSize);
+		image->set_size_request(TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
 		isShowing = !isShowing;
 	}
 
