@@ -39,6 +39,7 @@ public:
 	virtual void setBody();
 	// Set user data for callbacks
 	virtual void setUserData();
+	virtual void update();
 
 private:
 	// Copy constructor
