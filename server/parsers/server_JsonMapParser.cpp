@@ -15,6 +15,11 @@
 #include "../../common/rapidjson/rapidjson.h"
 #include "../game_engine/server_Engine.h"
 #include "../game_engine/server_Player.h"
+#include "../model/characters/humanoids/server_Bombman.h"
+#include "../model/characters/humanoids/server_Fireman.h"
+#include "../model/characters/humanoids/server_Magnetman.h"
+#include "../model/characters/humanoids/server_Ringman.h"
+#include "../model/characters/humanoids/server_Sparkman.h"
 #include "../model/characters/mobs/server_Bumpy.h"
 #include "../model/characters/mobs/server_JumpingSniper.h"
 #include "../model/characters/mobs/server_Met.h"
@@ -57,6 +62,15 @@ void JsonMapParser::inflateObstacle(int type, unsigned int x, unsigned int y) {
 	std::list<Player*> playerList;
 	switch (type) {
 		case ObstacleViewTypeBlock:
+			new Block(x, y);
+			break;
+		case ObstacleViewTypeBlock1:
+			new Block(x, y);
+			break;
+		case ObstacleViewTypeBlock2:
+			new Block(x, y);
+			break;
+		case ObstacleViewTypeBlock3:
 			new Block(x, y);
 			break;
 		case ObstacleViewTypeBossChamberGate:
@@ -104,6 +118,21 @@ void JsonMapParser::inflateObstacle(int type, unsigned int x, unsigned int y) {
 					it != playerList.end(); ++it) {
 				(*it)->setMegaman(x, y);
 			}
+			break;
+		case ObstacleViewTypeBombman:
+			new Bombman(x, y);
+			break;
+		case ObstacleViewTypeFireman:
+			new Fireman(x, y);
+			break;
+		case ObstacleViewTypeMagnetman:
+			new MagnetMan(x, y);
+			break;
+		case ObstacleViewTypeRingman:
+			new Ringman(x, y);
+			break;
+		case ObstacleViewTypeSparkman:
+			new Sparkman(x, y);
 			break;
 		default:
 			break;

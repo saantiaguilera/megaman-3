@@ -36,8 +36,7 @@ unsigned int Projectile::getDamage() const {
 }
 
 int Projectile::getObjectType() {
-//	return OT_PROJECTILE;
-	return 30;
+	return OT_PROJECTILE;
 }
 
 void Projectile::setBody() {
@@ -51,7 +50,7 @@ void Projectile::setBody() {
 
 	// Add shape to bodysetBody
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE/2,BODIES_SIZE/2);
+	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
