@@ -81,10 +81,9 @@ class AnimatedView : public RenderedView {
         getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
           renderer->Copy(*getTexture(mOrientation),
             SDL2pp::NullOpt,
-            SDL2pp::Rect(
-              getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
-              getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,
-              TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
+            SDL2pp::Point(
+              futureX - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
+              futureY - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2));
       }
     }
 

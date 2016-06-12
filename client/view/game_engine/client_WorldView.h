@@ -16,6 +16,10 @@
 #define PATH_BLOCK "res/drawable/blocks/block.png"
 #define PATH_NEEDLE "res/drawable/blocks/spike.png"
 #define PATH_SKY "res/drawable/blocks/sky.jpg"
+#define PATH_CHAMBER "res/drawable/blocks/boss_lair.png"
+#define PATH_BLOCK1 "res/drawable/blocks/block1.png"
+#define PATH_BLOCK2 "res/drawable/blocks/block2.png"
+#define PATH_BLOCK3 "res/drawable/blocks/block3.png"
 
 class WorldView : public RenderedView {
 private:
@@ -74,6 +78,10 @@ public:
     texturesMap[ObstacleViewTypeBlock] = new SDL2pp::Surface(PATH_BLOCK);
     texturesMap[ObstacleViewTypeNeedle] = new SDL2pp::Surface(PATH_NEEDLE);
     texturesMap[ObstacleViewTypePrecipice] = new SDL2pp::Surface(PATH_SKY);
+    texturesMap[ObstacleViewTypeBossChamberGate] = new SDL2pp::Surface(PATH_CHAMBER);
+    texturesMap[ObstacleViewTypeBlock1] = new SDL2pp::Surface(PATH_BLOCK1);
+    texturesMap[ObstacleViewTypeBlock2] = new SDL2pp::Surface(PATH_BLOCK2);
+    texturesMap[ObstacleViewTypeBlock3] = new SDL2pp::Surface(PATH_BLOCK3);
 
     if (mapTexture)
       delete mapTexture;
@@ -118,6 +126,10 @@ public:
     delete texturesMap[ObstacleViewTypeBlock];
     delete texturesMap[ObstacleViewTypeNeedle];
     delete texturesMap[ObstacleViewTypePrecipice];
+    delete texturesMap[ObstacleViewTypeBossChamberGate];
+    delete texturesMap[ObstacleViewTypeBlock1];
+    delete texturesMap[ObstacleViewTypeBlock2];
+    delete texturesMap[ObstacleViewTypeBlock3];
     delete skySurface;
 
     textureExists = true;

@@ -23,7 +23,7 @@ int MegamanView::megamansCount = 0;
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
   for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i) {
     std::stringstream ss;
-    ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << i << ".png";
+    ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << ".png";
     textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
   }
 
