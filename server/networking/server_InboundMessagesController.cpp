@@ -48,8 +48,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		}
 		break;
 	case START_GAME:
-		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
-			std::cout << "Start game!" << std::endl;
+		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {

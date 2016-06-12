@@ -10,16 +10,18 @@
 #include <netinet/in.h>
 #include <syslog.h>
 #include <cstring>
+#include <iostream>
 
 #include "../../common/common_Serializer.h"
 
 #define MAX_BUFFER_SIZE 10
 
 // Initialize ids value
-unsigned int ClientProxy::id = 0;
+int ClientProxy::id = -1;
 
 ClientProxy::ClientProxy() {
 	++id;
+	std::cout << "Create clientproxy" << std::endl;
 	connected = false;
 	socket = Socket();
 }
@@ -29,6 +31,7 @@ bool ClientProxy::isConnected() const {
 }
 
 ClientProxy::~ClientProxy() {
+	--id;
 }
 
 void ClientProxy::acceptNewConnection(const Socket& dispatcherSocket) {
@@ -61,7 +64,7 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 	delete buffer;
 }
 
-unsigned int ClientProxy::getId() const {
+int ClientProxy::getId() const {
 	return id;
 }
 

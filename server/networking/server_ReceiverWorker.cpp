@@ -7,6 +7,7 @@
 
 #include "server_ReceiverWorker.h"
 
+#include <iostream>
 #include <string>
 
 #include "server_ClientProxy.h"
@@ -23,7 +24,7 @@ void ReceiverWorker::run() {
 	unsigned int messageLength;
 	while(client->isConnected()){
 		client->receive(messageCode, messageLength, inboundData);
+		std::cout << "I am client: " << client->getId() << std::endl;
 		InboundMessagesController interpreter(messageCode, client->getId(), inboundData);
 	}
-
 }

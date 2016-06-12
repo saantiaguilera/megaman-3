@@ -31,6 +31,7 @@ void AcceptorWorker::run() {
 		clients->push_back(client);
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
+			std::cout << "I am client: " << client->getId() << std::endl;
 //			// Spawn a receiver worker
 //			// It will call our client proxy's receive method
 			ReceiverWorker* receiverWorker = new ReceiverWorker(client);
