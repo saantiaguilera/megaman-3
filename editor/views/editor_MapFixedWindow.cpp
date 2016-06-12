@@ -21,6 +21,7 @@ MapFixedWindow::MapFixedWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::
     Gtk::Fixed(cobject), builder(refGlade) {
 	obstacleViewContainers = new std::vector<ObstacleViewContainer *>();
 
+    builder->get_widget("backgroundimage", backgroundImage);
 }
 
 //Setters
