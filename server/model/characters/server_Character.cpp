@@ -20,7 +20,7 @@
 
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
-				0) {
+				0), maxHp(hp) {
 	Engine::getInstance().getUpdatablesList()->push_back(this);
 }
 
@@ -42,7 +42,7 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
-	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	HpChangeSerializer hpChangeSerializer(getHp(), this);
 	hpChangeSerializer.serialize();
 	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 }
@@ -50,7 +50,7 @@ void Character::receiveShotFromProjectile(Projectile* projectile) {
 void Character::increaseHP(unsigned int amount) {
 	// TODO: if they have a max hp validate here
 	hp += amount;
-	HpChangeSerializer hpChangeSerializer(getHp(), id);
+	HpChangeSerializer hpChangeSerializer(getHp(), this);
 	hpChangeSerializer.serialize();
 	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 }
@@ -69,7 +69,7 @@ void Character::decreaseHp(float damage) {
 		Engine::getInstance().markObjectForRemoval(this);
 	} else {
 		hp -= damage;
-		HpChangeSerializer hpChangeSerializer(getHp(), id);
+		HpChangeSerializer hpChangeSerializer(getHp(), this);
 		hpChangeSerializer.serialize();
 		Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
 	}
@@ -79,4 +79,8 @@ std::string Character::getHpAsString() {
 	std::stringstream ss;
 	ss << getHp();
 	return ss.str();
+}
+
+unsigned int Character::getMaxHp() {
+	return maxHp;
 }

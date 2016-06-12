@@ -22,7 +22,7 @@
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0),facingPosition(FS_LEFT) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT) {
 	++id;
 }
 

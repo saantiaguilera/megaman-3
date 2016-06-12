@@ -29,7 +29,7 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 	notify();
-	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), getId());
+	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(getCurrentWeapon());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
@@ -100,7 +100,7 @@ void Megaman::decreaseHp(float damage) {
 		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 	} else {
 		hp -= damage;
-		HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), id);
+		HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
 		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	}
 }
