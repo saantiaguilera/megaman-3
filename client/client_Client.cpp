@@ -73,6 +73,9 @@ void Client::start(int argc, char *argv[]) {
 }
 
 void Client::onCreateConnection(std::string ip, std::string name) {
+  if (ip.find_first_of(":") == std::string::npos)
+    return;
+
   if (!connectionThread) {
     clientName = name;
     std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;

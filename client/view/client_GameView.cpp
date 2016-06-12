@@ -23,21 +23,21 @@ SDL2pp::Chunk * GameView::shootSound = NULL;
 Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
-  int screenWidth, screenHeight, socketSize;
+  int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
   set_size_request(screenWidth, screenHeight);
 
-  socketSize = screenHeight < SOCKET_SIZE ? screenHeight : SOCKET_SIZE;
+  set_icon_from_file("res/drawable/ic_launcher.png");
 
   massCenter.setX(0);
   massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
-  socket->set_size_request(socketSize, socketSize);
+  socket->set_size_request(SOCKET_SIZE, SOCKET_SIZE);
 
   Gtk::Layout *layout = manage(new Gtk::Layout());
   layout->set_size_request(screenWidth, screenHeight);
-  layout->put(*socket, (screenWidth - socketSize) / 2, (screenHeight - socketSize) / 2);
+  layout->put(*socket, (screenWidth - SOCKET_SIZE) / 2, (screenHeight - SOCKET_SIZE) / 2);
 
   add(*layout);
   show_all();
