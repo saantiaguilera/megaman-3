@@ -335,7 +335,7 @@ void GameView::onBarChange(BarView bar, int amount) {
       break;
 
     case BAR_LIFE:
-      lifeBarView->setLifes(3);
+      lifeBarView->setLifes(amount);
       break;
   }
 }
