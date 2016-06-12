@@ -99,20 +99,6 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     int minWidthTruncated = minWidth + TERRAIN_TILE_SIZE - (minWidth % TERRAIN_TILE_SIZE);
 
     fixedWindow->set_size_request(minWidthTruncated, minHeightTruncated);
-
-    Gtk::Alignment *alignment = Gtk::manage(new Gtk::Alignment);
-    pack_start(*alignment,true,true,0);
-
-    // Create widget
-    Gtk::Alignment mywidget(0.5, 0.5, 0.1, 0.9);
-
-    Glib::RefPtr<Gdk::Pixbuf> pixbuf = Gdk::Pixbuf::create_from_file("background.jpg");
-    Glib::RefPtr<Gdk::Pixmap> pixmap;
-    Glib::RefPtr<Gdk::Bitmap> mask;
-    pixbuf->render_pixmap_and_mask(pixmap, mask,0);
-
-    Glib::RefPtr<Gtk::Style> style = alignment->get_style();
-    alignment->get_window()->draw_pixbuf(style->get_bg_gc(Gtk::STATE_NORMAL), pixbuf, 0, 0, 0, 200, pixbuf->get_width(), pixbuf->get_height(), Gdk::RGB_DITHER_NONE, 0, 0);
 }
 
 //Signals
