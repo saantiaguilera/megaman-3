@@ -24,7 +24,8 @@ public:
   MegamanView(unsigned int id, SDL2pp::Renderer *renderer);
   virtual ~MegamanView();
 
-  virtual void draw(Point &massCenter);
+  virtual SDL2pp::Texture * getTexture(ORIENTATION orient);
+  virtual SDL2pp::Rect * getSRCRect();
   static void resetCharacterCount();
 
 };

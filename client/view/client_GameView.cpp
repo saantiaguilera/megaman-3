@@ -5,7 +5,7 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
-#define DRAW_TIME_STEP 50
+#define DRAW_TIME_STEP 33
 
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
@@ -119,8 +119,10 @@ void GameView::addViewFromJSON(std::string json) {
     AnimatedView * view = factoryView->make(viewType, viewId);
 
     if (view) {
-      view->setX(positionX);
-      view->setY(positionY);
+      Point point;
+      point.setX(positionX);
+      point.setY(positionY);
+      view->add(point);
 
       //TODO Race conditions ?
       animatedViews.push_back(view);
@@ -179,8 +181,10 @@ void GameView::moveViewFromJSON(std::string json) {
   if (index != -1) {
     AnimatedView * view = animatedViews.at(index);
 
-    view->setX(positionX);
-    view->setY(positionY);
+    Point point;
+    point.setX(positionX);
+    point.setY(positionY);
+    view->add(point);
 
     if (view->doesDeviateMassCenter())
       refreshMassCenter();

@@ -55,60 +55,50 @@ void MegamanView::step() {
   }
 }
 
-void MegamanView::draw(Point &massCenter) {
-  AnimatedView::draw(massCenter);
-
-  if (mOrientation == lastOrientation) {
-    switch (mOrientation) {
-      case UP:
-      case DOWN:
-      case IDLE:
-        break;
-      case LEFT:
-        step();
-        if (currentSprite > LAST_LEFT)
+SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
+    if (orient == lastOrientation) {
+      switch (orient) {
+        case UP:
+        case DOWN:
+        case IDLE:
+          break;
+        case LEFT:
+          step();
+          if (currentSprite > LAST_LEFT)
+            currentSprite = FIRST_LEFT;
+          break;
+        case RIGHT:
+          step();
+          if (currentSprite > LAST_RIGHT)
+            currentSprite = FIRST_RIGHT;
+          break;
+      }
+    } else {
+      switch (orient) {
+        case UP:
+        case DOWN:
+        case IDLE:
+          if (lastOrientation == LEFT)
+            currentSprite = IDLE_LEFT;
+          else currentSprite = IDLE_RIGHT;
+          break;
+        case LEFT:
           currentSprite = FIRST_LEFT;
-        break;
-      case RIGHT:
-        step();
-        if (currentSprite > LAST_RIGHT)
+          break;
+        case RIGHT:
           currentSprite = FIRST_RIGHT;
-        break;
+          break;
+      }
     }
-  } else {
-    switch (mOrientation) {
-      case UP:
-      case DOWN:
-      case IDLE:
-        if (lastOrientation == LEFT)
-          currentSprite = IDLE_LEFT;
-        else currentSprite = IDLE_RIGHT;
-        break;
-      case LEFT:
-        currentSprite = FIRST_LEFT;
-        break;
-      case RIGHT:
-        currentSprite = FIRST_RIGHT;
-        break;
-    }
-  }
 
-  lastOrientation = mOrientation;
+    lastOrientation = orient;
 
-  Point cameraPoint;
-  cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
-  cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
+    return texture;
+}
 
-  if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
-    getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
-      renderer->Copy(*texture,
-        SDL2pp::Rect(0 + TERRAIN_REAL_TILE_SIZE * currentSprite, 0,
-          TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE),
-        SDL2pp::Rect(
-          getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
-          getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,
-          TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
-  }
+SDL2pp::Rect * MegamanView::getSRCRect() {
+  return new SDL2pp::Rect(0 + TERRAIN_REAL_TILE_SIZE * currentSprite, 0,
+    TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE);
 }
 
 void MegamanView::resetCharacterCount() {

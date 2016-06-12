@@ -1,6 +1,7 @@
 #ifndef CLIENT_ANIMATEDVIEW_H_
 #define CLIENT_ANIMATEDVIEW_H_
 
+#include <queue>
 #include "../../../common/common_MapConstants.h"
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
@@ -17,17 +18,19 @@ enum ORIENTATION {
 };
 
 class AnimatedView : public RenderedView {
-  protected:
-    unsigned int x,y, previousX, previousY;
+  private:
+    std::queue<Point> movementList;
+    unsigned int currentX, currentY;
     unsigned int id;
     int counter;
 
     ORIENTATION mOrientation;
 
+  protected:
     bool deviatesMassCenter = false;
 
   public:
-    AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), x(0), y(0), previousX(0), previousY(0), id(id), counter(0), mOrientation(IDLE) {
+    AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), currentX(0), currentY(0), id(id), counter(0), mOrientation(IDLE) {
     }
 
     virtual ~AnimatedView() {
@@ -37,42 +40,65 @@ class AnimatedView : public RenderedView {
       return id;
     }
 
+    void add(Point &point) {
+      movementList.push(point);
+    }
+
+    virtual SDL2pp::Texture * getTexture(ORIENTATION orient) = 0;
+    virtual SDL2pp::Rect * getSRCRect() = 0;
+
     virtual void draw(Point &massCenter) {
-      if (x == previousX && y == previousY) {
+      unsigned int futureX, futureY;
+      if (movementList.size() > 0) {
+        Point point = movementList.front();
+        movementList.pop();
+        futureX = point.getX();
+        futureY = point.getY();
+      } else {
+        futureX = currentX;
+        futureY = currentY;
+      }
+
+      if (futureX == currentX && futureY == currentY) {
         counter++;
         if (counter > MAX_STEP_FOR_IDLE)
           mOrientation = IDLE;
       } else {
         counter = 0;
-        if (x != previousX) {
-          mOrientation = ((int) (x - previousX)) > 0 ? RIGHT : LEFT;
-          previousX = x;
+        if (futureX != currentX) {
+          mOrientation = ((int) (futureX - currentX)) > 0 ? RIGHT : LEFT;
+          currentX = futureX;
         } else {
-          mOrientation = ((int) (y - previousY)) > 0 ? UP : DOWN;
-          previousY = y;
+          mOrientation = ((int) (futureY - currentY)) > 0 ? UP : DOWN;
+          currentY = futureY;
         }
       }
-    }
 
-    virtual void move(unsigned int x, unsigned int y) {
-      setX(x);
-      setY(y);
+      Point cameraPoint;
+      cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
+      cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
+
+      SDL2pp::Rect * srcRect = getSRCRect();
+
+      if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
+        getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
+          renderer->Copy(*getTexture(mOrientation),
+            *srcRect,
+            SDL2pp::Rect(
+              getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
+              getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,
+              TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
+      }
+
+      delete srcRect;
     }
 
     bool doesDeviateMassCenter() {
       return deviatesMassCenter;
     }
 
-    unsigned int getX() { return x; }
-    unsigned int getY() { return y; }
-
-    void setX(unsigned int x) {
-      this->x = x;
-    }
-
-    void setY(unsigned int y) {
-      this->y = y;
-    }
+    unsigned int getX() { return currentX; }
+    unsigned int getY() { return currentY; }
 
 };
 
