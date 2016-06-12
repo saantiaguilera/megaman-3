@@ -8,8 +8,8 @@
     "game": {
       "timestep": 0.05,
       "gravity": 9.8,
-      "velocity_iterations": 8,
-      "position_iterations": 3
+      "velocity_iterations": 1,
+      "position_iterations": 1
     }
   }
 }

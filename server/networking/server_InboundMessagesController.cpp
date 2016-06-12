@@ -7,7 +7,6 @@
 
 #include "server_InboundMessagesController.h"
 
-#include <unistd.h>
 #include <iostream>
 #include <list>
 #include <sstream>
@@ -40,7 +39,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 	case PLAYER_CONNECTED:
 		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT) {
 			Engine::getInstance().addNewPlayer(clientId, inboundMessage);
-			std::cout << "Player name: " << inboundMessage << std::endl;
 			NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(
 					inboundMessage);
 			Engine::getInstance().getContext()->dispatchEvent(
@@ -48,8 +46,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		}
 		break;
 	case START_GAME:
-		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
-			std::cout << "Start game!" << std::endl;
+		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
@@ -69,7 +66,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		break;
 	case KEY_PRESSED:
 		// Here inbound message is a map of keys-boolean
-		std::cout << "Key Pressed!" << std::endl;
 		// According to the pressed key we should do something
 		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
@@ -109,6 +105,7 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 	}
 
 	if (keysVector[0] == true) {
+		std::cout << "trying to jump" << std::endl;
 		player->getMegaman()->move(PhysicObject::_moveState::MS_JUMP);
 	}
 	if (keysVector[1] == true) {

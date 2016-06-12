@@ -14,14 +14,12 @@
 
 // Note: Due to implementation of connections, the second player connected is
 // assigned as admin, there is always one proxy waiting for connection
-#define ADMIN_ID 2
+#define ADMIN_ID 1
 
 Player::Player(unsigned int id, const std::string& name,
 		unsigned int initialLives) :
 		id(id), name(name), lives(initialLives) {
 	Logger::getInstance().log(1, "Player " + name + " added");
-	// If its the first player then its admin
-	// TODO: What happens when restarting game? ids are kept
 	if (id == ADMIN_ID)
 		admin = true;
 	megaman = NULL;
