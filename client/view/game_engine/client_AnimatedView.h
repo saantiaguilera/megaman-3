@@ -45,7 +45,6 @@ class AnimatedView : public RenderedView {
     }
 
     virtual SDL2pp::Texture * getTexture(ORIENTATION orient) = 0;
-    virtual SDL2pp::Rect * getSRCRect() = 0;
 
     virtual void draw(Point &massCenter) {
       unsigned int futureX, futureY;
@@ -78,19 +77,15 @@ class AnimatedView : public RenderedView {
       cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
       cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
 
-      SDL2pp::Rect * srcRect = getSRCRect();
-
       if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
         getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
           renderer->Copy(*getTexture(mOrientation),
-            *srcRect,
+            SDL2pp::NullOpt,
             SDL2pp::Rect(
               getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
               getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,
               TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
       }
-
-      delete srcRect;
     }
 
     bool doesDeviateMassCenter() {

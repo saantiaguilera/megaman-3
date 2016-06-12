@@ -1,3 +1,4 @@
+#include <sstream>
 #include "client_RenderedView.h"
 #include "../../../common/common_MapConstants.h"
 
@@ -5,6 +6,8 @@
 
 #define N_POSITIONS 3
 #define N_REPETITIONS 3
+
+#define MEGAMAN_SPRITE_COUNT 8
 
 #define FIRST_LEFT 4
 #define LAST_LEFT 6
@@ -18,33 +21,22 @@
 int MegamanView::megamansCount = 0;
 
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
+  for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i) {
+    std::stringstream ss;
+    ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << i << ".png";
+    textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
+  }
+
   deviatesMassCenter = true;
   lastOrientation = IDLE;
-
-  switch (megamansCount) {
-    case 0:
-      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_1.png");
-      break;
-    case 1:
-      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_2.png");
-      break;
-    case 2:
-      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_3.png");
-      break;
-    case 3:
-      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_4.png");
-      break;
-
-    default:
-      texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_megaman_1.png");
-  }
 
   megamanNumber = megamansCount;
   megamansCount++;
 }
 
 MegamanView::~MegamanView() {
- delete texture;
+  for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i)
+    delete textureMap[i];
 }
 
 void MegamanView::step() {
@@ -93,12 +85,7 @@ SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
 
     lastOrientation = orient;
 
-    return texture;
-}
-
-SDL2pp::Rect * MegamanView::getSRCRect() {
-  return new SDL2pp::Rect(0 + TERRAIN_REAL_TILE_SIZE * currentSprite, 0,
-    TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE);
+    return textureMap[currentSprite];
 }
 
 void MegamanView::resetCharacterCount() {

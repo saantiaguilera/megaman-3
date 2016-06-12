@@ -1,15 +1,16 @@
 #ifndef CLIENT_MEGAMANVIEW_H_
 #define CLIENT_MEGAMANVIEW_H_
 
+#include <map>
 #include "client_AnimatedView.h"
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
 class MegamanView : public AnimatedView {
 private:
-  SDL2pp::Texture *texture;
-
   ORIENTATION lastOrientation;
+
+  std::map<int, SDL2pp::Texture*> textureMap;
 
   int currentSprite = 0;
   int repetitions = 0;
@@ -25,7 +26,6 @@ public:
   virtual ~MegamanView();
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient);
-  virtual SDL2pp::Rect * getSRCRect();
   static void resetCharacterCount();
 
 };
