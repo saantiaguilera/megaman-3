@@ -82,8 +82,8 @@ class AnimatedView : public RenderedView {
         renderer->Copy(*getTexture(mOrientation),
           SDL2pp::NullOpt,
           SDL2pp::Point(
-            futureX - cameraPoint.getX(),
-            futureY - cameraPoint.getY()));
+            futureX - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2,
+            futureY - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2));
       }
     }
 

@@ -17,7 +17,7 @@
 #define PATH_LADDER "res/drawable/blocks/ladder.png"
 #define PATH_BLOCK "res/drawable/blocks/block.png"
 #define PATH_NEEDLE "res/drawable/blocks/spike.png"
-#define PATH_SKY "res/drawable/blocks/sky.jpg"
+#define PATH_SKY "res/drawable/blocks/sky.png"
 #define PATH_CHAMBER "res/drawable/blocks/boss_lair.png"
 #define PATH_BLOCK1 "res/drawable/blocks/block1.png"
 #define PATH_BLOCK2 "res/drawable/blocks/block2.png"
@@ -108,7 +108,9 @@ public:
 
       std::map<ObstacleViewType, SDL2pp::Surface*>::iterator it = texturesMap.find(view->getType());
       if (it != texturesMap.end()) {
-        mapTexture->Update(SDL2pp::Rect(view->getPoint().getX() - TERRAIN_TILE_SIZE / 2, view->getPoint().getY() / 2,
+        mapTexture->Update(SDL2pp::Rect(
+            view->getPoint().getX() - TERRAIN_TILE_SIZE / 2,
+            view->getPoint().getY() - TERRAIN_TILE_SIZE / 2,
             TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
             *texturesMap[view->getType()]);
       }

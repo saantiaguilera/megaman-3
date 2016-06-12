@@ -26,6 +26,7 @@ GameView::GameView() : Gtk::Window(){
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
   set_size_request(screenWidth, screenHeight);
+  fullscreen();
 
   set_icon_from_file("res/drawable/ic_launcher.png");
 
@@ -224,31 +225,31 @@ bool GameView::onLoopSDL() {
   try {
     renderer->Clear();
 
-    Uint32 t1 = SDL_GetTicks();
+    //Uint32 t1 = SDL_GetTicks();
     worldView->draw(massCenter);
 
-    Uint32 t2 = SDL_GetTicks();
-    std::cout << "Time for drawing world is " << t2 - t1 << std::endl;
-    std::cout << "List size of views is " << animatedViews.size() << std::endl;
+    //Uint32 t2 = SDL_GetTicks();
+    //std::cout << "Time for drawing world is " << t2 - t1 << std::endl;
+    //std::cout << "List size of views is " << animatedViews.size() << std::endl;
 
     for (AnimatedView* view : animatedViews)
       view->draw(massCenter);
 
-    Uint32 t3 = SDL_GetTicks();
-    std::cout << "Time for drawing megaman is " << t3 - t2 << std::endl;
+    //Uint32 t3 = SDL_GetTicks();
+    //std::cout << "Time for drawing megaman is " << t3 - t2 << std::endl;
 
     healthBarView->draw(massCenter);
     ammoBarView->draw(massCenter);
     lifeBarView->draw(massCenter);
 
-    Uint32 t4 = SDL_GetTicks();
-    std::cout << "Time for drawing bars is " << t4 - t3 << std::endl;
+    //Uint32 t4 = SDL_GetTicks();
+    //std::cout << "Time for drawing bars is " << t4 - t3 << std::endl;
 
     renderer->Present();
 
     return true;
   } catch (std::exception& e) {
-    std::cout << "Something bad happened" << std::endl;
+    std::cout << "Something bad happened in onLoopSDL" << std::endl;
     return false;
   }
 }
@@ -307,7 +308,7 @@ bool GameView::onInitSDL(::Window windowId) {
 
    return false;
  } catch (std::exception& e) {
-   std::cout << "Something bad happened" << std::endl;
+   std::cout << "Something bad happened in onInitSDL" << std::endl;
    return true;
  }
 }
