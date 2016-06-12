@@ -7,7 +7,6 @@
 
 #include "server_InboundMessagesController.h"
 
-#include <unistd.h>
 #include <iostream>
 #include <list>
 #include <sstream>
@@ -40,7 +39,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 	case PLAYER_CONNECTED:
 		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT) {
 			Engine::getInstance().addNewPlayer(clientId, inboundMessage);
-			std::cout << "Player name: " << inboundMessage << std::endl;
 			NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(
 					inboundMessage);
 			Engine::getInstance().getContext()->dispatchEvent(

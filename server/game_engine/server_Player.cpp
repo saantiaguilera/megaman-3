@@ -14,7 +14,7 @@
 
 // Note: Due to implementation of connections, the second player connected is
 // assigned as admin, there is always one proxy waiting for connection
-#define ADMIN_ID 2
+#define ADMIN_ID 1
 
 Player::Player(unsigned int id, const std::string& name,
 		unsigned int initialLives) :

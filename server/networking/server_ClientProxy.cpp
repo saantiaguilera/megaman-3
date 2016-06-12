@@ -21,7 +21,6 @@ int ClientProxy::id = -1;
 
 ClientProxy::ClientProxy() {
 	++id;
-	std::cout << "Create clientproxy" << std::endl;
 	connected = false;
 	socket = Socket();
 }
