@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <exception>
+#include <stdexcept>
+#include <sstream>
 
 #include "../../../common/common_Socket.h"
 #include "../../concurrent/client_Looper.h"
@@ -53,8 +55,9 @@ protected:
         int messageCode;
         int result = socket->receive((char*) &messageCode, sizeof(int));
 
-        if (result <= 0)
-          throw std::exception();
+        if (result <= 0) {
+          throw std::logic_error("Socket finished with result <= 0 when trying to fetch messageCode");
+        }
 
         messageCode = ntohl(messageCode);
 
@@ -62,8 +65,11 @@ protected:
         // Receive message length
         result = socket->receive((char*) &messageLength, sizeof(unsigned int));
 
-        if (result <= 0)
-          throw std::exception();
+        if (result <= 0) {
+          std::stringstream ss;
+          ss << "Socket finished with result <= 0 when trying to fetch messageLength. Message code was " << messageCode;
+          throw std::logic_error(ss.str());
+        }
 
         messageLength = ntohl(messageLength);
 
@@ -73,8 +79,11 @@ protected:
         memset(&buffer[0], 0, sizeof(*buffer));
         result = socket->receive(&buffer[0], messageLength);
 
-        if (result <= 0)
-          throw std::exception();
+        if (result <= 0) {
+          std::stringstream ss;
+          ss << "Socket finished with result <= 0 when trying to fetch JSON Data. Message code was " << messageCode << ". Desired length was " << messageLength;
+          throw std::logic_error(ss.str());
+        }
 
         json += buffer;
 
