@@ -17,7 +17,7 @@ class Serializer;
 class ClientProxy {
 private:
 	// Id of the player
-	static unsigned int id;
+	static int id;
 	// Flag to check status of the socket
 	bool connected;
 	// The actual socket
@@ -37,7 +37,8 @@ public:
 	void receive(int& messageCode, unsigned int& messageLength, std::string& incomingData);
 	// Sends data over the net, through the socket
 	void send(Serializer* serializer);
-	unsigned int getId() const;
+	// Return my id
+	int getId() const;
 };
 
 #endif /* SRC_SERVER_SERVER_CLIENTPROXY_H_ */

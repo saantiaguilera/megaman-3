@@ -7,6 +7,7 @@
 
 #include "server_ReceiverWorker.h"
 
+#include <iostream>
 #include <string>
 
 #include "server_ClientProxy.h"
@@ -25,5 +26,4 @@ void ReceiverWorker::run() {
 		client->receive(messageCode, messageLength, inboundData);
 		InboundMessagesController interpreter(messageCode, client->getId(), inboundData);
 	}
-
 }
