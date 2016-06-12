@@ -23,10 +23,6 @@ public:
     return texture;
   }
 
-  virtual SDL2pp::Rect * getSRCRect() {
-    return new SDL2pp::Rect(0, 0, TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE);
-  }
-
 };
 
 #endif
