@@ -8,7 +8,6 @@
 #include "server_Megaman.h"
 
 #include <Dynamics/b2Body.h>
-#include <iostream>
 #include <string>
 
 #include "../../../../common/common_MapConstants.h"
@@ -19,6 +18,7 @@
 #include "../../../serializers/server_AmmoChangeSerializer.h"
 #include "../../../serializers/server_HpChangeSerializer.h"
 #include "../../../serializers/server_LifeChangeSerializer.h"
+#include "../../../serializers/server_MovementSerializer.h"
 #include "../../../server_Logger.h"
 #include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"
@@ -29,7 +29,7 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 	notify();
-	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), getId());
+	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(getCurrentWeapon());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
@@ -72,6 +72,8 @@ Player* Megaman::getHumanOperator() const {
 }
 
 void Megaman::update() {
+//	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
+//	Engine::getInstance().getContext()->dispatchEvent(serializer);
 }
 
 void Megaman::changeWeaponTo(int weaponType) {
@@ -98,7 +100,7 @@ void Megaman::decreaseHp(float damage) {
 		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 	} else {
 		hp -= damage;
-		HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), id);
+		HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
 		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	}
 }
