@@ -1,0 +1,3300 @@
+192.168.0.9 - 10010
+ConnectionThread::Error connecting to 192.168.0.9:10010
+ConnectionThread::finished running
+192.168.0.9 - 10010
+ConnectionThread::Connected to socket
+ConnectionThread::finished running
+Sending::id: 1 data: santi
+Received::id= 2 data=santi
+Sending::id: 3 data: 4
+Received::id= 3 data={    "map": {        "name": "Bombman",        "filename": "level4.json",        "height": 280,        "width": 700,        "id": 4,        "obstacles": [            {                "x": 175,                "y": 175,                "type": 1            },            {                "x": 175,                "y": 245,                "type": 1            },            {                "x": 175,                "y": 315,                "type": 1            },            {                "x": 245,                "y": 315,                "type": 1            },            {                "x": 315,                "y": 315,                "type": 1            },            {                "x": 385,                "y": 315,                "type": 1            },            {                "x": 455,                "y": 315,                "type": 1            },            {                "x": 525,                "y": 315,                "type": 1            },            {                "x": 665,                "y": 315,                "type": 1            },            {                "x": 595,                "y": 315,                "type": 1            },            {                "x": 735,                "y": 315,                "type": 1            },            {                "x": 735,                "y": 245,                "type": 1            },            {                "x": 735,                "y": 175,                "type": 1            },            {                "x": 245,                "y": 245,                "type": 8            }        ]    }}
+ReceivedMapEvent Map JSON:: {    "map": {        "name": "Bombman",        "filename": "level4.json",        "height": 280,        "width": 700,        "id": 4,        "obstacles": [            {                "x": 175,                "y": 175,                "type": 1            },            {                "x": 175,                "y": 245,                "type": 1            },            {                "x": 175,                "y": 315,                "type": 1            },            {                "x": 245,                "y": 315,                "type": 1            },            {                "x": 315,                "y": 315,                "type": 1            },            {                "x": 385,                "y": 315,                "type": 1            },            {                "x": 455,                "y": 315,                "type": 1            },            {                "x": 525,                "y": 315,                "type": 1            },            {                "x": 665,                "y": 315,                "type": 1            },            {                "x": 595,                "y": 315,                "type": 1            },            {                "x": 735,                "y": 315,                "type": 1            },            {                "x": 735,                "y": 245,                "type": 1            },            {                "x": 735,                "y": 175,                "type": 1            },            {                "x": 245,                "y": 245,                "type": 8            }        ]    }}
+Received::id= 7 data={ "id": 14, "type": 8, "position": { "x": 245, "y": 245} }
+Received::id= 9 data={"hp": 150,"id": 14}
+Received::id= 10 data={"ammo": 100, "special": false}
+Received::id= 13 data={"life": 3,"id": 2}
+Time for drawing world is 30
+List size of views is 1
+Draw in x 210
+Draw in y 210
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 18
+List size of views is 1
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 6
+Time for drawing world is 15
+List size of views is 1
+Time for drawing megaman is 23
+Time for drawing bars is 2
+Time for drawing world is 31
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 34
+List size of views is 1
+Time for drawing megaman is 20
+Time for drawing bars is 1
+Time for drawing world is 48
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 44
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 16
+List size of views is 1
+Time for drawing megaman is 4
+Time for drawing bars is 2
+Time for drawing world is 26
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 18
+List size of views is 1
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 40
+List size of views is 1
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 44
+List size of views is 1
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Time for drawing world is 24
+List size of views is 1
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 28
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 2
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 34
+List size of views is 1
+Time for drawing megaman is 19
+Time for drawing bars is 2
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 32
+List size of views is 1
+Time for drawing megaman is 15
+Time for drawing bars is 2
+Time for drawing world is 30
+List size of views is 1
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 48
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 39
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 40
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 10
+Time for drawing bars is 0
+Time for drawing world is 27
+List size of views is 1
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 27
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Time for drawing world is 43
+List size of views is 1
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 39
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Time for drawing world is 39
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 34
+List size of views is 1
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 42
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 38
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 29
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 19
+List size of views is 1
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 34
+List size of views is 1
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Time for drawing world is 18
+List size of views is 1
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 39
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 43
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Time for drawing world is 49
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 45
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 255.015, "y": 234.985} }
+Time for drawing world is 44
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Time for drawing megaman is 20
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 261.268, "y": 234.985} }
+Time for drawing world is 29
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 265.528, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 271.78, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 276.178, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 276.899, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 277.365, "y": 234.985} }
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 35
+Received::id= List size of views is 16 data=
+{ "id": 14, "type": 540680805, "position": { "x": 283.617, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 287.735, "y": 234.985} }
+Draw in x 199
+Draw in y 583
+Time for drawing megaman is 20
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 44
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 293.988, "y": 234.985} }
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 300.241, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 306.493, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 306.493, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 306.978, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 307.89, "y": 234.985} }
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 312.746, "y": 234.985} }
+Time for drawing world is 31
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 318.998, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 318.998, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 325.251, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 331.503, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 25
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 337.756, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 339.58, "y": 234.985} }
+Time for drawing world is 26
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 345.832, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 347.229, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 348.18, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 353.482, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 355.511, "y": 234.985} }
+Time for drawing world is 33
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 361.519, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 367.771, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 367.771, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 32
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 374.024, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 375.637, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 381.889, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 383.502, "y": 234.985} }
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 388.142, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 394.394, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 395.791, "y": 234.985} }
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 402.044, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 404.073, "y": 234.985} }
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 410.326, "y": 234.985} }
+Time for drawing world is 30
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 416.579, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 416.579, "y": 234.985} }
+Time for drawing world is 32
+List size of views is 1
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 422.831, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 429.084, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 429.084, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 429.084, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 429.084, "y": 234.985} }
+Time for drawing world is 42
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 28
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 435.336, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 441.589, "y": 234.985} }
+Time for drawing world is 18
+List size of views is 1
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 447.841, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 454.094, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 455.491, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 461.744, "y": 234.985} }
+Time for drawing world is 26
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 467.996, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 474.249, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 480.501, "y": 234.985} }
+Time for drawing world is 44
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 41
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 486.754, "y": 234.985} }
+Time for drawing world is 23
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 493.006, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 499.259, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 505.512, "y": 234.985} }
+Time for drawing world is 20
+List size of views is 1
+Time for drawing megaman is 20
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 511.764, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 518.017, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 520.443, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 521.84, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 526.696, "y": 234.985} }
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 1
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 532.948, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 539.201, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 541.025, "y": 234.985} }
+Time for drawing world is 19
+List size of views is 1
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 547.277, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 553.53, "y": 234.985} }
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 559.782, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 566.035, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 567.432, "y": 234.985} }
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 572.287, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 0 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 578.54, "y": 234.985} }
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 35
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 2
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 2
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 2
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 2
+Time for drawing world is 46
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 4
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 2
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 2
+Time for drawing world is 30
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 3
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 23
+Time for drawing bars is 2
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 584.793, "y": 234.985} }
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 4
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 2
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 28
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 0
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 30
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 1
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 578.54, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 20
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 572.287, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 568.316, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 566.359, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 566.035, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 564.211, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 557.959, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 556.346, "y": 234.985} }
+Time for drawing world is 40
+List size of views is 1
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 550.093, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 548.481, "y": 234.985} }
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 13
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 542.228, "y": 234.985} }
+Time for drawing world is 40
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 535.975, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 534.799, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 528.546, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 526.723, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 525.772, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 524.899, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 518.647, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 517.034, "y": 234.985} }
+List size of views is 1
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 39
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 512.394, "y": 234.985} }
+Time for drawing world is 14
+List size of views is 1
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 35
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 506.141, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 504.112, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 503.161, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 501.764, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 495.511, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 490.854, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 490.098, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 489.642, "y": 234.985} }
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 483.39, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 477.137, "y": 234.985} }
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 1
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 470.884, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 24
+List size of views is 1
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 38
+List size of views is 1
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 43
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 38
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 0 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 40
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 38
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 30
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 2
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 28
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 1
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 22
+List size of views is 1
+Time for drawing megaman is 7
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 20
+Time for drawing bars is 1
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 2
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 39
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 47
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 40
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 29
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 45
+List size of views is 1
+Time for drawing megaman is 2
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 40
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 39
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 41
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 38
+List size of views is Received::id= 1
+6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Draw in x 199
+Draw in y 349
+Time for drawing megaman is 17
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 28
+List size of views is 1
+Time for drawing megaman is 4
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 35
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 1
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 2
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 30
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 0 0 0
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 37
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 46
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 12
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 32
+List size of views is 1
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 23
+Time for drawing bars is 2
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 38
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 28
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 20
+Time for drawing bars is 1
+Time for drawing world is 48
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 28
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 13
+Sending::id: 5 data: 0 0 1 0 0
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 26
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 49
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 33
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 20
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 10
+Time for drawing bars is 2
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 8, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 33
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 41
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Draw in y 349
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 1 0 0
+Sending::id: 5 data: 0 0 1 0 0
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 1 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 465.015, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 0 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 25
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 21
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 40
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 45
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 2
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 465.015, "y": 234.985} }
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 21
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 19
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 471.268, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 477.521, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 483.773, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 490.026, "y": 234.985} }
+Time for drawing world is 37
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 496.278, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 498.102, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 499.499, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 504.354, "y": 234.985} }
+Time for drawing world is 17
+List size of views is 1
+Time for drawing megaman is 7
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 510.607, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 516.859, "y": 234.985} }
+Time for drawing world is 22
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 523.112, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 525.142, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 531.394, "y": 234.985} }
+Time for drawing world is 43
+List size of views is 1
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 537.647, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 42
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 543.899, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 549.312, "y": 234.985} }
+Time for drawing world is 32
+Received::id= List size of views is 16 data=
+{ "id": 14, "type": 540680805, "position": { "x": 555.565, "y": 234.985} }
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 560.575, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 566.828, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 573.08, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 22
+List size of views is 1
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 37
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 1
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 579.333, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 579.333, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 579.333, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 579.333, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 33
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 585.585, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 586.536, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 587.615, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 25
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 593.867, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 600.12, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 38
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 606.373, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 610.035, "y": 234.985} }
+Time for drawing world is 23
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 616.287, "y": 234.985} }
+Sending::id: 5 data: 0 0 0 1 0
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Sending::id: 5 data: 0 0 0 1 0
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 0, "position": { "x": 622.54, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 624.966, "y": 234.985} }
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 628.792, "y": 234.985} }
+Time for drawing world is 35
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Sending::id: 5 data: 0 0 0 1 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 635.045, "y": 234.985} }
+Time for drawing world is 18
+List size of views is 1
+Time for drawing megaman is 3
+Time for drawing bars is 2
+Sending::id: 5 data: 0 0 0 0 0
+Received::id= 6 data={ "id": 14, "type": 540680805, "position": { "x": 641.297, "y": 234.985} }
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 7
+Time for drawing world is 32
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 46
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 33
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 25
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 22
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 27
+Time for drawing bars is 2
+Time for drawing world is 27
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 2
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 2
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 15
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 16
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 12
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 42
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 40
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 32
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 8
+Time for drawing bars is 2
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 31
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 9
+Time for drawing bars is 1
+Time for drawing world is 19
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 0
+Time for drawing world is 52
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 39
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 34
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Time for drawing world is 37
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 18
+Time for drawing bars is 1
+Time for drawing world is 25
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 42
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 1
+Time for drawing world is 43
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 29
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 44
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 21
+Time for drawing bars is 1
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 10
+Time for drawing bars is 1
+Time for drawing world is 12
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 17
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 21
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 13
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 24
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 14
+Time for drawing bars is 1
+Time for drawing world is 22
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 20
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 11
+Time for drawing bars is 1
+Time for drawing world is 26
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Exception caught in Receiver thread
+std::exception
+Time for drawing megaman is 18
+ReceiverThread::finished running
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 2
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 3
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 7
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 2
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 18
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 1
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 13
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 4
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 15
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 2
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 17
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 1
+Time for drawing world is 14
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 6
+Time for drawing bars is 0
+Time for drawing world is 16
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 5
+Time for drawing bars is 0
+Time for drawing world is 21
+List size of views is 1
+Draw in x 199
+Draw in y 199
+Time for drawing megaman is 0
+Time for drawing bars is 0
+SenderThread::finished running

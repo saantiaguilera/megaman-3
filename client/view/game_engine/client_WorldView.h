@@ -12,6 +12,8 @@
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
+#define PATH_BACKGROUND "res/drawable/background.jpg"
+
 #define PATH_LADDER "res/drawable/blocks/ladder.png"
 #define PATH_BLOCK "res/drawable/blocks/block.png"
 #define PATH_NEEDLE "res/drawable/blocks/spike.png"
@@ -60,8 +62,8 @@ public:
       } else cameraPoint.setY(massCenterY - rendererHeight / 2);
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
-            cameraPoint.getX(),
-            cameraPoint.getY(),
+            cameraPoint.getX() % backgroundTexture->GetWidth(),
+            0,
             rendererWidth, rendererHeight));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
@@ -95,19 +97,9 @@ public:
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 
-    backgroundTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
-          SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
-
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
-    //Fill all the texture with sky
-    SDL2pp::Surface *skySurface = new SDL2pp::Surface(PATH_SKY);
-    for (int i = 0 ; i < mWidth ; i += TERRAIN_TILE_SIZE) {
-      for (int j = 0 ; j < mHeight ; j += TERRAIN_TILE_SIZE) {
-        backgroundTexture->Update(SDL2pp::Rect(i, j, TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
-          *skySurface);
-      }
-    }
+    backgroundTexture = new SDL2pp::Texture(*getRenderer(), PATH_BACKGROUND);
 
     //Iterate the map with the stuff we should draw and if its of that type, draw it where it is
     std::vector<ObstacleView*> * views = mapView->getObstacles();
@@ -130,7 +122,6 @@ public:
     delete texturesMap[ObstacleViewTypeBlock1];
     delete texturesMap[ObstacleViewTypeBlock2];
     delete texturesMap[ObstacleViewTypeBlock3];
-    delete skySurface;
 
     textureExists = true;
   }
