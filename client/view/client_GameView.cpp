@@ -5,6 +5,8 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
+#define SOCKET_SIZE 700
+
 #define DRAW_TIME_STEP 50
 
 #define HEALTH_BAR_X 12
@@ -21,23 +23,31 @@ SDL2pp::Chunk * GameView::shootSound = NULL;
 Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
-  int screenWidth, screenHeight;
+  int screenWidth, screenHeight, socketSize;
   getDesktopResolution(screenWidth, screenHeight);
-
   set_size_request(screenWidth, screenHeight);
+
+  socketSize = screenHeight < SOCKET_SIZE ? screenHeight : SOCKET_SIZE;
 
   massCenter.setX(0);
   massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
+  socket->set_size_request(socketSize, socketSize);
+
+  Gtk::Layout *layout = manage(new Gtk::Layout());
+  layout->set_size_request(screenWidth, screenHeight);
+  layout->put(*socket, (screenWidth - socketSize) / 2, (screenHeight - socketSize) / 2);
+
+  add(*layout);
+  show_all();
+
 /*
   if (!mixer)
     mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
   if (!shootSound)
     shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
 */
-  add(*socket);
-  show_all();
 }
 
 GameView::~GameView() {

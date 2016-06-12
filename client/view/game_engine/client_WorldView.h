@@ -12,7 +12,7 @@
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
-#define PATH_BACKGROUND "res/drawable/background.jpg"
+#define PATH_BACKGROUND "res/drawable/background.png"
 
 #define PATH_LADDER "res/drawable/blocks/ladder.png"
 #define PATH_BLOCK "res/drawable/blocks/block.png"
