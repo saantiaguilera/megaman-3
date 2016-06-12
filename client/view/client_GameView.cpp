@@ -26,6 +26,7 @@ GameView::GameView() : Gtk::Window(){
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
   set_size_request(screenWidth, screenHeight);
+  fullscreen();
 
   set_icon_from_file("res/drawable/ic_launcher.png");
 
@@ -248,7 +249,7 @@ bool GameView::onLoopSDL() {
 
     return true;
   } catch (std::exception& e) {
-    std::cout << "Something bad happened" << std::endl;
+    std::cout << "Something bad happened in onLoopSDL" << std::endl;
     return false;
   }
 }
@@ -307,7 +308,7 @@ bool GameView::onInitSDL(::Window windowId) {
 
    return false;
  } catch (std::exception& e) {
-   std::cout << "Something bad happened" << std::endl;
+   std::cout << "Something bad happened in onInitSDL" << std::endl;
    return true;
  }
 }
