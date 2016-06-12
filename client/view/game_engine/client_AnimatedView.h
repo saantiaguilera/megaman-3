@@ -85,6 +85,9 @@ class AnimatedView : public RenderedView {
             futureX - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2,
             futureY - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2));
       }
+
+      currentX = futureX;
+      currentY = futureY;
     }
 
     bool doesDeviateMassCenter() {
