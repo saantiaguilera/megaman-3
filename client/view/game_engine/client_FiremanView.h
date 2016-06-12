@@ -26,30 +26,12 @@ public:
     delete texture;
   }
 
-  virtual void draw(Point &massCenter) {
-    ++repetitions;
-    if (repetitions > N_REPETITIONS) {
-      repetitions = 0;
-      ++currentSprite;
+  virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
+    return texture;
+  }
 
-      if (currentSprite > N_POSITIONS)
-        currentSprite = 0;
-    }
-
-    Point cameraPoint;
-    cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
-    cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
-
-    if (getX() >= (cameraPoint.getX() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getX() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
-      getY() >= (cameraPoint.getY() + TERRAIN_TILE_SIZE / 2) && ((unsigned int) (getY() + TERRAIN_TILE_SIZE / 2)) <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
-        renderer->Copy(*texture,
-          SDL2pp::Rect(0 + TERRAIN_REAL_TILE_SIZE * currentSprite, 0,
-            TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE),
-          SDL2pp::Rect(
-            getX() - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2 ,
-            getY() - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2,
-            TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE));
-    }
+  virtual SDL2pp::Rect * getSRCRect() {
+    return new SDL2pp::Rect(0, 0, TERRAIN_REAL_TILE_SIZE, TERRAIN_REAL_TILE_SIZE);
   }
 
 };

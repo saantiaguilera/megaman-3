@@ -39,18 +39,18 @@ public:
       textureWidth = mapTexture->GetWidth();
       textureHeight = mapTexture->GetHeight();
 
-      if ((int) massCenterX - (rendererWidth / 2) < 0) {
+      if (massCenterX - (rendererWidth / 2) < 0) {
         cameraPoint.setX(0);
         massCenter.setX(rendererWidth / 2);
-      } else if ((unsigned int) rendererWidth < massCenterX + rendererWidth / 2) {
+      } else if (rendererWidth < massCenterX + rendererWidth / 2) {
         cameraPoint.setX(textureWidth - rendererWidth);
         massCenter.setX(textureWidth - rendererWidth / 2);
       } else cameraPoint.setX(massCenterX - rendererWidth / 2);
 
-      if ((int) massCenterY - (rendererHeight / 2) < 0) {
+      if (massCenterY - (rendererHeight / 2) < 0) {
         cameraPoint.setY(0);
         massCenter.setY(rendererHeight / 2);
-      } else if ((unsigned int) rendererHeight < massCenterY + rendererHeight / 2) {
+      } else if (rendererHeight < massCenterY + rendererHeight / 2) {
         cameraPoint.setY(textureHeight - rendererHeight);
         massCenter.setY(textureHeight - rendererHeight / 2);
       } else cameraPoint.setY(massCenterY - rendererHeight / 2);
