@@ -25,7 +25,6 @@ void AmmoChangeSerializer::serialize() {
 	unsigned int ammoPercentage = (newAmmo * 100) / weapon->getMaxAmmo();
 
 	std::stringstream ss;
-	ss << "{" << "\"ammo\": " << ammoPercentage << ", \"special\": " << std::boolalpha << weapon->isSpecial() << "}";
 	serialized = ss.str();
 	std::cout << serialized << std::endl;
 }
