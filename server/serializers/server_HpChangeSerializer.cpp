@@ -23,6 +23,6 @@ HpChangeSerializer::~HpChangeSerializer() {
 void HpChangeSerializer::serialize() {
 	std::stringstream ss;
 	unsigned int hpPercentage = (newHp*100)/(character->getMaxHp());
-	ss << "{" << "\"hp\": " << newHp << "," << "\"id\": " << objectId << "}";
+	ss << "{" << "\"hp\": " << hpPercentage << "," << "\"id\": " << objectId << "}";
 	serialized = ss.str();
 }
