@@ -47,10 +47,11 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangex = desiredVelx - vel.x;
     float impulsex = myBody->GetMass() * velChangex; //disregard time factor
     float velChangey = desiredVely;
-    float impulsey = myBody->GetMass() * velChangey / 2; //disregard time factor
-    std::cout << "ImpulseX: " << impulsex << std::endl;
-    std::cout << "ImpulseY: " << impulsey/2 << std::endl;
-    myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
+//    float impulsey = myBody->GetMass() * velChangey; //disregard time factor
+	float impulsey = 1 * velChangey; //disregard time factor
+    std::cout << this->getPositionX() << " + " << this->getPositionY() << std::endl;
+    myBody->ApplyLinearImpulse( b2Vec2(impulsex, impulsey), myBody->GetWorldCenter(), true );
+    std::cout << this->getPositionX() << " + " << this->getPositionY() << std::endl;
 
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
 	Engine::getInstance().getContext()->dispatchEvent(serializer);
@@ -73,7 +74,6 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
-	std::cout << "Notify creation" << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }
