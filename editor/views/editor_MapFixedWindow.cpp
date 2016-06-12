@@ -20,7 +20,6 @@ MapFixedWindow::~MapFixedWindow() {
 MapFixedWindow::MapFixedWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Fixed(cobject), builder(refGlade) {
 	obstacleViewContainers = new std::vector<ObstacleViewContainer *>();
-
 }
 
 //Setters
