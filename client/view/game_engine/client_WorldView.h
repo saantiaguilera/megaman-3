@@ -112,7 +112,7 @@ public:
             view->getPoint().getX() - TERRAIN_TILE_SIZE / 2,
             view->getPoint().getY() - TERRAIN_TILE_SIZE / 2,
             TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE),
-            *texturesMap[view->getType()]);
+            *it->second);
       }
     }
 
