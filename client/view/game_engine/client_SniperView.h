@@ -6,7 +6,6 @@
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
-
 class SniperView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
