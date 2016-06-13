@@ -5,6 +5,9 @@
 #include "../../common/rapidjson/document.h"
 #include "client_GameView.h"
 
+#define BACKGROUND_COLOR "black"
+#define PATH_IC_LAUNCHER "res/drawable/ic_launcher.png"
+
 #define SOCKET_SIZE 700
 
 #define DRAW_TIME_STEP 50
@@ -28,7 +31,8 @@ GameView::GameView() : Gtk::Window(){
   set_size_request(screenWidth, screenHeight);
   fullscreen();
 
-  set_icon_from_file("res/drawable/ic_launcher.png");
+  set_icon_from_file(PATH_IC_LAUNCHER);
+  override_background_color(Gdk::RGBA(BACKGROUND_COLOR), Gtk::STATE_FLAG_NORMAL);
 
   massCenter.setX(0);
   massCenter.setY(0);
