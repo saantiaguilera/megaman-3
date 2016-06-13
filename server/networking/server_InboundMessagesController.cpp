@@ -73,7 +73,6 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		desiredPlayer = getDesiredPlayer(clientId);
 		processMovement(inboundMessage, desiredPlayer);
 		break;
-		desiredPlayer->getMegaman()->getMyBody()->SetLinearVelocity(b2Vec2(50, 100));
 	case WEAPON_CHANGE:
 		std::cout << "Weapon change!" << std::endl;
 		desiredPlayer = getDesiredPlayer(clientId);
