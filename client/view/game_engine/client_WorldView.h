@@ -12,8 +12,6 @@
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
-#define PATH_BACKGROUND "res/drawable/background.png"
-
 #define PATH_LADDER "res/drawable/blocks/ladder.png"
 #define PATH_BLOCK "res/drawable/blocks/block.png"
 #define PATH_NEEDLE "res/drawable/blocks/spike.png"
@@ -99,7 +97,7 @@ public:
 
     mapTexture->SetBlendMode(SDL_BLENDMODE_BLEND);
 
-    backgroundTexture = new SDL2pp::Texture(*getRenderer(), PATH_BACKGROUND);
+    backgroundTexture = new SDL2pp::Texture(*getRenderer(), mapView->getBackgroundImage());
 
     //Iterate the map with the stuff we should draw and if its of that type, draw it where it is
     std::vector<ObstacleView*> * views = mapView->getObstacles();
