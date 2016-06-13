@@ -4,9 +4,6 @@
 
 #include "client_MegamanView.h"
 
-#define N_POSITIONS 3
-#define N_REPETITIONS 3
-
 #define MEGAMAN_SPRITE_COUNT 8
 
 #define FIRST_LEFT 4
@@ -39,14 +36,6 @@ MegamanView::~MegamanView() {
     delete textureMap[i];
 }
 
-void MegamanView::step() {
-  ++repetitions;
-  if (repetitions > N_REPETITIONS) {
-    repetitions = 0;
-    ++currentSprite;
-  }
-}
-
 SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
     if (orient == lastOrientation) {
       switch (orient) {
@@ -55,12 +44,12 @@ SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
         case IDLE:
           break;
         case LEFT:
-          step();
+          spriteStep();
           if (currentSprite > LAST_LEFT)
             currentSprite = FIRST_LEFT;
           break;
         case RIGHT:
-          step();
+          spriteStep();
           if (currentSprite > LAST_RIGHT)
             currentSprite = FIRST_RIGHT;
           break;
