@@ -9,6 +9,7 @@ mclient
 mserver
 .clang_complete
 meditor
+libs/
 
 ### C++ ###
 # Compiled Object files
