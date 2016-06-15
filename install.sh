@@ -32,8 +32,11 @@ do
 			cd ../glog/
 			sudo ./configure && sudo make && sudo make install
 			
-			sudo sed -i '$ a include /usr/local/lib' /etc/ld.so.conf
-			sudo ldconfig
+			if [[ $(grep "include /usr/local/lib" /etc/ld.so.conf) ]]; then
+				sudo sed -i '$ a include /usr/local/lib' /etc/ld.so.conf
+				sudo ldconfig
+			fi
+
 			export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 			
 			cd ../../
