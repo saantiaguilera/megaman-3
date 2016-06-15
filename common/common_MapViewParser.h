@@ -13,7 +13,6 @@
 #include "rapidjson/document.h"
 #include "rapidjson/filereadstream.h"
 
-
 class MapViewParser {
 private:
 	void parse(rapidjson::Document &document, MapView *mapView);

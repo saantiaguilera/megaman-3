@@ -1,136 +1,36 @@
 # Megaman X3 in C++
 
-##TODO
+This project is a Megaman 3 multiplayer game.
+Includes the following:
+- Map editor for creating own custom maps.
+- Server for managing physics and being able to play multiplayer mode
+- Client for a user to play the very own game
 
-- Add chat
-
-##HOW TO INSTALL THIS
-- Install dependencies: sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-- Install more dependencies (I will later do this automatically prolly or with a script): Install glog and SDL2pp. You can find them both below.
-- In a console do:
+##INSTALL
 ```Bash
-sudo vim /etc/ld.so.conf 
-append at eol > include /usr/local/lib > write file
+#The below steps are necessary for being able to compile and run everything ok
+sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+cd libs/libsdl2pp/
+sudo cmake . && sudo make && sudo make install
+cd ../glog/
+sudo ./configure && sudo make && sudo make install
+sudo echo "include /usr/local/lib" >> /etc/ld.so.conf 
 sudo ldconfig
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+cd ..
+
+#The below steps are for making the target you desire
+make client #Creates mclient for running the client
+make server #Creates mserver for running the server
+make editor #Creates meditor for running the editor
+make        #Creates all of the above ones
+make clean  #Deletes the ld objs asociated with the rules executed
 ```
-- Inside the repo folder do
+
+##RUN
 ```Bash
-sudo make
-sudo make clean #Optional, if you want to clean the .o things
-```
-- Run whatever you like (./mclient ./meditor ./mserver)
-
-##Dependencies
-
-> JSON Parser: https://github.com/miloyip/rapidjson
-
-> Logging: https://github.com/google/glog
-
-> Physics Engine: http://www.iforce2d.net/b2dtut/setup-linux
-
-### BOX2D Install instructions
-```Bash
-sudo apt install libbox2d-dev
+Server: ./mserver port config_filename.json
+Client: ./mclient
+Editor: ./meditor
 ```
 
-### Compilation
-```Bash
-//Santi A
-Client: g++ `find . -name '*.cpp' -not -path './server/*' -not -path './editor/*'` -o mclient -std=c++11 -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0 sdl2pp` -lX11
-Server: g++ `find . -name '*.cpp' -not -path './client/*' -not -path './editor/*'` -o mserver -Wall -pipe `pkg-config --cflags --libs gtkmm-3.0` `pkg-config --cflags --libs box2d` -std=c++11 -lglog
-```
-
-### Run
-```Bash
-Server: ./server port config_filename.json
-```
-##TODO Santi A
-----------------------------
-- Pass to .CPP and separate views and controllers from single .H
-- Instead of using #define PATH in controllers and views use a private const std::string ??
-- Should I use for views and any gtkmm/glib related thing the Glib::RefPtr<> ?? Investigate.-> Yes, its throwing free() problems because of this. pass all pointers to smartpointers
-
-##Tree
------------------------------
-
-server - Server side things
-
-client - Client side things
-
-editor - Map Editor side things
-
-doc - Useful documentation
-
-common - Common stuff
-
-res - Resources (drawables/layouts)
-
-##**How to install SDL stuff:**
-
-Search for them, download the .tar.gz versions (Like SDL2, SDL2_mixer-2.0.1.tar.gz, SDL2_image-2.0.1.tar.gz, SDL2_ttf-2.0.14.tar.gz)
-
-https://www.libsdl.org/projects/SDL_image/
-
-https://www.libsdl.org/projects/SDL_mixer/
-
-https://www.libsdl.org/projects/SDL_ttf/
-
-https://www.libsdl.org/download-2.0.php
-
-(For each one of them do)
-* Extract
-* Run
-```Bash
-sudo ./configure
-sudo make all
-sudo make install
-```
-* After running the code you can check if you install them correclty by running
-```Bash
-#Ofc, run the one you are installing, if you are installing currently SDL_ttf, use the SDL2_ttf one....
-pkg-config --cflags --libs sdl2
-pkg-config --cflags --libs SDL2_image
-pkg-config --cflags --libs SDL2_mixer
-pkg-config --cflags --libs SDL2_ttf
-```
-You should see something like (depending on which one you are installing)
-
--D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lSDL2
-
--D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2_image -Wl,-rpath,/usr/local/lib -lSDL2
-
--D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2_mixer -Wl,-rpath,/usr/local/lib -lSDL2
-
--D_REENTRANT -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2_ttf -Wl,-rpath,/usr/local/lib -lSDL2
-
-**This project will be using a wrapper for SDL2 in C++**
-
-* Clone or download this repository and extract it somewhere
-
-https://github.com/libSDL2pp/libSDL2pp/tree/b3a6c2c5935ee0ade88d3d013d5af992886a0643
-
-(Im using that version, you can use a newer if you like)
-
-* Run
-```Bash
-#If you dont have cmake
-sudo apt install cmake
-
-sudo cmake . && sudo make && sudo make install
-```
-
-Check its installed by doing
-```Bash
-pkg-config --cflags --libs sdl2pp
-```
-
-You should see something like
-
--D_REENTRANT -I/usr/local/include -I/usr/local/include/SDL2 -L/usr/local/lib /usr/local/lib/libSDL2main.a -lSDL2pp -lSDL2_image -lSDL2_ttf -lSDL2_mixer -Wl,-rpath,/usr/local/lib -lSDL2
-
-## Installation
-
-sudo apt-get install cmake libbox2d-dev libgtkmm-3.0-dev libglademm-2.4-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib

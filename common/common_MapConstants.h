@@ -72,6 +72,9 @@ typedef enum {
 #define MAPHEIGHT_NAME "height"
 #define MAPWIDTH_NAME "width"
 #define MAPFILENAME_NAME "filename"
+#define MAPBACKGROUNDIMAGE_NAME "background_image"
+
+#define MAP_DEFAULT_BACKGROUND_IMAGE_PATH "res/drawable/background/background1.png"
 
 #define MAPOBSTACLES_NAME "obstacles"
 
