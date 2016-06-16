@@ -52,12 +52,19 @@ void JsonMapParser::parseDocument(const std::string& name) {
 
 	CoordinatesConverter converter;
 
-	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
-		unsigned int x = obstaclesJson[i][X_NAME].GetUint();
-		unsigned int y = obstaclesJson[i][Y_NAME].GetUint();
-		int type = obstaclesJson[i][TYPE_NAME].GetInt();
+	long int x, y;
+	int type;
+	float obstacleX, obstacleY;
 
-		inflateObstacle(type, converter.pxToMeters(x), -converter.pxToMeters(y));
+	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
+		x = obstaclesJson[i][X_NAME].GetUint();
+		y = obstaclesJson[i][Y_NAME].GetUint();
+		type = obstaclesJson[i][TYPE_NAME].GetInt();
+
+		obstacleX = converter.pxToMeters(x);
+		obstacleY = converter.pxToMeters(-y); 
+
+		inflateObstacle(type, obstacleX, obstacleY);
 	}
 }
 

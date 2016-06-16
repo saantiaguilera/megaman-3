@@ -5,6 +5,8 @@
  *      Author: mastanca
  */
 
+#include <iostream>
+
 #include "server_CoordinatesConverter.h"
 
 CoordinatesConverter::CoordinatesConverter() {
@@ -15,9 +17,11 @@ CoordinatesConverter::~CoordinatesConverter() {
 }
 
 float CoordinatesConverter::pxToMeters(float x) {
-	return convertPxToMeters(x);
+	std::cout << "pxToMeters for " << x << " is " << x / METERS_TO_PIXELS_RATIO << std::endl;
+	return x / METERS_TO_PIXELS_RATIO;
 }
 
 float CoordinatesConverter::metersToPx(float x) {
-	return convertMetersToPx(x);
+	std::cout << "metersToPx for " << x << " is " << x * METERS_TO_PIXELS_RATIO << std::endl;
+	return x * METERS_TO_PIXELS_RATIO;
 }

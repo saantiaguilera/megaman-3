@@ -51,10 +51,10 @@ void PhysicObject::move(unsigned int moveState) {
 //    float impulsey = myBody->GetMass() * velChangey; //disregard time facto
 //	float impulsey = 1 * velChangey; //disregard time factor
 //    myBody->ApplyLinearImpulse( b2Vec2(impulsex, impulsey), myBody->GetWorldCenter(), true );
-//    myBody->ApplyLinearImpulse( b2Vec2(desiredVelx, desiredVely), myBody->GetWorldCenter(), true );
-    myBody->SetLinearVelocity(b2Vec2(desiredVelx, desiredVely));
+    myBody->ApplyLinearImpulse( b2Vec2(desiredVelx, desiredVely), myBody->GetWorldCenter(), true );
+//    myBody->SetLinearVelocity(b2Vec2(desiredVelx, desiredVely));
 
-    std::cout << myBody->GetLinearVelocity().x << std::endl;
+   std::cout << myBody->GetLinearVelocity().x << std::endl;
     std::cout << myBody->GetLinearVelocity().y << std::endl;
 
     std::cout << "posx" << myBody->GetPosition().x << std::endl;

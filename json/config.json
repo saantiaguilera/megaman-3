@@ -1,8 +1,8 @@
 {
   "config": {
     "characters_velocity": {
-      "humanoids": 5,
-      "mobs": 3
+      "humanoids": 2,
+      "mobs": 1
     },
     "player_initial_lives": 3,
     "game": {

@@ -9,8 +9,6 @@
 #define SERVER_SERVICES_SERVER_COORDINATESCONVERTER_H_
 
 #include "../../common/common_MapConstants.h"
-#define convertPxToMeters(x) (x/METERS_TO_PIXELS_RATIO)
-#define convertMetersToPx(x) (x*METERS_TO_PIXELS_RATIO)
 
 class CoordinatesConverter {
 public:
