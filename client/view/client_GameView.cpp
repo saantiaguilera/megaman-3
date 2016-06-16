@@ -21,8 +21,7 @@
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 std::vector<AnimatedView*> GameView::animatedViews;
-SDL2pp::Mixer * GameView::mixer = NULL;
-SDL2pp::Chunk * GameView::shootSound = NULL;
+SoundController GameView::soundController;
 Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
@@ -46,29 +45,12 @@ GameView::GameView() : Gtk::Window(){
 
   add(*layout);
   show_all();
-
-/*
-  if (!mixer)
-    mixer = new SDL2pp::Mixer(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
-  if (!shootSound)
-    shootSound = new SDL2pp::Chunk("res/sound/shoot.mp3");
-*/
 }
 
 GameView::~GameView() {
   if (worldView) {
     delete worldView;
     worldView = NULL;
-  }
-
-  if (mixer) {
-    delete mixer;
-    mixer = NULL;
-  }
-
-  if (shootSound) {
-    delete shootSound;
-    shootSound = NULL;
   }
 
   resetAnimations();
@@ -144,10 +126,7 @@ void GameView::addViewFromJSON(std::string json) {
 
       if (view->doesDeviateMassCenter())
         refreshMassCenter();
-
-      //Its a bullet, play sound
-//      if (viewType >= ObstacleViewTypeBomb && viewType <= ObstacleViewTypePlasma)
-//        mixer->PlayChannel(-1, *shootSound);
+		//We could create a doulbe dispatch for the soundcontroller. (like soundController->playFor(view);
     }
   }
 }
