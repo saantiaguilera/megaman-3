@@ -7,6 +7,8 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
+#define N_REPETITIONS 3
+
 #define MAX_STEP_FOR_IDLE 4
 
 enum ORIENTATION {
@@ -28,6 +30,17 @@ class AnimatedView : public RenderedView {
 
   protected:
     bool deviatesMassCenter = false;
+
+    int currentSprite = 0;
+    int repetitions = 0;
+
+    void spriteStep() {
+      ++repetitions;
+      if (repetitions > N_REPETITIONS) {
+        repetitions = 0;
+        ++currentSprite;
+      }
+    }
 
   public:
     AnimatedView(unsigned int id, SDL2pp::Renderer *renderer) : RenderedView(renderer), currentX(0), currentY(0), id(id), counter(0), mOrientation(IDLE) {
@@ -85,6 +98,9 @@ class AnimatedView : public RenderedView {
             futureX - cameraPoint.getX() - TERRAIN_TILE_SIZE / 2,
             futureY - cameraPoint.getY() - TERRAIN_TILE_SIZE / 2));
       }
+
+      currentX = futureX;
+      currentY = futureY;
     }
 
     bool doesDeviateMassCenter() {

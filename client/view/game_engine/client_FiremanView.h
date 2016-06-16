@@ -6,28 +6,33 @@
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define N_POSITIONS 1
-
-#define N_REPETITIONS 1
+#define FIREMAN_SPRITE_COUNT 12
 
 class FiremanView : public AnimatedView {
 private:
-  SDL2pp::Texture *texture;
-
-  int currentSprite = 0;
-  int repetitions = 0;
+  std::map<int, SDL2pp::Texture*> textureMap;
 
 public:
   FiremanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_fireman.png");
+    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i) {
+      std::stringstream ss;
+      ss << "res/drawable/sprites/sprite_fireman/sprite_fireman" << (i + 1) << ".png";
+      textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
+    }
   }
 
   virtual ~FiremanView() {
-    delete texture;
+    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i)
+      delete textureMap[i];
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
-    return texture;
+    spriteStep();
+
+    if (currentSprite > (FIREMAN_SPRITE_COUNT - 1))
+      currentSprite = 0;
+
+    return textureMap[currentSprite];
   }
 
 };

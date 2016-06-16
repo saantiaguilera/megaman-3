@@ -19,7 +19,7 @@ class Weapon;
 class Character: public PhysicObject {
 protected:
 	// hp are the hitpoints for current life
-	unsigned int hp;
+	unsigned int hp, maxHp;
 	// My weapon
 	Weapon* currentWeapon;
 	// Prepare to attack, if true then attack
@@ -51,6 +51,8 @@ public:
 	Weapon* getCurrentWeapon() const;
 	// Return my hp as a string
 	std::string getHpAsString();
+	// Return max hp
+	unsigned int getMaxHp();
 
 private:
 	// Copy constructor

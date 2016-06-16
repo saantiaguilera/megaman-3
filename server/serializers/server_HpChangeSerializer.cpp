@@ -12,7 +12,7 @@
 
 #include "../../common/common_MessageProtocol.h"
 
-HpChangeSerializer::HpChangeSerializer(unsigned int newHp, unsigned int objectId) : Serializer(objectId), newHp(newHp) {
+HpChangeSerializer::HpChangeSerializer(unsigned int newHp, Character* character) : Serializer(character->getId()), newHp(newHp), character(character) {
 	messageCode = HP_CHANGE;
 	serialize();
 }
@@ -22,6 +22,7 @@ HpChangeSerializer::~HpChangeSerializer() {
 
 void HpChangeSerializer::serialize() {
 	std::stringstream ss;
-	ss << "{" << "\"hp\": " << newHp << "," << "\"id\": " << objectId << "}";
+	unsigned int hpPercentage = (newHp*100)/(character->getMaxHp());
+	ss << "{" << "\"hp\": " << hpPercentage << "," << "\"id\": " << character->getId() << "}";
 	serialized = ss.str();
 }

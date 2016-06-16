@@ -17,12 +17,12 @@
 #include "../server_Engine.h"
 #include "../server_EventContext.h"
 
-#define STEP_LENGTH 5
+const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
 
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0),facingPosition(FS_LEFT) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT) {
 	++id;
 }
 
@@ -37,20 +37,29 @@ void PhysicObject::move(unsigned int moveState) {
     b2Vec2 vel = myBody->GetLinearVelocity();
     float desiredVelx = 0;
     float desiredVely = 0;
-    switch ( moveState )
-    {
+    switch ( moveState ){
       case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;
-      case MS_DOWN:  desiredVely =  -STEP_LENGTH; break;
+      case MS_DOWN:  desiredVely =  STEP_LENGTH; break;
       case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = FS_RIGHT; break;
-      case MS_JUMP: desiredVely = STEP_LENGTH; break;
+      case MS_JUMP: desiredVely = -STEP_LENGTH; break;
     }
-    float velChangex = desiredVelx - vel.x;
-    float impulsex = myBody->GetMass() * velChangex; //disregard time factor
-    float velChangey = desiredVely;
-    float impulsey = myBody->GetMass() * velChangey / 2; //disregard time factor
-    std::cout << "ImpulseX: " << impulsex << std::endl;
-    std::cout << "ImpulseY: " << impulsey/2 << std::endl;
-    myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
+    std::cout << "Desired vel x: " << desiredVelx << std::endl;
+    std::cout << "Desired vel y: " << desiredVely << std::endl;
+//    float velChangex = desiredVelx - vel.x;
+//    float impulsex = myBody->GetMass() * velChangex; //disregard time factor
+//    float velChangey = desiredVely;
+//    float impulsey = myBody->GetMass() * velChangey; //disregard time facto
+//	float impulsey = 1 * velChangey; //disregard time factor
+//    myBody->ApplyLinearImpulse( b2Vec2(impulsex, impulsey), myBody->GetWorldCenter(), true );
+    myBody->ApplyLinearImpulse( b2Vec2(desiredVelx, desiredVely), myBody->GetWorldCenter(), true );
+//    myBody->SetLinearVelocity(b2Vec2(desiredVelx, desiredVely));
+
+   std::cout << myBody->GetLinearVelocity().x << std::endl;
+    std::cout << myBody->GetLinearVelocity().y << std::endl;
+
+    std::cout << "posx" << myBody->GetPosition().x << std::endl;
+    std::cout << "posy" << myBody->GetPosition().y << std::endl;
+
 
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
 	Engine::getInstance().getContext()->dispatchEvent(serializer);
@@ -73,7 +82,6 @@ float PhysicObject::getPositionX() const {
 }
 
 void PhysicObject::notify() {
-	std::cout << "Notify creation" << std::endl;
 	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(this);
 	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
 }

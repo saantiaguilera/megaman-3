@@ -6,16 +6,9 @@
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define N_POSITIONS 1
-
-#define N_REPETITIONS 1
-
 class MagnetmanView : public AnimatedView {
 private:
   SDL2pp::Texture *texture;
-
-  int currentSprite = 0;
-  int repetitions = 0;
 
 public:
   MagnetmanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {

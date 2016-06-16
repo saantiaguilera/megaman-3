@@ -57,8 +57,6 @@ void Projectile::setBody() {
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
-	// Apply an impulse <-- this direction
-	// TODO: Set it in constructor?
 	if (facingPosition > 0){
 		myBody->SetLinearVelocity(b2Vec2(5,0));
 	} else {

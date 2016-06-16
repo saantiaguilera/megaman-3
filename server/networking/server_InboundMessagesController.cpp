@@ -7,6 +7,8 @@
 
 #include "server_InboundMessagesController.h"
 
+#include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
 #include <iostream>
 #include <list>
 #include <sstream>
@@ -37,7 +39,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 	Player* desiredPlayer;
 	switch (messageCode) {
 	case PLAYER_CONNECTED:
-		if (Engine::getInstance().getPlayersList().size() < MAX_PLAYERS_COUNT) {
+		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT) {
 			Engine::getInstance().addNewPlayer(clientId, inboundMessage);
 			NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(
 					inboundMessage);
@@ -69,7 +71,9 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		// According to the pressed key we should do something
 		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
-		processMovement(inboundMessage, desiredPlayer);
+		if (desiredPlayer != NULL){
+			processMovement(inboundMessage, desiredPlayer);
+		}
 		break;
 	case WEAPON_CHANGE:
 		std::cout << "Weapon change!" << std::endl;
@@ -105,7 +109,6 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 	}
 
 	if (keysVector[0] == true) {
-		std::cout << "trying to jump" << std::endl;
 		player->getMegaman()->move(PhysicObject::_moveState::MS_JUMP);
 	}
 	if (keysVector[1] == true) {

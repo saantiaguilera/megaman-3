@@ -24,6 +24,8 @@ void ReceiverWorker::run() {
 	unsigned int messageLength;
 	while(client->isConnected()){
 		client->receive(messageCode, messageLength, inboundData);
+		std::cout << "Received: " << inboundData << std::endl;
 		InboundMessagesController interpreter(messageCode, client->getId(), inboundData);
+		inboundData = "";
 	}
 }

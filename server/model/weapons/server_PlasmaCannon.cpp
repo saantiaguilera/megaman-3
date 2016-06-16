@@ -22,8 +22,7 @@ PlasmaCannon::~PlasmaCannon() {
 void PlasmaCannon::fire(float32 x, float32 y, int facingPosition) {
 	if (ammo > 0){
 		--ammo;
-		Plasma* aPlasma = new Plasma(x, y, facingPosition);
-		Engine::getInstance().markObjectForCreation(aPlasma);
+		Engine::getInstance().markObjectForCreation(new Plasma(x, y, facingPosition));
 	}
 }
 

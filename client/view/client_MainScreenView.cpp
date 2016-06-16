@@ -25,7 +25,7 @@ void MainScreenView::setResult(ConnectionResult result) {
     switch (result) {
       case RESULT_OK:
         setProgressBarIndeterminate(false);
-        resultText->set_text("CONNECTED");
+        resultText->set_text("Connected successfully");
         resultText->override_color(Gdk::RGBA("green"), Gtk::STATE_FLAG_NORMAL);
         break;
 
@@ -36,7 +36,7 @@ void MainScreenView::setResult(ConnectionResult result) {
 
       case RESULT_ERROR:
         setProgressBarIndeterminate(false);
-        resultText->set_text("AN ERROR HAS OCCURED. PLS TRY AGAIN");
+        resultText->set_text("Error connecting");
         resultText->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
     }
   }

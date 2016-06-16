@@ -46,8 +46,8 @@ public:
     for (int i = 0 ; i < lifes ; ++i) {
       getRenderer()->Copy(*texture, SDL2pp::NullOpt,
         SDL2pp::Point(x, height));
-        height += texture->GetHeight();
-        height += vSpacing;
+      height += texture->GetHeight();
+      height += vSpacing;
     }
   }
 

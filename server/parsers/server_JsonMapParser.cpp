@@ -34,6 +34,7 @@
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
+#include "../services/server_CoordinatesConverter.h"
 
 
 JsonMapParser::JsonMapParser() {
@@ -49,16 +50,25 @@ void JsonMapParser::parseDocument(const std::string& name) {
 
 	const rapidjson::Value& obstaclesJson = mapJson[MAPOBSTACLES_NAME];
 
-	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
-		unsigned int x = obstaclesJson[i][X_NAME].GetInt();
-		unsigned int y = obstaclesJson[i][Y_NAME].GetInt();
-		int type = obstaclesJson[i][TYPE_NAME].GetInt();
+	CoordinatesConverter converter;
 
-		inflateObstacle(type, x, y);
+	long int x, y;
+	int type;
+	float obstacleX, obstacleY;
+
+	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
+		x = obstaclesJson[i][X_NAME].GetUint();
+		y = obstaclesJson[i][Y_NAME].GetUint();
+		type = obstaclesJson[i][TYPE_NAME].GetInt();
+
+		obstacleX = converter.pxToMeters(x);
+		obstacleY = converter.pxToMeters(-y); 
+
+		inflateObstacle(type, obstacleX, obstacleY);
 	}
 }
 
-void JsonMapParser::inflateObstacle(int type, unsigned int x, unsigned int y) {
+void JsonMapParser::inflateObstacle(int type, float x, float y) {
 	std::list<Player*> playerList;
 	switch (type) {
 		case ObstacleViewTypeBlock:

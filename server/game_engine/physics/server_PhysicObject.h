@@ -11,7 +11,8 @@
 #include "../../../common/common_MapConstants.h"
 class b2Body;
 
-#define BODIES_SIZE 40
+// 0.001852
+const float BODIES_SIZE = (TERRAIN_TILE_SIZE / (float) METERS_TO_PIXELS_RATIO) - 0.004;
 
 class PhysicObject {
 protected:

@@ -5,6 +5,17 @@
         "height": 0,
         "width": 0,
         "id": 1,
-        "obstacles": []
+        "obstacles": [
+        	{
+                "x": 245,
+                "y": 245,
+                "type": 1
+            },
+            {
+                "x": 245,
+                "y": 315,
+                "type": 8
+            }
+        ]
     }
 }

@@ -10,12 +10,15 @@
 
 #include "../../common/common_Serializer.h"
 
+#include "../../server/model/characters/server_Character.h"
+
 class HpChangeSerializer: public Serializer {
 private:
 	unsigned int newHp;
+	Character* character;
 public:
 	// Constructor
-	HpChangeSerializer(unsigned int newHp, unsigned int objectId);
+	HpChangeSerializer(unsigned int newHp, Character* character);
 	// Destroyer
 	virtual ~HpChangeSerializer();
 	// Serialize object

@@ -9,8 +9,8 @@
 #define CONSTANTS_H_
 
 #define APP_IS_UNIQUE false
-#define APP_PACKAGE "com.u.megaslug"
-#define APP_NAME "Megaslug"
+#define APP_PACKAGE "com.u.megaman"
+#define APP_NAME "Megaman 3"
 
 //TODO THIS ENUMS SHOULD BE SOMEWHERE ELSE
 

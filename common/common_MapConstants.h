@@ -8,8 +8,8 @@
 #ifndef COMMON_COMMON_MAPCONSTANTS_H_
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
-#define TERRAIN_REAL_TILE_SIZE 70
 #define TERRAIN_TILE_SIZE 70
+#define METERS_TO_PIXELS_RATIO 3779.527559
 
 #include <map>
 
@@ -73,6 +73,9 @@ typedef enum {
 #define MAPHEIGHT_NAME "height"
 #define MAPWIDTH_NAME "width"
 #define MAPFILENAME_NAME "filename"
+#define MAPBACKGROUNDIMAGE_NAME "background_image"
+
+#define MAP_DEFAULT_BACKGROUND_IMAGE_PATH "res/drawable/background/background1.png"
 
 #define MAPOBSTACLES_NAME "obstacles"
 
