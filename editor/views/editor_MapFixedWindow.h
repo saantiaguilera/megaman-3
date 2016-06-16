@@ -36,7 +36,6 @@ private :
     MapView *mapView;
 
     Gtk::Image *backgroundImage;
-
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPFIXEDWINDOW_H_ */
