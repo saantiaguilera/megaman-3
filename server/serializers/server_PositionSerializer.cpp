@@ -9,6 +9,8 @@
 
 #include <sstream>
 
+#include "../services/server_CoordinatesConverter.h"
+
 PositionSerializer::PositionSerializer(unsigned int objectId, int objectType, float x, float y) : Serializer(objectId, objectType), x(x), y(y) {
 	serializePosition();
 }
@@ -23,6 +25,7 @@ PositionSerializer::~PositionSerializer() {
 std::string PositionSerializer::serializePosition() {
 	// { "id": ID, "type": TYPE, "position": { "x": 5, "y": 8 } }
 	std::stringstream ss;
-	ss << "{ \"id\": " << getObjectId() << ", \"type\": " << getObjectType() << ", \"position\": { \"x\": " << x << ", \"y\": " << y << "} }";
+	CoordinatesConverter converter;
+	ss << "{ \"id\": " << getObjectId() << ", \"type\": " << getObjectType() << ", \"position\": { \"x\": " << converter.metersToPx(x) << ", \"y\": " << converter.metersToPx(y) << "} }";
 	return ss.str();
 }
