@@ -11,7 +11,8 @@
 #include "../../../common/common_MapConstants.h"
 class b2Body;
 
-#define BODIES_SIZE 40
+// 0.001852
+#define BODIES_SIZE TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO
 
 class PhysicObject {
 protected:

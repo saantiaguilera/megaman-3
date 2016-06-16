@@ -34,6 +34,7 @@
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
+#include "../services/server_CoordinatesConverter.h"
 
 
 JsonMapParser::JsonMapParser() {
@@ -49,12 +50,12 @@ void JsonMapParser::parseDocument(const std::string& name) {
 
 	const rapidjson::Value& obstaclesJson = mapJson[MAPOBSTACLES_NAME];
 
-	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
-		unsigned int x = obstaclesJson[i][X_NAME].GetInt();
-		unsigned int y = obstaclesJson[i][Y_NAME].GetInt();
-		int type = obstaclesJson[i][TYPE_NAME].GetInt();
+	CoordinatesConverter converter;
 
-		CoordinatesConverter converter;
+	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {
+		unsigned int x = obstaclesJson[i][X_NAME].GetUint();
+		unsigned int y = obstaclesJson[i][Y_NAME].GetUint();
+		int type = obstaclesJson[i][TYPE_NAME].GetInt();
 
 		inflateObstacle(type, converter.pxToMeters(x), converter.pxToMeters(y));
 	}

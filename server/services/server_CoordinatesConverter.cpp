@@ -17,3 +17,7 @@ CoordinatesConverter::~CoordinatesConverter() {
 float CoordinatesConverter::pxToMeters(float x) {
 	return convertPxToMeters(x);
 }
+
+float CoordinatesConverter::metersToPx(float x) {
+	return convertMetersToPx(x);
+}

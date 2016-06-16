@@ -9,8 +9,8 @@
 #define SERVER_SERVICES_SERVER_COORDINATESCONVERTER_H_
 
 #include "../../common/common_MapConstants.h"
-#define METERS_TO_PIXELS_RATIO 3779.527559
 #define convertPxToMeters(x) ((x/TERRAIN_TILE_SIZE)*(TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO))
+#define convertMetersToPx(x) ((x*TERRAIN_TILE_SIZE)/(TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO))
 
 class CoordinatesConverter {
 public:
@@ -20,6 +20,8 @@ public:
 	virtual ~CoordinatesConverter();
 	// Converts pixels to meters
 	float pxToMeters(float x);
+	// Convert meters to px
+	float metersToPx(float x);
 private:
 	// Copy constructor
 	CoordinatesConverter(const CoordinatesConverter&);

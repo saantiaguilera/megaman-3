@@ -10,7 +10,6 @@
 
 #include <string>
 
-
 class JsonMapParser {
 private:
 	void inflateObstacle(int type, float x, float y);
