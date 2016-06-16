@@ -11,7 +11,7 @@ fi
 
 function tryMake {
 	if [ $installed == 0 ]; then
-		make $1
+		make $1 -j4
 	else 
 		echo First run install.
 	fi
