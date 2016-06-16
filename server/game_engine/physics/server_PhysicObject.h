@@ -12,7 +12,7 @@
 class b2Body;
 
 // 0.001852
-#define BODIES_SIZE TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO
+const float BODIES_SIZE = TERRAIN_TILE_SIZE / (float) METERS_TO_PIXELS_RATIO;
 
 class PhysicObject {
 protected:

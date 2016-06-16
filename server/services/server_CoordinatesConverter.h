@@ -9,8 +9,8 @@
 #define SERVER_SERVICES_SERVER_COORDINATESCONVERTER_H_
 
 #include "../../common/common_MapConstants.h"
-#define convertPxToMeters(x) ((x/TERRAIN_TILE_SIZE)*(TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO))
-#define convertMetersToPx(x) ((x*TERRAIN_TILE_SIZE)/(TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO))
+#define convertPxToMeters(x) (x/METERS_TO_PIXELS_RATIO)
+#define convertMetersToPx(x) (x*METERS_TO_PIXELS_RATIO)
 
 class CoordinatesConverter {
 public:
