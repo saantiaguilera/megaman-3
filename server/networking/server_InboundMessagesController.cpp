@@ -7,12 +7,8 @@
 
 #include "server_InboundMessagesController.h"
 
-#include <Common/b2Math.h>
-#include <Dynamics/b2Body.h>
 #include <iostream>
 #include <list>
-#include <sstream>
-#include <vector>
 
 #include "../../common/common_MessageProtocol.h"
 #include "../game_engine/physics/server_PhysicObject.h"
@@ -21,19 +17,17 @@
 #include "../game_engine/server_Player.h"
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
+#include "../parsers/server_KeyMapParser.h"
 #include "../serializers/server_NewPlayerSerializer.h"
 #include "../serializers/server_StartGameSerializer.h"
 
 #define MAX_PLAYERS_COUNT 4
 #define MAX_MOVE_STATES 5
 
-InboundMessagesController::InboundMessagesController(int messageCode,
-		unsigned int clientId, const std::string& inboundMessage) {
-	analizeMessageCode(messageCode, clientId, inboundMessage);
+InboundMessagesController::InboundMessagesController() {
 }
 
-void InboundMessagesController::analizeMessageCode(int messageCode,
-		unsigned int clientId, const std::string& inboundMessage) {
+void InboundMessagesController::analizeMessageCode() {
 	// CHECK MESSAGE PROTOCOL IN common_MessageProtocol.h
 	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
 	Player* desiredPlayer;
@@ -48,7 +42,8 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		}
 		break;
 	case START_GAME:
-		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT && !Engine::getInstance().isRunning()) {
+		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT
+				&& !Engine::getInstance().isRunning()) {
 			// Set the flag of the engine to ready to start
 			desiredPlayer = getDesiredPlayer(clientId);
 			if (desiredPlayer->isAdmin()) {
@@ -71,7 +66,7 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		// According to the pressed key we should do something
 		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
-		if (desiredPlayer != NULL){
+		if (desiredPlayer != NULL) {
 			processMovement(inboundMessage, desiredPlayer);
 		}
 		break;
@@ -98,32 +93,43 @@ Player* InboundMessagesController::getDesiredPlayer(unsigned int playerId) {
 
 void InboundMessagesController::processMovement(const std::string& keyMap,
 		Player* player) {
-	std::stringstream ss;
-	ss.str(keyMap);
-//	bool jump, down, left, right, shoot;
-	std::vector<bool> keysVector;
-	bool aux;
-	for (int i = 0; i < MAX_MOVE_STATES; ++i) {
-		ss >> aux;
-		keysVector.push_back(aux);
+	KeyMapParser parser;
+	KeyMap futureKeyMap = parser.parse(keyMap);
+
+	if (currentKeyMap.isJumping() != futureKeyMap.isJumping()) {
+		player->getMegaman()->move(
+				futureKeyMap.isJumping() ?
+						PhysicObject::_moveState::MS_JUMP :
+						PhysicObject::_moveState::MS_STOP);
 	}
 
-	if (keysVector[0] == true) {
-		player->getMegaman()->move(PhysicObject::_moveState::MS_JUMP);
-	}
-	if (keysVector[1] == true) {
-		player->getMegaman()->move(PhysicObject::_moveState::MS_DOWN);
-	}
-	if (keysVector[2] == true) {
-		player->getMegaman()->move(PhysicObject::_moveState::MS_LEFT);
-	}
-	if (keysVector[3] == true) {
-		player->getMegaman()->move(PhysicObject::_moveState::MS_RIGHT);
-	}
-	if (keysVector[4] == true) {
-		player->getMegaman()->attack();
+	if (currentKeyMap.isDown() != futureKeyMap.isDown()) {
+		player->getMegaman()->move(
+				futureKeyMap.isDown() ?
+						PhysicObject::_moveState::MS_DOWN :
+						PhysicObject::_moveState::MS_STOP);
 	}
 
+	if (currentKeyMap.isLeft() != futureKeyMap.isLeft()) {
+		player->getMegaman()->move(
+				futureKeyMap.isLeft() ?
+						PhysicObject::_moveState::MS_LEFT :
+						PhysicObject::_moveState::MS_STOP);
+	}
+
+	if (currentKeyMap.isRight() != futureKeyMap.isRight()) {
+		player->getMegaman()->move(
+				futureKeyMap.isRight() ?
+						PhysicObject::_moveState::MS_RIGHT :
+						PhysicObject::_moveState::MS_STOP);
+	}
+
+	if (currentKeyMap.isShooting() != futureKeyMap.isShooting()) {
+		if (futureKeyMap.isShooting()) {
+			player->getMegaman()->attack();
+		}
+	}
+	currentKeyMap = futureKeyMap;
 }
 
 int InboundMessagesController::processWeaponType(
@@ -137,3 +143,9 @@ int InboundMessagesController::processWeaponType(
 InboundMessagesController::~InboundMessagesController() {
 }
 
+void InboundMessagesController::setParameters(int messageCode,
+		unsigned int clientId, const std::string& inboundMessage) {
+	this->messageCode = messageCode;
+	this->clientId = clientId;
+	this->inboundMessage = inboundMessage;
+}

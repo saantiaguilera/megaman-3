@@ -22,10 +22,12 @@ void ReceiverWorker::run() {
 	std::string inboundData;
 	int messageCode;
 	unsigned int messageLength;
+	InboundMessagesController interpreter;
 	while(client->isConnected()){
 		client->receive(messageCode, messageLength, inboundData);
 		std::cout << "Received: " << inboundData << std::endl;
-		InboundMessagesController interpreter(messageCode, client->getId(), inboundData);
+		interpreter.setParameters(messageCode, client->getId(), inboundData);
+		interpreter.analizeMessageCode();
 		inboundData = "";
 	}
 }

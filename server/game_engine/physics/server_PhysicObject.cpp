@@ -17,7 +17,8 @@
 #include "../server_Engine.h"
 #include "../server_EventContext.h"
 
-const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
+//const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
+const float STEP_LENGTH = 2;
 
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
@@ -39,26 +40,26 @@ void PhysicObject::move(unsigned int moveState) {
     float desiredVely = 0;
     switch ( moveState ){
       case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;
-      case MS_DOWN:  desiredVely =  STEP_LENGTH; break;
+      case MS_DOWN:  desiredVely =  -STEP_LENGTH; break;
       case MS_RIGHT: desiredVelx =  STEP_LENGTH; facingPosition = FS_RIGHT; break;
-      case MS_JUMP: desiredVely = -STEP_LENGTH; break;
+      case MS_JUMP: desiredVely = STEP_LENGTH; break;
+      case MS_STOP: desiredVelx = 0; desiredVely = 0; break;
     }
-    std::cout << "Desired vel x: " << desiredVelx << std::endl;
-    std::cout << "Desired vel y: " << desiredVely << std::endl;
-//    float velChangex = desiredVelx - vel.x;
-//    float impulsex = myBody->GetMass() * velChangex; //disregard time factor
-//    float velChangey = desiredVely;
-//    float impulsey = myBody->GetMass() * velChangey; //disregard time facto
+    float velChangex = desiredVelx - vel.x;
+    float impulsex = myBody->GetMass() * velChangex; //disregard time factor
+    float velChangey = desiredVely - vel.y;
+    float impulsey = myBody->GetMass() * velChangey; //disregard time factor
 //	float impulsey = 1 * velChangey; //disregard time factor
-//    myBody->ApplyLinearImpulse( b2Vec2(impulsex, impulsey), myBody->GetWorldCenter(), true );
-    myBody->ApplyLinearImpulse( b2Vec2(desiredVelx, desiredVely), myBody->GetWorldCenter(), true );
+    myBody->ApplyLinearImpulse( b2Vec2(impulsex, impulsey), myBody->GetWorldCenter(), true );
+//    myBody->ApplyLinearImpulse( b2Vec2(desiredVelx, desiredVely), myBody->GetWorldCenter(), true );
+//    myBody->SetTransform(b2Vec2(myBody->GetPosition().x + desiredVelx, myBody->GetPosition().y + desiredVely), 0);
 //    myBody->SetLinearVelocity(b2Vec2(desiredVelx, desiredVely));
 
-   std::cout << myBody->GetLinearVelocity().x << std::endl;
-    std::cout << myBody->GetLinearVelocity().y << std::endl;
-
-    std::cout << "posx" << myBody->GetPosition().x << std::endl;
-    std::cout << "posy" << myBody->GetPosition().y << std::endl;
+//   std::cout << myBody->GetLinearVelocity().x << std::endl;
+//    std::cout << myBody->GetLinearVelocity().y << std::endl;
+//
+//    std::cout << "posx" << myBody->GetPosition().x << std::endl;
+//    std::cout << "posy" << myBody->GetPosition().y << std::endl;
 
 
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());

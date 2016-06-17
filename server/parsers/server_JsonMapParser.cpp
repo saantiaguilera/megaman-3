@@ -61,10 +61,10 @@ void JsonMapParser::parseDocument(const std::string& name) {
 		y = obstaclesJson[i][Y_NAME].GetUint();
 		type = obstaclesJson[i][TYPE_NAME].GetInt();
 
-		obstacleX = converter.pxToMeters(x);
-		obstacleY = converter.pxToMeters(-y); 
+//		obstacleX = converter.pxToMeters(x);
+//		obstacleY = converter.pxToMeters(y);
 
-		inflateObstacle(type, obstacleX, obstacleY);
+		inflateObstacle(type, x, y);
 	}
 }
 
