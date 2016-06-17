@@ -142,16 +142,24 @@ void Engine::start() {
     Logger::getInstance().log(1, "Game engine started");
 	running = true;
 
+	int i = 0;
+
 	while(!quit){
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For updating AI and movements of bullets
-		//std::cout << "Megaman x: " << getPlayersList().front()->getMegaman()->getPositionX() << std::endl;
+//		if (i % 100000 == 0){
+//					std::cout << "Megaman x: " << getPlayersList().front()->getMegaman()->getPositionX() << std::endl;
+//					std::cout << "Megaman y: " << getPlayersList().front()->getMegaman()->getPositionY() << std::endl;
+//			i = 0;
+//		}
+
 		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
 				it != updatablesList.end(); ++it) {
 			(*it)->update();
 		}
 		destroyObjects();
+		++i;
 	}
 }
 
