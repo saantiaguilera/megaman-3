@@ -7,7 +7,7 @@
 
 #include "server_Humanoid.h"
 
-#include <Collision/Shapes/b2PolygonShape.h>
+#include <Collision/Shapes/b2CircleShape.h>
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
@@ -32,13 +32,13 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	myBody->SetUserData( this );
 
 	// Add shape to body
-	b2PolygonShape boxShape;
-	std::cout << "Body size is: " << BODIES_SIZE << std::endl;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	b2CircleShape circleShape;
+	circleShape.m_radius = BODIES_SIZE;
+//	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.shape = &circleShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 }
