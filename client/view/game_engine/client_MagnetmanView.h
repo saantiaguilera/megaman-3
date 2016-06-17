@@ -6,21 +6,33 @@
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
+#define MAGNETMAN_SPRITE_COUNT 9
+
 class MagnetmanView : public AnimatedView {
 private:
-  SDL2pp::Texture *texture;
+  std::map<int, SDL2pp::Texture*> textureMap;
 
 public:
   MagnetmanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/sprites/sprite_magnetman.png");
+    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i) {
+      std::stringstream ss;
+      ss << "res/drawable/sprites/sprite_magnetman/sprite_magnetman" << (i + 1) << ".png";
+      textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
+    }
   }
 
   virtual ~MagnetmanView() {
-    delete texture;
+    for (int i = 0 ; i < MAGNETMAN_SPRITE_COUNT ; ++i)
+      delete textureMap[i];
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
-    return texture;
+    spriteStep();
+
+    if (currentSprite > (FIREMAN_SPRITE_COUNT - 1))
+      currentSprite = 0;
+
+    return textureMap[currentSprite];
   }
 
 };

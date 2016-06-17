@@ -18,17 +18,31 @@
 int MegamanView::megamansCount = 0;
 
 MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-  for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i) {
-    std::stringstream ss;
-    ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << ".png";
-    textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
-  }
-
   deviatesMassCenter = true;
   lastOrientation = IDLE;
 
   megamanNumber = megamansCount;
   megamansCount++;
+
+  for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i) {
+    std::stringstream ss;
+
+    switch (megamanNumber) {
+      case 0:
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "blue.png";
+        break;
+      case 1:
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "red.png";
+        break;
+      case 2:
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "green.png";
+        break;
+      default:
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "yellow.png";
+    }
+
+    textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
+  }
 }
 
 MegamanView::~MegamanView() {
