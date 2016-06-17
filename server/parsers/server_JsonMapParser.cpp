@@ -61,14 +61,14 @@ void JsonMapParser::parseDocument(const std::string& name) {
 		y = obstaclesJson[i][Y_NAME].GetUint();
 		type = obstaclesJson[i][TYPE_NAME].GetInt();
 
-//		obstacleX = converter.pxToMeters(x);
-//		obstacleY = converter.pxToMeters(y);
+		obstacleX = converter.pxToMeters(x);
+		obstacleY = converter.pxToMeters(y);
 
-		inflateObstacle(type, x, y);
+		inflateObject(type, obstacleX, obstacleY);
 	}
 }
 
-void JsonMapParser::inflateObstacle(int type, float x, float y) {
+void JsonMapParser::inflateObject(int type, float x, float y) {
 	std::list<Player*> playerList;
 	switch (type) {
 		case ObstacleViewTypeBlock:
