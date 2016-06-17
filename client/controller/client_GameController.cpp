@@ -74,28 +74,38 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
     case KEY_LEFT:
-      keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
-      Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      if (keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS)) {
+        keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
       break;
 
     case KEY_RIGHT:
-      keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
-      Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      if (keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS)) {
+        keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
       break;
 
     case KEY_DOWN:
-      keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
-      Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      if (keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS)) {
+        keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
       break;
 
     case KEY_SHOOT:
-      keyMap.setShooting(gdkEvent->type == GDK_KEY_PRESS);
-      Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      if (keyMap.isShooting() != (gdkEvent->type == GDK_KEY_PRESS)) {
+        keyMap.setShooting(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
       break;
 
     case KEY_JUMP:
-      keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
-      Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      if (keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS)) {
+        keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
       break;
 
     case KEY_WEAPON_1:
