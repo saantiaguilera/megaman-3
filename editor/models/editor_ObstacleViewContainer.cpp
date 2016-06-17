@@ -15,7 +15,6 @@ ObstacleViewContainer::ObstacleViewContainer(ObstacleView *aObstacleView) {
 
 	ObstacleViewType type = obstacleView->getType();
 
-	std::cout<<MapConstants().getImagePathWithObstacleViewType(type)<<std::endl;
 	Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
 
 	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
@@ -34,7 +33,6 @@ ObstacleViewContainer::~ObstacleViewContainer() {}
 
 Gtk::Image *ObstacleViewContainer::getImage() {
 	if (!isShowing) {
-		std::cout<<"entre"<<std::endl;
 		image->show();
 		image->set_size_request(TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE);
 		isShowing = !isShowing;
