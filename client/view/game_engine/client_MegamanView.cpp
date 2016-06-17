@@ -29,16 +29,16 @@ MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : Animated
 
     switch (megamanNumber) {
       case 0:
-        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "blue.png";
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "_blue.png";
         break;
       case 1:
-        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "red.png";
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "_red.png";
         break;
       case 2:
-        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "green.png";
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "_green.png";
         break;
       default:
-        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "yellow.png";
+        ss << "res/drawable/sprites/sprite_megaman/sprite_megaman" << (i + 1) << "_yellow.png";
     }
 
     textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
