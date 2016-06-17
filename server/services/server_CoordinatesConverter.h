@@ -17,9 +17,9 @@ public:
 	// Destroyer
 	virtual ~CoordinatesConverter();
 	// Converts pixels to meters
-	float pxToMeters(float x);
+	float pxToMeters(float pixels);
 	// Convert meters to px
-	float metersToPx(float x);
+	float metersToPx(float meters);
 private:
 	// Copy constructor
 	CoordinatesConverter(const CoordinatesConverter&);

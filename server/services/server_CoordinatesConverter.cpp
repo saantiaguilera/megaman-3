@@ -16,12 +16,10 @@ CoordinatesConverter::CoordinatesConverter() {
 CoordinatesConverter::~CoordinatesConverter() {
 }
 
-float CoordinatesConverter::pxToMeters(float x) {
-//	std::cout << "pxToMeters for " << x << " is " << x / METERS_TO_PIXELS_RATIO << std::endl;
-	return x / METERS_TO_PIXELS_RATIO;
+float CoordinatesConverter::pxToMeters(float pixels) {
+	return pixels * METERS_TO_PIXELS_RATIO;
 }
 
-float CoordinatesConverter::metersToPx(float x) {
-//	std::cout << "metersToPx for " << x << " is " << x * METERS_TO_PIXELS_RATIO << std::endl;
-	return x * METERS_TO_PIXELS_RATIO;
+float CoordinatesConverter::metersToPx(float meters) {
+	return meters / METERS_TO_PIXELS_RATIO;
 }
