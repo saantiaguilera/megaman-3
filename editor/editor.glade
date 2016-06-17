@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <!-- interface-local-resource-path /home/santi/Documents/Fiuba/TallerDeProgramacionI/fiuba-taller-I-megaman/res/drawable -->
@@ -110,6 +110,7 @@
   </object>
   <object class="GtkWindow" id="mapWindow">
     <property name="can_focus">False</property>
+    <property name="icon">../res/drawable/ic_launcher.png</property>
     <child>
       <object class="GtkBox" id="box2">
         <property name="visible">True</property>
@@ -625,7 +626,7 @@
                                 <property name="height_request">700</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="pixbuf">../res/drawable/background.png</property>
+                                <property name="pixbuf">../res/drawable/background/background1.png</property>
                                 <property name="icon_size">0</property>
                               </object>
                             </child>
@@ -674,6 +675,7 @@
   </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="can_focus">False</property>
+    <property name="icon">../res/drawable/ic_launcher.png</property>
     <child>
       <object class="GtkGrid" id="grid1">
         <property name="visible">True</property>
@@ -746,8 +748,6 @@ chamber</property>
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">0</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -818,8 +818,6 @@ chamber</property>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">1</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -890,8 +888,6 @@ chamber</property>
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">1</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -962,8 +958,6 @@ Chamber</property>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
       </object>
