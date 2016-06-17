@@ -12,6 +12,7 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
+#include <iostream>
 
 #include "../../game_engine/server_Engine.h"
 
@@ -28,7 +29,8 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 
 	// Add shape to body
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	std::cout << "Body size is: " << BODIES_SIZE << std::endl;
+	boxShape.SetAsBox(BODIES_SIZE*BODIES_SIZE/2,BODIES_SIZE);
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;

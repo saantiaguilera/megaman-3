@@ -33,6 +33,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 
 	// Add shape to body
 	b2PolygonShape boxShape;
+	std::cout << "Body size is: " << BODIES_SIZE << std::endl;
 	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 
 	// Add fixture
