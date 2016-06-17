@@ -71,9 +71,10 @@ void InboundMessagesController::analizeMessageCode(int messageCode,
 		// According to the pressed key we should do something
 		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
-		processMovement(inboundMessage, desiredPlayer);
+		if (desiredPlayer != NULL){
+			processMovement(inboundMessage, desiredPlayer);
+		}
 		break;
-		desiredPlayer->getMegaman()->getMyBody()->SetLinearVelocity(b2Vec2(50, 100));
 	case WEAPON_CHANGE:
 		std::cout << "Weapon change!" << std::endl;
 		desiredPlayer = getDesiredPlayer(clientId);

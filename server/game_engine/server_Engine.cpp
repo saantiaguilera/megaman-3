@@ -146,6 +146,7 @@ void Engine::start() {
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For updating AI and movements of bullets
+		//std::cout << "Megaman x: " << getPlayersList().front()->getMegaman()->getPositionX() << std::endl;
 		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
 				it != updatablesList.end(); ++it) {
 			(*it)->update();

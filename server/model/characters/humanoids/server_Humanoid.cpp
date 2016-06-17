@@ -12,6 +12,7 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <Dynamics/b2World.h>
+#include <iostream>
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
@@ -23,6 +24,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	humanoidBodyDef.type = b2_dynamicBody;
 	humanoidBodyDef.fixedRotation = true;
 	humanoidBodyDef.position.Set(x,y);
+	std::cout << "Humanoid position instanced in " << x << "," << y << std::endl;
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&humanoidBodyDef);
 

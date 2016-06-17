@@ -27,6 +27,8 @@ void MapViewParser::parse(rapidjson::Document &document, MapView *mapView) {
 	mapView->setHeight(mapJson[MAPHEIGHT_NAME].GetInt());
 	mapView->setWidth(mapJson[MAPWIDTH_NAME].GetInt());
 
+	mapView->setBackgroundImage(mapJson.HasMember(MAPBACKGROUNDIMAGE_NAME) ? mapJson[MAPBACKGROUNDIMAGE_NAME].GetString() : MAP_DEFAULT_BACKGROUND_IMAGE_PATH);
+
 	const rapidjson::Value& obstaclesJson = mapJson[MAPOBSTACLES_NAME];
 
 	for (rapidjson::SizeType i = 0; i < obstaclesJson.Size(); i++) {

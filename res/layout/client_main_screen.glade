@@ -24,7 +24,7 @@
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="pixbuf">../drawable/main_screen.jpg</property>
+            <property name="pixbuf">../drawable/screen/main_screen_background.jpg</property>
           </object>
         </child>
         <child>

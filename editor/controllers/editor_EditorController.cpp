@@ -57,6 +57,11 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 	mapWindow->setMapView(map);
 }
 
+void EditorController::presentMapWindowWithName(std::string filename) {
+	std::cout<<"filename : "<<filename;
+}
+
+
 void EditorController::showMainWindow() {
 	mainWindow->set_visible(true);
 	mapWindow->set_visible(false);

@@ -23,6 +23,10 @@ void MapView::setName(std::string aString) {
 	name = aString;
 }
 
+void MapView::setBackgroundImage(std::string path) {
+	backgroundPath = path;
+}
+
 void MapView::setFilename(std::string aFilename) {
 	filename = aFilename;
 }
@@ -41,6 +45,10 @@ void MapView::setWidth(unsigned int aWidth) {
 //Getters
 std::string MapView::getName() {
 	return name;
+}
+
+std::string MapView::getBackgroundImage() {
+	return backgroundPath;
 }
 
 std::string MapView::getFilename() {

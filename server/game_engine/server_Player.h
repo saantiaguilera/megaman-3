@@ -44,7 +44,7 @@ public:
 	// Return my megaman
 	Megaman* getMegaman() const;
 	// Set the megaman of the player
-	void setMegaman(uint x, uint y);
+	void setMegaman(float x, float y);
 
 private:
 	// Copy constructor

@@ -24,10 +24,12 @@ public:
 	void setHeight(unsigned int aHeight);
 	void setWidth(unsigned int aWidth);
 	void setObstacle(ObstacleView *obstacle);
+	void setBackgroundImage(std::string path);
 
 	//Getters
 	std::string getName();
 	std::string getFilename();
+	std::string getBackgroundImage();
 	unsigned int getId();
 	unsigned int getWidth();
 	unsigned int getHeight();
@@ -38,6 +40,7 @@ private:
 	unsigned int id;
 	std::string name;
 	std::string filename;
+	std::string backgroundPath;
 	unsigned int height;
 	unsigned int width;
 
