@@ -21,6 +21,7 @@ public:
 	void presentMainWindowSavingMap(MapView *map);
 	void presentMainWindowWithoutSavingMap();
 	void presentMapWindowWithMap(MapView *map);
+	void presentMapWindowWithName(std::string filename);
 
 private:
 	Glib::RefPtr<Gtk::Builder> builder;

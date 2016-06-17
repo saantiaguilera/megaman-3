@@ -7,6 +7,7 @@
     <property name="width_request">640</property>
     <property name="height_request">480</property>
     <property name="can_focus">False</property>
+    <property name="resizable">False</property>
     <property name="icon">../drawable/ic_launcher.png</property>
     <child>
       <object class="GtkLayout" id="layout1">
@@ -28,92 +29,89 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="label2">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+          <object class="GtkBox" id="box2">
+            <property name="width_request">229</property>
+            <property name="height_request">143</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Enter IP:PORT</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="label5">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Enter your name</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="client_home_screen_name_text">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">0.5</property>
+                <property name="placeholder_text" translatable="yes">Type here</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label6">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Enter IP:PORT</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="client_home_screen_edit_text">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="xalign">0.5</property>
+                <property name="placeholder_text" translatable="yes">Type here</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinner" id="client_home_screen_progress_bar">
+                <property name="width_request">50</property>
+                <property name="height_request">50</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="client_home_screen_result_text_view">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="x">270</property>
-            <property name="y">330</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="client_home_screen_edit_text">
-            <property name="width_request">180</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="can_default">True</property>
-            <property name="events">GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_STRUCTURE_MASK</property>
-            <property name="halign">center</property>
-            <property name="valign">end</property>
-            <property name="margin_top">14</property>
-            <property name="activates_default">True</property>
-            <property name="xalign">0.5</property>
-            <property name="shadow_type">out</property>
-            <property name="placeholder_text" translatable="yes">Type here</property>
-          </object>
-          <packing>
-            <property name="x">230</property>
-            <property name="y">350</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSpinner" id="client_home_screen_progress_bar">
-            <property name="width_request">80</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="x">280</property>
-            <property name="y">400</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="client_home_screen_result_text_view">
-            <property name="width_request">640</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
-          </object>
-          <packing>
-            <property name="y">400</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="client_home_screen_name_text">
-            <property name="width_request">180</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="xalign">0.5</property>
-            <property name="placeholder_text" translatable="yes">Type here</property>
-          </object>
-          <packing>
-            <property name="x">230</property>
-            <property name="y">300</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label1">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Enter your Name</property>
-          </object>
-          <packing>
-            <property name="x">268</property>
-            <property name="y">265</property>
+            <property name="x">210</property>
+            <property name="y">295</property>
           </packing>
         </child>
       </object>
