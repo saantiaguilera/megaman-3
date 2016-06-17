@@ -51,7 +51,11 @@ void MainScreenView::onEnterPressed(Gtk::Entry *editText) {
 }
 
 void MainScreenView::setProgressBarIndeterminate(bool active) {
-  if (active)
+  if (active) {
+    progressBar->set_visible(true);
     progressBar->start();
-  else progressBar->stop();
+  } else {
+    progressBar->set_visible(false);
+    progressBar->stop();
+  }
 }
