@@ -14,7 +14,7 @@ private:
 
 public:
   RingmanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i) {
+    for (int i = 0 ; i < RINGMAN_SPRITE_COUNT ; ++i) {
       std::stringstream ss;
       ss << "res/drawable/sprites/sprite_ringman/sprite_ringman" << (i + 1) << ".png";
       textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
@@ -22,14 +22,14 @@ public:
   }
 
   virtual ~RingmanView() {
-    for (int i = 0 ; i < RINGMANMAN_SPRITE_COUNT ; ++i)
+    for (int i = 0 ; i < RINGMAN_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
     spriteStep();
 
-    if (currentSprite > (FIREMAN_SPRITE_COUNT - 1))
+    if (currentSprite > (RINGMAN_SPRITE_COUNT - 1))
       currentSprite = 0;
 
     return textureMap[currentSprite];

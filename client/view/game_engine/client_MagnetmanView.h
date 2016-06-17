@@ -14,7 +14,7 @@ private:
 
 public:
   MagnetmanView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i) {
+    for (int i = 0 ; i < MAGNETMAN_SPRITE_COUNT ; ++i) {
       std::stringstream ss;
       ss << "res/drawable/sprites/sprite_magnetman/sprite_magnetman" << (i + 1) << ".png";
       textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
@@ -29,7 +29,7 @@ public:
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
     spriteStep();
 
-    if (currentSprite > (FIREMAN_SPRITE_COUNT - 1))
+    if (currentSprite > (MAGNETMAN_SPRITE_COUNT - 1))
       currentSprite = 0;
 
     return textureMap[currentSprite];
