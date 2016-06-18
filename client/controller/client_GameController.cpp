@@ -38,6 +38,8 @@ bool GameController::shouldSendKeyMap(int keyMap) {
   Point massCenter = view->getMassCenter();
   int delta;
 
+  if (myView == NULL) return false;
+
   switch (keyMap) {
     case KEY_LEFT:
       delta = myView->getX() - massCenter.getX();
