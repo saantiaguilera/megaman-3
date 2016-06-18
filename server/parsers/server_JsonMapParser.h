@@ -12,7 +12,7 @@
 
 class JsonMapParser {
 private:
-	void inflateObstacle(int type, float x, float y);
+	void inflateObject(int type, float x, float y);
 public:
 	// Constructor
 	JsonMapParser();

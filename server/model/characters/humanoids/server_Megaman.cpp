@@ -8,6 +8,7 @@
 #include "server_Megaman.h"
 
 #include <Dynamics/b2Body.h>
+#include <iostream>
 #include <string>
 
 #include "../../../../common/common_MapConstants.h"
@@ -18,7 +19,6 @@
 #include "../../../serializers/server_AmmoChangeSerializer.h"
 #include "../../../serializers/server_HpChangeSerializer.h"
 #include "../../../serializers/server_LifeChangeSerializer.h"
-#include "../../../serializers/server_MovementSerializer.h"
 #include "../../../server_Logger.h"
 #include "../../obstacles/server_Obstacle.h"
 #include "../../powerups/server_Powerup.h"

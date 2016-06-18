@@ -7,7 +7,8 @@
 
 #include "server_Player.h"
 
-#include "../serializers/server_ObjectCreationSerializer.h"
+#include "../model/characters/humanoids/server_Megaman.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../server_Logger.h"
 #include "server_Engine.h"
 #include "server_EventContext.h"
@@ -62,5 +63,7 @@ void Player::increasePlayerLives() {
 void Player::setMegaman(float x, float y) {
 	if (megaman == NULL){
 		megaman = new Megaman(this, x, y);
+		ConnectedPlayerSerializer connectedPlayerSerializer(megaman);
+		Engine::getInstance().getContext()->dispatchEventTo(&connectedPlayerSerializer, getId());
 	}
 }

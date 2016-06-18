@@ -18,6 +18,8 @@
 
 #include "../../common/common_MapView.h"
 
+#define SOCKET_SIZE 700
+
 enum BarView {
   BAR_LIFE,
   BAR_HP,
@@ -48,6 +50,9 @@ private:
   DefaultBarView *healthBarView = NULL;
   DefaultBarView *ammoBarView = NULL;
   LifeBarView *lifeBarView = NULL;
+
+  static AnimatedView * myView;
+  static unsigned int myId;
 
   static AnimatedFactoryView *factoryView;
   static std::vector<AnimatedView*> animatedViews;
@@ -96,6 +101,11 @@ public:
   static bool isRunning();
 
   void onBarChange(BarView bar, int amount);
+
+  Point getMassCenter();
+  AnimatedView * getMyView();
+
+  void setMyId(unsigned int id);
 
   void setKeyPressListener(OnKeyPressListener *listener);
 };

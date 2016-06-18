@@ -21,6 +21,7 @@
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 #include "physics/server_ContactListener.h"
+#include "server_EventContext.h"
 
 Engine::~Engine() {
 	for (std::list<Player*>::iterator it = playersList.begin();

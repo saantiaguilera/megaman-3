@@ -15,10 +15,15 @@ class SoundController {
 		}
 
 		~SoundController() {
-			delete mixer;
-		
-			for (std::map<std::string, SDL2pp::Chunk*>::iterator it = sounds.begin() ; it != sounds.end() ; ++it ) 
-				if (it->second) delete it->second;
+			if (mixer){
+				delete mixer;
+			}
+
+			for (std::map<std::string, SDL2pp::Chunk*>::iterator it = sounds.begin() ; it != sounds.end() ; ++it ){
+				if (it->second){
+					delete it->second;
+				}
+			}
 
 			sounds.clear();
 		}

@@ -7,11 +7,10 @@
 
 #include "server_AcceptorWorker.h"
 
-#include <iostream>
 #include <iterator>
-#include <string>
 
 #include "../../common/common_Socket.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "server_ReceiverWorker.h"
 
 #define MAX_QUEUE_SIZE 128
