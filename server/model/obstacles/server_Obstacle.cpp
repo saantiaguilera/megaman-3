@@ -29,7 +29,7 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 
 	// Add shape to body
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE*BODIES_SIZE/4,BODIES_SIZE);
+	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
