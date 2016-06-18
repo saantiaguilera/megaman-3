@@ -128,8 +128,6 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			for (std::list<Player*>::iterator it = playerList.begin();
 					it != playerList.end(); ++it) {
 				(*it)->setMegaman(x, y);
-				ConnectedPlayerSerializer connectedPlayerSerializer((*it)->getMegaman());
-
 			}
 			break;
 		case ObstacleViewTypeBombman:

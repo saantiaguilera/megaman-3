@@ -21,10 +21,11 @@
 const float STEP_LENGTH = 3.5f;
 
 // Initialize ids value
-unsigned int PhysicObject::id = 0;
+unsigned int PhysicObject::globalCount = 0;
 
 PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT) {
-	++id;
+	++globalCount;
+	id = globalCount;
 }
 
 unsigned int PhysicObject::getId() const {

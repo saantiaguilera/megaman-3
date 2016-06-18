@@ -27,8 +27,10 @@ protected:
 		OT_OBSTACLE,
 		OT_LADDER
 	};
+	// Global count of the objects
+	static unsigned int globalCount;
 	// Id of the object
-	static unsigned int id;
+	unsigned int id;
 	// box2d body
 	b2Body* myBody;
 	// number of foot contacts (to avoid air jumping)

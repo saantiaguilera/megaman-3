@@ -35,19 +35,15 @@ void InboundMessagesController::analizeMessageCode() {
 	case PLAYER_CONNECTED:
 		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT) {
 			Engine::getInstance().addNewPlayer(clientId, inboundMessage);
-			NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(
-					inboundMessage);
-			Engine::getInstance().getContext()->dispatchEvent(
-					newPlayerSerializer);
+			NewPlayerSerializer* newPlayerSerializer = new NewPlayerSerializer(inboundMessage);
+			Engine::getInstance().getContext()->dispatchEvent(newPlayerSerializer);
 		}
 		break;
 	case START_GAME:
 		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT
 				&& !Engine::getInstance().isRunning()) {
 			// Set the flag of the engine to ready to start
-			std::cout << "Client id is: " << clientId << std::endl;;
 			desiredPlayer = getDesiredPlayer(clientId);
-			std::cout << "Desired player is admin? " << (desiredPlayer->isAdmin() ? "Yes" : "No") << std::endl;
 			if (desiredPlayer->isAdmin()) {
 				StartGameSerializer* startGameSerializer =
 						new StartGameSerializer(inboundMessage);
@@ -131,7 +127,7 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 			player->getMegaman()->attack();
 		}
 	}
-	
+
 	currentKeyMap = futureKeyMap;
 }
 
