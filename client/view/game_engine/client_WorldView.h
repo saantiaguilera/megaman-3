@@ -40,28 +40,70 @@ public:
       rendererHeight = getRenderer()->GetOutputHeight();
       massCenterX = massCenter.getX();
       massCenterY = massCenter.getY();
+
+      std::cout << "Mass center x : " << massCenterX << " y : " << massCenterY << std::endl;
+
       textureWidth = mapTexture->GetWidth();
       textureHeight = mapTexture->GetHeight();
 
-      if (massCenterX - (rendererWidth / 2) < 0) {
+      bool hasXLeftPadding = (massCenterX - (rendererWidth / 2)) < 0;
+      bool hasXRightPadding = (massCenterX + (rendererWidth / 2)) > textureWidth;
+      bool hasNoXPadding = !hasXRightPadding && !hasXLeftPadding;
+
+
+      if (hasXLeftPadding) {
         cameraPoint.setX(0);
         massCenter.setX(rendererWidth / 2);
-      } else if (rendererWidth < massCenterX + rendererWidth / 2) {
-        cameraPoint.setX(textureWidth - rendererWidth);
-        massCenter.setX(textureWidth - rendererWidth / 2);
-      } else cameraPoint.setX(massCenterX - rendererWidth / 2);
+      }
 
-      if (massCenterY - (rendererHeight / 2) < 0) {
+      if (hasXRightPadding) {
+        std::cout << "entre en if 3" << std::endl;
+        cameraPoint.setX(textureWidth - rendererWidth);
+        massCenter.setX(textureWidth - (rendererWidth / 2));
+      }
+
+      if (hasNoXPadding) {
+          std::cout << "entre en if 2 con render width" << std::endl;
+          cameraPoint.setX(massCenterX - rendererWidth / 2);
+      }
+
+
+      bool hasYTopPadding = (massCenterY - (rendererHeight / 2)) < 0;
+      bool hasYBotomPadding = (massCenterY + (rendererHeight / 2)) > textureHeight;
+      bool hasNoYPadding = !hasYTopPadding && !hasYBotomPadding;
+
+
+      if (hasYTopPadding) {
         cameraPoint.setY(0);
         massCenter.setY(rendererHeight / 2);
-      } else if (rendererHeight < massCenterY + rendererHeight / 2) {
+      }
+
+      if (hasYBotomPadding) {
+        std::cout << "entre en if 3" << std::endl;
         cameraPoint.setY(textureHeight - rendererHeight);
-        massCenter.setY(textureHeight - rendererHeight / 2);
-      } else cameraPoint.setY(massCenterY - rendererHeight / 2);
+        massCenter.setY(textureHeight - (rendererHeight / 2));
+      }
+
+      if (hasNoYPadding) {
+          std::cout << "entre en if 2 con render width" << std::endl;
+          cameraPoint.setY(massCenterY - rendererHeight / 2);
+      }
+
+      // if (massCenterY - (rendererHeight / 2) < 0) {
+      //   cameraPoint.setY(0);
+      //   massCenter.setY(rendererHeight / 2);
+      // } else if (rendererHeight < massCenterY + rendererHeight / 2) {
+      //   cameraPoint.setY(textureHeight - rendererHeight);
+      //   massCenter.setY(textureHeight - rendererHeight / 2);
+      // } else cameraPoint.setY(massCenterY - rendererHeight / 2);
+
+      std::cout << "Modificated Mass center x : " << massCenterX << " y : " << massCenterY << std::endl;
+
+      std::cout << "Camera poitn x : " << cameraPoint.getX() << " y : " << cameraPoint.getY() << std::endl;
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX() % backgroundTexture->GetWidth(),
-            0,
+            cameraPoint.getY() % backgroundTexture->GetHeight(),
             rendererWidth, rendererHeight));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
@@ -89,8 +131,8 @@ public:
     if (backgroundTexture)
       delete backgroundTexture;
 
-    int mWidth = mapView->getWidth() < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth();
-    int mHeight = mapView->getHeight() < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight();
+    int mWidth = mapView->getWidth() + TERRAIN_TILE_SIZE < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth() + TERRAIN_TILE_SIZE ;
+    int mHeight = mapView->getHeight() + TERRAIN_TILE_SIZE < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight() + TERRAIN_TILE_SIZE ;
 
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);

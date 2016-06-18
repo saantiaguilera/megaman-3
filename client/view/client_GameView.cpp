@@ -235,6 +235,7 @@ bool GameView::onLoopSDL() {
     renderer->Clear();
 
     //Uint32 t1 = SDL_GetTicks();
+
     worldView->draw(massCenter);
 
     //Uint32 t2 = SDL_GetTicks();
