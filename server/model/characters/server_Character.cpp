@@ -26,7 +26,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	std::cout << getPositionX() << ", " << getPositionY() << std::endl;
+	std::cout << "Character positions: " << getPositionX() << ", " << getPositionY() << std::endl;
 	float32 weaponX = getPositionX();
 	float32 weaponY = getPositionY();
 
@@ -34,18 +34,20 @@ void Character::attack() {
 	//eg: fire(?, ?, OR_TOP);
 	switch (facingPosition) {
 		case OR_LEFT:
-			weaponX = getPositionX() - (getWidth() / 2);
+			weaponX = getPositionX() - getWidth();
 			break;
 		case OR_RIGHT:
-			weaponX = getPositionX() + (getWidth() / 2);
+			weaponX = getPositionX() + getWidth();
 			break;
 		case OR_TOP:
-			weaponY = getPositionY() - (getHeight() / 2);
+			weaponY = getPositionY() + getHeight();
 			break;
 		case OR_BOTTOM:
-			weaponY = getPositionY() + (getHeight() / 2);
+			weaponY = getPositionY() - getHeight();
 			break;
 	}
+
+	std::cout << "Bullet x,y will be " << weaponX << " " << weaponY << std::endl;
 
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
 }

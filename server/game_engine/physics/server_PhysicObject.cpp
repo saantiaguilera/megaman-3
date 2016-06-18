@@ -14,9 +14,6 @@
 
 #include "server_PhysicObject.h"
 
-//const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
-const float STEP_LENGTH = 3.5f;
-
 // Initialize ids value
 unsigned int PhysicObject::globalCount = 0;
 

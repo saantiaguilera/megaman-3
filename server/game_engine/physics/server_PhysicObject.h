@@ -16,6 +16,9 @@
 //const float BODIES_SIZE = (TERRAIN_TILE_SIZE / (float) METERS_TO_PIXELS_RATIO) - 0.004;
 const float BODIES_SIZE = TERRAIN_TILE_SIZE*METERS_TO_PIXELS_RATIO/2;
 
+//const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
+const float STEP_LENGTH = 3.5f;
+
 class PhysicObject {
 protected:
 	// Object types for collision detection
@@ -52,6 +55,12 @@ public:
 		MS_JUMP,
 		MS_STOP
 		};
+	enum ORIENTATION {
+		OR_LEFT,
+		OR_RIGHT,
+		OR_BOTTOM,
+		OR_TOP
+	};
 	// Constructor
 	PhysicObject();
 	// Destroyer
@@ -75,12 +84,6 @@ public:
 	// Return my y position
 	float getPositionY() const;
 	// Facing position
-	enum ORIENTATION {
-		OR_RIGHT,
-		OR_LEFT,
-		OR_TOP,
-		OR_BOTTOM
-	};
 	ORIENTATION facingPosition;
 	// The following methods are needed to create projectiles in runtime
 	// Set my body

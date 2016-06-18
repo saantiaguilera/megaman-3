@@ -80,6 +80,7 @@ void Engine::createObjects() {
 			PhysicObject* objectToCreate = *it;
 			objectToCreate->setBody();
 			objectToCreate->setUserData();
+			objectToCreate->setUpdatable(true);
 			updatablesList.push_back(objectToCreate);
 			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
 			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
