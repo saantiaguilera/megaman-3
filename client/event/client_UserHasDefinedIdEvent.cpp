@@ -7,7 +7,7 @@ UserHasDefinedIdEvent::UserHasDefinedIdEvent(std::string json) : Event() {
   rapidjson::Document document;
   document.Parse(json.c_str());
 
-  userId = document["id"].GetUint();
+  userId = document["your_id"].GetUint();
 }
 
 UserHasDefinedIdEvent::~UserHasDefinedIdEvent() {

@@ -16,8 +16,10 @@ class Serializer;
 
 class ClientProxy {
 private:
+	// Global count of the clients
+	static int globalCount;
 	// Id of the player
-	static int id;
+	int id;
 	// Flag to check status of the socket
 	bool connected;
 	// The actual socket

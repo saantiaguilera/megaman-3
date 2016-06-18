@@ -74,7 +74,7 @@ CODE - LENGTH - MAPJSON
 
 #define CONNECTED_PLAYER_ID 16
 /*
-CODE - LENGTH - "id":id
+CODE - LENGTH - "your_id":id
 */
 
 
