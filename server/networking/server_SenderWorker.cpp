@@ -23,11 +23,15 @@ void SenderWorker::run() {
 	while(keepRunning){
 		if (eventsQueue->size() != 0){
 			Serializer* event = eventsQueue->pop_front();
-			for (std::vector<ClientProxy*>::iterator it = clients->begin();
+			if (event->getDispatchAll()) {
+				for (std::vector<ClientProxy*>::iterator it = clients->begin();
 				it != clients->end(); ++it){
-				(*it)->send(event);
+					(*it)->send(event);
+				}
+			} else {
+				dispatchEventTo(event, event->getDispatchClientID());
 			}
-			delete event;
+		delete event;
 		}
 	}
 }

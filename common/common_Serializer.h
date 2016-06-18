@@ -12,6 +12,12 @@
 #include "common_MessageProtocol.h"
 
 class Serializer {
+private:
+
+	bool dispatchAll;
+
+	unsigned int dispatchClientID;
+
 protected:
 	// the referenced object id
 	unsigned int objectId;
@@ -41,8 +47,16 @@ public:
 	int getMessageCode() const;
 	// Return the serialized message length
 	int getMessageLength() const;
-	// Get the object type
+	// Get the object types
 	int getObjectType();
+	// Set event to be dispatched to all clients
+	void setDispatchAll();
+	// Set event to be dispatched to a perticular clientID
+	void setDispatchClient(unsigned int clientID);
+	// Get if event is dispatched to all clients
+	bool getDispatchAll();
+	// Get the clientID that has to be dispatched the event to
+	unsigned int getDispatchClientID();
 
 private:
 	// Copy constructor
@@ -50,5 +64,7 @@ private:
 	// Assignment operator
 	Serializer& operator=(const Serializer&);
 };
+
+
 
 #endif /* COMMON_COMMON_SERIALIZER_H_ */

@@ -42,3 +42,20 @@ int Serializer::getObjectType() {
 int Serializer::getMessageLength() const {
 	return serialized.length();
 }
+
+void Serializer::setDispatchAll() {
+	this->dispatchAll = true;
+}
+
+	this->dispatchAll = false;
+	void Serializer::setDispatchClient(unsigned int clientID) {
+	this->dispatchClientID = clientID;
+}
+// Get if event is dispatched to all clients
+bool Serializer::getDispatchAll() {
+	return this->dispatchAll;
+}
+// Get the clientID that has to be dispatched the event to
+unsigned int Serializer::getDispatchClientID() {
+	return this->dispatchClientID;
+}
