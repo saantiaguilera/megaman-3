@@ -47,8 +47,8 @@ void Serializer::setDispatchAll() {
 	this->dispatchAll = true;
 }
 
+void Serializer::setDispatchClient(unsigned int clientID) {
 	this->dispatchAll = false;
-	void Serializer::setDispatchClient(unsigned int clientID) {
 	this->dispatchClientID = clientID;
 }
 // Get if event is dispatched to all clients

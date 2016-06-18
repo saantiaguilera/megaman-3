@@ -14,9 +14,9 @@
 class Serializer {
 private:
 
-	bool dispatchAll;
+	bool dispatchAll = true;
 
-	unsigned int dispatchClientID;
+	unsigned int dispatchClientID = 0;
 
 protected:
 	// the referenced object id
