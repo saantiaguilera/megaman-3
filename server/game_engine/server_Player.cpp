@@ -63,7 +63,8 @@ void Player::increasePlayerLives() {
 void Player::setMegaman(float x, float y) {
 	if (megaman == NULL){
 		megaman = new Megaman(this, x, y);
-		ConnectedPlayerSerializer connectedPlayerSerializer(megaman);
-		Engine::getInstance().getContext()->dispatchEventTo(&connectedPlayerSerializer, getId());
+		ConnectedPlayerSerializer connectedPlayerSerializer = new ConnectedPlayerSerializer(megaman);
+		connectedPlayerSerializer->setDispatchClient(getId());
+		Engine::getInstance().getContext()->dispatchEvent(connectedPlayerSerializer);
 	}
 }

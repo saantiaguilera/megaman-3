@@ -17,10 +17,11 @@
 #define MAX_BUFFER_SIZE 10
 
 // Initialize ids value
-int ClientProxy::id = -1;
+int ClientProxy::globalCount = 0;
 
 ClientProxy::ClientProxy() {
-	++id;
+	++globalCount;
+	id = globalCount;
 	connected = false;
 	socket = Socket();
 }
@@ -30,7 +31,7 @@ bool ClientProxy::isConnected() const {
 }
 
 ClientProxy::~ClientProxy() {
-	--id;
+	--globalCount;
 }
 
 void ClientProxy::acceptNewConnection(const Socket& dispatcherSocket) {

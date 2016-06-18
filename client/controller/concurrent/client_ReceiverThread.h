@@ -20,6 +20,7 @@
 #include "../../event/client_GaugeChangeEvent.h"
 #include "../../event/client_HpChangeEvent.h"
 #include "../../event/client_LifeChangeEvent.h"
+#include "../../event/client_UserHasDefinedIdEvent.h"
 
 #include "../../view/client_GameView.h"
 
@@ -96,6 +97,10 @@ protected:
 
           case DISCONNECTED_PLAYER:
             dispatchEvent(new DisconnectedPlayerEvent(json));
+            break;
+
+          case CONNECTED_PLAYER_ID:
+            dispatchEvent(new UserHasDefinedIdEvent(json));
             break;
 
           case START_GAME:

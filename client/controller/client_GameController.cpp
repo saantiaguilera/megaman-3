@@ -3,6 +3,9 @@
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
+#include "../../common/common_Point.h"
+
+#include "../view/game_engine/client_AnimatedView.h"
 
 #include <iostream>
 #include "../concurrent/client_Event.h"
@@ -14,6 +17,7 @@
 #include "../event/client_GaugeChangeEvent.h"
 #include "../event/client_HpChangeEvent.h"
 #include "../event/client_LifeChangeEvent.h"
+#include "../event/client_UserHasDefinedIdEvent.h"
 
 #include "client_GameController.h"
 
@@ -27,6 +31,31 @@ GameController::~GameController() {
 GameController::GameController(Context *context) : Controller(context), view(nullptr) {
   view = new GameView();
   view->setKeyPressListener(this);
+}
+
+bool GameController::shouldSendKeyMap(int keyMap) {
+  AnimatedView *myView = view->getMyView();
+  Point massCenter = view->getMassCenter();
+  int delta;
+
+  if (myView == NULL) return false;
+
+  switch (keyMap) {
+    case KEY_LEFT:
+      delta = myView->getX() - massCenter.getX();
+      return delta > -SOCKET_SIZE/2;
+    case KEY_RIGHT:
+      delta = myView->getX() - massCenter.getX();
+      return delta < SOCKET_SIZE/2;
+    case KEY_JUMP:
+      delta = myView->getY() - massCenter.getY();
+      return delta > -SOCKET_SIZE/2;
+    case KEY_DOWN:
+      delta = myView->getY() - massCenter.getY();
+      return delta < SOCKET_SIZE/2;
+    default:
+      return true;
+  }
 }
 
 bool GameController::onMessageReceived() {
@@ -58,6 +87,10 @@ bool GameController::onMessageReceived() {
         view->onBarChange(BAR_LIFE, dynamic_cast<GaugeChangeEvent*>(event)->getAmount());
         break;
 
+      case EVENT_USER_HAS_ID:
+        view->setMyId(dynamic_cast<UserHasDefinedIdEvent*>(event)->getUserId());
+        break;
+
       default:
         return false;
     }
@@ -74,21 +107,21 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
     case KEY_LEFT:
-      if (keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS)) {
+      if (keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_LEFT)) {
         keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_RIGHT:
-      if (keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS)) {
+      if (keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_RIGHT)) {
         keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_DOWN:
-      if (keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS)) {
+      if (keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_DOWN)) {
         keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
@@ -102,7 +135,7 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
       break;
 
     case KEY_JUMP:
-      if (keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS)) {
+      if (keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_JUMP)) {
         keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
