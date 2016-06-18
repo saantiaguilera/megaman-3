@@ -8,6 +8,7 @@
 #include "server_Megaman.h"
 
 #include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
 #include <string>
 
 #include "../../../../common/common_MapConstants.h"
@@ -25,7 +26,14 @@
 #include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_PlasmaCannon.h"
 
+#define MEGAMAN_COLLISION_FILTERING_GROUP -1
+
 Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN_INITIAL_HP, x, y), humanOperator(humanOperator) {
+	// Filter collision between megamans
+	b2Filter filter = myBody->GetFixtureList()->GetFilterData();
+	filter.groupIndex = MEGAMAN_COLLISION_FILTERING_GROUP;
+	myBody->GetFixtureList()->SetFilterData(filter);
+
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;
 	notify();
