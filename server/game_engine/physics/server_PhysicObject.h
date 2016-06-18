@@ -35,6 +35,8 @@ protected:
 	unsigned int numFootContacts;
 	// notify creation of the object
 	void notify();
+	// Determine if i am updatable
+	bool updatable;
 public:
 	// Defined movestates for objects
 	enum _moveState {
@@ -79,6 +81,8 @@ public:
 	virtual void setUserData();
 	// For AI and bullet movements
 	virtual void update();
+	bool isUpdatable() const;
+	void setUpdatable(bool updatable);
 
 private:
 	// Copy constructor

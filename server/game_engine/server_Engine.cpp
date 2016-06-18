@@ -157,7 +157,8 @@ void Engine::start() {
 
 		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
 				it != updatablesList.end(); ++it) {
-			(*it)->update();
+			if ((*it)->isUpdatable())
+				(*it)->update();
 		}
 		destroyObjects();
 		++i;

@@ -54,6 +54,11 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangey = desiredVely - vel.y;
     float impulsey = myBody->GetMass() * velChangey;
 
+    if (impulsey != 0){
+    	Engine::getInstance().getUpdatablesList()->push_back(this);
+    	updatable = true;
+    }
+
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
@@ -94,10 +99,19 @@ void PhysicObject::setUserData() {
 }
 
 void PhysicObject::update() {
+//	std::cout << "Inside update" << std::endl;
 //	if (myBody != NULL){
 //		std::cout << "Body position: "  << myBody->GetPosition().x << ", " << myBody->GetPosition().y << std::endl;
 //		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-//		std::cout << "Movement serializer created" << std::endl;
+////		std::cout << "Movement serializer created" << std::endl;
 //		Engine::getInstance().getContext()->dispatchEvent(serializer);
 //	}
+}
+
+bool PhysicObject::isUpdatable() const {
+	return updatable;
+}
+
+void PhysicObject::setUpdatable(bool updatable) {
+	this->updatable = updatable;
 }
