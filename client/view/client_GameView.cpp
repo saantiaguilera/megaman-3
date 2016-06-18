@@ -8,8 +8,6 @@
 #define BACKGROUND_COLOR "black"
 #define PATH_IC_LAUNCHER "res/drawable/ic_launcher.png"
 
-#define SOCKET_SIZE 700
-
 #define DRAW_TIME_STEP 50
 
 #define HEALTH_BAR_X 12
@@ -20,11 +18,16 @@
 #define LIFE_BAR_Y 5
 
 AnimatedFactoryView * GameView::factoryView = NULL;
+AnimatedView * GameView::myView = NULL;
+unsigned int GameView::myId = -1;
 std::vector<AnimatedView*> GameView::animatedViews;
 SoundController GameView::soundController;
 Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
+  myView = NULL;
+  myId = -1;
+
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
   set_size_request(screenWidth, screenHeight);
@@ -84,6 +87,21 @@ GameView::~GameView() {
     delete sdl;
     sdl = NULL;
   }
+
+  myView = NULL;
+  myId = -1;
+}
+
+Point GameView::getMassCenter() {
+  return massCenter;
+}
+
+AnimatedView * GameView::getMyView() {
+  return myView;
+}
+
+void GameView::setMyId(unsigned int id) {
+  myId = id;
 }
 
 void GameView::resetAnimations() {
@@ -126,6 +144,9 @@ void GameView::addViewFromJSON(std::string json) {
 
       if (view->doesDeviateMassCenter())
         refreshMassCenter();
+
+      if (myId == viewId)
+        myView = view;
 		//We could create a doulbe dispatch for the soundcontroller. (like soundController->playFor(view);
     }
   }
