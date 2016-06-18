@@ -23,7 +23,7 @@ const float STEP_LENGTH = 3.5f;
 // Initialize ids value
 unsigned int PhysicObject::globalCount = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT), updatable(false) {
 	++globalCount;
 	id = globalCount;
 }
@@ -53,8 +53,7 @@ void PhysicObject::move(unsigned int moveState) {
     float impulsey = myBody->GetMass() * velChangey;
 
     bool moving = moveState == MS_LEFT || moveState == MS_RIGHT || moveState == MS_JUMP || moveState == MS_DOWN;
-
-    updatable = moving;
+    setUpdatable(moving);
 
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 
