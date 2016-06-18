@@ -13,10 +13,11 @@
 #include <string>
 #include <vector>
 
-#include "../model/characters/server_Character.h"
-#include "server_Player.h"
-#include "server_EventContext.h"
 #include "../../common/common_Mutex.h"
+#include "physics/server_PhysicObject.h"
+#include "server_Player.h"
+
+class EventContext;
 
 class b2World;
 class ContactListener;
