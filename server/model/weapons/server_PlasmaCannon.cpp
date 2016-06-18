@@ -19,7 +19,7 @@ PlasmaCannon::PlasmaCannon() : Weapon(PLASMA_CANNON_MAX_AMMO) {}
 PlasmaCannon::~PlasmaCannon() {
 }
 
-void PlasmaCannon::fire(float32 x, float32 y, int facingPosition) {
+void PlasmaCannon::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Plasma(x, y, facingPosition));

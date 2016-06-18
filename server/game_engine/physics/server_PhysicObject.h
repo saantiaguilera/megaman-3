@@ -8,12 +8,16 @@
 #ifndef SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
 #define SERVER_GAME_ENGINE_PHYSICS_SERVER_PHYSICOBJECT_H_
 
+#include <Common/b2Math.h>
 #include "../../../common/common_MapConstants.h"
-class b2Body;
+#include <Dynamics/b2Body.h>
 
 // 0.001852
 //const float BODIES_SIZE = (TERRAIN_TILE_SIZE / (float) METERS_TO_PIXELS_RATIO) - 0.004;
 const float BODIES_SIZE = TERRAIN_TILE_SIZE*METERS_TO_PIXELS_RATIO/2;
+
+//const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
+const float STEP_LENGTH = 3.5f;
 
 class PhysicObject {
 protected:
@@ -39,6 +43,9 @@ protected:
 	void notify();
 	// Determine if i am updatable
 	bool updatable;
+
+	virtual float32 getWidth() = 0;
+	virtual float32 getHeight() = 0;
 public:
 	// Defined movestates for objects
 	enum _moveState {
@@ -48,6 +55,12 @@ public:
 		MS_JUMP,
 		MS_STOP
 		};
+	enum ORIENTATION {
+		OR_LEFT,
+		OR_RIGHT,
+		OR_BOTTOM,
+		OR_TOP
+	};
 	// Constructor
 	PhysicObject();
 	// Destroyer
@@ -71,11 +84,7 @@ public:
 	// Return my y position
 	float getPositionY() const;
 	// Facing position
-	enum _facingSide {
-		FS_RIGHT = 75,
-		FS_LEFT = -75
-	};
-	int facingPosition;
+	ORIENTATION facingPosition;
 	// The following methods are needed to create projectiles in runtime
 	// Set my body
 	virtual void setBody();

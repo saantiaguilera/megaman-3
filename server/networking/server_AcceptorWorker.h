@@ -13,7 +13,7 @@
 #include "../../common/common_Thread.h"
 #include "server_ClientProxy.h"
 
-class Socket;
+#include "../../common/common_Socket.h"
 
 class AcceptorWorker: public Thread {
 private:

@@ -7,7 +7,7 @@
 
 #include "server_Plasma.h"
 
-Plasma::Plasma(float32 x, float32 y, int facingPosition) : Projectile(PLASMA_DAMAGE, Projectile::PLASMA, x, y, facingPosition) {
+Plasma::Plasma(float32 x, float32 y, ORIENTATION facingPosition) : Projectile(PLASMA_DAMAGE, Projectile::PLASMA, x, y, facingPosition) {
 }
 
 
@@ -17,4 +17,3 @@ Plasma::~Plasma() {
 int Plasma::getTypeForSerialization() {
 	return ObstacleViewTypePlasma;
 }
-

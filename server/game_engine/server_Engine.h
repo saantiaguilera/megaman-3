@@ -17,10 +17,10 @@
 #include "physics/server_PhysicObject.h"
 #include "server_Player.h"
 
-class EventContext;
+#include "physics/server_ContactListener.h"
+#include "server_EventContext.h"
 
-class b2World;
-class ContactListener;
+#include <Dynamics/b2World.h>
 
 class Engine {
 	// Singleton

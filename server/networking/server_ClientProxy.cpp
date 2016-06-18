@@ -5,14 +5,12 @@
  *      Author: mastanca
  */
 
-#include "server_ClientProxy.h"
-
 #include <netinet/in.h>
 #include <syslog.h>
 #include <cstring>
 #include <iostream>
 
-#include "../../common/common_Serializer.h"
+#include "server_ClientProxy.h"
 
 #define MAX_BUFFER_SIZE 10
 

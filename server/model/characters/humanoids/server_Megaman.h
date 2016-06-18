@@ -9,10 +9,11 @@
 #define SERVER_MODEL_CHARACTERS_HUMANOIDS_SERVER_MEGAMAN_H_
 
 #include <Common/b2Settings.h>
+#include <stddef.h>
+#include <map>
 
 #include "../../weapons/server_Weapon.h"
 #include "server_Humanoid.h"
-#include <map>
 
 class Player;
 
@@ -22,6 +23,7 @@ class Megaman : public Humanoid {
 private:
 	Player* humanOperator = NULL;
 	std::map<int, Weapon*> availableWeaponsMap;
+	int currentMoveState;
 public:
 	// Constructor
 	Megaman(Player* humanOperator, float32 x, float32 y);
@@ -52,6 +54,7 @@ public:
 	virtual void decreaseHp(float damage);
 	// Get type for serialization
 	virtual int getTypeForSerialization();
+	void setCurrentMoveState(int currentMoveState);
 
 private:
 	// Copy constructor

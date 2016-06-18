@@ -17,8 +17,6 @@
 #include "../game_engine/server_EventContext.h"
 #include "server_ClientProxy.h"
 
-class ClientProxy;
-
 class SenderWorker: public Thread, public EventContext {
 private:
 	// The clients to send the data to

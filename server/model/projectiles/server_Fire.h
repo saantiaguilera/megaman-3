@@ -17,7 +17,7 @@
 
 class Fire: public Projectile {
 public:
-	Fire(float32 x, float32 y, int facingPosition);
+	Fire(float32 x, float32 y, ORIENTATION facingPosition);
 	virtual ~Fire();
 	// Get type for serialization
 	virtual int getTypeForSerialization();

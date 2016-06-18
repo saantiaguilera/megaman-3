@@ -8,7 +8,7 @@
 #ifndef SERVER_GAME_ENGINE_SERVER_EVENTCONTEXT_H_
 #define SERVER_GAME_ENGINE_SERVER_EVENTCONTEXT_H_
 
-class Serializer;
+#include "../../common/common_Serializer.h"
 
 class EventContext {
 public:

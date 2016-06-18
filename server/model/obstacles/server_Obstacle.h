@@ -11,8 +11,7 @@
 #include <Common/b2Settings.h>
 
 #include "../../game_engine/physics/server_PhysicObject.h"
-
-class Character;
+#include "../characters/server_Character.h"
 
 class Obstacle : public PhysicObject {
 public:
@@ -25,7 +24,10 @@ public:
 	// Return object type
 	virtual int getObjectType();
 	// Get type for serialization
-	virtual int getTypeForSerialization() { return 0;}
+	virtual int getTypeForSerialization() { return 0; }
+
+	virtual float32 getWidth();
+	virtual float32 getHeight();
 private:
 	// Copy constructor
 	Obstacle(const Obstacle&);

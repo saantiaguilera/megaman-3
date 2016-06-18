@@ -10,8 +10,8 @@
 
 #include <string>
 
-class ClientProxy;
-class Megaman;
+#include "../networking/server_ClientProxy.h"
+#include "../model/characters/humanoids/server_Megaman.h"
 
 class Player {
 private:

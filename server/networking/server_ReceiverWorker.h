@@ -9,8 +9,7 @@
 #define SRC_SERVER_SERVER_RECEIVERWORKER_H_
 
 #include "../../common/common_Thread.h"
-
-class ClientProxy;
+#include "server_ClientProxy.h"
 
 class ReceiverWorker: public Thread {
 private:

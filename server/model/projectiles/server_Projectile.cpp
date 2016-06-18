@@ -7,7 +7,8 @@
 
 #include "server_Projectile.h"
 
-#include <Collision/Shapes/b2PolygonShape.h>
+#include <iostream>
+#include <Collision/Shapes/b2CircleShape.h>
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
@@ -22,7 +23,7 @@ Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, int facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
 }
@@ -42,6 +43,32 @@ int Projectile::getObjectType() {
 void Projectile::setBody() {
 	b2BodyDef projectileBodyDef;
 	projectileBodyDef.type = b2_kinematicBody;
+
+	int vx = 0, vy = 0;
+	//TODO Maybe you plan on customizing this ?
+	switch (facingPosition) {
+		case OR_RIGHT:
+			std::cout << "Projectile facing right" << std::endl;
+			vx = STEP_LENGTH;
+			initialX += getWidth();
+			break;
+		case OR_LEFT:
+			std::cout << "Projectile facing left" << std::endl;
+			vx = -STEP_LENGTH;
+			initialX -= getWidth();
+			break;
+		case OR_BOTTOM:
+			std::cout << "Projectile facing bottom" << std::endl;
+			vy = -STEP_LENGTH;
+			initialY += getHeight();
+			break;
+		case OR_TOP:
+			std::cout << "Projectile facing down" << std::endl;
+			vy = STEP_LENGTH;
+			initialY -= getHeight();
+			break;
+	}
+
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
@@ -49,22 +76,25 @@ void Projectile::setBody() {
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
 
 	// Add shape to bodysetBody
-	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	b2CircleShape circleShape;
+	circleShape.m_radius = getWidth();
+
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.shape = &circleShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
-	if (facingPosition > 0){
-		myBody->SetLinearVelocity(b2Vec2(5,0));
-	} else {
-		myBody->SetLinearVelocity(b2Vec2(-5,0));
-	}
+	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
+}
 
-	notify();
+float32 Projectile::getWidth() {
+	return BODIES_SIZE / 2;
+}
+
+float32 Projectile::getHeight() {
+	return BODIES_SIZE / 2;
 }
 
 void Projectile::setUserData() {
@@ -74,7 +104,8 @@ void Projectile::setUserData() {
 
 void Projectile::update() {
 	if (myBody != NULL){
-//		move(1);
+		std::cout << "Inside bullet update" << std::endl;
+		move(facingPosition);
 		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
 		Engine::getInstance().getContext()->dispatchEvent(serializer);
 	}

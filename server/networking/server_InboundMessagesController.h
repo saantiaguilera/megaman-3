@@ -11,7 +11,10 @@
 #include "../services/server_KeyMap.h"
 #include <string>
 
-class Player;
+#include "../game_engine/server_Player.h"
+#include "../model/characters/humanoids/server_Megaman.h"
+
+#include "../game_engine/physics/server_PhysicObject.h"
 
 class InboundMessagesController {
 private:

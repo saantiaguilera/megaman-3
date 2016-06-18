@@ -12,7 +12,7 @@
 
 #include "../../common/common_Socket.h"
 
-class Serializer;
+#include "../../common/common_Serializer.h"
 
 class ClientProxy {
 private:

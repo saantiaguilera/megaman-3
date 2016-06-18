@@ -5,21 +5,18 @@
  *      Author: mastanca
  */
 
-#include "server_InboundMessagesController.h"
-
 #include <iostream>
 #include <list>
 
 #include "../../common/common_MessageProtocol.h"
-#include "../game_engine/physics/server_PhysicObject.h"
 #include "../game_engine/server_Engine.h"
 #include "../game_engine/server_EventContext.h"
-#include "../game_engine/server_Player.h"
-#include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
 #include "../parsers/server_KeyMapParser.h"
 #include "../serializers/server_NewPlayerSerializer.h"
 #include "../serializers/server_StartGameSerializer.h"
+
+#include "server_InboundMessagesController.h"
 
 #define MAX_PLAYERS_COUNT 4
 #define MAX_MOVE_STATES 5
@@ -95,28 +92,32 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 	KeyMap futureKeyMap = parser.parse(keyMap);
 
 	if (currentKeyMap.isJumping() != futureKeyMap.isJumping()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isJumping() ?
 						PhysicObject::_moveState::MS_JUMP :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isDown() != futureKeyMap.isDown()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isDown() ?
 						PhysicObject::_moveState::MS_DOWN :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isLeft() != futureKeyMap.isLeft()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isLeft() ?
 						PhysicObject::_moveState::MS_LEFT :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isRight() != futureKeyMap.isRight()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isRight() ?
 						PhysicObject::_moveState::MS_RIGHT :
 						PhysicObject::_moveState::MS_STOP);

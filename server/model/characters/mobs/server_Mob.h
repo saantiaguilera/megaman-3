@@ -14,7 +14,6 @@
 
 #define ATTACK_INTERVAL_TICKS 500
 
-
 class Mob: public Character {
 protected:
 	// Is affected by attacks?
@@ -36,6 +35,8 @@ public:
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
 
+	virtual float32 getWidth();
+	virtual float32 getHeight();
 private:
 	// Copy constructor
 	Mob(const Mob&);

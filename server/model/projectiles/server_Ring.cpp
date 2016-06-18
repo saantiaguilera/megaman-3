@@ -10,7 +10,7 @@
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 
-Ring::Ring(float32 x, float32 y, int facingPosition) : Projectile(RING_DAMAGE, Projectile::RING, x, y, facingPosition) {
+Ring::Ring(float32 x, float32 y, ORIENTATION facingPosition) : Projectile(RING_DAMAGE, Projectile::RING, x, y, facingPosition) {
 	// Make it bouncy
 //	myBody->GetFixtureList()->SetRestitution(1);
 }
@@ -22,4 +22,3 @@ Ring::~Ring() {
 int Ring::getTypeForSerialization() {
 	return ObstacleViewTypeRing;
 }
-

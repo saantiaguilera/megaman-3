@@ -19,7 +19,7 @@
 class Ring: public Projectile {
 public:
 	// Constructor
-	Ring(float32 x, float32 y, int facingPosition);
+	Ring(float32 x, float32 y, ORIENTATION facingPosition);
 	// Destroyer
 	virtual ~Ring();
 	// Get type for serialization
