@@ -5,21 +5,18 @@
  *      Author: mastanca
  */
 
-#include "server_InboundMessagesController.h"
-
 #include <iostream>
 #include <list>
 
 #include "../../common/common_MessageProtocol.h"
-#include "../game_engine/physics/server_PhysicObject.h"
 #include "../game_engine/server_Engine.h"
 #include "../game_engine/server_EventContext.h"
-#include "../game_engine/server_Player.h"
-#include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
 #include "../parsers/server_KeyMapParser.h"
 #include "../serializers/server_NewPlayerSerializer.h"
 #include "../serializers/server_StartGameSerializer.h"
+
+#include "server_InboundMessagesController.h"
 
 #define MAX_PLAYERS_COUNT 4
 #define MAX_MOVE_STATES 5

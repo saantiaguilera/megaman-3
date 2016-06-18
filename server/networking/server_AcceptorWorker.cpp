@@ -5,13 +5,12 @@
  *      Author: mastanca
  */
 
-#include "server_AcceptorWorker.h"
-
 #include <iterator>
 
-#include "../../common/common_Socket.h"
 #include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "server_ReceiverWorker.h"
+
+#include "server_AcceptorWorker.h"
 
 #define MAX_QUEUE_SIZE 128
 

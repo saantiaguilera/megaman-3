@@ -33,7 +33,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 
 	// Add shape to body
 	b2CircleShape circleShape;
-	circleShape.m_radius = BODIES_SIZE;
+	circleShape.m_radius = getWidth();
 //	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 
 	// Add fixture
@@ -43,13 +43,20 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	myBody->CreateFixture(&boxFixtureDef);
 }
 
-
 Humanoid::~Humanoid() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 int Humanoid::getObjectType() {
 	return OT_HUMANOID;
+}
+
+float32 Humanoid::getWidth() {
+	return BODIES_SIZE;
+}
+
+float32 Humanoid::getHeight() {
+	return BODIES_SIZE;
 }
 
 void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {

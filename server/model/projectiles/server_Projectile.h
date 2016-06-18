@@ -26,7 +26,7 @@ protected:
 
 public:
 	// Constructor
-	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y, int facingPosition);
+	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition);
 	// Destroyer
 	virtual ~Projectile();
 	// Return projectile's damage
@@ -42,6 +42,9 @@ public:
 	// Set user data for callbacks
 	virtual void setUserData();
 	virtual void update();
+
+	virtual float32 getWidth();
+	virtual float32 getHeight();
 
 private:
 	// Copy constructor

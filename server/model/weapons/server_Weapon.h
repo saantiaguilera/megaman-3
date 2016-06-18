@@ -12,7 +12,7 @@
 
 #define BULLET_X_OFFSET 5
 
-class Character;
+#include "../characters/server_Character.h"
 
 enum WeaponTypes { PLASMA_CANNON, BOMB_CANNON, FLAMETHROWER, MAGNET_CANNON, RING_TOSSER, SPARKS_CANNON };
 
@@ -26,7 +26,7 @@ public:
 	// Destroyer
 	virtual ~Weapon();
 	// Fire weapon reducing ammo, passes current position for creating projectile
-	virtual void fire(float32 x, float32 y, int facingPosition) = 0;
+	virtual void fire(float32 x, float32 y, ORIENTATION facingPosition) = 0;
 	// Increase ammo by the amount given
 	void increaseAmmoBy(unsigned int ammoAmount);
 	// Return current ammo

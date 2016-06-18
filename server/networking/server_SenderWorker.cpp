@@ -10,7 +10,6 @@
 #include <iostream>
 #include <iterator>
 
-
 SenderWorker::SenderWorker(std::vector<ClientProxy*>* clients,
 		ConcurrentList<Serializer*>* eventsQueue) :
 		clients(clients), eventsQueue(eventsQueue), keepRunning(true) {
@@ -23,7 +22,7 @@ void SenderWorker::run() {
 	while(keepRunning){
 		if (eventsQueue->size() != 0){
 			Serializer* event = eventsQueue->pop_front();
-			
+
 			if (event->getDispatchAll()) {
 				for (std::vector<ClientProxy*>::iterator it = clients->begin();
 				it != clients->end(); ++it){

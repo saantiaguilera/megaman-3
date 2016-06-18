@@ -4,11 +4,6 @@
  *  Created on: May 26, 2016
  *      Author: mastanca
  */
-
-#include "server_PhysicObject.h"
-
-#include <Common/b2Math.h>
-#include <Dynamics/b2Body.h>
 #include <stddef.h>
 #include <iostream>
 
@@ -17,13 +12,15 @@
 #include "../server_Engine.h"
 #include "../server_EventContext.h"
 
+#include "server_PhysicObject.h"
+
 //const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
 const float STEP_LENGTH = 3.5f;
 
 // Initialize ids value
 unsigned int PhysicObject::globalCount = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(FS_LEFT) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(OR_RIGHT) {
 	++globalCount;
 	id = globalCount;
 }
@@ -42,10 +39,10 @@ void PhysicObject::move(unsigned int moveState) {
     float desiredVely = 0;
     switch ( moveState )
     {
-    case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;//let speed change gradually
+    case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = OR_LEFT; break;//let speed change gradually
 //    case MS_LEFT:  desiredVelx = b2Max( vel.x - 0.1f, -STEP_LENGTH ); facingPosition = FS_LEFT; break;//let speed change gradually
     case MS_STOP:  desiredVelx =  vel.x * 0.98; desiredVely = vel.y * 0.98; break;//let speed decay gradually
-		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = FS_RIGHT; break;//let speed change gradually
+		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
 //    case MS_RIGHT: desiredVelx = b2Min( vel.x + 0.1f,  STEP_LENGTH ); facingPosition = FS_RIGHT; break;//let speed change gradually
     case MS_JUMP: desiredVely = 10; break;//let speed change gradually
     case MS_DOWN: desiredVely = -5; break;

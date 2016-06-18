@@ -28,6 +28,9 @@ public:
 	virtual void haveEffectOn(Character* character) = 0;
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
+
+	virtual float32 getWidth();
+	virtual float32 getHeight();
 private:
 	// Copy constructor
 	Powerup(const Powerup&);

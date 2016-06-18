@@ -5,8 +5,6 @@
  *      Author: mastanca
  */
 
-#include "server_LootGenerator.h"
-
 #include <cstdlib>
 
 #include "../model/powerups/server_BigAmmoPack.h"
@@ -18,7 +16,7 @@
 #include "server_Engine.h"
 #include "server_EventContext.h"
 
-class ObjectCreationSerializer;
+#include "server_LootGenerator.h"
 
 LootGenerator::LootGenerator() {
 

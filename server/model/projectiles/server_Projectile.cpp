@@ -22,7 +22,7 @@ Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, int facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
 }
@@ -50,21 +50,42 @@ void Projectile::setBody() {
 
 	// Add shape to bodysetBody
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	boxShape.SetAsBox(getWidth(), getHeight());
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
-	if (facingPosition > 0){
-		myBody->SetLinearVelocity(b2Vec2(5,0));
-	} else {
-		myBody->SetLinearVelocity(b2Vec2(-5,0));
+	int vx = 0, vy = 0;
+	//TODO Maybe you plan on customizing this ?
+	switch (facingPosition) {
+		OR_RIGHT:
+			vx = 5;
+			break;
+		OR_LEFT:
+			vx = -5;
+			break;
+		OR_BOTTOM:
+			vy = -5;
+			break;
+		OR_TOP:
+			vy = 5;
+			break;
 	}
+
+	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
 
 	notify();
+}
+
+float32 Projectile::getWidth() {
+	return BODIES_SIZE / 4;
+}
+
+float32 Projectile::getHeight() {
+	return BODIES_SIZE / 4;
 }
 
 void Projectile::setUserData() {

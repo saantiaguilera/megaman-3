@@ -33,7 +33,7 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 //	b2PolygonShape boxShape;
 //	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
 	b2CircleShape circleShape;
-	circleShape.m_radius = BODIES_SIZE;
+	circleShape.m_radius = getWidth();
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
@@ -49,6 +49,13 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
     currentWeapon = new MobCannon();
 }
 
+float32 Mob::getWidth() {
+	return BODIES_SIZE;
+}
+
+float32 Mob::getHeight() {
+	return BODIES_SIZE;
+}
 
 bool Mob::isVulnerable() const {
 	return vulnerable;

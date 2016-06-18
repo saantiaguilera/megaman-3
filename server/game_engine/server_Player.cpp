@@ -5,13 +5,12 @@
  *      Author: mastanca
  */
 
-#include "server_Player.h"
-
-#include "../model/characters/humanoids/server_Megaman.h"
 #include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../server_Logger.h"
 #include "server_Engine.h"
 #include "server_EventContext.h"
+
+#include "server_Player.h"
 
 // Note: Due to implementation of connections, the second player connected is
 // assigned as admin, there is always one proxy waiting for connection
@@ -63,7 +62,7 @@ void Player::increasePlayerLives() {
 void Player::setMegaman(float x, float y) {
 	if (megaman == NULL){
 		megaman = new Megaman(this, x, y);
-		
+
 		ConnectedPlayerSerializer *connectedPlayerSerializer = new ConnectedPlayerSerializer(megaman);
 		connectedPlayerSerializer->setDispatchClient(getId());
 		Engine::getInstance().getContext()->dispatchEvent(connectedPlayerSerializer);

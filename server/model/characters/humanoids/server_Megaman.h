@@ -10,11 +10,11 @@
 
 #include <Common/b2Settings.h>
 
-#include "../../weapons/server_Weapon.h"
 #include "server_Humanoid.h"
-#include <map>
+#include "../../weapons/server_Weapon.h"
+#include "../../../game_engine/server_Player.h"
 
-class Player;
+#include <map>
 
 #define MEGAMAN_INITIAL_HP 150
 

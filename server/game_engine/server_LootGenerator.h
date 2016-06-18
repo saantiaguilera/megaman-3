@@ -9,8 +9,7 @@
 #define SERVER_GAME_ENGINE_SERVER_LOOTGENERATOR_H_
 
 #include <Common/b2Settings.h>
-
-class Powerup;
+#include "../model/powerups/server_Powerup.h"
 
 #define BIG_AMMO_PACK_DROP_RATE 0.05
 #define BIG_ENERGY_CAPSULE_DROP_RATE 0.05

@@ -30,7 +30,7 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 
 	// Add shape to body
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	boxShape.SetAsBox(getWidth(),getHeight());
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
@@ -38,6 +38,14 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 	myBody->GetFixtureList()->SetSensor(true);
+}
+
+float32 Powerup::getWidth() {
+	return BODIES_SIZE / 4;
+}
+
+float32 Powerup::getHeight() {
+	return BODIES_SIZE / 4;
 }
 
 Powerup::~Powerup() {

@@ -5,8 +5,6 @@
  *      Author: mastanca
  */
 
-#include "server_Obstacle.h"
-
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
@@ -15,6 +13,8 @@
 #include <iostream>
 
 #include "../../game_engine/server_Engine.h"
+
+#include "server_Obstacle.h"
 
 Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 	b2BodyDef obstacleBodyDef;
@@ -29,7 +29,7 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 
 	// Add shape to body
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(BODIES_SIZE,BODIES_SIZE);
+	boxShape.SetAsBox(getWidth(),getHeight());
 
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
@@ -38,6 +38,14 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 	myBody->CreateFixture(&boxFixtureDef);
 
 	// Obstacles are generated when client inflates json, no need to notify
+}
+
+float32 Obstacle::getWidth() {
+	return BODIES_SIZE;
+}
+
+float32 Obstacle::getHeight() {
+	return BODIES_SIZE;
 }
 
 Obstacle::~Obstacle() {

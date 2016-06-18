@@ -5,8 +5,6 @@
  *      Author: mastanca
  */
 
-#include "server_Character.h"
-
 #include <iostream>
 #include <list>
 #include <sstream>
@@ -15,8 +13,8 @@
 #include "../../game_engine/server_EventContext.h"
 #include "../../serializers/server_AmmoChangeSerializer.h"
 #include "../../serializers/server_HpChangeSerializer.h"
-#include "../projectiles/server_Projectile.h"
-#include "../weapons/server_Weapon.h"
+
+#include "server_Character.h"
 
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
@@ -29,7 +27,27 @@ Character::~Character() {
 
 void Character::attack() {
 	std::cout << getPositionX() << ", " << getPositionY() << std::endl;
-	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
+	float32 weaponX = getPositionX();
+	float32 weaponY = getPositionY();
+
+	//Since movements are in parents left/right, if a character needs to attack top or bottom just do it by yourself this
+	//eg: fire(?, ?, OR_TOP);
+	switch (facingPosition) {
+		case OR_LEFT:
+			weaponX = getPositionX() - (getWidth() / 2);
+			break;
+		case OR_RIGHT:
+			weaponX = getPositionX() + (getWidth() / 2);
+			break;
+		case OR_TOP:
+			weaponY = getPositionY() - (getHeight() / 2);
+			break;
+		case OR_BOTTOM:
+			weaponY = getPositionY() + (getHeight() / 2);
+			break;
+	}
+
+	currentWeapon->fire(weaponX, weaponY, facingPosition);
 }
 
 unsigned int Character::getHp() const {

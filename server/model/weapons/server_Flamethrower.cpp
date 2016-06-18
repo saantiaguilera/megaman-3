@@ -16,7 +16,7 @@ Flamethrower::Flamethrower() : Weapon(FLAMETHROWER_MAX_AMMO) {}
 Flamethrower::~Flamethrower() {
 }
 
-void Flamethrower::fire(float32 x, float32 y, int facingPosition) {
+void Flamethrower::fire(float32 x, float32 y, ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Fire(x, y, facingPosition));

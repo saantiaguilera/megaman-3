@@ -7,7 +7,7 @@
 
 #include "server_Spark.h"
 
-Spark::Spark(float32 x, float32 y, int facingPosition) : Projectile(SPARKS_DAMAGE, Projectile::SPARK, x, y, facingPosition) {
+Spark::Spark(float32 x, float32 y, ORIENTATION facingPosition) : Projectile(SPARKS_DAMAGE, Projectile::SPARK, x, y, facingPosition) {
 }
 
 
@@ -17,4 +17,3 @@ Spark::~Spark() {
 int Spark::getTypeForSerialization() {
 	return ObstacleViewTypeSpark;
 }
-

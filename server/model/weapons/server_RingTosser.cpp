@@ -17,7 +17,7 @@ RingTosser::RingTosser() : Weapon(RING_TOSSER_MAX_AMMO) {}
 RingTosser::~RingTosser() {
 }
 
-void RingTosser::fire(float32 x, float32 y, int facingPosition) {
+void RingTosser::fire(float32 x, float32 y, ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Ring(x, y, facingPosition));

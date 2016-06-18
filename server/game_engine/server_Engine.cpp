@@ -5,11 +5,8 @@
  *      Author: mastanca
  */
 
-#include "server_Engine.h"
-
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
-#include <Dynamics/b2World.h>
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -20,8 +17,8 @@
 #include "../serializers/server_ObjectCreationSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
-#include "physics/server_ContactListener.h"
-#include "server_EventContext.h"
+
+#include "server_Engine.h"
 
 Engine::~Engine() {
 	for (std::list<Player*>::iterator it = playersList.begin();

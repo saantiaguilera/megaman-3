@@ -11,10 +11,8 @@
 #include <string>
 
 #include "../../game_engine/physics/server_PhysicObject.h"
-
-class Projectile;
-
-class Weapon;
+#include "../projectiles/server_Projectile.h"
+#include "../weapons/server_Weapon.h"
 
 class Character: public PhysicObject {
 protected:

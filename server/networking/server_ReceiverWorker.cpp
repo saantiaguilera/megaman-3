@@ -5,13 +5,12 @@
  *      Author: mastanca
  */
 
-#include "server_ReceiverWorker.h"
-
 #include <iostream>
 #include <string>
 
-#include "server_ClientProxy.h"
 #include "server_InboundMessagesController.h"
+
+#include "server_ReceiverWorker.h"
 
 ReceiverWorker::ReceiverWorker(ClientProxy* client) : client(client) {}
 

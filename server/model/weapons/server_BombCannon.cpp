@@ -19,7 +19,7 @@ BombCannon::BombCannon() : Weapon(BOMB_MAX_AMMO) {}
 BombCannon::~BombCannon() {
 }
 
-void BombCannon::fire(float32 x, float32 y, int facingPosition) {
+void BombCannon::fire(float32 x, float32 y, ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Bomb* aBomb = new Bomb(x, y, facingPosition);
