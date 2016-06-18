@@ -23,7 +23,10 @@ Life::~Life() {
 void Life::haveEffectOn(Character* character) {
 	((Megaman*)character)->getHumanOperator()->increasePlayerLives();
 	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(((Megaman*)character)->getHumanOperator()->getId(), ((Megaman*)character)->getHumanOperator()->getLives());
-	lifeChangeSerializer->setDispatchClient(character->getId());
+
+	if (!character->isAI())
+		lifeChangeSerializer->setDispatchClient(dynamic_cast<Megaman*>(character)->getBoundId());
+
 	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 }
 

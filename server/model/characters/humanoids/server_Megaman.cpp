@@ -40,15 +40,15 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	notify();
 
 	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
-	hpChangeSerializer->setDispatchClient(getId());
+	hpChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(getCurrentWeapon());
-	ammoChangeSerializer->setDispatchClient(getId());
+	ammoChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 
 	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
-	lifeChangeSerializer->setDispatchClient(getId());
+	lifeChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 }
 
@@ -59,6 +59,17 @@ Megaman::~Megaman() {
 		if ((*it).second != currentWeapon)
 			delete (*it).second;
 	}
+}
+
+bool Megaman::isAI() {
+	return false;
+}
+
+unsigned int Megaman::getBoundId() {
+	if (!humanOperator)
+		return -1;
+
+	return humanOperator->getId();
 }
 
 int Megaman::getObjectType() {
@@ -107,6 +118,31 @@ void Megaman::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
 	}
 }
 
+void Megaman::receiveShotFromProjectile(Projectile *projectile) {
+	Character::receiveShotFromProjectile(projectile);
+
+	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
+	hpChangeSerializer->setDispatchClient(getBoundId());
+	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
+}
+
+void Megaman::increaseHP(unsigned int amount) {
+	Character::increaseHP(amount);
+
+	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
+	hpChangeSerializer->setDispatchClient(getBoundId());
+	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
+}
+
+void Megaman::attack() {
+	Character::attack();
+
+	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
+			currentWeapon);
+	ammoChangeSerializer->setDispatchClient(getBoundId());
+	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
+}
+
 void Megaman::decreaseHp(float damage) {
 	if (((int)hp - (int)damage) < 0){
 		hp = MEGAMAN_INITIAL_HP;
@@ -114,12 +150,12 @@ void Megaman::decreaseHp(float damage) {
 		getHumanOperator()->decreasePlayerLives();
 
 		LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
-		lifeChangeSerializer->setDispatchClient(getId());
+		lifeChangeSerializer->setDispatchClient(getBoundId());
 		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 	} else hp -= damage;
 
 	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
-	hpChangeSerializer->setDispatchClient(getId());
+	hpChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 

@@ -20,7 +20,7 @@ class Player;
 
 class Megaman : public Humanoid {
 private:
-	Player* humanOperator;
+	Player* humanOperator = NULL;
 	std::map<int, Weapon*> availableWeaponsMap;
 public:
 	// Constructor
@@ -38,6 +38,11 @@ public:
 	virtual void update();
 	// Return my operator
 	Player* getHumanOperator() const;
+	virtual void receiveShotFromProjectile(Projectile *projectile);
+	virtual void attack();
+	virtual void increaseHP(unsigned int amount);
+	virtual bool isAI();
+	unsigned int getBoundId();
 	// Switch weapon to the chosen one
 	// If its not available then no change is done
 	void changeWeaponTo(int weaponType);

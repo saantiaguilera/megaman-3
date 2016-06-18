@@ -36,7 +36,7 @@ public:
 	// Destroyer
 	virtual ~Character();
 	// Attacks
-	void attack();
+	virtual void attack();
 	// receive shot from weapon parameter
 	virtual void receiveShotFromProjectile(Projectile* projectile);
 	// Return hp of the character
@@ -44,7 +44,7 @@ public:
 	// Decreases hp of the character
 	virtual void decreaseHp(float damage);
 	// Increase the hp of the character by amount
-	void increaseHP(unsigned int amount);
+	virtual void increaseHP(unsigned int amount);
 	// Update the AI (make it pure virtual later)
 	virtual void update() {};
 	// Return my current weapon
@@ -53,7 +53,7 @@ public:
 	std::string getHpAsString();
 	// Return max hp
 	unsigned int getMaxHp();
-
+	virtual bool isAI();
 private:
 	// Copy constructor
 	Character(const Character&);

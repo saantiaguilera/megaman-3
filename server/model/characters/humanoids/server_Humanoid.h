@@ -12,7 +12,7 @@
 
 #include "../server_Character.h"
 
-class Humanoid: public Character {
+class Humanoid : public Character {
 public:
 	// Constructor
 	Humanoid(unsigned int hp, float32 x, float32 y);

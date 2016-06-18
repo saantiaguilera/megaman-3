@@ -19,8 +19,8 @@
 #include "../weapons/server_Weapon.h"
 
 Character::Character(unsigned int hp) :
-		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
-				0), maxHp(hp) {
+		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
+				0) {
 }
 
 Character::~Character() {
@@ -30,10 +30,6 @@ Character::~Character() {
 void Character::attack() {
 	std::cout << getPositionX() << ", " << getPositionY() << std::endl;
 	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
-	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
-			currentWeapon);
-	ammoChangeSerializer->setDispatchClient(getId());
-	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 }
 
 unsigned int Character::getHp() const {
@@ -42,17 +38,11 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
-	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
-	hpChangeSerializer->setDispatchClient(getId());
-	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 
 void Character::increaseHP(unsigned int amount) {
 	// TODO: if they have a max hp validate here
 	hp += amount;
-	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
-	hpChangeSerializer->setDispatchClient(getId());
-	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 
 Weapon* Character::getCurrentWeapon() const {
@@ -69,10 +59,11 @@ void Character::decreaseHp(float damage) {
 		Engine::getInstance().markObjectForRemoval(this);
 	} else {
 		hp -= damage;
-		HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
-		hpChangeSerializer->setDispatchClient(getId());
-		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	}
+}
+
+bool Character::isAI() {
+	return true;
 }
 
 std::string Character::getHpAsString() {
