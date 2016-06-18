@@ -40,13 +40,10 @@ void PhysicObject::move(unsigned int moveState) {
 
     float desiredVelx = 0;
     float desiredVely = 0;
-    switch ( moveState )
-    {
+    switch ( moveState ) {
     case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;//let speed change gradually
-//    case MS_LEFT:  desiredVelx = b2Max( vel.x - 0.1f, -STEP_LENGTH ); facingPosition = FS_LEFT; break;//let speed change gradually
-    case MS_STOP:  desiredVelx =  vel.x * 0.98; desiredVely = vel.y * 0.98; break;//let speed decay gradually
-		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = FS_RIGHT; break;//let speed change gradually
-//    case MS_RIGHT: desiredVelx = b2Min( vel.x + 0.1f,  STEP_LENGTH ); facingPosition = FS_RIGHT; break;//let speed change gradually
+    case MS_STOP:  desiredVelx =  vel.x * 0; desiredVely = vel.y * 0.98; break;//let speed decay gradually
+	case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = FS_RIGHT; break;//let speed change gradually
     case MS_JUMP: desiredVely = 10; break;//let speed change gradually
     case MS_DOWN: desiredVely = -5; break;
     }
@@ -55,10 +52,9 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangey = desiredVely - vel.y;
     float impulsey = myBody->GetMass() * velChangey;
 
-    if (impulsey != 0){
-    	Engine::getInstance().getUpdatablesList()->push_back(this);
-    	updatable = true;
-    }
+    bool moving = moveState == MS_LEFT || moveState == MS_RIGHT || moveState == MS_JUMP || moveState == MS_DOWN;
+
+    updatable = moving;
 
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 
