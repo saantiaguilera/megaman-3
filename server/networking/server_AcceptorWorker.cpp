@@ -7,11 +7,10 @@
 
 #include "server_AcceptorWorker.h"
 
-#include <iostream>
 #include <iterator>
-#include <string>
 
 #include "../../common/common_Socket.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "server_ReceiverWorker.h"
 
 #define MAX_QUEUE_SIZE 128
@@ -31,6 +30,8 @@ void AcceptorWorker::run() {
 		clients->push_back(client);
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
+			ConnectedPlayerSerializer connectedPlayerSerializer(client);
+			client->send(&connectedPlayerSerializer);
 //			// Spawn a receiver worker
 //			// It will call our client proxy's receive method
 			ReceiverWorker* receiverWorker = new ReceiverWorker(client);
