@@ -1061,7 +1061,7 @@ configure:15977: $? = 0
 configure:15977: result: yes
 configure:15984: checking for dladdr
 configure:15984: g++ -o conftest -g -O2   conftest.cpp  >&5
-/tmp/ccP4MuUU.o: In function `main':
+/tmp/cc9FNIqP.o: In function `main':
 /home/flor/workspace/fiuba-taller-I-megaman/libs/glog/conftest.cpp:70: undefined reference to `dladdr'
 collect2: error: ld returned 1 exit status
 configure:15984: $? = 1
@@ -1242,7 +1242,7 @@ conftest.c:48:22: warning: null argument where non-null required (argument 1) [-
                       pthread_create(0,0,0,0); pthread_cleanup_pop(0);
                       ^
 conftest.c:48:22: warning: null argument where non-null required (argument 3) [-Wnonnull]
-/tmp/ccOISDRn.o: In function `main':
+/tmp/ccmDpJbn.o: In function `main':
 /home/flor/workspace/fiuba-taller-I-megaman/libs/glog/conftest.c:46: undefined reference to `pthread_join'
 /home/flor/workspace/fiuba-taller-I-megaman/libs/glog/conftest.c:47: undefined reference to `__pthread_register_cancel'
 /home/flor/workspace/fiuba-taller-I-megaman/libs/glog/conftest.c:48: undefined reference to `pthread_create'
