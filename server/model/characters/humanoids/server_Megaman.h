@@ -9,12 +9,13 @@
 #define SERVER_MODEL_CHARACTERS_HUMANOIDS_SERVER_MEGAMAN_H_
 
 #include <Common/b2Settings.h>
-
-#include "server_Humanoid.h"
-#include "../../weapons/server_Weapon.h"
-#include "../../../game_engine/server_Player.h"
-
+#include <stddef.h>
 #include <map>
+
+#include "../../weapons/server_Weapon.h"
+#include "server_Humanoid.h"
+
+class Player;
 
 #define MEGAMAN_INITIAL_HP 150
 

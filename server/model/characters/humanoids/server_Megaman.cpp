@@ -5,13 +5,17 @@
  *      Author: mastanca
  */
 
+#include "server_Megaman.h"
+
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <string>
 
 #include "../../../../common/common_MapConstants.h"
+#include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
 #include "../../../game_engine/server_EventContext.h"
+#include "../../../game_engine/server_Player.h"
 #include "../../../serializers/server_AmmoChangeSerializer.h"
 #include "../../../serializers/server_HpChangeSerializer.h"
 #include "../../../serializers/server_LifeChangeSerializer.h"
@@ -21,8 +25,6 @@
 #include "../../powerups/server_Powerup.h"
 #include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_PlasmaCannon.h"
-
-#include "server_Megaman.h"
 
 #define MEGAMAN_COLLISION_FILTERING_GROUP -1
 

@@ -19,7 +19,7 @@ public:
 	MagnetCannon();
 	virtual ~MagnetCannon();
 	// fire weapon
-	virtual void fire(float32 x, float32 y, ORIENTATION facingPosition);
+	virtual void fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition);
 	// Return max ammo of the weapon
 	virtual unsigned int getMaxAmmo();
 private:

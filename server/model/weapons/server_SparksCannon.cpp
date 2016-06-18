@@ -16,7 +16,7 @@ SparksCannon::SparksCannon() : Weapon(SPARKS_CANNON_MAX_AMMO) {}
 SparksCannon::~SparksCannon() {
 }
 
-void SparksCannon::fire(float32 x, float32 y, ORIENTATION facingPosition) {
+void SparksCannon::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Spark(x, y, facingPosition));

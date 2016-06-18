@@ -16,7 +16,7 @@ MagnetCannon::MagnetCannon() : Weapon(MAGNET_CANNON_MAX_AMMO) {}
 MagnetCannon::~MagnetCannon() {
 }
 
-void MagnetCannon::fire(float32 x, float32 y, ORIENTATION facingPosition) {
+void MagnetCannon::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Magnet(x, y, facingPosition));
