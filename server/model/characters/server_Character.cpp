@@ -32,6 +32,7 @@ void Character::attack() {
 	currentWeapon->fire(getPositionX(), getPositionY(), facingPosition);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(
 			currentWeapon);
+	ammoChangeSerializer->setDispatchClient(getId());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 }
 
@@ -41,17 +42,17 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	hp -= projectile->getDamage();
-	HpChangeSerializer hpChangeSerializer(getHp(), this);
-	hpChangeSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
+	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
+	hpChangeSerializer->setDispatchClient(getId());
+	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 
 void Character::increaseHP(unsigned int amount) {
 	// TODO: if they have a max hp validate here
 	hp += amount;
-	HpChangeSerializer hpChangeSerializer(getHp(), this);
-	hpChangeSerializer.serialize();
-	Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
+	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
+	hpChangeSerializer->setDispatchClient(getId());
+	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 }
 
 Weapon* Character::getCurrentWeapon() const {
@@ -68,9 +69,9 @@ void Character::decreaseHp(float damage) {
 		Engine::getInstance().markObjectForRemoval(this);
 	} else {
 		hp -= damage;
-		HpChangeSerializer hpChangeSerializer(getHp(), this);
-		hpChangeSerializer.serialize();
-		Engine::getInstance().getContext()->dispatchEvent(&hpChangeSerializer);
+		HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(), this);
+		hpChangeSerializer->setDispatchClient(getId());
+		Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
 	}
 }
 

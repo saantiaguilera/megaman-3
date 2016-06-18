@@ -131,6 +131,7 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 			player->getMegaman()->attack();
 		}
 	}
+	
 	currentKeyMap = futureKeyMap;
 }
 

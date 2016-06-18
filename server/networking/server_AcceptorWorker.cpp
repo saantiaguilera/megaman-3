@@ -55,8 +55,8 @@ void AcceptorWorker::terminate() {
 }
 
 AcceptorWorker::AcceptorWorker(Socket* dispatcherSocket, bool* keepOnListening,
-		std::vector<ClientProxy*>* clients) :
-		dispatcherSocket(dispatcherSocket), keepOnListening(keepOnListening), clients(
+	std::vector<ClientProxy*>* clients) :
+	dispatcherSocket(dispatcherSocket), keepOnListening(keepOnListening), clients(
 				clients) {
 	dispatcherSocket->listen(MAX_QUEUE_SIZE);
 }

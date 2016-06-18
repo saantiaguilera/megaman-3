@@ -31,7 +31,8 @@ Engine::~Engine() {
 
 	delete contactListener;
 	delete myWorld;
-    Logger::getInstance().log(1, "Engine quitting");
+
+	Logger::getInstance().log(1, "Engine quitting");
 }
 
 const std::list<Player*>& Engine::getPlayersList() {
@@ -140,7 +141,7 @@ Engine& Engine::getInstance() {
 }
 
 void Engine::start() {
-    Logger::getInstance().log(1, "Game engine started");
+	Logger::getInstance().log(1, "Game engine started");
 	running = true;
 
 	int i = 0;

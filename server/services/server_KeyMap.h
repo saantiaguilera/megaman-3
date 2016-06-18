@@ -23,11 +23,11 @@ public:
 
   std::string toString() {
     std::ostringstream os;
-    os << "Jump::" << (jump ? "true" : "false") << "\n";
     os << "Down::" << (down ? "true" : "false") << "\n";
     os << "Left::" << (left ? "true" : "false") << "\n";
     os << "Right::" << (right ? "true" : "false") << "\n";
     os << "Shoot::" << (shoot ? "true" : "false") << "\n";
+    os << "Jump::" << (jump ? "true" : "false") << "\n";
 
     return os.str();
   }

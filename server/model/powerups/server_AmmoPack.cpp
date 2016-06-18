@@ -23,5 +23,6 @@ AmmoPack::~AmmoPack() {
 void AmmoPack::haveEffectOn(Character* character) {
 	character->getCurrentWeapon()->increaseAmmoBy(effectAmount);
 	AmmoChangeSerializer* ammoChangeSerializer = new AmmoChangeSerializer(character->getCurrentWeapon());
+	ammoChangeSerializer->setDispatchClient(character->getId());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 }
