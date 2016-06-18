@@ -42,6 +42,28 @@ int Projectile::getObjectType() {
 void Projectile::setBody() {
 	b2BodyDef projectileBodyDef;
 	projectileBodyDef.type = b2_kinematicBody;
+
+	int vx = 0, vy = 0;
+	//TODO Maybe you plan on customizing this ?
+	switch (facingPosition) {
+		OR_RIGHT:
+			vx = 5;
+			initialX += (getWidth() / 2);
+			break;
+		OR_LEFT:
+			vx = -5;
+			initialX -= (getWidth() / 2);
+			break;
+		OR_BOTTOM:
+			vy = -5;
+			initialY += (getHeight() / 2);
+			break;
+		OR_TOP:
+			vy = 5;
+			initialY -= (getHeight() / 2);
+			break;
+	}
+
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
@@ -56,23 +78,6 @@ void Projectile::setBody() {
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
-
-	int vx = 0, vy = 0;
-	//TODO Maybe you plan on customizing this ?
-	switch (facingPosition) {
-		OR_RIGHT:
-			vx = 5;
-			break;
-		OR_LEFT:
-			vx = -5;
-			break;
-		OR_BOTTOM:
-			vy = -5;
-			break;
-		OR_TOP:
-			vy = 5;
-			break;
-	}
 
 	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
