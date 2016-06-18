@@ -102,6 +102,11 @@ AnimatedView * GameView::getMyView() {
 
 void GameView::setMyId(unsigned int id) {
   myId = id;
+
+  if (!myView)
+    for (AnimatedView * someView : animatedViews)
+      if (someView->getId() == myId)
+        myView = someView;
 }
 
 void GameView::resetAnimations() {
