@@ -7,6 +7,7 @@
 
 #include "server_JsonMapParser.h"
 
+#include <iostream>
 #include <list>
 
 #include "../../common/common_MapConstants.h"

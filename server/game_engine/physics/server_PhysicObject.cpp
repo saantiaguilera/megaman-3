@@ -18,7 +18,7 @@
 #include "../server_EventContext.h"
 
 //const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
-const float STEP_LENGTH = 5.0f;
+const float STEP_LENGTH = 3.5f;
 
 // Initialize ids value
 unsigned int PhysicObject::id = 0;
@@ -41,9 +41,11 @@ void PhysicObject::move(unsigned int moveState) {
     float desiredVely = 0;
     switch ( moveState )
     {
-    case MS_LEFT:  desiredVelx = b2Max( vel.x - 0.1f, -STEP_LENGTH ); facingPosition = FS_LEFT; break;//let speed change gradually
+    case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;//let speed change gradually
+//    case MS_LEFT:  desiredVelx = b2Max( vel.x - 0.1f, -STEP_LENGTH ); facingPosition = FS_LEFT; break;//let speed change gradually
     case MS_STOP:  desiredVelx =  vel.x * 0.98; desiredVely = vel.y * 0.98; break;//let speed decay gradually
-    case MS_RIGHT: desiredVelx = b2Min( vel.x + 0.1f,  STEP_LENGTH ); facingPosition = FS_RIGHT; break;//let speed change gradually
+	case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = FS_RIGHT; break;//let speed change gradually
+//    case MS_RIGHT: desiredVelx = b2Min( vel.x + 0.1f,  STEP_LENGTH ); facingPosition = FS_RIGHT; break;//let speed change gradually
     case MS_JUMP: desiredVely = 15; break;//let speed change gradually
     case MS_DOWN: desiredVely = -5; break;
     }
