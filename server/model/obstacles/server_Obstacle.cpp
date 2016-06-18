@@ -29,7 +29,6 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 
 	// Add shape to body
 	b2PolygonShape boxShape;
-	std::cout << "Body size is: " << BODIES_SIZE << std::endl;
 	boxShape.SetAsBox(BODIES_SIZE*BODIES_SIZE/4,BODIES_SIZE);
 
 	// Add fixture

@@ -26,5 +26,4 @@ void AmmoChangeSerializer::serialize() {
 	std::stringstream ss;
 	ss << "{" << "\"ammo\": " << ammoPercentage << "}";
 	serialized = ss.str();
-	std::cout << serialized << std::endl;
 }

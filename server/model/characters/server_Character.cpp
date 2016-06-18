@@ -21,7 +21,6 @@
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
 				0), maxHp(hp) {
-	Engine::getInstance().getUpdatablesList()->push_back(this);
 }
 
 Character::~Character() {
