@@ -11,9 +11,9 @@
 #include <string>
 
 #include "../../common/common_MessageProtocol.h"
-#include "../networking/server_ClientProxy.h"
+#include "../model/characters/humanoids/server_Megaman.h"
 
-ConnectedPlayerSerializer::ConnectedPlayerSerializer(ClientProxy* clientProxy) : clientProxy(clientProxy) {
+ConnectedPlayerSerializer::ConnectedPlayerSerializer(Megaman* megaman) : megaman(megaman) {
 	messageCode = CONNECTED_PLAYER_ID;
 	serialize();
 }
@@ -23,7 +23,7 @@ ConnectedPlayerSerializer::~ConnectedPlayerSerializer() {
 
 void ConnectedPlayerSerializer::serialize() {
 	std::stringstream ss;
-	ss << "{" << "\"your_id\": " << clientProxy->getId() << "}";
+	ss << "{" << "\"your_id\": " << megaman->getId() << "}";
 	serialized = ss.str();
 }
 

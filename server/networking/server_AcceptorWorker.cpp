@@ -30,8 +30,6 @@ void AcceptorWorker::run() {
 		clients->push_back(client);
 		client->acceptNewConnection(*dispatcherSocket);
 		if (client->isConnected()) {
-			ConnectedPlayerSerializer connectedPlayerSerializer(client);
-			client->send(&connectedPlayerSerializer);
 //			// Spawn a receiver worker
 //			// It will call our client proxy's receive method
 			ReceiverWorker* receiverWorker = new ReceiverWorker(client);

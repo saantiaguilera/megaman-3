@@ -36,6 +36,15 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 	this->keepRunning = keepRunning;
 }
 
-void SenderWorker::dispatchEvent(Serializer* serializer) {
-	eventsQueue->add(serializer);
+void SenderWorker::dispatchEvent(Serializer* event) {
+	eventsQueue->add(event);
+}
+
+void SenderWorker::dispatchEventTo(Serializer* event,
+		unsigned int clientId) {
+	for (std::vector<ClientProxy*>::iterator it = clients->begin();
+		it != clients->end(); ++it){
+		if ((*it)->getId() == clientId)
+			(*it)->send(event);
+	}
 }

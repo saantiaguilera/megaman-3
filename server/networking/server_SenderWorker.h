@@ -36,7 +36,9 @@ public:
 	// Run the worker
 	void run();
 	// Push an event
-	virtual void dispatchEvent(Serializer* serializer);
+	virtual void dispatchEvent(Serializer* event);
+	// Push an event to a specific client
+	virtual void dispatchEventTo(Serializer* event, unsigned int clientId);
 	// Toogle keep running
 	void setKeepRunning(bool keepRunning);
 };

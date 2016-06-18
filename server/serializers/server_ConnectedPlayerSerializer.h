@@ -10,14 +10,14 @@
 
 #include "../../common/common_Serializer.h"
 
-class ClientProxy;
+class Megaman;
 
 class ConnectedPlayerSerializer: public Serializer {
 private:
-	ClientProxy* clientProxy;
+	Megaman* megaman;
 public:
 	// Constructor
-	ConnectedPlayerSerializer(ClientProxy* clientProxy);
+	ConnectedPlayerSerializer(Megaman* megaman);
 	// Destroyer
 	virtual ~ConnectedPlayerSerializer();
 	// Serialize object

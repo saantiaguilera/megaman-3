@@ -18,6 +18,8 @@ public:
 	virtual ~EventContext();
 	// Pure virtual method
 	virtual void dispatchEvent(Serializer* serializer) = 0 ;
+	// Send to a specific client
+	virtual void dispatchEventTo(Serializer* serializer, unsigned int id) = 0 ;
 private:
 	// Copy constructor
 	EventContext(const EventContext&);

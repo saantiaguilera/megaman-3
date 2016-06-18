@@ -7,7 +7,6 @@
 
 #include "server_JsonMapParser.h"
 
-#include <iostream>
 #include <list>
 
 #include "../../common/common_MapConstants.h"
@@ -35,6 +34,7 @@
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../services/server_CoordinatesConverter.h"
 
 
@@ -128,6 +128,8 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			for (std::list<Player*>::iterator it = playerList.begin();
 					it != playerList.end(); ++it) {
 				(*it)->setMegaman(x, y);
+				ConnectedPlayerSerializer connectedPlayerSerializer((*it)->getMegaman());
+
 			}
 			break;
 		case ObstacleViewTypeBombman:
