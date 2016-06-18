@@ -15,7 +15,7 @@ private:
 	int newLifeCount;
 public:
 	// Constructor
-	LifeChangeSerializer(unsigned int playerId, unsigned int newLifeCount);
+	LifeChangeSerializer(unsigned int newLifeCount);
 	// Destroyer
 	virtual ~LifeChangeSerializer();
 	// Serialize object

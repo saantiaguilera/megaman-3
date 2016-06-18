@@ -15,7 +15,7 @@
 class HpChangeSerializer: public Serializer {
 private:
 	unsigned int newHp;
-	Character* character;
+	Character *character;
 public:
 	// Constructor
 	HpChangeSerializer(unsigned int newHp, Character* character);

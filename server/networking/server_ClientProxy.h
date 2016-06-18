@@ -17,9 +17,9 @@ class Serializer;
 class ClientProxy {
 private:
 	// Global count of the clients
-	static int globalCount;
+	static unsigned int globalCount;
 	// Id of the player
-	int id;
+	unsigned int id;
 	// Flag to check status of the socket
 	bool connected;
 	// The actual socket
@@ -40,7 +40,7 @@ public:
 	// Sends data over the net, through the socket
 	void send(Serializer* serializer);
 	// Return my id
-	int getId() const;
+	unsigned int getId() const;
 };
 
 #endif /* SRC_SERVER_SERVER_CLIENTPROXY_H_ */

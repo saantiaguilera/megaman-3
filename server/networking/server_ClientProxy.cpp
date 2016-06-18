@@ -17,7 +17,7 @@
 #define MAX_BUFFER_SIZE 10
 
 // Initialize ids value
-int ClientProxy::globalCount = 0;
+unsigned int ClientProxy::globalCount = 0;
 
 ClientProxy::ClientProxy() {
 	++globalCount;
@@ -64,7 +64,7 @@ void ClientProxy::receive(int& messageCode, unsigned int& messageLength, std::st
 	delete buffer;
 }
 
-int ClientProxy::getId() const {
+unsigned int ClientProxy::getId() const {
 	return id;
 }
 

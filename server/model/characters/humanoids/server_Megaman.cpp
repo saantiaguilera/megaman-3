@@ -47,7 +47,7 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	ammoChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 
-	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
+	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getLives());
 	lifeChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 }
@@ -149,7 +149,7 @@ void Megaman::decreaseHp(float damage) {
 
 		getHumanOperator()->decreasePlayerLives();
 
-		LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getId(), getHumanOperator()->getLives());
+		LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getLives());
 		lifeChangeSerializer->setDispatchClient(getBoundId());
 		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
 	} else hp -= damage;
