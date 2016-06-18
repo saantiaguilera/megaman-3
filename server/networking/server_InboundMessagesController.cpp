@@ -45,7 +45,9 @@ void InboundMessagesController::analizeMessageCode() {
 		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT
 				&& !Engine::getInstance().isRunning()) {
 			// Set the flag of the engine to ready to start
+			std::cout << "Client id is: " << clientId << std::endl;;
 			desiredPlayer = getDesiredPlayer(clientId);
+			std::cout << "Desired player is admin? " << (desiredPlayer->isAdmin() ? "Yes" : "No") << std::endl;
 			if (desiredPlayer->isAdmin()) {
 				StartGameSerializer* startGameSerializer =
 						new StartGameSerializer(inboundMessage);
