@@ -92,28 +92,32 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 	KeyMap futureKeyMap = parser.parse(keyMap);
 
 	if (currentKeyMap.isJumping() != futureKeyMap.isJumping()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isJumping() ?
 						PhysicObject::_moveState::MS_JUMP :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isDown() != futureKeyMap.isDown()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isDown() ?
 						PhysicObject::_moveState::MS_DOWN :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isLeft() != futureKeyMap.isLeft()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isLeft() ?
 						PhysicObject::_moveState::MS_LEFT :
 						PhysicObject::_moveState::MS_STOP);
 	}
 
 	if (currentKeyMap.isRight() != futureKeyMap.isRight()) {
-		player->getMegaman()->move(
+		player->getMegaman()->setUpdatable(true);
+		player->getMegaman()->setCurrentMoveState(
 				futureKeyMap.isRight() ?
 						PhysicObject::_moveState::MS_RIGHT :
 						PhysicObject::_moveState::MS_STOP);

@@ -23,6 +23,7 @@ class Megaman : public Humanoid {
 private:
 	Player* humanOperator = NULL;
 	std::map<int, Weapon*> availableWeaponsMap;
+	int currentMoveState;
 public:
 	// Constructor
 	Megaman(Player* humanOperator, float32 x, float32 y);
@@ -53,6 +54,7 @@ public:
 	virtual void decreaseHp(float damage);
 	// Get type for serialization
 	virtual int getTypeForSerialization();
+	void setCurrentMoveState(int currentMoveState);
 
 private:
 	// Copy constructor

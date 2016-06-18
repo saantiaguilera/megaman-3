@@ -25,6 +25,6 @@ void Block::handleCollisionWith(PhysicObject* objectCollidedWith) {
 		std::cout << "Collided block with projectle" << std::endl;
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	} else if (objectCollidedWith->getObjectType() == OT_MEGAMAN){
-		((Megaman*)objectCollidedWith)->setUpdatable(false);
+//		((Megaman*)objectCollidedWith)->setUpdatable(false);
 	}
 }

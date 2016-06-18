@@ -50,6 +50,9 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) : Humanoid(MEGAMAN
 	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getHumanOperator()->getLives());
 	lifeChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
+
+	Engine::getInstance().getUpdatablesList()->push_back(this);
+
 }
 
 Megaman::~Megaman() {
@@ -98,6 +101,7 @@ Player* Megaman::getHumanOperator() const {
 }
 
 void Megaman::update() {
+	move(currentMoveState);
 	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
 	Engine::getInstance().getContext()->dispatchEvent(serializer);
 }
@@ -157,6 +161,10 @@ void Megaman::decreaseHp(float damage) {
 	HpChangeSerializer* hpChangeSerializer = new HpChangeSerializer(getHp(), this);
 	hpChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(hpChangeSerializer);
+}
+
+void Megaman::setCurrentMoveState(int currentMoveState) {
+	this->currentMoveState = currentMoveState;
 }
 
 int Megaman::getTypeForSerialization() {

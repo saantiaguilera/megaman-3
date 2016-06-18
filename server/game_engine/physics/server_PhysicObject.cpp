@@ -20,7 +20,7 @@ const float STEP_LENGTH = 3.5f;
 // Initialize ids value
 unsigned int PhysicObject::globalCount = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(OR_RIGHT) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), facingPosition(OR_RIGHT), updatable(false) {
 	++globalCount;
 	id = globalCount;
 }
@@ -37,6 +37,7 @@ void PhysicObject::move(unsigned int moveState) {
 
     float desiredVelx = 0;
     float desiredVely = 0;
+<<<<<<< HEAD
     switch ( moveState )
     {
     case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = OR_LEFT; break;//let speed change gradually
@@ -44,6 +45,12 @@ void PhysicObject::move(unsigned int moveState) {
     case MS_STOP:  desiredVelx =  vel.x * 0.98; desiredVely = vel.y * 0.98; break;//let speed decay gradually
 		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
 //    case MS_RIGHT: desiredVelx = b2Min( vel.x + 0.1f,  STEP_LENGTH ); facingPosition = FS_RIGHT; break;//let speed change gradually
+=======
+    switch ( moveState ) {
+    case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = FS_LEFT; break;//let speed change gradually
+    case MS_STOP:  desiredVelx =  vel.x * 0; desiredVely = vel.y * 0.98; break;//let speed decay gradually
+	case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = FS_RIGHT; break;//let speed change gradually
+>>>>>>> 80afda2cf9398bb1ece094952ec6c856a879f105
     case MS_JUMP: desiredVely = 10; break;//let speed change gradually
     case MS_DOWN: desiredVely = -5; break;
     }
@@ -52,10 +59,8 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangey = desiredVely - vel.y;
     float impulsey = myBody->GetMass() * velChangey;
 
-    if (impulsey != 0){
-    	Engine::getInstance().getUpdatablesList()->push_back(this);
-    	updatable = true;
-    }
+    bool moving = moveState == MS_LEFT || moveState == MS_RIGHT || moveState == MS_JUMP || moveState == MS_DOWN;
+    setUpdatable(moving);
 
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );
 

@@ -7,6 +7,9 @@
 
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
+#include <Dynamics/b2World.h>
+#include <unistd.h>
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -141,25 +144,18 @@ void Engine::start() {
 	Logger::getInstance().log(1, "Game engine started");
 	running = true;
 
-	int i = 0;
-
 	while(!quit){
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For updating AI and movements of bullets
-//		if (i % 100000 == 0){
-//					std::cout << "Megaman x: " << getPlayersList().front()->getMegaman()->getPositionX() << std::endl;
-//					std::cout << "Megaman y: " << getPlayersList().front()->getMegaman()->getPositionY() << std::endl;
-//			i = 0;
-//		}
-
 		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
 				it != updatablesList.end(); ++it) {
-			if ((*it)->isUpdatable())
+			if ((*it)->isUpdatable()){
 				(*it)->update();
+			}
 		}
 		destroyObjects();
-		++i;
+		usleep(timeStep*1000000*1.4);
 	}
 }
 
