@@ -26,7 +26,7 @@ void NormalSniper::update() {
 		ticksPassed = 0;
 	}
 	++ticksPassed;
-	if (ticksPassed == 1) {
+	if (ticksPassed == 20) {
 		vulnerable = false;
 	}
 }
@@ -34,4 +34,3 @@ void NormalSniper::update() {
 int NormalSniper::getTypeForSerialization() {
 	return ObstacleViewTypeNormalSnyper;
 }
-

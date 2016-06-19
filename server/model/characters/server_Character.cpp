@@ -54,7 +54,7 @@ unsigned int Character::getHp() const {
 }
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
-	hp -= projectile->getDamage();
+	decreaseHp(projectile->getDamage());
 }
 
 void Character::increaseHP(unsigned int amount) {
