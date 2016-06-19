@@ -40,8 +40,11 @@ public:
 	virtual void update();
 	// Return my operator
 	Player* getHumanOperator() const;
+	// Receive shot from projectile
 	virtual void receiveShotFromProjectile(Projectile *projectile);
+	// Attack
 	virtual void attack();
+	// Increase hp by amount
 	virtual void increaseHP(unsigned int amount);
 	virtual bool isAI();
 	unsigned int getBoundId();
@@ -54,7 +57,9 @@ public:
 	virtual void decreaseHp(float damage);
 	// Get type for serialization
 	virtual int getTypeForSerialization();
+	// Set the current remove state
 	void setCurrentMoveState(int currentMoveState);
+	// Reset megamans hp
 	void resetHp();
 
 private:

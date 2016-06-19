@@ -19,6 +19,8 @@ const float BODIES_SIZE = TERRAIN_TILE_SIZE*METERS_TO_PIXELS_RATIO/2;
 //const float STEP_LENGTH = TERRAIN_TILE_SIZE/METERS_TO_PIXELS_RATIO;
 const float STEP_LENGTH = 3.5f;
 
+#define TICKS_TILL_VULNERABLE_DEFAULT 20
+
 class PhysicObject {
 protected:
 	// Object types for collision detection
@@ -46,6 +48,8 @@ protected:
 
 	virtual float32 getWidth() = 0;
 	virtual float32 getHeight() = 0;
+	bool vulnerable;
+	unsigned int ticksTillVulnerable;
 public:
 	// Defined movestates for objects
 	enum _moveState {
@@ -94,6 +98,8 @@ public:
 	virtual void update();
 	bool isUpdatable() const;
 	void setUpdatable(bool updatable);
+	bool isVulnerable() const;
+	void setVulnerable(bool vulnerable);
 
 private:
 	// Copy constructor
