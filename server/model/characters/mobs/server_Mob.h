@@ -12,7 +12,7 @@
 
 #include "../server_Character.h"
 
-#define ATTACK_INTERVAL_TICKS 500
+#define ATTACK_INTERVAL_TICKS 100
 
 class Mob: public Character {
 protected:

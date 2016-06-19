@@ -38,7 +38,7 @@ void PhysicObject::move(unsigned int moveState) {
     switch ( moveState ) {
     	case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = OR_LEFT; break;//let speed change gradually
     	case MS_STOP:  desiredVelx =  vel.x * 0; desiredVely = vel.y * 0.98; break;//let speed decay gradually
-			case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
+		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
     	case MS_JUMP: desiredVely = 10; break;//let speed change gradually
     	case MS_DOWN: desiredVely = -5; break;
     }

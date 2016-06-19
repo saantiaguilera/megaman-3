@@ -46,9 +46,6 @@ void Character::attack() {
 			weaponY = getPositionY() - getHeight();
 			break;
 	}
-
-	std::cout << "Bullet x,y will be " << weaponX << " " << weaponY << std::endl;
-
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
 }
 

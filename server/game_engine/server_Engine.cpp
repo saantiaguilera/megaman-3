@@ -103,12 +103,13 @@ void Engine::destroyObjects() {
 
 			//delete object... physics body is destroyed here
 			myWorld->DestroyBody(objectToDelete->getMyBody());
-			delete objectToDelete;
 
 			//... and remove it from main list of objects
 			std::list<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
 			if ( it != updatablesList.end() )
 				updatablesList.erase( it );
+
+			delete objectToDelete;
 		}
 	}
 	//clear this list for next time

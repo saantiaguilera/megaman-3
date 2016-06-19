@@ -47,6 +47,10 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 //    myBody->CreateFixture(&boxFixtureDef);
 
     currentWeapon = new MobCannon();
+
+    // Add to updatables list
+    Engine::getInstance().getUpdatablesList()->push_back(this);
+    setUpdatable(true);
 }
 
 float32 Mob::getWidth() {

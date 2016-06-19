@@ -19,6 +19,8 @@
 #include "../../game_engine/server_EventContext.h"
 #include "../../serializers/server_MovementSerializer.h"
 
+#define PROJECTILE_COLLISION_FILTERING_GROUP -2
+
 Projectile::~Projectile() {
 	myBody->GetWorld()->DestroyBody(myBody);
 }
@@ -81,6 +83,7 @@ void Projectile::setBody() {
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &circleShape;
 	boxFixtureDef.density = 1;
+	boxFixtureDef.filter.groupIndex = PROJECTILE_COLLISION_FILTERING_GROUP;
 	myBody->CreateFixture(&boxFixtureDef);
 
 	myBody->SetLinearVelocity(b2Vec2(vx, vy));
