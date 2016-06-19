@@ -31,6 +31,7 @@ GameController::~GameController() {
 GameController::GameController(Context *context) : Controller(context), view(nullptr) {
   view = new GameView();
   view->setKeyPressListener(this);
+  view->setMyOwnViewMovementListener(this);
 }
 
 bool GameController::shouldSendKeyMap(int keyMap) {
@@ -42,16 +43,16 @@ bool GameController::shouldSendKeyMap(int keyMap) {
 
   switch (keyMap) {
     case KEY_LEFT:
-      delta = myView->getX() - massCenter.getX();
+      delta = myView->getX() - massCenter.getX() - TERRAIN_TILE_SIZE;
       return delta > -SOCKET_SIZE/2;
     case KEY_RIGHT:
-      delta = myView->getX() - massCenter.getX();
+      delta = TERRAIN_TILE_SIZE + myView->getX() - massCenter.getX();
       return delta < SOCKET_SIZE/2;
     case KEY_JUMP:
-      delta = myView->getY() - massCenter.getY();
+      delta = myView->getY() - massCenter.getY() - TERRAIN_TILE_SIZE;
       return delta > -SOCKET_SIZE/2;
     case KEY_DOWN:
-      delta = myView->getY() - massCenter.getY();
+      delta = TERRAIN_TILE_SIZE + myView->getY() - massCenter.getY();
       return delta < SOCKET_SIZE/2;
     default:
       return true;
@@ -99,6 +100,35 @@ bool GameController::onMessageReceived() {
   } else return false;
 }
 
+void GameController::onViewMoved() {
+  bool changed = false;
+
+  if (keyMap.isLeft() && !shouldSendKeyMap(KEY_LEFT)) {
+    keyMap.setLeft(false);
+    changed = true;
+  }
+
+  if (keyMap.isRight() && !shouldSendKeyMap(KEY_RIGHT)) {
+    keyMap.setRight(false);
+    changed = true;
+  }
+
+  if (keyMap.isJumping() && !shouldSendKeyMap(KEY_JUMP)) {
+    keyMap.setJumping(false);
+    changed = true;
+  }
+
+  if (keyMap.isDown() && !shouldSendKeyMap(KEY_DOWN)) {
+    keyMap.setDown(false);
+    changed = true;
+  }
+
+  if (changed) {
+    Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+    getContext()->onMessageReceived();
+  }
+}
+
 //https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h
 bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   bool notify = true;
@@ -107,22 +137,29 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
     case KEY_LEFT:
-      if (keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_LEFT)) {
+      if ((keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_LEFT)) {
         keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_RIGHT:
-      if (keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_RIGHT)) {
+      if ((keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_RIGHT)) {
         keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_DOWN:
-      if (keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_DOWN)) {
+    if ((keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_DOWN)) {
         keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
+      break;
+
+    case KEY_JUMP:
+      if ((keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_JUMP)) {
+        keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
@@ -130,13 +167,6 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
     case KEY_SHOOT:
       if (keyMap.isShooting() != (gdkEvent->type == GDK_KEY_PRESS)) {
         keyMap.setShooting(gdkEvent->type == GDK_KEY_PRESS);
-        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
-      } else notify = false;
-      break;
-
-    case KEY_JUMP:
-      if (keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_JUMP)) {
-        keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
