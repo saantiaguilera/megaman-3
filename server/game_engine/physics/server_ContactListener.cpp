@@ -26,12 +26,22 @@ void ContactListener::BeginContact(b2Contact* contact) {
 	std::cout << "Collision detected!" << std::endl;
 	getBodyUserDataForContact(contact);
 
+    if ( (long)bodyUserDataA == 3 || (long)bodyUserDataB == 3 ){
+  	  static_cast<PhysicObject*>(bodyUserDataA)->incFootContacts();
+  	  static_cast<PhysicObject*>(bodyUserDataB)->incFootContacts();
+    }
+
 	static_cast<PhysicObject*>(bodyUserDataA)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataB));
 	static_cast<PhysicObject*>(bodyUserDataB)->handleCollisionWith(static_cast<PhysicObject*>(bodyUserDataA));
 }
 
 void ContactListener::EndContact(b2Contact* contact) {
 	getBodyUserDataForContact(contact);
+
+    if ( (long)bodyUserDataA == 3 || (long)bodyUserDataB == 3 ){
+  	  static_cast<PhysicObject*>(bodyUserDataA)->decFootContacts();
+  	  static_cast<PhysicObject*>(bodyUserDataB)->decFootContacts();
+    }
 
 	static_cast<PhysicObject*>(bodyUserDataA)->handleStopCollidingWith(static_cast<PhysicObject*>(bodyUserDataB));
 	static_cast<PhysicObject*>(bodyUserDataB)->handleStopCollidingWith(static_cast<PhysicObject*>(bodyUserDataA));

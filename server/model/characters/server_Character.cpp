@@ -5,16 +5,17 @@
  *      Author: mastanca
  */
 
+#include "server_Character.h"
+
+#include <Collision/Shapes/b2PolygonShape.h>
+#include <Common/b2Math.h>
+#include <Common/b2Settings.h>
+#include <Dynamics/b2Fixture.h>
 #include <iostream>
-#include <list>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
-#include "../../game_engine/server_EventContext.h"
-#include "../../serializers/server_AmmoChangeSerializer.h"
-#include "../../serializers/server_HpChangeSerializer.h"
-
-#include "server_Character.h"
+#include "../weapons/server_Weapon.h"
 
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
@@ -91,4 +92,23 @@ std::string Character::getHpAsString() {
 
 unsigned int Character::getMaxHp() {
 	return maxHp;
+}
+
+void Character::incFootContacts() {
+	++numFootContacts;
+}
+
+void Character::decFootContacts() {
+	--numFootContacts;
+}
+
+void Character::addFootSensors() {
+	b2PolygonShape polygonShape;
+	b2FixtureDef myFixtureDef;
+	polygonShape.SetAsBox(0.3, 0.3, myBody->GetWorldCenter(), 0);
+	myFixtureDef.shape = &polygonShape;
+	myFixtureDef.density = 1;
+	myFixtureDef.isSensor = true;
+	b2Fixture* footSensorFixture = myBody->CreateFixture(&myFixtureDef);
+	footSensorFixture->SetUserData((void*)3);
 }

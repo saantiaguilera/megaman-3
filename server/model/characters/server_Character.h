@@ -28,6 +28,12 @@ protected:
 	void setCurrentWeapon(Weapon* anotherWeapon);
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
+	// Increase number of foot contacts by 1
+	virtual void incFootContacts();
+	// Decrease number of foot contacts by 1
+	virtual void decFootContacts();
+	// Add foot sensors
+	void addFootSensors();
 public:
 	// Constructor
 	Character(unsigned int hp);

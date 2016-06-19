@@ -39,7 +39,7 @@ void PhysicObject::move(unsigned int moveState) {
     	case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = OR_LEFT; break;//let speed change gradually
     	case MS_STOP:  desiredVelx =  vel.x * 0; desiredVely = vel.y * 0.98; break;//let speed decay gradually
 		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
-    	case MS_JUMP: desiredVely = 5; break;//let speed change gradually
+    	case MS_JUMP: if ( numFootContacts < 1 ) break; desiredVely = 5; break;//let speed change gradually
     	case MS_DOWN: desiredVely = -5; break;
     }
     float velChangex = desiredVelx - vel.x;
@@ -90,13 +90,6 @@ void PhysicObject::setUserData() {
 }
 
 void PhysicObject::update() {
-//	std::cout << "Inside update" << std::endl;
-//	if (myBody != NULL){
-//		std::cout << "Body position: "  << myBody->GetPosition().x << ", " << myBody->GetPosition().y << std::endl;
-//		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-////		std::cout << "Movement serializer created" << std::endl;
-//		Engine::getInstance().getContext()->dispatchEvent(serializer);
-//	}
 }
 
 bool PhysicObject::isUpdatable() const {
