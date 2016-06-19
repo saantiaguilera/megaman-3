@@ -48,9 +48,20 @@ b2World* Engine::getMyWorld() {
 }
 
 void Engine::markObjectForRemoval(PhysicObject* objectToMark) {
-	mutex.lock();
-	objectsToDestroy.push_back(objectToMark);
-	mutex.unlock();
+	bool isInList = false;
+
+	for (PhysicObject * obj : objectsToDestroy) {
+		if (obj->getId() == objectToMark->getId()) {
+			isInList = true;
+			break;
+		}
+	}
+
+	if (!isInList) {
+		mutex.lock();
+		objectsToDestroy.push_back(objectToMark);
+		mutex.unlock();
+	}
 }
 
 void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
@@ -95,7 +106,7 @@ void Engine::destroyObjects() {
 	std::vector<PhysicObject*>::iterator it = objectsToDestroy.begin();
 	std::vector<PhysicObject*>::iterator end = objectsToDestroy.end();
 	for (; it != end; ++it) {
-		if (!myWorld->IsLocked()){
+		if (!myWorld->IsLocked() && (*it) != NULL){
 			PhysicObject* objectToDelete = *it;
 			std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
 			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
@@ -110,6 +121,7 @@ void Engine::destroyObjects() {
 				updatablesList.erase( it );
 
 			delete objectToDelete;
+			objectToDelete = NULL;
 		}
 	}
 	//clear this list for next time
