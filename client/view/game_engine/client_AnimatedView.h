@@ -57,6 +57,11 @@ class AnimatedView : public RenderedView {
       movementList.push(point);
     }
 
+    void set(Point &point) {
+      currentX = point.getX();
+      currentY = point.getY();
+    }
+
     virtual SDL2pp::Texture * getTexture(ORIENTATION orient) = 0;
 
     virtual void draw(Point &massCenter) {

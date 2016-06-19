@@ -22,6 +22,8 @@ public:
 	virtual void haveEffectOn(Character* character);
 	// Handle collision
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Get needle height
+	float32 getHeight();
 private:
 	// Copy constructor
 	Needle(const Needle&);

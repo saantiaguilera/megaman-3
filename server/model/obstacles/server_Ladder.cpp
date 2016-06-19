@@ -7,15 +7,27 @@
 
 #include "server_Ladder.h"
 
+#include <Collision/Shapes/b2PolygonShape.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 
 #include "../../../common/common_MapConstants.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 #include "../characters/server_Character.h"
 
 Ladder::Ladder(float32 x, float32 y) : Obstacle(x, y) {
+
+	// Add shape to body
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(getWidth(),getHeight());
+
+	// Add fixture
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
 	// We want to set ladder as sensor to allow objects to pass through it
-	myBody->GetFixtureList()->SetSensor(true);
+	boxFixtureDef.isSensor = true;
+	myBody->CreateFixture(&boxFixtureDef);
 }
 
 
