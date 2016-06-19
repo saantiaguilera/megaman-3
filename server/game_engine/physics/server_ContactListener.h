@@ -14,6 +14,7 @@ class ContactListener: public b2ContactListener {
 private:
 	void* bodyUserDataA;
 	void* bodyUserDataB;
+	void analyzeFeetContact(b2Contact* contact, int changeFactor);
 public:
 	// Constructor
 	ContactListener();
