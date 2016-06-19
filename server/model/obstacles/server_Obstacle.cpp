@@ -26,18 +26,6 @@ Obstacle::Obstacle(float32 x, float32 y) : PhysicObject() {
 
 	// Assign user data for callbacks
 	myBody->SetUserData( this );
-
-	// Add shape to body
-	b2PolygonShape boxShape;
-	boxShape.SetAsBox(getWidth(),getHeight());
-
-	// Add fixture
-	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
-	boxFixtureDef.density = 1;
-	myBody->CreateFixture(&boxFixtureDef);
-
-	// Obstacles are generated when client inflates json, no need to notify
 }
 
 float32 Obstacle::getWidth() {
