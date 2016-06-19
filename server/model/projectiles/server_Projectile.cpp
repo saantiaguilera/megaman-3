@@ -7,7 +7,6 @@
 
 #include "server_Projectile.h"
 
-#include <iostream>
 #include <Collision/Shapes/b2CircleShape.h>
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
@@ -16,8 +15,6 @@
 #include <stddef.h>
 
 #include "../../game_engine/server_Engine.h"
-#include "../../game_engine/server_EventContext.h"
-#include "../../serializers/server_MovementSerializer.h"
 
 #define PROJECTILE_COLLISION_FILTERING_GROUP -2
 
@@ -106,7 +103,5 @@ void Projectile::setUserData() {
 void Projectile::update() {
 	if (myBody != NULL){
 		move(facingPosition);
-		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-		Engine::getInstance().getContext()->dispatchEvent(serializer);
 	}
 }

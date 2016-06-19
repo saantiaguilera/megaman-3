@@ -55,6 +55,7 @@ public:
 	// Get type for serialization
 	virtual int getTypeForSerialization();
 	void setCurrentMoveState(int currentMoveState);
+	void resetHp();
 
 private:
 	// Copy constructor

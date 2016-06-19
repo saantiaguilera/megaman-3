@@ -29,6 +29,7 @@ void Bumpy::receiveShotFromProjectile(Projectile* projectile) {
 void Bumpy::update() {
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		// Shots downwards
+		facingPosition = OR_BOTTOM;
 		attack();
 		ticksPassed = 0;
 	}
