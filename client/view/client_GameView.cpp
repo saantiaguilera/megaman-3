@@ -21,6 +21,7 @@ AnimatedFactoryView * GameView::factoryView = NULL;
 AnimatedView * GameView::myView = NULL;
 OnMyOwnViewMovementListener * GameView::viewMovementListener = NULL;
 unsigned int GameView::myId = -1;
+bool GameView::massCenterCouldHaveChanged = false;
 std::vector<AnimatedView*> GameView::animatedViews;
 SoundController GameView::soundController;
 Point GameView::massCenter;
@@ -111,7 +112,8 @@ void GameView::setMyId(unsigned int id) {
     for (AnimatedView * someView : animatedViews)
       if (someView->getId() == myId)
         myView = someView;
-  refreshMassCenter();
+
+  massCenterCouldHaveChanged = true;
 }
 
 void GameView::resetAnimations() {
@@ -152,9 +154,8 @@ void GameView::addViewFromJSON(std::string json) {
       //TODO Race conditions ?
       animatedViews.push_back(view);
 
-      if (view->doesDeviateMassCenter()) {
-        refreshMassCenter();
-      }
+      if (view->doesDeviateMassCenter())
+        massCenterCouldHaveChanged = true;
 
       if (myId == viewId)
         myView = view;
@@ -182,7 +183,7 @@ void GameView::removeViewFromJSON(std::string json) {
     animatedViews.erase(animatedViews.begin() + position);
 
     if (view->doesDeviateMassCenter())
-      refreshMassCenter();
+      massCenterCouldHaveChanged = true;
 
     delete view;
   }
@@ -213,7 +214,7 @@ void GameView::moveViewFromJSON(std::string json) {
     view->add(point);
 
     if (view->doesDeviateMassCenter())
-      refreshMassCenter();
+      massCenterCouldHaveChanged = true;
 
     if ((view->getId() == myView->getId()) && viewMovementListener)
       viewMovementListener->onViewMoved();
@@ -245,11 +246,16 @@ void GameView::refreshMassCenter() {
     massCenter.setX(0);
     massCenter.setY(0);
   }
+
+  massCenterCouldHaveChanged = false;
 }
 
 bool GameView::onLoopSDL() {
   try {
     renderer->Clear();
+
+    if (massCenterCouldHaveChanged)
+      refreshMassCenter();
 
     //Uint32 t1 = SDL_GetTicks();
 

@@ -66,6 +66,7 @@ private:
   static SoundController soundController;
 
   static Point massCenter;
+  static bool massCenterCouldHaveChanged;
   static void refreshMassCenter();
 
   /**
