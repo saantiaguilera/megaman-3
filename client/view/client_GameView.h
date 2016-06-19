@@ -32,11 +32,18 @@ public:
   virtual bool onKeyPressEvent(GdkEventKey *event) = 0;
 };
 
+class OnMyOwnViewMovementListener {
+public:
+  ~OnMyOwnViewMovementListener() {}
+  virtual void onViewMoved() = 0;
+};
+
 /* ---------------------- VIEW ---------------------- */
 
 class GameView : public Gtk::Window {
 private:
-  OnKeyPressListener *listener = NULL;
+  OnKeyPressListener *keyPressListener = NULL;
+  static OnMyOwnViewMovementListener *viewMovementListener;
 
   Gtk::Socket *socket = NULL;
 
@@ -108,6 +115,7 @@ public:
   void setMyId(unsigned int id);
 
   void setKeyPressListener(OnKeyPressListener *listener);
+  void setMyOwnViewMovementListener(OnMyOwnViewMovementListener *listener);
 };
 
 #endif

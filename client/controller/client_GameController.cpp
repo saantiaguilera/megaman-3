@@ -31,6 +31,7 @@ GameController::~GameController() {
 GameController::GameController(Context *context) : Controller(context), view(nullptr) {
   view = new GameView();
   view->setKeyPressListener(this);
+  view->setMyOwnViewMovementListener(this);
 }
 
 bool GameController::shouldSendKeyMap(int keyMap) {
@@ -97,6 +98,35 @@ bool GameController::onMessageReceived() {
 
     return true;
   } else return false;
+}
+
+void GameController::onViewMoved() {
+  bool changed = false;
+
+  if (keyMap.isLeft() && !shouldSendKeyMap(KEY_LEFT)) {
+    keyMap.setLeft(false);
+    changed = true;
+  }
+
+  if (keyMap.isRight() && !shouldSendKeyMap(KEY_RIGHT)) {
+    keyMap.setRight(false);
+    changed = true;
+  }
+
+  if (keyMap.isJumping() && !shouldSendKeyMap(KEY_JUMP)) {
+    keyMap.setJumping(false);
+    changed = true;
+  }
+
+  if (keyMap.isDown() && !shouldSendKeyMap(KEY_DOWN)) {
+    keyMap.setDown(false);
+    changed = true;
+  }
+
+  if (changed) {
+    Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+    getContext()->onMessageReceived();
+  }
 }
 
 //https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h

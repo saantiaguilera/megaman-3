@@ -19,6 +19,7 @@
 
 AnimatedFactoryView * GameView::factoryView = NULL;
 AnimatedView * GameView::myView = NULL;
+OnMyOwnViewMovementListener * GameView::viewMovementListener = NULL;
 unsigned int GameView::myId = -1;
 std::vector<AnimatedView*> GameView::animatedViews;
 SoundController GameView::soundController;
@@ -26,6 +27,7 @@ Point GameView::massCenter;
 
 GameView::GameView() : Gtk::Window(){
   myView = NULL;
+  viewMovementListener = NULL;
   myId = -1;
 
   int screenWidth, screenHeight;
@@ -88,6 +90,7 @@ GameView::~GameView() {
     sdl = NULL;
   }
 
+  viewMovementListener = NULL;
   myView = NULL;
   myId = -1;
 }
@@ -208,7 +211,14 @@ void GameView::moveViewFromJSON(std::string json) {
 
     if (view->doesDeviateMassCenter())
       refreshMassCenter();
+
+    if ((view->getId() == myView->getId()) && viewMovementListener)
+      viewMovementListener->onViewMoved();
   }
+}
+
+void GameView::setMyOwnViewMovementListener(OnMyOwnViewMovementListener *listener) {
+  viewMovementListener = listener;
 }
 
 void GameView::refreshMassCenter() {
@@ -351,17 +361,17 @@ void GameView::onBarChange(BarView bar, int amount) {
 }
 
 void GameView::setKeyPressListener(OnKeyPressListener *listener) {
-  this->listener = listener;
+  keyPressListener = listener;
 }
 
 bool GameView::on_key_press_event(GdkEventKey* event) {
-  if (listener)
-    return listener->onKeyPressEvent(event);
+  if (keyPressListener)
+    return keyPressListener->onKeyPressEvent(event);
   return Gtk::Window::on_key_press_event(event);
 }
 
 bool GameView::on_key_release_event(GdkEventKey* event) {
-  if (listener)
-    return listener->onKeyPressEvent(event);
+  if (keyPressListener)
+    return keyPressListener->onKeyPressEvent(event);
   return Gtk::Window::on_key_release_event(event);
 }

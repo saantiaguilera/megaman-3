@@ -19,13 +19,14 @@
 #define KEY_WEAPON_5 GDK_KEY_5
 #define KEY_WEAPON_6 GDK_KEY_6
 
-class GameController : public Controller, private OnKeyPressListener {
+class GameController : public Controller, private OnKeyPressListener, private OnMyOwnViewMovementListener {
 private:
   GameView *view;
 
   KeyMap keyMap;
 
   virtual bool onMessageReceived();
+  virtual void onViewMoved();
   virtual bool onKeyPressEvent(GdkEventKey *event);
   bool shouldSendKeyMap(int key);
 
