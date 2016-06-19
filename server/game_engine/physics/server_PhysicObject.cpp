@@ -47,7 +47,7 @@ void PhysicObject::move(unsigned int moveState) {
     float velChangey = desiredVely - vel.y;
     float impulsey = myBody->GetMass() * velChangey;
 
-    bool moving = moveState == MS_LEFT || moveState == MS_RIGHT || moveState == MS_JUMP || moveState == MS_DOWN;
+    bool moving = moveState == MS_LEFT || moveState == MS_RIGHT || moveState == MS_JUMP || moveState == MS_DOWN || desiredVely != 0;
     setUpdatable(moving);
 
     myBody->ApplyLinearImpulse( b2Vec2(impulsex,impulsey), myBody->GetWorldCenter(), true );

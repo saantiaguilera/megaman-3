@@ -5,12 +5,13 @@
  *      Author: mastanca
  */
 
+#include "server_Player.h"
+
 #include "../serializers/server_ConnectedPlayerSerializer.h"
+#include "../serializers/server_LifeChangeSerializer.h"
 #include "../server_Logger.h"
 #include "server_Engine.h"
 #include "server_EventContext.h"
-
-#include "server_Player.h"
 
 // Note: Due to implementation of connections, the second player connected is
 // assigned as admin, there is always one proxy waiting for connection
@@ -45,8 +46,14 @@ unsigned int Player::getId() const {
 }
 
 void Player::decreasePlayerLives() {
-	if (lives > 0)
+	if (lives > 0){
 		--lives;
+		LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(getLives());
+		lifeChangeSerializer->setDispatchClient(getId());
+		Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
+
+		getMegaman()->resetHp();
+	}
 	if (lives == 0)
 		Engine::getInstance().markObjectForRemoval(megaman);
 }
