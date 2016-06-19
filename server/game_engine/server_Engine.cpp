@@ -79,7 +79,6 @@ void Engine::createObjects() {
 		if (!myWorld->IsLocked()){
 			PhysicObject* objectToCreate = *it;
 			objectToCreate->setBody();
-			objectToCreate->setUserData();
 			objectToCreate->setUpdatable(true);
 			updatablesList.push_back(objectToCreate);
 			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;

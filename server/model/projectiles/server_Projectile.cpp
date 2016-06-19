@@ -42,28 +42,24 @@ int Projectile::getObjectType() {
 
 void Projectile::setBody() {
 	b2BodyDef projectileBodyDef;
-	projectileBodyDef.type = b2_kinematicBody;
+	projectileBodyDef.type = b2_dynamicBody;
 
 	int vx = 0, vy = 0;
 	//TODO Maybe you plan on customizing this ?
 	switch (facingPosition) {
 		case OR_RIGHT:
-			std::cout << "Projectile facing right" << std::endl;
 			vx = STEP_LENGTH;
 			initialX += getWidth();
 			break;
 		case OR_LEFT:
-			std::cout << "Projectile facing left" << std::endl;
 			vx = -STEP_LENGTH;
 			initialX -= getWidth();
 			break;
 		case OR_BOTTOM:
-			std::cout << "Projectile facing bottom" << std::endl;
 			vy = -STEP_LENGTH;
 			initialY += getHeight();
 			break;
 		case OR_TOP:
-			std::cout << "Projectile facing down" << std::endl;
 			vy = STEP_LENGTH;
 			initialY -= getHeight();
 			break;
@@ -74,6 +70,8 @@ void Projectile::setBody() {
 	// Set it as bullet (it adds heavy workload, check if neccessary)
 	projectileBodyDef.bullet = true;
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&projectileBodyDef);
+
+	myBody->SetUserData(this);
 
 	// Add shape to bodysetBody
 	b2CircleShape circleShape;
@@ -104,7 +102,6 @@ void Projectile::setUserData() {
 
 void Projectile::update() {
 	if (myBody != NULL){
-		std::cout << "Inside bullet update" << std::endl;
 		move(facingPosition);
 		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
 		Engine::getInstance().getContext()->dispatchEvent(serializer);
