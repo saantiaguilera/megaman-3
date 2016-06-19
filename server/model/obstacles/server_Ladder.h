@@ -20,10 +20,14 @@ public:
 	virtual ~Ladder();
 	// Applies effect on character
 	virtual void haveEffectOn(Character* character);
+	// Disable effect on character
+	virtual void releaseEffectOn(Character* character);
 	// Return my object type
 	virtual int getObjectType();
 	// Handle collision
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Handle end of collisions
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	Ladder(const Ladder&);

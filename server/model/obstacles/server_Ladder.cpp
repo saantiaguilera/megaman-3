@@ -10,6 +10,7 @@
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
+#include <iostream>
 
 #include "../../../common/common_MapConstants.h"
 #include "../../game_engine/physics/server_PhysicObject.h"
@@ -39,6 +40,11 @@ void Ladder::haveEffectOn(Character* character) {
 	character->getMyBody()->SetGravityScale(0);
 }
 
+void Ladder::releaseEffectOn(Character* character) {
+	// Allow the character to fly while in contact with the ladder
+	character->getMyBody()->SetGravityScale(1);
+}
+
 int Ladder::getObjectType() {
 	return ObstacleViewTypeLadder;
 }
@@ -48,5 +54,12 @@ void Ladder::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	int objectCollidedWithType = objectCollidedWith->getObjectType();
 	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN){
 		haveEffectOn((Character*) objectCollidedWith);
+	}
+}
+
+void Ladder::handleStopCollidingWith(PhysicObject* objectCollidedWith) {
+	int objectCollidedWithType = objectCollidedWith->getObjectType();
+	if (objectCollidedWithType == OT_HUMANOID || objectCollidedWithType == OT_MEGAMAN){
+		releaseEffectOn((Character*) objectCollidedWith);
 	}
 }

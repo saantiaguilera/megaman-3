@@ -24,6 +24,8 @@ public:
 	int getObjectType();
 	// Handle collision
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Handle end of collisions
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith) {}
 private:
 	// Copy constructor
 	BossChamberGate(const BossChamberGate&);

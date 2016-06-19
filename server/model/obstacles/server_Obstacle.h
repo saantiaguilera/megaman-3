@@ -21,12 +21,16 @@ public:
 	virtual ~Obstacle();
 	// Applies its effect on character
 	virtual void haveEffectOn(Character* character) {}
+	// Disable effect on character
+	virtual void releaseEffectOn(Character* character) {}
 	// Return object type
 	virtual int getObjectType();
 	// Get type for serialization
 	virtual int getTypeForSerialization() { return 0; }
 	// Handle collisions
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith) = 0;
+	// Handle end of collisions
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith) = 0;
 	// Return width
 	virtual float32 getWidth();
 	// Return height
