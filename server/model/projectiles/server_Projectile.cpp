@@ -106,7 +106,5 @@ void Projectile::setUserData() {
 void Projectile::update() {
 	if (myBody != NULL){
 		move(facingPosition);
-		MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-		Engine::getInstance().getContext()->dispatchEvent(serializer);
 	}
 }

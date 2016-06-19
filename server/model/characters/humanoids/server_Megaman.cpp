@@ -102,8 +102,6 @@ Player* Megaman::getHumanOperator() const {
 
 void Megaman::update() {
 	move(currentMoveState);
-	MovementSerializer* serializer = new MovementSerializer(getId(), getPositionX(), getPositionY());
-	Engine::getInstance().getContext()->dispatchEvent(serializer);
 }
 
 void Megaman::changeWeaponTo(int weaponType) {
