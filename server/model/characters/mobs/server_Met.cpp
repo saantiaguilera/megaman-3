@@ -11,9 +11,10 @@
 
 #include "../../projectiles/server_Projectile.h"
 
-#define TICKS_TO_HIDE_UNDER_HELMET 1
+#define TICKS_TO_HIDE_UNDER_HELMET 50
 
 Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {
+	facingPosition = OR_LEFT;
 	notify();
 }
 
