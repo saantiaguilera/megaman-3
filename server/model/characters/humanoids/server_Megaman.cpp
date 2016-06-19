@@ -114,7 +114,6 @@ Player* Megaman::getHumanOperator() const {
 void Megaman::update() {
 	move(currentMoveState);
 	--ticksTillVulnerable;
-	std::cout << "Megamans ticks till vulnerable: " << ticksTillVulnerable << std::endl;
 	if (ticksTillVulnerable == 0){
 		setVulnerable(true);
 	}
