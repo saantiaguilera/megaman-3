@@ -22,6 +22,8 @@ public:
 	virtual void haveEffectOn(Character* character);
 	// Handle collision
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
+	// Handle end of collisions
+	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith) {}
 	// Get needle height
 	float32 getHeight();
 private:
