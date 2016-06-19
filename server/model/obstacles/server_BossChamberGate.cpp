@@ -7,11 +7,27 @@
 
 #include "server_BossChamberGate.h"
 
+#include <Collision/Shapes/b2PolygonShape.h>
+#include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
+
 #include "../../../common/common_MapConstants.h"
+#include "../../game_engine/physics/server_PhysicObject.h"
 #include "../../game_engine/server_Engine.h"
+#include "../characters/server_Character.h"
 
 
-BossChamberGate::BossChamberGate(float32 x, float32 y) : Obstacle(x, y) {}
+BossChamberGate::BossChamberGate(float32 x, float32 y) : Obstacle(x, y) {
+	// Add shape to body
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(getWidth(),getHeight());
+
+	// Add fixture
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
+	myBody->CreateFixture(&boxFixtureDef);
+}
 
 
 BossChamberGate::~BossChamberGate() {

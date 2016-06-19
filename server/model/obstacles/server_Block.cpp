@@ -7,14 +7,25 @@
 
 #include "server_Block.h"
 
+#include <Collision/Shapes/b2PolygonShape.h>
 #include <Common/b2Settings.h>
-#include <iostream>
+#include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
 
 #include "../../game_engine/physics/server_PhysicObject.h"
 #include "../../game_engine/server_Engine.h"
-#include "../characters/humanoids/server_Megaman.h"
 
-Block::Block(float32 x, float32 y) : Obstacle(x, y) {}
+Block::Block(float32 x, float32 y) : Obstacle(x, y) {
+	// Add shape to body
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(getWidth(),getHeight());
+
+	// Add fixture
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
+	myBody->CreateFixture(&boxFixtureDef);
+}
 
 Block::~Block() {
 }
