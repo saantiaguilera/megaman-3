@@ -31,7 +31,10 @@ Precipice::~Precipice() {
 }
 
 void Precipice::haveEffectOn(Character* character) {
-	character->decreaseHp(character->getHp());
+	if (character->isVulnerable()){
+		character->decreaseHp(character->getHp());
+		character->setVulnerable(false);
+	}
 }
 
 void Precipice::handleCollisionWith(PhysicObject* objectCollidedWith) {
