@@ -231,7 +231,6 @@ void GameView::refreshMassCenter() {
 
   for (AnimatedView* view : animatedViews) {
       if (view->doesDeviateMassCenter()) {
-        std::cout << "aguanteaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
         x += view->getX();
         y += view->getY();
         count++;

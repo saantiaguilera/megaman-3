@@ -43,20 +43,16 @@ bool GameController::shouldSendKeyMap(int keyMap) {
 
   switch (keyMap) {
     case KEY_LEFT:
-      delta = myView->getX() - massCenter.getX();
-      std::cout<<"Did enter Key left : " << delta << std::endl;
+      delta = myView->getX() - massCenter.getX() - TERRAIN_TILE_SIZE;
       return delta > -SOCKET_SIZE/2;
     case KEY_RIGHT:
-      delta = myView->getX() - massCenter.getX();
-      std::cout<<"Did enter Key right : " << delta << std::endl;
+      delta = TERRAIN_TILE_SIZE + myView->getX() - massCenter.getX();
       return delta < SOCKET_SIZE/2;
     case KEY_JUMP:
       delta = myView->getY() - massCenter.getY();
-      std::cout<<"Did enter Key jump : " << delta << std::endl;
       return delta > -SOCKET_SIZE/2;
     case KEY_DOWN:
       delta = myView->getY() - massCenter.getY();
-      std::cout<<"Did enter Key down : " << delta << std::endl;
       return delta < SOCKET_SIZE/2;
     default:
       return true;
