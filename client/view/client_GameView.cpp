@@ -38,6 +38,7 @@ GameView::GameView() : Gtk::Window(){
   set_icon_from_file(PATH_IC_LAUNCHER);
   override_background_color(Gdk::RGBA(BACKGROUND_COLOR), Gtk::STATE_FLAG_NORMAL);
 
+
   massCenter.setX(0);
   massCenter.setY(0);
 
@@ -110,8 +111,6 @@ void GameView::setMyId(unsigned int id) {
     for (AnimatedView * someView : animatedViews)
       if (someView->getId() == myId)
         myView = someView;
-
-  std::cout<<"Must refresh mass center"<<std::endl;
   refreshMassCenter();
 }
 
@@ -148,13 +147,14 @@ void GameView::addViewFromJSON(std::string json) {
       Point point;
       point.setX(positionX);
       point.setY(positionY);
-      view->add(point);
+      view->set(point);
 
       //TODO Race conditions ?
       animatedViews.push_back(view);
 
-      if (view->doesDeviateMassCenter())
+      if (view->doesDeviateMassCenter()) {
         refreshMassCenter();
+      }
 
       if (myId == viewId)
         myView = view;
@@ -233,13 +233,17 @@ void GameView::refreshMassCenter() {
       if (view->doesDeviateMassCenter()) {
         x += view->getX();
         y += view->getY();
+
         count++;
       }
-  }
+    }
 
   if (count > 0) {
     massCenter.setX(x / count);
     massCenter.setY(y / count);
+  } else {
+    massCenter.setX(0);
+    massCenter.setY(0);
   }
 }
 
