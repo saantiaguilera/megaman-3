@@ -110,6 +110,9 @@ void GameView::setMyId(unsigned int id) {
     for (AnimatedView * someView : animatedViews)
       if (someView->getId() == myId)
         myView = someView;
+
+  std::cout<<"Must refresh mass center"<<std::endl;
+  refreshMassCenter();
 }
 
 void GameView::resetAnimations() {
@@ -228,6 +231,7 @@ void GameView::refreshMassCenter() {
 
   for (AnimatedView* view : animatedViews) {
       if (view->doesDeviateMassCenter()) {
+        std::cout << "aguanteaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
         x += view->getX();
         y += view->getY();
         count++;
@@ -284,9 +288,12 @@ void GameView::loadMapFromAsset(MapView *mapView) {
     tempMapView = mapView;
 
     onInitSDL(socket->get_id());
+
 //    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
 //    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
   }
+
+
 }
 
 bool GameView::onInitSDL(::Window windowId) {

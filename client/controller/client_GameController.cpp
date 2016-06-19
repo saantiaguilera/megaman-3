@@ -44,15 +44,19 @@ bool GameController::shouldSendKeyMap(int keyMap) {
   switch (keyMap) {
     case KEY_LEFT:
       delta = myView->getX() - massCenter.getX();
+      std::cout<<"Did enter Key left : " << delta << std::endl;
       return delta > -SOCKET_SIZE/2;
     case KEY_RIGHT:
       delta = myView->getX() - massCenter.getX();
+      std::cout<<"Did enter Key right : " << delta << std::endl;
       return delta < SOCKET_SIZE/2;
     case KEY_JUMP:
       delta = myView->getY() - massCenter.getY();
+      std::cout<<"Did enter Key jump : " << delta << std::endl;
       return delta > -SOCKET_SIZE/2;
     case KEY_DOWN:
       delta = myView->getY() - massCenter.getY();
+      std::cout<<"Did enter Key down : " << delta << std::endl;
       return delta < SOCKET_SIZE/2;
     default:
       return true;
@@ -137,22 +141,29 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
     case KEY_LEFT:
-      if (keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_LEFT)) {
+      if ((keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_LEFT)) {
         keyMap.setLeft(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_RIGHT:
-      if (keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_RIGHT)) {
+      if ((keyMap.isRight() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_RIGHT)) {
         keyMap.setRight(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
 
     case KEY_DOWN:
-      if (keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_DOWN)) {
+    if ((keyMap.isDown() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_DOWN)) {
         keyMap.setDown(gdkEvent->type == GDK_KEY_PRESS);
+        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
+      } else notify = false;
+      break;
+
+    case KEY_JUMP:
+      if ((keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_JUMP)) {
+        keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;
@@ -160,13 +171,6 @@ bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
     case KEY_SHOOT:
       if (keyMap.isShooting() != (gdkEvent->type == GDK_KEY_PRESS)) {
         keyMap.setShooting(gdkEvent->type == GDK_KEY_PRESS);
-        Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
-      } else notify = false;
-      break;
-
-    case KEY_JUMP:
-      if (keyMap.isJumping() != (gdkEvent->type == GDK_KEY_PRESS) && shouldSendKeyMap(KEY_JUMP)) {
-        keyMap.setJumping(gdkEvent->type == GDK_KEY_PRESS);
         Looper::getMainLooper().put(new SendKeyMapEvent(keyMap));
       } else notify = false;
       break;

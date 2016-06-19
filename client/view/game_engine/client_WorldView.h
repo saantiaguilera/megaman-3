@@ -41,8 +41,6 @@ public:
       massCenterX = massCenter.getX();
       massCenterY = massCenter.getY();
 
-      std::cout << "Mass center x : " << massCenterX << " y : " << massCenterY << std::endl;
-
       textureWidth = mapTexture->GetWidth();
       textureHeight = mapTexture->GetHeight();
 
@@ -57,13 +55,11 @@ public:
       }
 
       if (hasXRightPadding) {
-        std::cout << "entre en if 3" << std::endl;
         cameraPoint.setX(textureWidth - rendererWidth);
         massCenter.setX(textureWidth - (rendererWidth / 2));
       }
 
       if (hasNoXPadding) {
-          std::cout << "entre en if 2 con render width" << std::endl;
           cameraPoint.setX(massCenterX - rendererWidth / 2);
       }
 
@@ -79,27 +75,13 @@ public:
       }
 
       if (hasYBotomPadding) {
-        std::cout << "entre en if 3" << std::endl;
         cameraPoint.setY(textureHeight - rendererHeight);
         massCenter.setY(textureHeight - (rendererHeight / 2));
       }
 
       if (hasNoYPadding) {
-          std::cout << "entre en if 2 con render width" << std::endl;
           cameraPoint.setY(massCenterY - rendererHeight / 2);
       }
-
-      // if (massCenterY - (rendererHeight / 2) < 0) {
-      //   cameraPoint.setY(0);
-      //   massCenter.setY(rendererHeight / 2);
-      // } else if (rendererHeight < massCenterY + rendererHeight / 2) {
-      //   cameraPoint.setY(textureHeight - rendererHeight);
-      //   massCenter.setY(textureHeight - rendererHeight / 2);
-      // } else cameraPoint.setY(massCenterY - rendererHeight / 2);
-
-      std::cout << "Modificated Mass center x : " << massCenterX << " y : " << massCenterY << std::endl;
-
-      std::cout << "Camera poitn x : " << cameraPoint.getX() << " y : " << cameraPoint.getY() << std::endl;
 
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
             cameraPoint.getX() % backgroundTexture->GetWidth(),
@@ -156,12 +138,12 @@ public:
       }
     }
 
+    delete texturesMap[ObstacleViewTypeBlock1];
     delete texturesMap[ObstacleViewTypeLadder];
     delete texturesMap[ObstacleViewTypeBlock];
     delete texturesMap[ObstacleViewTypeNeedle];
     delete texturesMap[ObstacleViewTypePrecipice];
     delete texturesMap[ObstacleViewTypeBossChamberGate];
-    delete texturesMap[ObstacleViewTypeBlock1];
     delete texturesMap[ObstacleViewTypeBlock2];
     delete texturesMap[ObstacleViewTypeBlock3];
 
