@@ -25,8 +25,11 @@ public:
 	virtual int getObjectType();
 	// Get type for serialization
 	virtual int getTypeForSerialization() { return 0; }
-
+	// Handle collisions
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith) = 0;
+	// Return width
 	virtual float32 getWidth();
+	// Return height
 	virtual float32 getHeight();
 private:
 	// Copy constructor

@@ -21,10 +21,7 @@ Block::~Block() {
 
 void Block::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	// If we get hit by a projectile destroy it
-	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
-		std::cout << "Collided block with projectle" << std::endl;
+	if (objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
-	} else if (objectCollidedWith->getObjectType() == OT_MEGAMAN){
-//		((Megaman*)objectCollidedWith)->setUpdatable(false);
 	}
 }
