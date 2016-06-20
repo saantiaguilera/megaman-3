@@ -76,7 +76,7 @@ void Mob::setVulnerable(bool vulnerable) {
 
 Mob::~Mob() {
 	LootGenerator lootGenerator;
-	lootGenerator.generateLootAt(getPositionX(), getPositionY());
+	lootGenerator.generateLootAt(getPositionX(), getPositionY() - getHeight());
 	Engine::getInstance().getMyWorld()->DestroyBody(getMyBody());
 }
 
