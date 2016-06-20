@@ -21,25 +21,25 @@ MainWindow::~MainWindow() {
 
 MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Window(cobject), builder(refGlade){
-    builder->get_widget("level1button", level1Button);
-    builder->get_widget("level2button", level2Button);
-    builder->get_widget("level3button", level3Button);
-    builder->get_widget("level4button", level4Button);
-    builder->get_widget("bosschamber1button", bossChamber1Button);
-    builder->get_widget("bosschamber2button", bossChamber2Button);
-	builder->get_widget("bosschamber3button", bossChamber3Button);
-	builder->get_widget("bosschamber3button", bossChamber4Button);
+  builder->get_widget("level1button", level1Button);
+  builder->get_widget("level2button", level2Button);
+  builder->get_widget("level3button", level3Button);
+  builder->get_widget("level4button", level4Button);
+  builder->get_widget("bosschamber1button", bossChamber1Button);
+  builder->get_widget("bosschamber2button", bossChamber2Button);
+  builder->get_widget("bosschamber3button", bossChamber3Button);
+  builder->get_widget("bosschamber3button", bossChamber4Button);
 
 
-    level1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level1ButtonWasTapped));
-    level2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level2ButtonWasTapped));
-    level3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level3ButtonWasTapped));
-    level4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level4ButtonWasTapped));
+  level1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level1ButtonWasTapped));
+  level2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level2ButtonWasTapped));
+  level3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level3ButtonWasTapped));
+  level4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::level4ButtonWasTapped));
 
-    bossChamber1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber1ButtonWasTapped));
-    bossChamber2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber2ButtonWasTapped));
-    bossChamber3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber3ButtonWasTapped));
-    bossChamber4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber4ButtonWasTapped));
+  bossChamber1Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber1ButtonWasTapped));
+  bossChamber2Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber2ButtonWasTapped));
+  bossChamber3Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber3ButtonWasTapped));
+  bossChamber4Button->signal_clicked().connect(sigc::mem_fun(* this, &MainWindow::bossChamber4ButtonWasTapped));
 
 }
 
@@ -90,5 +90,3 @@ void MainWindow::presentMapWindowWithMapName(std::string mapName) {
 
 	delegate->presentMapWindowWithMap(map);
 }
-
-

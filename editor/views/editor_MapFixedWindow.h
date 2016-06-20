@@ -36,6 +36,10 @@ private :
     MapView *mapView;
 		void cropMapBackground();
 
+		std::vector<Gtk::Image *> *backgroundImages;
+
+		void createBackgroundImages();
+		void removeBackgroundImages();
 
     Gtk::Image *backgroundImage;
 };
