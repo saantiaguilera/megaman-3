@@ -26,8 +26,6 @@ public:
       ss << "res/drawable/sprites/sprite_bumpy/sprite_bumpy" << (i + 1) << ".png";
       textureMap[i] = new SDL2pp::Texture(*getRenderer(), ss.str());
     }
-
-    lastOrientation = IDLE;
   }
 
   virtual ~BumpyView() {
@@ -36,40 +34,11 @@ public:
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
-    if (orient == lastOrientation) {
-      switch (orient) {
-        case UP:
-        case DOWN:
-        case IDLE:
-          break;
-        case LEFT:
-          spriteStep();
-          if (currentSprite > LAST_LEFT)
-            currentSprite = FIRST_LEFT;
-          break;
-        case RIGHT:
-          spriteStep();
-          if (currentSprite > LAST_RIGHT)
-            currentSprite = FIRST_RIGHT;
-          break;
-      }
-    } else {
-      switch (orient) {
-        case UP:
-        case DOWN:
-        case IDLE:
-          if (lastOrientation == LEFT)
-            currentSprite = FIRST_LEFT;
-          else currentSprite = FIRST_RIGHT;
-          break;
-        case LEFT:
-          currentSprite = FIRST_LEFT;
-          break;
-        case RIGHT:
-          currentSprite = FIRST_RIGHT;
-          break;
-      }
-    }
+    //TODO Seems bumpy wont move so it wil just do that
+    spriteStep();
+
+    if (currentSprite > LAST_LEFT)
+      currentSprite = FIRST_LEFT;
 
     lastOrientation = orient;
 
