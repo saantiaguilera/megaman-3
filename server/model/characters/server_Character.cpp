@@ -5,16 +5,18 @@
  *      Author: mastanca
  */
 
+#include "server_Character.h"
+
+#include <Common/b2Settings.h>
+#include <Dynamics/b2Body.h>
+#include <Dynamics/b2Fixture.h>
 #include <iostream>
-#include <list>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
-#include "../../game_engine/server_EventContext.h"
-#include "../../serializers/server_AmmoChangeSerializer.h"
-#include "../../serializers/server_HpChangeSerializer.h"
+#include "../weapons/server_Weapon.h"
 
-#include "server_Character.h"
+#define CHARACTER_COLLISION_FILTERING_GROUP -1
 
 Character::Character(unsigned int hp) :
 		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
@@ -77,6 +79,13 @@ void Character::decreaseHp(float damage) {
 	} else {
 		hp -= damage;
 	}
+}
+
+void Character::setFilteringGroup() {
+	// Filter collision between megamans
+	b2Filter filter = myBody->GetFixtureList()->GetFilterData();
+	filter.groupIndex = CHARACTER_COLLISION_FILTERING_GROUP;
+	myBody->GetFixtureList()->SetFilterData(filter);
 }
 
 bool Character::isAI() {

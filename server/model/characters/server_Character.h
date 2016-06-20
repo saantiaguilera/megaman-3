@@ -28,6 +28,8 @@ protected:
 	void setCurrentWeapon(Weapon* anotherWeapon);
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
+	// Set collision filtering group
+	void setFilteringGroup();
 public:
 	// Constructor
 	Character(unsigned int hp);
