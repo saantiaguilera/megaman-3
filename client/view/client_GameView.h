@@ -16,6 +16,8 @@
 #include "game_engine/client_DefaultBarView.h"
 #include "game_engine/client_LifeBarView.h"
 
+#include "../../common/common_Mutex.h"
+
 #include "../../common/common_MapView.h"
 
 #define SOCKET_SIZE 700
@@ -57,6 +59,8 @@ private:
   DefaultBarView *healthBarView = NULL;
   DefaultBarView *ammoBarView = NULL;
   LifeBarView *lifeBarView = NULL;
+
+  static Mutex * mutex;
 
   static AnimatedView * myView;
   static unsigned int myId;

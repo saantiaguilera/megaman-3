@@ -118,8 +118,6 @@ public:
     int mWidth = mapView->getWidth() + TERRAIN_TILE_SIZE < (unsigned int) getRenderer()->GetOutputWidth() ? getRenderer()->GetOutputWidth() : mapView->getWidth() + TERRAIN_TILE_SIZE ;
     int mHeight = mapView->getHeight() + TERRAIN_TILE_SIZE < (unsigned int) getRenderer()->GetOutputHeight() ? getRenderer()->GetOutputHeight() : mapView->getHeight() + TERRAIN_TILE_SIZE ;
 
-    std::cout << "Map sizes are: " << mWidth << ", " << mHeight << std::endl;
-
     mapTexture = new SDL2pp::Texture(*getRenderer(), SDL_PIXELFORMAT_RGBA8888,
           SDL_TEXTUREACCESS_TARGET, mWidth, mHeight);
 

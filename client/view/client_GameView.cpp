@@ -3,6 +3,7 @@
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/rapidjson/document.h"
+#include "../../common/common_Lock.h"
 #include "client_GameView.h"
 
 #define BACKGROUND_COLOR "black"
@@ -25,11 +26,15 @@ bool GameView::massCenterCouldHaveChanged = false;
 std::vector<AnimatedView*> GameView::animatedViews;
 SoundController GameView::soundController;
 Point GameView::massCenter;
+Mutex * GameView::mutex = new Mutex();
 
-GameView::GameView() : Gtk::Window(){
+GameView::GameView() : Gtk::Window() {
   myView = NULL;
   viewMovementListener = NULL;
   myId = -1;
+
+  if (!mutex)
+    mutex = new Mutex();
 
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);
@@ -58,6 +63,11 @@ GameView::~GameView() {
   if (worldView) {
     delete worldView;
     worldView = NULL;
+  }
+
+  if (mutex) {
+    mutex = NULL;
+    delete mutex;
   }
 
   resetAnimations();
@@ -151,8 +161,10 @@ void GameView::addViewFromJSON(std::string json) {
       point.setY(positionY);
       view->set(point);
 
-      //TODO Race conditions ?
-      animatedViews.push_back(view);
+      {
+        Lock(*mutex);
+        animatedViews.push_back(view);
+      }
 
       if (view->doesDeviateMassCenter())
         massCenterCouldHaveChanged = true;
@@ -179,8 +191,12 @@ void GameView::removeViewFromJSON(std::string json) {
   }
 
   if (position != -1) {
-    AnimatedView *view = animatedViews.at(position);
-    animatedViews.erase(animatedViews.begin() + position);
+    AnimatedView *view;
+    {
+      Lock(*mutex);
+      view = animatedViews.at(position);
+      animatedViews.erase(animatedViews.begin() + position);
+    }
 
     if (view->doesDeviateMassCenter())
       massCenterCouldHaveChanged = true;
@@ -263,8 +279,11 @@ bool GameView::onLoopSDL() {
     //std::cout << "Time for drawing world is " << t2 - t1 << std::endl;
     //std::cout << "List size of views is " << animatedViews.size() << std::endl;
 
-    for (AnimatedView* view : animatedViews)
-      view->draw(massCenter);
+    {
+      Lock(*mutex);
+      for (AnimatedView* view : animatedViews)
+        view->draw(massCenter);
+    }
 
     //Uint32 t3 = SDL_GetTicks();
     //std::cout << "Time for drawing megaman is " << t3 - t2 << std::endl;

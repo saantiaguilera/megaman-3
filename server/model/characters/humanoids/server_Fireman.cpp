@@ -29,8 +29,6 @@ Fireman::~Fireman() {
 void Fireman::update() {
 	// Shots rings and moves, jumps high but not freq
 
-	std::cout << "Tick : " << ticksPassed << " ";
-
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		ticksPassed = 0;
 	} else

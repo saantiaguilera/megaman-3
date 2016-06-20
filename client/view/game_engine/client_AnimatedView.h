@@ -97,7 +97,6 @@ class AnimatedView : public RenderedView {
 
       if (futureX >= (cameraPoint.getX()) && futureX <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
         futureY >= (cameraPoint.getY()) && futureY <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
-        if (id > 7) std::cout << "Something with id>7 got drawn" << std::endl;
         renderer->Copy(*getTexture(mOrientation),
           SDL2pp::NullOpt,
           SDL2pp::Point(

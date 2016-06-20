@@ -7,6 +7,8 @@
 
 #include "server_Projectile.h"
 
+#include <cmath>
+
 #include <iostream>
 #include <Collision/Shapes/b2CircleShape.h>
 #include <Common/b2Math.h>
@@ -18,6 +20,8 @@
 #include "../../game_engine/server_Engine.h"
 
 #define PROJECTILE_COLLISION_FILTERING_GROUP -2
+
+#define MAX_TRAVEL_DISTANCE 9.9
 
 Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
@@ -104,7 +108,11 @@ void Projectile::setUserData() {
 }
 
 void Projectile::update() {
-	if (myBody != NULL){
+	std::cout << "Bullet delta x : " << abs(getPositionX() - initialX) << std::endl;
+	std::cout << "Bullet delta y : " << abs(getPositionY() - initialY) << std::endl;
+
+	if (abs(getPositionX() - initialX) > MAX_TRAVEL_DISTANCE || abs(getPositionY() - initialY) > MAX_TRAVEL_DISTANCE)
+		Engine::getInstance().markObjectForRemoval(this);
+	else if (myBody != NULL)
 		move(facingPosition);
-	}
 }
