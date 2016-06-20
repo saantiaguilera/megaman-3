@@ -54,6 +54,8 @@ void Ringman::update() {
 	} else
 	if (ticksPassed == 41) {
 		move(MS_STOP);
+
+		setUpdatable(true);
 	}
 
 	if (ticksPassed > 41 && ticksPassed <= 60){
@@ -61,6 +63,8 @@ void Ringman::update() {
 	} else
 	if (ticksPassed == 61) {
 		move(MS_STOP);
+
+		setUpdatable(true);
 	} else
 
 	if (ticksPassed > 61 && ticksPassed < 80) {
@@ -72,7 +76,7 @@ void Ringman::update() {
 		setUpdatable(true);
 	}
 
-	bool willAttck = ticksPassed % 20 == 0;
+	bool willAttck = ticksPassed % 30 == 0;
 
 	if (willAttck) {
 		attack();
@@ -84,4 +88,3 @@ void Ringman::update() {
 int Ringman::getTypeForSerialization() {
 	return ObstacleViewTypeRingman;
 }
-
