@@ -201,6 +201,10 @@ void MapWindow::smallAmmoButtonWasTapped() {
 }
 
 void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
+  if (draggingImage != NULL) {
+    deleteDraggingImage();
+  }
+
 	draggingBegin();
 
 	ObstacleView *obstacleView = new ObstacleView(0, 0, obstacleViewType);
@@ -214,6 +218,7 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
+  std::cout << "Button pressed x : "  << event->x << ", : "<< event->y <<std::endl;
 //		Have to delete tile
 	if (event->button == kRightClickButton) {
 //		Decide whether to remove while moving or static move
@@ -268,7 +273,7 @@ void MapWindow::dropDraggingImage(int aX, int aY) {
 
 	draggingEnd();
 
-	draggingImage = 0;
+	draggingImage = NULL;
 
 	int x = aX - (aX % TERRAIN_TILE_SIZE);
 	int y = aY - (aY % TERRAIN_TILE_SIZE);
