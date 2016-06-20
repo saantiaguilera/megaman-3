@@ -7,6 +7,8 @@
 
 #include "server_Character.h"
 
+#include <Collision/Shapes/b2PolygonShape.h>
+#include <Common/b2Math.h>
 #include <Common/b2Settings.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
@@ -19,8 +21,8 @@
 #define CHARACTER_COLLISION_FILTERING_GROUP -1
 
 Character::Character(unsigned int hp) :
-		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
-				0) {
+		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(
+				false), ticksPassed(0) {
 }
 
 Character::~Character() {
@@ -28,7 +30,6 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	std::cout << "Character" << getId() << " attacking from position: " << getPositionX() << ", " << getPositionY() << std::endl;
 	float32 weaponX = getPositionX();
 	float32 weaponY = getPositionY();
 
@@ -46,7 +47,7 @@ void Character::attack() {
 			break;
 		case OR_BOTTOM:
 			std::cout << "Will put weapon in facing position : " << facingPosition << std::endl;
-			weaponY = getPositionY() - 2 * getHeight();
+			weaponY = getPositionY() - (getHeight() + (1 * 0.02));
 			break;
 	}
 
@@ -106,4 +107,25 @@ std::string Character::getHpAsString() {
 
 unsigned int Character::getMaxHp() {
 	return maxHp;
+}
+
+void Character::incFootContacts() {
+	++numFootContacts;
+}
+
+void Character::decFootContacts() {
+	--numFootContacts;
+}
+
+void Character::addFootSensors() {
+	b2PolygonShape polygonShape;
+	b2FixtureDef myFixtureDef;
+	// Set from the center of the body
+	polygonShape.SetAsBox(getWidth() / 4, getHeight() / 4,
+			b2Vec2(0, -getHeight()), 0);
+	myFixtureDef.shape = &polygonShape;
+	myFixtureDef.density = 1;
+	myFixtureDef.isSensor = true;
+	b2Fixture* footSensorFixture = myBody->CreateFixture(&myFixtureDef);
+	footSensorFixture->SetUserData((void*) 3);
 }

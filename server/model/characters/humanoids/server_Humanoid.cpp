@@ -43,6 +43,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 	myBody->CreateFixture(&boxFixtureDef);
 
 	setFilteringGroup();
+	addFootSensors();
 }
 
 Humanoid::~Humanoid() {
