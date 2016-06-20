@@ -19,7 +19,6 @@ BombCannon::~BombCannon() {
 }
 
 void BombCannon::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
-	std::cout << "Firing Bombcannon" << std::endl;
 	if (ammo > 0){
 		--ammo;
 		Bomb* aBomb = new Bomb(x, y, facingPosition);

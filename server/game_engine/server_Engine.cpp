@@ -216,6 +216,7 @@ bool Engine::isReadyToStart() const {
 void Engine::setReadyToStart(bool readyToStart) {
 	mutex.lock();
 	this->readyToStart = readyToStart;
+	quit = false;
 	mutex.unlock();
 }
 

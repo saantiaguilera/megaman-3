@@ -7,6 +7,8 @@
 
 #include "server_EngineWorker.h"
 
+#include <iostream>
+
 #include "server_Engine.h"
 
 EngineWorker::EngineWorker(bool* running) : running(running) {
@@ -20,6 +22,6 @@ void EngineWorker::run() {
 	// Loop until game is ready to start, then start it
 	while(!Engine::getInstance().isRunning() && *running){
 		if(Engine::getInstance().isReadyToStart())
-		Engine::getInstance().start();
+			Engine::getInstance().start();
 	}
 }

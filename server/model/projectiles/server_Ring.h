@@ -25,6 +25,7 @@ public:
 	// Get type for serialization
 	virtual int getTypeForSerialization();
 	virtual int getObjectType();
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 private:
 	// Copy constructor
 	Ring(const Ring&);
