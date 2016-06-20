@@ -26,15 +26,14 @@ bool GameView::massCenterCouldHaveChanged = false;
 std::vector<AnimatedView*> GameView::animatedViews;
 SoundController GameView::soundController;
 Point GameView::massCenter;
-Mutex * GameView::mutex = new Mutex();
+Mutex * GameView::mutex = NULL;
 
 GameView::GameView() : Gtk::Window() {
   myView = NULL;
   viewMovementListener = NULL;
   myId = -1;
 
-  if (!mutex)
-    mutex = new Mutex();
+  mutex = new Mutex();
 
   int screenWidth, screenHeight;
   getDesktopResolution(screenWidth, screenHeight);

@@ -73,6 +73,7 @@ protected:
 
           case EVENT_STOP:
             stop = true;
+            break;
 
           default:
             std::cout << "Event not recognized by sender thread..." << std::endl;
