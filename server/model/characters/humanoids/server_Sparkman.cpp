@@ -29,6 +29,7 @@ Sparkman::~Sparkman() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
 		player->getMegaman()->makeWeaponAvailable(SPARKS_CANNON, new SparksCannon());
 	}
+	bossDestroyed();
 }
 
 void Sparkman::update() {

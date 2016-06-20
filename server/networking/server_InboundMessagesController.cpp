@@ -5,8 +5,11 @@
  *      Author: mastanca
  */
 
+#include "server_InboundMessagesController.h"
+
 #include <iostream>
-#include <list>
+#include <iterator>
+#include <vector>
 
 #include "../../common/common_MessageProtocol.h"
 #include "../game_engine/server_Engine.h"
@@ -16,12 +19,10 @@
 #include "../serializers/server_NewPlayerSerializer.h"
 #include "../serializers/server_StartGameSerializer.h"
 
-#include "server_InboundMessagesController.h"
-
 #define MAX_PLAYERS_COUNT 4
 #define MAX_MOVE_STATES 5
 
-InboundMessagesController::InboundMessagesController() {
+InboundMessagesController::InboundMessagesController() : messageCode(0), clientId(0){
 }
 
 void InboundMessagesController::analizeMessageCode() {
@@ -57,16 +58,12 @@ void InboundMessagesController::analizeMessageCode() {
 		}
 		break;
 	case KEY_PRESSED:
-		// Here inbound message is a map of keys-boolean
-		// According to the pressed key we should do something
-		// We should get the player id, the key pressed
 		desiredPlayer = getDesiredPlayer(clientId);
 		if (desiredPlayer != NULL) {
 			processMovement(inboundMessage, desiredPlayer);
 		}
 		break;
 	case WEAPON_CHANGE:
-		std::cout << "Weapon change!" << std::endl;
 		desiredPlayer = getDesiredPlayer(clientId);
 		desiredPlayer->getMegaman()->changeWeaponTo(
 				processWeaponType(inboundMessage));

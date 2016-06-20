@@ -27,6 +27,7 @@ Fireman::~Fireman() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
 		player->getMegaman()->makeWeaponAvailable(FLAMETHROWER, new Flamethrower());
 	}
+	bossDestroyed();
 }
 
 void Fireman::update() {

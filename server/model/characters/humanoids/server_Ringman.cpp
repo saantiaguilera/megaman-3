@@ -28,6 +28,7 @@ Ringman::~Ringman() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
 		player->getMegaman()->makeWeaponAvailable(RING_TOSSER, new RingTosser());
 	}
+	bossDestroyed();
 }
 
 void Ringman::update() {

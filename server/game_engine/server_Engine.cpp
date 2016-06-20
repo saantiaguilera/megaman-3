@@ -17,6 +17,7 @@
 #include "../../common/common_MapConstants.h"
 #include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../serializers/server_EnteredBossChamberSerializer.h"
 #include "../serializers/server_ObjectCreationSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
@@ -90,10 +91,13 @@ void Engine::teleportToBossChamber() {
 		mapParser.parseDocument("bosschamber" + ss.str() + ".json");
 
 		// Teleport megamans
-		// TODO: Do some marking of the megamans for allowing teleportation
 		for (Megaman* megaman : megamans){
+			megaman->getMyBody()->SetTransform( b2Vec2(mapParser.getBossChamberMegamansPositionX(), mapParser.getBossChamberMegamansPositionY()) ,0);
 			ObjectCreationSerializer* renotifyMegamanSerializer = new ObjectCreationSerializer(megaman);
 			context->dispatchEvent(renotifyMegamanSerializer);
+			ConnectedPlayerSerializer* reconnectedPlayer = new ConnectedPlayerSerializer(megaman);
+			reconnectedPlayer->setDispatchClient(megaman->getHumanOperator()->getId());
+			context->dispatchEvent(reconnectedPlayer);
 		}
 	}
 	teleportToBossChamberWasActivated = false;

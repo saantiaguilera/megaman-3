@@ -15,6 +15,8 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../../game_engine/server_EventContext.h"
+#include "../../../serializers/server_EndGameSerializer.h"
 #include "../../projectiles/server_Projectile.h"
 
 Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) :
@@ -67,4 +69,9 @@ void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
 		decreaseHp(projectile->getDamage());
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	}
+}
+
+void Humanoid::bossDestroyed() {
+	EndGameSerializer* endGameSerializer = new EndGameSerializer();
+	Engine::getInstance().getContext()->dispatchEvent(endGameSerializer);
 }

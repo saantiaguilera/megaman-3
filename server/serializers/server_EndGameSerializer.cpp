@@ -13,10 +13,12 @@
 
 EndGameSerializer::EndGameSerializer() {
 	messageCode = END_GAME;
+	serialize();
 }
 
 EndGameSerializer::~EndGameSerializer() {
 }
 
 void EndGameSerializer::serialize() {
+	serialized = " ";
 }
