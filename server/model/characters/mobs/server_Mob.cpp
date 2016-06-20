@@ -41,6 +41,8 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) : Character(hp), vulnerable(true
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 
+	setFilteringGroup();
+
     //add foot sensor fixture
 //	boxShape.SetAsBox(0.3, 0.3, b2Vec2(0,-2), 0);
 //	boxFixtureDef.isSensor = true;
