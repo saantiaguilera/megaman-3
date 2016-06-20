@@ -132,18 +132,22 @@ void GameView::resetAnimations() {
     factoryView = NULL;
   }
 
-  for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
-    it != animatedViews.end() ; ++it) {
-      delete (*it);
-  }
+  {
+    Lock(*mutex);
+    for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
+      it != animatedViews.end() ; ++it) {
+        delete (*it);
+    }
 
-  animatedViews.clear();
+    animatedViews.clear();
+  }
 
   massCenter.setX(0);
   massCenter.setY(0);
 }
 
 void GameView::addViewFromJSON(std::string json) {
+  std::cout << "AddViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -306,6 +310,7 @@ bool GameView::onLoopSDL() {
 
 void GameView::loadMapFromAsset(MapView *mapView) {
   if (worldView) {
+    std::cout << "LoadMapFromAsset" << std::endl;
     resetAnimations();
 
     worldView->from(mapView);

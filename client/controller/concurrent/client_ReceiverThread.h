@@ -29,6 +29,8 @@
 
 #include <unistd.h>
 
+#define DELAY_BOSS_CHAMBER_SLEEP_TIME 200 //In ms
+
 class ReceiverThread : public Thread {
 private:
   ReceiverContract *listener;
@@ -110,6 +112,9 @@ protected:
 
           case ENTERED_BOSS_CHAMBER:
             dispatchEvent(new ReceivedMapEvent(json));
+            usleep(1000 * DELAY_BOSS_CHAMBER_SLEEP_TIME); //1ms * n ms
+            //Because by the time the ReceivedMapEvent reaches the main thread it has
+            //probably already created some objects and we dont have time to update the running flag in time
             break;
 
           case END_GAME:

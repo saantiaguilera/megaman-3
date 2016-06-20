@@ -1,28 +1,14 @@
 {
     "map": {
         "name": "Bombman",
-        "filename": "level1.json",
+        "filename": "level4.json",
         "height": 280,
         "width": 1750,
         "id": 1,
+        "background_image": "res/drawable/background/background1.png",
         "obstacles": [
             {
                 "x": 245,
-                "y": 245,
-                "type": 1
-            },
-            {
-                "x": 315,
-                "y": 245,
-                "type": 1
-            },
-            {
-                "x": 385,
-                "y": 245,
-                "type": 1
-            },
-            {
-                "x": 455,
                 "y": 245,
                 "type": 1
             },
@@ -155,11 +141,6 @@
                 "x": 1085,
                 "y": 245,
                 "type": 5
-            },
-            {
-                "x": 1225,
-                "y": 175,
-                "type": 22
             }
         ]
     }
