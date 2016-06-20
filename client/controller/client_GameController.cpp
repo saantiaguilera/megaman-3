@@ -133,8 +133,6 @@ void GameController::onViewMoved() {
 bool GameController::onKeyPressEvent(GdkEventKey *gdkEvent) {
   bool notify = true;
 
-  //TODO PASS TO A DEFINE ALL THIS GDKKEYS SO I CAN RE MAP THE CONTROLLERS OF THE GAME EASIER
-  //TODO REFACTOR DIS
   switch (gdkEvent->keyval) {
     case KEY_LEFT:
       if ((keyMap.isLeft() != (gdkEvent->type == GDK_KEY_PRESS)) && shouldSendKeyMap(KEY_LEFT)) {

@@ -34,7 +34,7 @@ public:
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
-    //TODO Seems bumpy wont move so it wil just do that
+    //Seems bumpy wont move so it wil just do that
     spriteStep();
 
     if (currentSprite > LAST_LEFT)

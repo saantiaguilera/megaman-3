@@ -8,7 +8,6 @@
 #include <gtkmm/socket.h>
 #include <X11/Xlib.h>
 
-// TODO This two wont be here (because I will put all the RenderedView's in a list, instead of having them stored in the class)
 #include "../controller/client_SoundController.h"
 #include "game_engine/client_WorldView.h"
 #include "game_engine/client_AnimatedView.h"
