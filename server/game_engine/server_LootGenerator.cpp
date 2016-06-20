@@ -5,18 +5,17 @@
  *      Author: mastanca
  */
 
+#include "server_LootGenerator.h"
+
 #include <cstdlib>
+#include <iostream>
 
 #include "../model/powerups/server_BigAmmoPack.h"
 #include "../model/powerups/server_BigEnergyCapsule.h"
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
-#include "../serializers/server_ObjectCreationSerializer.h"
 #include "server_Engine.h"
-#include "server_EventContext.h"
-
-#include "server_LootGenerator.h"
 
 LootGenerator::LootGenerator() {
 
@@ -65,6 +64,5 @@ void LootGenerator::generateLootAt(float32 x, float32 y) {
 }
 
 void LootGenerator::notifyNewLootAt(Powerup* powerup) {
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(powerup);
-	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
+	Engine::getInstance().markObjectForCreation(powerup);
 }

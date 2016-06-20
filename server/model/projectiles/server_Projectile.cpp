@@ -25,6 +25,7 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, 
 }
 
 Projectile::~Projectile() {
+	Engine::getInstance().getMyWorld()->DestroyBody(getMyBody());
 }
 
 int Projectile::getProjectileType() const {
@@ -87,6 +88,8 @@ void Projectile::setBody() {
 
 	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
+
+	notify();
 }
 
 float32 Projectile::getWidth() {

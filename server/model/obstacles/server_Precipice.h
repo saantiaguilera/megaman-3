@@ -11,6 +11,7 @@
 #include <Common/b2Settings.h>
 
 #include "server_Obstacle.h"
+#include <Common/b2Settings.h>
 
 class Precipice: public Obstacle {
 public:
@@ -24,6 +25,9 @@ public:
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Handle end of collisions
 	virtual void handleStopCollidingWith(PhysicObject* objectCollidedWith) {}
+	// Get precipice height
+	float32 getHeight();
+
 private:
 	// Copy constructor
 	Precipice(const Precipice&);

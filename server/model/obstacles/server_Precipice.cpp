@@ -43,3 +43,7 @@ void Precipice::handleCollisionWith(PhysicObject* objectCollidedWith) {
 		haveEffectOn((Character*) objectCollidedWith);
 	}
 }
+
+float32 Precipice::getHeight() {
+	return BODIES_SIZE/20;
+}

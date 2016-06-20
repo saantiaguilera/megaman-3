@@ -70,6 +70,8 @@ void JsonMapParser::parseDocument(const std::string& name) {
 }
 
 void JsonMapParser::inflateObject(int type, float x, float y) {
+	std::list<Player*> playerList;
+	Powerup* powerup;
 	switch (type) {
 		case ObstacleViewTypeBlock:
 			new Block(x, y);
@@ -96,19 +98,24 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new Precipice(x, y);
 			break;
 		case ObstacleViewTypeBigAmmoPack:
-			new BigAmmoPack(x, y);
+			powerup = new BigAmmoPack(x, y);
+			powerup->setBody();
 			break;
 		case ObstacleViewTypeBigEnergyCapsule:
-			new BigEnergyCapsule(x, y);
+			powerup= new BigEnergyCapsule(x, y);
+			powerup->setBody();
 			break;
 		case ObstacleViewTypeLife:
-			new Life(x, y);
+			powerup = new Life(x, y);
+			powerup->setBody();
 			break;
 		case ObstacleViewTypeSmallAmmoPack:
-			new SmallAmmoPack(x, y);
+			powerup = new SmallAmmoPack(x, y);
+			powerup->setBody();
 			break;
 		case ObstacleViewTypeSmallEnergyCapsule:
-			new SmallEnergyCapsule(x, y);
+			powerup = new SmallEnergyCapsule(x, y);
+			powerup->setBody();
 			break;
 		case ObstacleViewTypeBumpy:
 			new Bumpy(x, y);
