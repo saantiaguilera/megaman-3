@@ -7,6 +7,8 @@
 
 #include "server_SparksCannon.h"
 
+#include <iostream>
+
 #include "../../game_engine/server_Engine.h"
 #include "../projectiles/server_Spark.h"
 
@@ -17,6 +19,7 @@ SparksCannon::~SparksCannon() {
 }
 
 void SparksCannon::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
+	std::cout << "Firing sparkscannon" << std::endl;
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Spark(x, y, facingPosition));

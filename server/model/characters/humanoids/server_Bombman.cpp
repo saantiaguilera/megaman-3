@@ -25,6 +25,9 @@ Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 }
 
 Bombman::~Bombman() {
+	for (Player* player : Engine::getInstance().getPlayersList()){
+		player->getMegaman()->makeWeaponAvailable(BOMB_CANNON, new BombCannon());
+	}
 }
 
 void Bombman::update() {
