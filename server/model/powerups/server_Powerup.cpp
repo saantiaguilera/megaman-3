@@ -55,4 +55,6 @@ void Powerup::setBody(){
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 	myBody->GetFixtureList()->SetSensor(true);
+
+	notify();
 }

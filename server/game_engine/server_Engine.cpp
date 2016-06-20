@@ -92,9 +92,6 @@ void Engine::createObjects() {
 			objectToCreate->setBody();
 			objectToCreate->setUpdatable(true);
 			updatablesList.push_back(objectToCreate);
-			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
-			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
-			context->dispatchEvent(objectCreationSerializer);
 		}
 	}
 	//clear this list for next time

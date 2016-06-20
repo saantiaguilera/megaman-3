@@ -87,6 +87,8 @@ void Projectile::setBody() {
 
 	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
+
+	notify();
 }
 
 float32 Projectile::getWidth() {
