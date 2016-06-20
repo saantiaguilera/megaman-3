@@ -31,7 +31,8 @@ protected:
 		OT_POWERUP,
 		OT_PROJECTILE,
 		OT_OBSTACLE,
-		OT_LADDER
+		OT_LADDER,
+		OT_RING
 	};
 	// Global count of the objects
 	static unsigned int globalCount;

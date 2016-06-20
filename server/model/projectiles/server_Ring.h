@@ -24,6 +24,7 @@ public:
 	virtual ~Ring();
 	// Get type for serialization
 	virtual int getTypeForSerialization();
+	virtual int getObjectType();
 private:
 	// Copy constructor
 	Ring(const Ring&);

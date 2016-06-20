@@ -22,3 +22,7 @@ Ring::~Ring() {
 int Ring::getTypeForSerialization() {
 	return ObstacleViewTypeRing;
 }
+
+int Ring::getObjectType() {
+	return OT_RING;
+}
