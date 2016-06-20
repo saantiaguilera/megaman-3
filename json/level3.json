@@ -4,6 +4,7 @@
         "filename": "level3.json",
         "height": 1610,
         "width": 2380,
+        "background_image": "res/drawable/background/background4.png",
         "id": 3,
         "obstacles": [
             {
