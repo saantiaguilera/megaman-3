@@ -18,8 +18,8 @@
 #include "../weapons/server_Weapon.h"
 
 Character::Character(unsigned int hp) :
-		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(false), ticksPassed(
-				0) {
+		PhysicObject(), hp(hp), maxHp(hp), currentWeapon(NULL), readyToAttack(
+				false), ticksPassed(0) {
 }
 
 Character::~Character() {
@@ -27,25 +27,26 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	std::cout << "Character positions: " << getPositionX() << ", " << getPositionY() << std::endl;
+	std::cout << "Character positions: " << getPositionX() << ", "
+			<< getPositionY() << std::endl;
 	float32 weaponX = getPositionX();
 	float32 weaponY = getPositionY();
 
 	//Since movements are in parents left/right, if a character needs to attack top or bottom just do it by yourself this
 	//eg: fire(?, ?, OR_TOP);
 	switch (facingPosition) {
-		case OR_LEFT:
-			weaponX = getPositionX() - getWidth();
-			break;
-		case OR_RIGHT:
-			weaponX = getPositionX() + getWidth();
-			break;
-		case OR_TOP:
-			weaponY = getPositionY() + getHeight();
-			break;
-		case OR_BOTTOM:
-			weaponY = getPositionY() - getHeight();
-			break;
+	case OR_LEFT:
+		weaponX = getPositionX() - getWidth();
+		break;
+	case OR_RIGHT:
+		weaponX = getPositionX() + getWidth();
+		break;
+	case OR_TOP:
+		weaponY = getPositionY() + getHeight();
+		break;
+	case OR_BOTTOM:
+		weaponY = getPositionY() - getHeight();
+		break;
 	}
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
 }
@@ -105,10 +106,12 @@ void Character::decFootContacts() {
 void Character::addFootSensors() {
 	b2PolygonShape polygonShape;
 	b2FixtureDef myFixtureDef;
-	polygonShape.SetAsBox(getWidth()/4, getHeight()/4, myBody->GetWorldCenter(), 0);
+	// Set from the center of the body
+	polygonShape.SetAsBox(getWidth() / 4, getHeight() / 4,
+			b2Vec2(0, -getHeight()), 0);
 	myFixtureDef.shape = &polygonShape;
 	myFixtureDef.density = 1;
 	myFixtureDef.isSensor = true;
 	b2Fixture* footSensorFixture = myBody->CreateFixture(&myFixtureDef);
-	footSensorFixture->SetUserData((void*)3);
+	footSensorFixture->SetUserData((void*) 3);
 }
