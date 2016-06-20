@@ -26,4 +26,3 @@ void Sniper::receiveShotFromProjectile(Projectile* projectile) {
 			decreaseHp(projectile->getDamage() / 2);
 	}
 }
-

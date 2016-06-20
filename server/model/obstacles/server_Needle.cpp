@@ -31,7 +31,10 @@ Needle::~Needle() {
 }
 
 void Needle::haveEffectOn(Character* character) {
-	character->decreaseHp(character->getHp());
+	if (character->isVulnerable()){
+		character->decreaseHp(character->getHp());
+		character->setVulnerable(false);
+	}
 }
 
 void Needle::handleCollisionWith(PhysicObject* objectCollidedWith) {

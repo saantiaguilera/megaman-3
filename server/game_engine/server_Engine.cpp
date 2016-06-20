@@ -137,9 +137,20 @@ void Engine::setCurrentMapId(int currentMapId) {
 }
 
 void Engine::markObjectForCreation(PhysicObject* objectToMark) {
-	mutex.lock();
-	objectsToCreate.push_back(objectToMark);
-	mutex.unlock();
+	bool isInList = false;
+
+	for (PhysicObject * obj : objectsToCreate) {
+		if (obj->getId() == objectToMark->getId()) {
+			isInList = true;
+			break;
+		}
+	}
+
+	if (!isInList) {
+		mutex.lock();
+		objectsToCreate.push_back(objectToMark);
+		mutex.unlock();
+	}
 }
 
 std::list<PhysicObject*>* Engine::getUpdatablesList() {

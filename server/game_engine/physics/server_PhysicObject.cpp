@@ -17,7 +17,7 @@
 // Initialize ids value
 unsigned int PhysicObject::globalCount = 0;
 
-PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), updatable(false), facingPosition(OR_RIGHT), vulnerable(true), ticksTillVulnerable(0) {
+PhysicObject::PhysicObject() : myBody(NULL), numFootContacts(0), updatable(false), vulnerable(true), ticksTillVulnerable(0), facingPosition(OR_RIGHT) {
 	++globalCount;
 	id = globalCount;
 }
