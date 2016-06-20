@@ -15,7 +15,7 @@
 #include "../characters/server_Character.h"
 #include "../../game_engine/physics/server_PhysicObject.h"
 
-enum WeaponTypes { PLASMA_CANNON, BOMB_CANNON, FLAMETHROWER, MAGNET_CANNON, RING_TOSSER, SPARKS_CANNON };
+enum WeaponTypes { PLASMA_CANNON = 28, BOMB_CANNON = 23, FLAMETHROWER = 24, MAGNET_CANNON = 25, RING_TOSSER = 26, SPARKS_CANNON = 27 };
 
 class Weapon {
 protected:

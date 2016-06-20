@@ -13,16 +13,6 @@ ss * MapConstants.h
 
 #include <map>
 
-//TODO tincho ponele a cada una el nombre (nose si tienen, onda FireGun ?)
-typedef enum {
-	Weapon1 = 1,
-	Weapon2 = 2,
-	Weapon3 = 3,
-	Weapon4 = 4,
-	Weapon5 = 5,
-	Weapon6 = 6
-} WeaponType;
-
 typedef enum {
 	//Obstacles
 
@@ -66,6 +56,15 @@ typedef enum {
 	ObstacleViewTypeSpark = 27,
 	ObstacleViewTypePlasma = 28
 } ObstacleViewType;
+
+typedef enum {
+	Weapon1 = ObstacleViewTypePlasma,
+	Weapon2 = ObstacleViewTypeSpark,
+	Weapon3 = ObstacleViewTypeRing,
+	Weapon4 = ObstacleViewTypeMagnet,
+	Weapon5 = ObstacleViewTypeFire,
+	Weapon6 = ObstacleViewTypeBomb
+} WeaponType;
 
 #define MAP_NAME "map"
 #define ID_NAME "id"

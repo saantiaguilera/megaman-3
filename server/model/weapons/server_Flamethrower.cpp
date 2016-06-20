@@ -7,6 +7,8 @@
 
 #include "server_Flamethrower.h"
 
+#include <iostream>
+
 #include "../../game_engine/server_Engine.h"
 #include "../projectiles/server_Fire.h"
 
@@ -17,6 +19,7 @@ Flamethrower::~Flamethrower() {
 }
 
 void Flamethrower::fire(float32 x, float32 y, PhysicObject::ORIENTATION facingPosition) {
+	std::cout << "Firing flamethrower" << std::endl;
 	if (ammo > 0){
 		--ammo;
 		Engine::getInstance().markObjectForCreation(new Fire(x, y, facingPosition));
