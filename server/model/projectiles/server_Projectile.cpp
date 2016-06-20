@@ -65,8 +65,6 @@ void Projectile::setBody() {
 			break;
 	}
 
-	std::cout << "Creating projectile in x: " << initialX << " " << initialY << std::endl;
-
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)

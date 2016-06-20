@@ -63,6 +63,7 @@ float32 Humanoid::getHeight() {
 }
 
 void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	std::cout << "Humanoid handling collision" << std::endl;
 	if(objectCollidedWith->getObjectType() == OT_PROJECTILE){
 		Projectile* projectile = (Projectile*)objectCollidedWith;
 		decreaseHp(projectile->getDamage());

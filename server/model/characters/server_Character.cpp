@@ -46,16 +46,11 @@ void Character::attack() {
 			weaponY = getPositionY() + getHeight();
 			break;
 		case OR_BOTTOM:
-			std::cout << "Will put weapon in facing position : " << facingPosition << std::endl;
 			weaponY = getPositionY() - (getHeight() + (1 * 0.02));
 			break;
 	}
 
-	std::cout << "Did put weapon in facing position" << std::endl;
-
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
-
-	std::cout << "Did fire" << std::endl;
 }
 
 unsigned int Character::getHp() const {
