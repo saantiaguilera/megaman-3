@@ -17,11 +17,29 @@
 
 
 Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
-		effectAmount(effectAmount) {
-	// TODO: Use sensors for powerups field of view
+		effectAmount(effectAmount), initialX(x), initialY(y) {
+}
+
+float32 Powerup::getWidth() {
+	return BODIES_SIZE / 4;
+}
+
+float32 Powerup::getHeight() {
+	return BODIES_SIZE / 4;
+}
+
+Powerup::~Powerup() {
+	Engine::getInstance().getMyWorld()->DestroyBody(getMyBody());
+}
+
+int Powerup::getObjectType() {
+	return OT_POWERUP;
+}
+
+void Powerup::setBody(){
 	b2BodyDef powerupBodyDef;
 	powerupBodyDef.type = b2_staticBody;
-	powerupBodyDef.position.Set(x,y);
+	powerupBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
 
@@ -38,19 +56,6 @@ Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
 	boxFixtureDef.density = 1;
 	myBody->CreateFixture(&boxFixtureDef);
 	myBody->GetFixtureList()->SetSensor(true);
-}
 
-float32 Powerup::getWidth() {
-	return BODIES_SIZE / 4;
-}
-
-float32 Powerup::getHeight() {
-	return BODIES_SIZE / 4;
-}
-
-Powerup::~Powerup() {
-}
-
-int Powerup::getObjectType() {
-	return OT_POWERUP;
+	notify();
 }

@@ -47,6 +47,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) : Character(hp) {
 }
 
 Humanoid::~Humanoid() {
+	Engine::getInstance().getMyWorld()->DestroyBody(getMyBody());
 }
 
 int Humanoid::getObjectType() {

@@ -92,9 +92,6 @@ void Engine::createObjects() {
 			objectToCreate->setBody();
 			objectToCreate->setUpdatable(true);
 			updatablesList.push_back(objectToCreate);
-			std::cout << "Object created: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
-			ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(objectToCreate);
-			context->dispatchEvent(objectCreationSerializer);
 		}
 	}
 	//clear this list for next time
@@ -112,10 +109,6 @@ void Engine::destroyObjects() {
 			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
 			context->dispatchEvent(objectDestructionSerializer);
 
-			//delete object... physics body is destroyed here
-			myWorld->DestroyBody(objectToDelete->getMyBody());
-
-			//... and remove it from main list of objects
 			std::vector<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
 			if ( it != updatablesList.end() )
 				updatablesList.erase( it );

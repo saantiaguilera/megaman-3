@@ -82,11 +82,11 @@ float PhysicObject::getPositionY() const {
 }
 
 void PhysicObject::setBody() {
-	// Does nothing, redefined in projectiles
+	// Does nothing, redefined in projectiles, powerups
 }
 
 void PhysicObject::setUserData() {
-	// Do nothing, redefined in projectiles
+	// Do nothing, redefined in projectiles, powerups
 }
 
 void PhysicObject::update() {
