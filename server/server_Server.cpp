@@ -21,7 +21,7 @@
 
 class EngineWorker;
 
-#define STOP_LISTENING "q"
+#define STOP_LISTENING 'q'
 
 Server::~Server() {
 	// Free clients
@@ -39,7 +39,7 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
-	std::string input;
+	char input;
 	initializeGameEngine();
 	bool keepOnListening = true;
 	bool engineRunning = true;
@@ -57,7 +57,7 @@ void Server::run() {
 	engineWorker.start();
 
 	while (keepOnListening){
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input == STOP_LISTENING)
 			keepOnListening = false;
 	}
