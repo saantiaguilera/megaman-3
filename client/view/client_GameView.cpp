@@ -196,18 +196,16 @@ void GameView::moveViewFromJSON(std::string json) {
   unsigned int id = document["id"].GetUint();
   unsigned int positionX = document["position"]["x"].GetUint();
   unsigned int positionY = document["position"]["y"].GetUint();
-  int index = -1;
+  AnimatedView *view = NULL;
 
-  for (unsigned int i = 0 ; i < animatedViews.size() ; ++i) {
-    if (animatedViews.at(i)->getId() == id) {
-      index = i;
+  for (AnimatedView * aView : animatedViews) {
+    if (aView->getId() == id) {
+      view = aView;
       break;
     }
   }
 
-  if (index != -1) {
-    AnimatedView * view = animatedViews.at(index);
-
+  if (view) {
     Point point;
     point.setX(positionX);
     point.setY(positionY);
@@ -216,7 +214,7 @@ void GameView::moveViewFromJSON(std::string json) {
     if (view->doesDeviateMassCenter())
       massCenterCouldHaveChanged = true;
 
-    if ((view->getId() == myView->getId()) && viewMovementListener)
+    if (myView && (view->getId() == myView->getId()) && viewMovementListener)
       viewMovementListener->onViewMoved();
   }
 }
@@ -252,10 +250,10 @@ void GameView::refreshMassCenter() {
 
 bool GameView::onLoopSDL() {
   try {
-    renderer->Clear();
-
     if (massCenterCouldHaveChanged)
       refreshMassCenter();
+
+    renderer->Clear();
 
     //Uint32 t1 = SDL_GetTicks();
 
