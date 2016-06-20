@@ -46,8 +46,6 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	writer.Key(MAPFILENAME_NAME);
 	writer.String(mapView->getFilename().c_str());
 
-
-
 	writer.Key(MAPHEIGHT_NAME);
 	writer.Int(mapView->getHeight());
 
@@ -56,6 +54,9 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 
 	writer.Key(ID_NAME);
 	writer.Int(mapView->getId());
+
+	writer.Key(MAPBACKGROUNDIMAGE_NAME);
+	writer.String(mapView->getBackgroundImage().c_str());
 
 	writer.Key(MAPOBSTACLES_NAME);
 	writer.StartArray();
@@ -89,4 +90,3 @@ void MapViewJsonWriter::writeMapInFilenname(MapView *mapView, std::string filena
 	fprintf(fp, "%s",string.c_str());
 	fclose(fp);
 }
-

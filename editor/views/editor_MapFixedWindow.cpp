@@ -20,8 +20,6 @@ MapFixedWindow::~MapFixedWindow() {
 MapFixedWindow::MapFixedWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade) :
     Gtk::Fixed(cobject), builder(refGlade) {
 	obstacleViewContainers = new std::vector<ObstacleViewContainer *>();
-
-    builder->get_widget("backgroundimage", backgroundImage);
 }
 
 //Setters
@@ -34,13 +32,34 @@ void MapFixedWindow::setObstacleViewContainer(ObstacleViewContainer *obstacleVie
  	int y = obstacleView->getPoint().getY();
 
 	put(*obstacleViewContainer->getImage(), x, y);
+
+	cropMapBackground();
+}
+
+void MapFixedWindow::cropMapBackground() {
+	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(mapView->getBackgroundImage());
+	Glib::RefPtr<Gdk::Pixbuf> cropTemp = Gdk::Pixbuf::create_subpixbuf(temp, 0, 0, mapWidth() + TERRAIN_TILE_SIZE, mapHeight() + TERRAIN_TILE_SIZE);
+
+	backgroundImage->set(cropTemp);
 }
 
 void MapFixedWindow::setMapView(MapView *aMapView) {
 	mapView = aMapView;
 
 	set_size_request(mapView->getWidth(), mapView->getHeight());
+
+	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(mapView->getBackgroundImage());
+	Glib::RefPtr<Gdk::Pixbuf> cropTemp = Gdk::Pixbuf::create_subpixbuf(temp, 0, 0, mapView->getWidth(), mapView->getHeight());
+
+	backgroundImage = new Gtk::Image();
+
+	backgroundImage->set(cropTemp);
+
+	put(*backgroundImage, 0, 0);
+	backgroundImage->show();
+
 	std::vector<ObstacleView *> *obstacles = mapView->getObstacles();
+
 
 	for(std::vector<ObstacleView *>::iterator it = obstacles->begin(); it != obstacles->end(); ++it) {
 		ObstacleView *obstacleView = *it;
@@ -85,6 +104,8 @@ void MapFixedWindow::removeObstacleContainerView(ObstacleViewContainer *obstacle
 	obstacleViewContainers->erase(std::remove(obstacleViewContainers->begin(), obstacleViewContainers->end(), obstacleViewContainer), obstacleViewContainers->end());
 
 	delete obstacleViewContainer;
+
+	cropMapBackground();
 }
 
 ObstacleViewContainer *MapFixedWindow::obstacleViewContainerWithPosition(int aX, int aY) {
