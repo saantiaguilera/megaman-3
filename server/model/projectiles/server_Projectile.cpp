@@ -18,12 +18,16 @@
 #include <stddef.h>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
+#include "../../serializers/server_MovementSerializer.h"
 
 #define PROJECTILE_COLLISION_FILTERING_GROUP -2
 
 #define MAX_TRAVEL_DISTANCE 9.9
 
-Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
+Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x,
+		float32 y, ORIENTATION facingPosition) :
+		PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
 }
@@ -51,25 +55,25 @@ void Projectile::setBody() {
 	int vx = 0, vy = 0;
 	//TODO Maybe you plan on customizing this ?
 	switch (facingPosition) {
-		case OR_RIGHT:
-			vx = STEP_LENGTH;
-			initialX += getWidth();
-			break;
-		case OR_LEFT:
-			vx = -STEP_LENGTH;
-			initialX -= getWidth();
-			break;
-		case OR_BOTTOM:
-			vy = -STEP_LENGTH;
-			initialY -= getHeight();
-			break;
-		case OR_TOP:
-			vy = STEP_LENGTH;
-			initialY += getHeight();
-			break;
+	case OR_RIGHT:
+		vx = STEP_LENGTH;
+		initialX += getWidth()*2;
+		break;
+	case OR_LEFT:
+		vx = -STEP_LENGTH;
+		initialX -= getWidth()*2;
+		break;
+	case OR_BOTTOM:
+		vy = -STEP_LENGTH;
+		initialY -= getHeight();
+		break;
+	case OR_TOP:
+		vy = STEP_LENGTH;
+		initialY += getHeight();
+		break;
 	}
 
-	projectileBodyDef.position.Set(initialX,initialY);
+	projectileBodyDef.position.Set(initialX, initialY);
 	// TODO: Maybe add it from the outside? when its created
 	// Set it as bullet (it adds heavy workload, check if neccessary)
 	projectileBodyDef.bullet = true;
@@ -90,6 +94,8 @@ void Projectile::setBody() {
 
 	myBody->SetLinearVelocity(b2Vec2(vx, vy));
 	myBody->SetGravityScale(0);
+	if (bouncy)
+		myBody->GetFixtureList()->SetRestitution(1);
 
 	notify();
 }
@@ -98,13 +104,51 @@ float32 Projectile::getWidth() {
 	return BODIES_SIZE / 2;
 }
 
+void Projectile::move(int facingPosition) {
+	b2Vec2 vel = myBody->GetLinearVelocity();
+
+	float desiredVelx = 0;
+	float desiredVely = 0;
+
+	switch (facingPosition) {
+	case OR_LEFT:
+		desiredVelx = -STEP_LENGTH*2;
+		break;	//let speed change gradually
+	case OR_RIGHT:
+		desiredVelx = STEP_LENGTH*2;
+		break;	//let speed change gradually
+	case OR_TOP:
+		desiredVely = BODIES_SIZE * 8;
+		break;	//let speed change gradually
+	case OR_BOTTOM:
+		desiredVely = -5;
+		break;
+	}
+	float velChangex = desiredVelx - vel.x;
+	float impulsex = myBody->GetMass() * velChangex;
+	float velChangey = desiredVely - vel.y;
+	float impulsey = myBody->GetMass() * velChangey;
+
+	bool moving = facingPosition == OR_LEFT || facingPosition == OR_RIGHT
+			|| facingPosition == OR_TOP || facingPosition == OR_BOTTOM
+			|| desiredVely != 0;
+	setUpdatable(moving);
+
+	myBody->ApplyLinearImpulse(b2Vec2(impulsex, impulsey),
+			myBody->GetWorldCenter(), true);
+
+	MovementSerializer* serializer = new MovementSerializer(getId(),
+			getPositionX(), getPositionY());
+	Engine::getInstance().getContext()->dispatchEvent(serializer);
+}
+
 float32 Projectile::getHeight() {
 	return BODIES_SIZE / 2;
 }
 
 void Projectile::setUserData() {
 	// Assign user data for callbacks
-	myBody->SetUserData( this );
+	myBody->SetUserData(this);
 }
 
 void Projectile::update() {

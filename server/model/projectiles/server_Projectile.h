@@ -23,7 +23,9 @@ protected:
 	// box2d does not allow to create objects during time step
 	float32 initialX, initialY;
 	int facingPosition;
-
+	bool bouncy = false;
+	// @Override move
+	void move(int facingPosition);
 public:
 	// Constructor
 	Projectile( unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition);

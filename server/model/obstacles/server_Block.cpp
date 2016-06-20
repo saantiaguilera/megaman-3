@@ -32,7 +32,7 @@ Block::~Block() {
 
 void Block::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	// If we get hit by a projectile destroy it
-	if (objectCollidedWith->getObjectType() == OT_PROJECTILE){
+	if (objectCollidedWith->getObjectType() == OT_PROJECTILE && objectCollidedWith->getObjectType() != OT_RING){
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
 	}
 }

@@ -12,7 +12,7 @@
 
 Ring::Ring(float32 x, float32 y, ORIENTATION facingPosition) : Projectile(RING_DAMAGE, Projectile::RING, x, y, facingPosition) {
 	// Make it bouncy
-	myBody->GetFixtureList()->SetRestitution(1);
+	bouncy = true;
 }
 
 
@@ -21,4 +21,8 @@ Ring::~Ring() {
 
 int Ring::getTypeForSerialization() {
 	return ObstacleViewTypeRing;
+}
+
+int Ring::getObjectType() {
+	return OT_RING;
 }

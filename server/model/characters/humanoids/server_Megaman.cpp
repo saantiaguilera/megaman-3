@@ -27,7 +27,6 @@
 #include "../../projectiles/server_Projectile.h"
 #include "../../weapons/server_PlasmaCannon.h"
 
-
 Megaman::Megaman(Player* humanOperator, float32 x, float32 y) :
 		Humanoid(MEGAMAN_INITIAL_HP, x, y), humanOperator(humanOperator) {
 //	myBody->GetFixtureList()->SetRestitution(0.2f);
@@ -82,21 +81,21 @@ int Megaman::getObjectType() {
 }
 
 void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
-	if (objectCollidedWith->getObjectType() == OT_PROJECTILE) {
+	int objectType = objectCollidedWith->getObjectType();
+	if (objectType == OT_PROJECTILE || objectType == OT_RING) {
 		Projectile* projectile = (Projectile*) objectCollidedWith;
 		decreaseHp(projectile->getDamage());
 		Logger::getInstance().log(1,
 				getHumanOperator()->getName() + " received shot, new hp is "
 						+ getHpAsString());
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
-	} else if (objectCollidedWith->getObjectType() == OT_POWERUP) {
+	} else if (objectType == OT_POWERUP) {
 		Powerup* powerup = (Powerup*) objectCollidedWith;
 		Logger::getInstance().log(1,
 				getHumanOperator()->getName() + " picked a powerup");
 		powerup->haveEffectOn(this);
 		Engine::getInstance().markObjectForRemoval(objectCollidedWith);
-	} else if (objectCollidedWith->getObjectType() == OT_OBSTACLE
-			|| objectCollidedWith->getObjectType() == OT_LADDER) {
+	} else if (objectType == OT_OBSTACLE || objectType == OT_LADDER) {
 		Obstacle* obstacle = (Obstacle*) objectCollidedWith;
 		obstacle->haveEffectOn(this);
 	}
@@ -109,7 +108,7 @@ Player* Megaman::getHumanOperator() const {
 void Megaman::update() {
 	move(currentMoveState);
 	--ticksTillVulnerable;
-	if (ticksTillVulnerable == 0){
+	if (ticksTillVulnerable == 0) {
 		setVulnerable(true);
 	}
 }

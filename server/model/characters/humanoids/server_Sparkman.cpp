@@ -7,15 +7,22 @@
 
 #include "server_Sparkman.h"
 
+#include <vector>
+
+#include "../../../../common/common_MapConstants.h"
 #include "../../../game_engine/physics/server_PhysicObject.h"
+#include "../../../game_engine/server_Engine.h"
 #include "../../weapons/server_SparksCannon.h"
 
-#define ATTACK_INTERVAL_TICKS 5
+#define ATTACK_INTERVAL_TICKS 100
 
 
 Sparkman::Sparkman(float32 x, float32 y) : Humanoid(SPARKMAN_INITIAL_HP, x, y) {
 	currentWeapon = new SparksCannon();
 	notify();
+
+	Engine::getInstance().getUpdatablesList()->push_back(this);
+	setUpdatable(true);
 }
 
 Sparkman::~Sparkman() {

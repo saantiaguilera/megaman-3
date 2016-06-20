@@ -7,7 +7,11 @@
 
 #include "server_Bombman.h"
 
+#include <vector>
+
+#include "../../../../common/common_MapConstants.h"
 #include "../../../game_engine/physics/server_PhysicObject.h"
+#include "../../../game_engine/server_Engine.h"
 #include "../../weapons/server_BombCannon.h"
 
 #define ATTACK_INTERVAL_TICKS 5
@@ -15,6 +19,9 @@
 Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 	currentWeapon = new BombCannon();
 	notify();
+
+	Engine::getInstance().getUpdatablesList()->push_back(this);
+	setUpdatable(true);
 }
 
 Bombman::~Bombman() {
