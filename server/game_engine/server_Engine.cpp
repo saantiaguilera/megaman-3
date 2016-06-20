@@ -11,15 +11,13 @@
 #include <Dynamics/b2Body.h>
 #include <unistd.h>
 #include <algorithm>
+#include <iostream>
 #include <iterator>
 #include <sstream>
 
 #include "../../common/common_MapConstants.h"
-#include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
-#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../serializers/server_EnteredBossChamberSerializer.h"
-#include "../serializers/server_ObjectCreationSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
 
@@ -163,6 +161,10 @@ void Engine::markObjectForCreation(PhysicObject* objectToMark) {
 
 std::vector<PhysicObject*>* Engine::getUpdatablesList() {
 	return &updatablesList;
+}
+
+void Engine::setQuit(bool quit) {
+	this->quit = quit;
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}

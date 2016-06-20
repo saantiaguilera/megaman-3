@@ -74,4 +74,5 @@ void Humanoid::handleCollisionWith(PhysicObject* objectCollidedWith) {
 void Humanoid::bossDestroyed() {
 	EndGameSerializer* endGameSerializer = new EndGameSerializer();
 	Engine::getInstance().getContext()->dispatchEvent(endGameSerializer);
+	Engine::getInstance().setQuit(true);
 }
