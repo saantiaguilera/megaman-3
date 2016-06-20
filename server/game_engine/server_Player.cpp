@@ -7,7 +7,11 @@
 
 #include "server_Player.h"
 
+#include <sys/types.h>
+#include <vector>
+
 #include "../serializers/server_ConnectedPlayerSerializer.h"
+#include "../serializers/server_EndGameSerializer.h"
 #include "../serializers/server_LifeChangeSerializer.h"
 #include "../server_Logger.h"
 #include "server_Engine.h"
@@ -54,8 +58,11 @@ void Player::decreasePlayerLives() {
 
 		getMegaman()->resetHp();
 	}
-	if (lives == 0)
+	if (lives == 0){
 		Engine::getInstance().markObjectForRemoval(megaman);
+		checkNumberOfDeadPlayers();
+	}
+
 }
 
 Megaman* Player::getMegaman() const {
@@ -73,5 +80,18 @@ void Player::setMegaman(float x, float y) {
 		ConnectedPlayerSerializer *connectedPlayerSerializer = new ConnectedPlayerSerializer(megaman);
 		connectedPlayerSerializer->setDispatchClient(getId());
 		Engine::getInstance().getContext()->dispatchEvent(connectedPlayerSerializer);
+	}
+}
+
+void Player::checkNumberOfDeadPlayers() {
+	uint numberOfPlayers = Engine::getInstance().getPlayersList().size();
+	for (Player* player : Engine::getInstance().getPlayersList()){
+		if (player->getLives() == 0){
+			--numberOfPlayers;
+		}
+	}
+	if (numberOfPlayers == 0){
+		EndGameSerializer* endGameSerializer = new EndGameSerializer();
+		Engine::getInstance().getContext()->dispatchEvent(endGameSerializer);
 	}
 }

@@ -49,7 +49,6 @@ void Server::run() {
 	SenderWorker senderWorker(&clients, &eventsQueue);
 	senderWorker.start();
 
-
 	// Set the context for dispatching events
 	Engine::getInstance().setContext(&senderWorker);
 

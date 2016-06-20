@@ -25,6 +25,7 @@ private:
 	Megaman* megaman;
 	// The first player to connect is the admin
 	bool admin;
+	void checkNumberOfDeadPlayers();
 public:
 	// Constructor
 	Player(unsigned int id, const std::string& name, unsigned int initialLives);
