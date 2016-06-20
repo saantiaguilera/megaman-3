@@ -17,27 +17,7 @@
 
 
 Powerup::Powerup(unsigned int effectAmount, float32 x, float32 y) :
-		effectAmount(effectAmount) {
-	// TODO: Use sensors for powerups field of view
-	b2BodyDef powerupBodyDef;
-	powerupBodyDef.type = b2_staticBody;
-	powerupBodyDef.position.Set(x,y);
-	// TODO: Maybe add it from the outside? when its created
-	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
-
-	// Assign user data for callbacks
-	myBody->SetUserData( this );
-
-	// Add shape to body
-	b2PolygonShape boxShape;
-	boxShape.SetAsBox(getWidth(),getHeight());
-
-	// Add fixture
-	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
-	boxFixtureDef.density = 1;
-	myBody->CreateFixture(&boxFixtureDef);
-	myBody->GetFixtureList()->SetSensor(true);
+		effectAmount(effectAmount), initialX(x), initialY(y) {
 }
 
 float32 Powerup::getWidth() {
@@ -54,4 +34,26 @@ Powerup::~Powerup() {
 
 int Powerup::getObjectType() {
 	return OT_POWERUP;
+}
+
+void Powerup::setBody(){
+	b2BodyDef powerupBodyDef;
+	powerupBodyDef.type = b2_staticBody;
+	powerupBodyDef.position.Set(initialX,initialY);
+	// TODO: Maybe add it from the outside? when its created
+	myBody = Engine::getInstance().getMyWorld()->CreateBody(&powerupBodyDef);
+
+	// Assign user data for callbacks
+	myBody->SetUserData( this );
+
+	// Add shape to body
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(getWidth(),getHeight());
+
+	// Add fixture
+	b2FixtureDef boxFixtureDef;
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = 1;
+	myBody->CreateFixture(&boxFixtureDef);
+	myBody->GetFixtureList()->SetSensor(true);
 }

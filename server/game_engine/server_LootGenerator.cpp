@@ -65,6 +65,5 @@ void LootGenerator::generateLootAt(float32 x, float32 y) {
 }
 
 void LootGenerator::notifyNewLootAt(Powerup* powerup) {
-	ObjectCreationSerializer* objectCreationSerializer = new ObjectCreationSerializer(powerup);
-	Engine::getInstance().getContext()->dispatchEvent(objectCreationSerializer);
+	Engine::getInstance().markObjectForCreation(powerup);
 }

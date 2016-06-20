@@ -17,6 +17,8 @@ class Powerup : public PhysicObject {
 protected:
 	// Amount of its effect to be applied
 	unsigned int effectAmount;
+	// Initial locations
+	float32 initialX, initialY;
 	// Return object type
 	virtual int getObjectType();
 public:
@@ -28,7 +30,8 @@ public:
 	virtual void haveEffectOn(Character* character) = 0;
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
-
+	// Set body for runtime creation
+	void setBody();
 	virtual float32 getWidth();
 	virtual float32 getHeight();
 private:
