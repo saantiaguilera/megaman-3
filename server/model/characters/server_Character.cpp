@@ -105,7 +105,7 @@ void Character::decFootContacts() {
 void Character::addFootSensors() {
 	b2PolygonShape polygonShape;
 	b2FixtureDef myFixtureDef;
-	polygonShape.SetAsBox(0.3, 0.3, myBody->GetWorldCenter(), 0);
+	polygonShape.SetAsBox(getWidth()/4, getHeight()/4, myBody->GetWorldCenter(), 0);
 	myFixtureDef.shape = &polygonShape;
 	myFixtureDef.density = 1;
 	myFixtureDef.isSensor = true;
