@@ -25,6 +25,9 @@ MagnetMan::MagnetMan(float32 x, float32 y) : Humanoid(MAGNETMAN_INITIAL_HP, x, y
 }
 
 MagnetMan::~MagnetMan() {
+	for (Player* player : Engine::getInstance().getPlayersList()){
+		player->getMegaman()->makeWeaponAvailable(MAGNET_CANNON, new MagnetCannon());
+	}
 }
 
 void MagnetMan::update() {

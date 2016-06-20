@@ -24,6 +24,9 @@ Fireman::Fireman(float32 x, float32 y) : Humanoid(FIREMAN_INITIAL_HP, x, y) {
 }
 
 Fireman::~Fireman() {
+	for (Player* player : Engine::getInstance().getPlayersList()){
+		player->getMegaman()->makeWeaponAvailable(FLAMETHROWER, new Flamethrower());
+	}
 }
 
 void Fireman::update() {

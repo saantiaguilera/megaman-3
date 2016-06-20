@@ -26,6 +26,9 @@ Sparkman::Sparkman(float32 x, float32 y) : Humanoid(SPARKMAN_INITIAL_HP, x, y) {
 }
 
 Sparkman::~Sparkman() {
+	for (Player* player : Engine::getInstance().getPlayersList()){
+		player->getMegaman()->makeWeaponAvailable(SPARKS_CANNON, new SparksCannon());
+	}
 }
 
 void Sparkman::update() {
