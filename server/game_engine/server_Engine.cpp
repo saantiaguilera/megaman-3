@@ -11,7 +11,6 @@
 #include <Dynamics/b2Body.h>
 #include <unistd.h>
 #include <algorithm>
-#include <iostream>
 #include <iterator>
 #include <sstream>
 
@@ -123,9 +122,10 @@ void Engine::destroyObjects() {
 	for (; it != end; ++it) {
 		if (!myWorld->IsLocked() && (*it) != NULL){
 			PhysicObject* objectToDelete = *it;
-			std::cout << "Object destroyed: " << (*it)->getId() << " " <<(*it)->getTypeForSerialization() << std::endl;
-			ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
-			context->dispatchEvent(objectDestructionSerializer);
+			if (objectToDelete->getObjectType() != PhysicObject::OT_OBSTACLE){
+				ObjectDestructionSerializer* objectDestructionSerializer = new ObjectDestructionSerializer((*it)->getId(), (*it)->getPositionX(), (*it)->getPositionY());
+				context->dispatchEvent(objectDestructionSerializer);
+			}
 
 			std::vector<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
 			if ( it != updatablesList.end() )
