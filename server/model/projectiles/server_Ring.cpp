@@ -26,3 +26,22 @@ int Ring::getTypeForSerialization() {
 int Ring::getObjectType() {
 	return OT_RING;
 }
+
+void Ring::handleCollisionWith(PhysicObject* objectCollidedWith) {
+	switch (facingPosition) {
+		case OR_BOTTOM:
+			facingPosition = OR_TOP;
+			break;
+		case OR_TOP:
+			facingPosition = OR_BOTTOM;
+			break;
+		case OR_LEFT:
+			facingPosition = OR_RIGHT;
+			break;
+		case OR_RIGHT:
+			facingPosition = OR_LEFT;
+			break;
+		default:
+			break;
+	}
+}

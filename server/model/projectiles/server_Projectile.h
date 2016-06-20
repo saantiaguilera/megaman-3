@@ -51,6 +51,8 @@ public:
 	virtual float32 getWidth();
 	virtual float32 getHeight();
 
+	virtual void handleCollisionWith(PhysicObject* objectCollidedWith) {}
+
 private:
 	// Copy constructor
 	Projectile(const Projectile&);
