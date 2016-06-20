@@ -7,13 +7,19 @@
 
 #include "server_Server.h"
 
+#include <iostream>
 #include <iterator>
 
+#include "../common/common_ConcurrentList.h"
+#include "../common/common_Serializer.h"
 #include "game_engine/server_Engine.h"
+#include "game_engine/server_EngineWorker.h"
 #include "networking/server_AcceptorWorker.h"
 #include "networking/server_SenderWorker.h"
 #include "parsers/server_ConfigParser.h"
 #include "server_Logger.h"
+
+class EngineWorker;
 
 #define STOP_LISTENING "q"
 
@@ -33,27 +39,36 @@ Server::Server(const std::string& port, const std::string& configFilename) : con
 }
 
 void Server::run() {
+	std::string input;
 	initializeGameEngine();
 	bool keepOnListening = true;
+	bool engineRunning = true;
 	ConcurrentList<Serializer*> eventsQueue;
 	AcceptorWorker acceptorWorker(&dispatcherSocket, &keepOnListening, &clients);
 	acceptorWorker.start();
 	SenderWorker senderWorker(&clients, &eventsQueue);
 	senderWorker.start();
 
+
 	// Set the context for dispatching events
 	Engine::getInstance().setContext(&senderWorker);
 
-	// Loop until game is ready to start, then start it
-	while(!Engine::getInstance().isRunning()){
-		if(Engine::getInstance().isReadyToStart())
-		Engine::getInstance().start();
+	EngineWorker engineWorker(&engineRunning);
+	engineWorker.start();
+
+	while (keepOnListening){
+		std::getline(std::cin, input);
+		if (input == STOP_LISTENING)
+			keepOnListening = false;
 	}
+
+	engineRunning = false;
 
 	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();
 	acceptorWorker.join();
 	senderWorker.join();
+	engineWorker.join();
 }
 
 void Server::initializeGameEngine(){

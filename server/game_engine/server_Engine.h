@@ -119,6 +119,7 @@ public:
 	std::vector<PhysicObject*>* getUpdatablesList();
 	// Set the flag for teleporting to boss chamber
 	void activateTeleportToBossChamber();
+	void setQuit(bool quit);
 
 private:
 	// Constructor
