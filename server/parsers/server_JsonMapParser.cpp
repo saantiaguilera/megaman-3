@@ -7,8 +7,10 @@
 
 #include "server_JsonMapParser.h"
 
-#include <list>
 #include <vector>
+
+#include <Dynamics/b2Body.h>
+#include <Common/b2Math.h>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
@@ -36,25 +38,14 @@
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
 #include "../services/server_CoordinatesConverter.h"
+#include "../serializers/server_ConnectedPlayerSerializer.h"
+#include "../serializers/server_ObjectCreationSerializer.h"
 
 
-JsonMapParser::JsonMapParser() : isBossChamberInflation(false), bossChamberMegamansPositionX(0), bossChamberMegamansPositionY(0){
+JsonMapParser::JsonMapParser() {
 }
 
 JsonMapParser::~JsonMapParser() {
-}
-
-float JsonMapParser::getBossChamberMegamansPositionX() const {
-	return bossChamberMegamansPositionX;
-}
-
-float JsonMapParser::getBossChamberMegamansPositionY() const {
-	return bossChamberMegamansPositionY;
-}
-
-void JsonMapParser::setIsBossChamberInflation(bool isBossChamberInflation =
-		false) {
-	this->isBossChamberInflation = isBossChamberInflation;
 }
 
 void JsonMapParser::parseDocument(const std::string& name) {
@@ -83,7 +74,9 @@ void JsonMapParser::parseDocument(const std::string& name) {
 }
 
 void JsonMapParser::inflateObject(int type, float x, float y) {
-	std::list<Player*> playerList;
+	std::vector<Player*> playerList = Engine::getInstance().getPlayersList();
+	ObjectCreationSerializer* renotifyMegamanSerializer = NULL;
+	ConnectedPlayerSerializer* reconnectedPlayer = NULL;
 	Powerup* powerup;
 	switch (type) {
 		case ObstacleViewTypeBlock:
@@ -143,13 +136,21 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			if (!isBossChamberInflation){
-				for (Player* player : Engine::getInstance().getPlayersList()) {
-					player->setMegaman(x, y);
+			if (playerList.at(0)->getMegaman() == NULL) {
+				for (Player* aPlayer : playerList) {
+					aPlayer->setMegaman(x, y);
 				}
 			} else {
-				bossChamberMegamansPositionX = x;
-				bossChamberMegamansPositionY = y;
+				for (Player* aPlayer : playerList) {
+					aPlayer->getMegaman()->getMyBody()->SetTransform(b2Vec2(x, y), 0);
+
+					renotifyMegamanSerializer = new ObjectCreationSerializer(aPlayer->getMegaman());
+					Engine::getInstance().getContext()->dispatchEvent(renotifyMegamanSerializer);
+
+					reconnectedPlayer = new ConnectedPlayerSerializer(aPlayer->getMegaman());
+					reconnectedPlayer->setDispatchClient(aPlayer->getId());
+					Engine::getInstance().getContext()->dispatchEvent(reconnectedPlayer);
+				}
 			}
 			break;
 		case ObstacleViewTypeBombman:

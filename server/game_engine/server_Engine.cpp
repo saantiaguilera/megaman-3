@@ -70,37 +70,30 @@ void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
 
 void Engine::teleportToBossChamber() {
 	if (!myWorld->IsLocked()){
-		std::vector<Megaman*> megamans;
 		// Notify clients of new map
 		EnteredBossChamberSerializer* enteredBossChamberSerializer = new EnteredBossChamberSerializer();
 		context->dispatchEvent(enteredBossChamberSerializer);
 
-		for ( b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()){
-			PhysicObject* object = static_cast<PhysicObject*>(b->GetUserData());
-		  if (object->getTypeForSerialization() != ObstacleViewTypeMegaman){
-			  markObjectForRemoval(object);
-		  } else {
-			  megamans.push_back((Megaman*)object);
-		  }
-		}
+		cleanEngine();
 
 		JsonMapParser mapParser;
-		mapParser.setIsBossChamberInflation(true);
 		std::stringstream ss;
 		ss << currentMapId;
 		mapParser.parseDocument("bosschamber" + ss.str() + ".json");
+	}
 
-		// Teleport megamans
-		for (Megaman* megaman : megamans){
-			megaman->getMyBody()->SetTransform( b2Vec2(mapParser.getBossChamberMegamansPositionX(), mapParser.getBossChamberMegamansPositionY()) ,0);
-			ObjectCreationSerializer* renotifyMegamanSerializer = new ObjectCreationSerializer(megaman);
-			context->dispatchEvent(renotifyMegamanSerializer);
-			ConnectedPlayerSerializer* reconnectedPlayer = new ConnectedPlayerSerializer(megaman);
-			reconnectedPlayer->setDispatchClient(megaman->getHumanOperator()->getId());
-			context->dispatchEvent(reconnectedPlayer);
+	teleportToBossChamberWasActivated = false;
+}
+
+void Engine::cleanEngine() {
+	if (!myWorld->IsLocked()){
+		for ( b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()){
+			PhysicObject* object = static_cast<PhysicObject*>(b->GetUserData());
+			if (object->getTypeForSerialization() != ObstacleViewTypeMegaman){
+				markObjectForRemoval(object);
+			}
 		}
 	}
-	teleportToBossChamberWasActivated = false;
 }
 
 void Engine::createObjects() {
@@ -197,6 +190,11 @@ void Engine::start() {
 		destroyObjects();
 		usleep(timeStep*1000000*1.4);
 	}
+
+	cleanEngine();
+
+	running = false;
+	readyToStart = false;
 }
 
 void Engine::addNewPlayer(unsigned int id, const std::string& name) {

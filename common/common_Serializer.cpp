@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-Serializer::Serializer() : objectId(0), messageCode(0), serialized(""), objectType() {
+Serializer::Serializer() : objectId(0), messageCode(0), objectType(), serialized("") {
 }
 
 Serializer::Serializer(unsigned int objectId, int objectType) : objectId(objectId), messageCode(0), objectType(objectType) {

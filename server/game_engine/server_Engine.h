@@ -67,6 +67,7 @@ private:
 	// Teleport to boss chamber was activated?
 	bool teleportToBossChamberWasActivated = false;
 
+	void cleanEngine();
 public:
 	// Return logger instance
 	static Engine& getInstance();

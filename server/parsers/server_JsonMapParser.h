@@ -12,8 +12,6 @@
 
 class JsonMapParser {
 private:
-	bool isBossChamberInflation;
-	float bossChamberMegamansPositionX, bossChamberMegamansPositionY;
 	void inflateObject(int type, float x, float y);
 public:
 	// Constructor
@@ -22,10 +20,6 @@ public:
 	virtual ~JsonMapParser();
 	// Parse the json document
 	void parseDocument(const std::string& name);
-	// Toggle the flag to allow boss chamber inflation
-	void setIsBossChamberInflation(bool isBossChamberInflation);
-	float getBossChamberMegamansPositionX() const;
-	float getBossChamberMegamansPositionY() const;
 
 private:
 	// Copy constructor
