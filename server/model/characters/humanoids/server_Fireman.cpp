@@ -9,7 +9,7 @@
 
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../weapons/server_Flamethrower.h"
-
+#include "../../../game_engine/server_Engine.h"
 
 #include <iostream>
 
@@ -18,6 +18,9 @@
 Fireman::Fireman(float32 x, float32 y) : Humanoid(FIREMAN_INITIAL_HP, x, y) {
 	currentWeapon = new Flamethrower();
 	notify();
+
+	Engine::getInstance().getUpdatablesList()->push_back(this);
+	setUpdatable(true);
 }
 
 Fireman::~Fireman() {
@@ -25,23 +28,43 @@ Fireman::~Fireman() {
 
 void Fireman::update() {
 	// Shots rings and moves, jumps high but not freq
-	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		attack();
-		ticksPassed = 0;
-		std::cout << "atack" << std::endl;
 
-	} else if (ticksPassed == 3){
+	std::cout << "Tick : " << ticksPassed << " ";
+
+	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
+		ticksPassed = 0;
+	} else
+
+	if (ticksPassed == 40){
 		move(MS_JUMP);
-		std::cout << "Jump" << std::endl;
-	} else if (ticksPassed == 5 || ticksPassed == 2){
-		move(MS_RIGHT);
-		std::cout << "Right" << std::endl;
-	} else {
-		move(MS_LEFT);
-		std::cout << "Left" << std::endl;
+	} else
+	if (ticksPassed == 41) {
+		attack();
+		move(MS_STOP);
 	}
 
-	std::cout << "atack" << std::endl;
+	if (ticksPassed > 41 && ticksPassed <= 60){
+		move(MS_RIGHT);
+	} else
+	if (ticksPassed == 61) {
+		attack();
+		move(MS_STOP);
+	} else
+
+	if (ticksPassed > 61 && ticksPassed < 80) {
+		move(MS_LEFT);
+	} else
+	if (ticksPassed == 99) {
+		move(MS_STOP);
+
+		setUpdatable(true);
+	}
+
+	bool willAttck = ticksPassed % 5 == 0;
+
+	if (willAttck) {
+		attack();
+	}
 
 	++ticksPassed;
 }

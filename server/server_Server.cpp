@@ -59,8 +59,6 @@ void Server::run() {
 void Server::initializeGameEngine(){
     ConfigParser configParser(configFilename);
     configParser.parseConfigDoc();
-
-
     // Initialize with configs set in config file
 	Engine::getInstance().setGravity(configParser.getGravity());
 	Engine::getInstance().setPositionIterations(configParser.getPositionIterations());
