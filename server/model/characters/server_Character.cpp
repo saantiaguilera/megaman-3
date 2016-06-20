@@ -26,7 +26,7 @@ Character::~Character() {
 }
 
 void Character::attack() {
-	std::cout << "Character positions: " << getPositionX() << ", " << getPositionY() << std::endl;
+	std::cout << "Character" << getId() << " attacking from position: " << getPositionX() << ", " << getPositionY() << std::endl;
 	float32 weaponX = getPositionX();
 	float32 weaponY = getPositionY();
 

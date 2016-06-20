@@ -35,7 +35,7 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) :
 	b2Filter filter = myBody->GetFixtureList()->GetFilterData();
 	filter.groupIndex = MEGAMAN_COLLISION_FILTERING_GROUP;
 	myBody->GetFixtureList()->SetFilterData(filter);
-	myBody->GetFixtureList()->SetRestitution(0.2f);
+//	myBody->GetFixtureList()->SetRestitution(0.2f);
 
 	currentWeapon = new PlasmaCannon();
 	availableWeaponsMap[PLASMA_CANNON] = currentWeapon;

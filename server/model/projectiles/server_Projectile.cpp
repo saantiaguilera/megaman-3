@@ -7,6 +7,7 @@
 
 #include "server_Projectile.h"
 
+#include <iostream>
 #include <Collision/Shapes/b2CircleShape.h>
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
@@ -62,6 +63,8 @@ void Projectile::setBody() {
 			initialY -= getHeight();
 			break;
 	}
+
+	std::cout << "Creating projectile in x: " << initialX << " " << initialY << std::endl;
 
 	projectileBodyDef.position.Set(initialX,initialY);
 	// TODO: Maybe add it from the outside? when its created
