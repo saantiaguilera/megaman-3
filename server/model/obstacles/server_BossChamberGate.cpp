@@ -10,6 +10,7 @@
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
+#include <iostream>
 
 #include "../../../common/common_MapConstants.h"
 #include "../../game_engine/physics/server_PhysicObject.h"
@@ -34,7 +35,7 @@ BossChamberGate::~BossChamberGate() {
 }
 
 void BossChamberGate::haveEffectOn(Character* character) {
-	Engine::getInstance().teleportToBossChamber();
+	Engine::getInstance().activateTeleportToBossChamber();
 }
 
 int BossChamberGate::getObjectType(){

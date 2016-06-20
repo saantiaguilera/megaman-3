@@ -13,6 +13,9 @@
 #include "../../game_engine/physics/server_PhysicObject.h"
 
 class Projectile : public PhysicObject{
+private:
+	// Counter of ticks sin the creation of the projectile
+	uint ticksSinceCreation;
 public:
 	// Type of the projectile
 	enum projectile_types_t { BOMB, FIRE, SPARK, MAGNET, PLASMA, RING } PROJECTILE_TYPE;

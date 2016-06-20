@@ -5,23 +5,23 @@
  *      Author: mastanca
  */
 
+#include "server_Engine.h"
+
 #include <Common/b2Math.h>
 #include <Dynamics/b2Body.h>
-#include <Dynamics/b2World.h>
 #include <unistd.h>
-
 #include <algorithm>
 #include <iostream>
 #include <iterator>
 #include <sstream>
 
 #include "../../common/common_MapConstants.h"
+#include "../model/characters/humanoids/server_Megaman.h"
 #include "../parsers/server_JsonMapParser.h"
+#include "../serializers/server_EnteredBossChamberSerializer.h"
 #include "../serializers/server_ObjectCreationSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
-
-#include "server_Engine.h"
 
 Engine::~Engine() {
 	for (std::vector<Player*>::iterator it = playersList.begin();
@@ -69,17 +69,35 @@ void Engine::setPlayerInitialLives(unsigned int playerInitialLives) {
 }
 
 void Engine::teleportToBossChamber() {
-	for ( b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()){
-		PhysicObject* object = static_cast<PhysicObject*>(b->GetUserData());
-	  if (object->getTypeForSerialization() != ObstacleViewTypeMegaman){
-		  markObjectForRemoval(object);
-	  }
-	}
+	if (!myWorld->IsLocked()){
+		std::vector<Megaman*> megamans;
+		// Notify clients of new map
+		EnteredBossChamberSerializer* enteredBossChamberSerializer = new EnteredBossChamberSerializer();
+		context->dispatchEvent(enteredBossChamberSerializer);
 
-	JsonMapParser mapParser;
-	std::stringstream ss;
-	ss << currentMapId;
-	mapParser.parseDocument("bosschamber" + ss.str() + ".json");
+		for ( b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()){
+			PhysicObject* object = static_cast<PhysicObject*>(b->GetUserData());
+		  if (object->getTypeForSerialization() != ObstacleViewTypeMegaman){
+			  markObjectForRemoval(object);
+		  } else {
+			  megamans.push_back((Megaman*)object);
+		  }
+		}
+
+		JsonMapParser mapParser;
+		mapParser.setIsBossChamberInflation(true);
+		std::stringstream ss;
+		ss << currentMapId;
+		mapParser.parseDocument("bosschamber" + ss.str() + ".json");
+
+		// Teleport megamans
+		// TODO: Do some marking of the megamans for allowing teleportation
+		for (Megaman* megaman : megamans){
+			ObjectCreationSerializer* renotifyMegamanSerializer = new ObjectCreationSerializer(megaman);
+			context->dispatchEvent(renotifyMegamanSerializer);
+		}
+	}
+	teleportToBossChamberWasActivated = false;
 }
 
 void Engine::createObjects() {
@@ -162,6 +180,8 @@ void Engine::start() {
 	running = true;
 
 	while(!quit){
+		if (teleportToBossChamberWasActivated)
+			teleportToBossChamber();
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For updating AI and movements of bullets
@@ -230,4 +250,8 @@ EventContext* Engine::getContext() {
 
 void Engine::setContext(EventContext* context) {
 	this->context = context;
+}
+
+void Engine::activateTeleportToBossChamber() {
+	teleportToBossChamberWasActivated = true;
 }
