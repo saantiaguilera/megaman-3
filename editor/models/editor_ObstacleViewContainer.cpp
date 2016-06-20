@@ -15,12 +15,8 @@ ObstacleViewContainer::ObstacleViewContainer(ObstacleView *aObstacleView) {
 
 	ObstacleViewType type = obstacleView->getType();
 
-	Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
-
 	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(MapConstants().getImagePathWithObstacleViewType(type));
 	temp =  temp->scale_simple(TERRAIN_TILE_SIZE, TERRAIN_TILE_SIZE, Gdk::INTERP_BILINEAR);
-
-
 
 	image = new Gtk::Image();
 	image->set(temp);
@@ -28,7 +24,9 @@ ObstacleViewContainer::ObstacleViewContainer(ObstacleView *aObstacleView) {
 
 ObstacleViewContainer::ObstacleViewContainer() {}
 
-ObstacleViewContainer::~ObstacleViewContainer() {}
+ObstacleViewContainer::~ObstacleViewContainer() {
+	delete image;
+}
 
 
 Gtk::Image *ObstacleViewContainer::getImage() {

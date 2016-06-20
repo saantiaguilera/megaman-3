@@ -34,6 +34,8 @@ private :
     Glib::RefPtr<Gtk::Builder> builder;
     std::vector<ObstacleViewContainer *> *obstacleViewContainers;
     MapView *mapView;
+		void cropMapBackground();
+
 
     Gtk::Image *backgroundImage;
 };
