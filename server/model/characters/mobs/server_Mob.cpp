@@ -72,7 +72,6 @@ void Mob::setVulnerable(bool vulnerable) {
 }
 
 Mob::~Mob() {
-	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 int Mob::getObjectType() {

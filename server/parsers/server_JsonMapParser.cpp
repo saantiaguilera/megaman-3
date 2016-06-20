@@ -70,7 +70,6 @@ void JsonMapParser::parseDocument(const std::string& name) {
 }
 
 void JsonMapParser::inflateObject(int type, float x, float y) {
-	std::list<Player*> playerList;
 	switch (type) {
 		case ObstacleViewTypeBlock:
 			new Block(x, y);
@@ -124,10 +123,8 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			playerList = Engine::getInstance().getPlayersList();
-			for (std::list<Player*>::iterator it = playerList.begin();
-					it != playerList.end(); ++it) {
-				(*it)->setMegaman(x, y);
+			for (Player * player : Engine::getInstance().getPlayersList()) {
+				player->setMegaman(x, y);
 			}
 			break;
 		case ObstacleViewTypeBombman:
