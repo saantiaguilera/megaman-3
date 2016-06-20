@@ -307,19 +307,17 @@ bool GameView::onLoopSDL() {
 void GameView::loadMapFromAsset(MapView *mapView) {
   if (worldView) {
     resetAnimations();
+
     worldView->from(mapView);
     delete mapView;
+
+    //If we dont have a factory we will wait for creating them, so create the factory when we are sure we have the map ;)
     factoryView = new AnimatedFactoryView(renderer);
   } else {
     tempMapView = mapView;
 
     onInitSDL(socket->get_id());
-
-//    sigc::slot<bool> slot = sigc::bind<::Window>(sigc::mem_fun(*this, &GameView::onInitSDL), socket->get_id());
-//    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
   }
-
-
 }
 
 bool GameView::onInitSDL(::Window windowId) {

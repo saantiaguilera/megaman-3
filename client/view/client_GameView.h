@@ -8,7 +8,6 @@
 #include <gtkmm/socket.h>
 #include <X11/Xlib.h>
 
-// TODO This two wont be here (because I will put all the RenderedView's in a list, instead of having them stored in the class)
 #include "../controller/client_SoundController.h"
 #include "game_engine/client_WorldView.h"
 #include "game_engine/client_AnimatedView.h"
@@ -19,6 +18,15 @@
 #include "../../common/common_Mutex.h"
 
 #include "../../common/common_MapView.h"
+
+/**
+*TODO Since we didnt had time, we had to implement some stuff in an ugly form.
+Ideally it would have been:
+-The receiver thread receives a creation / destruction / movement of an object and it queues
+its action in a list.
+-The game controller has a inner thread/runnable/looper which just deques a element
+and performs the action it has
+*/
 
 #define SOCKET_SIZE 700
 

@@ -87,7 +87,7 @@ class AnimatedFactoryView {
         case ObstacleViewTypeRing:
         case ObstacleViewTypeSpark:
         case ObstacleViewTypePlasma:
-          view = new ProjectileView(id, renderer);
+          view = new ProjectileView(id, type, renderer);
           break;
     	}
 
