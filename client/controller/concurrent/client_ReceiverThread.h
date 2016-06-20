@@ -49,6 +49,7 @@ private:
 
 protected:
   virtual void run() {
+    bool isAtGame = false;
     dispatchEvent(new FlowEvent(FLOW_LOBBY));
 
     try {
@@ -108,44 +109,56 @@ protected:
           case START_GAME:
             dispatchEvent(new FlowEvent(FLOW_GAME));
             dispatchEvent(new ReceivedMapEvent(json));
+            isAtGame = true;
             break;
 
           case ENTERED_BOSS_CHAMBER:
-            dispatchEvent(new ReceivedMapEvent(json));
-            usleep(1000 * DELAY_BOSS_CHAMBER_SLEEP_TIME); //1ms * n ms
-            //Because by the time the ReceivedMapEvent reaches the main thread it has
-            //probably already created some objects and we dont have time to update the running flag in time
+            if (isAtGame) {
+              dispatchEvent(new ReceivedMapEvent(json));
+              usleep(1000 * DELAY_BOSS_CHAMBER_SLEEP_TIME); //1ms * n ms
+              //Because by the time the ReceivedMapEvent reaches the main thread it has
+              //probably already created some objects and we dont have time to update the running flag in time
+            }
             break;
 
           case END_GAME:
-            dispatchEvent(new FlowEvent(FLOW_LOBBY));
+            if (isAtGame) {
+              dispatchEvent(new FlowEvent(FLOW_LOBBY));
+              isAtGame = false;
+            }
             break;
 
           case UPDATE_MOVEMENTS:
-            while (!GameView::isRunning()) {}
-            GameView::moveViewFromJSON(json);
+            if (isAtGame) {
+              while (!GameView::isRunning()) {}
+              GameView::moveViewFromJSON(json);
+            }
             break;
 
           case OBJECT_CREATED:
-            while (!GameView::isRunning()) {}
-            GameView::addViewFromJSON(json);
+            if (isAtGame) {
+              while (!GameView::isRunning()) {}
+              GameView::addViewFromJSON(json);
+            }
             break;
 
           case OBJECT_DESTROYED:
-            while (!GameView::isRunning()) {}
-            GameView::removeViewFromJSON(json);
+            if (isAtGame) {
+              while (!GameView::isRunning()) {}
+              GameView::removeViewFromJSON(json);
+            }
             break;
 
           case HP_CHANGE:
-            dispatchEvent(new HpChangeEvent(json));
+            if (isAtGame) dispatchEvent(new HpChangeEvent(json));
             break;
 
           case AMMO_CHANGE:
-            dispatchEvent(new AmmoChangeEvent(json));
+            if (isAtGame) dispatchEvent(new AmmoChangeEvent(json));
             break;
 
           case LIFE_CHANGE:
-            dispatchEvent(new LifeChangeEvent(json));
+            if (isAtGame) dispatchEvent(new LifeChangeEvent(json));
             break;
         }
       }

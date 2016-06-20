@@ -35,37 +35,45 @@ void Fireman::update() {
 
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		ticksPassed = 0;
+		move(MS_LEFT);
 	} else
+
+	if (ticksPassed == 10){
+		move(MS_STOP);
+		setUpdatable(true);
+
+		attack();
+	} else
+	if (ticksPassed == 20) {
+		attack();
+	} else if (ticksPassed == 30) {
+		attack();
+	}
 
 	if (ticksPassed == 40){
 		move(MS_JUMP);
 	} else
-	if (ticksPassed == 41) {
-		attack();
-		move(MS_STOP);
-	}
-
-	if (ticksPassed > 41 && ticksPassed <= 60){
+	if (ticksPassed == 50) {
 		move(MS_RIGHT);
 	} else
-	if (ticksPassed == 61) {
-		attack();
-		move(MS_STOP);
-	} else
 
-	if (ticksPassed > 61 && ticksPassed < 80) {
-		move(MS_LEFT);
-	} else
-	if (ticksPassed == 99) {
+	if (ticksPassed == 60) {
 		move(MS_STOP);
-
 		setUpdatable(true);
-	}
 
-	bool willAttck = ticksPassed % 5 == 0;
-
-	if (willAttck) {
 		attack();
+	} else
+	if (ticksPassed == 70) {
+		attack();
+	} else
+	if (ticksPassed == 80) {
+		move(MS_LEFT);
+
+		attack();
+	} else
+	if (ticksPassed == 90) {
+		move(MS_STOP);
+		setUpdatable(true);
 	}
 
 	++ticksPassed;
