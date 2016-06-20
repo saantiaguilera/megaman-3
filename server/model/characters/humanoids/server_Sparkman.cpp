@@ -34,16 +34,53 @@ Sparkman::~Sparkman() {
 
 void Sparkman::update() {
 	// Shots sparks, jumps all the time. Shots straight and oblique
-	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		attack();
-		ticksPassed = 0;
-	}else {
-		move(MS_JUMP);
-	}
-	++ticksPassed;
+
+		if (ticksPassed == ATTACK_INTERVAL_TICKS) {
+			ticksPassed = 0;
+			move(MS_LEFT);
+		} else
+
+		if (ticksPassed == 10){
+			move(MS_STOP);
+			setUpdatable(true);
+
+			attack();
+		} else
+		if (ticksPassed == 20) {
+			attack();
+		} else if (ticksPassed == 30) {
+			attack();
+		}
+
+		if (ticksPassed == 40){
+			move(MS_JUMP);
+		} else
+		if (ticksPassed == 50) {
+			move(MS_RIGHT);
+		} else
+
+		if (ticksPassed == 60) {
+			move(MS_STOP);
+			setUpdatable(true);
+
+			attack();
+		} else
+		if (ticksPassed == 70) {
+			attack();
+		} else
+		if (ticksPassed == 80) {
+			move(MS_LEFT);
+
+			attack();
+		} else
+		if (ticksPassed == 90) {
+			move(MS_STOP);
+			setUpdatable(true);
+		}
+
+		++ticksPassed;
 }
 
 int Sparkman::getTypeForSerialization() {
 	return ObstacleViewTypeSparkman;
 }
-

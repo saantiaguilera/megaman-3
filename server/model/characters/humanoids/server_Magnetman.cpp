@@ -37,17 +37,51 @@ MagnetMan::~MagnetMan() {
 
 void MagnetMan::update() {
 	// Shots magnets, jumps little and walks (directed shots???)
-	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
-		attack();
-		ticksPassed = 0;
-	} else if (ticksPassed == 3){
-		move(MS_JUMP);
-	} else if (ticksPassed == 5 || ticksPassed == 2){
-		move(MS_RIGHT);
-	} else {
-		move(MS_LEFT);
-	}
-	++ticksPassed;
+
+		if (ticksPassed == ATTACK_INTERVAL_TICKS) {
+			ticksPassed = 0;
+			move(MS_LEFT);
+		} else
+
+		if (ticksPassed == 10){
+			move(MS_STOP);
+			setUpdatable(true);
+
+			attack();
+		} else
+		if (ticksPassed == 20) {
+			attack();
+		} else if (ticksPassed == 30) {
+			attack();
+		}
+
+		if (ticksPassed == 40){
+			move(MS_JUMP);
+		} else
+		if (ticksPassed == 50) {
+			move(MS_RIGHT);
+		} else
+
+		if (ticksPassed == 60) {
+			move(MS_STOP);
+			setUpdatable(true);
+
+			attack();
+		} else
+		if (ticksPassed == 70) {
+			attack();
+		} else
+		if (ticksPassed == 80) {
+			move(MS_LEFT);
+
+			attack();
+		} else
+		if (ticksPassed == 90) {
+			move(MS_STOP);
+			setUpdatable(true);
+		}
+
+		++ticksPassed;
 }
 
 int MagnetMan::getTypeForSerialization() {
