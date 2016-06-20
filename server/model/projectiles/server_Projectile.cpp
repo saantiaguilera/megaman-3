@@ -56,11 +56,11 @@ void Projectile::setBody() {
 			break;
 		case OR_BOTTOM:
 			vy = -STEP_LENGTH;
-			initialY += getHeight();
+			initialY -= getHeight();
 			break;
 		case OR_TOP:
 			vy = STEP_LENGTH;
-			initialY -= getHeight();
+			initialY += getHeight();
 			break;
 	}
 

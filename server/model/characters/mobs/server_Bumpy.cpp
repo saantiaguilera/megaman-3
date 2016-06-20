@@ -14,7 +14,7 @@
 
 
 Bumpy::Bumpy(float32 x, float32 y) : Mob(BUMPY_INITIAL_HP, x, y) {
-	// Bumpy flies so...
+	facingPosition = OR_BOTTOM;
 	myBody->SetGravityScale(0);
 	notify();
 }
@@ -39,4 +39,3 @@ void Bumpy::update() {
 int Bumpy::getTypeForSerialization() {
 	return ObstacleViewTypeBumpy;
 }
-

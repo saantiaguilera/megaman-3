@@ -7,11 +7,10 @@
 
 #include "server_Character.h"
 
-#include <Common/b2Settings.h>
-#include <Dynamics/b2Body.h>
 #include <Collision/Shapes/b2PolygonShape.h>
 #include <Common/b2Math.h>
 #include <Common/b2Settings.h>
+#include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
 #include <iostream>
 #include <sstream>
@@ -37,20 +36,27 @@ void Character::attack() {
 	//Since movements are in parents left/right, if a character needs to attack top or bottom just do it by yourself this
 	//eg: fire(?, ?, OR_TOP);
 	switch (facingPosition) {
-	case OR_LEFT:
-		weaponX = getPositionX() - getWidth();
-		break;
-	case OR_RIGHT:
-		weaponX = getPositionX() + getWidth();
-		break;
-	case OR_TOP:
-		weaponY = getPositionY() + getHeight();
-		break;
-	case OR_BOTTOM:
-		weaponY = getPositionY() - getHeight();
-		break;
+		case OR_LEFT:
+			weaponX = getPositionX() - getWidth();
+			break;
+		case OR_RIGHT:
+			weaponX = getPositionX() + getWidth();
+			break;
+		case OR_TOP:
+			weaponY = getPositionY() + getHeight();
+			break;
+		case OR_BOTTOM:
+		std::cout << "Will put weapon in facing position : " << facingPosition
+				<< std::endl;
+			weaponY = getPositionY() - 2 * getHeight();
+			break;
 	}
+
+	std::cout << "Did put weapon in facing position" << std::endl;
+
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
+
+	std::cout << "Did fire" << std::endl;
 }
 
 unsigned int Character::getHp() const {
