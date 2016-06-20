@@ -56,6 +56,9 @@ SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
         case UP:
         case DOWN:
         case IDLE:
+          if (lastOrientation == LEFT)
+            currentSprite = IDLE_LEFT;
+          else if (lastOrientation == RIGHT) currentSprite = IDLE_RIGHT;
           break;
         case LEFT:
           spriteStep();
@@ -75,7 +78,7 @@ SDL2pp::Texture * MegamanView::getTexture(ORIENTATION orient) {
         case IDLE:
           if (lastOrientation == LEFT)
             currentSprite = IDLE_LEFT;
-          else currentSprite = IDLE_RIGHT;
+          else if (lastOrientation == RIGHT) currentSprite = IDLE_RIGHT;
           break;
         case LEFT:
           currentSprite = FIRST_LEFT;
