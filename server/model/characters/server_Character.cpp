@@ -46,9 +46,8 @@ void Character::attack() {
 			weaponY = getPositionY() + getHeight();
 			break;
 		case OR_BOTTOM:
-		std::cout << "Will put weapon in facing position : " << facingPosition
-				<< std::endl;
-			weaponY = getPositionY() - 2 * getHeight();
+			std::cout << "Will put weapon in facing position : " << facingPosition << std::endl;
+			weaponY = getPositionY() - (getHeight() + (1 * 0.02));
 			break;
 	}
 
