@@ -23,17 +23,6 @@ const float STEP_LENGTH = 3.5f;
 
 class PhysicObject {
 protected:
-	// Object types for collision detection
-	enum _objectTypes {
-		OT_HUMANOID,
-		OT_MEGAMAN,
-		OT_MOB,
-		OT_POWERUP,
-		OT_PROJECTILE,
-		OT_OBSTACLE,
-		OT_LADDER,
-		OT_RING
-	};
 	// Global count of the objects
 	static unsigned int globalCount;
 	// Id of the object
@@ -52,6 +41,17 @@ protected:
 	bool vulnerable;
 	unsigned int ticksTillVulnerable;
 public:
+	// Object types for collision detection
+	enum _objectTypes {
+		OT_HUMANOID,
+		OT_MEGAMAN,
+		OT_MOB,
+		OT_POWERUP,
+		OT_PROJECTILE,
+		OT_OBSTACLE,
+		OT_LADDER,
+		OT_RING
+	};
 	// Defined movestates for objects
 	enum _moveState {
 		MS_LEFT,
