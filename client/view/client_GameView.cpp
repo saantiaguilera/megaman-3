@@ -341,11 +341,11 @@ bool GameView::onInitSDL(::Window windowId) {
 
    worldView = new WorldView(renderer);
 
-   healthBarView = new DefaultBarView(renderer);
+   healthBarView = new DefaultBarView(LIFE, renderer);
    healthBarView->setX(HEALTH_BAR_X);
    healthBarView->setY(HEALTH_BAR_Y);
 
-   ammoBarView = new DefaultBarView(renderer);
+   ammoBarView = new DefaultBarView(AMMO, renderer);
    ammoBarView->setX(AMMO_BAR_X);
    ammoBarView->setY(AMMO_BAR_Y);
 

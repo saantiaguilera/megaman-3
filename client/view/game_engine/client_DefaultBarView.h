@@ -14,18 +14,31 @@
 #define TEXTURE_BOTTOM 152
 #define WIDTH_SPACE 13
 
+enum BAR_TYPE {
+  LIFE,
+  AMMO
+};
+
 class DefaultBarView : public RenderedView {
 private:
   SDL2pp::Texture *barTexture;
-  SDL2pp::Texture *healthTexture;
+  SDL2pp::Texture *containerTexture;
 
 protected:
   int x,y, amountPercentage;
 
 public:
-  DefaultBarView(SDL2pp::Renderer *renderer) : RenderedView(renderer), barTexture(NULL), x(0), y(0), amountPercentage(100) {
-    barTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/empty_health.png");
-    healthTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/health_bar.png");
+  DefaultBarView(BAR_TYPE type, SDL2pp::Renderer *renderer) : RenderedView(renderer), barTexture(NULL), x(0), y(0), amountPercentage(100) {
+    switch (type) {
+      case LIFE:
+        containerTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/empty_health.png");
+        break;
+      case AMMO:
+        containerTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/empty_weapon.png");
+        break;
+    }
+
+    barTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/bar.png");
   }
 
   void setX(int x) {
@@ -45,7 +58,7 @@ public:
   }
 
   virtual void draw(Point &massCenter) {
-    getRenderer()->Copy(*barTexture, SDL2pp::NullOpt,
+    getRenderer()->Copy(*containerTexture, SDL2pp::NullOpt,
       SDL2pp::Point(x,y));
 
     //100 -> 20 // n -> ?
@@ -53,11 +66,11 @@ public:
     int hSpacing = 3;
     int height = y + TEXTURE_BOTTOM - vSpacing;
     for (int i = 0 ; i < amountPercentage * MAX_BARS / 100 ; i++) {
-      getRenderer()->Copy(*healthTexture, SDL2pp::NullOpt,
+      getRenderer()->Copy(*barTexture, SDL2pp::NullOpt,
         SDL2pp::Point(x + WIDTH_SPACE + hSpacing,
-          height - healthTexture->GetHeight()));
+          height - barTexture->GetHeight()));
 
-      height -= healthTexture->GetHeight();
+      height -= barTexture->GetHeight();
       height -= vSpacing;
     }
   }
@@ -65,8 +78,8 @@ public:
   virtual ~DefaultBarView() {
     if (barTexture)
       delete barTexture;
-    if (healthTexture)
-      delete healthTexture;
+    if (containerTexture)
+      delete containerTexture;
   }
 
 };
