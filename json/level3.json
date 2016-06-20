@@ -1,7 +1,7 @@
 {
     "map": {
         "name": "Bombman",
-        "filename": "level3.json"
+        "filename": "level3.json",
         "height": 350,
         "width": 980,
         "id": 3,
