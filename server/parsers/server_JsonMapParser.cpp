@@ -8,6 +8,7 @@
 #include "server_JsonMapParser.h"
 
 #include <list>
+#include <vector>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
@@ -34,14 +35,26 @@
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
-#include "../serializers/server_ConnectedPlayerSerializer.h"
 #include "../services/server_CoordinatesConverter.h"
 
 
-JsonMapParser::JsonMapParser() {
+JsonMapParser::JsonMapParser() : isBossChamberInflation(false), bossChamberMegamansPositionX(0), bossChamberMegamansPositionY(0){
 }
 
 JsonMapParser::~JsonMapParser() {
+}
+
+float JsonMapParser::getBossChamberMegamansPositionX() const {
+	return bossChamberMegamansPositionX;
+}
+
+float JsonMapParser::getBossChamberMegamansPositionY() const {
+	return bossChamberMegamansPositionY;
+}
+
+void JsonMapParser::setIsBossChamberInflation(bool isBossChamberInflation =
+		false) {
+	this->isBossChamberInflation = isBossChamberInflation;
 }
 
 void JsonMapParser::parseDocument(const std::string& name) {
@@ -130,8 +143,13 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			for (Player * player : Engine::getInstance().getPlayersList()) {
-				player->setMegaman(x, y);
+			if (!isBossChamberInflation){
+				for (Player* player : Engine::getInstance().getPlayersList()) {
+					player->setMegaman(x, y);
+				}
+			} else {
+				bossChamberMegamansPositionX = x;
+				bossChamberMegamansPositionY = y;
 			}
 			break;
 		case ObstacleViewTypeBombman:

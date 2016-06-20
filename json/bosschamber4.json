@@ -1,7 +1,7 @@
 {
     "map": {
         "name": "Bombman",
-        "filename" : "bosschamber4.json"
+        "filename" : "bosschamber4.json",
         "height": 1000,
         "width": 1000,
         "id": 9,

@@ -64,6 +64,8 @@ private:
 	void createObjects();
 	// Iterate over the to destroy list and destroy the bodies
 	void destroyObjects();
+	// Teleport to boss chamber was activated?
+	bool teleportToBossChamberWasActivated = false;
 
 public:
 	// Return logger instance
@@ -114,6 +116,8 @@ public:
 	void setCurrentMapId(int currentMapId);
 	// Return list of updatables
 	std::vector<PhysicObject*>* getUpdatablesList();
+	// Set the flag for teleporting to boss chamber
+	void activateTeleportToBossChamber();
 
 private:
 	// Constructor

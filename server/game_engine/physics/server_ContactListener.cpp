@@ -38,7 +38,7 @@ void ContactListener::EndContact(b2Contact* contact) {
 	static_cast<PhysicObject*>(bodyUserDataA)->handleStopCollidingWith(static_cast<PhysicObject*>(bodyUserDataB));
 	static_cast<PhysicObject*>(bodyUserDataB)->handleStopCollidingWith(static_cast<PhysicObject*>(bodyUserDataA));
 
-	  analyzeFeetContact(contact, -1);
+	analyzeFeetContact(contact, -1);
 }
 
 void ContactListener::getBodyUserDataForContact(b2Contact* contact) {
