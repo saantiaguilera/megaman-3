@@ -25,7 +25,6 @@ LootGenerator::~LootGenerator() {
 }
 
 void LootGenerator::generateLootAt(float32 x, float32 y) {
-	std::cout << "Inside loot generator" << std::endl;
 	// Generate a random number
 	// If random number is equal or less than to the sum of all the drop rates
 	// before the one chosen then generate a loot
