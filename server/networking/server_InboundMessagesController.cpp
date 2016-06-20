@@ -26,7 +26,7 @@ InboundMessagesController::InboundMessagesController() {
 
 void InboundMessagesController::analizeMessageCode() {
 	// CHECK MESSAGE PROTOCOL IN common_MessageProtocol.h
-	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
+	std::vector<Player*> playerList = Engine::getInstance().getPlayersList();
 	Player* desiredPlayer;
 	switch (messageCode) {
 	case PLAYER_CONNECTED:
@@ -77,8 +77,8 @@ void InboundMessagesController::analizeMessageCode() {
 }
 
 Player* InboundMessagesController::getDesiredPlayer(unsigned int playerId) {
-	std::list<Player*> playerList = Engine::getInstance().getPlayersList();
-	for (std::list<Player*>::iterator it = playerList.begin();
+	std::vector<Player*> playerList = Engine::getInstance().getPlayersList();
+	for (std::vector<Player*>::iterator it = playerList.begin();
 			it != playerList.end(); ++it) {
 		if ((*it)->getId() == playerId)
 			return *it;

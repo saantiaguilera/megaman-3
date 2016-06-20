@@ -29,7 +29,6 @@ float32 Powerup::getHeight() {
 }
 
 Powerup::~Powerup() {
-	myBody->GetWorld()->DestroyBody(myBody);
 }
 
 int Powerup::getObjectType() {
