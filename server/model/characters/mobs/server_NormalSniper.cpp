@@ -26,7 +26,7 @@ void NormalSniper::update() {
 		ticksPassed = 0;
 	}
 	++ticksPassed;
-	if (ticksPassed == 20) {
+	if (ticksPassed == ATTACK_INTERVAL_TICKS / 4) {
 		vulnerable = false;
 	}
 }

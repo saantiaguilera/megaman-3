@@ -24,13 +24,15 @@ void JumpingSniper::update() {
 		attack();
 		ticksPassed = 0;
 	} else {
-		vulnerable = false;
 		move(MS_JUMP);
 	}
+
+	if (ticksPassed == ATTACK_INTERVAL_TICKS / 4)
+		vulnerable = false;
+
 	++ticksPassed;
 }
 
 int JumpingSniper::getTypeForSerialization() {
 	return ObstacleViewTypeJumpingSnyper;
 }
-

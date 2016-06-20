@@ -11,8 +11,6 @@
 
 #include "../../projectiles/server_Projectile.h"
 
-#define TICKS_TO_HIDE_UNDER_HELMET 50
-
 Met::Met(float32 x, float32 y) : Mob(MET_INITIAL_HP, x, y) {
 	facingPosition = OR_LEFT;
 	notify();
@@ -42,7 +40,7 @@ void Met::update(){
 		return;
 	}
 	++ticksPassed;
-	if (ticksPassed == TICKS_TO_HIDE_UNDER_HELMET){
+	if (ticksPassed == ATTACK_INTERVAL_TICKS / 2){
 		vulnerable = false;
 	} else if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		readyToAttack = true;
