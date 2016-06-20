@@ -24,7 +24,7 @@
 #include "server_Engine.h"
 
 Engine::~Engine() {
-	for (std::list<Player*>::iterator it = playersList.begin();
+	for (std::vector<Player*>::iterator it = playersList.begin();
 			it != playersList.end(); ++it) {
 		delete *it;
 	}
@@ -35,7 +35,7 @@ Engine::~Engine() {
 	Logger::getInstance().log(1, "Engine quitting");
 }
 
-const std::list<Player*>& Engine::getPlayersList() {
+const std::vector<Player*>& Engine::getPlayersList() {
 	return playersList;
 }
 
@@ -116,7 +116,7 @@ void Engine::destroyObjects() {
 			myWorld->DestroyBody(objectToDelete->getMyBody());
 
 			//... and remove it from main list of objects
-			std::list<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
+			std::vector<PhysicObject*>::iterator it = std::find(updatablesList.begin(), updatablesList.end(), objectToDelete);
 			if ( it != updatablesList.end() )
 				updatablesList.erase( it );
 
@@ -153,7 +153,7 @@ void Engine::markObjectForCreation(PhysicObject* objectToMark) {
 	}
 }
 
-std::list<PhysicObject*>* Engine::getUpdatablesList() {
+std::vector<PhysicObject*>* Engine::getUpdatablesList() {
 	return &updatablesList;
 }
 
@@ -172,10 +172,9 @@ void Engine::start() {
 		createObjects();
 		myWorld->Step( timeStep, velocityIterations, positionIterations);
 		// For updating AI and movements of bullets
-		for (std::list<PhysicObject*>::iterator it = updatablesList.begin();
-				it != updatablesList.end(); ++it) {
-			if ((*it)->isUpdatable()){
-				(*it)->update();
+		for (PhysicObject * object : updatablesList) {
+			if (object->isUpdatable()){
+				object->update();
 			}
 		}
 		destroyObjects();

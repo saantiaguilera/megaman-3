@@ -35,9 +35,9 @@ private:
 	// Flag for checking if engine is running
 	bool running;
 	// A thread safe list for holding characters
-	std::list<PhysicObject*> updatablesList;
+	std::vector<PhysicObject*> updatablesList;
 	// A list holding the players
-	std::list<Player*>  playersList;
+	std::vector<Player*>  playersList;
 	// box2dWorld for physics
 	b2World* myWorld;
 	// Timestep for box2d
@@ -75,7 +75,7 @@ public:
 	// Add new player to the game
 	void addNewPlayer(unsigned int id, const std::string& name);
 	// Return players list
-	const std::list<Player*>& getPlayersList();
+	const std::vector<Player*>& getPlayersList();
 	// Tell if game has finished
 	bool isFinished();
 	// Is engine ready to start?
@@ -113,7 +113,7 @@ public:
 	// Set the current map id
 	void setCurrentMapId(int currentMapId);
 	// Return list of updatables
-	std::list<PhysicObject*>* getUpdatablesList();
+	std::vector<PhysicObject*>* getUpdatablesList();
 
 private:
 	// Constructor
