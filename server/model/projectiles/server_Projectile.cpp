@@ -19,12 +19,12 @@
 
 #define PROJECTILE_COLLISION_FILTERING_GROUP -2
 
-Projectile::~Projectile() {
-}
-
 Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x, float32 y, ORIENTATION facingPosition) : PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
+}
+
+Projectile::~Projectile() {
 }
 
 int Projectile::getProjectileType() const {
