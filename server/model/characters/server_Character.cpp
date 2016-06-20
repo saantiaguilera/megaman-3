@@ -33,6 +33,8 @@ void Character::attack() {
 	//Since movements are in parents left/right, if a character needs to attack top or bottom just do it by yourself this
 	//eg: fire(?, ?, OR_TOP);
 	switch (facingPosition) {
+		std::cout << "Will put weapon in facing position : " << facingPosition << std::endl;
+
 		case OR_LEFT:
 			weaponX = getPositionX() - getWidth();
 			break;
@@ -40,13 +42,18 @@ void Character::attack() {
 			weaponX = getPositionX() + getWidth();
 			break;
 		case OR_TOP:
-			weaponY = getPositionY() + getHeight();
-			break;
-		case OR_BOTTOM:
 			weaponY = getPositionY() - getHeight();
 			break;
+		case OR_BOTTOM:
+			weaponY = getPositionY() + getHeight();
+			break;
 	}
+
+	std::cout << "Did put weapon in facing position" << std::endl;
+
 	currentWeapon->fire(weaponX, weaponY, facingPosition);
+
+	std::cout << "Did fire" << std::endl;
 }
 
 unsigned int Character::getHp() const {
