@@ -152,9 +152,6 @@ void Projectile::setUserData() {
 }
 
 void Projectile::update() {
-	std::cout << "Bullet delta x : " << abs(getPositionX() - initialX) << std::endl;
-	std::cout << "Bullet delta y : " << abs(getPositionY() - initialY) << std::endl;
-
 	if (abs(getPositionX() - initialX) > MAX_TRAVEL_DISTANCE || abs(getPositionY() - initialY) > MAX_TRAVEL_DISTANCE)
 		Engine::getInstance().markObjectForRemoval(this);
 	else if (myBody != NULL)
