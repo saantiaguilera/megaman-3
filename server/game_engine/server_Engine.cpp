@@ -97,6 +97,7 @@ void Engine::teleportToBossChamber() {
 			context->dispatchEvent(renotifyMegamanSerializer);
 		}
 	}
+	teleportToBossChamberWasActivated = false;
 }
 
 void Engine::createObjects() {
