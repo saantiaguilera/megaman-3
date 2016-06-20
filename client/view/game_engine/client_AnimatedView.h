@@ -53,11 +53,11 @@ class AnimatedView : public RenderedView {
       return id;
     }
 
-    void add(Point &point) {
+    void add(Point point) {
       movementList.push(point);
     }
 
-    void set(Point &point) {
+    void set(Point point) {
       currentX = point.getX();
       currentY = point.getY();
     }
