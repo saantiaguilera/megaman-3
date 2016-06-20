@@ -7,6 +7,7 @@
 #include "event/client_SendChangeWeaponEvent.h"
 #include "event/client_QuitEvent.h"
 #include "event/client_StartMapEvent.h"
+#include "event/client_StopLooperEvent.h"
 
 #include "controller/client_GameController.h"
 #include "controller/client_LobbyController.h"
@@ -28,6 +29,7 @@ Client::~Client()  {
   }
 
   if (senderThread) {
+    if (senderLooper) senderLooper->put(new StopLooperEvent());
     senderThread->join();
     delete senderThread;
     senderThread = NULL;
@@ -118,6 +120,8 @@ void Client::onFlowToStart() {
     connectionThread = NULL;
   } else { //We are somewhere around our game, we should just go to start. Delete the sender and receiver
     if (senderThread) {
+      if (senderLooper) senderLooper->put(new StopLooperEvent());
+
       senderThread->join();
       delete senderThread;
       senderThread = NULL;

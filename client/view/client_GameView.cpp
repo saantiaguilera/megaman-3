@@ -66,6 +66,7 @@ GameView::~GameView() {
   }
 
   if (mutex) {
+    mutex->unlock();
     mutex = NULL;
     delete mutex;
   }

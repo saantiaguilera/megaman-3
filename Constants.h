@@ -48,5 +48,6 @@ enum Flow { FLOW_START, FLOW_LOBBY, FLOW_GAME };
 #define EVENT_AMMO_CHANGE 15
 #define EVENT_LIFE_CHANGE 16
 #define EVENT_USER_HAS_ID 17
+#define EVENT_STOP 18
 
 #endif /* CONSTANTS_H_ */

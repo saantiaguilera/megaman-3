@@ -45,6 +45,7 @@ protected:
   }
 
   virtual void run() {
+    bool stop = false;
     Serializer *serializer = NULL;
 
     if (socket && socket->isActive()) {
@@ -54,9 +55,9 @@ protected:
       delete serializer;
     }
 
-    while (socket && socket->isActive()) {
+    while (!stop) {
       Event *event = NULL;
-      while ((event = handlerLooper->get()) != NULL) {
+      while (!stop && (event = handlerLooper->get()) != NULL) {
         switch (event->getId()) {
           case EVENT_SEND_KEY_MAP:
             serializer = new KeyMapSerializer(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap());
@@ -69,6 +70,9 @@ protected:
           case EVENT_START_GAME:
             serializer = new StartMapSerializer(dynamic_cast<StartMapEvent*>(event)->getMapId());
             break;
+
+          case EVENT_STOP:
+            stop = true;
 
           default:
             std::cout << "Event not recognized by sender thread..." << std::endl;
