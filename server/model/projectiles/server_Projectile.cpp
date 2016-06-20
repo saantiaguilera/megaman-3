@@ -22,6 +22,7 @@
 #include "../../serializers/server_MovementSerializer.h"
 
 #define PROJECTILE_COLLISION_FILTERING_GROUP -2
+#define PROJECTILE_MAX_DURATION 100
 
 #define MAX_TRAVEL_DISTANCE 9.9
 
@@ -30,6 +31,7 @@ Projectile::Projectile(unsigned int damage, projectile_types_t type, float32 x,
 		PhysicObject(), initialX(x), initialY(y), facingPosition(facingPosition) {
 	PROJECTILE_TYPE = type;
 	this->damage = damage;
+	ticksSinceCreation = 0;
 }
 
 Projectile::~Projectile() {
@@ -152,8 +154,9 @@ void Projectile::setUserData() {
 }
 
 void Projectile::update() {
-	if (abs(getPositionX() - initialX) > MAX_TRAVEL_DISTANCE || abs(getPositionY() - initialY) > MAX_TRAVEL_DISTANCE)
+	if (abs(getPositionX() - initialX) > MAX_TRAVEL_DISTANCE || abs(getPositionY() - initialY) > MAX_TRAVEL_DISTANCE || ticksSinceCreation > PROJECTILE_MAX_DURATION)
 		Engine::getInstance().markObjectForRemoval(this);
 	else if (myBody != NULL)
 		move(facingPosition);
+	++ticksSinceCreation;
 }
