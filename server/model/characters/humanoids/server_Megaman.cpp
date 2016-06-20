@@ -119,7 +119,6 @@ void Megaman::changeWeaponTo(int weaponType) {
 }
 
 void Megaman::makeWeaponAvailable(int weaponType, Weapon* newWeapon) {
-	std::cout << "Inside make weapon available, weapon type: " << weaponType << std::endl;
 	availableWeaponsMap[weaponType] = newWeapon;
 }
 

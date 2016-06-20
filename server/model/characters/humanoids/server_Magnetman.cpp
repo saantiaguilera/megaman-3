@@ -30,7 +30,6 @@ MagnetMan::MagnetMan(float32 x, float32 y) : Humanoid(MAGNETMAN_INITIAL_HP, x, y
 
 MagnetMan::~MagnetMan() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
-		std::cout << "Inside magnet man destroyer" << std::endl;
 		player->getMegaman()->makeWeaponAvailable(MAGNET_CANNON, new MagnetCannon());
 	}
 }
