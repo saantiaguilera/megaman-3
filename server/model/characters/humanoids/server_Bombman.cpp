@@ -12,7 +12,12 @@
 #include "../../../../common/common_MapConstants.h"
 #include "../../../game_engine/physics/server_PhysicObject.h"
 #include "../../../game_engine/server_Engine.h"
+#include "../../../game_engine/server_EventContext.h"
+#include "../../../game_engine/server_Player.h"
+#include "../../../serializers/server_EndGameSerializer.h"
 #include "../../weapons/server_BombCannon.h"
+#include "../../weapons/server_Weapon.h"
+#include "server_Megaman.h"
 
 #define ATTACK_INTERVAL_TICKS 5
 
@@ -28,6 +33,7 @@ Bombman::~Bombman() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
 		player->getMegaman()->makeWeaponAvailable(BOMB_CANNON, new BombCannon());
 	}
+	bossDestroyed();
 }
 
 void Bombman::update() {

@@ -32,6 +32,7 @@ MagnetMan::~MagnetMan() {
 	for (Player* player : Engine::getInstance().getPlayersList()){
 		player->getMegaman()->makeWeaponAvailable(MAGNET_CANNON, new MagnetCannon());
 	}
+	bossDestroyed();
 }
 
 void MagnetMan::update() {

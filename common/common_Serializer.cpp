@@ -9,14 +9,14 @@
 
 #include <iostream>
 
-Serializer::Serializer() : objectId(0), messageCode(0), serialized("") {
+Serializer::Serializer() : objectId(0), messageCode(0), serialized(""), objectType() {
 }
 
 Serializer::Serializer(unsigned int objectId, int objectType) : objectId(objectId), messageCode(0), objectType(objectType) {
 
 }
 
-Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(0) {
+Serializer::Serializer(unsigned int objectId) : objectId(objectId), messageCode(0), objectType(0) {
 
 }
 

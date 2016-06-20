@@ -13,6 +13,8 @@
 #include "../server_Character.h"
 
 class Humanoid : public Character {
+protected:
+	void bossDestroyed();
 public:
 	// Constructor
 	Humanoid(unsigned int hp, float32 x, float32 y);
