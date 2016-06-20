@@ -40,7 +40,7 @@ protected:
 	// box2d body
 	b2Body* myBody;
 	// number of foot contacts (to avoid air jumping)
-	unsigned int numFootContacts;
+	long numFootContacts;
 	// notify creation of the object
 	void notify();
 	// Determine if i am updatable
@@ -100,6 +100,9 @@ public:
 	void setUpdatable(bool updatable);
 	bool isVulnerable() const;
 	void setVulnerable(bool vulnerable);
+
+	virtual void incFootContacts() {};
+	virtual void decFootContacts() {};
 
 private:
 	// Copy constructor

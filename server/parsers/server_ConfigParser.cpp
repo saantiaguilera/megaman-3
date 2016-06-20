@@ -112,16 +112,16 @@ void ConfigParser::parseConfigDoc() {
 				Logger::getInstance().log(1,
 						"Using default value for mobs velocities");
 			}
-			if (document["config"]["game"].HasMember("velocity_iterarions")) {
+			if (document["config"]["game"].HasMember("velocity_iterations")) {
 				velocityIterations =
-						document["config"]["game"]["velocity_iterarions"].GetUint();
+						document["config"]["game"]["velocity_iterations"].GetUint();
 			} else {
 				Logger::getInstance().log(1,
 						"Using default value for mobs velocities");
 			}
-			if (document["config"]["game"].HasMember("position_iterarions")) {
+			if (document["config"]["game"].HasMember("position_iterations")) {
 				positionIterations =
-						document["config"]["game"]["position_iterarions"].GetUint();
+						document["config"]["game"]["position_iterations"].GetUint();
 			} else {
 				Logger::getInstance().log(1,
 						"Using default value for mobs velocities");

@@ -18,7 +18,6 @@ JumpingSniper::~JumpingSniper() {
 
 void JumpingSniper::update() {
 	// Jumps between shots
-	std::cout << "Ticks passed: " << ticksPassed << std::endl;
 	if (ticksPassed == ATTACK_INTERVAL_TICKS) {
 		// Makes itself vulnerable and shots
 		vulnerable = true;
