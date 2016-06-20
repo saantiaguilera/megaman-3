@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkImage" id="image1">
@@ -45,8 +45,8 @@
         </child>
         <child>
           <object class="GtkButton" id="client_lobby_map_one">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+            <property name="width_request">70</property>
+            <property name="height_request">70</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -59,22 +59,22 @@
         </child>
         <child>
           <object class="GtkButton" id="client_lobby_map_two">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+            <property name="width_request">70</property>
+            <property name="height_request">70</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="image">image2</property>
           </object>
           <packing>
-            <property name="x">465</property>
+            <property name="x">495</property>
             <property name="y">70</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="client_lobby_map_three">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+            <property name="width_request">70</property>
+            <property name="height_request">70</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -82,27 +82,27 @@
           </object>
           <packing>
             <property name="x">75</property>
-            <property name="y">340</property>
+            <property name="y">275</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="client_lobby_map_four">
-            <property name="width_request">100</property>
-            <property name="height_request">80</property>
+            <property name="width_request">70</property>
+            <property name="height_request">70</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="image">image4</property>
           </object>
           <packing>
-            <property name="x">465</property>
-            <property name="y">340</property>
+            <property name="x">495</property>
+            <property name="y">275</property>
           </packing>
         </child>
         <child>
           <object class="GtkListBox" id="client_lobby_list_view">
             <property name="width_request">250</property>
-            <property name="height_request">350</property>
+            <property name="height_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
@@ -111,7 +111,26 @@
             <property name="y">65</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="client_lobby_map_five">
+            <property name="width_request">70</property>
+            <property name="height_request">70</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="image">image6</property>
+          </object>
+          <packing>
+            <property name="x">285</property>
+            <property name="y">370</property>
+          </packing>
+        </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">../drawable/bosses/bombman.png</property>
   </object>
 </interface>

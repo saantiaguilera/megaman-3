@@ -15,6 +15,7 @@ private:
   Gtk::Button *mapTwoButton;
   Gtk::Button *mapThreeButton;
   Gtk::Button *mapFourButton;
+  Gtk::Button *mapFiveButton;
   Gtk::ListBox *listView;
 
   LobbyViewListener *listener = NULL;
