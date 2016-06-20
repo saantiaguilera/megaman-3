@@ -11,8 +11,33 @@ private:
   SDL2pp::Texture *texture;
 
 public:
-  ProjectileView(unsigned int id, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
-    texture = new SDL2pp::Texture(*getRenderer(), "res/drawable/bullets/normal_bullet.png");
+  ProjectileView(unsigned int id, int type, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
+    std::string path = "res/drawable/bullets/";
+
+    switch (type) {
+      case ObstacleViewTypeBomb:
+        path += "bomb";
+        break;
+      case ObstacleViewTypeFire:
+        path += "fire";
+        break;
+      case ObstacleViewTypeMagnet:
+        path += "magnet";
+        break;
+      case ObstacleViewTypeRing:
+        path += "ring";
+        break;
+      case ObstacleViewTypeSpark:
+        path += "spark";
+        break;
+      case ObstacleViewTypePlasma:
+        path += "normal";
+        break;
+    }
+
+    path += "_bullet.png";
+
+    texture = new SDL2pp::Texture(*getRenderer(), path);
   }
 
   virtual ~ProjectileView() {

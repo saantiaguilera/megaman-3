@@ -19,6 +19,15 @@
 
 #include "../../common/common_MapView.h"
 
+/**
+*TODO Since we didnt had time, we had to implement some stuff in an ugly form.
+Ideally it would have been:
+-The receiver thread receives a creation / destruction / movement of an object and it queues
+its action in a list.
+-The game controller has a inner thread/runnable/looper which just deques a element
+and performs the action it has
+*/
+
 #define SOCKET_SIZE 700
 
 enum BarView {
