@@ -83,9 +83,11 @@ public:
           cameraPoint.setY(massCenterY - rendererHeight / 2);
       }
 
+      int backgroundX = (backgroundTexture->GetWidth() - rendererWidth) == 0 ? 0 : cameraPoint.getX() % (backgroundTexture->GetWidth() - rendererWidth);
+      int backgroundY = (backgroundTexture->GetHeight() - rendererHeight) == 0 ? 0 : cameraPoint.getY() % (backgroundTexture->GetHeight() - rendererHeight);
+
       renderer->Copy(*backgroundTexture, SDL2pp::Rect(
-            cameraPoint.getX() % backgroundTexture->GetWidth(),
-            cameraPoint.getY() % backgroundTexture->GetHeight(),
+            backgroundX, backgroundY,
             rendererWidth, rendererHeight));
       renderer->Copy(*mapTexture, SDL2pp::Rect(
             cameraPoint.getX(),
