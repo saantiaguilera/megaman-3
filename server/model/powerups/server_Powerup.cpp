@@ -29,6 +29,7 @@ float32 Powerup::getHeight() {
 }
 
 Powerup::~Powerup() {
+	Engine::getInstance().getMyWorld()->DestroyBody(getMyBody());
 }
 
 int Powerup::getObjectType() {

@@ -5,18 +5,17 @@
  *      Author: mastanca
  */
 
+#include "server_LootGenerator.h"
+
 #include <cstdlib>
+#include <iostream>
 
 #include "../model/powerups/server_BigAmmoPack.h"
 #include "../model/powerups/server_BigEnergyCapsule.h"
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
-#include "../serializers/server_ObjectCreationSerializer.h"
 #include "server_Engine.h"
-#include "server_EventContext.h"
-
-#include "server_LootGenerator.h"
 
 LootGenerator::LootGenerator() {
 
@@ -26,6 +25,7 @@ LootGenerator::~LootGenerator() {
 }
 
 void LootGenerator::generateLootAt(float32 x, float32 y) {
+	std::cout << "Inside loot generator" << std::endl;
 	// Generate a random number
 	// If random number is equal or less than to the sum of all the drop rates
 	// before the one chosen then generate a loot
