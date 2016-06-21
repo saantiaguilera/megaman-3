@@ -27,7 +27,7 @@ public:
   }
 
   virtual ~MetView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/deaths/mob.ogg"));
+    SoundController::play(("res/sound/deaths/mob.wav"));
     for (int i = 0 ; i < MET_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }

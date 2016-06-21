@@ -22,7 +22,8 @@ public:
   }
 
   virtual ~BombmanView() {
-    for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i)
+    SoundController::play(("res/sound/deaths/boss.wav"));
+    for (int i = 0 ; i < BOMBMAN_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }
 

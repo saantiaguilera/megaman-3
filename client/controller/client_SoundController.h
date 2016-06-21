@@ -11,7 +11,7 @@ class SoundController {
 		SoundController();
 		~SoundController();
 
-		static void play(SDL2pp::Chunk sound);
+		static void play(std::string path);
 
 };
 

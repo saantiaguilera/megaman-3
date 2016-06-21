@@ -53,7 +53,7 @@ public:
 
   void setAmountPercentage(int percentage) {
     if (percentage < amountPercentage && type == LIFE)
-      SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_hit.ogg"));
+      SoundController::play(("res/sound/deaths/megaman_hit.wav"));
 
     if (percentage > 100)
       percentage = 100;
