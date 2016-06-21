@@ -237,8 +237,6 @@ void MapWindow::bossButtonWasTapped() {
 	if (bossEdition) {
 		addDraggingImageWithType(bossType);
 	} else {
-
-		std::cout<<"will present dialog" << std::endl;
 //		DialogManager().showSaveDialogWithBossType(bossType);
 	}
 

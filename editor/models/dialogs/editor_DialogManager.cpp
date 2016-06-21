@@ -11,10 +11,10 @@
 #include "../../views/editor_MapWindow.h"
 
 #define SAVE_DIALOG_PRIMARY_TEXT "Save"
-#define SAVE_DIALOG_SECONDARY_TEXT "Are you sure you whant to save this map? changes are irreversible"
+#define SAVE_DIALOG_SECONDARY_TEXT "Are you sure you want to save this map? changes are irreversible!"
 
 #define BACK_DIALOG_PRIMARY_TEXT "Back withous saving"
-#define BACK_DIALOG_SECONDARY_TEXT "Are you sure you whant to go back withowt saving this map? changes will loose permanently"
+#define BACK_DIALOG_SECONDARY_TEXT "Are you sure you whant to go back without saving this map? changes will loose permanently!"
 
 
 DialogManager::DialogManager(MapWindow *aPresentingWindow) {
