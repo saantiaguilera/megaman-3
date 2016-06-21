@@ -17,7 +17,7 @@ public:
   }
 
   virtual ~SniperView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/deaths/mob.ogg"));
+    SoundController::play(SDL2pp::Chunk("res/sound/deaths/mob.wav"));
     delete texture;
   }
 

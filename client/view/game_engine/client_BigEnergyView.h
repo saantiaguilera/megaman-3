@@ -17,7 +17,7 @@ public:
   }
 
   virtual ~BigEnergyView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/powerups/energyup.ogg"));
+    SoundController::play(SDL2pp::Chunk("res/sound/powerups/energyup.wav"));
     delete texture;
   }
 

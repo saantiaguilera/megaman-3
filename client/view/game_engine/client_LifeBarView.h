@@ -35,7 +35,7 @@ public:
 
   void setLifes(int lifes) {
     if (this->lifes > lifes)
-      SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_life.ogg"));
+      SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_life.wav"));
 
     if (lifes > 3)
       lifes = 3;

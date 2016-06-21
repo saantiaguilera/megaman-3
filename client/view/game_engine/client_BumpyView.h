@@ -30,7 +30,7 @@ public:
   }
 
   virtual ~BumpyView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/deaths/mob.ogg"));
+    SoundController::play(SDL2pp::Chunk("res/sound/deaths/mob.wav"));
     for (int i = 0 ; i < BUMPY_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }
