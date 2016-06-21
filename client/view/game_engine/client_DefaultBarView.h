@@ -6,6 +6,7 @@
 #include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 
+#include "../../controller/client_SoundController.h"
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
 
@@ -23,12 +24,13 @@ class DefaultBarView : public RenderedView {
 private:
   SDL2pp::Texture *barTexture;
   SDL2pp::Texture *containerTexture;
+  BAR_TYPE type;
 
 protected:
   int x,y, amountPercentage;
 
 public:
-  DefaultBarView(BAR_TYPE type, SDL2pp::Renderer *renderer) : RenderedView(renderer), barTexture(NULL), x(0), y(0), amountPercentage(100) {
+  DefaultBarView(BAR_TYPE type, SDL2pp::Renderer *renderer) : RenderedView(renderer), barTexture(NULL), containerTexture(NULL), type(type), x(0), y(0), amountPercentage(100){
     switch (type) {
       case LIFE:
         containerTexture = new SDL2pp::Texture(*getRenderer(), "res/drawable/engine/empty_health.png");
@@ -50,6 +52,9 @@ public:
   }
 
   void setAmountPercentage(int percentage) {
+    if (percentage < amountPercentage && type == LIFE)
+      SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_hit.ogg"));
+
     if (percentage > 100)
       percentage = 100;
     if (percentage < 0)

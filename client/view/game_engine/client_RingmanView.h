@@ -3,6 +3,7 @@
 
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
+#include "../../controller/client_SoundController.h"
 #include "../../../common/common_MapConstants.h"
 #include <SDL2pp/SDL2pp.hh>
 
@@ -22,6 +23,7 @@ public:
   }
 
   virtual ~RingmanView() {
+    SoundController::play(SDL2pp::Chunk("res/sound/deaths/boss.ogg"));
     for (int i = 0 ; i < RINGMAN_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }

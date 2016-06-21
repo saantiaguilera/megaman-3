@@ -1,6 +1,7 @@
 #include <sstream>
 #include "client_RenderedView.h"
 #include "../../../common/common_MapConstants.h"
+#include "../../controller/client_SoundController.h"
 
 #include "client_MegamanView.h"
 
@@ -46,6 +47,7 @@ MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : Animated
 }
 
 MegamanView::~MegamanView() {
+  SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_die.ogg"));
   for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i)
     delete textureMap[i];
 }

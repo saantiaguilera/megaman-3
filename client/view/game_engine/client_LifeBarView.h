@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "../../controller/client_SoundController.h"
 #include "client_RenderedView.h"
 #include <SDL2pp/SDL2pp.hh>
 
@@ -33,6 +34,9 @@ public:
   }
 
   void setLifes(int lifes) {
+    if (this->lifes > lifes)
+      SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_life.ogg"));
+
     if (lifes > 3)
       lifes = 3;
     if (lifes < 0)

@@ -4,6 +4,7 @@
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
+#include "../../controller/client_SoundController.h"
 #include <SDL2pp/SDL2pp.hh>
 
 #define FIREMAN_SPRITE_COUNT 12
@@ -22,6 +23,7 @@ public:
   }
 
   virtual ~FiremanView() {
+    SoundController::play(SDL2pp::Chunk("res/sound/deaths/boss.ogg"));
     for (int i = 0 ; i < FIREMAN_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }

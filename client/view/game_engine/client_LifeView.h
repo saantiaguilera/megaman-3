@@ -4,6 +4,7 @@
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
+#include "../../controller/client_SoundController.h"
 #include <SDL2pp/SDL2pp.hh>
 
 class LifeView : public AnimatedView {
@@ -16,6 +17,7 @@ public:
   }
 
   virtual ~LifeView() {
+    SoundController::play(SDL2pp::Chunk("res/sound/powerups/lifeup.ogg"));
     delete texture;
   }
 
