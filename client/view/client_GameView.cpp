@@ -24,7 +24,6 @@ OnMyOwnViewMovementListener * GameView::viewMovementListener = NULL;
 unsigned int GameView::myId = -1;
 bool GameView::massCenterCouldHaveChanged = false;
 std::vector<AnimatedView*> GameView::animatedViews;
-SoundController GameView::soundController;
 Point GameView::massCenter;
 Mutex * GameView::mutex = NULL;
 
@@ -97,6 +96,11 @@ GameView::~GameView() {
     mainWindow = NULL;
   }
 
+  if (soundController) {
+    delete soundController;
+    soundController = NULL;
+  }
+
   if (sdl) {
     delete sdl;
     sdl = NULL;
@@ -147,7 +151,6 @@ void GameView::resetAnimations() {
 }
 
 void GameView::addViewFromJSON(std::string json) {
-  std::cout << "AddViewFromJSON" << std::endl;
   rapidjson::Document document;
   document.Parse(json.c_str());
 
@@ -175,7 +178,6 @@ void GameView::addViewFromJSON(std::string json) {
 
       if (myId == viewId)
         myView = view;
-		//We could create a doulbe dispatch for the soundcontroller. (like soundController->playFor(view);
     }
   }
 }
@@ -310,7 +312,6 @@ bool GameView::onLoopSDL() {
 
 void GameView::loadMapFromAsset(MapView *mapView) {
   if (worldView) {
-    std::cout << "LoadMapFromAsset" << std::endl;
     resetAnimations();
 
     worldView->from(mapView);
@@ -328,7 +329,7 @@ void GameView::loadMapFromAsset(MapView *mapView) {
 bool GameView::onInitSDL(::Window windowId) {
  try {
    // Initialize SDL library
-   sdl = new SDL2pp::SDL(SDL_INIT_VIDEO);
+   sdl = new SDL2pp::SDL(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
    SDL_Window *socketWindow = SDL_CreateWindowFrom((void *) windowId);
    if (!socketWindow)
@@ -358,6 +359,7 @@ bool GameView::onInitSDL(::Window windowId) {
    delete tempMapView;
 
    factoryView = new AnimatedFactoryView(renderer);
+   soundController = new SoundController();
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
    Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);

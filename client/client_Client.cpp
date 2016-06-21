@@ -80,7 +80,6 @@ void Client::onCreateConnection(std::string ip, std::string name) {
 
   if (!connectionThread) {
     clientName = name;
-    std::cout << ip.substr(0, ip.find_first_of(":")) << " - " << ip.substr(ip.find_first_of(":") + 1) << std::endl;
     connectionThread = new ConnectionThread();
     connectionThread->setListener(this);
     connectionThread->setSocket((socket = new Socket()));

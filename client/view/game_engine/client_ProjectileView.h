@@ -4,6 +4,7 @@
 #include "client_RenderedView.h"
 #include "../../../common/common_Point.h"
 #include "../../../common/common_MapConstants.h"
+#include "../../controller/client_SoundController.h"
 #include <SDL2pp/SDL2pp.hh>
 
 #define SPRITE_COUNT 4
@@ -18,11 +19,13 @@ private:
   std::map<int, SDL2pp::Texture*> textureMap;
   int firstLeft, firstRight, size, counter;
 
+  int projectileType;
   ORIENTATION lastOrientation;
 
 public:
   ProjectileView(unsigned int id, int type, SDL2pp::Renderer *renderer) : AnimatedView(id, renderer) {
     std::string path = "res/drawable/bullets/";
+    projectileType = type;
     size = SPRITE_COUNT;
 
     lastOrientation = IDLE;
@@ -31,24 +34,30 @@ public:
     switch (type) {
       case ObstacleViewTypeBomb:
         path += "bombman/";
+        SoundController::play(SDL2pp::Chunk("./res/sound/bullets/create/bomb.ogg"));
         break;
       case ObstacleViewTypeFire:
         path += "fireman/";
         size = SPRITE_COUNT_EXTENDED;
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/fire.ogg"));
         break;
       case ObstacleViewTypeMagnet:
         path += "magnetman/";
         size = SPRITE_COUNT_EXTENDED;
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/magnet.ogg"));
         break;
       case ObstacleViewTypeRing:
         path += "ringman/";
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/ring.ogg"));
         break;
       case ObstacleViewTypeSpark:
         path += "sparkman/";
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/spark.ogg"));
         break;
       case ObstacleViewTypePlasma:
         path += "normals/";
         size = SPRITE_COUNT_EXTENDED;
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/normal.ogg"));
         break;
     }
 
@@ -74,6 +83,27 @@ public:
   }
 
   virtual ~ProjectileView() {
+    switch (projectileType) {
+      case ObstacleViewTypeBomb:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/bomb.ogg"));
+        break;
+      case ObstacleViewTypeFire:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/fire.ogg"));
+        break;
+      case ObstacleViewTypeMagnet:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/magnet.ogg"));
+        break;
+      case ObstacleViewTypeRing:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/ring.ogg"));
+        break;
+      case ObstacleViewTypeSpark:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/spark.ogg"));
+        break;
+      case ObstacleViewTypePlasma:
+        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/normal.ogg"));
+        break;
+    }
+
     for (int i = 0 ; i < size ; ++i)
       delete textureMap[i];
   }

@@ -30,7 +30,6 @@ class AnimatedFactoryView {
   public:
     AnimatedFactoryView(SDL2pp::Renderer *renderer) : renderer(renderer) {
       MegamanView::resetCharacterCount();
-      std::cout << "Created animation factory" << std::endl;
     }
 
     virtual ~AnimatedFactoryView() {

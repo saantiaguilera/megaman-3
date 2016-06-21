@@ -17,13 +17,10 @@ MainScreenController::MainScreenController(Context *context) : Controller(contex
   try {
     refBuilder->add_from_file(PATH_HOME_SCREEN_LAYOUT);
   } catch(const Glib::FileError& ex) {
-    std::cout << "FileError: " << ex.what() << std::endl;
     return;
   } catch(const Glib::MarkupError& ex) {
-    std::cout << "MarkupError: " << ex.what() << std::endl;
     return;
   } catch(const Gtk::BuilderError& ex) {
-    std::cout << "BuilderError: " << ex.what() << std::endl;
     return;
   }
 

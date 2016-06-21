@@ -91,7 +91,6 @@ protected:
 
         json += buffer;
 
-        std::cout << "Received::id= " << messageCode << " data=" << json << std::endl;
         switch (messageCode) {
           //Do something
           case NEW_PLAYER:
@@ -167,7 +166,6 @@ protected:
       std::cout << e.what() << std::endl;
     }
 
-    std::cout << "ReceiverThread::finished running" << std::endl;
   }
 
 public:

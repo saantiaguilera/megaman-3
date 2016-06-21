@@ -41,17 +41,13 @@ protected:
 
       switch (result) {
         case EXIT_SUCCESS:
-          std::cout << "ConnectionThread::Connected to socket" << std::endl;
           dispatchEvent(new ConnectionEvent(RESULT_OK));
           break;
 
         default:
-          std::cout << "ConnectionThread::Error connecting to " << ip << ":" << port << std::endl;
           dispatchEvent(new ConnectionEvent(RESULT_ERROR));
       }
     }
-
-    std::cout << "ConnectionThread::finished running" << std::endl;
   }
 
 public:

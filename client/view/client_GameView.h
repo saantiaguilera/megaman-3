@@ -68,6 +68,8 @@ private:
   DefaultBarView *ammoBarView = NULL;
   LifeBarView *lifeBarView = NULL;
 
+  SoundController * soundController = NULL;
+
   static Mutex * mutex;
 
   static AnimatedView * myView;
@@ -75,7 +77,6 @@ private:
 
   static AnimatedFactoryView *factoryView;
   static std::vector<AnimatedView*> animatedViews;
-  static SoundController soundController;
 
   static Point massCenter;
   static bool massCenterCouldHaveChanged;

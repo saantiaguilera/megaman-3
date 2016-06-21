@@ -11,7 +11,6 @@ private:
 
 public:
   ReceivedMapEvent(std::string mapJson) : mapJson(mapJson) {
-    std::cout << "ReceivedMapEvent Map JSON:: " << mapJson << std::endl;
   }
 
   virtual ~ReceivedMapEvent() {

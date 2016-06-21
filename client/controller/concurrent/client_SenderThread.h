@@ -33,8 +33,6 @@ private:
 
 protected:
   void send(Serializer *serializer) {
-    std::cout << "Sending::id: " << serializer->getMessageCode() << " data: " << serializer->getSerialized() << std::endl;
-
     int code = htonl(serializer->getMessageCode());
     socket->send((char*) &code, sizeof(int));
 
@@ -74,9 +72,6 @@ protected:
           case EVENT_STOP:
             stop = true;
             break;
-
-          default:
-            std::cout << "Event not recognized by sender thread..." << std::endl;
         }
 
         if (serializer) {
@@ -88,8 +83,6 @@ protected:
         handlerLooper->pop();
       }
     }
-
-    std::cout << "SenderThread::finished running" << std::endl;
   }
 
 public:
