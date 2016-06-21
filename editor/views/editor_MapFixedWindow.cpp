@@ -8,6 +8,7 @@
 #include "editor_MapFixedWindow.h"
 
 #include <iostream>
+#include <sstream>
 #include "../../common/common_MapConstants.h"
 
 //Constructor
@@ -58,7 +59,16 @@ void MapFixedWindow::removeBackgroundImages() {
 }
 
 void MapFixedWindow::cropMapBackground() {
-	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(mapView->getBackgroundImage());
+	std::string path = mapView->getBackgroundImage();
+	path = path.substr(0, path.length() - 4);
+
+	path += "editor.png";
+	// std::stringstream ss;
+	// ss << mapView->getBackgroundImage();
+	// std::string path = ss.str();
+
+
+	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(path);
 	Glib::RefPtr<Gdk::Pixbuf> cropTemp = Gdk::Pixbuf::create_subpixbuf(temp, 0, 0, mapWidth() + TERRAIN_TILE_SIZE, mapHeight() + TERRAIN_TILE_SIZE);
 
 	backgroundImage->set(cropTemp);
@@ -167,4 +177,10 @@ int MapFixedWindow::mapHeight() {
 	}
 
 	return maxHeight;
+}
+
+void MapFixedWindow::setBackgroundImage(std::string aBackgroundImagePath) {
+	mapView->setBackgroundImage(aBackgroundImagePath);
+
+	cropMapBackground();
 }

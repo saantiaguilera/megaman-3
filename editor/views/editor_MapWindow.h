@@ -76,6 +76,13 @@ protected:
 
     Gtk::Button *bossButton;
 
+    //Backgrounds
+    Gtk::Button *background1Button;
+    Gtk::Button *background2Button;
+    Gtk::Button *background3Button;
+    Gtk::Button *background4Button;
+
+
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
 
@@ -118,6 +125,12 @@ protected:
     void smallAmmoButtonWasTapped();
 
     void bossButtonWasTapped();
+
+    //Backgrounds
+    void background1ButtonWasTapped();
+    void background2ButtonWasTapped();
+    void background3ButtonWasTapped();
+    void background4ButtonWasTapped();
 
     //Size
     void sizeDidModify();

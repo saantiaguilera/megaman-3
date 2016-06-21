@@ -2,10 +2,76 @@
     "map": {
         "name": "Bombman",
         "filename": "bosschamber3.json",
-        "height": 1000,
-        "width": 1000,
+        "height": 420,
+        "width": 1190,
         "id": 8,
+        "background_image": "res/drawable/background/background1.png",
         "obstacles": [
-         ]
+            {
+                "x": 385,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 455,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 525,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 595,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 665,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 735,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 805,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 945,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 1085,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 1225,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 875,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 1015,
+                "y": 455,
+                "type": 2
+            },
+            {
+                "x": 1155,
+                "y": 455,
+                "type": 2
+            }
+        ]
     }
 }

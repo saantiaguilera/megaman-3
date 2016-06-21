@@ -5,14 +5,10 @@
         "height": 2240,
         "width": 1610,
         "id": 2,
+        "background_image": "res/drawable/background/background4.png",
         "obstacles": [
             {
                 "x": 315,
-                "y": 245,
-                "type": 1
-            },
-            {
-                "x": 385,
                 "y": 245,
                 "type": 1
             },
@@ -945,6 +941,11 @@
                 "x": 245,
                 "y": 175,
                 "type": 4
+            },
+            {
+                "x": 385,
+                "y": 245,
+                "type": 1
             }
         ]
     }

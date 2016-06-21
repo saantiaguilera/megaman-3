@@ -2,7 +2,7 @@
     "map": {
         "name": "Bombman",
         "filename": "level5.json",
-        "height": 560,
+        "height": 280,
         "width": 1750,
         "id": 5,
         "background_image": "res/drawable/background/background1.png",
@@ -171,16 +171,6 @@
                 "x": 35,
                 "y": 105,
                 "type": 1
-            },
-            {
-                "x": 175,
-                "y": 595,
-                "type": 13
-            },
-            {
-                "x": 245,
-                "y": 595,
-                "type": 13
             },
             {
                 "x": 175,

@@ -52,6 +52,11 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     builder->get_widget("bigammobutton", bigAmmoButton);
     builder->get_widget("smallammobutton", smallAmmoButton);
 
+    builder->get_widget("background1button", background1Button);
+    builder->get_widget("background2button", background2Button);
+    builder->get_widget("background3button", background3Button);
+    builder->get_widget("background4button", background4Button);
+
     //Window Buttons
     builder->get_widget("scrolledwindow", scrolledWindow);
     builder->get_widget_derived("fixedwindow", fixedWindow);
@@ -91,6 +96,10 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
     smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
     bossButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bossButtonWasTapped));
+    background1Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::background1ButtonWasTapped));
+    background2Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::background2ButtonWasTapped));
+    background3Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::background3ButtonWasTapped));
+    background4Button->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::background4ButtonWasTapped));
 
 
     int minHeight = 0;
@@ -382,3 +391,20 @@ void MapWindow::setBossType(ObstacleViewType aBossType, bool isBossEditable) {
 
 	bossButton->set_image(*image);
 }
+
+void MapWindow::background1ButtonWasTapped() {
+	fixedWindow->setBackgroundImage("res/drawable/background/background1.png");
+}
+
+void MapWindow::background2ButtonWasTapped() {
+	fixedWindow->setBackgroundImage("res/drawable/background/background2.png");
+}
+
+void MapWindow::background3ButtonWasTapped() {
+	fixedWindow->setBackgroundImage("res/drawable/background/background3.png");
+}
+
+void MapWindow::background4ButtonWasTapped() {
+	fixedWindow->setBackgroundImage("res/drawable/background/background4.png");
+}
+

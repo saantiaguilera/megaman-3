@@ -24,6 +24,7 @@ public:
 
 	void removeAllChildViews();
 	void removeObstacleContainerView(ObstacleViewContainer *obstacleViewContainer);
+	void setBackgroundImage(std::string aBackgroundImagePath);
 
 	ObstacleViewContainer *obstacleViewContainerWithPosition(int aX, int aY);
 
