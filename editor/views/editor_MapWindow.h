@@ -28,9 +28,11 @@ public:
     //Setters
     void setMapView(MapView *aMapView);
     void setDelegate(EditorController *aDelegate);
-    void setBossType(ObstacleViewType aBossType);
+    void setBossType(ObstacleViewType aBossType, bool isBossEditable);
 
     void saveMap();
+    void saveMapWithBossType(ObstacleViewType bossType);
+
     void back();
 
 protected:
@@ -134,6 +136,7 @@ private:
 	void resizeFixView();
 
   ObstacleViewType bossType;
+  bool bossEdition;
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

@@ -10,6 +10,8 @@
 
 #include <gtkmm.h>
 
+#include "../../../common/common_MapConstants.h"
+
 class SaveDelegate;
 class BackDelegate;
 class MapWindow;
@@ -25,6 +27,7 @@ public:
 
 	//Actions
 	void showSaveDialog();
+	void showSaveDialogWithBossType(ObstacleViewType aBossType);
 	void showBackDialog();
 
 private:
@@ -32,6 +35,7 @@ private:
 	BackDelegate *backDelegate;
 
 	MapWindow *presentingWindow;
+	ObstacleViewType bossType = ObstacleViewTypeMegaman;
 
 };
 

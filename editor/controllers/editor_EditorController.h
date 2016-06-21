@@ -21,7 +21,7 @@ public:
 	void presentMainWindowSavingMap(MapView *map);
 	void presentMainWindowWithoutSavingMap();
 	void presentMapWindowWithMap(MapView *map);
-	void presentBossViewWithBossType(ObstacleViewType bossType);
+	void presentBossViewWithBossType(MapView *map, ObstacleViewType bossType);
 
 private:
 	Glib::RefPtr<Gtk::Builder> builder;

@@ -59,32 +59,56 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 
 	std::cout<<"map id " <<map->getId()<< std::endl;
 
+	if (map->getId() == 1) {
+		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
+		mapWindow->setBossType(ObstacleViewTypeFireman, false);
+	} else
+
+	if (map->getId() == 2) {
+		mapWindow->setBossType(ObstacleViewTypeMagnetman, false);
+	} else
+
+	if (map->getId() == 3) {
+		mapWindow->setBossType(ObstacleViewTypeRingman, false);
+	} else
+
+	if (map->getId() == 4) {
+		mapWindow->setBossType(ObstacleViewTypeSparkman, false);
+	} else
+
+	if (map->getId() == 5) {
+		mapWindow->setBossType(ObstacleViewTypeBombman, false);
+	} else
+
 	if (map->getId() == 6) {
 		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
-		mapWindow->setBossType(ObstacleViewTypeFireman);
+		mapWindow->setBossType(ObstacleViewTypeFireman, true);
 	} else
 
 	if (map->getId() == 7) {
-		mapWindow->setBossType(ObstacleViewTypeMagnetman);
+		mapWindow->setBossType(ObstacleViewTypeMagnetman, true);
 	} else
 
 	if (map->getId() == 8) {
-		mapWindow->setBossType(ObstacleViewTypeRingman);
+		mapWindow->setBossType(ObstacleViewTypeRingman, true);
 	} else
 
 	if (map->getId() == 9) {
-		mapWindow->setBossType(ObstacleViewTypeSparkman);
+		mapWindow->setBossType(ObstacleViewTypeSparkman, true);
 	} else
 
 	if (map->getId() == 10) {
-		mapWindow->setBossType(ObstacleViewTypeBombman);
-	} else mapWindow->setBossType(ObstacleViewTypeMegaman);
+		mapWindow->setBossType(ObstacleViewTypeBombman, true);
+	}
 
 }
 
-void EditorController::presentBossViewWithBossType(ObstacleViewType bossType) {
-	std::cout<<"Dis is my bosstype : "<<bossType<<std::endl;
+void EditorController::presentBossViewWithBossType(MapView *map, ObstacleViewType bossType) {
+	translateNonObstacleToCenter(map);
+	MapViewJsonWriter().writeMapInFilenname(map, map->getFilename());
+	showMainWindow();
 
+	mainWindow->presentMapWithBossType(bossType);
 }
 
 

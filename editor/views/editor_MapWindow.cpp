@@ -120,6 +120,20 @@ void MapWindow::saveMap() {
 	delegate->presentMainWindowSavingMap(savedMap);
 }
 
+void MapWindow::saveMapWithBossType(ObstacleViewType bossType) {
+	std::cout<<"save main with boss type"<<std::endl;
+	MapView *savedMap = fixedWindow->saveMapView();
+	std::cout<<"save main with boss type"<<std::endl;
+
+	savedMap->setHeight(fixedWindow->mapHeight());
+	savedMap->setWidth(fixedWindow->mapWidth());
+	std::cout<<"save main with boss type"<<std::endl;
+
+	fixedWindow->removeAllChildViews();
+	std::cout<<"will present boss chamber"<<std::endl;
+	delegate->presentBossViewWithBossType(savedMap, bossType);
+}
+
 void MapWindow::back() {
 	fixedWindow->removeAllChildViews();
 	delegate->presentMainWindowWithoutSavingMap();
@@ -220,8 +234,14 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 }
 
 void MapWindow::bossButtonWasTapped() {
-	if (bossType != 0)
+	if (bossEdition) {
 		addDraggingImageWithType(bossType);
+	} else {
+
+		std::cout<<"will present dialog" << std::endl;
+//		DialogManager().showSaveDialogWithBossType(bossType);
+	}
+
 }
 
 //Events
@@ -353,14 +373,10 @@ void MapWindow::setDelegate(EditorController *aDelegate) {
 	delegate = aDelegate;
 }
 
-void MapWindow::setBossType(ObstacleViewType aBossType) {
+void MapWindow::setBossType(ObstacleViewType aBossType, bool isBossEditable) {
 	bossType = aBossType;
-
+	bossEdition = isBossEditable;
 	// Megaman is not a boss (this is awful but i am having lot of trouble)
-	if (aBossType == ObstacleViewTypeMegaman) {
-		bossButton->hide();
-		return;
-	}
 
 	bossButton->show();
 
