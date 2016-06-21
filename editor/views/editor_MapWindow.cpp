@@ -58,6 +58,7 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     override_background_color(Gdk::RGBA("gray"));
     builder->get_widget("eventbox", eventBox);
 
+    builder->get_widget("bossbutton", bossButton);
 
     //Add scrolling effect to event box
     eventBox->add_events(Gdk::BUTTON_PRESS_MASK |
@@ -89,6 +90,8 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     energyBigButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::energyBigButtonWasTapped));
     bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
     smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
+    bossButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bossButtonWasTapped));
+
 
     int minHeight = 0;
     int minWidth = 0;
@@ -115,6 +118,20 @@ void MapWindow::saveMap() {
 	fixedWindow->removeAllChildViews();
 
 	delegate->presentMainWindowSavingMap(savedMap);
+}
+
+void MapWindow::saveMapWithBossType(ObstacleViewType bossType) {
+	std::cout<<"save main with boss type"<<std::endl;
+	MapView *savedMap = fixedWindow->saveMapView();
+	std::cout<<"save main with boss type"<<std::endl;
+
+	savedMap->setHeight(fixedWindow->mapHeight());
+	savedMap->setWidth(fixedWindow->mapWidth());
+	std::cout<<"save main with boss type"<<std::endl;
+
+	fixedWindow->removeAllChildViews();
+	std::cout<<"will present boss chamber"<<std::endl;
+	delegate->presentBossViewWithBossType(savedMap, bossType);
 }
 
 void MapWindow::back() {
@@ -214,6 +231,17 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 	draggingImage = draggingImageContainer->getImage();
 	draggingImage->hide();
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
+}
+
+void MapWindow::bossButtonWasTapped() {
+	if (bossEdition) {
+		addDraggingImageWithType(bossType);
+	} else {
+
+		std::cout<<"will present dialog" << std::endl;
+//		DialogManager().showSaveDialogWithBossType(bossType);
+	}
+
 }
 
 //Events
@@ -343,4 +371,16 @@ void MapWindow::setMapView(MapView *aMapView) {
 
 void MapWindow::setDelegate(EditorController *aDelegate) {
 	delegate = aDelegate;
+}
+
+void MapWindow::setBossType(ObstacleViewType aBossType, bool isBossEditable) {
+	bossType = aBossType;
+	bossEdition = isBossEditable;
+	// Megaman is not a boss (this is awful but i am having lot of trouble)
+
+	bossButton->show();
+
+	Gtk::Image *image = new Gtk::Image(MapConstants().getImagePathWithObstacleViewType(bossType));
+
+	bossButton->set_image(*image);
 }

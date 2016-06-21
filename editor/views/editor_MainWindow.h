@@ -9,6 +9,9 @@
 #define EDITOR_VIEWS_EDITOR_MAINWINDOW_H_
 
 #include <gtkmm.h>
+
+#include "../../common/common_MapConstants.h"
+
 class EditorController;
 
 class MainWindow : public Gtk::Window {
@@ -22,6 +25,9 @@ public:
 
 	//Destructors
 	virtual ~MainWindow();
+
+	void presentMapWithBossType(ObstacleViewType aBossType);
+
 protected:
 	//Needed to upload xml from GLADE
     Glib::RefPtr<Gtk::Builder> builder;

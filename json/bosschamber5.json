@@ -4,7 +4,7 @@
         "filename": "bosschamber5.json",
         "height": 420,
         "width": 910,
-        "id": 6,
+        "id": 10,
         "background_image": "res/drawable/background/background1.png",
         "obstacles": [
             {

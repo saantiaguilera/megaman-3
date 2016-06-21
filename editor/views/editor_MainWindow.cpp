@@ -90,3 +90,8 @@ void MainWindow::presentMapWindowWithMapName(std::string mapName) {
 
 	delegate->presentMapWindowWithMap(map);
 }
+
+void MainWindow::presentMapWithBossType(ObstacleViewType aBossType) {
+	std::cout<<aBossType<<std::endl;
+
+}

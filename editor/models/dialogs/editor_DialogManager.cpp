@@ -39,9 +39,19 @@ void DialogManager::showSaveDialog() {
 	  int result = dialog.run();
 
 	  if (result == Gtk::RESPONSE_OK) {
-		  presentingWindow->saveMap();
+		  if (bossType == ObstacleViewTypeMegaman) {
+			  presentingWindow->saveMap();
+		  } else {
+			  presentingWindow->saveMapWithBossType(bossType);
+		  }
 	  }
 }
+
+void DialogManager::showSaveDialogWithBossType(ObstacleViewType aBossType) {
+	bossType = aBossType;
+	showSaveDialog();
+}
+
 void DialogManager::showBackDialog() {
 	  Gtk::MessageDialog dialog(*presentingWindow, BACK_DIALOG_PRIMARY_TEXT,
 	          false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);

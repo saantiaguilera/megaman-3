@@ -4,7 +4,7 @@
         "filename": "level5.json",
         "height": 560,
         "width": 1750,
-        "id": 1,
+        "id": 5,
         "background_image": "res/drawable/background/background1.png",
         "obstacles": [
             {

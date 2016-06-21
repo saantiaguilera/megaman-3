@@ -11,6 +11,7 @@
 #include "../views/editor_MainWindow.h"
 #include <iostream>
 #include <exception>
+#include <vector>
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
 #include "../../common/common_MapViewJsonWriter.h"
@@ -55,10 +56,59 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 	showMapWindow();
 	translateNonObstacleToCorner(map);
 	mapWindow->setMapView(map);
+
+	std::cout<<"map id " <<map->getId()<< std::endl;
+
+	if (map->getId() == 1) {
+		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
+		mapWindow->setBossType(ObstacleViewTypeFireman, false);
+	} else
+
+	if (map->getId() == 2) {
+		mapWindow->setBossType(ObstacleViewTypeMagnetman, false);
+	} else
+
+	if (map->getId() == 3) {
+		mapWindow->setBossType(ObstacleViewTypeRingman, false);
+	} else
+
+	if (map->getId() == 4) {
+		mapWindow->setBossType(ObstacleViewTypeSparkman, false);
+	} else
+
+	if (map->getId() == 5) {
+		mapWindow->setBossType(ObstacleViewTypeBombman, false);
+	} else
+
+	if (map->getId() == 6) {
+		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
+		mapWindow->setBossType(ObstacleViewTypeFireman, true);
+	} else
+
+	if (map->getId() == 7) {
+		mapWindow->setBossType(ObstacleViewTypeMagnetman, true);
+	} else
+
+	if (map->getId() == 8) {
+		mapWindow->setBossType(ObstacleViewTypeRingman, true);
+	} else
+
+	if (map->getId() == 9) {
+		mapWindow->setBossType(ObstacleViewTypeSparkman, true);
+	} else
+
+	if (map->getId() == 10) {
+		mapWindow->setBossType(ObstacleViewTypeBombman, true);
+	}
+
 }
 
-void EditorController::presentMapWindowWithName(std::string filename) {
-	std::cout<<"filename : "<<filename;
+void EditorController::presentBossViewWithBossType(MapView *map, ObstacleViewType bossType) {
+	translateNonObstacleToCenter(map);
+	MapViewJsonWriter().writeMapInFilenname(map, map->getFilename());
+	showMainWindow();
+
+	mainWindow->presentMapWithBossType(bossType);
 }
 
 
@@ -108,12 +158,4 @@ void EditorController::translateNonObstacleToCorner(MapView *mapView) {
 
 bool EditorController::centerObstacleViewType(ObstacleViewType type) {
 	return true;
-
-	bool isNotBlock = !(type == ObstacleViewTypeBlock);
-	bool isNotLadder = !(type == ObstacleViewTypeLadder);
-	bool isNotNeedle = !(type == ObstacleViewTypeNeedle);
-	bool isNotPrecipice = !(type == ObstacleViewTypePrecipice);
-	bool isNotBossChamber = !(type == ObstacleViewTypeBossChamberGate);
-
-	return isNotBlock && isNotLadder && isNotNeedle && isNotPrecipice && isNotBossChamber;
 }
