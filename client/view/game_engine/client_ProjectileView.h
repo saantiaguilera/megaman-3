@@ -34,30 +34,30 @@ public:
     switch (type) {
       case ObstacleViewTypeBomb:
         path += "bombman/";
-        SoundController::play(SDL2pp::Chunk("./res/sound/bullets/create/bomb.wav"));
+        SoundController::play(("./res/sound/bullets/create/bomb.wav"));
         break;
       case ObstacleViewTypeFire:
         path += "fireman/";
         size = SPRITE_COUNT_EXTENDED;
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/fire.wav"));
+        SoundController::play(("res/sound/bullets/create/fire.wav"));
         break;
       case ObstacleViewTypeMagnet:
         path += "magnetman/";
         size = SPRITE_COUNT_EXTENDED;
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/magnet.wav"));
+        SoundController::play(("res/sound/bullets/create/magnet.wav"));
         break;
       case ObstacleViewTypeRing:
         path += "ringman/";
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/ring.wav"));
+        SoundController::play(("res/sound/bullets/create/ring.wav"));
         break;
       case ObstacleViewTypeSpark:
         path += "sparkman/";
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/spark.wav"));
+        SoundController::play(("res/sound/bullets/create/spark.wav"));
         break;
       case ObstacleViewTypePlasma:
         path += "normals/";
         size = SPRITE_COUNT_EXTENDED;
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/create/normal.wav"));
+        SoundController::play(("res/sound/bullets/create/normal.wav"));
         break;
     }
 
@@ -85,22 +85,22 @@ public:
   virtual ~ProjectileView() {
     switch (projectileType) {
       case ObstacleViewTypeBomb:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/bomb.wav"));
+        SoundController::play(("res/sound/bullets/destroy/bomb.wav"));
         break;
       case ObstacleViewTypeFire:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/fire.wav"));
+        SoundController::play(("res/sound/bullets/destroy/fire.wav"));
         break;
       case ObstacleViewTypeMagnet:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/magnet.wav"));
+        SoundController::play(("res/sound/bullets/destroy/magnet.wav"));
         break;
       case ObstacleViewTypeRing:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/ring.wav"));
+        SoundController::play(("res/sound/bullets/destroy/ring.wav"));
         break;
       case ObstacleViewTypeSpark:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/spark.wav"));
+        SoundController::play(("res/sound/bullets/destroy/spark.wav"));
         break;
       case ObstacleViewTypePlasma:
-        SoundController::play(SDL2pp::Chunk("res/sound/bullets/destroy/normal.wav"));
+        SoundController::play(("res/sound/bullets/destroy/normal.wav"));
         break;
     }
 

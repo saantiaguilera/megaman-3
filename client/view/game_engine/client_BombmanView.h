@@ -22,7 +22,7 @@ public:
   }
 
   virtual ~BombmanView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/deaths/boss.wav"));
+    SoundController::play(("res/sound/deaths/boss.wav"));
     for (int i = 0 ; i < BOMBMAN_SPRITE_COUNT ; ++i)
       delete textureMap[i];
   }

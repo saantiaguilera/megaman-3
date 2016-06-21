@@ -17,7 +17,7 @@ public:
   }
 
   virtual ~BigAmmoView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/powerups/ammoup.wav"));
+    SoundController::play(("res/sound/powerups/ammoup.wav"));
     delete texture;
   }
 

@@ -17,7 +17,7 @@ public:
   }
 
   virtual ~LifeView() {
-    SoundController::play(SDL2pp::Chunk("res/sound/powerups/lifeup.wav"));
+    SoundController::play(("res/sound/powerups/lifeup.wav"));
     delete texture;
   }
 

@@ -47,7 +47,7 @@ MegamanView::MegamanView(unsigned int id, SDL2pp::Renderer *renderer) : Animated
 }
 
 MegamanView::~MegamanView() {
-  SoundController::play(SDL2pp::Chunk("res/sound/deaths/megaman_die.wav"));
+  SoundController::play(("res/sound/deaths/megaman_die.wav"));
   for (int i = 0 ; i < MEGAMAN_SPRITE_COUNT ; ++i)
     delete textureMap[i];
 }
