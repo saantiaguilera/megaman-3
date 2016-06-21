@@ -10,6 +10,7 @@
 #include "client_FiremanView.h"
 #include "client_JumpingSniperView.h"
 #include "client_MagnetmanView.h"
+#include "client_BombmanView.h"
 #include "client_MetView.h"
 #include "client_RingmanView.h"
 #include "client_SniperView.h"
@@ -81,6 +82,9 @@ class AnimatedFactoryView {
           break;
         case ObstacleViewTypeSparkman:
           view = new SparkmanView(id, renderer);
+          break;
+        case ObstacleViewTypeBombman:
+          view = new BombmanView(id, renderer);
           break;
         case ObstacleViewTypeBomb:
         case ObstacleViewTypeFire:
