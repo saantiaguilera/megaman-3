@@ -57,10 +57,7 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 	translateNonObstacleToCorner(map);
 	mapWindow->setMapView(map);
 
-	std::cout<<"map id " <<map->getId()<< std::endl;
-
 	if (map->getId() == 1) {
-		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
 		mapWindow->setBossType(ObstacleViewTypeFireman, false);
 	} else
 
@@ -81,7 +78,6 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 	} else
 
 	if (map->getId() == 6) {
-		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
 		mapWindow->setBossType(ObstacleViewTypeFireman, true);
 	} else
 

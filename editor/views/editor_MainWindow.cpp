@@ -106,6 +106,4 @@ void MainWindow::presentMapWindowWithMapName(std::string mapName) {
 }
 
 void MainWindow::presentMapWithBossType(ObstacleViewType aBossType) {
-	std::cout<<aBossType<<std::endl;
-
 }

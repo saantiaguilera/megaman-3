@@ -130,16 +130,12 @@ void MapWindow::saveMap() {
 }
 
 void MapWindow::saveMapWithBossType(ObstacleViewType bossType) {
-	std::cout<<"save main with boss type"<<std::endl;
 	MapView *savedMap = fixedWindow->saveMapView();
-	std::cout<<"save main with boss type"<<std::endl;
 
 	savedMap->setHeight(fixedWindow->mapHeight());
 	savedMap->setWidth(fixedWindow->mapWidth());
-	std::cout<<"save main with boss type"<<std::endl;
 
 	fixedWindow->removeAllChildViews();
-	std::cout<<"will present boss chamber"<<std::endl;
 	delegate->presentBossViewWithBossType(savedMap, bossType);
 }
 
@@ -150,8 +146,8 @@ void MapWindow::back() {
 
 void MapWindow::backButtonWasTapped() {
 	DialogManager(this).showBackDialog();
-}
 
+}
 //Add Buttons
 void MapWindow::blockButtonWasTapped() {
 	addDraggingImageWithType(ObstacleViewTypeBlock);
@@ -253,7 +249,6 @@ void MapWindow::bossButtonWasTapped() {
 
 //Events
 bool MapWindow::on_button_press_event(GdkEventButton *event) {
-  std::cout << "Button pressed x : "  << event->x << ", : "<< event->y <<std::endl;
 //		Have to delete tile
 	if (event->button == kRightClickButton) {
 //		Decide whether to remove while moving or static move
@@ -407,4 +402,3 @@ void MapWindow::background3ButtonWasTapped() {
 void MapWindow::background4ButtonWasTapped() {
 	fixedWindow->setBackgroundImage("res/drawable/background/background4.png");
 }
-
