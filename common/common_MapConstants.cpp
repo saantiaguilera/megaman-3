@@ -31,6 +31,13 @@ MapConstants::MapConstants() {
 	imageMap[ObstacleViewTypeSmallEnergyCapsule] = "./res/drawable/powerups/energy/energy.png";
 	imageMap[ObstacleViewTypeBigAmmoPack] = "./res/drawable/powerups/ammo/big_ammo.png";
 	imageMap[ObstacleViewTypeSmallAmmoPack] = "./res/drawable/powerups/ammo/small_ammo.png";
+
+	//Bosses
+	imageMap[ObstacleViewTypeFireman] = "./res/drawable/sprites/sprite_fireman/sprite_fireman1.png";
+	imageMap[ObstacleViewTypeMagnetman] = "./res/drawable/sprites/sprite_magnetman/sprite_magnetman1.png";
+	imageMap[ObstacleViewTypeRingman] = "./res/drawable/sprites/sprite_ringman/sprite_ringman1.png";
+	imageMap[ObstacleViewTypeSparkman] = "./res/drawable/sprites/sprite_sparkman/sprite_sparkman1.png";
+	imageMap[ObstacleViewTypeBombman] = "./res/drawable/sprites/sprite_bombman/sprite_bombman1.png";
 }
 
 MapConstants::~MapConstants() {}

@@ -28,6 +28,7 @@ public:
     //Setters
     void setMapView(MapView *aMapView);
     void setDelegate(EditorController *aDelegate);
+    void setBossType(ObstacleViewType aBossType);
 
     void saveMap();
     void back();
@@ -71,6 +72,8 @@ protected:
     Gtk::Button *bigAmmoButton;
     Gtk::Button *smallAmmoButton;
 
+    Gtk::Button *bossButton;
+
     std::vector<Gtk::Button *> *addButtonVector;
     void addButtonWithName(Gtk::Button *aButton, std::string aName);
 
@@ -112,22 +115,25 @@ protected:
     void bigAmmoButtonWasTapped();
     void smallAmmoButtonWasTapped();
 
+    void bossButtonWasTapped();
+
     //Size
     void sizeDidModify();
 
 private:
-    bool draggingImageIsMoving = false;
-    void draggingBegin();
-    void draggingEnd();
+  bool draggingImageIsMoving = false;
+  void draggingBegin();
+  void draggingEnd();
 
-    void addDraggingImageWithType(ObstacleViewType obstacleViewType);
-    void dropDraggingImage(int aX, int aY);
-    void dragImage(int aX, int aY);
+  void addDraggingImageWithType(ObstacleViewType obstacleViewType);
+  void dropDraggingImage(int aX, int aY);
+  void dragImage(int aX, int aY);
 
-    void deleteDraggingImage();
+  void deleteDraggingImage();
 	void deleteImage(int aX, int aY);
 	void resizeFixView();
 
+  ObstacleViewType bossType;
 };
 
 #endif /* EDITOR_VIEWS_EDITOR_MAPWINDOW_H_ */

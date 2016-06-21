@@ -58,6 +58,7 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     override_background_color(Gdk::RGBA("gray"));
     builder->get_widget("eventbox", eventBox);
 
+    builder->get_widget("bossbutton", bossButton);
 
     //Add scrolling effect to event box
     eventBox->add_events(Gdk::BUTTON_PRESS_MASK |
@@ -89,6 +90,8 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
     energyBigButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::energyBigButtonWasTapped));
     bigAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bigAmmoButtonWasTapped));
     smallAmmoButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::smallAmmoButtonWasTapped));
+    bossButton->signal_clicked().connect(sigc::mem_fun(* this, &MapWindow::bossButtonWasTapped));
+
 
     int minHeight = 0;
     int minWidth = 0;
@@ -214,6 +217,11 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 	draggingImage = draggingImageContainer->getImage();
 	draggingImage->hide();
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
+}
+
+void MapWindow::bossButtonWasTapped() {
+	if (bossType != 0)
+		addDraggingImageWithType(bossType);
 }
 
 //Events
@@ -343,4 +351,20 @@ void MapWindow::setMapView(MapView *aMapView) {
 
 void MapWindow::setDelegate(EditorController *aDelegate) {
 	delegate = aDelegate;
+}
+
+void MapWindow::setBossType(ObstacleViewType aBossType) {
+	bossType = aBossType;
+
+	// Megaman is not a boss (this is awful but i am having lot of trouble)
+	if (aBossType == ObstacleViewTypeMegaman) {
+		bossButton->hide();
+		return;
+	}
+
+	bossButton->show();
+
+	Gtk::Image *image = new Gtk::Image(MapConstants().getImagePathWithObstacleViewType(bossType));
+
+	bossButton->set_image(*image);
 }

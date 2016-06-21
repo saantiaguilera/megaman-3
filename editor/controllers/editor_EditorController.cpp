@@ -11,6 +11,7 @@
 #include "../views/editor_MainWindow.h"
 #include <iostream>
 #include <exception>
+#include <vector>
 #include "../../common/common_MapViewParser.h"
 #include "../../common/common_MapView.h"
 #include "../../common/common_MapViewJsonWriter.h"
@@ -55,10 +56,35 @@ void EditorController::presentMapWindowWithMap(MapView *map) {
 	showMapWindow();
 	translateNonObstacleToCorner(map);
 	mapWindow->setMapView(map);
+
+	std::cout<<"map id " <<map->getId()<< std::endl;
+
+	if (map->getId() == 6) {
+		std::cout<<"ObstacleViewTtpe "<< ObstacleViewTypeFireman;
+		mapWindow->setBossType(ObstacleViewTypeFireman);
+	} else
+
+	if (map->getId() == 7) {
+		mapWindow->setBossType(ObstacleViewTypeMagnetman);
+	} else
+
+	if (map->getId() == 8) {
+		mapWindow->setBossType(ObstacleViewTypeRingman);
+	} else
+
+	if (map->getId() == 9) {
+		mapWindow->setBossType(ObstacleViewTypeSparkman);
+	} else
+
+	if (map->getId() == 10) {
+		mapWindow->setBossType(ObstacleViewTypeBombman);
+	} else mapWindow->setBossType(ObstacleViewTypeMegaman);
+
 }
 
-void EditorController::presentMapWindowWithName(std::string filename) {
-	std::cout<<"filename : "<<filename;
+void EditorController::presentBossViewWithBossType(ObstacleViewType bossType) {
+	std::cout<<"Dis is my bosstype : "<<bossType<<std::endl;
+
 }
 
 
@@ -108,12 +134,4 @@ void EditorController::translateNonObstacleToCorner(MapView *mapView) {
 
 bool EditorController::centerObstacleViewType(ObstacleViewType type) {
 	return true;
-
-	bool isNotBlock = !(type == ObstacleViewTypeBlock);
-	bool isNotLadder = !(type == ObstacleViewTypeLadder);
-	bool isNotNeedle = !(type == ObstacleViewTypeNeedle);
-	bool isNotPrecipice = !(type == ObstacleViewTypePrecipice);
-	bool isNotBossChamber = !(type == ObstacleViewTypeBossChamberGate);
-
-	return isNotBlock && isNotLadder && isNotNeedle && isNotPrecipice && isNotBossChamber;
 }
