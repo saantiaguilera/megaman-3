@@ -19,7 +19,7 @@
 #include "../../weapons/server_Weapon.h"
 #include "server_Megaman.h"
 
-#define ATTACK_INTERVAL_TICKS 5
+#define ATTACK_INTERVAL_TICKS 100
 
 Bombman::Bombman(float32 x, float32 y) : Humanoid(BOMBMAN_INITIAL_HP, x, y) {
 	currentWeapon = new BombCannon();
