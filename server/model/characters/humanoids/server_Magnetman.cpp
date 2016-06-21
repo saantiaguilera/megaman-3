@@ -18,7 +18,7 @@
 #include "../../weapons/server_Weapon.h"
 #include "server_Megaman.h"
 
-#define ATTACK_INTERVAL_TICKS 6
+#define ATTACK_INTERVAL_TICKS 100
 
 MagnetMan::MagnetMan(float32 x, float32 y) : Humanoid(MAGNETMAN_INITIAL_HP, x, y) {
 	currentWeapon = new MagnetCannon();
