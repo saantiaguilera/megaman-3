@@ -20,7 +20,7 @@ chmod u+x install.sh #Or the desired level of permission
 
 ##RUN
 ```Bash
-Server: ./mserver port config_filename.json
+Server: ./mserver port config.json
 Client: ./mclient
 Editor: ./meditor
 ```
