@@ -7,9 +7,9 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define N_REPETITIONS 3
+#define N_REPETITIONS 2
 
-#define MAX_STEP_FOR_IDLE 4
+#define MAX_STEP_FOR_IDLE 2
 
 enum ORIENTATION {
   IDLE,
