@@ -42,7 +42,7 @@ protected:
     //Delegate
     EditorController *delegate;
 
-    Gtk::Image *draggingImage;
+    Gtk::Image *draggingImage = NULL;
     ObstacleViewContainer *draggingImageContainer;
 
     //Navigation Buttons
