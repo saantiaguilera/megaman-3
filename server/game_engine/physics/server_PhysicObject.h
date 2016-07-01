@@ -58,7 +58,8 @@ public:
 		MS_RIGHT,
 		MS_DOWN,
 		MS_JUMP,
-		MS_STOP
+		MS_STOP,
+		MS_STOP_JUMPING
 		};
 	enum ORIENTATION {
 		OR_LEFT,
