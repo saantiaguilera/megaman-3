@@ -54,7 +54,7 @@ public:
 class GameView : public Gtk::Window {
 private:
   OnKeyPressListener *keyPressListener = NULL;
-  static OnMyOwnViewMovementListener *viewMovementListener;
+  OnMyOwnViewMovementListener *viewMovementListener = NULL;
 
   Gtk::Socket *socket = NULL;
 
@@ -71,17 +71,18 @@ private:
 
   SoundController * soundController = NULL;
 
-  static Mutex * mutex;
+  Mutex mutex;
 
-  static AnimatedView * myView;
-  static unsigned int myId;
+  AnimatedView * myView = NULL;
+  unsigned int myId = -1;
 
-  static AnimatedFactoryView *factoryView;
-  static std::vector<AnimatedView*> animatedViews;
+  AnimatedFactoryView *factoryView = NULL;
+  std::vector<AnimatedView*> animatedViews;
 
-  static Point massCenter;
-  static bool massCenterCouldHaveChanged;
-  static void refreshMassCenter();
+  Point massCenter;
+  bool massCenterCouldHaveChanged;
+
+  void refreshMassCenter();
 
   /**
    * This method should be in charge of drawing everything
@@ -107,7 +108,6 @@ private:
   bool on_key_release_event(GdkEventKey* event) override;
 
   void resetAnimations();
-  void getDesktopResolution(int& horizontal, int& vertical);
 
 public:
   GameView();
@@ -115,12 +115,10 @@ public:
 
   void loadMapFromAsset(MapView *mapView);
 
-  //THIS IS HELLA AWFUL M8
-  //TODO Due to time its gonna be static. Do it nice.
-  static void addViewFromJSON(std::string json);
-  static void removeViewFromJSON(std::string json);
-  static void moveViewFromJSON(std::string json);
-  static bool isRunning();
+  void addViewFromJSON(std::string json);
+  void removeViewFromJSON(std::string json);
+  void moveViewFromJSON(std::string json);
+  bool isRunning();
 
   void onBarChange(BarView bar, int amount);
 

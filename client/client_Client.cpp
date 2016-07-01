@@ -144,6 +144,7 @@ void Client::onFlowToLobby() {
 
 void Client::onFlowToGame() {
   attachController(new GameController(this));
+  receiverThread->setGame(dynamic_cast<GameView*>(currentController->getView()));
 }
 
 bool Client::onMessageReceived() {
