@@ -34,7 +34,7 @@ GameView::GameView() : Gtk::Window() {
 
   mutex = new Mutex();
 
-  set_size_request(SCREEN_SIZE_GAME, SCREEN_SIZE_GAME);
+  set_size_request(SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT);
 
   set_icon_from_file(PATH_IC_LAUNCHER);
   override_background_color(Gdk::RGBA(BACKGROUND_COLOR), Gtk::STATE_FLAG_NORMAL);
@@ -43,7 +43,6 @@ GameView::GameView() : Gtk::Window() {
   massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
-//  socket->set_size_request(SCREEN_SIZE_GAME, SCREEN_SIZE_GAME);
 
   add(*socket);
   show_all();
@@ -335,7 +334,7 @@ bool GameView::onInitSDL(::Window windowId) {
    // Create accelerated video renderer with default driver
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-   renderer->SetLogicalSize(SCREEN_SIZE_GAME, SCREEN_SIZE_GAME);
+   renderer->SetLogicalSize(SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT);
 
    worldView = new WorldView(renderer);
 

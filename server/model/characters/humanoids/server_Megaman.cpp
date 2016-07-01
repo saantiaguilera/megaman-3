@@ -107,6 +107,8 @@ Player* Megaman::getHumanOperator() const {
 
 void Megaman::update() {
 	move(currentMoveState);
+	if (currentMoveState == MS_JUMP)
+		currentMoveState = MS_STOP;
 	--ticksTillVulnerable;
 	if (ticksTillVulnerable == 0) {
 		setVulnerable(true);
