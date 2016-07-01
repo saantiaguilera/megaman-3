@@ -28,7 +28,7 @@ its action in a list.
 and performs the action it has
 */
 
-#define SOCKET_SIZE 700
+#define SCREEN_SIZE_GAME 700
 
 enum BarView {
   BAR_LIFE,

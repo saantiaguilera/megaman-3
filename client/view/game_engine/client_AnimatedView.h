@@ -92,11 +92,11 @@ class AnimatedView : public RenderedView {
       }
 
       Point cameraPoint;
-      cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
-      cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
+      cameraPoint.setX(massCenter.getX() - (renderer->GetLogicalWidth() / 2));
+      cameraPoint.setY(massCenter.getY() - (renderer->GetLogicalHeight() / 2));
 
-      if (futureX >= (cameraPoint.getX()) && futureX <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
-        futureY >= (cameraPoint.getY()) && futureY <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
+      if (futureX >= (cameraPoint.getX()) && futureX <= (cameraPoint.getX() + renderer->GetLogicalWidth()) &&
+        futureY >= (cameraPoint.getY()) && futureY <= (cameraPoint.getY() + renderer->GetLogicalHeight())) {
         renderer->Copy(*getTexture(mOrientation),
           SDL2pp::NullOpt,
           SDL2pp::Point(

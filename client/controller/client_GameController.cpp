@@ -44,16 +44,16 @@ bool GameController::shouldSendKeyMap(int keyMap) {
   switch (keyMap) {
     case KEY_LEFT:
       delta = myView->getX() - massCenter.getX() - TERRAIN_TILE_SIZE;
-      return delta > -SOCKET_SIZE/2;
+      return delta > -SCREEN_SIZE_GAME/2;
     case KEY_RIGHT:
       delta = TERRAIN_TILE_SIZE + myView->getX() - massCenter.getX();
-      return delta < SOCKET_SIZE/2;
+      return delta < SCREEN_SIZE_GAME/2;
     case KEY_JUMP:
       delta = myView->getY() - massCenter.getY() - TERRAIN_TILE_SIZE;
-      return delta > -SOCKET_SIZE/2;
+      return delta > -SCREEN_SIZE_GAME/2;
     case KEY_DOWN:
       delta = TERRAIN_TILE_SIZE + myView->getY() - massCenter.getY();
-      return delta < SOCKET_SIZE/2;
+      return delta < SCREEN_SIZE_GAME/2;
     default:
       return true;
   }
