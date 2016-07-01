@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <!-- interface-local-resource-path /home/santi/Documents/Fiuba/TallerDeProgramacionI/fiuba-taller-I-megaman/res/drawable -->
@@ -257,8 +257,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="ladderbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -272,8 +272,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="blockbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -287,8 +287,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="needlebutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -302,8 +302,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="precipicebutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -317,8 +317,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bosschaimberbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -357,8 +357,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="block1button">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -372,8 +372,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="block2button">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -387,8 +387,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="block3button">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -430,8 +430,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="megamanspawnbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -445,8 +445,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bumpyspawnbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -460,8 +460,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="jumpingsniperspawnbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -475,8 +475,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="metspawnbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -490,8 +490,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="normalsniperspawnbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -533,8 +533,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="lifebutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -548,8 +548,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="energysmallbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -563,8 +563,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="energybigbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -578,8 +578,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bigammobutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -593,8 +593,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="smallammobutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -672,8 +672,8 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="bossbutton">
-                    <property name="width_request">70</property>
-                    <property name="height_request">70</property>
+                    <property name="width_request">50</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -888,8 +888,6 @@ Chamber</property>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -959,8 +957,6 @@ chamber</property>
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">0</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -1030,8 +1026,6 @@ chamber</property>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">2</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -1101,8 +1095,6 @@ chamber</property>
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">2</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
@@ -1168,8 +1160,6 @@ chamber</property>
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">1</property>
-            <property name="width">1</property>
-            <property name="height">1</property>
           </packing>
         </child>
         <child>
