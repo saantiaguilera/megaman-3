@@ -84,7 +84,7 @@ void Megaman::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	int objectType = objectCollidedWith->getObjectType();
 	if (objectType == OT_PROJECTILE || objectType == OT_RING) {
 		Projectile* projectile = (Projectile*) objectCollidedWith;
-		decreaseHp(projectile->getDamage());
+		receiveShotFromProjectile(projectile);
 		Logger::getInstance().log(1,
 				getHumanOperator()->getName() + " received shot, new hp is "
 						+ getHpAsString());
