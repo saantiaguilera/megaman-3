@@ -29,13 +29,15 @@
 
 #include <unistd.h>
 
-#define DELAY_BOSS_CHAMBER_SLEEP_TIME 200 //In ms
+#define DELAY_BOSS_CHAMBER_SLEEP_TIME 600 //In ms
 
 class ReceiverThread : public Thread {
 private:
   ReceiverContract *listener;
   Looper *handlerLooper;
   Socket *socket;
+
+  GameView * gameView = NULL;
 
   void dispatchEvent(Event *event) {
     if (listener) {
@@ -124,27 +126,28 @@ protected:
             if (isAtGame) {
               dispatchEvent(new FlowEvent(FLOW_LOBBY));
               isAtGame = false;
+              gameView = NULL;
             }
             break;
 
           case UPDATE_MOVEMENTS:
             if (isAtGame) {
-              while (!GameView::isRunning()) {}
-              GameView::moveViewFromJSON(json);
+              while (!gameView || !gameView->isRunning()) {}
+              gameView->moveViewFromJSON(json);
             }
             break;
 
           case OBJECT_CREATED:
             if (isAtGame) {
-              while (!GameView::isRunning()) {}
-              GameView::addViewFromJSON(json);
+              while (!gameView || !gameView->isRunning()) {}
+              gameView->addViewFromJSON(json);
             }
             break;
 
           case OBJECT_DESTROYED:
             if (isAtGame) {
-              while (!GameView::isRunning()) {}
-              GameView::removeViewFromJSON(json);
+              while (!gameView || !gameView->isRunning()) {}
+              gameView->removeViewFromJSON(json);
             }
             break;
 
@@ -179,6 +182,10 @@ public:
 
   void setSocket(Socket *socket) {
     this->socket = socket;
+  }
+
+  void setGame(GameView *view) {
+    gameView = view;
   }
 };
 
