@@ -64,7 +64,6 @@ void Character::receiveShotFromProjectile(Projectile* projectile) {
 }
 
 void Character::increaseHP(unsigned int amount) {
-	// TODO: if they have a max hp validate here
 	hp += amount;
 }
 
