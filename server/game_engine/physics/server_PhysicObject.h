@@ -104,6 +104,7 @@ public:
 
 	virtual void incFootContacts() {};
 	virtual void decFootContacts() {};
+	bool isJumping();
 
 private:
 	// Copy constructor

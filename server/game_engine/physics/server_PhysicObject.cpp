@@ -108,3 +108,7 @@ void PhysicObject::setVulnerable(bool vulnerable) {
 	this->vulnerable = vulnerable;
 	ticksTillVulnerable = TICKS_TILL_VULNERABLE_DEFAULT;
 }
+
+bool PhysicObject::isJumping() {
+	return numFootContacts == 0;
+}
