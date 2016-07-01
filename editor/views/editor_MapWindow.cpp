@@ -223,11 +223,7 @@ void MapWindow::smallAmmoButtonWasTapped() {
 }
 
 void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
-  std::cout << "add dragging image" << std::endl;
-
   if (draggingImage != NULL) {
-    std::cout << "dragging image exists" << std::endl;
-
     deleteDraggingImage();
   }
 
