@@ -5,7 +5,7 @@
         "height": 420,
         "width": 910,
         "id": 6,
-        "background_image": "res/drawable/background/background1.png",
+        "background_image": "res/drawable/background/background3.png",
         "obstacles": [
             {
                 "x": 175,
@@ -186,31 +186,6 @@
                 "x": 675,
                 "y": 385,
                 "type": 19
-            },
-            {
-                "x": 455,
-                "y": 385,
-                "type": 0
-            },
-            {
-                "x": 455,
-                "y": 315,
-                "type": 0
-            },
-            {
-                "x": 455,
-                "y": 245,
-                "type": 0
-            },
-            {
-                "x": 455,
-                "y": 175,
-                "type": 0
-            },
-            {
-                "x": 455,
-                "y": 105,
-                "type": 0
             }
         ]
     }
