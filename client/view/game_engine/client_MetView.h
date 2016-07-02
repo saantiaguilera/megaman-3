@@ -7,11 +7,7 @@
 #include "../../controller/client_SoundController.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define MET_SPRITE_COUNT 3
-
-#define SPRITE_MOVEMENT_FIRST 1
-#define SPRITE_MOVEMENT_LAST 2
-#define SPRITE_IDLE 0
+#define MET_SPRITE_COUNT 4
 
 class MetView : public AnimatedView {
 private:
@@ -33,19 +29,9 @@ public:
   }
 
   virtual SDL2pp::Texture * getTexture(ORIENTATION orient) {
-    switch (orient) {
-      case UP:
-      case DOWN:
-      case IDLE:
-        currentSprite = SPRITE_IDLE;
-        break;
-      case LEFT:
-      case RIGHT:
-        spriteStep();
-        if (currentSprite > SPRITE_MOVEMENT_LAST)
-          currentSprite = SPRITE_MOVEMENT_FIRST;
-        break;
-    }
+    spriteStep();
+    if (currentSprite >= MET_SPRITE_COUNT)
+      currentSprite = 0;
 
     return textureMap[currentSprite];
   }
