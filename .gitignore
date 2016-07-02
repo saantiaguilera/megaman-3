@@ -146,3 +146,6 @@ crashlytics-build.properties
 fabric.properties
 /Debug/
 /core
+/Release/
+
+callgrind.*
