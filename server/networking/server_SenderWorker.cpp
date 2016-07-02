@@ -7,7 +7,6 @@
 
 #include "server_SenderWorker.h"
 
-#include <iostream>
 #include <iterator>
 
 SenderWorker::SenderWorker(std::vector<ClientProxy*>* clients,
@@ -20,6 +19,8 @@ SenderWorker::~SenderWorker() {
 
 void SenderWorker::run() {
 	while(keepRunning){
+		std::unique_lock<std::mutex> lock(mutex);
+		while (!ready) conditionVariable.wait(lock);
 		if (eventsQueue->size() != 0){
 			Serializer* event = eventsQueue->pop_front();
 
@@ -43,6 +44,9 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 
 void SenderWorker::dispatchEvent(Serializer* event) {
 	eventsQueue->add(event);
+	std::unique_lock<std::mutex> lock(mutex);
+	ready = true;
+	conditionVariable.notify_all();
 }
 
 void SenderWorker::dispatchEventTo(Serializer* event,
