@@ -115,6 +115,30 @@ MapWindow::MapWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& 
 
 //Signals
 void MapWindow::saveButtonWasTapped() {
+	//Saving Validation
+	if (bossEdition) {
+		if (!validator.didSetBoss()) {
+			// Did not set bosss => cant save
+			DialogManager(this).showMustHaveBossDialog();
+
+			return;
+		}
+	} else {
+		if (!validator.didSetBosschamber()) {
+			// Did not set bosschamber => cant save
+			DialogManager(this).showMustHaveBosschamberDialog();
+
+			return;
+		}
+
+		if (!validator.didSetMegaman()) {
+			// Did not set megaman => cant save
+			DialogManager(this).showMustHaveMegamanDialog();
+
+			return;
+		}
+	}
+
 	DialogManager(this).showSaveDialog();
 }
 
@@ -233,6 +257,23 @@ void MapWindow::addDraggingImageWithType(ObstacleViewType obstacleViewType) {
 
 	draggingImageContainer = new ObstacleViewContainer(obstacleView);
 
+	switch(draggingImageContainer->getObstacleView()->getType()) {
+		case ObstacleViewTypeMegaman:
+			validator.setMegaman();
+			break;
+		case ObstacleViewTypeBossChamberGate:
+			std::cout << "set bosschamber" << std::endl;
+			validator.setBosschamber();
+			break;
+		case ObstacleViewTypeFireman:
+		case ObstacleViewTypeBombman:
+		case ObstacleViewTypeRingman:
+		case ObstacleViewTypeSparkman:
+		case ObstacleViewTypeMagnetman:
+			validator.setBoss();
+			break;
+	}
+
 	draggingImage = draggingImageContainer->getImage();
 	draggingImage->hide();
 	fixedWindow->setObstacleViewContainer(draggingImageContainer);
@@ -260,7 +301,6 @@ bool MapWindow::on_button_press_event(GdkEventButton *event) {
 
 //		Have to add a new tile
 	} else if (event->button == kLeftClickButton) {
-
 //		Deside whether image have to be drop or just move it
 		if (draggingImageIsMoving) {
 			dropDraggingImage(event->x, event->y);
@@ -324,6 +364,23 @@ void MapWindow::dragImage(int aX, int aY) {
 		return;
 	}
 
+	switch(obstacleViewContainer->getObstacleView()->getType()) {
+		case ObstacleViewTypeMegaman :
+			validator.removeMegaman();
+			break;
+		case ObstacleViewTypeBossChamberGate :
+			validator.removeBosschamber();
+			break;
+		case ObstacleViewTypeFireman:
+		case ObstacleViewTypeBombman:
+		case ObstacleViewTypeRingman:
+		case ObstacleViewTypeSparkman:
+		case ObstacleViewTypeMagnetman:
+			validator.removeBoss();
+			break;
+		default: break;
+	}
+
 	draggingImageContainer = obstacleViewContainer;
 
 	draggingImage = draggingImageContainer->getImage();
@@ -331,6 +388,7 @@ void MapWindow::dragImage(int aX, int aY) {
 
 void MapWindow::deleteDraggingImage() {
 	draggingEnd();
+
 
 	draggingImage = 0;
 	fixedWindow->removeObstacleContainerView(draggingImageContainer);
@@ -341,6 +399,24 @@ void MapWindow::deleteImage(int aX, int aY) {
 	if (obstacleViewContainerToRemove == NULL) {
 		return;
 	}
+
+	switch(obstacleViewContainerToRemove->getObstacleView()->getType()) {
+	case ObstacleViewTypeMegaman :
+		validator.removeMegaman();
+		break;
+	case ObstacleViewTypeBossChamberGate :
+
+		validator.removeBosschamber();
+		break;
+	case ObstacleViewTypeFireman:
+	case ObstacleViewTypeBombman:
+	case ObstacleViewTypeRingman:
+	case ObstacleViewTypeSparkman:
+	case ObstacleViewTypeMagnetman:
+		validator.removeBoss();
+		break;
+	}
+
 	fixedWindow->removeObstacleContainerView(obstacleViewContainerToRemove);
 }
 
