@@ -51,6 +51,7 @@ protected:
       send(serializer);
 
       delete serializer;
+      serializer = NULL;
     }
 
     while (!stop) {

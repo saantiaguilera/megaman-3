@@ -29,9 +29,8 @@ public:
 	}
 
 	~Looper() {
-		while (messagePool.size() > 0) {
-			delete messagePool.front();
-			messagePool.pop();
+		while (!messagePool.empty()) {
+			pop();
 		}
 	}
 
@@ -50,8 +49,9 @@ public:
 		Lock lock(mutex);
 
 		if (!messagePool.empty()) {
-			delete messagePool.front();
+			Event *event = messagePool.front();
 			messagePool.pop();
+			delete event;
 		}
 	}
 

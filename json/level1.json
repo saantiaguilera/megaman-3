@@ -5,7 +5,7 @@
         "height": 150,
         "width": 450,
         "id": 1,
-        "background_image": "res/drawable/background/background2.png",
+        "background_image": "res/drawable/background/background3.png",
         "obstacles": [
             {
                 "x": 175,
