@@ -12,10 +12,11 @@
 #include <Common/b2Settings.h>
 #include <Dynamics/b2Body.h>
 #include <Dynamics/b2Fixture.h>
-#include <iostream>
 #include <sstream>
 
 #include "../../game_engine/server_Engine.h"
+#include "../../game_engine/server_EventContext.h"
+#include "../../serializers/server_MovementSerializer.h"
 #include "../weapons/server_Weapon.h"
 
 #define CHARACTER_COLLISION_FILTERING_GROUP -1
@@ -59,6 +60,7 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	decreaseHp(projectile->getDamage());
+	Engine::getInstance().getContext()->dispatchEvent(new MovementSerializer(getId(), getPositionX(), getPositionY()));
 }
 
 void Character::increaseHP(unsigned int amount) {

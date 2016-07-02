@@ -8,7 +8,7 @@ ss * MapConstants.h
 #ifndef COMMON_COMMON_MAPCONSTANTS_H_
 #define COMMON_COMMON_MAPCONSTANTS_H_
 
-#define TERRAIN_TILE_SIZE 70
+#define TERRAIN_TILE_SIZE 50
 #define METERS_TO_PIXELS_RATIO 0.02f
 
 #include <map>

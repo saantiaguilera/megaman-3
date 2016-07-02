@@ -7,9 +7,9 @@
 #include "../../../common/common_Point.h"
 #include <SDL2pp/SDL2pp.hh>
 
-#define N_REPETITIONS 3
+#define N_REPETITIONS 2
 
-#define MAX_STEP_FOR_IDLE 4
+#define MAX_STEP_FOR_IDLE 2
 
 enum ORIENTATION {
   IDLE,
@@ -92,11 +92,11 @@ class AnimatedView : public RenderedView {
       }
 
       Point cameraPoint;
-      cameraPoint.setX(massCenter.getX() - (renderer->GetOutputWidth() / 2));
-      cameraPoint.setY(massCenter.getY() - (renderer->GetOutputHeight() / 2));
+      cameraPoint.setX(massCenter.getX() - (renderer->GetLogicalWidth() / 2));
+      cameraPoint.setY(massCenter.getY() - (renderer->GetLogicalHeight() / 2));
 
-      if (futureX >= (cameraPoint.getX()) && futureX <= (cameraPoint.getX() + renderer->GetOutputWidth()) &&
-        futureY >= (cameraPoint.getY()) && futureY <= (cameraPoint.getY() + renderer->GetOutputHeight())) {
+      if (futureX >= (cameraPoint.getX()) && futureX <= (cameraPoint.getX() + renderer->GetLogicalWidth()) &&
+        futureY >= (cameraPoint.getY()) && futureY <= (cameraPoint.getY() + renderer->GetLogicalHeight())) {
         renderer->Copy(*getTexture(mOrientation),
           SDL2pp::NullOpt,
           SDL2pp::Point(

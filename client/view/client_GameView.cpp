@@ -34,26 +34,17 @@ GameView::GameView() : Gtk::Window() {
 
   mutex = new Mutex();
 
-  int screenWidth, screenHeight;
-  getDesktopResolution(screenWidth, screenHeight);
-  set_size_request(screenWidth, screenHeight);
-  fullscreen();
+  set_size_request(SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT);
 
   set_icon_from_file(PATH_IC_LAUNCHER);
   override_background_color(Gdk::RGBA(BACKGROUND_COLOR), Gtk::STATE_FLAG_NORMAL);
-
 
   massCenter.setX(0);
   massCenter.setY(0);
 
   socket = manage(new Gtk::Socket());
-  socket->set_size_request(SOCKET_SIZE, SOCKET_SIZE);
 
-  Gtk::Layout *layout = manage(new Gtk::Layout());
-  layout->set_size_request(screenWidth, screenHeight);
-  layout->put(*socket, (screenWidth - SOCKET_SIZE) / 2, (screenHeight - SOCKET_SIZE) / 2);
-
-  add(*layout);
+  add(*socket);
   show_all();
 }
 
@@ -272,6 +263,9 @@ void GameView::refreshMassCenter() {
 
 bool GameView::onLoopSDL() {
   try {
+    if (mainWindow->GetSize().GetX() != get_width() || mainWindow->GetSize().GetY() != get_height())
+      mainWindow->SetSize(SDL2pp::Point(get_width(), get_height()));
+
     if (massCenterCouldHaveChanged)
       refreshMassCenter();
 
@@ -339,6 +333,8 @@ bool GameView::onInitSDL(::Window windowId) {
 
    // Create accelerated video renderer with default driver
    renderer = new SDL2pp::Renderer(*mainWindow, -1, SDL_RENDERER_SOFTWARE);
+   SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+   renderer->SetLogicalSize(SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT);
 
    worldView = new WorldView(renderer);
 
