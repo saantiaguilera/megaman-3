@@ -20,8 +20,8 @@ chmod u+x install.sh #Or the desired level of permission
 
 ##RUN
 ```Bash
-Server: ./mserver port config.json
-Client: ./mclient
+Server: ./mserver :port config.json
+Client: ./mclient :fps #Fps is optional, by default it will use 20fps
 Editor: ./meditor
 ```
 
