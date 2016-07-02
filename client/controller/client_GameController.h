@@ -34,6 +34,8 @@ public:
   virtual Gtk::Window * getView();
   virtual void setVisibility(bool visible);
 
+  void setFramesPerSecond(int fps);
+
   virtual ~GameController();
   GameController(Context *context);
 };
