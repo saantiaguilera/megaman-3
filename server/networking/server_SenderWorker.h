@@ -10,11 +10,15 @@
 
 #include <string>
 #include <vector>
+#include <mutex>              // std::mutex, std::unique_lock
+#include <condition_variable>
 
 #include "../../common/common_ConcurrentList.h"
 #include "../../common/common_Serializer.h"
 #include "../../common/common_Thread.h"
 #include "../game_engine/server_EventContext.h"
+#include <mutex>              // std::mutex, std::unique_lock
+#include <condition_variable>
 #include "server_ClientProxy.h"
 
 class SenderWorker: public Thread, public EventContext {
@@ -26,6 +30,12 @@ private:
 	ConcurrentList<Serializer*>* eventsQueue;
 	// Keep on running?
 	bool keepRunning;
+	// Mutex for conditional variable
+	std::mutex mutex;
+	// Condition variable to not fry the cpu looking for evens
+	std::condition_variable conditionVariable;
+	// Signal for resuming thread
+	bool ready = false;
 public:
 	// Constructor
 	SenderWorker(std::vector<ClientProxy*>* clients, ConcurrentList<Serializer*>* eventsQueue);

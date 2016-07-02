@@ -8,12 +8,6 @@
 #include "server_SenderWorker.h"
 
 #include <iterator>
-#include <mutex>              // std::mutex, std::unique_lock
-#include <condition_variable>
-
-std::mutex mtx;
-std::condition_variable cv;
-bool ready = false;
 
 SenderWorker::SenderWorker(std::vector<ClientProxy*>* clients,
 		ConcurrentList<Serializer*>* eventsQueue) :
@@ -25,8 +19,8 @@ SenderWorker::~SenderWorker() {
 
 void SenderWorker::run() {
 	while(keepRunning){
-		std::unique_lock<std::mutex> lck(mtx);
-		while (!ready) cv.wait(lck);
+		std::unique_lock<std::mutex> lock(mutex);
+		while (!ready) conditionVariable.wait(lock);
 		if (eventsQueue->size() != 0){
 			Serializer* event = eventsQueue->pop_front();
 
@@ -50,9 +44,9 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 
 void SenderWorker::dispatchEvent(Serializer* event) {
 	eventsQueue->add(event);
-	std::unique_lock<std::mutex> lck(mtx);
+	std::unique_lock<std::mutex> lock(mutex);
 	ready = true;
-	cv.notify_all();
+	conditionVariable.notify_all();
 }
 
 void SenderWorker::dispatchEventTo(Serializer* event,
