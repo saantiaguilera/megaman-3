@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 #include "../Constants.h"
 
@@ -65,7 +66,12 @@ void Client::attachController(Controller *controller) {
 }
 
 void Client::start(int argc, char *argv[]) {
-  app = Gtk::Application::create(argc, argv, APP_IS_UNIQUE ? APP_PACKAGE : "");
+  int appArgs = 1;
+
+  if (argc > 1)
+    gameFramesPerSecond = atoi(argv[1]);
+
+  app = Gtk::Application::create(appArgs, argv, APP_IS_UNIQUE ? APP_PACKAGE : "");
 
   onFlowToStart();
 
@@ -143,7 +149,14 @@ void Client::onFlowToLobby() {
 }
 
 void Client::onFlowToGame() {
-  attachController(new GameController(this));
+  GameController *gameController = new GameController(this);
+
+  attachController(gameController);
+
+  if (gameFramesPerSecond > 0)
+    gameController->setFramesPerSecond(gameFramesPerSecond);
+
+  receiverThread->setGame(dynamic_cast<GameView*>(currentController->getView()));
 }
 
 bool Client::onMessageReceived() {

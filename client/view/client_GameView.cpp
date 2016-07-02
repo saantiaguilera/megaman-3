@@ -9,8 +9,6 @@
 #define BACKGROUND_COLOR "black"
 #define PATH_IC_LAUNCHER "res/drawable/ic_launcher.png"
 
-#define DRAW_TIME_STEP 50
-
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
 #define AMMO_BAR_X 79
@@ -18,22 +16,7 @@
 #define LIFE_BAR_X 146
 #define LIFE_BAR_Y 5
 
-AnimatedFactoryView * GameView::factoryView = NULL;
-AnimatedView * GameView::myView = NULL;
-OnMyOwnViewMovementListener * GameView::viewMovementListener = NULL;
-unsigned int GameView::myId = -1;
-bool GameView::massCenterCouldHaveChanged = false;
-std::vector<AnimatedView*> GameView::animatedViews;
-Point GameView::massCenter;
-Mutex * GameView::mutex = NULL;
-
 GameView::GameView() : Gtk::Window() {
-  myView = NULL;
-  viewMovementListener = NULL;
-  myId = -1;
-
-  mutex = new Mutex();
-
   set_size_request(SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT);
 
   set_icon_from_file(PATH_IC_LAUNCHER);
@@ -52,12 +35,6 @@ GameView::~GameView() {
   if (worldView) {
     delete worldView;
     worldView = NULL;
-  }
-
-  if (mutex) {
-    mutex->unlock();
-    mutex = NULL;
-    delete mutex;
   }
 
   resetAnimations();
@@ -96,10 +73,13 @@ GameView::~GameView() {
     delete sdl;
     sdl = NULL;
   }
+}
 
-  viewMovementListener = NULL;
-  myView = NULL;
-  myId = -1;
+void GameView::setFramesPerSecond(int fps) {
+  int millis = (1000 / fps);
+
+  if (millis > DEFAULT_DRAW_TIME_STEP)
+    framesPerSecondInMillis = millis;
 }
 
 Point GameView::getMassCenter() {
@@ -128,7 +108,7 @@ void GameView::resetAnimations() {
   }
 
   {
-    Lock(*mutex);
+    Lock lock(mutex);
     for (std::vector<AnimatedView*>::iterator it = animatedViews.begin() ;
       it != animatedViews.end() ; ++it) {
         delete (*it);
@@ -160,7 +140,7 @@ void GameView::addViewFromJSON(std::string json) {
       view->set(point);
 
       {
-        Lock(*mutex);
+        Lock lock(mutex);
         animatedViews.push_back(view);
       }
 
@@ -189,8 +169,9 @@ void GameView::removeViewFromJSON(std::string json) {
 
   if (position != -1) {
     AnimatedView *view;
+
     {
-      Lock(*mutex);
+      Lock lock(mutex);
       view = animatedViews.at(position);
       animatedViews.erase(animatedViews.begin() + position);
     }
@@ -280,7 +261,7 @@ bool GameView::onLoopSDL() {
     //std::cout << "List size of views is " << animatedViews.size() << std::endl;
 
     {
-      Lock(*mutex);
+      Lock lock(mutex);
       for (AnimatedView* view : animatedViews)
         view->draw(massCenter);
     }
@@ -358,20 +339,13 @@ bool GameView::onInitSDL(::Window windowId) {
    soundController = new SoundController();
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
-   Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
+   Glib::signal_timeout().connect(slot, framesPerSecondInMillis);
 
    return false;
  } catch (std::exception& e) {
    std::cout << "Something bad happened in onInitSDL" << std::endl;
    return true;
  }
-}
-
-void GameView::getDesktopResolution(int& horizontal, int& vertical) {
-  Display* disp = XOpenDisplay(NULL);
-  Screen* scrn = DefaultScreenOfDisplay(disp);
-  vertical = scrn->height;
-  horizontal = scrn->width;
 }
 
 bool GameView::isRunning() {

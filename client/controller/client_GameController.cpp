@@ -100,6 +100,10 @@ bool GameController::onMessageReceived() {
   } else return false;
 }
 
+void GameController::setFramesPerSecond(int fps) {
+  view->setFramesPerSecond(fps);
+}
+
 void GameController::onViewMoved() {
   bool changed = false;
 

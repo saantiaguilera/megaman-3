@@ -32,15 +32,16 @@ PhysicObject::~PhysicObject() {
 void PhysicObject::move(unsigned int moveState) {
     b2Vec2 vel = myBody->GetLinearVelocity();
 
-    float desiredVelx = 0;
-    float desiredVely = 0;
+    float desiredVelx = vel.x;
+    float desiredVely = vel.y;
 
     switch ( moveState ) {
     	case MS_LEFT:  desiredVelx = -STEP_LENGTH; facingPosition = OR_LEFT; break;//let speed change gradually
-    	case MS_STOP:  desiredVelx =  vel.x * 0; desiredVely = vel.y * 0.98; break;//let speed decay gradually
+    	case MS_STOP:  desiredVelx = 0; break;//let speed decay gradually
 		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
-    	case MS_JUMP: if ( numFootContacts < 1 ) break; desiredVely = BODIES_SIZE*8; break;//let speed change gradually
+    	case MS_JUMP: if ( numFootContacts < 1 ) break; desiredVely = BODIES_SIZE*10; break;//let speed change gradually
     	case MS_DOWN: desiredVely = -5; break;
+    	default: desiredVely = vel.y * 0.98; break;
     }
     float velChangex = desiredVelx - vel.x;
     float impulsex = myBody->GetMass() * velChangex;
@@ -107,4 +108,8 @@ bool PhysicObject::isVulnerable() const {
 void PhysicObject::setVulnerable(bool vulnerable) {
 	this->vulnerable = vulnerable;
 	ticksTillVulnerable = TICKS_TILL_VULNERABLE_DEFAULT;
+}
+
+bool PhysicObject::isJumping() {
+	return numFootContacts == 0;
 }
