@@ -31,6 +31,8 @@ and performs the action it has
 #define SCREEN_SIZE_WIDTH 950
 #define SCREEN_SIZE_HEIGHT 550
 
+#define DEFAULT_DRAW_TIME_STEP 50
+
 enum BarView {
   BAR_LIFE,
   BAR_HP,
@@ -82,6 +84,8 @@ private:
   Point massCenter;
   bool massCenterCouldHaveChanged;
 
+  int framesPerSecondInMillis = DEFAULT_DRAW_TIME_STEP;
+
   void refreshMassCenter();
 
   /**
@@ -119,6 +123,8 @@ public:
   void removeViewFromJSON(std::string json);
   void moveViewFromJSON(std::string json);
   bool isRunning();
+
+  void setFramesPerSecond(int fps);
 
   void onBarChange(BarView bar, int amount);
 

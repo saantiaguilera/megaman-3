@@ -9,8 +9,6 @@
 #define BACKGROUND_COLOR "black"
 #define PATH_IC_LAUNCHER "res/drawable/ic_launcher.png"
 
-#define DRAW_TIME_STEP 50
-
 #define HEALTH_BAR_X 12
 #define HEALTH_BAR_Y 12
 #define AMMO_BAR_X 79
@@ -75,6 +73,13 @@ GameView::~GameView() {
     delete sdl;
     sdl = NULL;
   }
+}
+
+void GameView::setFramesPerSecond(int fps) {
+  int millis = (1000 / fps);
+
+  if (millis > DEFAULT_DRAW_TIME_STEP)
+    framesPerSecondInMillis = millis;
 }
 
 Point GameView::getMassCenter() {
@@ -334,7 +339,7 @@ bool GameView::onInitSDL(::Window windowId) {
    soundController = new SoundController();
 
    sigc::slot<bool> slot = sigc::mem_fun(*this, &GameView::onLoopSDL);
-   Glib::signal_timeout().connect(slot, DRAW_TIME_STEP);
+   Glib::signal_timeout().connect(slot, framesPerSecondInMillis);
 
    return false;
  } catch (std::exception& e) {

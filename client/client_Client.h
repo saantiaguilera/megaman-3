@@ -25,6 +25,8 @@ private:
 
 	Glib::Dispatcher dispatcher;
 
+	int gameFramesPerSecond = 0;
+
 	//For creating the initial connection
 	Socket *socket = NULL;
   ConnectionThread *connectionThread = NULL;
