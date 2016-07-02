@@ -2,7 +2,6 @@
 #define CLIENT_CLIENT_LOOPER_H_
 
 #include "client_Event.h"
-#include "client_GarbageCollector.h"
 #include "../../common/common_Mutex.h"
 #include "../../common/common_Lock.h"
 #include <queue>
@@ -20,27 +19,19 @@ private:
 
 	std::queue<Event*> messagePool;
 
-	bool gcRunning;
-	std::vector<Event*> gcPool;
-	GarbageCollector *gc;
-
 public:
   static Looper& getMainLooper() {
     static Looper instance;
     return instance;
   }
 
-	explicit Looper() : gcRunning(true) {
-		gc = new GarbageCollector(&gcRunning, &gcPool);
-		gc->start();
+	explicit Looper() {
 	}
 
 	~Looper() {
-		if (gcRunning) {
-			gcRunning = false;
-			gc->join();
-
-			delete gc;
+		while (messagePool.size() > 0) {
+			delete messagePool.front();
+			messagePool.pop();
 		}
 	}
 
@@ -59,8 +50,7 @@ public:
 		Lock lock(mutex);
 
 		if (!messagePool.empty()) {
-			if (gcRunning)
-				gcPool.push_back(messagePool.front());
+			delete messagePool.front();
 			messagePool.pop();
 		}
 	}
