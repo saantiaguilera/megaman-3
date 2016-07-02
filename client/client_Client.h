@@ -27,6 +27,8 @@ private:
 
 	int gameFramesPerSecond = 0;
 
+	bool isIPValid(std::string data);
+
 	//For creating the initial connection
 	Socket *socket = NULL;
   ConnectionThread *connectionThread = NULL;

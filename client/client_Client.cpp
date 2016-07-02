@@ -1,5 +1,9 @@
 #include <iostream>
 #include <cstdlib>
+#include <stdlib.h>
+#include <vector>
+#include <string>
+#include <ctype.h>
 
 #include "../Constants.h"
 
@@ -80,17 +84,65 @@ void Client::start(int argc, char *argv[]) {
   app->run(*(currentController->getView()));
 }
 
-void Client::onCreateConnection(std::string ip, std::string name) {
-  if (ip.find_first_of(":") == std::string::npos)
-    return;
+bool Client::isIPValid(std::string data) {
+  try {
+    if (data.find_first_of(":") == std::string::npos)
+      return false;
 
-  if (!connectionThread) {
+    std::string address = data.substr(0, data.find_first_of(":"));
+    std::string port = data.substr(data.find_first_of(":") + 1);
+
+    std::vector<std::string> arr;
+    int k = 0;
+    arr.push_back(std::string());
+    for (std::string::const_iterator i = address.begin(); i != address.end(); ++i) {
+        if (*i == '.') {
+            ++k;
+            arr.push_back(std::string());
+            if (k == 4)
+              return false;
+            continue;
+        }
+        if (*i >= '0' && *i <= '9')
+            arr[k] += *i;
+        else return false;
+        if (arr[k].size() > 3)
+            return false;
+    }
+    if (k != 3)
+        return false;
+
+    for (int i = 0; i != 4; ++i) {
+        const char* nPtr = arr[i].c_str();
+        char* endPtr = 0;
+        const unsigned long a = ::strtoul(nPtr, &endPtr, 10);
+        if (nPtr == endPtr)
+            return false;
+
+        if (a > 255)
+            return false;
+    }
+
+    for(std::string::const_iterator portIterator = port.begin(); portIterator != port.end(); ++portIterator)
+        if (!isdigit(*portIterator)) return false;
+
+    return true;
+  } catch (std::exception e) {
+    return false;
+  }
+}
+
+void Client::onCreateConnection(std::string ip, std::string name) {
+  if (isIPValid(ip) && !connectionThread) {
     clientName = name;
     connectionThread = new ConnectionThread();
     connectionThread->setListener(this);
     connectionThread->setSocket((socket = new Socket()));
     connectionThread->setData(ip.substr(0, ip.find_first_of(":")), ip.substr(ip.find_first_of(":") + 1));
     connectionThread->start();
+  } else {
+    Looper::getMainLooper().put(new ConnectionEvent(RESULT_ERROR));
+    onDataReceived();
   }
 }
 
