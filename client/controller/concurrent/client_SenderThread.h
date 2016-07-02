@@ -23,6 +23,8 @@
 
 #include <string>
 #include <unistd.h>
+#include <mutex>              // std::mutex, std::unique_lock
+#include <condition_variable>
 
 class SenderThread : public Thread {
 private:
@@ -30,6 +32,13 @@ private:
   Socket *socket;
 
   std::string name;
+
+  // Mutex for conditional variable
+  std::mutex mutex;
+  // Condition variable to not fry the cpu looking for events
+  std::condition_variable conditionVariable;
+  // Signal for resuming thread
+  bool ready = false;
 
 protected:
   void send(Serializer *serializer) {
@@ -55,6 +64,8 @@ protected:
     }
 
     while (!stop) {
+      std::unique_lock<std::mutex> lock(mutex);
+  		conditionVariable.wait(lock);
       Event *event = NULL;
       while (!stop && (event = handlerLooper->get()) != NULL) {
         switch (event->getId()) {
@@ -99,6 +110,11 @@ public:
 
   void setSocket(Socket *socket) {
     this->socket = socket;
+  }
+
+  void notify(){
+    std::unique_lock<std::mutex> lock(mutex);
+    conditionVariable.notify_all();
   }
 };
 
