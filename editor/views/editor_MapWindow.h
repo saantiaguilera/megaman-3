@@ -13,6 +13,7 @@
 #include "editor_MapFixedWindow.h"
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapView.h"
+#include "../models/editor_MapWindowValidator.h"
 
 class EditorController;
 
@@ -139,6 +140,7 @@ private:
   bool draggingImageIsMoving = false;
   void draggingBegin();
   void draggingEnd();
+  MapWindowValidator validator;
 
   void addDraggingImageWithType(ObstacleViewType obstacleViewType);
   void dropDraggingImage(int aX, int aY);

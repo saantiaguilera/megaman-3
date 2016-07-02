@@ -29,6 +29,11 @@ public:
 	void showSaveDialog();
 	void showSaveDialogWithBossType(ObstacleViewType aBossType);
 	void showBackDialog();
+	void showMustHaveBossDialog();
+	void showMustHaveBosschamberDialog();
+	void showMustHaveMegamanDialog();
+
+
 
 private:
 	SaveDelegate *saveDelegate;
