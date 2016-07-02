@@ -401,20 +401,20 @@ void MapWindow::deleteImage(int aX, int aY) {
 	}
 
 	switch(obstacleViewContainerToRemove->getObstacleView()->getType()) {
-	case ObstacleViewTypeMegaman :
-		validator.removeMegaman();
-		break;
-	case ObstacleViewTypeBossChamberGate :
+		case ObstacleViewTypeMegaman :
+			validator.removeMegaman();
+			break;
+		case ObstacleViewTypeBossChamberGate :
 
-		validator.removeBosschamber();
-		break;
-	case ObstacleViewTypeFireman:
-	case ObstacleViewTypeBombman:
-	case ObstacleViewTypeRingman:
-	case ObstacleViewTypeSparkman:
-	case ObstacleViewTypeMagnetman:
-		validator.removeBoss();
-		break;
+			validator.removeBosschamber();
+			break;
+		case ObstacleViewTypeFireman:
+		case ObstacleViewTypeBombman:
+		case ObstacleViewTypeRingman:
+		case ObstacleViewTypeSparkman:
+		case ObstacleViewTypeMagnetman:
+			validator.removeBoss();
+			break;
 	}
 
 	fixedWindow->removeObstacleContainerView(obstacleViewContainerToRemove);
