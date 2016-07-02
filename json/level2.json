@@ -2,10 +2,10 @@
     "map": {
         "name": "Bombman",
         "filename": "level2.json",
-        "height": 1100,
+        "height": 2040,
         "width": 1650,
         "id": 2,
-        "background_image": "res/drawable/background/background3.png",
+        "background_image": "res/drawable/background/background4.png",
         "obstacles": [
             {
                 "x": 225,

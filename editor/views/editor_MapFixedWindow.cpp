@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <math.h>
 #include "../../common/common_MapConstants.h"
 
 //Constructor
@@ -40,14 +41,34 @@ void MapFixedWindow::setObstacleViewContainer(ObstacleViewContainer *obstacleVie
 
 void MapFixedWindow::cropMapBackground() {
 	std::string path = mapView->getBackgroundImage();
-//	path = path.substr(0, path.length() - 4);
-//
-//	path += "editor.png";
 
-	Glib::RefPtr<Gdk::Pixbuf> temp = Gdk::Pixbuf::create_from_file(path);
-	Glib::RefPtr<Gdk::Pixbuf> cropTemp = Gdk::Pixbuf::create_subpixbuf(temp, 0, 0, mapWidth() + TERRAIN_TILE_SIZE, mapHeight() + TERRAIN_TILE_SIZE);
+	Glib::RefPtr<Gdk::Pixbuf> backgroundImagePixbuf = Gdk::Pixbuf::create_from_file(path);
 
-	backgroundImage->set(cropTemp);
+	int mapWidth = this->mapWidth() + TERRAIN_TILE_SIZE;
+	int mapHeight = this->mapHeight() + TERRAIN_TILE_SIZE;
+
+	int backgroundImagePixbufWidth = backgroundImagePixbuf->get_width();
+	int backgroundImagePixbufHeight = backgroundImagePixbuf->get_height();
+
+	int ratioMosaicPixbuffWidth = ceil((float)mapWidth/(float)backgroundImagePixbufWidth);
+	int ratioMosaicPixbuffHeight = ceil((float)mapHeight/(float)backgroundImagePixbufHeight);
+
+	std::cout << "unceil width : " << (float)mapWidth/(float)backgroundImagePixbufWidth << std::endl;
+	std::cout << "unceil height : " << (float)mapHeight/(float)backgroundImagePixbufHeight<< std::endl;
+	std::cout << "ratio width : " << ratioMosaicPixbuffWidth << std::endl;
+	std::cout << "ratio height : " << ratioMosaicPixbuffHeight << std::endl;
+
+	Glib::RefPtr<Gdk::Pixbuf> mosaicPixbuff = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, 0, 8, ratioMosaicPixbuffWidth * backgroundImagePixbufWidth, ratioMosaicPixbuffHeight * backgroundImagePixbufHeight);
+
+	for (int x = 0 ; x < ratioMosaicPixbuffWidth ; ++x) {
+		for (int y = 0 ; y < ratioMosaicPixbuffHeight ; ++y) {
+			backgroundImagePixbuf->copy_area(0, 0, backgroundImagePixbufWidth, backgroundImagePixbufHeight, mosaicPixbuff, x * backgroundImagePixbufWidth, y * backgroundImagePixbufHeight);
+		}
+	}
+
+	Glib::RefPtr<Gdk::Pixbuf> cropMosaicPixbuf = Gdk::Pixbuf::create_subpixbuf(mosaicPixbuff, 0, 0, mapWidth, mapHeight);
+
+	backgroundImage->set(cropMosaicPixbuf);
 }
 
 void MapFixedWindow::setMapView(MapView *aMapView) {
