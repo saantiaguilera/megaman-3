@@ -34,7 +34,10 @@ Client::~Client()  {
   }
 
   if (senderThread) {
-    if (senderLooper) senderLooper->put(new StopLooperEvent());
+    if (senderLooper){
+      senderLooper->put(new StopLooperEvent());
+      senderThread->notify();
+    }
     senderThread->join();
     delete senderThread;
     senderThread = NULL;
@@ -177,7 +180,10 @@ void Client::onFlowToStart() {
     connectionThread = NULL;
   } else { //We are somewhere around our game, we should just go to start. Delete the sender and receiver
     if (senderThread) {
-      if (senderLooper) senderLooper->put(new StopLooperEvent());
+      if (senderLooper) {
+        senderLooper->put(new StopLooperEvent());
+        senderThread->notify();
+      }
 
       senderThread->join();
       delete senderThread;
@@ -235,16 +241,19 @@ bool Client::onMessageReceived() {
 
       case EVENT_SEND_KEY_MAP:
         senderLooper->put(new SendKeyMapEvent(dynamic_cast<SendKeyMapEvent*>(event)->getKeyMap()));
+        senderThread->notify();
         consumed = true;
         break;
 
       case EVENT_SEND_CHANGE_WEAPON:
         senderLooper->put(new SendChangeWeaponEvent(dynamic_cast<SendChangeWeaponEvent*>(event)->getWeaponType()));
+        senderThread->notify();
         consumed = true;
         break;
 
       case EVENT_START_GAME:
         senderLooper->put(new StartMapEvent(dynamic_cast<StartMapEvent*>(event)->getMapId()));
+        senderThread->notify();
         consumed = true;
         break;
 
