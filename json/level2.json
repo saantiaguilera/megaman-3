@@ -2,10 +2,10 @@
     "map": {
         "name": "Bombman",
         "filename": "level2.json",
-        "height": 2040,
+        "height": 1100,
         "width": 1650,
         "id": 2,
-        "background_image": "res/drawable/background/background4.png",
+        "background_image": "res/drawable/background/background1.png",
         "obstacles": [
             {
                 "x": 225,
@@ -64,11 +64,6 @@
             },
             {
                 "x": 675,
-                "y": 275,
-                "type": 2
-            },
-            {
-                "x": 625,
                 "y": 275,
                 "type": 2
             },
@@ -315,11 +310,6 @@
             {
                 "x": 875,
                 "y": 675,
-                "type": 2
-            },
-            {
-                "x": 625,
-                "y": 325,
                 "type": 2
             },
             {
@@ -888,8 +878,8 @@
                 "type": 11
             },
             {
-                "x": 625,
-                "y": 75,
+                "x": 875,
+                "y": 175,
                 "type": 9
             },
             {
@@ -1030,6 +1020,21 @@
             {
                 "x": 175,
                 "y": 25,
+                "type": 2
+            },
+            {
+                "x": 575,
+                "y": 25,
+                "type": 9
+            },
+            {
+                "x": 625,
+                "y": 275,
+                "type": 2
+            },
+            {
+                "x": 625,
+                "y": 325,
                 "type": 2
             }
         ]
