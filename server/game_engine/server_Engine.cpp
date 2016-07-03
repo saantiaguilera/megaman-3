@@ -165,6 +165,11 @@ std::vector<PhysicObject*>* Engine::getUpdatablesList() {
 
 void Engine::setQuit(bool quit) {
 	this->quit = quit;
+	forceLoot = true;
+}
+
+bool Engine::isForceLoot() const {
+	return forceLoot;
 }
 
 Engine::Engine() : quit(false), readyToStart(false), running(false), contactListener(NULL){}
@@ -259,8 +264,9 @@ void Engine::setContext(EventContext* context) {
 
 void Engine::activateTeleportToBossChamber() {
 	teleportToBossChamberWasActivated = true;
+	forceLoot = false;
 }
 
-bool Engine::isTeleportToBossChamberWasActivated() const {
+bool Engine::isTeleportToBossChamberActivated() const {
 	return teleportToBossChamberWasActivated;
 }

@@ -138,7 +138,7 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			if (playerList.at(0)->getMegaman() == NULL && !Engine::getInstance().isTeleportToBossChamberWasActivated()) {
+			if (playerList.at(0)->getMegaman() == NULL && !Engine::getInstance().isTeleportToBossChamberActivated()) {
 				for (Player* aPlayer : playerList) {
 					aPlayer->setMegaman(x, y);
 				}

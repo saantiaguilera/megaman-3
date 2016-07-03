@@ -66,6 +66,8 @@ private:
 	void destroyObjects();
 	// Teleport to boss chamber was activated?
 	bool teleportToBossChamberWasActivated = false;
+	// Flag indicating if loots should appear
+	bool forceLoot = true;
 
 	void cleanEngine();
 public:
@@ -120,7 +122,8 @@ public:
 	// Set the flag for teleporting to boss chamber
 	void activateTeleportToBossChamber();
 	void setQuit(bool quit);
-	bool isTeleportToBossChamberWasActivated() const;
+	bool isTeleportToBossChamberActivated() const;
+	bool isForceLoot() const;
 
 private:
 	// Constructor

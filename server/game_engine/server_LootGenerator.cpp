@@ -28,7 +28,7 @@ void LootGenerator::generateLootAt(float32 x, float32 y) {
 	// Generate a random number
 	// If random number is equal or less than to the sum of all the drop rates
 	// before the one chosen then generate a loot
-	if (!Engine::getInstance().isTeleportToBossChamberWasActivated()){
+	if (Engine::getInstance().isForceLoot()){
 		float randomNumber = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		float probabilityRange = BIG_AMMO_PACK_DROP_RATE;
 		if (randomNumber > NO_LOOT_DROP_RATE) {
