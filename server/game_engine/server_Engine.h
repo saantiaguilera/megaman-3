@@ -120,6 +120,7 @@ public:
 	// Set the flag for teleporting to boss chamber
 	void activateTeleportToBossChamber();
 	void setQuit(bool quit);
+	bool isTeleportToBossChamberWasActivated() const;
 
 private:
 	// Constructor

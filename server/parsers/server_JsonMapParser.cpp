@@ -7,20 +7,21 @@
 
 #include "server_JsonMapParser.h"
 
-#include <vector>
-
-#include <Dynamics/b2Body.h>
 #include <Common/b2Math.h>
+#include <Dynamics/b2Body.h>
+#include <vector>
 
 #include "../../common/common_MapConstants.h"
 #include "../../common/common_MapViewParser.h"
 #include "../../common/rapidjson/document.h"
 #include "../../common/rapidjson/rapidjson.h"
 #include "../game_engine/server_Engine.h"
+#include "../game_engine/server_EventContext.h"
 #include "../game_engine/server_Player.h"
 #include "../model/characters/humanoids/server_Bombman.h"
 #include "../model/characters/humanoids/server_Fireman.h"
 #include "../model/characters/humanoids/server_Magnetman.h"
+#include "../model/characters/humanoids/server_Megaman.h"
 #include "../model/characters/humanoids/server_Ringman.h"
 #include "../model/characters/humanoids/server_Sparkman.h"
 #include "../model/characters/mobs/server_Bumpy.h"
@@ -37,9 +38,10 @@
 #include "../model/powerups/server_Life.h"
 #include "../model/powerups/server_SmallAmmoPack.h"
 #include "../model/powerups/server_SmallEnergyCapsule.h"
-#include "../services/server_CoordinatesConverter.h"
 #include "../serializers/server_ConnectedPlayerSerializer.h"
+#include "../serializers/server_LifeChangeSerializer.h"
 #include "../serializers/server_ObjectCreationSerializer.h"
+#include "../services/server_CoordinatesConverter.h"
 
 
 JsonMapParser::JsonMapParser() {
@@ -136,20 +138,29 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			if (playerList.at(0)->getMegaman() == NULL) {
+			if (playerList.at(0)->getMegaman() == NULL && !Engine::getInstance().isTeleportToBossChamberWasActivated()) {
 				for (Player* aPlayer : playerList) {
 					aPlayer->setMegaman(x, y);
 				}
 			} else {
+				Megaman* megaman;
 				for (Player* aPlayer : playerList) {
-					aPlayer->getMegaman()->getMyBody()->SetTransform(b2Vec2(x, y), 0);
+					megaman = aPlayer->getMegaman();
+					if (megaman != NULL){
+						megaman->getMyBody()->SetTransform(b2Vec2(x, y), 0);
 
-					renotifyMegamanSerializer = new ObjectCreationSerializer(aPlayer->getMegaman());
-					Engine::getInstance().getContext()->dispatchEvent(renotifyMegamanSerializer);
+						renotifyMegamanSerializer = new ObjectCreationSerializer(megaman);
+						Engine::getInstance().getContext()->dispatchEvent(renotifyMegamanSerializer);
 
-					reconnectedPlayer = new ConnectedPlayerSerializer(aPlayer->getMegaman());
-					reconnectedPlayer->setDispatchClient(aPlayer->getId());
-					Engine::getInstance().getContext()->dispatchEvent(reconnectedPlayer);
+						reconnectedPlayer = new ConnectedPlayerSerializer(megaman);
+						reconnectedPlayer->setDispatchClient(aPlayer->getId());
+						Engine::getInstance().getContext()->dispatchEvent(reconnectedPlayer);
+
+						LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(
+								megaman->getHumanOperator()->getLives());
+						lifeChangeSerializer->setDispatchClient(megaman->getBoundId());
+						Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
+					}
 				}
 			}
 			break;
