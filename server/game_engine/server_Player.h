@@ -13,6 +13,8 @@
 #include "../networking/server_ClientProxy.h"
 #include "../model/characters/humanoids/server_Megaman.h"
 
+#define PLAYER_MAX_LIVES 3
+
 class Player {
 private:
 	// Id of the player

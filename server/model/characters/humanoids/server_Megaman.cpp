@@ -138,7 +138,11 @@ void Megaman::receiveShotFromProjectile(Projectile *projectile) {
 }
 
 void Megaman::increaseHP(unsigned int amount) {
-	Character::increaseHP(amount);
+	if (hp + amount > MEGAMAN_INITIAL_HP){
+		hp = MEGAMAN_INITIAL_HP;
+	} else {
+		Character::increaseHP(amount);
+	}
 
 	HpChangeSerializer *hpChangeSerializer = new HpChangeSerializer(getHp(),
 			this);

@@ -71,7 +71,8 @@ Megaman* Player::getMegaman() const {
 }
 
 void Player::increasePlayerLives() {
-	++lives;
+	if (!(getLives() == PLAYER_MAX_LIVES))
+		++lives;
 }
 
 void Player::setMegaman(float x, float y) {
