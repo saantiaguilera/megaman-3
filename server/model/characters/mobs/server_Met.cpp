@@ -27,6 +27,8 @@ void Met::receiveShotFromProjectile(Projectile* projectile) {
 		if (projectileType == Projectile::BOMB || projectileType == Projectile::SPARK)
 			decreaseHp(projectile->getDamage());
 	}
+
+	notifyMovement();
 }
 
 void Met::update(){

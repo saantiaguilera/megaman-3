@@ -75,7 +75,7 @@ public:
 	// Return object id
 	unsigned int getId() const;
 	// Move
-	void move(unsigned int moveState);
+	virtual void move(unsigned int moveState);
 	// Get type of object
 	virtual int getObjectType() = 0;
 	// Get type for serialization

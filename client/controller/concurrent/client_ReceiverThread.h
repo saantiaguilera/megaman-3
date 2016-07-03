@@ -93,6 +93,8 @@ protected:
 
         json += buffer;
 
+        std::cout << "Received: id: " << messageCode << " message: " << json << std::endl;
+
         switch (messageCode) {
           //Do something
           case NEW_PLAYER:

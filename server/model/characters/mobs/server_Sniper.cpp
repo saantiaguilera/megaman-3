@@ -25,4 +25,6 @@ void Sniper::receiveShotFromProjectile(Projectile* projectile) {
 		if (projectileType == Projectile::FIRE || projectileType == Projectile::RING)
 			decreaseHp(projectile->getDamage() / 2);
 	}
+
+	notifyMovement();
 }

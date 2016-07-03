@@ -84,6 +84,16 @@ int Mob::getObjectType() {
 	return OT_MOB;
 }
 
+void Mob::move(unsigned int moveState) {
+	int oldX = getPositionX();
+	int oldY = getPositionY();
+
+	PhysicObject::move(moveState);
+
+	if (oldX == getPositionX() && oldY == getPositionY() && isUpdatable())
+		setUpdatable(false);
+}
+
 void Mob::handleCollisionWith(PhysicObject* objectCollidedWith) {
 	if (objectCollidedWith->getObjectType() == OT_PROJECTILE) {
 		Projectile* projectile = (Projectile*) objectCollidedWith;

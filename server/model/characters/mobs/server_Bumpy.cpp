@@ -24,6 +24,7 @@ Bumpy::~Bumpy() {
 
 void Bumpy::receiveShotFromProjectile(Projectile* projectile) {
 	decreaseHp(projectile->getDamage());
+	notifyMovement();
 }
 
 void Bumpy::update() {
