@@ -46,11 +46,6 @@ Megaman::Megaman(Player* humanOperator, float32 x, float32 y) :
 	ammoChangeSerializer->setDispatchClient(getBoundId());
 	Engine::getInstance().getContext()->dispatchEvent(ammoChangeSerializer);
 
-	LifeChangeSerializer* lifeChangeSerializer = new LifeChangeSerializer(
-			getHumanOperator()->getLives());
-	lifeChangeSerializer->setDispatchClient(getBoundId());
-	Engine::getInstance().getContext()->dispatchEvent(lifeChangeSerializer);
-
 	Engine::getInstance().getUpdatablesList()->push_back(this);
 
 }
