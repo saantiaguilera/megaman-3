@@ -49,6 +49,8 @@ protected:
     socket->send((char*) &length, sizeof(length));
 
     socket->send((char*) serializer->getSerialized().c_str(), serializer->getMessageLength());
+
+    std::cout << "Data sent: " << serializer->getSerialized() << std::endl;
   }
 
   virtual void run() {

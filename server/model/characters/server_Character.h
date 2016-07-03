@@ -36,6 +36,8 @@ protected:
 	virtual void decFootContacts();
 	// Add foot sensors
 	void addFootSensors();
+	//Notify the clients that we moved
+	void notifyMovement();
 public:
 	// Constructor
 	Character(unsigned int hp);

@@ -60,7 +60,12 @@ unsigned int Character::getHp() const {
 
 void Character::receiveShotFromProjectile(Projectile* projectile) {
 	decreaseHp(projectile->getDamage());
+	notifyMovement();
+}
+
+void Character::notifyMovement() {
 	Engine::getInstance().getContext()->dispatchEvent(new MovementSerializer(getId(), getPositionX(), getPositionY()));
+	setUpdatable(true);
 }
 
 void Character::increaseHP(unsigned int amount) {

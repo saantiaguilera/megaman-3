@@ -34,6 +34,8 @@ public:
 	virtual void handleCollisionWith(PhysicObject* objectCollidedWith);
 	// Get type for serialization
 	virtual int getTypeForSerialization() = 0;
+	// Override move to dont overkill clients
+	virtual void move(unsigned int moveState);
 
 	virtual float32 getWidth();
 	virtual float32 getHeight();
