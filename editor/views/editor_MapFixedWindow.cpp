@@ -53,12 +53,7 @@ void MapFixedWindow::cropMapBackground() {
 	int ratioMosaicPixbuffWidth = ceil((float)mapWidth/(float)backgroundImagePixbufWidth);
 	int ratioMosaicPixbuffHeight = ceil((float)mapHeight/(float)backgroundImagePixbufHeight);
 
-	std::cout << "unceil width : " << (float)mapWidth/(float)backgroundImagePixbufWidth << std::endl;
-	std::cout << "unceil height : " << (float)mapHeight/(float)backgroundImagePixbufHeight<< std::endl;
-	std::cout << "ratio width : " << ratioMosaicPixbuffWidth << std::endl;
-	std::cout << "ratio height : " << ratioMosaicPixbuffHeight << std::endl;
-
-	Glib::RefPtr<Gdk::Pixbuf> mosaicPixbuff = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, 0, 8, ratioMosaicPixbuffWidth * backgroundImagePixbufWidth, ratioMosaicPixbuffHeight * backgroundImagePixbufHeight);
+	Glib::RefPtr<Gdk::Pixbuf> mosaicPixbuff = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, ratioMosaicPixbuffWidth * backgroundImagePixbufWidth, ratioMosaicPixbuffHeight * backgroundImagePixbufHeight);
 
 	for (int x = 0 ; x < ratioMosaicPixbuffWidth ; ++x) {
 		for (int y = 0 ; y < ratioMosaicPixbuffHeight ; ++y) {
