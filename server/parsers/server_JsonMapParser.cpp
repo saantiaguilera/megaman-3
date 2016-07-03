@@ -136,20 +136,24 @@ void JsonMapParser::inflateObject(int type, float x, float y) {
 			new NormalSniper(x, y);
 			break;
 		case ObstacleViewTypeMegaman:
-			if (playerList.at(0)->getMegaman() == NULL) {
+			if (playerList.at(0)->getMegaman() == NULL && !Engine::getInstance().isTeleportToBossChamberWasActivated()) {
 				for (Player* aPlayer : playerList) {
 					aPlayer->setMegaman(x, y);
 				}
 			} else {
+				Megaman* megaman;
 				for (Player* aPlayer : playerList) {
-					aPlayer->getMegaman()->getMyBody()->SetTransform(b2Vec2(x, y), 0);
+					megaman = aPlayer->getMegaman();
+					if (megaman != NULL){
+						megaman->getMyBody()->SetTransform(b2Vec2(x, y), 0);
 
-					renotifyMegamanSerializer = new ObjectCreationSerializer(aPlayer->getMegaman());
-					Engine::getInstance().getContext()->dispatchEvent(renotifyMegamanSerializer);
+						renotifyMegamanSerializer = new ObjectCreationSerializer(megaman);
+						Engine::getInstance().getContext()->dispatchEvent(renotifyMegamanSerializer);
 
-					reconnectedPlayer = new ConnectedPlayerSerializer(aPlayer->getMegaman());
-					reconnectedPlayer->setDispatchClient(aPlayer->getId());
-					Engine::getInstance().getContext()->dispatchEvent(reconnectedPlayer);
+						reconnectedPlayer = new ConnectedPlayerSerializer(megaman);
+						reconnectedPlayer->setDispatchClient(aPlayer->getId());
+						Engine::getInstance().getContext()->dispatchEvent(reconnectedPlayer);
+					}
 				}
 			}
 			break;

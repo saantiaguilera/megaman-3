@@ -60,6 +60,7 @@ void Player::decreasePlayerLives() {
 	}
 	if (lives == 0){
 		Engine::getInstance().markObjectForRemoval(megaman);
+		megaman = NULL;
 		checkNumberOfDeadPlayers();
 	}
 

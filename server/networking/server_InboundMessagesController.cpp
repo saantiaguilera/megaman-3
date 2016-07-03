@@ -29,6 +29,7 @@ void InboundMessagesController::analizeMessageCode() {
 	// CHECK MESSAGE PROTOCOL IN common_MessageProtocol.h
 	std::vector<Player*> playerList = Engine::getInstance().getPlayersList();
 	Player* desiredPlayer;
+	Megaman* megaman;
 	switch (messageCode) {
 	case PLAYER_CONNECTED:
 		if (Engine::getInstance().getPlayersList().size() <= MAX_PLAYERS_COUNT) {
@@ -65,8 +66,10 @@ void InboundMessagesController::analizeMessageCode() {
 		break;
 	case WEAPON_CHANGE:
 		desiredPlayer = getDesiredPlayer(clientId);
-		desiredPlayer->getMegaman()->changeWeaponTo(
-				processWeaponType(inboundMessage));
+		megaman = desiredPlayer->getMegaman();
+		if (megaman != NULL){
+			megaman->changeWeaponTo(processWeaponType(inboundMessage));
+		}
 		break;
 	default:
 		break;
@@ -87,45 +90,44 @@ void InboundMessagesController::processMovement(const std::string& keyMap,
 		Player* player) {
 	KeyMapParser parser;
 	KeyMap futureKeyMap = parser.parse(keyMap);
+	Megaman* megaman = player->getMegaman();
+	if (megaman != NULL){
+		if (currentKeyMap.isJumping() != futureKeyMap.isJumping()) {
+			megaman->setUpdatable(true);
+			megaman->setCurrentMoveState(
+					( futureKeyMap.isJumping() && !player->getMegaman()->isJumping() ) ?
+							PhysicObject::_moveState::MS_JUMP :
+							PhysicObject::_moveState::MS_STOP_JUMPING);
+		}
 
-	if (currentKeyMap.isJumping() != futureKeyMap.isJumping()) {
-		player->getMegaman()->setUpdatable(true);
-		player->getMegaman()->setCurrentMoveState(
-				( futureKeyMap.isJumping() && !player->getMegaman()->isJumping() ) ?
-						PhysicObject::_moveState::MS_JUMP :
-						PhysicObject::_moveState::MS_STOP_JUMPING);
-//		if ( futureKeyMap.isJumping() && !player->getMegaman()->isJumping() ){
-//			player->getMegaman()->setCurrentMoveState( PhysicObject::_moveState::MS_JUMP);
-//		}
-	}
+		if (currentKeyMap.isDown() != futureKeyMap.isDown()) {
+			megaman->setUpdatable(true);
+			megaman->setCurrentMoveState(
+					futureKeyMap.isDown() ?
+							PhysicObject::_moveState::MS_DOWN :
+							PhysicObject::_moveState::MS_STOP);
+		}
 
-	if (currentKeyMap.isDown() != futureKeyMap.isDown()) {
-		player->getMegaman()->setUpdatable(true);
-		player->getMegaman()->setCurrentMoveState(
-				futureKeyMap.isDown() ?
-						PhysicObject::_moveState::MS_DOWN :
-						PhysicObject::_moveState::MS_STOP);
-	}
+		if (currentKeyMap.isLeft() != futureKeyMap.isLeft()) {
+			megaman->setUpdatable(true);
+			megaman->setCurrentMoveState(
+					futureKeyMap.isLeft() ?
+							PhysicObject::_moveState::MS_LEFT :
+							PhysicObject::_moveState::MS_STOP);
+		}
 
-	if (currentKeyMap.isLeft() != futureKeyMap.isLeft()) {
-		player->getMegaman()->setUpdatable(true);
-		player->getMegaman()->setCurrentMoveState(
-				futureKeyMap.isLeft() ?
-						PhysicObject::_moveState::MS_LEFT :
-						PhysicObject::_moveState::MS_STOP);
-	}
+		if (currentKeyMap.isRight() != futureKeyMap.isRight()) {
+			megaman->setUpdatable(true);
+			megaman->setCurrentMoveState(
+					futureKeyMap.isRight() ?
+							PhysicObject::_moveState::MS_RIGHT :
+							PhysicObject::_moveState::MS_STOP);
+		}
 
-	if (currentKeyMap.isRight() != futureKeyMap.isRight()) {
-		player->getMegaman()->setUpdatable(true);
-		player->getMegaman()->setCurrentMoveState(
-				futureKeyMap.isRight() ?
-						PhysicObject::_moveState::MS_RIGHT :
-						PhysicObject::_moveState::MS_STOP);
-	}
-
-	if (currentKeyMap.isShooting() != futureKeyMap.isShooting()) {
-		if (futureKeyMap.isShooting()) {
-			player->getMegaman()->attack();
+		if (currentKeyMap.isShooting() != futureKeyMap.isShooting()) {
+			if (futureKeyMap.isShooting()) {
+				megaman->attack();
+			}
 		}
 	}
 

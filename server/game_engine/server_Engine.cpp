@@ -260,3 +260,7 @@ void Engine::setContext(EventContext* context) {
 void Engine::activateTeleportToBossChamber() {
 	teleportToBossChamberWasActivated = true;
 }
+
+bool Engine::isTeleportToBossChamberWasActivated() const {
+	return teleportToBossChamberWasActivated;
+}

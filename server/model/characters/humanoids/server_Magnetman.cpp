@@ -29,8 +29,12 @@ MagnetMan::MagnetMan(float32 x, float32 y) : Humanoid(MAGNETMAN_INITIAL_HP, x, y
 }
 
 MagnetMan::~MagnetMan() {
+	Megaman* megaman;
 	for (Player* player : Engine::getInstance().getPlayersList()){
-		player->getMegaman()->makeWeaponAvailable(MAGNET_CANNON, new MagnetCannon());
+		megaman = player->getMegaman();
+		if (megaman != NULL){
+			megaman->makeWeaponAvailable(MAGNET_CANNON, new MagnetCannon());
+		}
 	}
 	bossDestroyed();
 }

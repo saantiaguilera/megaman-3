@@ -25,8 +25,12 @@ Ringman::Ringman(float32 x, float32 y) : Humanoid(RINGMAN_INITIAL_HP, x, y) {
 }
 
 Ringman::~Ringman() {
+	Megaman* megaman;
 	for (Player* player : Engine::getInstance().getPlayersList()){
-		player->getMegaman()->makeWeaponAvailable(RING_TOSSER, new RingTosser());
+		megaman = player->getMegaman();
+		if (megaman != NULL){
+			megaman->makeWeaponAvailable(RING_TOSSER, new RingTosser());
+		}
 	}
 	bossDestroyed();
 }
