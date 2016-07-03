@@ -38,6 +38,7 @@ Ladder::~Ladder() {
 void Ladder::haveEffectOn(Character* character) {
 	// Allow the character to fly while in contact with the ladder
 	character->getMyBody()->SetGravityScale(0);
+	character->move(MS_STOP_DOWN);
 }
 
 void Ladder::releaseEffectOn(Character* character) {

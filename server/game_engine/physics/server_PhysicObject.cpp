@@ -40,13 +40,8 @@ void PhysicObject::move(unsigned int moveState) {
     	case MS_STOP:  desiredVelx = 0; break;//let speed decay gradually
 		case MS_RIGHT: desiredVelx = STEP_LENGTH; facingPosition = OR_RIGHT; break;//let speed change gradually
     	case MS_JUMP: if ( numFootContacts < 1 ) break; desiredVely = BODIES_SIZE*10; break;//let speed change gradually
-    	case MS_DOWN: desiredVely = -5; break;
-//    	case MS_STOP_JUMPING: if (vel.x > 0) moveState = MS_RIGHT; if (vel.x < 0) moveState = MS_LEFT; break;
-    	default: desiredVely = vel.y * 0.98; break;
+    	case MS_DOWN: if (myBody->GetGravityScale() == 0) desiredVely = -5; break;
     }
-    std::cout << "Movestate: " << moveState << std::endl;
-//    std::cout << "Desired vel x: " << desiredVelx << std::endl;
-//    std::cout << "vel x: " << vel.x << std::endl;
     float velChangex = desiredVelx - vel.x;
     float impulsex = myBody->GetMass() * velChangex;
     float velChangey = desiredVely - vel.y;

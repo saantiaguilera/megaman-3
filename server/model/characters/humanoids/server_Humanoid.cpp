@@ -41,6 +41,7 @@ Humanoid::Humanoid(unsigned int hp, float32 x, float32 y) :
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &circleShape;
 	boxFixtureDef.density = 1;
+	boxFixtureDef.friction = 0;
 	myBody->CreateFixture(&boxFixtureDef);
 
 	setFilteringGroup();
