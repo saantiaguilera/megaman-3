@@ -17,6 +17,8 @@
 #include "physics/server_PhysicObject.h"
 #include "server_Player.h"
 
+class EngineWorker;
+
 #include "physics/server_ContactListener.h"
 #include "server_EventContext.h"
 
@@ -69,6 +71,8 @@ private:
 	// Flag indicating if loots should appear
 	bool forceLoot = true;
 
+	void notifyWorker();
+	EngineWorker *gameWorker = NULL;
 	void cleanEngine();
 public:
 	// Return logger instance
@@ -124,6 +128,7 @@ public:
 	void setQuit(bool quit);
 	bool isTeleportToBossChamberActivated() const;
 	bool isForceLoot() const;
+	void setGameEngine(EngineWorker *worker);
 
 private:
 	// Constructor

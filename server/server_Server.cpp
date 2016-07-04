@@ -55,6 +55,8 @@ void Server::run() {
 	EngineWorker engineWorker(&engineRunning);
 	engineWorker.start();
 
+	Engine::getInstance().setGameEngine(&engineWorker);
+
 	while (keepOnListening){
 		std::cin >> input;
 		if (input == STOP_LISTENING)
@@ -62,6 +64,7 @@ void Server::run() {
 	}
 
 	engineRunning = false;
+	engineWorker.notify();
 
 	senderWorker.setKeepRunning(false);
 	acceptorWorker.terminate();

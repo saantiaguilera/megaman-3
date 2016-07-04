@@ -34,8 +34,6 @@ private:
 	std::mutex mutex;
 	// Condition variable to not fry the cpu looking for evens
 	std::condition_variable conditionVariable;
-	// Signal for resuming thread
-	bool ready = false;
 public:
 	// Constructor
 	SenderWorker(std::vector<ClientProxy*>* clients, ConcurrentList<Serializer*>* eventsQueue);

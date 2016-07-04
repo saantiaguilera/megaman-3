@@ -20,6 +20,7 @@
 #include "../serializers/server_EnteredBossChamberSerializer.h"
 #include "../serializers/server_ObjectDestructionSerializer.h"
 #include "../server_Logger.h"
+#include "server_EngineWorker.h"
 
 Engine::~Engine() {
 	for (std::vector<Player*>::iterator it = playersList.begin();
@@ -223,6 +224,14 @@ void Engine::setReadyToStart(bool readyToStart) {
 	this->readyToStart = readyToStart;
 	quit = false;
 	mutex.unlock();
+
+	notifyWorker();
+}
+
+void Engine::notifyWorker() {
+	if (gameWorker) {
+		gameWorker->notify();
+	}
 }
 
 void Engine::setGravity(float32 gravity) {
@@ -269,4 +278,8 @@ void Engine::activateTeleportToBossChamber() {
 
 bool Engine::isTeleportToBossChamberActivated() const {
 	return teleportToBossChamberWasActivated;
+}
+
+void Engine::setGameEngine(EngineWorker *worker) {
+	this->gameWorker = worker;
 }
