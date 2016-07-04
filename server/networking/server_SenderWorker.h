@@ -47,6 +47,7 @@ public:
 	virtual void dispatchEventTo(Serializer* event, unsigned int clientId);
 	// Toogle keep running
 	void setKeepRunning(bool keepRunning);
+	void notify();
 };
 
 #endif /* SERVER_NETWORKING_SERVER_SENDERWORKER_H_ */

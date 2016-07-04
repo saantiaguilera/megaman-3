@@ -22,7 +22,7 @@ void SenderWorker::run() {
 		std::unique_lock<std::mutex> lock(mutex);
 		conditionVariable.wait(lock);
 
-		while (eventsQueue->size() > 0){
+		while (keepRunning && eventsQueue->size() > 0){
 			Serializer* event = eventsQueue->pop_front();
 
 			if (event->getDispatchAll()) {
@@ -45,7 +45,10 @@ void SenderWorker::setKeepRunning(bool keepRunning) {
 
 void SenderWorker::dispatchEvent(Serializer* event) {
 	eventsQueue->add(event);
-	
+	notify();
+}
+
+void SenderWorker::notify() {
 	std::unique_lock<std::mutex> lock(mutex);
 	conditionVariable.notify_all();
 }

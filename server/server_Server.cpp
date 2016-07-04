@@ -67,6 +67,7 @@ void Server::run() {
 	engineWorker.notify();
 
 	senderWorker.setKeepRunning(false);
+	senderWorker.notify();
 	acceptorWorker.terminate();
 	acceptorWorker.join();
 	senderWorker.join();
