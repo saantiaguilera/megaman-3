@@ -26,7 +26,6 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) :
 	mobBodyDef.type = b2_dynamicBody;
 	mobBodyDef.fixedRotation = true;
 	mobBodyDef.position.Set(x, y);
-	// TODO: Maybe add it from the outside? when its created
 	myBody = Engine::getInstance().getMyWorld()->CreateBody(&mobBodyDef);
 
 	// Assign user data for callbacks
@@ -41,15 +40,10 @@ Mob::Mob(unsigned int hp, float32 x, float32 y) :
 	// Add fixture
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &circleShape;
-	boxFixtureDef.density = 1;
+	boxFixtureDef.density = 40;
 	myBody->CreateFixture(&boxFixtureDef);
 
 	setFilteringGroup();
-
-	//add foot sensor fixture
-//	boxShape.SetAsBox(0.3, 0.3, b2Vec2(0,-2), 0);
-//	boxFixtureDef.isSensor = true;
-//    myBody->CreateFixture(&boxFixtureDef);
 
 	currentWeapon = new MobCannon();
 
