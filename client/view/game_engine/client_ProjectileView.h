@@ -11,13 +11,15 @@
 
 #define SPRITE_COUNT_EXTENDED 8
 
+#define SPRITE_COUNT_ALL 12
+
 #define IDLE_POSITION -1
 #define IDLE_PATH "res/drawable/bullets/idle.png"
 
 class ProjectileView : public AnimatedView {
 private:
   std::map<int, SDL2pp::Texture*> textureMap;
-  int firstLeft, firstRight, size, counter;
+  int firstLeft, firstRight, firstDown, size, counter;
 
   int projectileType;
   ORIENTATION lastOrientation;
@@ -29,7 +31,7 @@ public:
     size = SPRITE_COUNT;
 
     lastOrientation = IDLE;
-    counter = 0;
+    counter = IDLE_POSITION;
 
     switch (type) {
       case ObstacleViewTypeBomb:
@@ -56,21 +58,32 @@ public:
         break;
       case ObstacleViewTypePlasma:
         path += "normals/";
-        size = SPRITE_COUNT_EXTENDED;
+        size = SPRITE_COUNT_ALL;
         SoundController::play(("res/sound/bullets/create/normal.wav"));
         break;
     }
 
     path += "bullet";
 
-    if (size == SPRITE_COUNT) {
-      firstLeft = 1;
-      firstRight = 1;
-    }
+    switch (size) {
+      case SPRITE_COUNT_EXTENDED:
+        firstRight = 1;
+        firstLeft = 5;
+        firstDown = 1;
+        break;
 
-    if (size == SPRITE_COUNT_EXTENDED) {
-      firstRight = 1;
-      firstLeft = 5;
+      case SPRITE_COUNT_ALL:
+        firstRight = 1;
+        firstLeft = 5;
+        firstDown = 9;
+        break;
+
+      case SPRITE_COUNT:
+      default:
+        firstLeft = 1;
+        firstRight = 1;
+        firstDown = 1;
+        break;
     }
 
     for (int i = 0 ; i < size ; ++i) {
@@ -113,10 +126,16 @@ public:
       counter++;
       switch (orient) {
         case UP:
-        case DOWN:
         case IDLE:
           currentSprite = IDLE_POSITION;
           break;
+  			case DOWN:
+  			  spriteStep();
+  			  if (counter > SPRITE_COUNT) {
+  				  currentSprite = firstDown;
+  				  counter = 0;
+  			  }
+  			  break;
         case LEFT:
           spriteStep();
           if (counter > SPRITE_COUNT) {
@@ -136,9 +155,11 @@ public:
       counter = 0;
       switch (orient) {
         case UP:
-        case DOWN:
         case IDLE:
           break;
+		    case DOWN:
+  			  currentSprite = firstDown;
+  			  break;
         case LEFT:
           currentSprite = firstLeft;
           break;

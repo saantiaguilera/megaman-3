@@ -86,7 +86,7 @@ class AnimatedView : public RenderedView {
           mOrientation = ((int) (futureX - currentX)) > 0 ? RIGHT : LEFT;
           currentX = futureX;
         } else {
-          mOrientation = ((int) (futureY - currentY)) > 0 ? UP : DOWN;
+          mOrientation = ((int) (futureY - currentY)) > 0 ? DOWN : UP;
           currentY = futureY;
         }
       }
